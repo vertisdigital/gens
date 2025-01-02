@@ -1,10 +1,10 @@
 {
   "mappings": [
-    "/content/gentings/:/",
-    "/content/gentings/configuration:/.helix/config.json",
-    "/content/gentings/metadata:/metadata.json"
+    "/content/gens-dev/:/",
+    "/content/gens-dev/configuration:/.helix/config.json",
+    "/content/gens-dev/metadata:/metadata.json"
   ],
   "includes": [
-    "/content/gentings/"
+    "/content/gens-dev/"
   ]
 }

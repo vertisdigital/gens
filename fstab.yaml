@@ -1,5 +1,5 @@
 mountpoints:
   /:
-    url: "https://author-p35060-e135910.adobeaemcloud.com/bin/franklin.delivery/wppopen/ogvc_gens/main"
+    url: "https://author-p144202-e1488374.adobeaemcloud.com/bin/franklin.delivery/wppopen/ogvc_gens/main"
     type: "markup"
     suffix: ".html"
