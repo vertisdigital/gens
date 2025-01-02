@@ -22,5 +22,10 @@ module.exports = {
       '*': 4,
       herobanner: 5,
     }],
+    'no-console': 'warn', // Change to warn instead of error
+    'no-await-in-loop': 'off', // Disable if you need await in loops
+    'import/no-extraneous-dependencies': ['error', {
+      devDependencies: ['**/scripts/**'], // Allow dev dependencies in scripts folder
+    }],
   },
 };
