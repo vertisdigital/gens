@@ -1,1 +1,3 @@
 helix-importer-ui
+scripts/server.js
+scripts/local-dev.js

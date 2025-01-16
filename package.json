@@ -7,7 +7,7 @@
     "start": "node scripts/server.js",
     "watch": "node scripts/watch.js",
     "lint:js": "eslint . --ext .json,.js,.mjs --fix",
-    "lint:css": "stylelint blocks/**/*.css styles/*.css",
+    "lint:css": "stylelint blocks/**/*.css styles/*.css --fix",
     "lint": "npm run lint:js && npm run lint:css",
     "build:json": "npm-run-all -p build:json:models build:json:definitions build:json:filters",
     "build:json:models": "merge-json-cli -i \"models/_component-models.json\" -o \"component-models.json\"",
