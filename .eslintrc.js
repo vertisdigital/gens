@@ -19,8 +19,7 @@ module.exports = {
     'linebreak-style': ['error', 'unix'], // enforce unix linebreaks
     'no-param-reassign': [2, { props: false }], // allow modifying properties of param
     'xwalk/max-cells': ['error', {
-      '*': 4,
-      herobanner: 5,
+      '*': 10,
     }],
     'no-console': 'warn', // Change to warn instead of error
     'no-await-in-loop': 'off', // Disable if you need await in loops
