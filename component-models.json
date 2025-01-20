@@ -300,18 +300,6 @@
         "name": "icon",
         "label": "Icon",
         "multi": false
-      },
-      {
-        "component": "richtext",
-        "name": "feature-title",
-        "value": "",
-        "label": "Feature Title",
-        "valueType": "string"
-      },
-      {
-        "component": "text",
-        "name": "feature-heading",
-        "label": "Feature Heading"
       }
     ]
   }
