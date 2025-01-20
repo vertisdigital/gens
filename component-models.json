@@ -273,58 +273,5 @@
         "valueType": "string"
       }
     ]
-  },
-  {
-    "id": "about-us-heading",
-    "fields": [
-      {
-        "component": "text",
-        "name": "title",
-        "label": "Title"
-      },
-      {
-        "component": "text",
-        "name": "heading",
-        "label": "Heading"
-      },
-      {
-        "component": "richtext",
-        "name": "sub-heading",
-        "value": "",
-        "label": "Sub Heading",
-        "valueType": "string"
-      },
-      {
-        "component": "reference",
-        "valueType": "string",
-        "name": "icon",
-        "label": "Icon",
-        "multi": false
-      }
-    ]
-  },
-  {
-    "id": "about-us-description",
-    "fields": [
-      {
-        "component": "reference",
-        "valueType": "string",
-        "name": "feature-icon",
-        "label": "Feature Icon",
-        "multi": false
-      },
-      {
-        "component": "richtext",
-        "name": "feature-title",
-        "value": "",
-        "label": "Feature Title",
-        "valueType": "string"
-      },
-      {
-        "component": "text",
-        "name": "feature-heading",
-        "label": "Feature Heading"
-      }
-    ]
   }
 ]
