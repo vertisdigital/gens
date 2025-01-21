@@ -306,7 +306,8 @@
         "name": "redirect-path",
         "value": "",
         "label": "Redirect Path",
-        "valueType": "string"
+        "valueType": "string",
+        "rootPath": "/content/genting-singapore/"
       }
     ]
   },
