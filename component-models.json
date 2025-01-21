@@ -307,16 +307,7 @@
         "value": "",
         "label": "Redirect Path",
         "valueType": "string",
-        "rootPath": "/content/genting-singapore/"
-      },
-      {
-        "component": "pathbrowser",
-        "name": "ctaLink",
-        "value": "",
-        "label": "Call-to-Action Link",
-        "valueType": "string",
-        "rootPath": "/content/genting-singapore",
-        "placeholder": "Select a link"
+        "rootPath": "/content/genting-singapore"
       }
     ]
   },
