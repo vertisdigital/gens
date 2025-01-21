@@ -300,6 +300,13 @@
         "name": "icon",
         "label": "Icon",
         "multi": false
+      },
+      {
+        "component": "aem-content",
+        "name": "redirect-path",
+        "value": "",
+        "label": "Redirect Path",
+        "valueType": "string"
       }
     ]
   },
