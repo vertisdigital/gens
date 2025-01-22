@@ -275,7 +275,7 @@
     ]
   },
   {
-    "id": "aboutus",
+    "id": "feature",
     "fields": [
       {
         "component": "text",
@@ -297,7 +297,7 @@
     ]
   },
   {
-    "id": "aboutusdescription",
+    "id": "featureItem",
     "fields": [
       {
         "component": "reference",
