@@ -221,14 +221,15 @@
         },
         {
           "title": "Link Field",
-          "id": "linkfield",
+          "id": "linkField",
           "plugins": {
             "xwalk": {
               "page": {
                 "resourceType": "core/franklin/components/block/v1/block/item",
                 "template": {
                   "name": "Link Field",
-                  "model": "linkfield"
+                  "model": "linkField",
+                  "filter": "linkField"
                 }
               }
             }

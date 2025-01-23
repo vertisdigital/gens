@@ -326,7 +326,7 @@
     ]
   },
   {
-    "id": "linkfield",
+    "id": "linkField",
     "fields": [
       {
         "component": "aem-content",

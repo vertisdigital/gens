@@ -18,7 +18,7 @@
       "columns",
       "fragment",
       "feature",
-      "linkfield",
+      "linkField",
       "socialLinks",
       "links"
     ]
@@ -42,7 +42,7 @@
       "image",
       "button",
       "title",
-      "linkfield",
+      "linkField",
       "socialLinks",
       "links"
     ]
@@ -51,25 +51,25 @@
     "id": "feature",
     "components": [
       "featureItem",
-      "linkfield"
+      "linkField"
     ]
   },
   {
     "id": "featureItem",
     "components": [
-      "linkfield"
+      "linkField"
     ]
   },
   {
     "id": "socialLinks",
     "components": [
-      "linkfield"
+      "linkField"
     ]
   },
   {
     "id": "links",
     "components": [
-      "linkfield"
+      "linkField"
     ]
   }
 ]
