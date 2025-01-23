@@ -20,7 +20,8 @@
       "feature",
       "linkField",
       "socialLinks",
-      "links"
+      "links",
+      "linkFieldBlock"
     ]
   },
   {
@@ -42,7 +43,7 @@
       "image",
       "button",
       "title",
-      "linkField",
+      "linkFieldBlock",
       "socialLinks",
       "links"
     ]
@@ -68,6 +69,12 @@
   },
   {
     "id": "links",
+    "components": [
+      "linkField"
+    ]
+  },
+  {
+    "id": "linkFieldBlock",
     "components": [
       "linkField"
     ]
