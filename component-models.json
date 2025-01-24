@@ -371,7 +371,7 @@
     ]
   },
   {
-    "id": "linkFieldBlock",
+    "id": "imageLink",
     "fields": [
       {
         "component": "reference",

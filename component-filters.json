@@ -21,7 +21,7 @@
       "linkField",
       "socialLinks",
       "links",
-      "linkFieldBlock"
+      "imageLink"
     ]
   },
   {
@@ -43,7 +43,7 @@
       "image",
       "button",
       "title",
-      "linkFieldBlock",
+      "imageLink",
       "socialLinks",
       "links"
     ]
@@ -74,7 +74,7 @@
     ]
   },
   {
-    "id": "linkFieldBlock",
+    "id": "imageLink",
     "components": [
       "linkField"
     ]
