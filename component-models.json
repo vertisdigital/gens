@@ -278,6 +278,11 @@
         "component": "text",
         "name": "title",
         "label": "Title"
+      },
+      {
+        "component": "text",
+        "name": "detailedcaption",
+        "label": "Detailed Caption"
       }
     ]
   },
