@@ -283,6 +283,11 @@
         "component": "text",
         "name": "detailedcaption",
         "label": "Detailed Caption"
+      },
+      {
+        "component": "aem-content",
+        "name": "link",
+        "label": "Link"
       }
     ]
   },
