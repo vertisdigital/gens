@@ -112,6 +112,66 @@
     ]
   },
   {
+    "id": "aboutus",
+    "fields": [
+      {
+        "component": "text",
+        "name": "title",
+        "label": "Title"
+      },
+      {
+        "component": "text",
+        "name": "heading",
+        "label": "Heading"
+      },
+      {
+        "component": "richtext",
+        "name": "sub-heading",
+        "value": "",
+        "label": "Sub Heading",
+        "valueType": "string"
+      },
+      {
+        "component": "reference",
+        "valueType": "string",
+        "name": "icon",
+        "label": "Icon",
+        "multi": false
+      },
+      {
+        "component": "aem-content",
+        "name": "redirect-path",
+        "value": "",
+        "label": "Redirect Path",
+        "valueType": "string"
+      }
+    ]
+  },
+  {
+    "id": "about-us-description",
+    "fields": [
+      {
+        "component": "reference",
+        "valueType": "string",
+        "name": "feature-icon",
+        "label": "Feature Icon",
+        "multi": false
+      },
+      {
+        "component": "richtext",
+        "name": "feature-title",
+        "value": "",
+        "label": "Feature Title",
+        "valueType": "string"
+      },
+      {
+        "component": "text",
+        "name": "feature-heading",
+        "label": "Feature Heading"
+      }
+    ]
+  },
+  {
     "id": "card",
     "fields": [
       {
@@ -127,6 +187,35 @@
         "value": "",
         "label": "Text",
         "valueType": "string"
+      }
+    ]
+  },
+  {
+    "id": "columns",
+    "fields": [
+      {
+        "component": "text",
+        "valueType": "number",
+        "name": "columns",
+        "value": "",
+        "label": "Columns"
+      },
+      {
+        "component": "text",
+        "valueType": "number",
+        "name": "rows",
+        "value": "",
+        "label": "Rows"
+      }
+    ]
+  },
+  {
+    "id": "fragment",
+    "fields": [
+      {
+        "component": "aem-content",
+        "name": "reference",
+        "label": "Reference"
       }
     ]
   },
@@ -220,35 +309,6 @@
     ]
   },
   {
-    "id": "columns",
-    "fields": [
-      {
-        "component": "text",
-        "valueType": "number",
-        "name": "columns",
-        "value": "",
-        "label": "Columns"
-      },
-      {
-        "component": "text",
-        "valueType": "number",
-        "name": "rows",
-        "value": "",
-        "label": "Rows"
-      }
-    ]
-  },
-  {
-    "id": "fragment",
-    "fields": [
-      {
-        "component": "aem-content",
-        "name": "reference",
-        "label": "Reference"
-      }
-    ]
-  },
-  {
     "id": "hero",
     "fields": [
       {
@@ -271,67 +331,6 @@
         "value": "",
         "label": "Text",
         "valueType": "string"
-      }
-    ]
-  },
-  {
-    "id": "aboutus",
-    "fields": [
-      {
-        "component": "text",
-        "name": "title",
-        "label": "Title"
-      },
-      {
-        "component": "text",
-        "name": "heading",
-        "label": "Heading"
-      },
-      {
-        "component": "richtext",
-        "name": "sub-heading",
-        "value": "",
-        "label": "Sub Heading",
-        "valueType": "string"
-      },
-      {
-        "component": "reference",
-        "valueType": "string",
-        "name": "icon",
-        "label": "Icon",
-        "multi": false
-      },
-      {
-        "component": "aem-content",
-        "name": "redirect-path",
-        "value": "",
-        "label": "Redirect Path",
-        "valueType": "string",
-        "rootPath": "/content/genting-singapore/"
-      }
-    ]
-  },
-  {
-    "id": "aboutusdescription",
-    "fields": [
-      {
-        "component": "reference",
-        "valueType": "string",
-        "name": "feature-icon",
-        "label": "Feature Icon",
-        "multi": false
-      },
-      {
-        "component": "richtext",
-        "name": "feature-title",
-        "value": "",
-        "label": "Feature Title",
-        "valueType": "string"
-      },
-      {
-        "component": "text",
-        "name": "feature-heading",
-        "label": "Feature Heading"
       }
     ]
   }
