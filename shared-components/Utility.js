@@ -1,8 +1,8 @@
- // convert string to HTML Element
- function stringToHTML(str) {
-    const parser = new DOMParser();
-    const doc = parser.parseFromString(str, 'text/html');
-    return doc.body.firstChild;
-  }
+// convert string to HTML Element
+function stringToHTML(str) {
+  const parser = new DOMParser();
+  const doc = parser.parseFromString(str, 'text/html');
+  return doc.body.firstChild;
+}
 
- export {stringToHTML} 
+export default stringToHTML;
