@@ -243,7 +243,7 @@
         "component": "aem-content",
         "name": "link",
         "label": "Link",
-        "rootpath": "/content/genting-singapore"
+        "rootPath": "/content/genting-singapore/index"
       },
       {
         "component": "text",
