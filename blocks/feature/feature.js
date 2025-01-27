@@ -111,10 +111,12 @@ export default function decorate(block) {
             lazy: true,
           });
 
+          imageHtml.querySelector('img').setAttribute('data-aue-prop', 'feature-icon');
+
           const tempContainer = document.createElement('div');
           tempContainer.innerHTML = imageHtml;
           const parsedImageNode = tempContainer.firstElementChild;
-
+          descriptionDiv.setAttribute('data-aue-prop', 'feature-heading');
           if (parsedImageNode) {
             imageAndDescription.appendChild(parsedImageNode); // Append the actual image node
             imageAndDescription.appendChild(descriptionDiv);
@@ -147,7 +149,12 @@ export default function decorate(block) {
           newText.append(newTextSecondChild);
         }
 
+        newText.setAttribute('data-aue-prop', 'feature-title');
+
+
         descriptionDiv.textContent = description.querySelector('[data-aue-prop="feature-heading"]')?.textContent || '';
+        descriptionDiv.setAttribute('data-aue-prop', 'feature-heading');
+        
 
         const textAndDescription = document.createElement('div');
         textAndDescription.className = 'about-us-right-content';
