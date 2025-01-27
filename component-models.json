@@ -92,6 +92,21 @@
             "value": "secondary"
           }
         ]
+      },
+      {
+        "component": "select",
+        "name": "linkType1",
+        "label": "Type",
+        "options": [
+          {
+            "name": "self",
+            "value": "_self"
+          },
+          {
+            "name": "blank",
+            "value": "_blank"
+          }
+        ]
       }
     ]
   },

@@ -1,5 +1,5 @@
 export const MOCK_CONTENT = {
-    columns: `
+  columns: `
           <div class="columns-wrapper"><div class="columns block columns-2-cols" data-aue-resource="urn:aemconnection:/content/genting-poc/index/jcr:content/root/section_1/columns" data-aue-type="container" data-aue-model="columns" data-aue-label="Columns" data-aue-filter="columns" data-aue-behavior="component" data-block-name="columns" data-block-status="loaded">
       <div>
           <div data-aue-resource="urn:aemconnection:/content/genting-poc/index/jcr:content/root/section_1/columns/row1/col1" data-aue-type="container" data-aue-label="Column" data-aue-filter="column">
@@ -27,7 +27,7 @@ export const MOCK_CONTENT = {
   
   </div></div>
         `,
-        'about-us': `<div class="about-us-wrapper"><div data-aue-resource="urn:aemconnection:/content/genting-singapore/index/TestPage1/jcr:content/root/section_2/block_1717109353" data-aue-type="container" data-aue-behavior="component" data-aue-model="aboutus" data-aue-label="About Us" data-aue-filter="aboutus" class="about-us block" style="" data-block-name="about-us" data-block-status="loaded">
+  'about-us': `<div class="about-us-wrapper"><div data-aue-resource="urn:aemconnection:/content/genting-singapore/index/TestPage1/jcr:content/root/section_2/block_1717109353" data-aue-type="container" data-aue-behavior="component" data-aue-model="aboutus" data-aue-label="About Us" data-aue-filter="aboutus" class="about-us block" style="" data-block-name="about-us" data-block-status="loaded">
         <div>
         <div><p data-aue-prop="title" data-aue-label="Title" data-aue-type="text">About Us</p></div>
         </div>
@@ -62,9 +62,9 @@ export const MOCK_CONTENT = {
         </div>
          
         </div></div>`,
-    // Add other block mock content
-  };
-  
-  export function loadMockContent(blockName) {
-    return MOCK_CONTENT[blockName] || '';
-  }
+  // Add other block mock content
+};
+
+export function loadMockContent(blockName) {
+  return MOCK_CONTENT[blockName] || '';
+}
