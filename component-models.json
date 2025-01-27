@@ -92,7 +92,7 @@
             "value": "secondary"
           }
         ]
-      }
+      },
       {
         "component": "select",
         "name": "linkType",
