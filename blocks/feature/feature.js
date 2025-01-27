@@ -123,8 +123,11 @@ export default function decorate(block) {
           // Adding another class
           imageAndDescription.classList.add('image-container');
 
-          imageAndDescriptionList.push(imageAndDescription);
-          description.remove();
+          description.innerHTML = '';
+          description.append(imageAndDescription)
+
+          imageAndDescriptionList.push(description);
+          // description.remove();
         }
       } else if (textElement) {
         imageAndDescription.classList.add('text-container');
@@ -154,8 +157,11 @@ export default function decorate(block) {
         // Adding another class
         textAndDescription.classList.add('text-container');
 
-        imageAndDescriptionList.push(textAndDescription);
-        description.remove();
+        description.innerHTML = '';
+        description.append(textAndDescription)
+
+        imageAndDescriptionList.push(description);
+        // description.remove();
       }
     });
 
