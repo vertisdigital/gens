@@ -9,7 +9,7 @@
  * OF ANY KIND, either express or implied. See the License for the specific language
  * governing permissions and limitations under the License.
  */
-
+ 
  /*
 Breakpoints & Container Widths:
 -------------------------------------------------------------------------------------
@@ -21,7 +21,7 @@ Breakpoints & Container Widths:
 |    Large       |    -lg-     |    ≥ 992px    |     960px                         |
 |    Extra large |    -xl-     |    ≥ 1200px   |     1440px                        |
 -------------------------------------------------------------------------------------
-
+ 
 Grid System Properties:
 -------------------------------------------------------------------------------------
 |  Property          |  Value                                                       |
@@ -30,7 +30,7 @@ Grid System Properties:
 |  # of columns      |  12                                                         |
 |  Gutter width     |  -                                                                               |
 -------------------------------------------------------------------------------------
-
+ 
 Usage Example:
 <div class="container">
   <div class="row">
@@ -38,57 +38,78 @@ Usage Example:
   </div>
 </div>
 */
-
+ 
 :root {
   /* colors */
-  --background-color: white;
-  --light-color: #f8f8f8;
+  --background-color: #fff;
+  --light-color: #F9F9F9;
   --dark-color: #505050;
-  --text-color: #131313;
-  --link-color: #3b63fb;
-  --link-hover-color: #1d3ecf;
-
+  --text-color: #000;
+  --body-text-color: #666;
+  --link-color: #236097;
+  --link-hover-color: #236097;
+  --midnight-blue: #0D2C48;
+  --primary-gold: #B29152;
+ 
   /* fonts */
-  --body-font-family: roboto, roboto-fallback, sans-serif;
-  --heading-font-family: roboto-condensed, roboto-condensed-fallback, sans-serif;
+  --body-font-family: 'dmSans-regular', sans-serif;
+  --heading-font-family: 'dmSans-regular', sans-serif;
 
-  /* body sizes */
-  --body-font-size-m: 22px;
-  --body-font-size-s: 19px;
-  --body-font-size-xs: 17px;
+   /* body sizes */
+   --body-font-size-m: 16px;
+   --body-font-size-s: 12px;
+   --body-font-size-xs: 17px;
+  
+   /* heading sizes */
+   --heading-font-size-xxl: 80px;
+   --heading-font-size-xl: 60px;
+   --heading-font-size-l: 40px;
+   --heading-font-size-m: 20px;
+   --heading-font-size-s: 14px;
+   --heading-font-size-xs: 12px;
+  
+   /* nav height */
+   --nav-height: 64px;
 
-  /* heading sizes */
-  --heading-font-size-xxl: 55px;
-  --heading-font-size-xl: 44px;
-  --heading-font-size-l: 34px;
-  --heading-font-size-m: 27px;
-  --heading-font-size-s: 24px;
-  --heading-font-size-xs: 22px;
-
-  /* nav height */
-  --nav-height: 64px;
 }
-
+ 
 /* fallback fonts */
 @font-face {
-  font-family: roboto-condensed-fallback;
+  font-family: 'dmSans-regular';
   size-adjust: 88.82%;
   src: local('Arial');
 }
-
+ 
 @font-face {
-  font-family: roboto-fallback;
+  font-family: 'dmSans-medium';
+  size-adjust: 99.529%;
+  src: local('Arial');
+}
+ 
+@font-face {
+  font-family: 'dmSans-bold';
   size-adjust: 99.529%;
   src: local('Arial');
 }
 
+@media (width >= 567px){
+  :root{
+  /* body sizes */
+  --body-font-size-s: 14px;
+ 
+  /* heading sizes */
+  --heading-font-size-s: 16px;
+ 
+  }
+ }
+ 
 @media (width >= 900px) {
   :root {
     /* body sizes */
     --body-font-size-m: 18px;
     --body-font-size-s: 16px;
     --body-font-size-xs: 14px;
-
+ 
     /* heading sizes */
     --heading-font-size-xxl: 45px;
     --heading-font-size-xl: 36px;
@@ -98,35 +119,40 @@ Usage Example:
     --heading-font-size-xs: 18px;
   }
 }
-
+ 
+*{
+  box-sizing: border-box;
+}
 body {
-  display: none;
+  /* display: none; */
   margin: 0;
   background-color: var(--background-color);
-  color: var(--text-color);
+  color: var(--body-text-color);
   font-family: var(--body-font-family);
   font-size: var(--body-font-size-m);
-  line-height: 1.6;
+  line-height: 1.5;
+  font-weight: 400;
+  box-sizing: border-box;
 }
-
+ 
 body.appear {
   display: block;
 }
-
+ 
 header {
   height: var(--nav-height);
 }
-
+ 
 header .header,
 footer .footer {
   visibility: hidden;
 }
-
+ 
 header .header[data-block-status="loaded"],
 footer .footer[data-block-status="loaded"] {
   visibility: visible;
 }
-
+ 
 h1,
 h2,
 h3,
@@ -140,14 +166,43 @@ h6 {
   line-height: 1.25;
   scroll-margin: 40px;
 }
-
-h1 { font-size: var(--heading-font-size-xxl); }
-h2 { font-size: var(--heading-font-size-xl); }
-h3 { font-size: var(--heading-font-size-l); }
-h4 { font-size: var(--heading-font-size-m); }
-h5 { font-size: var(--heading-font-size-s); }
-h6 { font-size: var(--heading-font-size-xs); }
-
+ 
+h1 {
+  font-size: var(--heading-font-size-xxl);
+  font-weight: 400;
+  line-height: 1.15;
+}
+ 
+h2 {
+  font-size: var(--heading-font-size-xl);
+  font-weight: 400;
+  line-height: 1.15;
+}
+ 
+h3 {
+  font-size: var(--heading-font-size-l);
+  font-weight: 400;
+  line-height: 1.15;
+}
+ 
+h4 {
+  font-size: var(--heading-font-size-m);
+  font-weight: 600;
+  line-height: 1.15;
+}
+ 
+h5 {
+  font-size: var(--heading-font-size-s);
+  font-weight: 400;
+  line-height: 1.5;
+}
+ 
+h6 {
+  font-size: var(--heading-font-size-xs);
+  font-weight: 400;
+  line-height: 1.5;
+}
+ 
 p,
 dl,
 ol,
@@ -157,12 +212,12 @@ blockquote {
   margin-top: 0.8em;
   margin-bottom: 0.25em;
 }
-
+ 
 code,
 pre {
   font-size: var(--body-font-size-s);
 }
-
+ 
 pre {
   padding: 16px;
   border-radius: 8px;
@@ -170,30 +225,30 @@ pre {
   overflow-x: auto;
   white-space: pre;
 }
-
+ 
 main > div {
   margin: 40px 16px;
 }
-
+ 
 input,
 textarea,
 select,
 button {
   font: inherit;
 }
-
+ 
 /* links */
 a:any-link {
   color: var(--link-color);
   text-decoration: none;
   word-break: break-word;
 }
-
+ 
 a:hover {
   color: var(--link-hover-color);
   text-decoration: underline;
 }
-
+ 
 /* buttons */
 a.button:any-link,
 button {
@@ -206,10 +261,11 @@ button {
   padding: 0.5em 1.2em;
   font-family: var(--body-font-family);
   font-style: normal;
-  font-weight: 500;
-  line-height: 1.25;
+  font-weight: 600;
+  font-size: 16px;
+  line-height: 1.5;
   text-align: center;
-  text-decoration: none;
+  text-decoration: underline;
   background-color: var(--link-color);
   color: var(--background-color);
   cursor: pointer;
@@ -217,7 +273,7 @@ button {
   text-overflow: ellipsis;
   white-space: nowrap;
 }
-
+ 
 a.button:hover,
 a.button:focus,
 button:hover,
@@ -225,58 +281,58 @@ button:focus {
   background-color: var(--link-hover-color);
   cursor: pointer;
 }
-
+ 
 button:disabled,
 button:disabled:hover {
   background-color: var(--light-color);
   cursor: unset;
 }
-
+ 
 a.button.secondary,
 button.secondary {
   background-color: unset;
   border: 2px solid currentcolor;
   color: var(--text-color);
 }
-
+ 
 main img {
   max-width: 100%;
   width: auto;
   height: auto;
 }
-
+ 
 .icon {
   display: inline-block;
   height: 24px;
   width: 24px;
 }
-
+ 
 .icon img {
   height: 100%;
   width: 100%;
 }
-
+ 
 /* sections */
 main > .section {
   margin: 40px 0;
 }
-
+ 
 main > .section > div {
   max-width: 1200px;
   margin: auto;
   padding: 0 24px;
 }
-
+ 
 main > .section:first-of-type {
   margin-top: 0;
 }
-
+ 
 @media (width >= 900px) {
   main > .section > div {
     padding: 0 32px;
   }
 }
-
+ 
 /* section metadata */
 main .section.light,
 main .section.highlight {
@@ -284,7 +340,7 @@ main .section.highlight {
   margin: 0;
   padding: 40px 0;
 }
-
+ 
 .container,
 .container-fluid,
 .container-xxl,
@@ -298,7 +354,7 @@ main .section.highlight {
   margin-right: auto;
   margin-left: auto;
 }
-
+ 
 @media (width >= 576px) {
   .container-sm, .container {
     max-width: 540px;
@@ -319,164 +375,164 @@ main .section.highlight {
     max-width: 1440px;
   }
 }
-
+ 
 .row {
   --bs-gutter-x: 1.5rem;
   --bs-gutter-y: 0;
   display: flex;
   flex-wrap: wrap;
 }
-
-
+ 
+ 
 @media (width >= 576px) {
   .col-sm {
     flex: 1 0 0%;
   }
-
+ 
   .row-cols-sm-auto > * {
     flex: 0 0 auto;
     width: auto;
   }
-
+ 
   .row-cols-sm-1 > * {
     flex: 0 0 auto;
     width: 100%;
   }
-
+ 
   .row-cols-sm-2 > * {
     flex: 0 0 auto;
     width: 50%;
   }
-
+ 
   .row-cols-sm-3 > * {
     flex: 0 0 auto;
     width: 33.3333333333%;
   }
-
+ 
   .row-cols-sm-4 > * {
     flex: 0 0 auto;
     width: 25%;
   }
-
+ 
   .row-cols-sm-5 > * {
     flex: 0 0 auto;
     width: 20%;
   }
-
+ 
   .row-cols-sm-6 > * {
     flex: 0 0 auto;
     width: 16.6666666667%;
   }
-
+ 
   .col-sm-auto {
     flex: 0 0 auto;
     width: auto;
   }
-
+ 
   .col-sm-1 {
     flex: 0 0 auto;
     width: 8.33333333%;
   }
-
+ 
   .col-sm-2 {
     flex: 0 0 auto;
     width: 16.66666667%;
   }
-
+ 
   .col-sm-3 {
     flex: 0 0 auto;
     width: 25%;
   }
-
+ 
   .col-sm-4 {
     flex: 0 0 auto;
     width: 33.33333333%;
   }
-
+ 
   .col-sm-5 {
     flex: 0 0 auto;
     width: 41.66666667%;
   }
-
+ 
   .col-sm-6 {
     flex: 0 0 auto;
     width: 50%;
   }
-
+ 
   .col-sm-7 {
     flex: 0 0 auto;
     width: 58.33333333%;
   }
-
+ 
   .col-sm-8 {
     flex: 0 0 auto;
     width: 66.66666667%;
   }
-
+ 
   .col-sm-9 {
     flex: 0 0 auto;
     width: 75%;
   }
-
+ 
   .col-sm-10 {
     flex: 0 0 auto;
     width: 83.33333333%;
   }
-
+ 
   .col-sm-11 {
     flex: 0 0 auto;
     width: 91.66666667%;
   }
-
+ 
   .col-sm-12 {
     flex: 0 0 auto;
     width: 100%;
   }
-
+ 
   .offset-sm-0 {
     margin-left: 0;
   }
-
+ 
   .offset-sm-1 {
     margin-left: 8.33333333%;
   }
-
+ 
   .offset-sm-2 {
     margin-left: 16.66666667%;
   }
-
+ 
   .offset-sm-3 {
     margin-left: 25%;
   }
-
+ 
   .offset-sm-4 {
     margin-left: 33.33333333%;
   }
-
+ 
   .offset-sm-5 {
     margin-left: 41.66666667%;
   }
-
+ 
   .offset-sm-6 {
     margin-left: 50%;
   }
-
+ 
   .offset-sm-7 {
     margin-left: 58.33333333%;
   }
-
+ 
   .offset-sm-8 {
     margin-left: 66.66666667%;
   }
-
+ 
   .offset-sm-9 {
     margin-left: 75%;
   }
-
+ 
   .offset-sm-10 {
     margin-left: 83.33333333%;
   }
-
+ 
   .offset-sm-11 {
     margin-left: 91.66666667%;
   }
@@ -485,151 +541,151 @@ main .section.highlight {
   .col-md {
     flex: 1 0 0%;
   }
-
+ 
   .row-cols-md-auto > * {
     flex: 0 0 auto;
     width: auto;
   }
-
+ 
   .row-cols-md-1 > * {
     flex: 0 0 auto;
     width: 100%;
   }
-
+ 
   .row-cols-md-2 > * {
     flex: 0 0 auto;
     width: 50%;
   }
-
+ 
   .row-cols-md-3 > * {
     flex: 0 0 auto;
     width: 33.3333333333%;
   }
-
+ 
   .row-cols-md-4 > * {
     flex: 0 0 auto;
     width: 25%;
   }
-
+ 
   .row-cols-md-5 > * {
     flex: 0 0 auto;
     width: 20%;
   }
-
+ 
   .row-cols-md-6 > * {
     flex: 0 0 auto;
     width: 16.6666666667%;
   }
-
+ 
   .col-md-auto {
     flex: 0 0 auto;
     width: auto;
   }
-
+ 
   .col-md-1 {
     flex: 0 0 auto;
     width: 8.33333333%;
   }
-
+ 
   .col-md-2 {
     flex: 0 0 auto;
     width: 16.66666667%;
   }
-
+ 
   .col-md-3 {
     flex: 0 0 auto;
     width: 25%;
   }
-
+ 
   .col-md-4 {
     flex: 0 0 auto;
     width: 33.33333333%;
   }
-
+ 
   .col-md-5 {
     flex: 0 0 auto;
     width: 41.66666667%;
   }
-
+ 
   .col-md-6 {
     flex: 0 0 auto;
     width: 50%;
   }
-
+ 
   .col-md-7 {
     flex: 0 0 auto;
     width: 58.33333333%;
   }
-
+ 
   .col-md-8 {
     flex: 0 0 auto;
     width: 66.66666667%;
   }
-
+ 
   .col-md-9 {
     flex: 0 0 auto;
     width: 75%;
   }
-
+ 
   .col-md-10 {
     flex: 0 0 auto;
     width: 83.33333333%;
   }
-
+ 
   .col-md-11 {
     flex: 0 0 auto;
     width: 91.66666667%;
   }
-
+ 
   .col-md-12 {
     flex: 0 0 auto;
     width: 100%;
   }
-
+ 
   .offset-md-0 {
     margin-left: 0;
   }
-
+ 
   .offset-md-1 {
     margin-left: 8.33333333%;
   }
-
+ 
   .offset-md-2 {
     margin-left: 16.66666667%;
   }
-
+ 
   .offset-md-3 {
     margin-left: 25%;
   }
-
+ 
   .offset-md-4 {
     margin-left: 33.33333333%;
   }
-
+ 
   .offset-md-5 {
     margin-left: 41.66666667%;
   }
-
+ 
   .offset-md-6 {
     margin-left: 50%;
   }
-
+ 
   .offset-md-7 {
     margin-left: 58.33333333%;
   }
-
+ 
   .offset-md-8 {
     margin-left: 66.66666667%;
   }
-
+ 
   .offset-md-9 {
     margin-left: 75%;
   }
-
+ 
   .offset-md-10 {
     margin-left: 83.33333333%;
   }
-
+ 
   .offset-md-11 {
     margin-left: 91.66666667%;
   }
@@ -638,151 +694,151 @@ main .section.highlight {
   .col-lg {
     flex: 1 0 0%;
   }
-
+ 
   .row-cols-lg-auto > * {
     flex: 0 0 auto;
     width: auto;
   }
-
+ 
   .row-cols-lg-1 > * {
     flex: 0 0 auto;
     width: 100%;
   }
-
+ 
   .row-cols-lg-2 > * {
     flex: 0 0 auto;
     width: 50%;
   }
-
+ 
   .row-cols-lg-3 > * {
     flex: 0 0 auto;
     width: 33.3333333333%;
   }
-
+ 
   .row-cols-lg-4 > * {
     flex: 0 0 auto;
     width: 25%;
   }
-
+ 
   .row-cols-lg-5 > * {
     flex: 0 0 auto;
     width: 20%;
   }
-
+ 
   .row-cols-lg-6 > * {
     flex: 0 0 auto;
     width: 16.6666666667%;
   }
-
+ 
   .col-lg-auto {
     flex: 0 0 auto;
     width: auto;
   }
-
+ 
   .col-lg-1 {
     flex: 0 0 auto;
     width: 8.33333333%;
   }
-
+ 
   .col-lg-2 {
     flex: 0 0 auto;
     width: 16.66666667%;
   }
-
+ 
   .col-lg-3 {
     flex: 0 0 auto;
     width: 25%;
   }
-
+ 
   .col-lg-4 {
     flex: 0 0 auto;
     width: 33.33333333%;
   }
-
+ 
   .col-lg-5 {
     flex: 0 0 auto;
     width: 41.66666667%;
   }
-
+ 
   .col-lg-6 {
     flex: 0 0 auto;
     width: 50%;
   }
-
+ 
   .col-lg-7 {
     flex: 0 0 auto;
     width: 58.33333333%;
   }
-
+ 
   .col-lg-8 {
     flex: 0 0 auto;
     width: 66.66666667%;
   }
-
+ 
   .col-lg-9 {
     flex: 0 0 auto;
     width: 75%;
   }
-
+ 
   .col-lg-10 {
     flex: 0 0 auto;
     width: 83.33333333%;
   }
-
+ 
   .col-lg-11 {
     flex: 0 0 auto;
     width: 91.66666667%;
   }
-
+ 
   .col-lg-12 {
     flex: 0 0 auto;
     width: 100%;
   }
-
+ 
   .offset-lg-0 {
     margin-left: 0;
   }
-
+ 
   .offset-lg-1 {
     margin-left: 8.33333333%;
   }
-
+ 
   .offset-lg-2 {
     margin-left: 16.66666667%;
   }
-
+ 
   .offset-lg-3 {
     margin-left: 25%;
   }
-
+ 
   .offset-lg-4 {
     margin-left: 33.33333333%;
   }
-
+ 
   .offset-lg-5 {
     margin-left: 41.66666667%;
   }
-
+ 
   .offset-lg-6 {
     margin-left: 50%;
   }
-
+ 
   .offset-lg-7 {
     margin-left: 58.33333333%;
   }
-
+ 
   .offset-lg-8 {
     margin-left: 66.66666667%;
   }
-
+ 
   .offset-lg-9 {
     margin-left: 75%;
   }
-
+ 
   .offset-lg-10 {
     margin-left: 83.33333333%;
   }
-
+ 
   .offset-lg-11 {
     margin-left: 91.66666667%;
   }
@@ -791,151 +847,151 @@ main .section.highlight {
   .col-xl {
     flex: 1 0 0%;
   }
-
+ 
   .row-cols-xl-auto > * {
     flex: 0 0 auto;
     width: auto;
   }
-
+ 
   .row-cols-xl-1 > * {
     flex: 0 0 auto;
     width: 100%;
   }
-
+ 
   .row-cols-xl-2 > * {
     flex: 0 0 auto;
     width: 50%;
   }
-
+ 
   .row-cols-xl-3 > * {
     flex: 0 0 auto;
     width: 33.3333333333%;
   }
-
+ 
   .row-cols-xl-4 > * {
     flex: 0 0 auto;
     width: 25%;
   }
-
+ 
   .row-cols-xl-5 > * {
     flex: 0 0 auto;
     width: 20%;
   }
-
+ 
   .row-cols-xl-6 > * {
     flex: 0 0 auto;
     width: 16.6666666667%;
   }
-
+ 
   .col-xl-auto {
     flex: 0 0 auto;
     width: auto;
   }
-
+ 
   .col-xl-1 {
     flex: 0 0 auto;
     width: 8.33333333%;
   }
-
+ 
   .col-xl-2 {
     flex: 0 0 auto;
     width: 16.66666667%;
   }
-
+ 
   .col-xl-3 {
     flex: 0 0 auto;
     width: 25%;
   }
-
+ 
   .col-xl-4 {
     flex: 0 0 auto;
     width: 33.33333333%;
   }
-
+ 
   .col-xl-5 {
     flex: 0 0 auto;
     width: 41.66666667%;
   }
-
+ 
   .col-xl-6 {
     flex: 0 0 auto;
     width: 50%;
   }
-
+ 
   .col-xl-7 {
     flex: 0 0 auto;
     width: 58.33333333%;
   }
-
+ 
   .col-xl-8 {
     flex: 0 0 auto;
     width: 66.66666667%;
   }
-
+ 
   .col-xl-9 {
     flex: 0 0 auto;
     width: 75%;
   }
-
+ 
   .col-xl-10 {
     flex: 0 0 auto;
     width: 83.33333333%;
   }
-
+ 
   .col-xl-11 {
     flex: 0 0 auto;
     width: 91.66666667%;
   }
-
+ 
   .col-xl-12 {
     flex: 0 0 auto;
     width: 100%;
   }
-
+ 
   .offset-xl-0 {
     margin-left: 0;
   }
-
+ 
   .offset-xl-1 {
     margin-left: 8.33333333%;
   }
-
+ 
   .offset-xl-2 {
     margin-left: 16.66666667%;
   }
-
+ 
   .offset-xl-3 {
     margin-left: 25%;
   }
-
+ 
   .offset-xl-4 {
     margin-left: 33.33333333%;
   }
-
+ 
   .offset-xl-5 {
     margin-left: 41.66666667%;
   }
-
+ 
   .offset-xl-6 {
     margin-left: 50%;
   }
-
+ 
   .offset-xl-7 {
     margin-left: 58.33333333%;
   }
-
+ 
   .offset-xl-8 {
     margin-left: 66.66666667%;
   }
-
+ 
   .offset-xl-9 {
     margin-left: 75%;
   }
-
+ 
   .offset-xl-10 {
     margin-left: 83.33333333%;
   }
-
+ 
   .offset-xl-11 {
     margin-left: 91.66666667%;
   }

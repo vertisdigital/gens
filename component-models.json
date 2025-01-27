@@ -112,6 +112,66 @@
     ]
   },
   {
+    "id": "aboutus",
+    "fields": [
+      {
+        "component": "text",
+        "name": "title",
+        "label": "Title"
+      },
+      {
+        "component": "text",
+        "name": "heading",
+        "label": "Heading"
+      },
+      {
+        "component": "richtext",
+        "name": "sub-heading",
+        "value": "",
+        "label": "Sub Heading",
+        "valueType": "string"
+      },
+      {
+        "component": "reference",
+        "valueType": "string",
+        "name": "icon",
+        "label": "Icon",
+        "multi": false
+      },
+      {
+        "component": "aem-content",
+        "name": "redirect-path",
+        "value": "",
+        "label": "Redirect Path",
+        "valueType": "string"
+      }
+    ]
+  },
+  {
+    "id": "about-us-description",
+    "fields": [
+      {
+        "component": "reference",
+        "valueType": "string",
+        "name": "feature-icon",
+        "label": "Feature Icon",
+        "multi": false
+      },
+      {
+        "component": "richtext",
+        "name": "feature-title",
+        "value": "",
+        "label": "Feature Title",
+        "valueType": "string"
+      },
+      {
+        "component": "text",
+        "name": "feature-heading",
+        "label": "Feature Heading"
+      }
+    ]
+  },
+  {
     "id": "card",
     "fields": [
       {
@@ -156,6 +216,95 @@
         "component": "aem-content",
         "name": "reference",
         "label": "Reference"
+      }
+    ]
+  },
+  {
+    "id": "herobanner",
+    "fields": [
+      {
+        "component": "custom-asset-namespace:custom-asset",
+        "valueType": "string",
+        "name": "bannerimage",
+        "label": "Banner Image",
+        "configUrl": "https://main--aem-eds-universaleditor--josephverticurl.aem.page/tools/assets-selector/config.json",
+        "multi": false
+      },
+      {
+        "component": "text",
+        "name": "bannertitle",
+        "label": "Title"
+      },
+      {
+        "component": "text",
+        "name": "bannerdescription",
+        "label": "Description"
+      },
+      {
+        "component": "aem-content",
+        "valueType": "string",
+        "name": "ctabutton",
+        "label": "CTA Link",
+        "multi": false
+      },
+      {
+        "component": "select",
+        "name": "herovariation",
+        "value": "",
+        "label": "Variations",
+        "description": "Variations for hero component",
+        "valueType": "string",
+        "options": [
+          {
+            "name": "Concept 1 - Tone 1",
+            "value": "cls_c1t1"
+          },
+          {
+            "name": "Concept 1 - Tone 2",
+            "value": "cls_c1t2"
+          },
+          {
+            "name": "Concept 1 - Tone 3",
+            "value": "cls_c1t3"
+          },
+          {
+            "name": "Concept 2",
+            "value": "cls_c2"
+          },
+          {
+            "name": "Concept 3",
+            "value": "cls_c3"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "bannercarousel",
+    "fields": [
+      {
+        "component": "custom-asset-namespace:custom-asset",
+        "name": "image",
+        "label": "Carousel Image",
+        "configUrl": "https://main--aem-eds-universaleditor--josephverticurl.aem.page/tools/assets-selector/config.json",
+        "valueType": "string"
+      },
+      {
+        "component": "text",
+        "name": "title",
+        "label": "Title"
+      },
+      {
+        "component": "text",
+        "name": "description",
+        "label": "Description"
+      },
+      {
+        "component": "aem-content",
+        "valueType": "string",
+        "name": "readmorelink",
+        "label": "Read More Link",
+        "multi": false
       }
     ]
   },

@@ -13,9 +13,11 @@
       "button",
       "title",
       "hero",
+      "herobanner",
       "cards",
       "columns",
-      "fragment"
+      "fragment",
+      "aboutus"
     ]
   },
   {
@@ -37,6 +39,12 @@
       "image",
       "button",
       "title"
+    ]
+  },
+  {
+    "id": "aboutus",
+    "components": [
+      "aboutusdescription"
     ]
   }
 ]
