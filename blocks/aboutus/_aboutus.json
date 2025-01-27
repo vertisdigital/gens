@@ -65,7 +65,23 @@
           "name": "redirect-path",
           "value": "",
           "label": "Redirect Path",
-          "valueType": "string"
+          "valueType": "string",
+          "metadata": {
+            "rootPath": "/content/genting-singapore",
+            "allowExternal": true,
+            "description": "Select an internal page or enter an external URL."
+          }
+        },
+        {
+          "component": "link-field",
+          "name": "ctaLink",
+          "value": "",
+          "label": "Call-to-Action Link",
+          "valueType": "string",
+          "placeholder": "Enter URL or select a page",
+          "rootPath": "/content/genting-singapore/",
+          "allowExternal": true,
+          "description": "Select an internal page or enter an external URL."
         }
       ]
     },
