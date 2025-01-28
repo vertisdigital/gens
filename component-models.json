@@ -448,6 +448,17 @@
         "valueType": "string"
       },
       {
+        "component": "date-time",
+        "name": "date",
+        "label": "Date",
+        "valueType": "date",
+        "displayFormat": "DD MMM YYYY",
+        "valueFormat": "YYYY-MM-DD",
+        "validation": {
+          "customErrorMsg": "Please enter a valid date"
+        }
+      },
+      {
         "component": "aem-content",
         "name": "cta",
         "label": "CTA"
