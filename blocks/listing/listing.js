@@ -11,7 +11,7 @@ export default function decorate(block) {
     const row = document.createElement('div');
     row.classList.add('row');
 
-    // Process images
+    // Process image
     const imgContainer = item.querySelector('div:first-child');
     if (imgContainer) {
       imgContainer.classList.add('col-xl-4', 'col-md-2', 'col-sm-4');
@@ -37,57 +37,63 @@ export default function decorate(block) {
       row.appendChild(imgContainer);
     }
 
-    // Process text content
-    const textElements = item.querySelectorAll('[data-aue-type="text"]');
-    if (textElements.length > 0) {
-      const textContainer = document.createElement('div');
-      textContainer.classList.add('col-xl-8', 'col-md-6', 'col-sm-4');
-      textElements.forEach((element) => {
-        textContainer.appendChild(element.cloneNode(true));
+    // Create single wrapper for content
+    const contentWrapper = document.createElement('div');
+    contentWrapper.classList.add('col-xl-8', 'col-md-6', 'col-sm-4');
+
+    // Get all content elements
+    const title = item.querySelector('[data-aue-type="text"][data-aue-prop="title"]');
+    const description = item.querySelector('[data-aue-type="text"][data-aue-prop="description"]');
+    const arrowIcon = item.querySelector('[data-aue-prop="arrowIcon"]');
+    const ctaButton = item.querySelector('[data-aue-prop="CTA"]');
+
+    // Add content elements to wrapper
+    if (title) {
+      contentWrapper.appendChild(title);
+    }
+    if (description) {
+      contentWrapper.appendChild(description);
+    }
+    if (arrowIcon) {
+      const picture = document.createElement('picture');
+      const img = document.createElement('img');
+      img.src = arrowIcon.src;
+      img.alt = '';
+      img.setAttribute('data-aue-prop', 'arrowIcon');
+      img.setAttribute('data-aue-label', 'Arrow Icon');
+
+      ImageComponent({
+        element: img,
+        src: arrowIcon.src,
+        alt: '',
+        lazy: false,
       });
-      row.appendChild(textContainer);
+
+      picture.appendChild(img);
+      contentWrapper.appendChild(picture);
     }
 
-    // Process arrow icons
-    const arrowContainer = item.querySelector('div:last-child');
-    if (arrowContainer) {
-      const arrowImg = arrowContainer.querySelector('img[data-aue-prop="arrowIcon"]');
-      if (arrowImg) {
-        const picture = document.createElement('picture');
-        const img = document.createElement('img');
-        img.src = arrowImg.src;
-        img.alt = '';
-        img.setAttribute('data-aue-prop', 'arrowIcon');
-        img.setAttribute('data-aue-label', 'Arrow Icon');
-        picture.appendChild(img);
+    // Add content wrapper to row
+    row.appendChild(contentWrapper);
 
-        ImageComponent({
-          element: img,
-          src: arrowImg.src,
-          alt: '',
-          lazy: false,
-        });
+    // Replace item content with new row
+    item.innerHTML = '';
+    item.appendChild(row);
 
-        arrowImg.closest('picture').replaceWith(picture);
-      }
-      item.appendChild(arrowContainer);
-    }
-
-    // Add row to item
-    item.insertBefore(row, item.firstChild);
-
-    // Make item clickable
-    const ctaLink = item.querySelector('div:nth-child(5) a');
-    if (ctaLink) {
-      const href = ctaLink.getAttribute('href');
-      item.addEventListener('click', () => {
-        window.location.href = href;
-      });
-      item.addEventListener('keydown', (e) => {
-        if (e.key === 'Enter') {
+    // Make item clickable if CTA exists
+    if (ctaButton) {
+      const link = ctaButton.querySelector('a');
+      if (link) {
+        const href = link.getAttribute('href');
+        item.addEventListener('click', () => {
           window.location.href = href;
-        }
-      });
+        });
+        item.addEventListener('keydown', (e) => {
+          if (e.key === 'Enter') {
+            window.location.href = href;
+          }
+        });
+      }
     }
 
     // Add accessibility attributes

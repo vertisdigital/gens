@@ -22,7 +22,7 @@ Create this block with following:
 2. List Item Layout:
     - follow this hierarchy container-xl, container-md, container-sm > row > col-*
     - Image on left (30% width). Use Classes for Desktop col-xl-4, Table col-md-2, Mobile col-sm-4
-    - Content on right (70% width). Use Classes for Desktop col-xl-8, Table col-md-6, Mobile col-sm-4. data-aue-type="text" items will follow these classes
+    - Content on right (70% width). Use Classes for Desktop col-xl-8, Table col-md-6, Mobile col-sm-4. data-aue-type="text" data-aue-prop="description" and data-aue-prop="arrowIcon" items will follow these classes. Wrap in single div and remove extra elements
     - Arrow icon aligned to the right
     - Proper spacing between elements
 

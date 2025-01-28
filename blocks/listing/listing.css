@@ -1,5 +1,4 @@
 .listing {
-
   /* Header styles */
   [data-aue-prop="title"][data-aue-label="Title"] {
     color: rgb(107 114 128);
@@ -66,11 +65,6 @@
 
     /* Arrow icon container */
     > div:last-child {
-      position: absolute;
-      right: 1rem;
-      top: 50%;
-      transform: translateY(-50%);
-
       picture {
         display: block;
       }
@@ -98,7 +92,7 @@
   }
 
   /* Responsive styles */
-  @media (max-width: 768px) {
+  @media (width <= 768px) {
     [data-aue-model="listitem"] {
       flex-direction: column;
       gap: 1rem;
