@@ -384,6 +384,10 @@
   },
   {
     "id": "tile",
+    "fields": []
+  },
+  {
+    "id": "tile",
     "fields": [
       {
         "component": "text",
