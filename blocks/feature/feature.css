@@ -39,7 +39,10 @@
  margin-bottom: 18px;
  font-size: var(--body-font-size-s);
 }
-
+.about-us-left a.button{
+  background: none;
+  padding: 0;
+}
 .about-us-left .about-us-left-link svg{
   color:var(--primary-gold);
 }
