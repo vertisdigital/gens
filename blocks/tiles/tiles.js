@@ -6,40 +6,55 @@ import SvgIcon from '../../shared-components/SvgIcon.js';
  * @param {Element} block The tiles block element
  */
 export default function decorate(block) {
-  // Set background images for image tiles (skip first tile)
-  const imageTiles = Array.from(block.children).slice(1);
-  imageTiles.forEach((tile) => {
-    const imageLink = tile.querySelector('a[href*="/content/dam/"][href$=".png"], a[href*="/content/dam/"][href$=".jpeg"], a[href*="/content/dam/"][href$=".jpg"], a[href*="/content/dam/"][href$=".gif"]');
-    if (imageLink) {
-      // Create optimized picture element
-      const picture = createOptimizedPicture(imageLink.href, '', false);
-      // Set as background
-      tile.style.backgroundImage = `url(${picture.querySelector('img').src})`;
-      // Remove original link
-      imageLink.remove();
-    }
+  // Add container wrappers for each breakpoint
+  block.classList.add('container-xl', 'container-md', 'container-sm');
 
-    // Handle CTA link
-    const buttonContainer = tile.querySelector('.button-container');
-    const ctaCaption = tile.querySelector('[data-aue-prop="ctaCaption"]');
-    if (buttonContainer && ctaCaption) {
-      const link = buttonContainer.querySelector('a');
-      if (link) {
-        // Create new anchor with CTA text and button link
-        const ctaLink = document.createElement('a');
-        ctaLink.href = link.href;
-        ctaLink.className = 'button';
-        ctaLink.textContent = ctaCaption.textContent;
-        // Replace CTA caption with link
-        ctaCaption.parentNode.replaceChild(ctaLink, ctaCaption);
+  // Create row wrapper
+  const row = document.createElement('div');
+  row.className = 'row';
+
+  // Move existing tiles into grid columns
+  const tiles = Array.from(block.children);
+  tiles.forEach((tile, index) => {
+    const col = document.createElement('div');
+    col.className = 'col-sm-4 col-md-3 col-xl-6';
+    col.appendChild(tile);
+    row.appendChild(col);
+
+    if (index > 0) {
+      // Handle image tiles (all except first)
+      const imageLink = tile.querySelector('a[href*="/content/dam/"][href$=".png"], a[href*="/content/dam/"][href$=".jpeg"], a[href*="/content/dam/"][href$=".jpg"], a[href*="/content/dam/"][href$=".gif"]');
+      if (imageLink) {
+        // Create optimized picture element
+        const picture = createOptimizedPicture(imageLink.href, '', false);
+        // Set as background
+        tile.style.backgroundImage = `url(${picture.querySelector('img').src})`;
+        // Remove original link
+        imageLink.remove();
       }
-      // Remove button container
-      buttonContainer.remove();
+
+      // Handle CTA link
+      const buttonContainer = tile.querySelector('.button-container');
+      const ctaCaption = tile.querySelector('[data-aue-prop="ctaCaption"]');
+      if (buttonContainer && ctaCaption) {
+        const link = buttonContainer.querySelector('a');
+        if (link) {
+          // Create new anchor with CTA text and button link
+          const ctaLink = document.createElement('a');
+          ctaLink.href = link.href;
+          ctaLink.className = 'button';
+          ctaLink.textContent = ctaCaption.textContent;
+          // Replace CTA caption with link
+          ctaCaption.parentNode.replaceChild(ctaLink, ctaCaption);
+        }
+        // Remove button container
+        buttonContainer.remove();
+      }
     }
   });
 
-  // Handle first tile's download button separately
-  const firstTile = block.children[0];
+  // Handle first tile's download button
+  const firstTile = tiles[0];
   if (firstTile) {
     const buttonContainer = firstTile.querySelector('.button-container');
     const ctaCaption = firstTile.querySelector('[data-aue-prop="ctaCaption"]');
@@ -52,14 +67,6 @@ export default function decorate(block) {
         ctaLink.className = 'button';
         ctaLink.textContent = ctaCaption.textContent;
 
-        // Add download icon
-        const downloadIcon = new SvgIcon('download');
-        ctaLink.insertBefore(downloadIcon, ctaLink.firstChild);
-
-        // Add arrow icon
-        const arrowIcon = new SvgIcon('arrow-right');
-        ctaLink.appendChild(arrowIcon);
-
         // Replace CTA caption with link
         ctaCaption.parentNode.replaceChild(ctaLink, ctaCaption);
       }
@@ -67,6 +74,10 @@ export default function decorate(block) {
       buttonContainer.remove();
     }
   }
+
+  // Clear block and add row
+  block.textContent = '';
+  block.appendChild(row);
 
   // Add list role for accessibility
   block.setAttribute('role', 'list');

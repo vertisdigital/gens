@@ -1,35 +1,3 @@
-.tiles.block {
-  display: grid;
-  gap: 1rem;
-  padding: 1rem;
-}
-
-/* Mobile Layout (1 column) */
-@media (width <= 767px) {
-  .tiles.block {
-    grid-template-columns: 1fr;
-  }
-}
-
-/* Tablet/Desktop Layout (2x2) */
-@media (width >= 768px) {
-  .tiles.block {
-    grid-template-columns: repeat(2, 1fr);
-  }
-}
-
-/* Tile Base Styles */
-.tiles.block > div {
-  position: relative;
-  min-height: 300px;
-  padding: 2rem;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  border-radius: 0.5rem;
-  overflow: hidden;
-}
-
 /* Header Tile (First Tile) */
 .tiles.block > div:first-child {
   background-color: #fff;

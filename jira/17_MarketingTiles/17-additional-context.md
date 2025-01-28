@@ -48,7 +48,12 @@ Consistent CTAs ("Learn more" links)
 
 - Use data attributes for the elements and items which will come from snippet such as data-aue-label="Title" etc.
 
-Use grid classes such as containe, row, col-sm-4, col-md-6, col-xl-3, etc.
+Use grid classes such as 
+Desktop: 
+Container-xl > row > col-xl-6
 
-Desktop and Table has 2X2 grid layout.
-Mobile has 1X2 grid layout.
+Tablet:
+Container-md > row > col-md-3
+
+Mobile:
+Container-sm > row > col-sm-4
