@@ -396,13 +396,6 @@
         "label": "Heading"
       },
       {
-        "component": "richtext",
-        "name": "description",
-        "value": "",
-        "label": "Description",
-        "valueType": "string"
-      },
-      {
         "component": "text",
         "name": "ctaCaption",
         "label": "CTA Caption"
@@ -434,18 +427,6 @@
         "component": "text",
         "name": "title",
         "label": "Title"
-      },
-      {
-        "component": "text",
-        "name": "heading",
-        "label": "Heading"
-      },
-      {
-        "component": "richtext",
-        "name": "description",
-        "value": "",
-        "label": "Description",
-        "valueType": "string"
       },
       {
         "component": "date-time",
