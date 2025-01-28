@@ -2,10 +2,10 @@ Authoring Requirements:
 Refer cards block which is having cards as container block and card as child component which can be added multiple times.
 Parent block wont have any fields but can contain any number of child blocks and Make child block with the following fields:
 1. an optional text field heading
-2. an optional textarea field Description
+2. an optional rich text field Description
 3. any number of following items:
     a. a text field heading
-    b. a textarea field Description
+    b. a rich text field Description
     c. an optional custom-asset-namespace:custom-asset image
     d. an optional cta button of type aem-content with the following fields
 

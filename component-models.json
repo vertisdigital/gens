@@ -383,8 +383,21 @@
     ]
   },
   {
-    "id": "tile",
-    "fields": []
+    "id": "tiles",
+    "fields": [
+      {
+        "component": "text",
+        "name": "heading",
+        "label": "Heading"
+      },
+      {
+        "component": "richtext",
+        "name": "description",
+        "value": "",
+        "label": "Description",
+        "valueType": "string"
+      }
+    ]
   },
   {
     "id": "tile",
@@ -395,9 +408,11 @@
         "label": "Heading"
       },
       {
-        "component": "textarea",
+        "component": "richtext",
         "name": "description",
-        "label": "Description"
+        "value": "",
+        "label": "Description",
+        "valueType": "string"
       },
       {
         "component": "custom-asset-namespace:custom-asset",
