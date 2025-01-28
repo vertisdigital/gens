@@ -34,7 +34,7 @@ export const MOCK_CONTENT = {
         </div>
          
         </div></div>`,
-    // Add other block mock content
+  // Add other block mock content
 
   'hero-banner': `
   <div data-aue-resource="urn:aemconnection:/content/genting-singapore/index/herobannercarouseltest/jcr:content/root/section/block" data-aue-type="container" data-aue-behavior="component" data-aue-model="hero-banner" data-aue-label="hero-banner" data-aue-filter="hero-banner" class="hero-banner block" data-block-name="hero-banner" data-block-status="loaded">
@@ -124,7 +124,8 @@ export const MOCK_CONTENT = {
     <h1 class="hero-title">
       Transforming Destinations through Sustainable Growth
     </h1>
-  <div class="hero-description">As a steadfast partner to the nation, Genting Singapore continues to drive sustainable growth and transformative impact through world-class integrated resorts. We’re in it for the long haul, and are committed to investing in a future that empowers communities and benefits everyone.</div>
+  <div class="hero-description">As a steadfast partner to the nation, Genting Singapore continues to
+drive sustainable growth and transformative impact through world-class integrated resorts. We’re in it for the long haul, and are committed to investing in a future that empowers communities and benefits everyone.</div>
     <span class="icon-wrapper hero-arrow-icon" style="color: white">
       <svg width="32" height="32" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
     <path d="M12 4L10.59 5.41L16.17 11H4V13H16.17L10.59 18.59L12 20L20 12L12 4Z" fill="currentColor"></path>

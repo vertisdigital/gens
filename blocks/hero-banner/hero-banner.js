@@ -71,131 +71,130 @@ export default function decorate(block) {
   const carouselWrapper = document.createElement('div');
   carouselWrapper.className = 'carousel-wrapper';
 
-// Loop through all carousel items
-carouselItems.forEach((item) => {
-  const carouselItem = document.createElement('div');
-  carouselItem.classList.add('carousel-item');
+  // Loop through all carousel items
+  carouselItems.forEach((item) => {
+    const carouselItem = document.createElement('div');
+    carouselItem.classList.add('carousel-item');
 
-  const carouselItemContent = document.createElement('div');
-  carouselItemContent.classList.add('carousel-content');
-  const newsLatterImage = document.createElement('div');
-  newsLatterImage.classList.add('carousel-image');
-  const newsLinkDiv = document.createElement('div');
-  newsLinkDiv.classList.add('news-link-container');
-  const newsLinkArrowDiv = document.createElement('div');
-  newsLinkArrowDiv.classList.add('news-link-arrow-container');
+    const carouselItemContent = document.createElement('div');
+    carouselItemContent.classList.add('carousel-content');
+    const newsLatterImage = document.createElement('div');
+    newsLatterImage.classList.add('carousel-image');
+    const newsLinkDiv = document.createElement('div');
+    newsLinkDiv.classList.add('news-link-container');
+    const newsLinkArrowDiv = document.createElement('div');
+    newsLinkArrowDiv.classList.add('news-link-arrow-container');
 
-  carouselItem.appendChild(carouselItemContent);
-  carouselItem.appendChild(newsLatterImage);
+    carouselItem.appendChild(carouselItemContent);
+    carouselItem.appendChild(newsLatterImage);
 
-  // Extract and append the title
-  const carouselTitleElement = item.querySelector('[data-aue-prop="title"]');
-  if (carouselTitleElement) {
-    const titleText = carouselTitleElement.textContent;
-    const titleHtml = `<p class="news-title">${titleText}</p>`;
-    carouselItemContent.insertAdjacentHTML('beforeend', titleHtml);
-    carouselTitleElement.remove();
-  }
+    // Extract and append the title
+    const carouselTitleElement = item.querySelector('[data-aue-prop="title"]');
+    if (carouselTitleElement) {
+      const titleText = carouselTitleElement.textContent;
+      const titleHtml = `<p class="news-title">${titleText}</p>`;
+      carouselItemContent.insertAdjacentHTML('beforeend', titleHtml);
+      carouselTitleElement.remove();
+    }
 
-  // Extract and append the description
-  const descriptionElement = item.querySelector('[data-aue-prop="description"]');
-  if (descriptionElement) {
-    const descriptionText = descriptionElement.textContent;
-    const descriptionHtml = `<p class="news-description">${descriptionText}</p>`;
-    carouselItemContent.insertAdjacentHTML('beforeend', descriptionHtml);
-    descriptionElement.remove();
-  }
+    // Extract and append the description
+    const descriptionElement = item.querySelector('[data-aue-prop="description"]');
+    if (descriptionElement) {
+      const descriptionText = descriptionElement.textContent;
+      const descriptionHtml = `<p class="news-description">${descriptionText}</p>`;
+      carouselItemContent.insertAdjacentHTML('beforeend', descriptionHtml);
+      descriptionElement.remove();
+    }
 
-  // Extract and append the "Read More" label
-  const readMoreLabelElement = item.querySelector('[data-aue-prop="readmorelabel"]');
-  if (readMoreLabelElement) {
-    const readMoreLabelText = readMoreLabelElement.textContent;
-    const readMoreLabelHtml = `<p class="news-link">${readMoreLabelText}</p>`;
-    newsLinkDiv.insertAdjacentHTML('beforeend', readMoreLabelHtml);
-    readMoreLabelElement.remove();
-  }
+    // Extract and append the "Read More" label
+    const readMoreLabelElement = item.querySelector('[data-aue-prop="readmorelabel"]');
+    if (readMoreLabelElement) {
+      const readMoreLabelText = readMoreLabelElement.textContent;
+      const readMoreLabelHtml = `<p class="news-link">${readMoreLabelText}</p>`;
+      newsLinkDiv.insertAdjacentHTML('beforeend', readMoreLabelHtml);
+      readMoreLabelElement.remove();
+    }
 
-  // Extract the two SVG icons and append them using ImageComponent
-  const firstIconLink = block.querySelector('a[href="material-symbols_chevron-left%20(1).svg"]');
-  const secondIconLink = block.querySelector('a[href="material-symbols_chevron-left.svg"]');
+    // Extract the two SVG icons and append them using ImageComponent
+    const firstIconLink = block.querySelector('a[href="material-symbols_chevron-left%20(1).svg"]');
+    const secondIconLink = block.querySelector('a[href="material-symbols_chevron-left.svg"]');
 
-  if (firstIconLink && secondIconLink) {
+    if (firstIconLink && secondIconLink) {
     // Use ImageComponent to load the first SVG icon
-    const firstIconHtml = ImageComponent({
-      src: firstIconLink.getAttribute('href'),
-      alt: 'Chevron Left (1) Icon',
-      className: 'first-svg-icon', // You can customize the class name if needed
-      breakpoints: {
-        mobile: { width: 768, src: firstIconLink.getAttribute('href') },
-        tablet: { width: 1024, src: firstIconLink.getAttribute('href') },
-        desktop: { width: 1920, src: firstIconLink.getAttribute('href') },
-      },
-      lazy: false,
-    });
+      const firstIconHtml = ImageComponent({
+        src: firstIconLink.getAttribute('href'),
+        alt: 'Chevron Left (1) Icon',
+        className: 'first-svg-icon', // You can customize the class name if needed
+        breakpoints: {
+          mobile: { width: 768, src: firstIconLink.getAttribute('href') },
+          tablet: { width: 1024, src: firstIconLink.getAttribute('href') },
+          desktop: { width: 1920, src: firstIconLink.getAttribute('href') },
+        },
+        lazy: false,
+      });
 
-    // Use ImageComponent to load the second SVG icon
-    const secondIconHtml = ImageComponent({
-      src: secondIconLink.getAttribute('href'),
-      alt: 'Chevron Left Icon',
-      className: 'second-svg-icon', // You can customize the class name if needed
-      breakpoints: {
-        mobile: { width: 768, src: secondIconLink.getAttribute('href') },
-        tablet: { width: 1024, src: secondIconLink.getAttribute('href') },
-        desktop: { width: 1920, src: secondIconLink.getAttribute('href') },
-      },
-      lazy: false,
-    });
+      // Use ImageComponent to load the second SVG icon
+      const secondIconHtml = ImageComponent({
+        src: secondIconLink.getAttribute('href'),
+        alt: 'Chevron Left Icon',
+        className: 'second-svg-icon', // You can customize the class name if needed
+        breakpoints: {
+          mobile: { width: 768, src: secondIconLink.getAttribute('href') },
+          tablet: { width: 1024, src: secondIconLink.getAttribute('href') },
+          desktop: { width: 1920, src: secondIconLink.getAttribute('href') },
+        },
+        lazy: false,
+      });
 
-    // Append the icons to the newsLinkArrowDiv
-    newsLinkArrowDiv.insertAdjacentHTML('beforeend', firstIconHtml);
-    newsLinkArrowDiv.insertAdjacentHTML('beforeend', secondIconHtml);
+      // Append the icons to the newsLinkArrowDiv
+      newsLinkArrowDiv.insertAdjacentHTML('beforeend', firstIconHtml);
+      newsLinkArrowDiv.insertAdjacentHTML('beforeend', secondIconHtml);
 
-    newsLinkDiv.appendChild(newsLinkArrowDiv);
-  }
+      newsLinkDiv.appendChild(newsLinkArrowDiv);
+    }
 
-  // Append the icon to the carousel item
-  carouselItemContent.appendChild(newsLinkDiv);
+    // Append the icon to the carousel item
+    carouselItemContent.appendChild(newsLinkDiv);
 
-  // Add the image to the carousel
-  const firstDiv = item.querySelector('div');
-  if (firstDiv) {
-    const pTag = firstDiv.querySelector('p');
-    if (pTag) {
-      const aTag = pTag.querySelector('a');
-      if (aTag) {
-        const imgUrl = aTag.getAttribute('href');
-        const imgAlt = aTag.getAttribute('title') || 'Thumbnail';
+    // Add the image to the carousel
+    const firstDiv = item.querySelector('div');
+    if (firstDiv) {
+      const pTag = firstDiv.querySelector('p');
+      if (pTag) {
+        const aTag = pTag.querySelector('a');
+        if (aTag) {
+          const imgUrl = aTag.getAttribute('href');
+          const imgAlt = aTag.getAttribute('title') || 'Thumbnail';
 
-        const imgHtml = ImageComponent({
-          src: imgUrl,
-          alt: imgAlt,
-          className: 'news-thumbnail',
-          breakpoints: {
-            mobile: {
-              width: 768,
-              src: `${imgUrl}`,
+          const imgHtml = ImageComponent({
+            src: imgUrl,
+            alt: imgAlt,
+            className: 'news-thumbnail',
+            breakpoints: {
+              mobile: {
+                width: 768,
+                src: `${imgUrl}`,
+              },
+              tablet: {
+                width: 1024,
+                src: `${imgUrl}`,
+              },
+              desktop: {
+                width: 1920,
+                src: `${imgUrl}`,
+              },
             },
-            tablet: {
-              width: 1024,
-              src: `${imgUrl}`,
-            },
-            desktop: {
-              width: 1920,
-              src: `${imgUrl}`,
-            },
-          },
-          lazy: false,
-        });
+            lazy: false,
+          });
 
-        newsLatterImage.insertAdjacentHTML('beforeend', imgHtml);
-        aTag.remove();
+          newsLatterImage.insertAdjacentHTML('beforeend', imgHtml);
+          aTag.remove();
+        }
       }
     }
-  }
 
-  carouselWrapper.appendChild(carouselItem);
-});
-
+    carouselWrapper.appendChild(carouselItem);
+  });
 
   carouselContainer.appendChild(carouselWrapper);
   heroContainer.appendChild(carouselContainer);

@@ -14,11 +14,10 @@
 Breakpoints & Container Widths:
 -------------------------------------------------------------------------------------
 |  Breakpoint  |  Class infix  |  Dimensions   |     Container (max-width)          |
--------------------------------------------------------------------------------------
-|    Extra small |     -       |    < 576px    |     None (auto)                   |
-|    Small       |    -sm-     |    ≥ 576px    |     540px                         |
-|    Medium      |    -md-     |    ≥ 768px    |     720px                         |
-|    Large       |    -lg-     |    ≥ 992px    |     960px                         |
+-------------------------------------------------------------------------------------                 |
+|    Small       |    -sm-     |    ≥ 320px    |     767px                         |
+|    Medium      |    -md-     |    ≥ 768px    |     989px                         |
+|    Large       |    -lg-     |    ≥ 990px    |     1199px                         |
 |    Extra large |    -xl-     |    ≥ 1200px   |     1440px                        |
 -------------------------------------------------------------------------------------
  
@@ -27,14 +26,14 @@ Grid System Properties:
 |  Property          |  Value                                                       |
 -------------------------------------------------------------------------------------
 |  Column classes    |  .col-, .col-sm-, .col-md-, .col-lg-, .col-xl-  |
-|  # of columns      |  12                                                         |
+|  # of columns      |  Mobile 4, Tablet 6, Desktop 12                                                         |
 |  Gutter width     |  -                                                                               |
 -------------------------------------------------------------------------------------
  
 Usage Example:
 <div class="container">
   <div class="row">
-    <div class="col-sm-6 col-md-4 col-lg-3">Column</div>
+    <div class="col-sm-4 col-md-6 col-lg-12">Column</div>
   </div>
 </div>
 */
@@ -77,19 +76,19 @@ Usage Example:
  
 /* fallback fonts */
 @font-face {
-  font-family: 'dmSans-regular';
+  font-family: dmSans-regular;
   size-adjust: 88.82%;
   src: local('Arial');
 }
  
 @font-face {
-  font-family: 'dmSans-medium';
+  font-family: dmSans-medium;
   size-adjust: 99.529%;
   src: local('Arial');
 }
  
 @font-face {
-  font-family: 'dmSans-bold';
+  font-family: dmSans-bold;
   size-adjust: 99.529%;
   src: local('Arial');
 }
@@ -125,6 +124,7 @@ Usage Example:
 *{
   box-sizing: border-box;
 }
+
 body {
   /* display: none; */
   margin: 0;
@@ -357,19 +357,19 @@ main .section.highlight {
   margin-left: auto;
 }
  
-@media (width >= 576px) {
+@media (width >= 320px) {
   .container-sm, .container {
-    max-width: 540px;
+    max-width: 767px;
   }
 }
 @media (width >= 768px) {
   .container-md, .container-sm, .container {
-    max-width: 720px;
+    max-width: 991px;
   }
 }
 @media (width >= 992px) {
   .container-lg, .container-md, .container-sm, .container {
-    max-width: 960px;
+    max-width: 1199px;
   }
 }
 @media (width >= 1200px) {
@@ -433,60 +433,20 @@ main .section.highlight {
  
   .col-sm-1 {
     flex: 0 0 auto;
-    width: 8.33333333%;
+    width: 25%;
   }
  
   .col-sm-2 {
     flex: 0 0 auto;
-    width: 16.66666667%;
+    width: 50%;
   }
  
   .col-sm-3 {
     flex: 0 0 auto;
-    width: 25%;
-  }
- 
-  .col-sm-4 {
-    flex: 0 0 auto;
-    width: 33.33333333%;
-  }
- 
-  .col-sm-5 {
-    flex: 0 0 auto;
-    width: 41.66666667%;
-  }
- 
-  .col-sm-6 {
-    flex: 0 0 auto;
-    width: 50%;
-  }
- 
-  .col-sm-7 {
-    flex: 0 0 auto;
-    width: 58.33333333%;
-  }
- 
-  .col-sm-8 {
-    flex: 0 0 auto;
-    width: 66.66666667%;
-  }
- 
-  .col-sm-9 {
-    flex: 0 0 auto;
     width: 75%;
   }
  
-  .col-sm-10 {
-    flex: 0 0 auto;
-    width: 83.33333333%;
-  }
- 
-  .col-sm-11 {
-    flex: 0 0 auto;
-    width: 91.66666667%;
-  }
- 
-  .col-sm-12 {
+  .col-sm-4 {
     flex: 0 0 auto;
     width: 100%;
   }
@@ -496,48 +456,21 @@ main .section.highlight {
   }
  
   .offset-sm-1 {
-    margin-left: 8.33333333%;
-  }
- 
-  .offset-sm-2 {
-    margin-left: 16.66666667%;
-  }
- 
-  .offset-sm-3 {
     margin-left: 25%;
   }
  
-  .offset-sm-4 {
-    margin-left: 33.33333333%;
-  }
- 
-  .offset-sm-5 {
-    margin-left: 41.66666667%;
-  }
- 
-  .offset-sm-6 {
+  .offset-sm-2 {
     margin-left: 50%;
   }
  
-  .offset-sm-7 {
-    margin-left: 58.33333333%;
-  }
- 
-  .offset-sm-8 {
-    margin-left: 66.66666667%;
-  }
- 
-  .offset-sm-9 {
+  .offset-sm-3 {
     margin-left: 75%;
   }
  
-  .offset-sm-10 {
-    margin-left: 83.33333333%;
+  .offset-sm-4 {
+    margin-left: 100%;
   }
- 
-  .offset-sm-11 {
-    margin-left: 91.66666667%;
-  }
+
 }
 @media (width >= 768px) {
   .col-md {
@@ -586,60 +519,30 @@ main .section.highlight {
  
   .col-md-1 {
     flex: 0 0 auto;
-    width: 8.33333333%;
+    width: 16.66666667%;
   }
  
   .col-md-2 {
     flex: 0 0 auto;
-    width: 16.66666667%;
+    width: 33.33333333%;
   }
  
   .col-md-3 {
     flex: 0 0 auto;
-    width: 25%;
+    width: 50%;
   }
  
   .col-md-4 {
     flex: 0 0 auto;
-    width: 33.33333333%;
+    width: 66.66666667%;
   }
  
   .col-md-5 {
     flex: 0 0 auto;
-    width: 41.66666667%;
-  }
- 
-  .col-md-6 {
-    flex: 0 0 auto;
-    width: 50%;
-  }
- 
-  .col-md-7 {
-    flex: 0 0 auto;
-    width: 58.33333333%;
-  }
- 
-  .col-md-8 {
-    flex: 0 0 auto;
-    width: 66.66666667%;
-  }
- 
-  .col-md-9 {
-    flex: 0 0 auto;
-    width: 75%;
-  }
- 
-  .col-md-10 {
-    flex: 0 0 auto;
     width: 83.33333333%;
   }
  
-  .col-md-11 {
-    flex: 0 0 auto;
-    width: 91.66666667%;
-  }
- 
-  .col-md-12 {
+  .col-md-6 {
     flex: 0 0 auto;
     width: 100%;
   }
@@ -649,47 +552,27 @@ main .section.highlight {
   }
  
   .offset-md-1 {
-    margin-left: 8.33333333%;
-  }
- 
-  .offset-md-2 {
     margin-left: 16.66666667%;
   }
  
-  .offset-md-3 {
-    margin-left: 25%;
-  }
- 
-  .offset-md-4 {
+  .offset-md-2 {
     margin-left: 33.33333333%;
   }
  
-  .offset-md-5 {
-    margin-left: 41.66666667%;
-  }
- 
-  .offset-md-6 {
+  .offset-md-3 {
     margin-left: 50%;
   }
  
-  .offset-md-7 {
-    margin-left: 58.33333333%;
-  }
- 
-  .offset-md-8 {
+  .offset-md-4 {
     margin-left: 66.66666667%;
   }
  
-  .offset-md-9 {
-    margin-left: 75%;
-  }
- 
-  .offset-md-10 {
+  .offset-md-5 {
     margin-left: 83.33333333%;
   }
  
-  .offset-md-11 {
-    margin-left: 91.66666667%;
+  .offset-md-6 {
+    margin-left: 100%;
   }
 }
 @media (width >= 992px) {
