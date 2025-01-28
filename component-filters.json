@@ -84,7 +84,8 @@
   {
     "id": "listing",
     "components": [
-      "listitem"
+      "listitem",
+      "linkField"
     ]
   }
 ]

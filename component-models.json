@@ -394,16 +394,6 @@
         "component": "text",
         "name": "heading",
         "label": "Heading"
-      },
-      {
-        "component": "text",
-        "name": "ctaCaption",
-        "label": "CTA Caption"
-      },
-      {
-        "component": "aem-content",
-        "name": "cta",
-        "label": "CTA"
       }
     ]
   },
@@ -429,15 +419,11 @@
         "label": "Title"
       },
       {
-        "component": "date-time",
-        "name": "date",
-        "label": "Date",
-        "valueType": "date",
-        "displayFormat": "DD MMM YYYY",
-        "valueFormat": "YYYY-MM-DD",
-        "validation": {
-          "customErrorMsg": "Please enter a valid date"
-        }
+        "component": "richtext",
+        "name": "description",
+        "value": "",
+        "label": "Description",
+        "valueType": "string"
       },
       {
         "component": "aem-content",
