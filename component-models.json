@@ -410,11 +410,6 @@
       },
       {
         "component": "text",
-        "name": "alttxt",
-        "label": "Image Alt Text"
-      },
-      {
-        "component": "text",
         "name": "title",
         "label": "Title"
       },
