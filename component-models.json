@@ -240,6 +240,11 @@
         "label": "Description"
       },
       {
+        "component": "text",
+        "name": "readmorecaption",
+        "label": "Read More Caption"
+      },
+      {
         "component": "aem-content",
         "valueType": "string",
         "name": "readmorelink",
