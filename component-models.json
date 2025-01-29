@@ -403,15 +403,15 @@
       {
         "component": "custom-asset-namespace:custom-asset",
         "name": "image",
-        "label": "Background Image",
+        "label": "BackgroundImage",
         "configUrl": "https://main--aem-eds-universaleditor--josephverticurl.aem.page/tools/assets-selector/config.json",
         "multi": false
       },
       {
         "component": "text",
         "name": "imageAlt",
-        "label": "Image Alt Text",
-        "description": "Descriptive text for screen readers"
+        "label": "ImageAltText",
+        "description": "DescriptiveTextForScreenReaders"
       },
       {
         "component": "text",
@@ -429,12 +429,6 @@
         "component": "aem-content",
         "name": "cta",
         "label": "CTA"
-      },
-      {
-        "component": "reference",
-        "name": "arrowIcon",
-        "label": "Arrow Icon",
-        "multi": false
       }
     ]
   }

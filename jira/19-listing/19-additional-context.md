@@ -5,10 +5,10 @@ Create this block with following:
         2.A text field heading
     A block item with following fields
         1. A background image
-        2. A text field title
-        3. A richtext field description
-        4. A CTA button CTA
-        5. An arrow icon
+        2. an alt text for the image
+        3. A text field title
+        4. A richtext field description
+        5. A CTA button CTA
     The container block should be able to have only one Link Field block item.
 
 # Rendering Requirements:
