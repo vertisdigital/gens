@@ -428,8 +428,7 @@
       {
         "component": "aem-content",
         "name": "cta",
-        "label": "CTA",
-        "title": "arrow-icon"
+        "label": "CTA"
       }
     ]
   }
