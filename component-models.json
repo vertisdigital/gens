@@ -381,5 +381,76 @@
         "multi": false
       }
     ]
+  },
+  {
+    "id": "enquiry",
+    "fields": [
+      {
+        "component": "text",
+        "name": "heading",
+        "label": "Heading"
+      },
+      {
+        "component": "richtext",
+        "name": "description",
+        "value": "",
+        "label": "Description",
+        "valueType": "string"
+      },
+      {
+        "component": "custom-asset-namespace:custom-asset",
+        "name": "phoneIcon",
+        "label": "PhoneIcon",
+        "configUrl": "https://main--aem-eds-universaleditor--josephverticurl.aem.page/tools/assets-selector/config.json",
+        "multi": false
+      },
+      {
+        "component": "text",
+        "name": "phoneIconAlt",
+        "label": "PhoneIconAltText",
+        "description": "DescriptiveTextForScreenReaders"
+      },
+      {
+        "component": "text",
+        "name": "phoneNumber",
+        "label": "PhoneNumber"
+      },
+      {
+        "component": "custom-asset-namespace:custom-asset",
+        "name": "emailIcon",
+        "label": "EmailIcon",
+        "configUrl": "https://main--aem-eds-universaleditor--josephverticurl.aem.page/tools/assets-selector/config.json",
+        "multi": false
+      },
+      {
+        "component": "text",
+        "name": "emailIconAlt",
+        "label": "EmailIconAltText",
+        "description": "DescriptiveTextForScreenReaders"
+      },
+      {
+        "component": "text",
+        "name": "emailAddress",
+        "label": "EmailAddress"
+      },
+      {
+        "component": "custom-asset-namespace:custom-asset",
+        "name": "addressIcon",
+        "label": "AddressIcon",
+        "configUrl": "https://main--aem-eds-universaleditor--josephverticurl.aem.page/tools/assets-selector/config.json",
+        "multi": false
+      },
+      {
+        "component": "text",
+        "name": "addressIconAlt",
+        "label": "AddressIconAltText",
+        "description": "DescriptiveTextForScreenReaders"
+      },
+      {
+        "component": "text",
+        "name": "address",
+        "label": "Address"
+      }
+    ]
   }
 ]

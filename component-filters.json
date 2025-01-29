@@ -21,7 +21,8 @@
       "linkField",
       "socialLinks",
       "links",
-      "imageLink"
+      "imageLink",
+      "enquiry"
     ]
   },
   {
@@ -45,7 +46,8 @@
       "title",
       "imageLink",
       "socialLinks",
-      "links"
+      "links",
+      "enquiry"
     ]
   },
   {
