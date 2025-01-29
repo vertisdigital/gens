@@ -63,7 +63,7 @@ export default function decorate(block) {
     size: '32',
     color: 'white',
   });
-  heroContainer.insertAdjacentHTML('beforeend', arrowIconHtml);
+  // heroContainer.insertAdjacentHTML('beforeend', arrowIconHtml);
 
   const carouselItems = block.querySelectorAll('[data-aue-model="bannercarousel"]');
   const carouselContainer = document.createElement('div');
@@ -199,15 +199,17 @@ export default function decorate(block) {
   carouselContainer.appendChild(carouselWrapper);
   heroContainer.appendChild(carouselContainer);
 
-  const carouselItemsEl = heroContainer.querySelectorAll('.carousel-item');
-  const itemWidth = carouselItemsEl[0].offsetWidth;
+
 
   let currentIndex = 0;
+  const carouselItemsAll = heroContainer.querySelectorAll('.carousel-item');
 
   function moveCarousel() {
+    const carouselItemsEl = heroContainer.querySelector('.carousel-item');
+    const itemWidth = carouselItemsEl.offsetWidth;
     currentIndex += 1;
 
-    if (currentIndex >= carouselItemsEl.length) {
+    if (currentIndex >= carouselItemsAll.length) {
       currentIndex = 0;
     }
 
@@ -224,7 +226,7 @@ export default function decorate(block) {
     }
   }
 
-  if (carouselItemsEl.length > 0) {
+  if (carouselItemsAll.length > 0) {
     setInterval(moveCarousel, 3000);
   }
 
