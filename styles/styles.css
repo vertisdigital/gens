@@ -363,6 +363,9 @@ main .section.highlight {
   }
 
   .row {
+    display: flex;
+    flex-wrap: wrap;
+
     --bs-gutter-x: 36px;
   }
 
@@ -669,8 +672,8 @@ main .section.highlight {
   .row-cols-xl-6 > * { width: 16.6666666667%; }
 
   .row > * {
-    padding-right: calc(var(--bs-gutter-x) * 0.5);
-    padding-left: calc(var(--bs-gutter-x) * 0.5);
+    padding-right: 36px;
+    padding-left: 36px;
   }
 
   .row > *:first-child { padding-right: 0; }
