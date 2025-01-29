@@ -81,6 +81,7 @@ export default function decorate(block) {
     cardElement.setAttribute('data-aue-type', 'component');
     cardElement.setAttribute('data-aue-model', 'projectcard');
     cardElement.setAttribute('data-aue-label', 'ProjectCard');
+    cardElement.setAttribute('data-aue-resource', card.getAttribute('data-aue-resource'));
 
     // Handle card image
     const imageLink = card.querySelector('a[href]');
