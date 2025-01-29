@@ -404,7 +404,7 @@
         "component": "custom-asset-namespace:custom-asset",
         "name": "image",
         "label": "BackgroundImage",
-        "configUrl": "https://main--aem-eds-universaleditor--josephverticurl.aem.page/tools/assets-selector/config.json",
+        "configUrl": "https://main--genting--wppopen.aem.page/tools/assets-selector/config.json",
         "multi": false
       },
       {
