@@ -1,0 +1,72 @@
+Title: Implement Landing Page with Text Block and Three Image Feature Sections
+
+Description:
+As a user, I want to see a text-based hero section followed by three feature blocks with images, so I can understand the key offerings and opportunities on the landing page.
+
+Acceptance Criteria:
+
+Text Block (Hero Section):
+
+Heading: "A Destination of Opportunity" with font-size: 15px.
+Description text:
+"We have laid a strong foundation for investments as a key player in Singapore and the broader Asia region. Through a commitment to mutual growth, our success is built by boosting tourism and economic development, ensuring communities thrive within and beyond our borders."
+
+CTA button: "Download Factsheet" with arrow icon.
+White background.
+Proper padding and margins.
+Text alignment: Left.
+Three Feature Image Blocks:
+
+Each block contains:
+Full-width background image.
+Semi-transparent dark overlay for text readability.
+White text content.
+Consistent padding and spacing.
+Block Details:
+
+First Image Block:
+
+Heading: "Prime Location, Financial Strength."
+Description:
+"We leverage our prime location and regulatory strength for financial stability – with a record of strong and consistent revenue generation positioning us for sustainable growth."
+
+CTA: "Learn more."
+Background: Modern office building image.
+Second Image Block:
+
+Heading: "Dynamic Growth Pipeline."
+Description:
+"A commitment to long-term planning and investment to value and future growth, aiming to solidify us as Asia's top tourism destination while ensuring sustainable shareholder returns and geographical diversification."
+
+CTA: "Learn more."
+Background: Silhouette of person against cityscape.
+Third Image Block:
+
+Heading: "Effective Governance & ESG."
+Description:
+"Exceeding industry standards, we are committed to ESG principles prioritizing accountability, Responsible Gaming, and the Prevention of Money Laundering and Terrorism Financing."
+
+CTA: "Learn more."
+Background: Professional working environment image.
+Technical Requirements:
+
+Responsive layout using CSS Grid/Flexbox.
+Image optimization and lazy loading.
+Accessible heading hierarchy.
+Hover effects on CTAs.
+Proper contrast ratios for text overlays.
+Cross-browser compatibility.
+Mobile-first approach.
+CSS Requirements:
+
+Consistent spacing and padding for all sections.
+Text styles (font-size, line-height, colors) aligned with the design system.
+Overlay opacity for readability.
+Smooth transitions for hover effects.
+Definition of Done (DoD):
+
+Unit and integration tests for layout responsiveness.
+Tested on major browsers (Chrome, Firefox, Safari, Edge).
+Accessibility checks pass with WCAG AA compliance.
+All images optimized and lazy-loaded.
+Code pushed to the repository and reviewed by peers.
