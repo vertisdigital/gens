@@ -10,7 +10,7 @@ export default function decorate(block) {
 
   // Create row wrapper
   const row = document.createElement('div');
-  row.className = 'row';
+  row.className = 'row tiles-container ';
 
   // Move existing tiles into grid columns
   const tiles = Array.from(block.children);
@@ -44,7 +44,7 @@ export default function decorate(block) {
           // Create new anchor with CTA text and button link
           const ctaLink = document.createElement('a');
           ctaLink.href = link.href;
-          ctaLink.className = 'button';
+          ctaLink.className = 'learn-button';
           ctaLink.textContent = ctaCaption.textContent;
           // Replace CTA caption with link
           ctaCaption.parentNode.replaceChild(ctaLink, ctaCaption);
@@ -66,7 +66,7 @@ export default function decorate(block) {
         // Create new anchor with CTA text and button link
         const ctaLink = document.createElement('a');
         ctaLink.href = link.href;
-        ctaLink.className = 'button';
+        ctaLink.className = 'factsheet-button';
         ctaLink.textContent = ctaCaption.textContent;
 
         // Add download icon
