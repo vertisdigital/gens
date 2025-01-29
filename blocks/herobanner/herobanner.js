@@ -1,5 +1,6 @@
 import ImageComponent from '../../shared-components/ImageComponent.js';
 import Heading from '../../shared-components/Heading.js';
+import SvgIcon from '../../shared-components/SvgIcon.js';
 
 export default function decorate(block) {
   let heroContainer = block.querySelector('.hero-banner-container');
@@ -55,6 +56,14 @@ export default function decorate(block) {
     heroContainer.appendChild(descriptionDiv);
     descElement.remove();
   }
+
+  const arrowIconHtml = SvgIcon({
+    name: 'arrow',
+    className: 'hero-arrow-icon',
+    size: '32',
+    color: 'white',
+  });
+  heroContainer.insertAdjacentHTML('beforeend', arrowIconHtml);
 
   const carouselItems = block.querySelectorAll('[data-aue-model="bannercarousel"]');
   const carouselContainer = document.createElement('div');
