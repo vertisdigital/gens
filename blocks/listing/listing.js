@@ -1,7 +1,6 @@
 import ImageComponent from '../../shared-components/ImageComponent.js';
 import stringToHtml from '../../shared-components/Utility.js';
-import SvgIcon from "../../shared-components/SvgIcon.js"
-
+import SvgIcon from '../../shared-components/SvgIcon.js';
 
 export default function decorate(block) {
   // Add container classes from styles.css
@@ -49,9 +48,6 @@ export default function decorate(block) {
     const description = item.querySelector('[data-richtext-prop="description"]');
     const arrowIcon = item.querySelector('div:last-child a');
 
-
-    const ctaButton = item.querySelector('[data-aue-prop="CTA"]');
-
     // Add content elements to wrapper
     if (title) {
       contentWrapper.appendChild(title);
@@ -62,12 +58,12 @@ export default function decorate(block) {
     if (arrowIcon) {
       // const picture = document.createElement('picture');
       const newArrowLink = document.createElement('a');
-      const arrowLink = arrowIcon.src;
+      const arrowLink = arrowIcon.href;
       newArrowLink.href = arrowLink;
 
       const arrowSVG = SvgIcon({ name: 'arrow', className: 'arrow-link', size: '24px' });
       const parsedArrowSVG = stringToHtml(arrowSVG);
-      newArrowLink.appendChild(parsedArrowSVG)
+      newArrowLink.appendChild(parsedArrowSVG);
       contentWrapper.appendChild(newArrowLink);
     }
 
@@ -77,7 +73,6 @@ export default function decorate(block) {
     // Replace item content with new row
     item.innerHTML = '';
     item.appendChild(row);
-
 
     // Add accessibility attributes
     item.setAttribute('role', 'listitem');
