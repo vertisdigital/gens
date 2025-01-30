@@ -67,10 +67,6 @@ export default function decorate(block) {
   if (linkField) {
     // Create wrapper component
     const linkWrapper = document.createElement('div');
-    linkWrapper.setAttribute('data-aue-type', 'component');
-    linkWrapper.setAttribute('data-aue-model', 'linkField');
-    linkWrapper.setAttribute('data-aue-filter', 'linkField');
-    linkWrapper.setAttribute('data-aue-label', 'Link Field');
 
     // Create main link container
     const linkContainer = document.createElement('div');
@@ -82,14 +78,21 @@ export default function decorate(block) {
 
     // Create link element
     const linkElement = document.createElement('a');
+    
+    const linkAttributes = {
+      'data-aue-prop': 'linkText',
+      'data-aue-label': 'Text', 
+      'data-aue-type': 'text'
+    };
+    Object.entries(linkAttributes).forEach(([key, value]) => {
+      linkElement.setAttribute(key, value);
+    });
+
     const originalLink = linkField.querySelector('a');
     if (originalLink) {
       linkElement.href = originalLink.getAttribute('href');
       linkElement.title = originalLink.getAttribute('title');
       linkElement.className = 'button';
-      linkElement.setAttribute('data-aue-prop', 'linkText');
-      linkElement.setAttribute('data-aue-label', 'Text');
-      linkElement.setAttribute('data-aue-type', 'text');
       linkElement.textContent = originalLink.textContent;
     }
 
