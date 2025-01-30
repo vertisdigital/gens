@@ -107,7 +107,7 @@ export default function decorate(block) {
     // Assemble link structure
     linkContainer.appendChild(linkTextDiv);
     linkContainer.appendChild(linkTargetDiv);
-    //aboutUsLeftContent.appendChild(linkContainer);
+    // aboutUsLeftContent.appendChild(linkContainer);
   }
 
   // About-Us right container
@@ -115,8 +115,6 @@ export default function decorate(block) {
   aboutUsRightContent.className = 'col-lg-6 col-md-6 col-sm-12 about-us-right';
 
   // Collect all imageAndDescription elements first
-  const imageAndDescriptionList = [];
-
   const aboutUsDescription = block.querySelectorAll('[data-aue-model="featureItem"]');
   aboutUsDescription.forEach((description) => {
     // Create feature item container
