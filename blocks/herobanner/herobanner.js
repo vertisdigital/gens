@@ -8,6 +8,8 @@ export default function decorate(block) {
   if (!heroContainer) {
     heroContainer = document.createElement('div');
     heroContainer.className = 'hero-banner-container';
+    heroContainer.setAttribute('data-aue-resource', 'herobanner');
+    heroContainer.setAttribute('data-aue-type', 'block');
   }
 
   const imageLink = block.querySelector('a[href]');
@@ -36,15 +38,23 @@ export default function decorate(block) {
       lazy: false,
     });
 
-    heroContainer.insertAdjacentHTML('beforeend', imageHtml);
+    const imageContainer = document.createElement('div');
+    imageContainer.setAttribute('data-aue-model', 'bannerimage');
+    imageContainer.setAttribute('data-aue-label', 'Banner Image');
+    imageContainer.insertAdjacentHTML('beforeend', imageHtml);
+    heroContainer.appendChild(imageContainer);
     imageLink.remove();
   }
 
   const titleElement = block.querySelector('[data-aue-prop="bannertitle"]');
   if (titleElement) {
     const titleText = titleElement.textContent;
+    const titleContainer = document.createElement('div');
+    titleContainer.setAttribute('data-aue-model', 'bannertitle');
+    titleContainer.setAttribute('data-aue-label', 'Banner Title');
     const headingHtml = Heading({ level: 1, text: titleText, className: 'hero-title' });
-    heroContainer.insertAdjacentHTML('beforeend', headingHtml);
+    titleContainer.insertAdjacentHTML('beforeend', headingHtml);
+    heroContainer.appendChild(titleContainer);
     titleElement.remove();
   }
 
@@ -52,6 +62,8 @@ export default function decorate(block) {
   if (descElement) {
     const descriptionDiv = document.createElement('div');
     descriptionDiv.className = 'hero-description';
+    descriptionDiv.setAttribute('data-aue-model', 'bannerdescription');
+    descriptionDiv.setAttribute('data-aue-label', 'Banner Description');
     descriptionDiv.textContent = descElement.textContent;
     heroContainer.appendChild(descriptionDiv);
     descElement.remove();
@@ -68,16 +80,24 @@ export default function decorate(block) {
   const carouselItems = block.querySelectorAll('[data-aue-model="bannercarousel"]');
   const carouselContainer = document.createElement('div');
   carouselContainer.className = 'hero-banner-carousal';
+  carouselContainer.setAttribute('data-aue-model', 'bannercarousel');
+  carouselContainer.setAttribute('data-aue-label', 'Banner Carousel');
+
   const carouselWrapper = document.createElement('div');
   carouselWrapper.className = 'carousel-wrapper';
+  carouselWrapper.setAttribute('data-aue-type', 'container');
 
   // Loop through all carousel items
-  carouselItems.forEach((item) => {
+  carouselItems.forEach((item, index) => {
     const carouselItem = document.createElement('div');
     carouselItem.classList.add('carousel-item');
+    carouselItem.setAttribute('data-aue-model', 'carouselitem');
+    carouselItem.setAttribute('data-aue-resource', item.getAttribute('data-aue-resource'));
+    carouselItem.setAttribute('data-aue-label', `Carousel Item ${index + 1}`);
 
     const carouselItemContent = document.createElement('div');
     carouselItemContent.classList.add('carousel-content');
+    carouselItemContent.setAttribute('data-aue-type', 'content');
     const newsLatterImage = document.createElement('div');
     newsLatterImage.classList.add('carousel-image');
     const newsLinkDiv = document.createElement('div');
@@ -93,7 +113,11 @@ export default function decorate(block) {
     if (carouselTitleElement) {
       const titleText = carouselTitleElement.textContent;
       const titleHtml = `<p class="news-title">${titleText}</p>`;
-      carouselItemContent.insertAdjacentHTML('beforeend', titleHtml);
+      const titleContainer = document.createElement('div');
+      titleContainer.setAttribute('data-aue-model', 'title');
+      titleContainer.setAttribute('data-aue-label', 'Title');
+      titleContainer.insertAdjacentHTML('beforeend', titleHtml);
+      carouselItemContent.appendChild(titleContainer);
       carouselTitleElement.remove();
     }
 
@@ -102,7 +126,11 @@ export default function decorate(block) {
     if (descriptionElement) {
       const descriptionText = descriptionElement.textContent;
       const descriptionHtml = `<p class="news-description">${descriptionText}</p>`;
-      carouselItemContent.insertAdjacentHTML('beforeend', descriptionHtml);
+      const descContainer = document.createElement('div');
+      descContainer.setAttribute('data-aue-model', 'description');
+      descContainer.setAttribute('data-aue-label', 'Description');
+      descContainer.insertAdjacentHTML('beforeend', descriptionHtml);
+      carouselItemContent.appendChild(descContainer);
       descriptionElement.remove();
     }
 
@@ -111,7 +139,11 @@ export default function decorate(block) {
     if (readMoreLabelElement) {
       const readMoreLabelText = readMoreLabelElement.textContent;
       const readMoreLabelHtml = `<p class="news-link">${readMoreLabelText}</p>`;
-      newsLinkDiv.insertAdjacentHTML('beforeend', readMoreLabelHtml);
+      const readMoreContainer = document.createElement('div');
+      readMoreContainer.setAttribute('data-aue-model', 'readmorelabel');
+      readMoreContainer.setAttribute('data-aue-label', 'Read More Label');
+      readMoreContainer.insertAdjacentHTML('beforeend', readMoreLabelHtml);
+      newsLinkDiv.appendChild(readMoreContainer);
       readMoreLabelElement.remove();
     }
 
@@ -198,8 +230,6 @@ export default function decorate(block) {
 
   carouselContainer.appendChild(carouselWrapper);
   heroContainer.appendChild(carouselContainer);
-
-
 
   let currentIndex = 0;
   const carouselItemsAll = heroContainer.querySelectorAll('.carousel-item');
