@@ -111,7 +111,7 @@ export default function decorate(block) {
     // Assemble link structure
     linkContainer.appendChild(linkTextDiv);
     // linkContainer.appendChild(linkTargetDiv);
-    arrowEmptyContainer.appendChild(linkContainer);
+    //arrowEmptyContainer.appendChild(linkContainer);
   }
 
   // About-Us right container
