@@ -39,10 +39,12 @@
  margin-bottom: 18px;
  font-size: var(--body-font-size-s);
 }
+
 .about-us-left a.button{
   background: none;
   padding: 0;
 }
+
 .about-us-left .about-us-left-link svg{
   color:var(--primary-gold);
 }
@@ -178,6 +180,7 @@ color: var(--body-text-color);
     font-size: 80px;
     line-height: 80px;
   }
+
   .about-us-stats .about-us-right-content .statistic span:nth-child(2){
     padding-left: 14px;
   }

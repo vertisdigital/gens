@@ -17,6 +17,7 @@ export default function SvgIcon({
 }) {
   const iconSvg = getIcon(name);
   if (!iconSvg) {
+    // eslint-disable-next-line no-console
     console.warn(`Icon "${name}" not found`);
     return '';
   }

@@ -75,19 +75,19 @@ Usage Example:
  
 /* fallback fonts */
 @font-face {
-  font-family: 'dmSans-regular';
+  font-family: dmSans-regular;
   size-adjust: 88.82%;
   src: local('Arial');
 }
  
 @font-face {
-  font-family: 'dmSans-medium';
+  font-family: dmSans-medium;
   size-adjust: 99.529%;
   src: local('Arial');
 }
  
 @font-face {
-  font-family: 'dmSans-bold';
+  font-family: dmSans-bold;
   size-adjust: 99.529%;
   src: local('Arial');
 }
@@ -123,6 +123,7 @@ Usage Example:
 *{
   box-sizing: border-box;
 }
+
 body {
   /* display: none; */
   margin: 0;
