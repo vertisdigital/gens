@@ -349,6 +349,25 @@
         "label": "Link"
       },
       {
+        "component": "select",
+        "name": "linkSvgIcon",
+        "label": "Link SVG Icon",
+        "options": [
+          {
+            "name": "Right Arrow",
+            "value": "right-arrow"
+          },
+          {
+            "name": "Download Arrow",
+            "value": "download-arrow"
+          },
+          {
+            "name": "Top Right Arrow",
+            "value": "top-right-arrow"
+          }
+        ]
+      },
+      {
         "component": "text",
         "name": "linkText",
         "label": "Text"
