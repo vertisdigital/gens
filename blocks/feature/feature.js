@@ -10,36 +10,24 @@ import stringToHTML from '../../shared-components/Utility.js';
 export default function decorate(block) {
  const container = document.createElement('div');
  container.className = 'container';
- container.setAttribute('data-aue-model', 'featureContainer');
- container.setAttribute('data-aue-type', 'container');
- container.setAttribute('data-aue-resource', 'feature');
 
  const aboutUsStats = document.createElement('div');
  aboutUsStats.className = 'row about-us-stats';
- aboutUsStats.setAttribute('data-aue-model', 'featureStats');
- aboutUsStats.setAttribute('data-aue-type', 'stats');
- aboutUsStats.setAttribute('data-aue-resource', 'feature-stats');
 
  // About-Us left container
  const aboutUsLeftContent = document.createElement('div');
  aboutUsLeftContent.className = 'col-lg-6 col-md-6 col-sm-12 about-us-left';
- aboutUsLeftContent.setAttribute('data-aue-model', 'featureLeftContent');
- aboutUsLeftContent.setAttribute('data-aue-type', 'content');
- aboutUsLeftContent.setAttribute('data-aue-resource', 'feature-content');
 
  // Find the title and replace it with a heading
  const titleElement = block.querySelector('[data-aue-prop="title"]');
  if (titleElement) {
    const titleText = titleElement.textContent;
    const header = document.createElement('header');
-   header.setAttribute('data-aue-model', 'featureHeader');
-   header.setAttribute('data-aue-type', 'header');
-   header.setAttribute('data-aue-resource', 'feature-header');
+   header.setAttribute('data-aue-prop', 'title');
+   header.setAttribute('data-aue-type', 'text');
+   header.setAttribute('data-aue-label', 'Title');
    const titleHtml = Heading({ level: 3, text: titleText, className: 'about-us-left-title' });
    const parsedHtml = stringToHTML(titleHtml);
-   Array.from(titleElement.attributes).forEach(attr => {
-     parsedHtml.setAttribute(attr.name, attr.value);
-   });
    parsedHtml.setAttribute('data-aue-prop', 'title');
    parsedHtml.setAttribute('data-aue-label', 'Feature Title');
    parsedHtml.setAttribute('data-aue-resource', 'feature-title');
@@ -54,11 +42,10 @@ export default function decorate(block) {
    const headingText = headingElement.textContent;
    const headingHtml = Heading({ level: 2, text: headingText, className: 'about-us-left-heading' });
    const parsedHtml = stringToHTML(headingHtml);
-   Array.from(headingElement.attributes).forEach(attr => {
-     parsedHtml.setAttribute(attr.name, attr.value);
-   });
+  
    parsedHtml.setAttribute('data-aue-prop', 'heading');
-   parsedHtml.setAttribute('data-aue-label', 'Feature Heading');
+   parsedHtml.setAttribute('data-aue-label', 'Heading');
+   parsedHtml.setAttribute('data-aue-type', 'text');
    aboutUsLeftContent.append(parsedHtml);
    headingElement.remove();
  }
@@ -73,32 +60,72 @@ export default function decorate(block) {
    Array.from(subHeading.attributes).forEach(attr => {
      subHeadingElement.setAttribute(attr.name, attr.value);
    });
-   subHeadingElement.setAttribute('data-aue-prop', 'sub-heading');
-   subHeadingElement.setAttribute('data-aue-label', 'Feature Subheading');
+
    aboutUsLeftContent.appendChild(subHeadingElement);
    subHeading.remove();
  }
 
  // Find the LinkField and replace it with arrow icon
- const linkField = block.querySelector('[data-aue-model="linkfield"]');
+ const linkField = block.querySelector('[data-aue-model="linkField"]');
  if (linkField) {
-   const arrowLink = linkField.querySelector('a').getAttribute('href');
-   const arrowLinkElement = document.createElement('a');
-   if (arrowLink) {
-     arrowLinkElement.href = arrowLink;
-   }
-   Array.from(linkField.querySelector('a').attributes).forEach(attr => {
-     arrowLinkElement.setAttribute(attr.name, attr.value);
+   // Create wrapper component
+   const linkWrapper = document.createElement('div');
+   linkWrapper.setAttribute('data-aue-type', 'component');
+   linkWrapper.setAttribute('data-aue-model', 'linkField');
+   linkWrapper.setAttribute('data-aue-filter', 'linkField');
+   linkWrapper.setAttribute('data-aue-label', 'Link Field');
+
+   // Create main link container
+   const linkContainer = document.createElement('div');
+   Array.from(linkField.attributes).forEach(attr => {
+     linkContainer.setAttribute(attr.name, attr.value);
    });
-   arrowLinkElement.setAttribute('data-aue-model', 'linkField');
-   arrowLinkElement.setAttribute('data-aue-type', 'component');
-   arrowLinkElement.setAttribute('data-aue-label', 'Link Field');
-   arrowLinkElement.setAttribute('data-aue-resource', linkField.getAttribute('data-aue-resource'));
+
+   // Create link text container
+   const linkTextContainer = document.createElement('div');
+   const buttonContainer = document.createElement('p');
+   buttonContainer.className = 'button-container';
+
+   // Create link element
+   const linkElement = document.createElement('a');
+   const originalLink = linkField.querySelector('a');
+   if (originalLink) {
+     linkElement.href = originalLink.getAttribute('href');
+     linkElement.title = originalLink.getAttribute('title');
+     linkElement.className = 'button';
+     linkElement.setAttribute('data-aue-prop', 'linkText');
+     linkElement.setAttribute('data-aue-label', 'Text');
+     linkElement.setAttribute('data-aue-type', 'text');
+     linkElement.textContent = originalLink.textContent;
+   }
+
+   // Create link target container
+   const linkTargetContainer = document.createElement('div');
+   const linkTargetParagraph = document.createElement('p');
+   linkTargetParagraph.setAttribute('data-aue-prop', 'linkTarget');
+   linkTargetParagraph.setAttribute('data-aue-label', 'Link Target');
+   linkTargetParagraph.setAttribute('data-aue-type', 'text');
+   linkTargetParagraph.textContent = '_self';
+
+   // Add arrow icon
    const arrowSVG = SvgIcon({ name: 'arrow', className: 'about-us-left-link', size: '18px' });
-   arrowLinkElement.append(stringToHTML(arrowSVG));
+   linkElement.append(stringToHTML(arrowSVG));
+
+   // Assemble the structure
+   buttonContainer.appendChild(linkElement);
+   linkTextContainer.appendChild(buttonContainer);
+   linkTargetContainer.appendChild(linkTargetParagraph);
+   
+   linkContainer.appendChild(linkTextContainer);
+   linkContainer.appendChild(linkTargetContainer);
+
+   // Replace original linkField content
    linkField.innerHTML = '';
-   linkField.append(arrowLinkElement);
-   aboutUsLeftContent.appendChild(linkField);
+   linkField.appendChild(linkContainer);
+   
+   // Add container to wrapper
+   linkWrapper.appendChild(linkField);
+   aboutUsLeftContent.appendChild(linkWrapper);
  }
 
  // About-Us right container
@@ -198,14 +225,15 @@ export default function decorate(block) {
      });
 
      newText.setAttribute('data-aue-prop', 'feature-title');
-     newText.setAttribute('data-aue-label', 'Feature Statistic');
-     newText.setAttribute('data-aue-resource', 'feature-statistic');
+     newText.setAttribute('data-aue-label', 'Feature Title');
+     newText.setAttribute('data-aue-type', 'richtext');
 
      descriptionDiv.textContent = description.querySelector('[data-aue-prop="feature-heading"]')?.textContent || '';
-     Array.from(descriptionHtml.attributes).forEach(attr => {
-       descriptionDiv.setAttribute(attr.name, attr.value);
-     });
-
+     
+     descriptionDiv.setAttribute('data-aue-prop', 'feature-heading');
+     descriptionDiv.setAttribute('data-aue-label', 'Feature Heading');
+     descriptionDiv.setAttribute('data-aue-type', 'text');
+     
      const textAndDescription = document.createElement('div');
      textAndDescription.className = 'about-us-right-content';
      textAndDescription.append(newText);
