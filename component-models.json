@@ -241,8 +241,9 @@
       },
       {
         "component": "text",
-        "name": "readmorecaption",
-        "label": "Read More Caption"
+        "name": "readmorelabel",
+        "label": "Read More Label",
+        "value": "Read More"
       },
       {
         "component": "aem-content",
