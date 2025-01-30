@@ -121,16 +121,30 @@ export default function decorate(block) {
     const newsLinkArrowDiv = document.createElement('div');
     newsLinkArrowDiv.classList.add('news-link-arrow-container');
 
+    const leftIcon = document.createElement('div');
+    leftIcon.classList.add('left-carousel-arrow');
+    const rightIcon = document.createElement('div');
+    rightIcon.classList.add('right-carousel-arrow');
+    navigations.appendChild(leftIcon);
+    navigations.appendChild(rightIcon);
     if(index === 0){
-      navigations.appendChild(stringToHTML(leftArrowDisabled));
-      navigations.appendChild(stringToHTML(rightArrow));
+      leftIcon.setAttribute('disabled', 'true');
+      leftIcon.appendChild(stringToHTML(leftArrowDisabled));
+      rightIcon.appendChild(stringToHTML(rightArrow));
     } else if(index === carouselItems.length - 1){
-      navigations.appendChild(stringToHTML(leftArrow));
-      navigations.appendChild(stringToHTML(rightArrowDisabled));
+      rightIcon.setAttribute('disabled', 'true');
+      leftIcon.appendChild(stringToHTML(leftArrow));
+      rightIcon.appendChild(stringToHTML(rightArrowDisabled));
     }else {
-      navigations.appendChild(stringToHTML(leftArrow));
-      navigations.appendChild(stringToHTML(rightArrow));
+      leftIcon.appendChild(stringToHTML(leftArrow));
+      rightIcon.appendChild(stringToHTML(rightArrow));
     }
+    leftIcon.addEventListener('click',()=>{
+      moveCarousel(false)
+    });
+    rightIcon.addEventListener('click',()=>{
+      moveCarousel(true)
+    });
 
     carouselItem.appendChild(carouselItemContent);
     carouselItem.appendChild(newsLatterImage);
@@ -268,10 +282,11 @@ export default function decorate(block) {
   let currentIndex = 0;
   const carouselItemsAll = heroContainer.querySelectorAll('.carousel-item');
 
-  function moveCarousel() {
+  function moveCarousel(moveForward) {
     const carouselItemsEl = heroContainer.querySelector('.carousel-item');
-    const itemWidth = carouselItemsEl.offsetWidth;
-    currentIndex += 1;
+    const itemWidth = carouselItemsEl?.offsetWidth;
+    if(moveForward) currentIndex += 1
+    else currentIndex -= 1;
 
     if (currentIndex >= carouselItemsAll.length) {
       currentIndex = 0;
@@ -291,7 +306,9 @@ export default function decorate(block) {
   }
 
   if (carouselItemsAll.length > 0) {
-    setInterval(moveCarousel, 3000);
+    setInterval(()=>{
+      moveCarousel(true)
+    }, 3000);
   }
 
   carouselItems.forEach((item) => {
