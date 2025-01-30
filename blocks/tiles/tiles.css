@@ -92,7 +92,7 @@
 }
 
 .tiles-container > div:not(:first-child) [data-aue-prop="description"] {
-  font-size: 18px;
+  font-size: 14px;
   font-weight: 200;
   line-height: 24px;
   color: #EEE;
