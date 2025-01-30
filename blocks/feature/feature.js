@@ -74,9 +74,6 @@ export default function decorate(block) {
 
     // Create main link container
     const linkContainer = document.createElement('div');
-    Array.from(linkField.attributes).forEach((attr) => {
-      linkContainer.setAttribute(attr.name, attr.value);
-    });
 
     // Create link text container
     const linkTextContainer = document.createElement('div');
@@ -194,6 +191,16 @@ export default function decorate(block) {
       const textElementFirstChild = allTextElements[0]?.textContent || '';
       const newTextFirstChild = document.createElement('span');
       newTextFirstChild.textContent = textElementFirstChild;
+      
+      const attributes = [
+        { name: 'data-aue-prop', value: 'feature-title' },
+        { name: 'data-aue-label', value: 'Feature Title' },
+        { name: 'data-aue-type', value: 'text' }
+      ];
+      attributes.forEach(attr => {
+        newTextFirstChild.setAttribute(attr.name, attr.value);
+      });
+      
       newText.append(newTextFirstChild);
 
       if (allTextElements.length > 1) {
@@ -202,10 +209,6 @@ export default function decorate(block) {
         newTextSecondChild.textContent = textElementSecondChild;
         newText.append(newTextSecondChild);
       }
-
-      Array.from(textElement.attributes).forEach((attr) => {
-        newText.setAttribute(attr.name, attr.value);
-      });
 
       descriptionDiv.textContent = description.querySelector('[data-aue-prop="feature-heading"]')?.textContent || '';
 
