@@ -119,7 +119,6 @@ export default function decorate(block) {
       const titleText = carouselTitleElement.textContent;
       const titleHtml = `<p class="news-title">${titleText}</p>`;
       const titleContainer = document.createElement('div');
-      titleContainer.setAttribute('data-aue-model', 'title');
       titleContainer.setAttribute('data-aue-label', 'Title');
       titleContainer.setAttribute('data-aue-prop', carouselTitleElement.getAttribute('data-aue-prop'));
       titleContainer.setAttribute('data-aue-type', 'text');
@@ -134,7 +133,6 @@ export default function decorate(block) {
       const descriptionText = descriptionElement.textContent;
       const descriptionHtml = `<p class="news-description">${descriptionText}</p>`;
       const descContainer = document.createElement('div');
-      descContainer.setAttribute('data-aue-model', 'description');
       descContainer.setAttribute('data-aue-label', 'Description');
       descContainer.setAttribute('data-aue-prop', descriptionElement.getAttribute('data-aue-prop'));
       descContainer.setAttribute('data-aue-type', 'text');
