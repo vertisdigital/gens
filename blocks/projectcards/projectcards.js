@@ -55,12 +55,12 @@ export default function decorate(block) {
   }
 
   // Handle description
-  const descElement = block.querySelector('[data-richtext-prop="description"]');
+  const descElement = block.querySelector('[data-aue-prop="description"]');
   if (descElement) {
     const descriptionDiv = document.createElement('div');
-    descriptionDiv.setAttribute('data-richtext-prop', 'description');
-    descriptionDiv.setAttribute('data-richtext-label', 'Description');
-    descriptionDiv.setAttribute('data-richtext-filter', 'text');
+    descriptionDiv.setAttribute('data-aue-prop', 'description');
+    descriptionDiv.setAttribute('data-aue-label', 'Description');
+    descriptionDiv.setAttribute('data-aue-filter', 'text');
     descriptionDiv.className = 'projectcards-description';
     descriptionDiv.textContent = descElement.textContent;
     headerContainer.appendChild(descriptionDiv);
