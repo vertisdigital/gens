@@ -76,14 +76,14 @@ export default function decorate(block) {
     linkTextP.className = 'button-container';
     const linkElement = document.createElement('a');
     const originalLink = linkField.querySelector('[data-aue-prop="linkText"]');
-    Array.from(originalLink.attributes).forEach((attr) => {
-      linkElement.setAttribute(attr.name, attr.value);
-    });
     if (originalLink) {
       linkElement.href = originalLink.getAttribute('href');
       linkElement.title = originalLink.getAttribute('title');
       linkElement.className = 'button';
       linkElement.textContent = originalLink.textContent;
+      Array.from(originalLink.attributes).forEach((attr) => {
+        linkElement.setAttribute(attr.name, attr.value);
+      });
     }
 
     // Add arrow icon
