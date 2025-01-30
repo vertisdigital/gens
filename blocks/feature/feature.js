@@ -203,7 +203,6 @@ export default function decorate(block) {
   });
 
   block.innerHTML = '';
-
   aboutUsStats.appendChild(aboutUsLeftContent);
   aboutUsStats.appendChild(aboutUsRightContent);
   container.append(aboutUsStats);
