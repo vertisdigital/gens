@@ -78,16 +78,16 @@ export default function decorate(block) {
     const linkTextP = document.createElement('p');
     linkTextP.className = 'button-container';
     const linkElement = document.createElement('a');
+    linkElement.setAttribute('data-aue-prop', 'linkTarget');
+    linkElement.setAttribute('data-aue-label', 'Link Target');
+    linkElement.setAttribute('data-aue-type', 'text');
+  }
     const originalLink = linkField.querySelector('[data-aue-prop="linkText"]');
     if (originalLink) {
       linkElement.href = originalLink.getAttribute('href');
       linkElement.title = originalLink.getAttribute('title');
       linkElement.className = 'button';
       linkElement.textContent = originalLink.textContent;
-      Array.from(originalLink.attributes).forEach((attr) => {
-        linkElement.setAttribute(attr.name, attr.value);
-      });
-    }
 
     // Add arrow icon
     const arrowSVG = SvgIcon({ name: 'arrow', className: 'about-us-left-link', size: '18px' });
