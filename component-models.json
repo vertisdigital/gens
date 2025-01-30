@@ -188,20 +188,6 @@
         "multi": false
       },
       {
-        "component": "custom-asset-namespace:custom-asset",
-        "name": "previousarrow",
-        "label": "Previous Arrow Icon",
-        "configUrl": "https://main--genting--wppopen.aem.page/tools/assets-selector/config.json",
-        "valueType": "string"
-      },
-      {
-        "component": "custom-asset-namespace:custom-asset",
-        "name": "nextarrow",
-        "label": "Next Arrow Icon",
-        "configUrl": "https://main--genting--wppopen.aem.page/tools/assets-selector/config.json",
-        "valueType": "string"
-      },
-      {
         "component": "select",
         "name": "herovariation",
         "value": "",
