@@ -9,8 +9,9 @@ import stringToHTML from '../../shared-components/Utility.js';
 */
 export default function decorate(block) {
   console.log('feature block', block);
+  console.log('feature block query', block.querySelector('[data-aue-model="linkField"]'));
   // const container = document.createElement('div');
-  // container.className = 'container';
+  // container.className = 'container';block.querySelector('[data-aue-model="linkField"]');
 
   // const aboutUsStats = document.createElement('div');
   // aboutUsStats.className = 'row about-us-stats';
