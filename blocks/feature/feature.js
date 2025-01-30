@@ -130,30 +130,92 @@ const createFeatureItem = (description) => {
   const textElement = description.querySelector('[data-aue-prop="feature-title"]');
   const descriptionHtml = description.querySelector('[data-aue-prop="feature-heading"]');
 
+  // Create feature item container with proper AEM authoring attributes
   const container = createElementWithAttributes('div', {
     'data-aue-model': 'featureItem',
     'data-aue-type': 'component',
     'data-aue-label': 'Feature Item',
     'data-aue-resource': description.getAttribute('data-aue-resource'),
+    'data-aue-prop': 'feature',
+    'data-aue-filter': 'featureItem',
   }, 'about-us-right-content');
 
+  // Create inner container for feature content
+  const contentContainer = createElementWithAttributes('div', {
+    'data-aue-type': 'container',
+  });
+
   if (imageElement) {
-    return createImageFeature(container, imageElement, descriptionHtml);
-  } if (textElement) {
-    return createTextFeature(container, textElement, descriptionHtml);
+    const imageContainer = createElementWithAttributes('div', {
+      'data-aue-prop': 'feature-icon',
+      'data-aue-type': 'image',
+      'data-aue-label': 'Feature Icon',
+    });
+    
+    const imageHtml = ImageComponent({
+      src: imageElement.getAttribute('src'),
+      alt: description.querySelector('[data-aue-prop="feature-icon-alt"]')?.textContent || '',
+      className: 'about-us-right-description-icon',
+      breakpoints: {
+        mobile: { width: 768, src: imageElement.getAttribute('src') },
+        tablet: { width: 1024, src: imageElement.getAttribute('src') },
+        desktop: { width: 1920, src: imageElement.getAttribute('src') },
+      },
+      lazy: true,
+    });
+
+    imageContainer.appendChild(stringToHTML(imageHtml));
+    contentContainer.appendChild(imageContainer);
+
+  } else if (textElement) {
+    const statisticContainer = createElementWithAttributes('div', {
+      'data-aue-prop': 'feature-title',
+      'data-aue-type': 'text',
+      'data-aue-label': 'Feature Title',
+    });
+
+    const textElements = textElement.querySelectorAll('p');
+    const mainText = createTextElement('p', textElements[0]?.textContent || '');
+    statisticContainer.appendChild(mainText);
+
+    if (textElements.length > 1) {
+      const subText = createTextElement('p', textElements[1]?.textContent || '');
+      statisticContainer.appendChild(subText);
+    }
+
+    contentContainer.appendChild(statisticContainer);
   }
-  return null;
+
+  // Add description
+  if (descriptionHtml) {
+    const descriptionContainer = createElementWithAttributes('div', {
+      'data-aue-prop': 'feature-heading',
+      'data-aue-type': 'text',
+      'data-aue-label': 'Feature Heading',
+    });
+    
+    const descriptionText = createTextElement('p', descriptionHtml.textContent || '');
+    descriptionContainer.appendChild(descriptionText);
+    contentContainer.appendChild(descriptionContainer);
+  }
+
+  container.appendChild(contentContainer);
+  return container;
 };
 
 /**
-* Loads and decorates the Hero Banner
-* @param {Element} block The herobanner block element
+* Loads and decorates the Feature block
+* @param {Element} block The feature block element
 */
 export default function decorate(block) {
   const container = createElementWithAttributes('div', {}, 'container');
   const aboutUsStats = createElementWithAttributes('div', {}, 'row about-us-stats');
-  const leftContent = createElementWithAttributes('div', {}, 'col-lg-6 col-md-6 col-sm-12 about-us-left');
-  const rightContent = createElementWithAttributes('div', {}, 'col-lg-6 col-md-6 col-sm-12 about-us-right');
+  
+  // Create left content with proper AEM authoring attributes
+  const leftContent = createElementWithAttributes('div', {
+    'data-aue-type': 'container',
+    'data-aue-filter': 'leftContent',
+  }, 'col-lg-6 col-md-6 col-sm-12 about-us-left');
 
   // Process left content
   const title = createHeadingSection(block.querySelector('[data-aue-prop="title"]'), 3, 'about-us-left-title');
@@ -166,7 +228,13 @@ export default function decorate(block) {
   if (subHeading) leftContent.appendChild(subHeading);
   if (linkSection) leftContent.appendChild(linkSection);
 
-  // Process right content
+  // Create right content with proper AEM authoring attributes
+  const rightContent = createElementWithAttributes('div', {
+    'data-aue-type': 'container',
+    'data-aue-filter': 'rightContent',
+  }, 'col-lg-6 col-md-6 col-sm-12 about-us-right');
+
+  // Process feature items
   const featureItems = Array.from(block.querySelectorAll('[data-aue-model="featureItem"]'))
     .map(createFeatureItem)
     .filter(Boolean);
