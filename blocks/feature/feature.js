@@ -50,7 +50,7 @@ export default function decorate(block) {
   // Find the sub-heading and replace it with a sub-heading
   const arrowEmptyContainer = document.createElement('div');
   aboutUsLeftContent.appendChild(arrowEmptyContainer);
-
+  
   const subHeading = block.querySelector('[data-aue-prop="sub-heading"]');
   if (subHeading) {
     const subHeadingText = subHeading.querySelector('p').textContent;
@@ -79,7 +79,7 @@ export default function decorate(block) {
     linkTextP.className = 'button-container';
     const linkElement = document.createElement('a');
     const originalLink = linkField.querySelector('[data-aue-prop="linkText"]');
-    if (true) {
+    if (originalLink) {
       linkElement.href = originalLink.getAttribute('href');
       linkElement.title = originalLink.getAttribute('title');
       linkElement.className = 'button';
