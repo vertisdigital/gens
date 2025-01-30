@@ -10,24 +10,39 @@ import stringToHTML from '../../shared-components/Utility.js';
 export default function decorate(block) {
  const container = document.createElement('div');
  container.className = 'container';
+ container.setAttribute('data-aue-model', 'featureContainer');
+ container.setAttribute('data-aue-type', 'container');
+ container.setAttribute('data-aue-resource', 'feature');
 
  const aboutUsStats = document.createElement('div');
  aboutUsStats.className = 'row about-us-stats';
+ aboutUsStats.setAttribute('data-aue-model', 'featureStats');
+ aboutUsStats.setAttribute('data-aue-type', 'stats');
+ aboutUsStats.setAttribute('data-aue-resource', 'feature-stats');
 
  // About-Us left container
  const aboutUsLeftContent = document.createElement('div');
  aboutUsLeftContent.className = 'col-lg-6 col-md-6 col-sm-12 about-us-left';
+ aboutUsLeftContent.setAttribute('data-aue-model', 'featureLeftContent');
+ aboutUsLeftContent.setAttribute('data-aue-type', 'content');
+ aboutUsLeftContent.setAttribute('data-aue-resource', 'feature-content');
 
  // Find the title and replace it with a heading
  const titleElement = block.querySelector('[data-aue-prop="title"]');
  if (titleElement) {
    const titleText = titleElement.textContent;
    const header = document.createElement('header');
+   header.setAttribute('data-aue-model', 'featureHeader');
+   header.setAttribute('data-aue-type', 'header');
+   header.setAttribute('data-aue-resource', 'feature-header');
    const titleHtml = Heading({ level: 3, text: titleText, className: 'about-us-left-title' });
    const parsedHtml = stringToHTML(titleHtml);
    Array.from(titleElement.attributes).forEach(attr => {
      parsedHtml.setAttribute(attr.name, attr.value);
    });
+   parsedHtml.setAttribute('data-aue-prop', 'title');
+   parsedHtml.setAttribute('data-aue-label', 'Feature Title');
+   parsedHtml.setAttribute('data-aue-resource', 'feature-title');
    header.append(parsedHtml);
    aboutUsLeftContent.append(header);
    titleElement.remove();
@@ -42,6 +57,8 @@ export default function decorate(block) {
    Array.from(headingElement.attributes).forEach(attr => {
      parsedHtml.setAttribute(attr.name, attr.value);
    });
+   parsedHtml.setAttribute('data-aue-prop', 'heading');
+   parsedHtml.setAttribute('data-aue-label', 'Feature Heading');
    aboutUsLeftContent.append(parsedHtml);
    headingElement.remove();
  }
@@ -56,6 +73,8 @@ export default function decorate(block) {
    Array.from(subHeading.attributes).forEach(attr => {
      subHeadingElement.setAttribute(attr.name, attr.value);
    });
+   subHeadingElement.setAttribute('data-aue-prop', 'sub-heading');
+   subHeadingElement.setAttribute('data-aue-label', 'Feature Subheading');
    aboutUsLeftContent.appendChild(subHeadingElement);
    subHeading.remove();
  }
@@ -71,6 +90,10 @@ export default function decorate(block) {
    Array.from(linkField.querySelector('a').attributes).forEach(attr => {
      arrowLinkElement.setAttribute(attr.name, attr.value);
    });
+   arrowLinkElement.setAttribute('data-aue-model', 'linkField');
+   arrowLinkElement.setAttribute('data-aue-type', 'component');
+   arrowLinkElement.setAttribute('data-aue-label', 'Link Field');
+   arrowLinkElement.setAttribute('data-aue-resource', linkField.getAttribute('data-aue-resource'));
    const arrowSVG = SvgIcon({ name: 'arrow', className: 'about-us-left-link', size: '18px' });
    arrowLinkElement.append(stringToHTML(arrowSVG));
    linkField.innerHTML = '';
@@ -81,12 +104,15 @@ export default function decorate(block) {
  // About-Us right container
  const aboutUsRightContent = document.createElement('div');
  aboutUsRightContent.className = 'col-lg-6 col-md-6 col-sm-12 about-us-right';
+ aboutUsRightContent.setAttribute('data-aue-model', 'featureRightContent');
+ aboutUsRightContent.setAttribute('data-aue-type', 'content');
+ aboutUsRightContent.setAttribute('data-aue-resource', 'feature-content');
 
  // Collect all imageAndDescription elements first
  const imageAndDescriptionList = [];
 
  const aboutUsDescription = block.querySelectorAll('[data-aue-model="featureItem"]');
- aboutUsDescription.forEach(description => {
+ aboutUsDescription.forEach((description, index) => {
    const imageElement = description.querySelector('picture img') || '';
    const textElement = description.querySelector('[data-aue-prop="feature-title"]') || '';
    const descriptionHtml = description.querySelector('[data-aue-prop="feature-heading"]');
@@ -97,6 +123,10 @@ export default function decorate(block) {
 
    const imageAndDescription = document.createElement('div');
    imageAndDescription.className = 'about-us-right-content';
+   imageAndDescription.setAttribute('data-aue-model', 'featureItem');
+   imageAndDescription.setAttribute('data-aue-type', 'component');
+   imageAndDescription.setAttribute('data-aue-label', `Feature Item`);
+   imageAndDescription.setAttribute('data-aue-resource', `${description.getAttribute('data-aue-resource')}`);
 
    if (imageElement) {
      imageAndDescription.classList.add('image-container');
@@ -124,6 +154,10 @@ export default function decorate(block) {
        Array.from(imageElement.attributes).forEach(attr => {
          parsedImageNode.querySelector('img').setAttribute(attr.name, attr.value);
        });
+
+       parsedImageNode.querySelector('img').setAttribute('data-aue-prop', 'feature-icon');
+       parsedImageNode.querySelector('img').setAttribute('data-aue-label', 'Feature Icon');
+       parsedImageNode.querySelector('img').setAttribute('data-aue-resource', 'feature-image');
 
        Array.from(descriptionHtml.attributes).forEach(attr => {
          descriptionDiv.setAttribute(attr.name, attr.value);
@@ -162,6 +196,10 @@ export default function decorate(block) {
      Array.from(textElement.attributes).forEach(attr => {
        newText.setAttribute(attr.name, attr.value);
      });
+
+     newText.setAttribute('data-aue-prop', 'feature-title');
+     newText.setAttribute('data-aue-label', 'Feature Statistic');
+     newText.setAttribute('data-aue-resource', 'feature-statistic');
 
      descriptionDiv.textContent = description.querySelector('[data-aue-prop="feature-heading"]')?.textContent || '';
      Array.from(descriptionHtml.attributes).forEach(attr => {
