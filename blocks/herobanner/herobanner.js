@@ -92,7 +92,7 @@ export default function decorate(block) {
   carouselWrapper.setAttribute('data-aue-type', 'container');
 
   // Loop through all carousel items
-  carouselItems.forEach((item, index) => {
+  carouselItems.forEach((item) => {
     const carouselItem = document.createElement('div');
     carouselItem.classList.add('carousel-item');
     carouselItem.setAttribute('data-aue-model', 'bannercarousel');
