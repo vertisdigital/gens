@@ -415,8 +415,7 @@
       },
       {
         "component": "richtext",
-        "name": "description",
-        "value": "",
+        "name": "itemdescription",
         "label": "Description",
         "valueType": "string"
       },
