@@ -49,7 +49,6 @@ export default function decorate(block) {
 
   // Find the sub-heading and replace it with a sub-heading
   const arrowEmptyContainer = document.createElement('div');
-  aboutUsLeftContent.appendChild(arrowEmptyContainer);
   
   const subHeading = block.querySelector('[data-aue-prop="sub-heading"]');
   if (subHeading) {
@@ -62,6 +61,7 @@ export default function decorate(block) {
     });
 
     aboutUsLeftContent.appendChild(subHeadingElement);
+    aboutUsLeftContent.appendChild(arrowEmptyContainer);
     subHeading.remove();
   }
 
