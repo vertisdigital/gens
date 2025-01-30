@@ -112,7 +112,7 @@ export default function decorate(block) {
  const imageAndDescriptionList = [];
 
  const aboutUsDescription = block.querySelectorAll('[data-aue-model="featureItem"]');
- aboutUsDescription.forEach((description, index) => {
+ aboutUsDescription.forEach((description) => {
    const imageElement = description.querySelector('picture img') || '';
    const textElement = description.querySelector('[data-aue-prop="feature-title"]') || '';
    const descriptionHtml = description.querySelector('[data-aue-prop="feature-heading"]');
