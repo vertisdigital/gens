@@ -17,7 +17,7 @@
 }
 
 .about-us-left .about-us-left-title{
-  font-size: var(--heading-font-size-s);
+  font-size: 14px;
   font-weight: 700;
   color: var(--text-color);
   margin: 0;
@@ -37,12 +37,13 @@
 .about-us-left .about-us-left-sub-heading{
  margin: 0;
  margin-bottom: 18px;
- font-size: var(--body-font-size-s);
+ font-size: 12px;
 }
 
 .about-us-left a.button{
   background: none;
   padding: 0;
+  margin: 0;
 }
 
 .about-us-left .about-us-left-link svg{
@@ -64,11 +65,19 @@
   margin-bottom: 0;
 }
 
-.about-us-stats .about-us-right-content.image-container picture{
+.about-us-stats .about-us-right-content.image-container>div:first-child{
   width: 56px;
   height: 56px;
 }
+.about-us-stats .about-us-right-content.image-container>div:first-child picture{
+  width: 100%;
+  height: 100%;
 
+}
+.about-us-stats .about-us-right-content.image-container>div:first-child picture img{
+  width: 100%;
+  height: 100%;
+}
 .about-us-stats .about-us-right-content.text-container{
 
   border-top: 1px solid var(--text-color);
@@ -108,7 +117,7 @@
   padding: 0;
   margin: 0;
   color: var(--text-color);
-  font-size: var(--body-font-size-s);
+  font-size: 14px;
   font-weight: 700;
   line-height: 24px;
 }
@@ -118,7 +127,7 @@ color: var(--body-text-color);
 }
 
 /* Responsive design */
-@media  (width >= 567px) {
+@media  (width >= 768px) {
   .feature-wrapper .about-us-stats{
     margin-bottom: 0;
   }
@@ -130,22 +139,29 @@ color: var(--body-text-color);
 
   .about-us-left .about-us-left-title{
     margin-bottom: 16px;
+    font-size: 16px;
+    line-height: 18px;
   }
 
   .about-us-left h2.about-us-left-heading{
     margin-bottom: 10px;
     font-size: 32px;
-    line-height: 34px;
+    line-height: 42px;
   }
 
 
   .about-us-left .about-us-left-sub-heading{
+    font-size: 16px;
+    line-height: 24px;
     margin-bottom: 22px;
   }
 
   .about-us-stats .about-us-right-content .statistic{
     font-size: 64px;
     line-height: 64px;
+  }
+  .about-us-stats .about-us-right-content>div:nth-child(2) p{
+    font-size: 16px;
   }
 }
 
@@ -159,12 +175,15 @@ color: var(--body-text-color);
   }
 
   .about-us-left .about-us-left-title{
+    font-size: 20px;
+    font-weight: 600;
+    line-height: 24px;
     margin-bottom: 25px;
   }
 
   .about-us-left h2.about-us-left-heading{
     font-size: 40px;
-    line-height: 54px;
+    line-height: 50px;
   }
 
   .about-us-left .about-us-left-sub-heading{
@@ -175,10 +194,11 @@ color: var(--body-text-color);
     column-gap: 20px;
   }
 
-  .about-us-stats .about-us-right-content.image-container picture{
+  .about-us-stats .about-us-right-content.image-container>div:first-child{
     width: 100px;
     height: 100px;
   }
+
 
   .about-us-stats .about-us-right-content .statistic{
     font-size: 80px;
@@ -187,5 +207,6 @@ color: var(--body-text-color);
 
   .about-us-stats .about-us-right-content .statistic span:nth-child(2){
     padding-left: 14px;
+    font-weight: 400;
   }
 }

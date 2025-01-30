@@ -8,185 +8,217 @@ import stringToHTML from '../../shared-components/Utility.js';
 * @param {Element} block The herobanner block element
 */
 export default function decorate(block) {
- const container = document.createElement('div');
- container.className = 'container';
+  const container = document.createElement('div');
+  container.className = 'container';block.querySelector('[data-aue-model="linkField"]');
 
- const aboutUsStats = document.createElement('div');
- aboutUsStats.className = 'row about-us-stats';
+  const aboutUsStats = document.createElement('div');
+  aboutUsStats.className = 'row about-us-stats';
 
- // About-Us left container
- const aboutUsLeftContent = document.createElement('div');
- aboutUsLeftContent.className = 'col-lg-6 col-md-6 col-sm-12 about-us-left';
+  // About-Us left container
+  const aboutUsLeftContent = document.createElement('div');
+  aboutUsLeftContent.className = 'col-lg-6 col-md-3 col-sm-4 about-us-left';
 
- // Find the title and replace it with a heading
- const titleElement = block.querySelector('[data-aue-prop="title"]');
- if (titleElement) {
-   const titleText = titleElement.textContent;
-   const header = document.createElement('header');
-   const titleHtml = Heading({ level: 3, text: titleText, className: 'about-us-left-title' });
-   const parsedHtml = stringToHTML(titleHtml);
-   Array.from(titleElement.attributes).forEach(attr => {
-     parsedHtml.setAttribute(attr.name, attr.value);
-   });
-   header.append(parsedHtml);
-   aboutUsLeftContent.append(header);
-   titleElement.remove();
- }
+  // Find the title and replace it with a heading
+  const titleElement = block.querySelector('[data-aue-prop="title"]');
+  if (titleElement) {
+    const titleText = titleElement.textContent;
+    const header = document.createElement('header');
+    header.setAttribute('data-aue-prop', 'title');
+    header.setAttribute('data-aue-type', 'text');
+    header.setAttribute('data-aue-label', 'Title');
+    const titleHtml = Heading({ level: 3, text: titleText, className: 'about-us-left-title' });
+    const parsedHtml = stringToHTML(titleHtml);
+    header.append(parsedHtml);
+    aboutUsLeftContent.append(header);
+    titleElement.remove();
+  }
 
- // Find the heading and replace it with a heading
- const headingElement = block.querySelector('[data-aue-prop="heading"]');
- if (headingElement) {
-   const headingText = headingElement.textContent;
-   const headingHtml = Heading({ level: 2, text: headingText, className: 'about-us-left-heading' });
-   const parsedHtml = stringToHTML(headingHtml);
-   Array.from(headingElement.attributes).forEach(attr => {
-     parsedHtml.setAttribute(attr.name, attr.value);
-   });
-   aboutUsLeftContent.append(parsedHtml);
-   headingElement.remove();
- }
+  // Find the heading and replace it with a heading
+  const headingElement = block.querySelector('[data-aue-prop="heading"]');
+  if (headingElement) {
+    const headingText = headingElement.textContent;
+    const headingHtml = Heading({ level: 2, text: headingText, className: 'about-us-left-heading' });
+    const parsedHtml = stringToHTML(headingHtml);
 
- // Find the sub-heading and replace it with a sub-heading
- const subHeading = block.querySelector('[data-aue-prop="sub-heading"]');
- if (subHeading) {
-   const subHeadingText = subHeading.querySelector('p').textContent;
-   const subHeadingElement = document.createElement('p');
-   subHeadingElement.className = 'about-us-left-sub-heading';
-   subHeadingElement.textContent = subHeadingText;
-   Array.from(subHeading.attributes).forEach(attr => {
-     subHeadingElement.setAttribute(attr.name, attr.value);
-   });
-   aboutUsLeftContent.appendChild(subHeadingElement);
-   subHeading.remove();
- }
+    parsedHtml.setAttribute('data-aue-prop', 'heading');
+    parsedHtml.setAttribute('data-aue-label', 'Heading');
+    parsedHtml.setAttribute('data-aue-type', 'text');
+    aboutUsLeftContent.append(parsedHtml);
+    headingElement.remove();
+  }
 
- // Find the LinkField and replace it with arrow icon
- const linkField = block.querySelector('[data-aue-model="linkfield"]');
- if (linkField) {
-   const arrowLink = linkField.querySelector('a').getAttribute('href');
-   const arrowLinkElement = document.createElement('a');
-   if (arrowLink) {
-     arrowLinkElement.href = arrowLink;
-   }
-   Array.from(linkField.querySelector('a').attributes).forEach(attr => {
-     arrowLinkElement.setAttribute(attr.name, attr.value);
-   });
-   const arrowSVG = SvgIcon({ name: 'arrow', className: 'about-us-left-link', size: '18px' });
-   arrowLinkElement.append(stringToHTML(arrowSVG));
-   linkField.innerHTML = '';
-   linkField.append(arrowLinkElement);
-   aboutUsLeftContent.appendChild(linkField);
- }
+  // Find the sub-heading and replace it with a sub-heading
+  
+  const subHeading = block.querySelector('[data-aue-prop="sub-heading"]');
+  if (subHeading) {
+    const subHeadingText = subHeading.querySelector('p').textContent;
+    const subHeadingElement = document.createElement('p');
+    subHeadingElement.className = 'about-us-left-sub-heading';
+    subHeadingElement.textContent = subHeadingText;
+    Array.from(subHeading.attributes).forEach((attr) => {
+      subHeadingElement.setAttribute(attr.name, attr.value);
+    });
 
- // About-Us right container
- const aboutUsRightContent = document.createElement('div');
- aboutUsRightContent.className = 'col-lg-6 col-md-6 col-sm-12 about-us-right';
+    aboutUsLeftContent.appendChild(subHeadingElement);
+    subHeading.remove();
+  }
 
- // Collect all imageAndDescription elements first
- const imageAndDescriptionList = [];
+  // Find the LinkField and replace it with arrow icon
+  const linkField = block.querySelector('[data-aue-model="linkField"]');
+  if (linkField) {
+    // Preserve original container
+    const linkContainer = document.createElement('div');
+    Array.from(linkField.attributes).forEach((attr) => {
+      linkContainer.setAttribute(attr.name, attr.value);
+    });
 
- const aboutUsDescription = block.querySelectorAll('[data-aue-model="featureItem"]');
- aboutUsDescription.forEach(description => {
-   const imageElement = description.querySelector('picture img') || '';
-   const textElement = description.querySelector('[data-aue-prop="feature-title"]') || '';
-   const descriptionHtml = description.querySelector('[data-aue-prop="feature-heading"]');
-   const descriptionContent = descriptionHtml?.textContent;
+    // Create link text div
+    const linkTextDiv = document.createElement('div');
+    const linkTextP = document.createElement('p');
+    linkTextP.className = 'button-container';
+    
+    // Handle link text
+    const originalLink = linkField.querySelector('[data-aue-prop="linkText"]');
+    const originalTarget = linkField.querySelector('[data-aue-prop="linkTarget"]');
+    const originalTargetName = originalTarget.textContent;
+    originalLink.setAttribute('target',originalTargetName);
+    originalLink.innerHTML = "";
+    originalTarget.innerHTML = "";
+    if (originalLink) {
+      const linkElement = document.createElement('a');
+      
+      // Copy all attributes from original link
+      Array.from(originalLink.attributes).forEach((attr) => {
+        linkElement.setAttribute(attr.name, attr.value);
+      });
+      
+      // Set additional attributes
+      linkElement.className = 'button';
 
-   const descriptionDiv = document.createElement('p');
-   descriptionDiv.textContent = descriptionContent;
+      const arrowIcon = linkField.querySelector('[data-aue-prop="linkSvgIcon"]');
+      const arrowIconName = arrowIcon.textContent.replace("-", "");
+      arrowIcon.innerHTML= "";
+      if(!arrowIcon){
+      linkElement.textContent = originalLink.textContent;
+      }
+      else{
+      const arrowSVG = SvgIcon({ name: `${arrowIconName}`, className: 'about-us-left-link', size: '18px' });
+      linkElement.append(stringToHTML(arrowSVG));
+      }
+       
+      // Add arrow icon
+      
+      
+      // Assemble link structure
+      linkTextP.appendChild(linkElement);
+      linkTextDiv.appendChild(linkTextP);
+      linkContainer.appendChild(linkTextDiv);
+    }
 
-   const imageAndDescription = document.createElement('div');
-   imageAndDescription.className = 'about-us-right-content';
+  
+    // Handle link target (commented out as per current requirements)
+    // if (originalTarget) {
+    //   const targetDiv = document.createElement('div');
+    //   const targetP = document.createElement('p');
+      
+    //   Array.from(originalTarget.attributes).forEach((attr) => {
+    //     targetP.setAttribute(attr.name, attr.value);
+    //   });
+    //   targetP.textContent = originalTarget.textContent;
+      
+    //   targetDiv.appendChild(targetP);
+    //   linkContainer.appendChild(targetDiv);
+    // }
 
-   if (imageElement) {
-     imageAndDescription.classList.add('image-container');
+    // Add to container
+    aboutUsLeftContent.appendChild(linkContainer);
+  }
 
-     const imageLink = imageElement?.getAttribute('src');
-     const imgAltText = description.querySelector('[data-aue-prop="feature-icon-alt"]')?.textContent || '';
+  // About-Us right container
+  const aboutUsRightContent = document.createElement('div');
+  aboutUsRightContent.className = 'col-lg-6 col-md-3 col-sm-4 about-us-right';
 
-     if (imageLink) {
-       const imageHtml = ImageComponent({
-         src: imageLink,
-         alt: imgAltText,
-         className: 'about-us-right-description-icon',
-         breakpoints: {
-           mobile: { width: 768, src: imageLink },
-           tablet: { width: 1024, src: imageLink },
-           desktop: { width: 1920, src: imageLink },
-         },
-         lazy: true,
-       });
+  // Collect all imageAndDescription elements first
+  const aboutUsDescription = block.querySelectorAll('[data-aue-model="featureItem"]');
+  aboutUsDescription.forEach((description) => {
+    // Create feature item container
+    const featureContainer = document.createElement('div');
+    Array.from(description.attributes).forEach((attr) => {
+      featureContainer.setAttribute(attr.name, attr.value);
+      featureContainer.classList.add("about-us-right-content")
+    });
 
-       const tempContainer = document.createElement('div');
-       tempContainer.innerHTML = imageHtml;
-       const parsedImageNode = tempContainer.firstElementChild;
+    // Handle image feature
+    const imageElement = description.querySelector('[data-aue-prop="feature-icon"]');
+    if (imageElement) {
+      const imageContainer = document.createElement('div');
+      const imageLink = imageElement.getAttribute('src');
+      const imgAltText = description.querySelector('[data-aue-prop="feature-icon-alt"]')?.textContent || '';
 
-       Array.from(imageElement.attributes).forEach(attr => {
-         parsedImageNode.querySelector('img').setAttribute(attr.name, attr.value);
-       });
+      if (imageLink) {
+        const imageHtml = ImageComponent({
+          src: imageLink,
+          alt: imgAltText,
+          className: 'about-us-right-description-icon',
+          breakpoints: {
+            mobile: { width: 768, src: imageLink },
+            tablet: { width: 1024, src: imageLink },
+            desktop: { width: 1920, src: imageLink },
+          },
+          lazy: true,
+        });
 
-       Array.from(descriptionHtml.attributes).forEach(attr => {
-         descriptionDiv.setAttribute(attr.name, attr.value);
-       });
+        const parsedImage = stringToHTML(imageHtml);
+        Array.from(imageElement.attributes).forEach((attr) => {
+          parsedImage.querySelector('img').setAttribute(attr.name, attr.value);
+        });
+        imageContainer.appendChild(parsedImage);
+        featureContainer.appendChild(imageContainer);
+        featureContainer.classList.add('image-container');
+      }
+    }
 
-       if (parsedImageNode) {
-         imageAndDescription.appendChild(parsedImageNode);
-         imageAndDescription.appendChild(descriptionDiv);
-       }
+    // Handle text feature
+    const textElement = description.querySelector('[data-aue-prop="feature-title"]');
+    if (textElement) {
+      const textContainer = document.createElement('div');
+      const statisticDiv = document.createElement('div');
+      statisticDiv.className = 'statistic';
 
-       imageAndDescription.classList.add('image-container');
-       description.innerHTML = '';
-       description.append(imageAndDescription);
+      const textContent = textElement.querySelectorAll('p');
+      textContent.forEach((text) => {
+        const span = document.createElement('span');
+        span.textContent = text.textContent;
+        Array.from(text.attributes).forEach((attr) => {
+          span.setAttribute(attr.name, attr.value);
+        });
+        statisticDiv.appendChild(span);
+      });
 
-       imageAndDescriptionList.push(description);
-     }
-   } else if (textElement) {
-     imageAndDescription.classList.add('text-container');
+      textContainer.appendChild(statisticDiv);
+      featureContainer.appendChild(textContainer);
+      featureContainer.classList.add('text-container');
+    }
 
-     const newText = document.createElement('div');
-     newText.className = 'statistic';
-     const allTextElements = textElement.querySelectorAll('p');
+    // Handle feature heading
+    const featureHeadingElement = description.querySelector('[data-aue-prop="feature-heading"]');
+    if (featureHeadingElement) {
+      const headingContainer = document.createElement('div');
+      const featureHeadingP = document.createElement('p');
+      featureHeadingP.textContent = featureHeadingElement.textContent;
+      Array.from(featureHeadingElement.attributes).forEach((attr) => {
+        featureHeadingP.setAttribute(attr.name, attr.value);
+      });
+      headingContainer.appendChild(featureHeadingP);
+      featureContainer.appendChild(headingContainer);
+    }
 
-     const textElementFirstChild = allTextElements[0]?.textContent || '';
-     const newTextFirstChild = document.createElement('span');
-     newTextFirstChild.textContent = textElementFirstChild;
-     newText.append(newTextFirstChild);
+    aboutUsRightContent.appendChild(featureContainer);
+  });
 
-     if (allTextElements.length > 1) {
-       const textElementSecondChild = allTextElements[1]?.textContent || '';
-       const newTextSecondChild = document.createElement('span');
-       newTextSecondChild.textContent = textElementSecondChild;
-       newText.append(newTextSecondChild);
-     }
-
-     Array.from(textElement.attributes).forEach(attr => {
-       newText.setAttribute(attr.name, attr.value);
-     });
-
-     descriptionDiv.textContent = description.querySelector('[data-aue-prop="feature-heading"]')?.textContent || '';
-     Array.from(descriptionHtml.attributes).forEach(attr => {
-       descriptionDiv.setAttribute(attr.name, attr.value);
-     });
-
-     const textAndDescription = document.createElement('div');
-     textAndDescription.className = 'about-us-right-content';
-     textAndDescription.append(newText);
-     textAndDescription.append(descriptionDiv);
-
-     textAndDescription.classList.add('text-container');
-     description.innerHTML = '';
-     description.append(textAndDescription);
-
-     imageAndDescriptionList.push(description);
-   }
- });
-
- imageAndDescriptionList.forEach(content => aboutUsRightContent.appendChild(content));
-
- block.innerHTML = '';
-
- aboutUsStats.appendChild(aboutUsLeftContent);
- aboutUsStats.appendChild(aboutUsRightContent);
- container.append(aboutUsStats);
- block.appendChild(container);
+  block.innerHTML = '';
+  aboutUsStats.appendChild(aboutUsLeftContent);
+  aboutUsStats.appendChild(aboutUsRightContent);
+  container.append(aboutUsStats);
+  block.appendChild(container);
 }
