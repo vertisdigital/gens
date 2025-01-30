@@ -84,10 +84,11 @@ export default function decorate(block) {
       linkElement.title = originalLink.getAttribute('title');
       linkElement.className = 'button';
       linkElement.textContent = originalLink.textContent;
-      Array.from(originalLink.attributes).forEach((attr) => {
-        linkElement.setAttribute(attr.name, attr.value);
-      });
     }
+
+    Array.from(originalLink.attributes).forEach((attr) => {
+      linkElement.setAttribute(attr.name, attr.value);
+    });
 
     // Add arrow icon
     const arrowSVG = SvgIcon({ name: 'arrow', className: 'about-us-left-link', size: '18px' });
@@ -96,20 +97,20 @@ export default function decorate(block) {
     linkTextDiv.appendChild(linkTextP);
 
     // Create link target div
-    const linkTargetDiv = document.createElement('div');
-    const linkTargetP = document.createElement('p');
-    const originalTarget = linkField.querySelector('[data-aue-prop="linkTarget"]');
-    if (originalTarget) {
-      linkTargetP.textContent = originalTarget.textContent;
-      Array.from(originalTarget.attributes).forEach((attr) => {
-        linkTargetP.setAttribute(attr.name, attr.value);
-      });
-    }
-    linkTargetDiv.appendChild(linkTargetP);
+    // const linkTargetDiv = document.createElement('div');
+    // const linkTargetP = document.createElement('p');
+    // const originalTarget = linkField.querySelector('[data-aue-prop="linkTarget"]');
+    // if (originalTarget) {
+    //   linkTargetP.textContent = originalTarget.textContent;
+    //   Array.from(originalTarget.attributes).forEach((attr) => {
+    //     linkTargetP.setAttribute(attr.name, attr.value);
+    //   });
+    // }
+    // linkTargetDiv.appendChild(linkTargetP);
 
     // Assemble link structure
     linkContainer.appendChild(linkTextDiv);
-    linkContainer.appendChild(linkTargetDiv);
+    // linkContainer.appendChild(linkTargetDiv);
     arrowEmptyContainer.appendChild(linkContainer);
   }
 
