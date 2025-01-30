@@ -176,15 +176,15 @@ export default function decorate(block) {
     }
 
     // Handle feature heading
-    const headingElement = description.querySelector('[data-aue-prop="feature-heading"]');
-    if (headingElement) {
+    const featureHeadingElement = description.querySelector('[data-aue-prop="feature-heading"]');
+    if (featureHeadingElement) {
       const headingContainer = document.createElement('div');
-      const headingP = document.createElement('p');
-      headingP.textContent = headingElement.textContent;
-      Array.from(headingElement.attributes).forEach((attr) => {
-        headingP.setAttribute(attr.name, attr.value);
+      const featureHeadingP = document.createElement('p');
+      featureHeadingP.textContent = featureHeadingElement.textContent;
+      Array.from(featureHeadingElement.attributes).forEach((attr) => {
+        featureHeadingP.setAttribute(attr.name, attr.value);
       });
-      headingContainer.appendChild(headingP);
+      headingContainer.appendChild(featureHeadingP);
       featureContainer.appendChild(headingContainer);
     }
 
