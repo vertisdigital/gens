@@ -52,6 +52,8 @@ export default function decorate(block) {
     const titleContainer = document.createElement('div');
     titleContainer.setAttribute('data-aue-model', 'bannertitle');
     titleContainer.setAttribute('data-aue-label', 'Banner Title');
+    titleContainer.setAttribute('data-aue-prop', titleElement.getAttribute('data-aue-prop'));
+    titleContainer.setAttribute('data-aue-type', 'text');
     const headingHtml = Heading({ level: 1, text: titleText, className: 'hero-title' });
     titleContainer.insertAdjacentHTML('beforeend', headingHtml);
     heroContainer.appendChild(titleContainer);
@@ -64,6 +66,8 @@ export default function decorate(block) {
     descriptionDiv.className = 'hero-description';
     descriptionDiv.setAttribute('data-aue-model', 'bannerdescription');
     descriptionDiv.setAttribute('data-aue-label', 'Banner Description');
+    descriptionDiv.setAttribute('data-aue-prop', descElement.getAttribute('data-aue-prop'));
+    descriptionDiv.setAttribute('data-aue-type', 'text');
     descriptionDiv.textContent = descElement.textContent;
     heroContainer.appendChild(descriptionDiv);
     descElement.remove();
@@ -94,6 +98,7 @@ export default function decorate(block) {
     carouselItem.setAttribute('data-aue-model', 'carouselitem');
     carouselItem.setAttribute('data-aue-resource', item.getAttribute('data-aue-resource'));
     carouselItem.setAttribute('data-aue-label', `Carousel Item ${index + 1}`);
+    carouselItem.setAttribute('data-aue-type', 'container');
 
     const carouselItemContent = document.createElement('div');
     carouselItemContent.classList.add('carousel-content');
@@ -116,6 +121,8 @@ export default function decorate(block) {
       const titleContainer = document.createElement('div');
       titleContainer.setAttribute('data-aue-model', 'title');
       titleContainer.setAttribute('data-aue-label', 'Title');
+      titleContainer.setAttribute('data-aue-prop', carouselTitleElement.getAttribute('data-aue-prop'));
+      titleContainer.setAttribute('data-aue-type', 'text');
       titleContainer.insertAdjacentHTML('beforeend', titleHtml);
       carouselItemContent.appendChild(titleContainer);
       carouselTitleElement.remove();
@@ -129,6 +136,8 @@ export default function decorate(block) {
       const descContainer = document.createElement('div');
       descContainer.setAttribute('data-aue-model', 'description');
       descContainer.setAttribute('data-aue-label', 'Description');
+      descContainer.setAttribute('data-aue-prop', descriptionElement.getAttribute('data-aue-prop'));
+      descContainer.setAttribute('data-aue-type', 'text');
       descContainer.insertAdjacentHTML('beforeend', descriptionHtml);
       carouselItemContent.appendChild(descContainer);
       descriptionElement.remove();
@@ -142,6 +151,8 @@ export default function decorate(block) {
       const readMoreContainer = document.createElement('div');
       readMoreContainer.setAttribute('data-aue-model', 'readmorelabel');
       readMoreContainer.setAttribute('data-aue-label', 'Read More Label');
+      readMoreContainer.setAttribute('data-aue-prop', readMoreLabelElement.getAttribute('data-aue-prop'));
+      readMoreContainer.setAttribute('data-aue-type', 'text');
       readMoreContainer.insertAdjacentHTML('beforeend', readMoreLabelHtml);
       newsLinkDiv.appendChild(readMoreContainer);
       readMoreLabelElement.remove();
@@ -220,6 +231,9 @@ export default function decorate(block) {
           });
 
           newsLatterImage.insertAdjacentHTML('beforeend', imgHtml);
+          newsLatterImage.setAttribute('data-aue-type', 'image');
+          newsLatterImage.setAttribute('data-aue-prop', 'image');
+          newsLatterImage.setAttribute('data-aue-label', 'News Image');
           aTag.remove();
         }
       }
