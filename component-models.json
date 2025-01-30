@@ -415,8 +415,9 @@
       },
       {
         "component": "richtext",
-        "name": "itemdescription",
-        "label": "Description",
+        "name": "listitem-description",
+        "label": "List Item Description",
+        "value": "",
         "valueType": "string"
       },
       {

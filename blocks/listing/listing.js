@@ -45,7 +45,7 @@ export default function decorate(block) {
 
     // Get all content elements
     const title = item.querySelector('[data-aue-type="text"]');
-    const description = item.querySelector('[data-richtext-prop="itemdescription"]');
+    const description = item.querySelector('[data-richtext-prop="listitem-description"]');
     console.log(item);
     const arrowIcon = item.querySelector('div:last-child a');
 
