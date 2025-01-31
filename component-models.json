@@ -195,36 +195,6 @@
         "name": "ctabutton",
         "label": "CTA Link",
         "multi": false
-      },
-      {
-        "component": "select",
-        "name": "herovariation",
-        "value": "",
-        "label": "Variations",
-        "description": "Variations for hero component",
-        "valueType": "string",
-        "options": [
-          {
-            "name": "Concept 1 - Tone 1",
-            "value": "cls_c1t1"
-          },
-          {
-            "name": "Concept 1 - Tone 2",
-            "value": "cls_c1t2"
-          },
-          {
-            "name": "Concept 1 - Tone 3",
-            "value": "cls_c1t3"
-          },
-          {
-            "name": "Concept 2",
-            "value": "cls_c2"
-          },
-          {
-            "name": "Concept 3",
-            "value": "cls_c3"
-          }
-        ]
       }
     ]
   },
