@@ -21,7 +21,8 @@
       "linkField",
       "socialLinks",
       "links",
-      "imageLink"
+      "imageLink",
+      "coreprinciples"
     ]
   },
   {
@@ -45,7 +46,8 @@
       "title",
       "imageLink",
       "socialLinks",
-      "links"
+      "links",
+      "coreprinciples"
     ]
   },
   {
@@ -83,6 +85,12 @@
     "id": "herobanner",
     "components": [
       "bannercarousel"
+    ]
+  },
+  {
+    "id": "coreprinciples",
+    "components": [
+      "coreprinciple"
     ]
   }
 ]
