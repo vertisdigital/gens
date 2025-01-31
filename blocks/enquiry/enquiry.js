@@ -1,5 +1,5 @@
 import Heading from '../../shared-components/Heading.js';
-import SvgIcon from '../../shared-components/SvgIcon.js';
+import {createOptimizedPicture} from '../../scripts/aem.js';
 
 export default function decorate(block) {
   // Restructure the HTML for better semantics and accessibility
@@ -45,7 +45,7 @@ export default function decorate(block) {
   contactItems.setAttribute('role', 'list');
 
   // Helper function to create accessible contact items
-  const createContactItem = (iconName, text, linkType) => {
+  const createContactItem = (text, linkType) => {
     const item = document.createElement('div');
     item.className = 'contact-item';
     item.setAttribute('role', 'listitem');
@@ -54,19 +54,16 @@ export default function decorate(block) {
     iconWrapper.className = 'contact-icon';
     iconWrapper.setAttribute('aria-hidden', 'true');
 
-    // Create and add icon with fallback
-    const icon = SvgIcon({
-      name: iconName,
-      size: 24,
-    });
-
-    if (icon) {
-      if (typeof icon === 'string') {
-        iconWrapper.innerHTML = icon;
-      } else if (icon instanceof Element) {
-        iconWrapper.appendChild(icon);
+    const imageLink = wrapper.querySelector('a[href*="/content/dam/"][href$=".png"], a[href*="/content/dam/"][href$=".jpeg"], a[href*="/content/dam/"][href$=".jpg"], a[href*="/content/dam/"][href$=".gif"], a[href*="/content/dam/"][href$=".svg"]');
+      if (imageLink) {
+        // Create optimized picture element
+        const picture = createOptimizedPicture(imageLink.href, '', false);
+        // Remove original link
+        imageLink.remove();
+        if (picture) {
+          iconWrapper.appendChild(picture);
+        }
       }
-    }
 
     const textElement = document.createElement('p');
     textElement.className = 'contact-text';
@@ -95,13 +92,13 @@ export default function decorate(block) {
   const address = wrapper.querySelector('[data-aue-prop="address"]')?.textContent.trim();
 
   if (phone) {
-    contactItems.appendChild(createContactItem('phone', phone, 'tel'));
+    contactItems.appendChild(createContactItem(phone, 'tel'));
   }
   if (email) {
-    contactItems.appendChild(createContactItem('email', email, 'mailto'));
+    contactItems.appendChild(createContactItem(email, 'mailto'));
   }
   if (address) {
-    contactItems.appendChild(createContactItem('address', address));
+    contactItems.appendChild(createContactItem(address));
   }
 
   rightCol.appendChild(contactItems);
