@@ -173,12 +173,21 @@
       {
         "component": "text",
         "name": "bannertitle",
-        "label": "Title"
+        "label": "Banner Title",
+        "required": true,
+        "validation": {
+          "maxLength": 100,
+          "customErrorMsg": "Banner title cannot exceed 100 characters"
+        }
       },
       {
         "component": "text",
         "name": "bannerdescription",
-        "label": "Description"
+        "label": "Banner Description",
+        "validation": {
+          "maxLength": 250,
+          "customErrorMsg": "Banner description cannot exceed 250 characters"
+        }
       },
       {
         "component": "aem-content",
@@ -232,12 +241,42 @@
       {
         "component": "text",
         "name": "title",
-        "label": "Title"
+        "label": "Title",
+        "validation": {
+          "maxLength": 10,
+          "customErrorMsg": "Title cannot exceed 10 characters"
+        }
+      },
+      {
+        "component": "date-time",
+        "name": "date",
+        "label": "Date",
+        "valueType": "date",
+        "displayFormat": "MMM DD, YYYY",
+        "valueFormat": "YYYY-MM-DD",
+        "validation": {
+          "customErrorMsg": "Please enter a valid date"
+        }
       },
       {
         "component": "text",
         "name": "description",
-        "label": "Description"
+        "label": "Description",
+        "validation": {
+          "maxLength": 20,
+          "customErrorMsg": "Description cannot exceed 20 characters"
+        }
+      },
+      {
+        "component": "number",
+        "name": "scrollInterval",
+        "label": "Scroll Interval",
+        "required": true,
+        "value": 5,
+        "description": "Interval in seconds",
+        "validation": {
+          "customErrorMsg": "Please enter a valid number"
+        }
       },
       {
         "component": "text",
