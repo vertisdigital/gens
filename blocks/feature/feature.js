@@ -105,30 +105,12 @@ export default function decorate(block) {
       const arrowSVG = SvgIcon({ name: `${arrowIconName}`, className: 'about-us-left-link', size: '18px' });
       linkElement.append(stringToHTML(arrowSVG));
       }
-       
-      // Add arrow icon
-      
-      
+
       // Assemble link structure
       linkTextP.appendChild(linkElement);
       linkTextDiv.appendChild(linkTextP);
       linkContainer.appendChild(linkTextDiv);
     }
-
-  
-    // Handle link target (commented out as per current requirements)
-    // if (originalTarget) {
-    //   const targetDiv = document.createElement('div');
-    //   const targetP = document.createElement('p');
-      
-    //   Array.from(originalTarget.attributes).forEach((attr) => {
-    //     targetP.setAttribute(attr.name, attr.value);
-    //   });
-    //   targetP.textContent = originalTarget.textContent;
-      
-    //   targetDiv.appendChild(targetP);
-    //   linkContainer.appendChild(targetDiv);
-    // }
 
     // Add to container
     aboutUsLeftContent.appendChild(linkContainer);
