@@ -9,5 +9,5 @@ Modify the bannercarousel model definition for the following validations:
 2. Date (format: Mon DD, YYYY) 
 3. description max 20 characters
 
-modify the bannercarousel model definition and add the following fields:
+modify the herobanner model definition and add the following fields:
 1. scrollInterval (mandatory, number, default 5 seconds)
