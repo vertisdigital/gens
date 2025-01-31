@@ -20,16 +20,22 @@ document.addEventListener('DOMContentLoaded', function() {
   if (firstCaption && firstLink) {
     const wrapper1 = document.createElement('div');
     wrapper1.className = 'cta-wrapper';
-    firstCaption.onclick = () => window.open(firstLink.href, '_blank');
+    const linkWrapper1 = document.createElement('div');
+    linkWrapper1.className = 'link-wrapper';
     wrapper1.appendChild(firstCaption.parentNode);
+    linkWrapper1.appendChild(firstLink);
+    wrapper1.appendChild(linkWrapper1);
     ctaGroup.appendChild(wrapper1);
   }
 
   if (secondCaption && secondLink) {
     const wrapper2 = document.createElement('div');
     wrapper2.className = 'cta-wrapper';
-    secondCaption.onclick = () => window.open(secondLink.href, '_blank');
+    const linkWrapper2 = document.createElement('div');
+    linkWrapper2.className = 'link-wrapper';
     wrapper2.appendChild(secondCaption.parentNode);
+    linkWrapper2.appendChild(secondLink);
+    wrapper2.appendChild(linkWrapper2);
     ctaGroup.appendChild(wrapper2);
   }
 
