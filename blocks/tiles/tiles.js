@@ -20,7 +20,7 @@ export default function decorate(block) {
     col.appendChild(tile);
     row.appendChild(col);
 
-    if (index > 0) {
+    if (index >= 0) {
       // Handle image tiles (all except first)
       const imageLink = tile.querySelector('a[href*="/content/dam/"][href$=".png"], a[href*="/content/dam/"][href$=".jpeg"], a[href*="/content/dam/"][href$=".jpg"], a[href*="/content/dam/"][href$=".gif"]');
       if (imageLink) {
@@ -31,6 +31,7 @@ export default function decorate(block) {
         tile.style.backgroundPosition = 'center';
         tile.style.backgroundSize = 'cover';
         tile.style.backgroundRepeat = 'no-repeat';
+        col.classList.add('image-tile');
         // Remove original link
         imageLink.remove();
       }
