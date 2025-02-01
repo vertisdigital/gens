@@ -27,9 +27,14 @@ let newPath = window.location.href;
     const resp = await fetch(`${newPath}`);
     if (resp.ok) {
       const main = document.createElement('main');
-      main.innerHTML = await resp.text();
-      console.log(main.innerHTML);
-      return main;
+      main = await resp.text();
+      const parser = new DOMParser();
+      const doc = parser.parseFromString(main, 'text/html');
+
+    // Select the desired element
+      const element = doc.getElementsByTagName('main')[0];
+
+      return element;
     }
   }
   return null;
