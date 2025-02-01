@@ -27,9 +27,9 @@ let newPath = window.location.href;
     const resp = await fetch(`${newPath}`);
     if (resp.ok) {
       const main = document.createElement('main');
-      main = await resp.text();
+      main.innerHTML = await resp.text();
       const parser = new DOMParser();
-      const doc = parser.parseFromString(main, 'text/html');
+      const doc = parser.parseFromString(main.innerHTML, 'text/html');
 
     // Select the desired element
       const element = doc.getElementsByTagName('main')[0];
