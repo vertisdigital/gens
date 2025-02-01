@@ -38,8 +38,8 @@ let newPath = window.location.href;
       resetAttributeBase('img', 'src');
       resetAttributeBase('source', 'srcset');
 
-      decorateMain(main);
-      await loadSections(main);
+      //decorateMain(main);
+      //await loadSections(main);
       return main;
     }
   }
