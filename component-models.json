@@ -241,6 +241,20 @@
         }
       },
       {
+        "component": "date-time",
+        "valueType": "date",
+        "name": "date",
+        "label": "Date",
+        "description": "This is another date time field that only stores the date.",
+        "required": true,
+        "placeholder": "YYYY-MM-DD",
+        "displayFormat": null,
+        "valueFormat": null,
+        "validation": {
+          "customErrorMsg": "Back to the future!"
+        }
+      },
+      {
         "component": "text",
         "name": "description",
         "label": "Description",
