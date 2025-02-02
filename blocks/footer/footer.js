@@ -42,7 +42,7 @@ export default async function decorate(block) {
     });
     
     footer.setAttribute('role', 'contentinfo');
-    footer.className = container.className;
+    //footer.className = container.className;
 
     // Create main container with responsive classes
     const mainContainer = document.createElement('div');
@@ -60,14 +60,17 @@ export default async function decorate(block) {
     const logoWrapper = document.createElement('div');
     logoWrapper.className = 'footer-logo';
     const logo = document.createElement('img');
-    logo.src = '/content/dam/genting-singapore/logo-red-newlogo-1.png';
-    logo.alt = 'Genting Singapore';
+    const logoImg = container.querySelector('.image-link img');
+    if (logoImg) {
+      logo.src = logoImg.src;
+      logo.alt = logoImg.alt || 'Genting Singapore';
+    }
     logoWrapper.appendChild(logo);
 
     // Add description
     const description = document.createElement('p');
     description.className = 'footer-description';
-    description.textContent = 'Genting Singapore is about short intro dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.';
+    description.textContent = container.querySelector('.image-link [data-aue-prop="linkText"]').textContent;
 
     // Add social icons
     const socialWrapper = document.createElement('div');
@@ -97,7 +100,7 @@ export default async function decorate(block) {
     navSection.appendChild(logoColumn);
     
     // Get all navigation sections from the fragment
-    const navigationLinks = Array.from(container.querySelectorAll('.columns-wrapper:first-child .links'));
+    const navigationLinks = Array.from(container.querySelectorAll('.links'));
     
     // Create columns dynamically based on navigation sections
     const navColumns = navigationLinks.map(() => {
