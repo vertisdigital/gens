@@ -174,7 +174,7 @@
         }
       },
       {
-        "component": "text",
+        "component": "text-area",
         "name": "bannertitle",
         "label": "Banner Title",
         "required": true,
