@@ -1,6 +1,6 @@
 # Authoring Requirements:
 create this block with following:
-    1. A text title
+    1. A text title (mandatory, max 100 characters)
     2. Two cta buttons
     3. Two cta captions
     4. Title is mandatory
