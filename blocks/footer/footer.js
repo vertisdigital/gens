@@ -12,7 +12,7 @@ export default async function decorate(block) {
   const fragment = await loadFragmentCustom(footerPath);
   
   if (fragment && fragment.firstElementChild) {
-    // document.getElementsByTagName('main')[0].remove();
+    document.getElementsByTagName('main')[0].remove();
     const footer = document.createElement('footer');
     //const container = fragment.firstElementChild;
     const findColumnWrapper = (block, index) => {
