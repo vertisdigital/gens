@@ -412,7 +412,8 @@
         "required": true,
         "linkTarget": "_blank",
         "validation": {
-          "requiredErrorMsg": "First CTA link is mandatory"
+          "requiredErrorMsg": "First CTA link is mandatory",
+          "rootPath": "/content/genting-singapore/index"
         }
       },
       {
@@ -431,7 +432,8 @@
         "required": true,
         "linkTarget": "_blank",
         "validation": {
-          "requiredErrorMsg": "Second CTA link is mandatory"
+          "requiredErrorMsg": "Second CTA link is mandatory",
+          "rootPath": "/content/genting-singapore/index"
         }
       }
     ]
