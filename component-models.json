@@ -184,7 +184,7 @@
         }
       },
       {
-        "component": "text-area",
+        "component": "richtext",
         "name": "bannerdescription",
         "label": "Banner Description",
         "validation": {
