@@ -422,7 +422,9 @@
         "component": "aem-content",
         "name": "cta",
         "label": "CTA",
-        "rootpath": "/content/genting-singapore/index"
+        "validation": {
+          "rootPath": "/content/genting-singapore/index"
+        }
       }
     ]
   }
