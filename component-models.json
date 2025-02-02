@@ -425,7 +425,10 @@
         "name": "image",
         "label": "ProjectImage",
         "configUrl": "https://main--aem-eds-universaleditor--josephverticurl.aem.page/tools/assets-selector/config.json",
-        "multi": false
+        "multi": false,
+        "validation": {
+          "rootPath": "/content/dam/genting-singapore/index"
+        }
       },
       {
         "component": "text",
