@@ -174,7 +174,7 @@
         }
       },
       {
-        "component": "text-area",
+        "component": "text",
         "name": "bannertitle",
         "label": "Banner Title",
         "required": true,
@@ -184,11 +184,11 @@
         }
       },
       {
-        "component": "text",
+        "component": "text-area",
         "name": "bannerdescription",
         "label": "Banner Description",
         "validation": {
-          "maxLength": 250,
+          "maxSize": 250,
           "customErrorMsg": "Banner description cannot exceed 250 characters"
         }
       },
