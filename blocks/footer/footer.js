@@ -154,7 +154,7 @@ export default async function decorate(block) {
           });
           
           // Get the button container and link
-          const buttonContainer = link.querySelector('.button-container');
+          const buttonContainer = link.querySelector('[data-aue-prop="linkText"]');
           const anchor = buttonContainer?.querySelector('a');
           
           if (anchor) {
