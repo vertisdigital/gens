@@ -259,7 +259,8 @@ export default async function decorate(block) {
         }
       });
     });
-    block.textContent = '';
+    fragment.firstElementChild.children[0].textContent = '';
+    fragment.firstElementChild.children[1].textContent = '';
     block.append(footer);
   }
 }
