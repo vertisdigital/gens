@@ -12,7 +12,7 @@ export default async function decorate(block) {
   const fragment = await loadFragmentCustom(footerPath);
   
   if (fragment && fragment.firstElementChild) {
-    document.getElementsByTagName('main')[0].remove();
+    // document.getElementsByTagName('main')[0].remove();
     const footer = document.createElement('footer');
     //const container = fragment.firstElementChild;
     const findColumnWrapper = (block, index) => {
@@ -55,6 +55,9 @@ export default async function decorate(block) {
     const logoImg = container.querySelector('.image-link img');
     if (logoImg) {
       logo.src = logoImg.src;
+      logo.setAttribute('data-aue-prop', 'linkImage');
+      logo.setAttribute('data-aue-label', 'Link Image'); 
+      logo.setAttribute('data-aue-type', 'media');
       logo.alt = logoImg.alt || 'Genting Singapore';
     }
     logoWrapper.appendChild(logo);
@@ -63,6 +66,9 @@ export default async function decorate(block) {
     const description = document.createElement('p');
     description.className = 'footer-description';
     description.textContent = container.querySelector('.image-link [data-aue-prop="linkText"]').textContent;
+    description.setAttribute('data-aue-prop', 'description');
+    description.setAttribute('data-aue-label', 'Description');
+    description.setAttribute('data-aue-type', 'text');
 
     // Add social icons
     const socialWrapper = document.createElement('div');

@@ -55,6 +55,8 @@ export async function loadFragmentCustom(path) {
 
       // Select the desired element
       const element = doc.getElementsByTagName('main')[0].cloneNode(true);
+      doc.getElementsByTagName('main')[0].remove();
+
       return element;
     }
   }
