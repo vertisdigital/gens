@@ -388,12 +388,21 @@
       {
         "component": "text",
         "name": "title",
-        "label": "Title"
+        "label": "Title",
+        "required": true,
+        "validation": {
+          "maxLength": 100,
+          "customErrorMsg": "Title cannot exceed 100 characters"
+        }
       },
       {
         "component": "text",
         "name": "heading",
-        "label": "Heading"
+        "label": "Heading",
+        "validation": {
+          "maxLength": 250,
+          "customErrorMsg": "Heading cannot exceed 250 characters"
+        }
       }
     ]
   },
@@ -410,15 +419,31 @@
       },
       {
         "component": "text",
+        "name": "imageAlt",
+        "label": "ImageAltText",
+        "description": "Image-Alt-Text",
+        "required": true
+      },
+      {
+        "component": "text",
         "name": "title",
-        "label": "Title"
+        "label": "Title",
+        "required": true,
+        "validation": {
+          "maxLength": 30,
+          "customErrorMsg": "Title cannot exceed 30 characters"
+        }
       },
       {
         "component": "richtext",
         "name": "description",
         "value": "",
         "label": "Description",
-        "valueType": "string"
+        "valueType": "string",
+        "validation": {
+          "maxSize": 250,
+          "customErrorMsg": "Description cannot exceed 250 characters"
+        }
       },
       {
         "component": "aem-content",

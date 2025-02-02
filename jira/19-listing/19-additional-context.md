@@ -1,13 +1,13 @@
 # Authoring Requirements:
 Create this block with following:
     A container block with the following fields
-        1.A text field title
-        2.A text field heading
+        1.A text field title (mandatory, max 100 characters)
+        2.A text field heading (optional, max 250 characters)
     A block item with following fields
         1. A background image
         2. an alt text for the image
-        3. A text field title
-        4. A richtext field description
+        3. A text field title (mandatory, max 30 characters)
+        4. A richtext field description (optional, max 250 characters)
         5. A CTA button CTA
     The container block should be able to have only one Link Field block item.
 
