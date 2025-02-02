@@ -212,23 +212,6 @@
         "validation": {
           "customErrorMsg": "Please enter a valid number"
         }
-      },
-      {
-        "component": "multiselect",
-        "name": "style",
-        "value": "",
-        "label": "Style",
-        "valueType": "string",
-        "options": [
-          {
-            "name": "Fade in Background",
-            "value": "fade-in"
-          },
-          {
-            "name": "Highlight",
-            "value": "highlight"
-          }
-        ]
       }
     ]
   },
