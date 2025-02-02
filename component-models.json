@@ -243,8 +243,8 @@
       {
         "component": "date-time",
         "valueType": "date",
-        "name": "date",
-        "label": "Date",
+        "name": "date1212",
+        "label": "Date12121",
         "description": "This is another date time field that only stores the date.",
         "required": true,
         "placeholder": "YYYY-MM-DD",
