@@ -411,7 +411,10 @@
         "name": "image",
         "label": "Background Image",
         "configUrl": "https://main--aem-eds-universaleditor--josephverticurl.aem.page/tools/assets-selector/config.json",
-        "multi": false
+        "multi": false,
+        "validation": {
+          "rootPath": "/content/dam/genting-singapore/"
+        }
       },
       {
         "component": "text",
