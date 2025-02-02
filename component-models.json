@@ -168,7 +168,10 @@
         "name": "bannerimage",
         "label": "Banner Image",
         "configUrl": "https://main--genting--wppopen.aem.page/tools/assets-selector/config.json",
-        "multi": false
+        "multi": false,
+        "validation": {
+          "rootPath": "/content/dam/genting-singapore"
+        }
       },
       {
         "component": "text",
@@ -194,7 +197,10 @@
         "valueType": "string",
         "name": "ctabutton",
         "label": "CTA Link",
-        "multi": false
+        "multi": false,
+        "validation": {
+          "rootPath": "/content/genting-singapore/index"
+        }
       },
       {
         "component": "number",
@@ -217,7 +223,10 @@
         "name": "image",
         "label": "Carousel Image",
         "configUrl": "https://main--genting--wppopen.aem.page/tools/assets-selector/config.json",
-        "valueType": "string"
+        "valueType": "string",
+        "validation": {
+          "rootPath": "/content/dam/genting-singapore"
+        }
       },
       {
         "component": "text",
@@ -260,7 +269,10 @@
         "valueType": "string",
         "name": "readmorelink",
         "label": "Read More Link",
-        "multi": false
+        "multi": false,
+        "validation": {
+          "rootPath": "/content/genting-singapore/index"
+        }
       }
     ]
   },
