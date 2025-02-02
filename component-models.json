@@ -388,19 +388,32 @@
       {
         "component": "text",
         "name": "title",
-        "label": "Title"
+        "label": "Title",
+        "validation": {
+          "maxLength": 100,
+          "customErrorMsg": "Title cannot exceed 100 characters"
+        }
       },
       {
         "component": "text",
         "name": "heading",
-        "label": "Heading"
+        "label": "Heading",
+        "required": true,
+        "validation": {
+          "maxLength": 100,
+          "customErrorMsg": "Heading cannot exceed 100 characters"
+        }
       },
       {
         "component": "richtext",
         "name": "description",
         "value": "",
         "label": "Description",
-        "valueType": "string"
+        "valueType": "string",
+        "validation": {
+          "maxSize": 250,
+          "customErrorMsg": "Description cannot exceed 250 characters"
+        }
       }
     ]
   },
@@ -423,12 +436,22 @@
       {
         "component": "text",
         "name": "title",
-        "label": "Title"
+        "label": "Title",
+        "required": true,
+        "validation": {
+          "maxLength": 10,
+          "customErrorMsg": "Title cannot exceed 10 characters"
+        }
       },
       {
         "component": "text",
         "name": "location",
-        "label": "Location"
+        "label": "Location",
+        "required": true,
+        "validation": {
+          "maxLength": 10,
+          "customErrorMsg": "Location cannot exceed 10 characters"
+        }
       }
     ]
   }

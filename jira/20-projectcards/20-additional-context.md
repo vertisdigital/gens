@@ -1,13 +1,13 @@
 # Authoring Requirements:
 Have the reference of the cards block and card block and create a new block with the following specifications
     A container block projectcards with the following fields
-        1.A text field title
-        2.A text field heading
-        3.A richtext field description
+        1.A text field title (optional, max 100 characters)
+        2.A text field heading (mandatory, max 100 characters)
+        3.A richtext field description (optional, max 250 characters)
     A block item projectcard with following fields
         1. An Image field image
-        2. A text field title
-        3. A text field location
+        2. A text field title (mandatory, max 10 characters)
+        3. A text field location (mandatory, max 10 characters)
     The container block should be able to have only one Link Field block item.
     do not use spacing in any names
 
