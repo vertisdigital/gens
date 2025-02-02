@@ -1,5 +1,5 @@
 import { getMetadata } from '../../scripts/aem.js';
-import { loadFragment } from '../fragment/fragment.js';
+import { loadFragmentCustom } from '../fragment/fragment.js';
 
 /**
  * loads and decorates the footer
@@ -9,16 +9,7 @@ export default async function decorate(block) {
   // load footer as fragment
   const footerMeta = getMetadata('footer');
   const footerPath = footerMeta ? new URL(footerMeta, window.location).pathname : '/footer';
-  const fragment = await loadFragment(footerPath);
-
-  // decorate footer DOM
-  // block.textContent = '';
-  // const footer = document.createElement('div');
-  // while (fragment.firstElementChild) footer.append(fragment.firstElementChild);
-
-  // block.append(footer);
-
-  // // decorate footer DOM
+  const fragment = await loadFragmentCustom(footerPath);
   
   if (fragment && fragment.firstElementChild) {
     const footer = document.createElement('footer');
@@ -259,8 +250,6 @@ export default async function decorate(block) {
         }
       });
     });
-    fragment.firstElementChild.children[0].textContent = '';
-    fragment.firstElementChild.children[1].textContent = '';
     block.append(footer);
   }
 }
