@@ -47,7 +47,7 @@ export default async function decorate(block) {
     // Append section and footer to main
     main.appendChild(section);
 
-    //document.getElementsByTagName('main')[0].remove();
+    document.getElementsByTagName('main')[0].remove();
     const footer = document.createElement('div');
     // const container = fragment.firstElementChild;
     const findColumnWrapper = (blockElement, index) => {
