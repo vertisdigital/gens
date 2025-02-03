@@ -63,20 +63,30 @@
   font-size: 1rem;
   align-self: flex-end;
   margin: 15px 0 auto;
+  transition: transform 0.2s ease-out;
 }
+.factsheet-button:hover::after {
+  transform: translateX(0.25rem);
+  text-decoration: underline!important;
+  /* border-bottom: 2px solid #B29152; */
+  line-height: 100%;
+} 
 
 .factsheet-button::after {
   content: '↓';
-  margin-left: 0.5rem;
-  transition: transform 0.2s;
+  width: 16px;
+  height: 16px;
+  margin-left: 12px;
   font-size: 14px;
+  line-height: 1;
 }
 
-.factsheet-button:hover::after {
+
+/* .factsheet-button:hover::after {
   transform: translateX(0.25rem);
   border-bottom: 2px solid #B29152;
   line-height: 100%;
-} 
+}  */
 
 .tiles-container>div [data-aue-prop="heading"] {
     font-size: 40px;
