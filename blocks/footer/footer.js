@@ -47,7 +47,12 @@ export default async function decorate(block) {
     // Append section and footer to main
     main.appendChild(section);
 
-    document.getElementsByTagName('main')[0].remove();
+    // Remove old footer if exists, but don't remove main content
+    const existingFooter = document.querySelector('[role="contentinfo"]');
+    if (existingFooter) {
+      existingFooter.remove();
+    }
+
     const footer = document.createElement('div');
     // const container = fragment.firstElementChild;
     const findColumnWrapper = (blockElement, index) => {
