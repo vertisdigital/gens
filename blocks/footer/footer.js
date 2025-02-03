@@ -261,7 +261,7 @@ export default async function decorate(block) {
             const newLink = document.createElement('a');
             newLink.href = anchor.href;
             newLink.className = 'anchor.className';
-            newLink.textContent = anchor.innerHTML;
+            newLink.textContent = anchor.textContent;
 
             // Copy data attributes from original anchor
             Array.from(anchor.attributes).forEach((attr) => {
