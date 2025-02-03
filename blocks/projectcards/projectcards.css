@@ -56,7 +56,7 @@
   padding-right: 0;
 }
 .projectcards .project-card [data-aue-prop="image"]{
-  height: 253px;
+  /* height: 253px; */
   margin-bottom: 12px;
 }
 .projectcards .project-card [data-aue-prop="image"] picture{
@@ -141,7 +141,7 @@
     padding: 0 12px 0 12px!important;
   }
   .projectcards .project-card [data-aue-prop="image"]{
-    height: 361px;
+    /* height: 361px; */
     margin-bottom: 10px;
   }
 
@@ -187,7 +187,7 @@
     }
     
     .projectcards .project-card [data-aue-prop="image"]{
-      height: 206px;
+      /* height: 206px; */
       margin-bottom: 8px;
     }
     .projectcards .project-card-title {

@@ -157,6 +157,7 @@ export default function decorate(block) {
   projectCardsContainer.appendChild(cardsGridContainer);
 
   // Handle View All link
+  if(projectCards.length>0){
   const linkFieldElement = block.querySelector('[data-aue-model="linkField"]');
   if (linkFieldElement) {
     const linkContainer = document.createElement('div');
@@ -190,6 +191,7 @@ export default function decorate(block) {
 
     projectCardsContainer.appendChild(linkContainer);
     linkFieldElement.remove();
+  }
   }
 
   // Clear original block content and append new structure
