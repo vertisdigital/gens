@@ -49,6 +49,11 @@
   [data-aue-model="listitem"] .row [class*="col-"] {
     padding: 36px 0;
   }
+  [data-aue-model="listitem"] .row > div:first-child p{
+    padding: 0;
+    margin: 0;
+    line-height: 0;
+  }
 
   [data-aue-model="listitem"] .row > div:not(:first-child) {
     padding-left: 36px;
@@ -95,8 +100,51 @@
     color: var(--primary-gold);
   }
 
-  /* Responsive styles */
-  @media (width <= 768px) {
+  /* Tablet Design */
+  @media (width < 992px){
+    
+  /* Header styles */
+  [data-aue-prop="title"][data-aue-label="Title"] {
+    font-size: 16px;
+    font-weight: 700;
+  }
+
+  [data-aue-prop="heading"][data-aue-label="Heading"] {
+    font-size: 32px;
+    margin-bottom: 24px;
+    line-height: 42px;
+  }
+
+  /* List item styles */
+
+
+  [data-aue-model="listitem"] .row [class*="col-"] {
+    padding: 24px 0;
+  }
+
+  [data-aue-model="listitem"] .row > div:not(:first-child) {
+    padding-left: 24px;
+  }
+
+
+  [data-aue-model="listitem"] .row [class*="col-"]:nth-child(2) [data-aue-label="Title"] {
+    font-size: 18px;
+    margin-bottom: 10px;
+  }
+
+  [data-aue-model="listitem"] .row [class*="col-"]:nth-child(2) [data-richtext-label="Description"] {
+    margin-bottom: 24px !important;
+  }
+
+  [data-aue-model="listitem"] .row [class*="col-"]:nth-child(2) a {
+    bottom: 24px;
+
+  }
+
+  }
+
+  /* Mobile Design */
+  @media (width < 768px) {
     [data-aue-prop="heading"][data-aue-label="Heading"] {
       font-size: 28px;
       line-height: 34px;
@@ -116,8 +164,16 @@
       padding-left: 0;
     }
 
+    [data-aue-model="listitem"] .row > div:not(:first-child) {
+      padding-top: 0;
+    }
+    [data-aue-model="listitem"] .row [class*="col-"]:nth-child(2) {
+      min-height: 207px;
+    }
     [data-aue-model="listitem"] .row [class*="col-"]:nth-child(2) [data-aue-label="Title"] {
+      margin-top: 0;
       margin-bottom: 8px;
+      padding-top: 0;
     }
 
     [data-aue-model="listitem"] .row [class*="col-"]:nth-child(2) [data-richtext-label="Description"] {
@@ -127,9 +183,9 @@
       margin-bottom: 100px !important;
     }
 
-    [data-aue-model="linkField"] a {
+    [data-aue-model="listitem"] .row [class*="col-"]:nth-child(2) a {
       font-size: 14px;
-
+      bottom: 18px;
     }
   }
 }
