@@ -266,7 +266,7 @@ export default async function decorate(block) {
             // Create new link with title as text
             const newLink = document.createElement('a');
             newLink.href = anchor.href;
-            newLink.className = 'button';
+            newLink.className = 'button-link';
             newLink.textContent = anchor.textContent;
 
             // Copy data attributes from original anchor
@@ -431,7 +431,7 @@ export default async function decorate(block) {
 
       // Create links container
       const linksContainer = document.createElement('div');
-      linksContainer.className = 'col-xl-6 col-md-6 col-sm-4';
+      linksContainer.className = 'row col-xl-6 col-md-6 col-sm-4';
       linksContainer.setAttribute('data-aue-type', 'container');
       linksContainer.setAttribute('data-aue-model', 'links');
       linksContainer.setAttribute('data-aue-label', 'Links');
@@ -462,7 +462,7 @@ export default async function decorate(block) {
         if (originalLink) {
           const link = document.createElement('a');
           link.href = originalLink.href;
-          link.className = 'button';
+          link.className = 'button-link';
           link.textContent = originalLink.textContent;
           linkTextContainer.appendChild(link);
         }
