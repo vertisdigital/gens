@@ -381,5 +381,16 @@
         "multi": false
       }
     ]
+  },
+  {
+    "id": "tabs",
+    "fields": [
+      {
+        "component": "text",
+        "name": "tabtitle",
+        "label": "Tab Title"
+
+      }
+    ]
   }
 ]
