@@ -212,89 +212,89 @@ export default async function decorate(block) {
     navigationLinks.forEach((linkSection, index) => {
       if (navColumns[index]) {
         const nav = document.createElement('nav');
-        
-        // Copy data attributes from link section first
+
+        // Get section title
+        const title = linkSection.querySelector('[data-aue-prop="linkText"]');
+
+        if (title) {
+          // Create heading element for title
+          const heading = document.createElement('h2');
+          heading.textContent = title.textContent;
+          heading.className = 'footer-nav-title';
+
+          heading.setAttribute('data-aue-prop', 'linkText');
+          heading.setAttribute('data-aue-label', 'Text'); 
+          heading.setAttribute('data-aue-type', 'text');
+
+          nav.appendChild(heading);
+          nav.setAttribute('aria-label', title.textContent);
+
+          // Copy data attributes from title
+          Array.from(title.attributes).forEach((attr) => {
+            if (attr.name.startsWith('data-')) {
+              title.setAttribute(attr.name, attr.value);
+            }
+          });
+        }
+
+        // Copy data attributes from link section
         Array.from(linkSection.attributes).forEach((attr) => {
           if (attr.name.startsWith('data-')) {
             nav.setAttribute(attr.name, attr.value);
           }
         });
 
-        // Create title section
-        const titleContainer = document.createElement('div');
-        titleContainer.setAttribute('data-aue-type', 'component');
-        titleContainer.setAttribute('data-aue-model', 'linkField');
-        titleContainer.setAttribute('data-aue-filter', 'linkField');
-        titleContainer.setAttribute('data-aue-label', 'Link Field');
-        titleContainer.setAttribute('data-aue-resource', linkSection.getAttribute('data-aue-resource'));
-
-        // Get section title
-        const title = linkSection.querySelector('[data-aue-prop="linkText"]');
-        if (title) {
-          const heading = document.createElement('h2');
-          heading.textContent = title.textContent;
-          heading.className = 'footer-nav-title';
-          
-          // Set proper data attributes for authoring
-          heading.setAttribute('data-aue-prop', 'linkText');
-          heading.setAttribute('data-aue-label', 'Text');
-          heading.setAttribute('data-aue-type', 'text');
-          
-          titleContainer.appendChild(heading);
-          nav.appendChild(titleContainer);
-          nav.setAttribute('aria-label', title.textContent);
-        }
-
-        // Handle links
+        // Move all links while preserving their attributes
         const links = linkSection.querySelectorAll('[data-aue-model="linkField"]');
         links.forEach((link) => {
-          // Create link field container with proper attributes
-          const linkFieldDiv = document.createElement('div');
-          linkFieldDiv.setAttribute('data-aue-type', 'component');
-          linkFieldDiv.setAttribute('data-aue-model', 'linkField');
-          linkFieldDiv.setAttribute('data-aue-filter', 'linkField');
-          linkFieldDiv.setAttribute('data-aue-label', 'Link Field');
-          linkFieldDiv.setAttribute('data-aue-resource', link.getAttribute('data-aue-resource'));
+          const linkContainer = document.createElement('div');
+          linkContainer.className = link.className;
 
-          // Create button container
-          const buttonContainer = document.createElement('div');
-          buttonContainer.className = 'button-container';
-          buttonContainer.setAttribute('data-aue-prop', 'linkText');
-          buttonContainer.setAttribute('data-aue-label', 'Text');
-          buttonContainer.setAttribute('data-aue-type', 'text');
+          // Copy data attributes from link
+          Array.from(link.attributes).forEach((attr) => {
+            if (attr.name.startsWith('data-')) {
+              linkContainer.setAttribute(attr.name, attr.value);
+            }
+          });
 
-          // Get link text and href
-          const originalLink = link.querySelector('[data-aue-prop="linkText"]');
-          if (originalLink) {
+          // Get the button container and link
+          const buttonContainer = link.querySelector('[data-aue-prop="linkText"]');
+          const anchor = buttonContainer;
+
+          if (anchor) {
+            // Create new link with title as text
             const newLink = document.createElement('a');
-            newLink.href = originalLink.href || '#';
-            newLink.className = 'button';
-            newLink.textContent = originalLink.textContent;
-            
-            // Copy data attributes from original link
-            Array.from(originalLink.attributes).forEach((attr) => {
+            newLink.href = anchor.href;
+            newLink.className = 'anchor.className';
+            newLink.textContent = anchor.textContent;
+
+            // Copy data attributes from original anchor
+            Array.from(anchor.attributes).forEach((attr) => {
               if (attr.name.startsWith('data-')) {
                 newLink.setAttribute(attr.name, attr.value);
               }
             });
 
-            buttonContainer.appendChild(newLink);
+            // Create new button container
+            const newButtonContainer = document.createElement('div');
+            newButtonContainer.className = 'button-container';
+            newButtonContainer.appendChild(newLink);
+
+            // Add target if exists
+            const linkTarget = link.querySelector('[data-aue-prop="linkTarget"]');
+            if (linkTarget) {
+              const targetDiv = document.createElement('div');
+              targetDiv.setAttribute('data-aue-prop', 'linkTarget');
+              targetDiv.setAttribute('data-aue-label', 'Link Target');
+              targetDiv.setAttribute('data-aue-type', 'text');
+              targetDiv.textContent = linkTarget.textContent;
+              linkContainer.appendChild(targetDiv);
+            }
+
+            linkContainer.appendChild(newButtonContainer);
           }
 
-          // Handle link target
-          const linkTarget = link.querySelector('[data-aue-prop="linkTarget"]');
-          if (linkTarget) {
-            const targetDiv = document.createElement('div');
-            targetDiv.setAttribute('data-aue-prop', 'linkTarget');
-            targetDiv.setAttribute('data-aue-label', 'Link Target');
-            targetDiv.setAttribute('data-aue-type', 'text');
-            targetDiv.textContent = linkTarget.textContent;
-            targetDiv.style.display = 'none';
-            linkFieldDiv.appendChild(targetDiv);
-          }
-
-          linkFieldDiv.appendChild(buttonContainer);
-          nav.appendChild(linkFieldDiv);
+          nav.appendChild(linkContainer);
         });
 
         navColumns[index].appendChild(nav);
