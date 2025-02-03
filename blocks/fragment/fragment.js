@@ -18,13 +18,10 @@ import {
  * @returns {HTMLElement} The root element of the fragment
  */
 export async function loadFragment(path) {
-let newPath = window.location.href;
   if (path && path.startsWith('/')) {
     // eslint-disable-next-line no-param-reassign
     path = path.replace(/(\.plain)?\.html/, '');
-    newPath = newPath.replace(".html", ".plain.html");
-    //const resp = await fetch(`${path}.plain.html`);
-    const resp = await fetch(`${newPath}`);
+    const resp = await fetch(`${path}.plain.html`);
     if (resp.ok) {
       const main = document.createElement('main');
       main.innerHTML = await resp.text();
@@ -41,6 +38,25 @@ let newPath = window.location.href;
       decorateMain(main);
       await loadSections(main);
       return main;
+    }
+  }
+  return null;
+}
+
+export async function loadFragmentCustom(path) {
+  let newPath = window.location.href;
+  if (path && path.startsWith('/')) {
+    const resp = await fetch(`${newPath}`);
+    if (resp.ok) {
+      const main = document.createElement('main');
+      main.innerHTML = await resp.text();
+      const parser = new DOMParser();
+      const doc = parser.parseFromString(main.innerHTML, 'text/html');
+
+      // Select the desired element
+      const element = doc.getElementsByTagName('main')[0].cloneNode(true);
+
+      return element;
     }
   }
   return null;

@@ -153,7 +153,7 @@ export const MOCK_CONTENT = {
       Transforming Destinations through Sustainable Growth
     </h1>
   <div class="hero-description">As a steadfast partner to the nation, Genting Singapore continues to
-drive sustainable growth and transformative impact through world-class integrated resorts. We’re in it for the long haul, and are committed to investing in a future that empowers communities and benefits everyone.</div>
+drive sustainable growth and transformative impact through world-class integrated resorts. We're in it for the long haul, and are committed to investing in a future that empowers communities and benefits everyone.</div>
     <span class="icon-wrapper hero-arrow-icon" style="color: white">
       <svg width="32" height="32" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
     <path d="M12 4L10.59 5.41L16.17 11H4V13H16.17L10.59 18.59L12 20L20 12L12 4Z" fill="currentColor"></path>
@@ -164,6 +164,257 @@ drive sustainable growth and transformative impact through world-class integrate
  
       `,
   // Add other block mock content
+
+  footer: `<div data-aue-type="container"
+    data-aue-resource="urn:aemconnection:/content/genting-singapore/footer/jcr:content/root/section"
+    data-aue-behavior="component" data-aue-model="section" data-aue-label="Section" data-aue-filter="section"
+    class="section columns-container" data-section-status="loaded" data-block-name="footer" data-block-status="loaded">
+    <div class="columns-wrapper">
+        <div class="columns block columns-2-cols" data-aue-resource="urn:aemconnection:/content/genting-singapore/footer/jcr:content/root/section/columns_1593516933" data-aue-type="container" data-aue-model="columns" data-aue-label="Columns" data-aue-filter="columns" data-aue-behavior="component" data-block-name="columns" data-block-status="loaded">
+            <div>
+                <div>
+                    <div data-aue-resource="urn:aemconnection:/content/genting-singapore/footer/jcr:content/root/section/columns_1593516933/row1/col1/block_1502278185" data-aue-type="container" data-aue-behavior="component" data-aue-model="imageLink" data-aue-label="Image Link" data-aue-filter="imageLink" class="image-link">
+                        <div>
+                        <div class="columns-img-col">
+                                <picture><img src="/content/dam/genting-singapore/logo-red-newlogo-1.png" data-aue-prop="linkImage" data-aue-label="Link Image" data-aue-type="media"></picture>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="links" data-aue-type="container" data-aue-behavior="component" data-aue-model="links" data-aue-label="Links" data-aue-filter="links">
+                        <div>
+                            <div data-aue-prop="title" data-aue-label="Title" data-aue-type="text">About</div>
+                        </div>
+                        <div data-aue-type="component" data-aue-model="linkField" data-aue-filter="linkField" data-aue-label="Link Field">
+                            <div class="button-container">
+                                <a href="/content/genting-singapore/index/about-us.html" title="Awards & Recognitions" data-aue-prop="linkText" data-aue-label="Text" data-aue-type="text" class="button">Awards & Recognitions</a>
+                            </div>
+                            <div data-aue-prop="linkTarget" data-aue-label="Link Target" data-aue-type="text">_self</div>
+                        </div>
+                        <div data-aue-type="component" data-aue-model="linkField" data-aue-filter="linkField" data-aue-label="Link Field">
+                            <div class="button-container">
+                                <a href="/content/genting-singapore/index/about-us.html" title="History & Milestones" data-aue-prop="linkText" data-aue-label="Text" data-aue-type="text" class="button">History & Milestones</a>
+                            </div>
+                            <div data-aue-prop="linkTarget" data-aue-label="Link Target" data-aue-type="text">_self</div>
+                        </div>
+                        <div data-aue-type="component" data-aue-model="linkField" data-aue-filter="linkField" data-aue-label="Link Field">
+                            <div class="button-container">
+                                <a href="/content/genting-singapore/index/about-us.html" title="Leadership Team" data-aue-prop="linkText" data-aue-label="Text" data-aue-type="text" class="button">Leadership Team</a>
+                            </div>
+                            <div data-aue-prop="linkTarget" data-aue-label="Link Target" data-aue-type="text">_self</div>
+                        </div>
+                    </div>
+
+                    <div class="links" data-aue-type="container" data-aue-behavior="component" data-aue-model="links" data-aue-label="Links" data-aue-filter="links">
+                        <div>
+                            <div data-aue-prop="title" data-aue-label="Title" data-aue-type="text">Investor Relations</div>
+                        </div>
+                        <div data-aue-type="component" data-aue-model="linkField" data-aue-filter="linkField" data-aue-label="Link Field">
+                            <div class="button-container">
+                                <a href="/content/genting-singapore/index/media.html" title="Search & News Listing" data-aue-prop="linkText" data-aue-label="Text" data-aue-type="text" class="button">Stock Information</a>
+                            </div>
+                            <div data-aue-prop="linkTarget" data-aue-label="Link Target" data-aue-type="text">_self</div>
+                        </div>
+                        <div data-aue-type="component" data-aue-model="linkField" data-aue-filter="linkField" data-aue-label="Link Field">
+                            <div class="button-container">
+                                <a href="/content/genting-singapore/index/media.html" title="Media Gallery" data-aue-prop="linkText" data-aue-label="Text" data-aue-type="text" class="button">News & Announcements</a>
+                            </div>
+                            <div data-aue-prop="linkTarget" data-aue-label="Link Target" data-aue-type="text">_self</div>
+                        </div>
+                        <div data-aue-type="component" data-aue-model="linkField" data-aue-filter="linkField" data-aue-label="Link Field">
+                            <div class="button-container">
+                                <a href="/content/genting-singapore/index/media.html" title="Contact" data-aue-prop="linkText" data-aue-label="Text" data-aue-type="text" class="button">ESG</a>
+                            </div>
+                            <div data-aue-prop="linkTarget" data-aue-label="Link Target" data-aue-type="text">_self</div>
+                        </div>
+
+                         <div data-aue-type="component" data-aue-model="linkField" data-aue-filter="linkField" data-aue-label="Link Field">
+                            <div class="button-container">
+                                <a href="/content/genting-singapore/index/media.html" title="Contact" data-aue-prop="linkText" data-aue-label="Text" data-aue-type="text" class="button">ESG</a>
+                            </div>
+                            <div data-aue-prop="linkTarget" data-aue-label="Link Target" data-aue-type="text">_self</div>
+                        </div>
+
+                         <div data-aue-type="component" data-aue-model="linkField" data-aue-filter="linkField" data-aue-label="Link Field">
+                            <div class="button-container">
+                                <a href="/content/genting-singapore/index/media.html" title="Contact" data-aue-prop="linkText" data-aue-label="Text" data-aue-type="text" class="button">ESG</a>
+                            </div>
+                            <div data-aue-prop="linkTarget" data-aue-label="Link Target" data-aue-type="text">_self</div>
+                        </div>
+
+                         <div data-aue-type="component" data-aue-model="linkField" data-aue-filter="linkField" data-aue-label="Link Field">
+                            <div class="button-container">
+                                <a href="/content/genting-singapore/index/media.html" title="Contact" data-aue-prop="linkText" data-aue-label="Text" data-aue-type="text" class="button">ESG</a>
+                            </div>
+                            <div data-aue-prop="linkTarget" data-aue-label="Link Target" data-aue-type="text">_self</div>
+                        </div>
+                    </div>
+
+                    <div class="links" data-aue-type="container" data-aue-behavior="component" data-aue-model="links" data-aue-label="Links" data-aue-filter="links">
+                        <div>
+                            <div data-aue-prop="title" data-aue-label="Title" data-aue-type="text">Sustainability</div>
+                        </div>
+                        <div data-aue-type="component" data-aue-model="linkField" data-aue-filter="linkField" data-aue-label="Link Field">
+                            <div class="button-container">
+                                <a href="/content/genting-singapore/index/media.html" title="Search & News Listing" data-aue-prop="linkText" data-aue-label="Text" data-aue-type="text" class="button">Stock Information</a>
+                            </div>
+                            <div data-aue-prop="linkTarget" data-aue-label="Link Target" data-aue-type="text">_self</div>
+                        </div>
+                        <div data-aue-type="component" data-aue-model="linkField" data-aue-filter="linkField" data-aue-label="Link Field">
+                            <div class="button-container">
+                                <a href="/content/genting-singapore/index/media.html" title="Media Gallery" data-aue-prop="linkText" data-aue-label="Text" data-aue-type="text" class="button">News & Announcements</a>
+                            </div>
+                            <div data-aue-prop="linkTarget" data-aue-label="Link Target" data-aue-type="text">_self</div>
+                        </div>
+                        <div data-aue-type="component" data-aue-model="linkField" data-aue-filter="linkField" data-aue-label="Link Field">
+                            <div class="button-container">
+                                <a href="/content/genting-singapore/index/media.html" title="Contact" data-aue-prop="linkText" data-aue-label="Text" data-aue-type="text" class="button">ESG</a>
+                            </div>
+                            <div data-aue-prop="linkTarget" data-aue-label="Link Target" data-aue-type="text">_self</div>
+                        </div>
+
+                         <div data-aue-type="component" data-aue-model="linkField" data-aue-filter="linkField" data-aue-label="Link Field">
+                            <div class="button-container">
+                                <a href="/content/genting-singapore/index/media.html" title="Contact" data-aue-prop="linkText" data-aue-label="Text" data-aue-type="text" class="button">ESG</a>
+                            </div>
+                            <div data-aue-prop="linkTarget" data-aue-label="Link Target" data-aue-type="text">_self</div>
+                        </div>
+
+                         <div data-aue-type="component" data-aue-model="linkField" data-aue-filter="linkField" data-aue-label="Link Field">
+                            <div class="button-container">
+                                <a href="/content/genting-singapore/index/media.html" title="Contact" data-aue-prop="linkText" data-aue-label="Text" data-aue-type="text" class="button">ESG</a>
+                            </div>
+                            <div data-aue-prop="linkTarget" data-aue-label="Link Target" data-aue-type="text">_self</div>
+                        </div>
+
+                         <div data-aue-type="component" data-aue-model="linkField" data-aue-filter="linkField" data-aue-label="Link Field">
+                            <div class="button-container">
+                                <a href="/content/genting-singapore/index/media.html" title="Contact" data-aue-prop="linkText" data-aue-label="Text" data-aue-type="text" class="button">ESG</a>
+                            </div>
+                            <div data-aue-prop="linkTarget" data-aue-label="Link Target" data-aue-type="text">_self</div>
+                        </div>
+                    </div>
+
+                    <div class="links" data-aue-type="container" data-aue-behavior="component" data-aue-model="links" data-aue-label="Links" data-aue-filter="links">
+                        <div>
+                            <div data-aue-prop="title" data-aue-label="Title" data-aue-type="text">Media</div>
+                        </div>
+                        <div data-aue-type="component" data-aue-model="linkField" data-aue-filter="linkField" data-aue-label="Link Field">
+                            <div class="button-container">
+                                <a href="/content/genting-singapore/index/media.html" title="Search & News Listing" data-aue-prop="linkText" data-aue-label="Text" data-aue-type="text" class="button">Search & News Listing</a>
+                            </div>
+                            <div data-aue-prop="linkTarget" data-aue-label="Link Target" data-aue-type="text">_self</div>
+                        </div>
+                        <div data-aue-type="component" data-aue-model="linkField" data-aue-filter="linkField" data-aue-label="Link Field">
+                            <div class="button-container">
+                                <a href="/content/genting-singapore/index/media.html" title="Media Gallery" data-aue-prop="linkText" data-aue-label="Text" data-aue-type="text" class="button">Media Gallery</a>
+                            </div>
+                            <div data-aue-prop="linkTarget" data-aue-label="Link Target" data-aue-type="text">_self</div>
+                        </div>
+                        <div data-aue-type="component" data-aue-model="linkField" data-aue-filter="linkField" data-aue-label="Link Field">
+                            <div class="button-container">
+                                <a href="/content/genting-singapore/index/media.html" title="Contact" data-aue-prop="linkText" data-aue-label="Text" data-aue-type="text" class="button">Contact</a>
+                            </div>
+                            <div data-aue-prop="linkTarget" data-aue-label="Link Target" data-aue-type="text">_self</div>
+                        </div>
+                    </div>
+
+                    <div class="links" data-aue-type="container" data-aue-behavior="component" data-aue-model="links" data-aue-label="Links" data-aue-filter="links">
+                        <div>
+                            <div data-aue-prop="title" data-aue-label="Title" data-aue-type="text">Our Projects</div>
+                        </div>
+                        
+    
+                    </div>
+
+                    <div class="links" data-aue-type="container" data-aue-behavior="component" data-aue-model="links" data-aue-label="Links" data-aue-filter="links">
+                        <div>
+                            <div data-aue-prop="title" data-aue-label="Title" data-aue-type="text">Others</div>
+                        </div>
+                        <div data-aue-type="component" data-aue-model="linkField" data-aue-filter="linkField" data-aue-label="Link Field">
+                            <div class="button-container">
+                                <a href="/content/genting-singapore/index/media.html" title="Search & News Listing" data-aue-prop="linkText" data-aue-label="Text" data-aue-type="text" class="button">Contact</a>
+                            </div>
+                            <div data-aue-prop="linkTarget" data-aue-label="Link Target" data-aue-type="text">_self</div>
+                        </div>
+                        <div data-aue-type="component" data-aue-model="linkField" data-aue-filter="linkField" data-aue-label="Link Field">
+                            <div class="button-container">
+                                <a href="/content/genting-singapore/index/media.html" title="Media Gallery" data-aue-prop="linkText" data-aue-label="Text" data-aue-type="text" class="button">Career</a>
+                            </div>
+                            <div data-aue-prop="linkTarget" data-aue-label="Link Target" data-aue-type="text">_self</div>
+                        </div>
+    
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="columns-wrapper">
+        <div class="columns block columns-4-cols" data-aue-type="container" data-aue-model="columns" data-aue-label="Columns" data-aue-filter="columns" data-aue-behavior="component" data-block-status="loaded">
+            <div>
+                <div>
+                    <div data-aue-type="richtext" data-aue-behavior="component" data-aue-prop="text" data-aue-label="Text" data-aue-filter="text">
+                        <p>© Genting Singapore 2024. All Rights Reserved.</p>
+                    </div>
+                </div>
+                <div>
+                    <div class="links" data-aue-type="container" data-aue-behavior="component" data-aue-model="links" data-aue-label="Links" data-aue-filter="links">
+                        <div data-aue-type="component" data-aue-model="linkField" data-aue-filter="linkField" data-aue-label="Link Field">
+                            <div class="button-container">
+                                <a href="/content/genting-singapore/index.html" title="Terms of Usage" data-aue-prop="linkText" data-aue-label="Text" data-aue-type="text" class="button">Terms of Usage</a>
+                            </div>
+                            <div data-aue-prop="linkTarget" data-aue-label="Link Target" data-aue-type="text">_self</div>
+                        </div>
+                        <div data-aue-type="component" data-aue-model="linkField" data-aue-filter="linkField" data-aue-label="Link Field">
+                            <div class="button-container">
+                                <a href="/content/genting-singapore/index.html" title="Resorts World Sentosa" data-aue-prop="linkText" data-aue-label="Text" data-aue-type="text" class="button">Resorts World Sentosa</a>
+                            </div>
+                            <div data-aue-prop="linkTarget" data-aue-label="Link Target" data-aue-type="text">_self</div>
+                        </div>
+                    </div>
+                </div>
+                <div>
+                    <div class="links" data-aue-type="container" data-aue-behavior="component" data-aue-model="links" data-aue-label="Links" data-aue-filter="links">
+                        <div data-aue-type="component" data-aue-model="linkField" data-aue-filter="linkField" data-aue-label="Link Field">
+                            <div class="button-container">
+                                <a href="/content/genting-singapore/index.html" title="Privacy Policy" data-aue-prop="linkText" data-aue-label="Text" data-aue-type="text" class="button">Privacy Policy</a>
+                            </div>
+                            <div data-aue-prop="linkTarget" data-aue-label="Link Target" data-aue-type="text">_blank</div>
+                        </div>
+                    </div>
+                    <div class="links" data-aue-type="container" data-aue-behavior="component" data-aue-model="links" data-aue-label="Links" data-aue-filter="links">
+                        <div data-aue-type="component" data-aue-model="linkField" data-aue-filter="linkField" data-aue-label="Link Field">
+                            <div class="button-container">
+                                <a href="/content/genting-singapore/index.html" title="Privacy Policy" data-aue-prop="linkText" data-aue-label="Text" data-aue-type="text" class="button">Privacy Policy</a>
+                            </div>
+                            <div data-aue-prop="linkTarget" data-aue-label="Link Target" data-aue-type="text">_blank</div>
+                        </div>
+                    </div>
+                </div>
+                                <div>
+                    <div class="links" data-aue-type="container" data-aue-behavior="component" data-aue-model="links" data-aue-label="Links" data-aue-filter="links">
+                        <div data-aue-type="component" data-aue-model="linkField" data-aue-filter="linkField" data-aue-label="Link Field">
+                            <div class="button-container">
+                                <a href="/content/genting-singapore/index.html" title="Privacy Policy" data-aue-prop="linkText" data-aue-label="Text" data-aue-type="text" class="button">Privacy Policy</a>
+                            </div>
+                            <div data-aue-prop="linkTarget" data-aue-label="Link Target" data-aue-type="text">_blank</div>
+                        </div>
+                    </div>
+                    <div class="links" data-aue-type="container" data-aue-behavior="component" data-aue-model="links" data-aue-label="Links" data-aue-filter="links">
+                        <div data-aue-type="component" data-aue-model="linkField" data-aue-filter="linkField" data-aue-label="Link Field">
+                            <div class="button-container">
+                                <a href="/content/genting-singapore/index.html" title="Privacy Policy" data-aue-prop="linkText" data-aue-label="Text" data-aue-type="text" class="button">Privacy Policy</a>
+                            </div>
+                            <div data-aue-prop="linkTarget" data-aue-label="Link Target" data-aue-type="text">_blank</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>`,
 };
 
 export function loadMockContent(blockName) {
