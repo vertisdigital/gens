@@ -175,8 +175,18 @@
       },
       {
         "component": "text",
-        "name": "bannertitle",
+        "name": "banneraboutustitle",
         "label": "Banner Title",
+        "required": true,
+        "validation": {
+          "maxLength": 100,
+          "customErrorMsg": "Banner title cannot exceed 100 characters"
+        }
+      },
+      {
+        "component": "text",
+        "name": "bannertitle",
+        "label": "Banner Heading",
         "required": true,
         "validation": {
           "maxLength": 100,
