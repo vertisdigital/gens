@@ -89,7 +89,7 @@ export default async function decorate(block) {
     const logoImg = container.querySelector('.image-link img');
     if (logoImg) {
       logo.src = logoImg.src;
-      logo.setAttribute('data-aue-resource', container.querySelector('.image-link'));
+      logo.setAttribute('data-aue-resource', container.querySelector('.image-link').getAttribute('data-aue-resource'));
       logo.setAttribute('data-aue-label', 'Link Image'); 
       logo.setAttribute('data-aue-type', 'media');
       logo.alt = logoImg.alt || 'Genting Singapore';
@@ -100,7 +100,7 @@ export default async function decorate(block) {
     const description = document.createElement('p');
     description.className = 'footer-description';
     description.textContent = container.querySelector('[data-aue-prop="linkText"]')?.textContent;
-    description.setAttribute('data-aue-resource', container.querySelector('[data-aue-model="linkField"]'));
+    description.setAttribute('data-aue-resource', container.querySelector('[data-aue-model="linkField"]').getAttribute('data-aue-resource'));
     description.setAttribute('data-aue-prop', 'description');
     description.setAttribute('data-aue-label', 'Description');
     description.setAttribute('data-aue-type', 'text');
