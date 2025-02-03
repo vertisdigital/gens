@@ -46,7 +46,7 @@ export default async function decorate(block) {
     // Append section and footer to main
     main.appendChild(section);
     
-    document.getElementsByTagName('main')[0].remove();
+    //document.getElementsByTagName('main')[0].remove();
     const footer = document.createElement('div');
     //const container = fragment.firstElementChild;
     const findColumnWrapper = (block, index) => {
@@ -75,6 +75,13 @@ export default async function decorate(block) {
     // Create logo and description column
     const logoColumn = document.createElement('div');
     logoColumn.className = 'col-xl-12 col-md-3 col-sm-4';
+    logoColumn.setAttribute('data-aue-type', 'container');
+    logoColumn.setAttribute('data-aue-behavior', 'component');
+    logoColumn.setAttribute('data-aue-model', 'imageLink');
+    logoColumn.setAttribute('data-aue-label', 'Image Link');
+    logoColumn.setAttribute('data-aue-filter', 'imageLink');
+    logoColumn.setAttribute('data-aue-resource', container.querySelector('.image-link').getAttribute('data-aue-resource'));
+    
 
     // Add logo
     const logoWrapper = document.createElement('div');
