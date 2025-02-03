@@ -85,6 +85,7 @@
                 "resourceType": "core/franklin/components/section/v1/section",
                 "template": {
                   "name": "tab",
+                  "model": "tab",
                   "filter": "section"
                 }
               }
