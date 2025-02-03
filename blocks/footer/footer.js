@@ -10,8 +10,9 @@ export default async function decorate(block) {
   const footerMeta = getMetadata('footer');
   const footerPath = footerMeta ? new URL(footerMeta, window.location).pathname : '/footer';
   const fragment = await loadFragmentCustom(footerPath);
+  //const fragment = block
   
-  if (fragment && fragment.firstElementChild) {
+  if (fragment) {
     // Create main element with data attributes
     const main = document.createElement('main');
     main.setAttribute('data-aue-resource', 'urn:aemconnection:/content/genting-singapore/footer/jcr:content/root');
@@ -98,7 +99,7 @@ export default async function decorate(block) {
     // Add description
     const description = document.createElement('p');
     description.className = 'footer-description';
-    description.textContent = container.querySelector('.image-link [data-aue-prop="linkText"]').textContent;
+    description.textContent = container.querySelector('.image-link [data-aue-prop="linkText"]')?.textContent;
     description.setAttribute('data-aue-prop', 'description');
     description.setAttribute('data-aue-label', 'Description');
     description.setAttribute('data-aue-type', 'text');
@@ -247,8 +248,18 @@ export default async function decorate(block) {
       }
     });
     
-    // Add columns to nav section, skipping first column
-    navColumns.slice(1).forEach(col => navigationWrapper.appendChild(col));
+    
+    // Add columns to nav section
+    navColumns.forEach((col, index) => {
+      if(index === 0){
+        navSection.appendChild(col);
+      }
+      if (index >= 1) {
+        navigationLinksWrapper.appendChild(col);
+      }
+    });
+
+    navSection.appendChild(navigationLinksWrapper);
     
     // Create bottom section for copyright and links
     const bottomSection = document.createElement('div');
