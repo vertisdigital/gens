@@ -112,16 +112,6 @@
     ]
   },
   {
-    "id": "tabscomponent",
-    "fields": [
-      {
-        "component": "text",
-        "name": "title",
-        "label": "Title"
-      }
-    ]
-  },
-  {
     "id": "card",
     "fields": [
       {
@@ -166,6 +156,16 @@
         "component": "aem-content",
         "name": "reference",
         "label": "Reference"
+      }
+    ]
+  },
+  {
+    "id": "tabs",
+    "fields": [
+      {
+        "component": "text",
+        "name": "title",
+        "label": "Title"
       }
     ]
   },

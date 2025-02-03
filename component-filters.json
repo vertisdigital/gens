@@ -22,11 +22,11 @@
       "socialLinks",
       "links",
       "imageLink",
-      "tabscomponent"
+      "tabs"
     ]
   },
   {
-    "id": "tabscomponent",
+    "id": "tabs",
     "components": [
       "text",
       "image",
