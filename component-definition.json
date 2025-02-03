@@ -284,14 +284,14 @@
           }
         },
         {
-          "title": "Tabs",
+          "title": "tabs",
           "id": "tabs",
           "plugins": {
             "xwalk": {
               "page": {
                 "resourceType": "core/franklin/components/section/v1/section",
                 "template": {
-                  "name": "Tabs",
+                  "name": "tabs",
                   "model": "tabs",
                   "filter": "section"
                 }
