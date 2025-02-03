@@ -364,6 +364,18 @@
           {
             "name": "Top Right Arrow",
             "value": "top-right-arrow"
+          },
+          {
+            "name": "Twitter",
+            "value": "twitter"
+          },
+          {
+            "name": "Linked In",
+            "value": "linked-in"
+          },
+          {
+            "name": "Youtube",
+            "value": "youtube"
           }
         ]
       },
