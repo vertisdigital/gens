@@ -101,7 +101,7 @@ export default async function decorate(block) {
     // Add description
     const description = document.createElement('p');
     description.className = 'footer-description';
-    description.textContent = container.querySelector('[data-aue-prop="description"]')?.textContent;
+    description.textContent = container.querySelector('[data-richtext-prop="description"]')?.textContent;
     //description.setAttribute('data-aue-resource', container.querySelector('[data-aue-model="linkField"]').getAttribute('data-aue-resource'));
     description.setAttribute('data-aue-prop', 'linkText');
     description.setAttribute('data-aue-label', 'Text');
