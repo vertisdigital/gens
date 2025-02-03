@@ -342,7 +342,7 @@ export default async function decorate(block) {
       textDiv.setAttribute('data-aue-label', 'Text');
       textDiv.setAttribute('data-aue-filter', 'text');
       textDiv.setAttribute('data-aue-type', 'richtext');
-      textDiv.setAttribute('data-aue-resource', bottomContent.querySelector('[data-richtext-prop="text"]').getAttribute('data-aue-resource'));
+      textDiv.setAttribute('data-aue-resource', bottomContent.querySelector('[data-richtext-prop="text"]').getAttribute('data-richtext-resource'));
 
       // Create links container
       const linksDiv = document.createElement('div');
