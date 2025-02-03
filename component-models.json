@@ -427,9 +427,11 @@
         "multi": false
       },
       {
-        "component": "text",
+        "component": "richtext",
         "name": "description",
-        "label": "Description"
+        "value": "",
+        "label": "Description",
+        "valueType": "string"
       }
     ]
   }
