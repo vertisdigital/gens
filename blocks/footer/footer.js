@@ -214,12 +214,12 @@ export default async function decorate(block) {
         const nav = document.createElement('nav');
 
         // Get section title
-        const title = linkSection.querySelector('[data-aue-prop="title"]');
+        const title = linkSection.querySelector('[data-aue-prop="linkText"]');
 
         if (title) {
           // Create heading element for title
           const heading = document.createElement('h2');
-          heading.textContent = title.textContent;
+          heading.textContent = title.innerHTML;
           heading.className = 'footer-nav-title';
           nav.appendChild(heading);
           nav.setAttribute('aria-label', title.textContent);
