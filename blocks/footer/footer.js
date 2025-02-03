@@ -148,7 +148,7 @@ export default async function decorate(block) {
     navSection.appendChild(logoColumn);
     
     // Get all navigation sections from the fragment
-    const navigationLinksWrapper = document.createElement('div');
+    const navigationLinksWrapper = document.createElement('p');
     navigationLinksWrapper.className = 'left-navigation-links-wrapper';
     Object.entries(commonAttributes).forEach(([key, value]) => {
       navigationLinksWrapper.setAttribute(key, value);
