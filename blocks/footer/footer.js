@@ -329,6 +329,7 @@ export default async function decorate(block) {
       columnsContainer.className = 'footer-bottom-links';
       columnsContainer.setAttribute('data-aue-label', 'Column');
       columnsContainer.setAttribute('data-aue-filter', 'column');
+      columnsContainer.setAttribute('data-aue-type', 'container');
       columnsContainer.setAttribute('data-aue-resource', bottomContent.querySelector('[data-aue-label="Column"]').getAttribute('data-aue-resource'));
       
       // Create inner div structure
