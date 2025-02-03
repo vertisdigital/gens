@@ -251,7 +251,7 @@
         "name": "date",
         "label": "Date",
         "valueType": "date",
-        "placeholder":  "MMM DD, YYYY",
+        "placeholder":  "YYYY-MM-DD",
         "displayFormat": null,
         "valueFormat": null,
         "validation": {
