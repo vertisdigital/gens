@@ -310,6 +310,19 @@ export default async function decorate(block) {
     
     // Get bottom section content
     const bottomContent = findColumnWrapper(fragment.firstElementChild, 1);
+    
+    // Get data attributes from columns element
+    const columnsElement = bottomContent.querySelector('[data-aue-model="columns"]');
+    if (columnsElement) {
+      // Copy data attributes to bottom section
+      const dataAttrs = columnsElement.attributes;
+      Array.from(dataAttrs).forEach(attr => {
+        if (attr.name.startsWith('data-')) {
+          bottomSection.setAttribute(attr.name, attr.value);
+        }
+      });
+    }
+    
     if (bottomContent) {
       // Create columns dynamically based on bottom content
       const bottomColumns = Array.from(bottomContent.querySelectorAll('.columns > div > div')).map((_, index) => {
