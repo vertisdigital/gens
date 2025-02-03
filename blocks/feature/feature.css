@@ -36,16 +36,23 @@
 
 .about-us-left .about-us-left-sub-heading{
  margin: 0;
- margin-bottom: 18px;
+ margin-bottom: 10px;
  font-size: 12px;
 }
 
+
+
 .about-us-left a.button{
+  
+  padding: 10px;
+  display: inline-flex;
   background: none;
-  padding: 0;
   margin: 0;
 }
-
+.about-us-left .button-container a span{
+  width: 16px;
+  height: 16px;
+}
 .about-us-left .about-us-left-link svg{
   color:var(--primary-gold);
 }
@@ -82,7 +89,7 @@
 
   border-top: 1px solid var(--text-color);
   align-items: flex-start;
-  padding-top: 10px;
+  padding-top: 12px;
   margin-bottom: 40px;
 
   /* padding-bottom: 40px; */
@@ -153,7 +160,10 @@ color: var(--body-text-color);
   .about-us-left .about-us-left-sub-heading{
     font-size: 16px;
     line-height: 24px;
-    margin-bottom: 22px;
+    margin-bottom: 10px;
+  }
+  .about-us-left a.button{
+    padding: 12px;
   }
 
   .about-us-stats .about-us-right-content .statistic{
@@ -162,6 +172,9 @@ color: var(--body-text-color);
   }
   .about-us-stats .about-us-right-content>div:nth-child(2) p{
     font-size: 16px;
+  }
+  .about-us-stats .about-us-right-content.text-container{
+    padding-top: 16px;
   }
 }
 
@@ -187,9 +200,12 @@ color: var(--body-text-color);
   }
 
   .about-us-left .about-us-left-sub-heading{
-    margin-bottom: 25px;
+    margin-bottom: 10px;
   }
 
+  .about-us-left a.button{
+    padding: 16px;
+  }
   .about-us-stats .about-us-right-content{
     column-gap: 20px;
   }
@@ -208,5 +224,8 @@ color: var(--body-text-color);
   .about-us-stats .about-us-right-content .statistic span:nth-child(2){
     padding-left: 14px;
     font-weight: 400;
+  }
+  .about-us-stats .about-us-right-content.text-container{
+    padding-top: 20px;
   }
 }
