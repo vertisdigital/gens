@@ -112,6 +112,16 @@
     ]
   },
   {
+    "id": "tabscomponent",
+    "fields": [
+      {
+        "component": "text",
+        "name": "title",
+        "label": "Title"
+      }
+    ]
+  },
+  {
     "id": "card",
     "fields": [
       {

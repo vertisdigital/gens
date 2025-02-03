@@ -284,36 +284,21 @@
           }
         },
         {
-          "title": "Tabs",
-          "id": "tabs",
+          "title": "TabsComponent",
+          "id": "tabscomponent",
           "plugins": {
             "xwalk": {
               "page": {
-                "resourceType": "core/franklin/components/block/v1/block",
+                "resourceType": "core/franklin/components/section/v1/section",
                 "template": {
-                  "name": "Tabs",
-                  "model": "tabs",
-                  "filter": "tabs"
+                  "name": "TabsComponent",
+                  "model": "tabscomponent",
+                  "filter": "tabscomponent"
                 }
               }
             }
           }
-        },
-        {
-          "title": "Tab Item",
-          "id": "tabitem",
-          "plugins": {
-            "xwalk": {
-              "page": {
-                "resourceType": "core/franklin/components/block/v1/block/item",
-                "template": {
-                  "name": "Tab Item",
-                  "model": "tabitem"
-                }
-              }
-            }
-          }
-        }
+        } 
       ]
     }
   ]

@@ -21,8 +21,26 @@
       "linkField",
       "socialLinks",
       "links",
-      "imageLink",
-      "tabs"
+      "imageLink"
+    ]
+  },
+  {
+    "id": "tabscomponent",
+    "components": [
+      "text",
+      "image",
+      "button",
+      "title",
+      "hero",
+      "herobanner",
+      "cards",
+      "columns",
+      "fragment",
+      "feature",
+      "linkField",
+      "socialLinks",
+      "links",
+      "imageLink"
     ]
   },
   {
