@@ -383,22 +383,12 @@
     ]
   },
   {
-    "id": "tabs",
+    "id": "tabItem",
     "fields": [
       {
         "component": "text",
-        "name": "tabtitle1",
+        "name": "tabtitle",
         "label": "Tab Title1"
-      },
-      {
-        "component": "text",
-        "name": "tabtitle2",
-        "label": "Tab Title2"
-      },
-      {
-        "component": "text",
-        "name": "tabtitle3",
-        "label": "Tab Title3"
       }
     ]
   }

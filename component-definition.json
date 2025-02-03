@@ -293,7 +293,23 @@
                 "template": {
                   "name": "tabs",
                   "model": "tabs",
-                  "filter": "section"
+                  "filter": "section",
+                  "tabItem": "2"
+                }
+              }
+            }
+          }
+        },
+        {
+          "title": "Tab Item",
+          "id": "tabItem",
+          "plugins": {
+            "xwalk": {
+              "page": {
+                "resourceType": "core/franklin/components/block/v1/block/item",
+                "template": {
+                  "name": "Tab Item",
+                  "model": "tabItem"
                 }
               }
             }
@@ -302,4 +318,5 @@
       ]
     }
   ]
+
 }
