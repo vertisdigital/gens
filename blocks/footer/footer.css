@@ -12,12 +12,12 @@
 
 .footer .columns-wrapper:last-child {
     margin-bottom: 0;
-    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    border-top: 1px solid rgb(255 255 255 / 10%);
     padding-top: 1.5rem;
 }
 
 /* Section layout - only for desktop */
-@media (min-width: 992px) {
+@media (width >= 992px) {
     .footer .right-section {
         width: 25%;
         float: left;
@@ -37,7 +37,7 @@
 }
 
 /* Mobile layout */
-@media (max-width: 768px) {
+@media (width <= 768px) {
     .footer {
         padding: 1.5rem 0;
     }
@@ -71,7 +71,7 @@
 
 /* Description styles */
 .footer-description {
-    color: rgba(255, 255, 255, 0.8);
+    color: rgb(255 255 255 / 80%);
     font-size: 0.9rem;
     line-height: 1.5;
     margin-bottom: 1.5rem;
@@ -84,23 +84,29 @@
     margin-bottom: 2rem;
 }
 
+/* First, place the base footer link styles */
+.footer a {
+  text-decoration: none;
+  color: bisque;
+  font-size: 16px;
+  transition: color 0.3s ease;
+}
+
+/* Then place the more specific social icon styles */
 .social-icons a {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    width: 32px;
-    height: 32px;
-    border: 1px solid rgba(255, 255, 255, 0.3);
-    border-radius: 50%;
-    color: #fff;
-    transition: all 0.3s ease;
-    font-size: 16px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  margin-right: 16px;
+  border-radius: 50%;
+  background-color: var(--social-icon-bg, #f5f5f5);
+  transition: background-color 0.3s ease;
 }
 
 .social-icons a:hover {
-    background-color: #fff;
-    color: #8B7355;
-    border-color: #fff;
+  background-color: var(--social-icon-hover-bg, #e0e0e0);
 }
 
 .social-icons .icon {
@@ -115,7 +121,7 @@
 
 /* Link styles */
 .footer .button {
-    color: rgba(255, 255, 255, 0.8);
+    color: rgb(255 255 255 / 80%);
     text-decoration: none;
     display: block;
     padding: 0.5rem 0;
@@ -137,7 +143,7 @@
 /* Copyright section */
 .footer [data-aue-type="richtext"] {
     font-size: 0.8rem;
-    color: rgba(255, 255, 255, 0.7);
+    color: rgb(255 255 255 / 70%);
 }
 
 /* Accessibility */
@@ -159,9 +165,4 @@
 
 .footer [data-aue-prop="linkTarget"] {
     display: none;
-}
-
-.footer a {
-  font-size: 16px;
-  color: bisque;
 }

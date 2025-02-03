@@ -103,7 +103,6 @@ export default async function decorate(block) {
     const description = document.createElement('p');
     description.className = 'footer-description';
     description.textContent = container.querySelector('[data-richtext-prop="description"]')?.textContent;
-    // description.setAttribute('data-aue-resource', container.querySelector('[data-aue-model="linkField"]').getAttribute('data-aue-resource'));
     description.setAttribute('data-aue-prop', 'linkText');
     description.setAttribute('data-aue-label', 'Text');
     description.setAttribute('data-aue-type', 'text');
@@ -122,11 +121,13 @@ export default async function decorate(block) {
     socialLinksContainer.setAttribute('data-aue-filter', 'socialLinks');
     socialLinksContainer.setAttribute(
       'data-aue-resource',
-      container.querySelector('.social-links').getAttribute('data-aue-resource')
+      container.querySelector('.social-links').getAttribute('data-aue-resource'),
     );
 
     // Get all social link fields from DOM
-    const socialLinkFields = container.querySelector('.social-links').querySelectorAll('[data-aue-model="linkField"]');
+    const socialLinkFields = container
+      .querySelector('.social-links')
+      .querySelectorAll('[data-aue-model="linkField"]');
 
     socialLinkFields.forEach((field) => {
       // Create link field container
@@ -399,7 +400,7 @@ export default async function decorate(block) {
       bottomColumnsContainer.setAttribute('data-aue-type', 'container');
       bottomColumnsContainer.setAttribute(
         'data-aue-resource',
-        bottomContent.querySelector('[data-aue-label="Column"]').getAttribute('data-aue-resource')
+        bottomContent.querySelector('[data-aue-label="Column"]').getAttribute('data-aue-resource'),
       );
 
       // Create inner div structure
