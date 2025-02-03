@@ -177,7 +177,6 @@
         "component": "text",
         "name": "bannertitle",
         "label": "Banner Title",
-        "required": true,
         "validation": {
           "maxLength": 100,
           "customErrorMsg": "Banner title cannot exceed 100 characters"
