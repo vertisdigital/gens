@@ -94,11 +94,5 @@
     "components": [
       "bannercarousel"
     ]
-  },
-  {
-    "id": "tabs",
-    "components": [
-      "tabitem"
-    ]
   }
 ]
