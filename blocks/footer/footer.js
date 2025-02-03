@@ -1,6 +1,6 @@
 import { getMetadata } from '../../scripts/aem.js';
 import { loadFragmentCustom } from '../fragment/fragment.js';
-import { SVGIcon } from '../../shared/SVGIcon/SVGIcon.js';
+import SVGIcon  from '../../shared-components/SvgIcon.js';
 
 /**
  * loads and decorates the footer
@@ -111,13 +111,7 @@ export default async function decorate(block) {
     // Add social icons
     const socialWrapper = document.createElement('div');
     socialWrapper.className = 'social-icons';
-    
-    const socialIcons = [
-      { icon: 'twitter', href: '#', label: 'Twitter' },
-      { icon: 'linkedin', href: '#', label: 'LinkedIn' },
-      { icon: 'youtube', href: '#', label: 'YouTube' }
-    ];
-
+  
     // Create social links container with data attributes
     const socialLinksContainer = document.createElement('div');
     socialLinksContainer.className = 'social-links';
