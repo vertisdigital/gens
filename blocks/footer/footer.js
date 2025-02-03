@@ -260,11 +260,19 @@ export default async function decorate(block) {
         // Create right and left sections for desktop
         const rightSection = document.createElement('div');
         rightSection.className = 'right-section';
+        rightSection.setAttribute('data-aue-resource', sourceSection.querySelector('[data-aue-label="Column"]').getAttribute('data-aue-resource'));
+        rightSection.setAttribute('data-aue-type', 'container');
+        rightSection.setAttribute('data-aue-label', 'Column');
+        rightSection.setAttribute('data-aue-filter', 'column');
         const rightRow = document.createElement('div');
         rightRow.className = 'row';
         
         const leftSection = document.createElement('div');
         leftSection.className = 'left-section';
+        leftSection.setAttribute('data-aue-resource', sourceSection.querySelector('[data-aue-label="Column"]').getAttribute('data-aue-resource'));
+        leftSection.setAttribute('data-aue-type', 'container');
+        leftSection.setAttribute('data-aue-label', 'Column');
+        leftSection.setAttribute('data-aue-filter', 'column');
         const leftRow = document.createElement('div');
         leftRow.className = 'row';
         
