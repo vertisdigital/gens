@@ -47,12 +47,7 @@ export default async function decorate(block) {
     // Append section and footer to main
     main.appendChild(section);
 
-    // Remove old footer if exists, but don't remove main content
-    const existingFooter = document.querySelector('[role="contentinfo"]');
-    if (existingFooter) {
-      existingFooter.remove();
-    }
-
+    document.getElementsByTagName('main')[0].remove();
     const footer = document.createElement('div');
     // const container = fragment.firstElementChild;
     const findColumnWrapper = (blockElement, index) => {
@@ -395,14 +390,14 @@ export default async function decorate(block) {
     const bottomContent = findColumnWrapper(fragment.firstElementChild, 1);
 
     if (bottomContent) {
-      // Create columns container
-      const columnsContainer = document.createElement('div');
-      columnsContainer.setAttribute('data-aue-type', 'container');
-      columnsContainer.setAttribute('data-aue-model', 'columns');
-      columnsContainer.setAttribute('data-aue-label', 'Columns');
-      columnsContainer.setAttribute('data-aue-filter', 'columns');
-      columnsContainer.setAttribute('data-aue-resource', bottomContent.getAttribute('data-aue-resource'));
-      columnsContainer.className = 'footer-bottom-links';
+      // Create columns container - renamed to avoid shadowing
+      const bottomColumnsContainer = document.createElement('div');
+      bottomColumnsContainer.setAttribute('data-aue-type', 'container');
+      bottomColumnsContainer.setAttribute('data-aue-model', 'columns');
+      bottomColumnsContainer.setAttribute('data-aue-label', 'Columns');
+      bottomColumnsContainer.setAttribute('data-aue-filter', 'columns');
+      bottomColumnsContainer.setAttribute('data-aue-resource', bottomContent.getAttribute('data-aue-resource'));
+      bottomColumnsContainer.className = 'footer-bottom-links';
 
       // Create column container
       const columnContainer = document.createElement('div');
@@ -492,8 +487,8 @@ export default async function decorate(block) {
       row.appendChild(textContainer);
       row.appendChild(linksContainer);
       columnContainer.appendChild(row);
-      columnsContainer.appendChild(columnContainer);
-      bottomSection.appendChild(columnsContainer);
+      bottomColumnsContainer.appendChild(columnContainer);
+      bottomSection.appendChild(bottomColumnsContainer);
     }
 
     // Assemble the footer
