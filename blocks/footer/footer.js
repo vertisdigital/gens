@@ -275,8 +275,8 @@ export default async function decorate(block) {
         leftSection.appendChild(leftRow);
         
         // Add sections to main container
-        topContainer.appendChild(leftSection);
         topContainer.appendChild(rightSection);
+        topContainer.appendChild(leftSection);
         mainContainer.appendChild(topContainer);
         
       } else if (!isDesktop && mainContainer.querySelector('.right-section')) {
