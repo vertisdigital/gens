@@ -525,14 +525,7 @@ export default async function decorate(block) {
       // Clear existing content without removing the element
       existingMain.innerHTML = '';
       // Copy over any important attributes
-      Array.from(main.attributes).forEach(attr => {
-        existingMain.setAttribute(attr.name, attr.value);
-      });
-      // Add new content
-      existingMain.appendChild(section);
-    } else {
-      // If no existing main, append the new one
-      block.appendChild(main);
     }
+    block.appendChild(main);
   }
 }
