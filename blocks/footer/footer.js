@@ -60,12 +60,6 @@ export default async function decorate(block) {
     };
     
     const container = findColumnWrapper(fragment.firstElementChild, 0);
-    // Copy all data attributes from the original container
-    Array.from(container.attributes).forEach(attr => {
-      if (attr.name.startsWith('data-')) {
-        footer.setAttribute(attr.name, attr.value);
-      }
-    });
     
     footer.setAttribute('role', 'contentinfo');
     //footer.className = container.className;
@@ -244,6 +238,14 @@ export default async function decorate(block) {
       
       if (isDesktop && !mainContainer.querySelector('.right-section')) {
         // Create right and left sections for desktop
+        const topContainer = document.createElement('div');
+        topContainer.className = 'top-container';
+        Array.from(container.attributes).forEach(attr => {
+          if (attr.name.startsWith('data-')) {
+            topContainer.setAttribute(attr.name, attr.value);
+          }
+        });
+
         const rightSection = document.createElement('div');
         rightSection.className = 'right-section';
         rightSection.setAttribute('data-aue-resource', sourceSection.querySelector('[data-aue-label="Column"]').getAttribute('data-aue-resource'));
@@ -255,7 +257,7 @@ export default async function decorate(block) {
         
         const leftSection = document.createElement('div');
         leftSection.className = 'left-section';
-        leftSection.setAttribute('data-aue-resource', sourceSection.querySelector('[data-aue-label="Column"]').getAttribute('data-aue-resource'));
+        leftSection.setAttribute('data-aue-resource', sourceSection.querySelector('[data-aue-label="Column"]').getAttribute('data-aue-resource')); 
         leftSection.setAttribute('data-aue-type', 'container');
         leftSection.setAttribute('data-aue-label', 'Column');
         leftSection.setAttribute('data-aue-filter', 'column');
@@ -273,8 +275,9 @@ export default async function decorate(block) {
         leftSection.appendChild(leftRow);
         
         // Add sections to main container
-        mainContainer.insertBefore(leftSection, mainContainer.firstChild);
-        mainContainer.insertBefore(rightSection, mainContainer.firstChild);
+        topContainer.appendChild(leftSection);
+        topContainer.appendChild(rightSection);
+        mainContainer.appendChild(topContainer);
         
       } else if (!isDesktop && mainContainer.querySelector('.right-section')) {
         // Remove sections and restore original layout for tablet/mobile
