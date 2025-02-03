@@ -159,7 +159,7 @@ export default async function decorate(block) {
       col.className = 'col-xl-3 col-md-3 col-sm-4';
       return col;
     });
-    
+    navigationLinksWrapper.append(navColumns);
     // Move navigation content to columns
     navigationLinks.forEach((linkSection, index) => {
       if (navColumns[index]) {
