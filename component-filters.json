@@ -30,18 +30,10 @@
     "components": [
       "text",
       "image",
-      "button",
-      "title",
-      "hero",
-      "herobanner",
       "cards",
-      "columns",
-      "fragment",
       "feature",
       "linkField",
-      "socialLinks",
-      "links",
-      "imageLink"
+      "links"
     ]
   },
   {
