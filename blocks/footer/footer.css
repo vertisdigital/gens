@@ -16,6 +16,24 @@
     padding-top: 1.5rem;
 }
 
+/* Section layout */
+.footer .right-section {
+    width: 25%; /* Takes 3 columns out of 12 */
+    float: left;
+    padding-right: 15px;
+}
+
+.footer .left-section {
+    width: 75%; /* Takes 9 columns out of 12 */
+    float: left;
+    padding-left: 15px;
+}
+
+/* Clear float for bottom section */
+.footer .mt-4 {
+    clear: both;
+}
+
 /* Logo styles */
 .footer-logo {
     margin-bottom: 1.5rem;
@@ -100,6 +118,17 @@
 @media (width <= 768px) {
     .footer {
         padding: 1.5rem 0;
+    }
+
+    .footer .right-section,
+    .footer .left-section {
+        width: 100%;
+        float: none;
+        padding: 0;
+    }
+
+    .footer .right-section {
+        margin-bottom: 2rem;
     }
 
     .footer nav {
