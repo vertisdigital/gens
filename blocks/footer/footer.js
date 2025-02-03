@@ -47,7 +47,7 @@ export default async function decorate(block) {
     // Append section and footer to main
     main.appendChild(section);
 
-    document.getElementsByTagName('main')[0].remove();
+    //document.getElementsByTagName('main')[0].remove();
     const footer = document.createElement('div');
     // const container = fragment.firstElementChild;
     const findColumnWrapper = (blockElement, index) => {
@@ -221,7 +221,7 @@ export default async function decorate(block) {
           const heading = document.createElement('h2');
           heading.textContent = title.textContent;
           heading.className = 'footer-nav-title';
-          
+
           heading.setAttribute('data-aue-prop', 'linkText');
           heading.setAttribute('data-aue-label', 'Text'); 
           heading.setAttribute('data-aue-type', 'text');
