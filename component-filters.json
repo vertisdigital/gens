@@ -76,7 +76,8 @@
   {
     "id": "imageLink",
     "components": [
-      "linkField"
+      "linkField",
+      "text"
     ]
   },
   {
