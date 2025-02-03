@@ -364,6 +364,8 @@ main .section.highlight {
 
   .row {
     --bs-gutter-x: 36px;
+    display: flex;
+    flex-wrap: wrap;
   }
 
   /* Row-cols selectors first */
