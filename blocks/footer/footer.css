@@ -94,6 +94,7 @@
     border-radius: 50%;
     color: #fff;
     transition: all 0.3s ease;
+    font-size: 16px;
 }
 
 .social-icons a:hover {
@@ -118,7 +119,7 @@
     text-decoration: none;
     display: block;
     padding: 0.5rem 0;
-    font-size: 0.9rem;
+    font-size: 16px;
     transition: color 0.3s ease;
 }
 
@@ -158,4 +159,9 @@
 
 .footer [data-aue-prop="linkTarget"] {
     display: none;
+}
+
+.footer a {
+  font-size: 16px;
+  color: bisque;
 }
