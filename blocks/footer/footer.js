@@ -74,9 +74,16 @@ export default async function decorate(block) {
     const mainContainer = document.createElement('div');
     mainContainer.className = 'footer container-xl container-md container-sm';
     
-    // Create first section for navigation
-    const navSection = document.createElement('div');
-    navSection.className = 'row';
+    // Create right and left sections
+    const rightSection = document.createElement('div');
+    rightSection.className = 'right-section';
+    const rightRow = document.createElement('div');
+    rightRow.className = 'row';
+
+    const leftSection = document.createElement('div');
+    leftSection.className = 'left-section';
+    const leftRow = document.createElement('div');
+    leftRow.className = 'row';
 
     // Create logo and description column
     const logoColumn = document.createElement('div');
@@ -145,22 +152,21 @@ export default async function decorate(block) {
       });
     }
     logoColumn.append(logoWrapper, description, socialWrapper);
-    navSection.appendChild(logoColumn);
-    
+
+    // Add logo column to right section
+    rightRow.appendChild(logoColumn);
+    rightSection.appendChild(rightRow);
+
     // Get all navigation sections from the fragment
-    const navigationLinksWrapper = document.createElement('p');
-    navigationLinksWrapper.className = 'left-navigation-links-wrapper';
-    Object.entries(commonAttributes).forEach(([key, value]) => {
-      navigationLinksWrapper.setAttribute(key, value);
-    });
     const navigationLinks = Array.from(container.querySelectorAll('.links'));
-    
+
     // Create columns dynamically based on navigation sections
     const navColumns = navigationLinks.map(() => {
       const col = document.createElement('div');
       col.className = 'col-xl-3 col-md-3 col-sm-4';
       return col;
     });
+
     // Move navigation content to columns
     navigationLinks.forEach((linkSection, index) => {
       if (navColumns[index]) {
@@ -248,15 +254,13 @@ export default async function decorate(block) {
         navColumns[index].appendChild(nav);
       }
     });
-    
-    
-    // Add columns to nav section
-    navColumns.forEach((col, index) => {
-      navigationLinksWrapper.appendChild(col);
-    });
 
-    navSection.appendChild(navigationLinksWrapper);
-    
+    // Add navigation columns to left section
+    navColumns.forEach(col => {
+      leftRow.appendChild(col);
+    });
+    leftSection.appendChild(leftRow);
+
     // Create bottom section for copyright and links
     const bottomSection = document.createElement('div');
     bottomSection.className = 'row mt-4';
@@ -293,7 +297,7 @@ export default async function decorate(block) {
     }
     
     // Assemble the footer
-    mainContainer.append(navSection, bottomSection);
+    mainContainer.append(rightSection, leftSection, bottomSection);
     footer.appendChild(mainContainer);
     
     // Add keyboard navigation
