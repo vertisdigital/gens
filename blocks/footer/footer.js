@@ -12,8 +12,40 @@ export default async function decorate(block) {
   const fragment = await loadFragmentCustom(footerPath);
   
   if (fragment && fragment.firstElementChild) {
+    // Create main element with data attributes
+    const main = document.createElement('main');
+    main.setAttribute('data-aue-resource', '');
+    main.setAttribute('data-aue-label', 'Main');
+    main.setAttribute('data-aue-filter', 'main');
+
+    // Create section element with data attributes
+    const section = document.createElement('section');
+    // Get the source section element from fragment
+    const sourceSection = fragment.querySelector('[data-aue-model="section"]');
+    
+    // Copy all data attributes from source section
+    if (sourceSection) {
+      const dataAttributes = {
+        'data-aue-type': 'container',
+        'data-aue-resource': sourceSection.getAttribute('data-aue-resource'),
+        'data-aue-behavior': 'component', 
+        'data-aue-model': 'section',
+        'data-aue-label': 'Section',
+        'data-aue-filter': 'section'
+      };
+      
+      Object.entries(dataAttributes).forEach(([key, value]) => {
+        if (value) {
+          section.setAttribute(key, value);
+        }
+      });
+    }
+
+    // Append section and footer to main
+    main.appendChild(section);
+    
     document.getElementsByTagName('main')[0].remove();
-    const footer = document.createElement('footer');
+    const footer = document.createElement('div');
     //const container = fragment.firstElementChild;
     const findColumnWrapper = (block, index) => {
       // Check first and last children for columns-wrapper
@@ -257,6 +289,7 @@ export default async function decorate(block) {
         }
       });
     });
-    block.append(footer);
+    section.appendChild(footer);
+    block.append(main);
   }
 }
