@@ -89,7 +89,7 @@ export default async function decorate(block) {
     const logoImg = container.querySelector('.image-link img');
     if (logoImg) {
       logo.src = logoImg.src;
-      logo.setAttribute('data-aue-prop', 'linkImage');
+      logo.setAttribute('data-aue-resource', container.querySelector('.image-link'));
       logo.setAttribute('data-aue-label', 'Link Image'); 
       logo.setAttribute('data-aue-type', 'media');
       logo.alt = logoImg.alt || 'Genting Singapore';
@@ -99,7 +99,8 @@ export default async function decorate(block) {
     // Add description
     const description = document.createElement('p');
     description.className = 'footer-description';
-    description.textContent = container.querySelector('.image-link [data-aue-prop="linkText"]')?.textContent;
+    description.textContent = container.querySelector('[data-aue-prop="linkText"]')?.textContent;
+    description.setAttribute('data-aue-resource', container.querySelector('data-aue-model="linkField'));
     description.setAttribute('data-aue-prop', 'description');
     description.setAttribute('data-aue-label', 'Description');
     description.setAttribute('data-aue-type', 'text');
@@ -127,23 +128,7 @@ export default async function decorate(block) {
       socialWrapper.appendChild(link);
     });
 
-    // Assemble logo column
-    // Get data-aue-resource from the first column in the fragment
-    const firstCol = container.querySelector('[data-aue-label="Column"]');
-    // Common data attributes for both wrappers
-    const commonAttributes = {
-      'data-aue-resource': firstCol ? firstCol.getAttribute('data-aue-resource') : '',
-      'data-aue-type': 'container',
-      'data-aue-label': 'Column', 
-      'data-aue-filter': 'column'
-    };
-
     // Apply attributes to logo column
-    if (firstCol) {
-      Object.entries(commonAttributes).forEach(([key, value]) => {
-        logoColumn.setAttribute(key, value);
-      });
-    }
     logoColumn.append(logoWrapper, description, socialWrapper);
 
     // Add logo column to columns container
