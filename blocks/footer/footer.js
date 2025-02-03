@@ -14,9 +14,10 @@ export default async function decorate(block) {
   if (fragment && fragment.firstElementChild) {
     // Create main element with data attributes
     const main = document.createElement('main');
-    main.setAttribute('data-aue-resource', '');
+    main.setAttribute('data-aue-resource', 'urn:aemconnection:/content/genting-singapore/footer/jcr:content/root');
     main.setAttribute('data-aue-label', 'Main');
     main.setAttribute('data-aue-filter', 'main');
+    main.setAttribute('data-aue-type', 'container');
 
     // Create section element with data attributes
     const section = document.createElement('section');
