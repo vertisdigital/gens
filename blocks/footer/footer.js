@@ -219,7 +219,7 @@ export default async function decorate(block) {
         if (title) {
           // Create heading element for title
           const heading = document.createElement('h2');
-          heading.textContent = title.innerHTML;
+          heading.textContent = title.textContent;
           heading.className = 'footer-nav-title';
           nav.appendChild(heading);
           nav.setAttribute('aria-label', title.textContent);
@@ -261,7 +261,7 @@ export default async function decorate(block) {
             const newLink = document.createElement('a');
             newLink.href = anchor.href;
             newLink.className = 'anchor.className';
-            newLink.textContent = anchor.title; // Use title attribute as link text
+            newLink.textContent = anchor.innerHTML;
 
             // Copy data attributes from original anchor
             Array.from(anchor.attributes).forEach((attr) => {
