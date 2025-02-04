@@ -82,16 +82,18 @@ function buildAutoBlocks(main) {
     sections.forEach((section, index) => {
         let tabTitle = `Tab ${index + 1}`; // Default tab title
 
+        // Check if the section has the proper metadata for the tab title
         const metadata = section.querySelector(".section-metadata");
         if (metadata) {
             const titleDivs = metadata.querySelectorAll("div");
-            
-            // Extract only the second div's text (actual tab title), ignore "tabtitle"
+
+            // Extract only the second div's text (actual tab title), ignoring "tabtitle"
             if (titleDivs.length > 1) {
                 tabTitle = titleDivs[1].textContent.trim();
             }
 
-            metadata.remove(); // Completely remove metadata from the DOM
+            // Remove the metadata section after processing to clean up the DOM
+            metadata.remove();
         }
 
         // Skip duplicate tab titles
@@ -107,11 +109,13 @@ function buildAutoBlocks(main) {
         tabPanel.classList.add("tab-panel");
         if (tabsNav.children.length === 0) tabPanel.classList.add("active");
 
+        // Move all content from the section into the tabPanel
         while (section.firstChild) {
             tabPanel.appendChild(section.firstChild);
         }
 
-        section.remove(); // Remove the original section after moving content
+        // Remove the original section after moving content
+        section.remove();
 
         tabsNav.appendChild(tabButton);
         tabsContent.appendChild(tabPanel);
