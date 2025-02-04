@@ -80,7 +80,7 @@ function buildAutoBlocks(main) {
     sections.forEach((section, index) => {
       const metadata = section.querySelector(".section-metadata");
       const tabTitleElement = metadata ? metadata.querySelector("div:nth-child(2)") : null;
-      const tabTitle = tabTitleElement ? tabTitleElement.textContent.trim() : `Tab ${index + 1}`;
+      const tabTitle = tabTitleElement ? tabTitleElement.textContent.trim() : `TabTitle ${index + 1}`;
       console.log("tabTitle", tabTitle);
 
       const tabButton = document.createElement("button");
