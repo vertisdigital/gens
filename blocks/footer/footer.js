@@ -363,12 +363,12 @@ export default async function decorate(block) {
         topContainer.appendChild(rightSection);
         topContainer.appendChild(leftSection);
         mainContainer.appendChild(topContainer);
-      } else if (!isDesktop) {
+      } else if (!isDesktop && mainContainer.querySelector('.right-section')) {
         // Remove sections and restore original layout for tablet/mobile
-        //const rightSection = mainContainer.querySelector('.right-section');
-        //const leftSection = mainContainer.querySelector('.left-section');
+        const rightSection = mainContainer.querySelector('.right-section');
+        const leftSection = mainContainer.querySelector('.left-section');
 
-        //if (rightSection && leftSection) {
+        if (rightSection && leftSection) {
           // Move columns back to columns container
           columnsContainer.appendChild(logoColumn);
           navColumns.forEach((col) => {
@@ -376,12 +376,12 @@ export default async function decorate(block) {
           });
 
           // Remove sections
-          //rightSection.remove();
-          //leftSection.remove();
+          rightSection.remove();
+          leftSection.remove();
 
           // Add columns container back to main container
           mainContainer.insertBefore(columnsContainer, mainContainer.firstChild);
-        //}
+        }
       }
     };
 
