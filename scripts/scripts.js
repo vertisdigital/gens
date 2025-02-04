@@ -98,7 +98,7 @@ function buildAutoBlocks(main) {
         if (index === 0) tabPanel.classList.add("active"); // Set first panel as active by default
 
         // Step 3d: Move content from section into the tab panel
-        const tabContent = section.querySelector('[data-aue-filter="tabs"]');
+        const tabContent = section;
         while (tabContent.firstChild) {
             tabPanel.appendChild(tabContent.firstChild);
         }
