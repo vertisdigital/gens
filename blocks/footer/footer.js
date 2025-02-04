@@ -521,11 +521,11 @@ export default async function decorate(block) {
     section.appendChild(footer);
 
     // After all content is ready, update the DOM
-    if (existingMain) {
-      // Clear existing content without removing the element
-      existingMain.innerHTML = '';
-      // Copy over any important attributes
-    }
+    // if (existingMain) {
+    //   // Clear existing content without removing the element
+    //   existingMain.innerHTML = '';
+    //   // Copy over any important attributes
+    // }
     block.appendChild(main);
   }
 }
