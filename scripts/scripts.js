@@ -84,10 +84,13 @@ function buildAutoBlocks(main) {
 
         if (metadata) {
             const titleDivs = metadata.querySelectorAll("div");
+
+            // Ensure there are at least two divs and ignore the first one ("tabtitle")
             if (titleDivs.length > 1) {
-                tabTitle = titleDivs[1].textContent.trim(); // Get the actual tab name
+                tabTitle = titleDivs[1].textContent.trim(); // Extract the actual tab name
             }
-            metadata.style.display = "none"; // Hide metadata div
+
+            metadata.style.display = "none"; // Hide metadata div completely
         }
 
         // Avoid duplicates
