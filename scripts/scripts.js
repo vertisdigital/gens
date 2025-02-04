@@ -97,9 +97,9 @@ function buildAutoBlocks(main) {
         if (index === 0) tabPanel.classList.add("active");
 
         // Move content into the panel
-        while (section.firstChild) {
+        //while (section.firstChild) {
           tabPanel.appendChild(section.firstChild);
-        }
+       // }
 
         // Remove the original section after moving content
         section.remove();
