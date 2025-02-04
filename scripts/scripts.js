@@ -77,13 +77,9 @@ function buildAutoBlocks(main) {
     const tabsContent = document.createElement("div");
     tabsContent.classList.add("tabs-content");
 
-    sections.forEach((section, index) => {
-      console.log("section : ", section);
-      const metadata = section.querySelector(".section-metadata");
-      console.log("metadata : ", metadata);
-      //if (metadata) {
-      const tabTitleElement = metadata ? metadata.querySelector("div:nth-child(2)") : null;
-      const tabTitle = tabTitleElement ? tabTitleElement.textContent.trim() : `CustTitle ${index + 1}`;
+    sections.forEach((section, index) => { 
+      const metadata = section.querySelector(".section-metadata div:last-child"); ;
+      const tabTitle = metadata ? metadata.textContent.trim() : `CustTitle ${index + 1}`;
       
       //if (!tabTitle.startsWith("CustTitle")) {
         console.log("tabTitle : ", tabTitle);
@@ -102,7 +98,7 @@ function buildAutoBlocks(main) {
         }
 
         // Remove the original section after moving content
-        //section.remove();
+        section.remove();
 
         tabsNav.appendChild(tabButton);
         tabsContent.appendChild(tabPanel);
