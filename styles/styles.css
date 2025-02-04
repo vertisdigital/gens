@@ -765,6 +765,9 @@ main .section.highlight {
   flex-direction: column;
   width: 100%;
   margin: 0 auto;
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
+  border-radius: 10px;
+  overflow: hidden;
 }
 
 /* Tab Navigation (Tabs at the top) */
@@ -830,16 +833,10 @@ main .section.highlight {
   opacity: 1;
 }
 
-/* Optional: Add a nice box shadow for the tab container */
-.tabs-container {
-  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
-  border-radius: 10px;
-  overflow: hidden;
-}
-
 /* Add some padding to the tab content for better readability */
 .tab-panel p {
   font-size: 16px;
   line-height: 1.5;
   color: #555;
 }
+
