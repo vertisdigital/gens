@@ -78,6 +78,7 @@ function buildAutoBlocks(main) {
     tabsContent.classList.add("tabs-content");
 
     sections.forEach((section, index) => {
+      console.log("section : ", section);
       const metadata = section.querySelector(".section-metadata");
       console.log("metadata : ", metadata);
       //if (metadata) {
