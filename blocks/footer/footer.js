@@ -282,7 +282,7 @@ export default async function decorate(block) {
             // Create new button container
             const newButtonContainer = document.createElement('div');
             newButtonContainer.className = 'button-container';
-            newButtonContainer.setAttribute('data-aue-prop', 'linkText');
+            //newButtonContainer.setAttribute('data-aue-prop', 'linkText');
             newButtonContainer.appendChild(newLink);
 
             // Add target if exists
