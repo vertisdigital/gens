@@ -83,7 +83,7 @@ function buildAutoBlocks(main) {
       const tabTitleElement = metadata ? metadata.querySelector("div:nth-child(2)") : null;
       const tabTitle = tabTitleElement ? tabTitleElement.textContent.trim() : `CustTitle ${index + 1}`;
       
-      if (!tabTitle.startsWith("CustTitle")) {
+      //if (!tabTitle.startsWith("CustTitle")) {
         console.log("tabTitle : ", tabTitle);
         const tabButton = document.createElement("button");
         tabButton.classList.add("tab-button");
@@ -104,7 +104,7 @@ function buildAutoBlocks(main) {
 
         tabsNav.appendChild(tabButton);
         tabsContent.appendChild(tabPanel);
-      }
+    //  }
     });
 
     tabsWrapper.appendChild(tabsNav);
