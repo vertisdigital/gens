@@ -1,4 +1,5 @@
 export const MOCK_CONTENT = {
+<<<<<<< HEAD
   columns: `
           <div class="columns-wrapper"><div class="columns block columns-2-cols" data-aue-resource="urn:aemconnection:/content/genting-poc/index/jcr:content/root/section_1/columns" data-aue-type="container" data-aue-model="columns" data-aue-label="Columns" data-aue-filter="columns" data-aue-behavior="component" data-block-name="columns" data-block-status="loaded">
       <div>
@@ -27,6 +28,8 @@ export const MOCK_CONTENT = {
   
   </div></div>
         `,
+=======
+>>>>>>> 272fc0e6c81cccd9aaaa1ac15a49d60b1995a27d
   'about-us': `<div class="about-us-wrapper"><div data-aue-resource="urn:aemconnection:/content/genting-singapore/index/TestPage1/jcr:content/root/section_2/block_1717109353" data-aue-type="container" data-aue-behavior="component" data-aue-model="aboutus" data-aue-label="About Us" data-aue-filter="aboutus" class="about-us block" style="" data-block-name="about-us" data-block-status="loaded">
         <div>
         <div><p data-aue-prop="title" data-aue-label="Title" data-aue-type="text">About Us</p></div>
@@ -153,7 +156,7 @@ export const MOCK_CONTENT = {
       Transforming Destinations through Sustainable Growth
     </h1>
   <div class="hero-description">As a steadfast partner to the nation, Genting Singapore continues to
-drive sustainable growth and transformative impact through world-class integrated resorts. We're in it for the long haul, and are committed to investing in a future that empowers communities and benefits everyone.</div>
+drive sustainable growth and transformative impact through world-class integrated resorts. We’re in it for the long haul, and are committed to investing in a future that empowers communities and benefits everyone.</div>
     <span class="icon-wrapper hero-arrow-icon" style="color: white">
       <svg width="32" height="32" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
     <path d="M12 4L10.59 5.41L16.17 11H4V13H16.17L10.59 18.59L12 20L20 12L12 4Z" fill="currentColor"></path>
