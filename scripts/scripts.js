@@ -63,13 +63,11 @@ async function loadFonts() {
  * @param {Element} main The container element
  */
 function buildAutoBlocks(main) {
-  console.log("buildAutoBlocks", main);
   try {
-    // Step 1: Select all the tab divs using data-aue-filter="tabs"
-    const sections = [...main.querySelectorAll('[data-aue-filter="tabs"]')];
+    // TODO: add auto block, if needed
+    const sections = [...main.querySelectorAll('[data-aue-model="tabs"]')];
     if (sections.length === 0) return;
 
-    // Step 2: Create the wrapper for tabs and content
     const tabsWrapper = document.createElement("div");
     tabsWrapper.classList.add("tabs-container");
 
@@ -79,44 +77,38 @@ function buildAutoBlocks(main) {
     const tabsContent = document.createElement("div");
     tabsContent.classList.add("tabs-content");
 
-    // Step 3: Iterate over each section and create tabs
     sections.forEach((section, index) => {
-        // Step 3a: Find the .section-metadata inside the section to get the tab title
-        const metadata = section.querySelector(".section-metadata");
-        const tabTitleElement = metadata ? metadata.querySelector("div:nth-child(2)") : null;
-        const tabTitle = tabTitleElement ? tabTitleElement.textContent.trim() : `Tab ${index + 1}`;
+        const metadata = section.querySelector(".section-metadata div:last-child");
+        console.log("metadata", metadata);
+        const tabTitle = metadata ? metadata.textContent.trim() : `Tab ${index + 1}`;
+        console.log("tabTitle", tabTitle);
 
-        // Step 3b: Create a button for the tab title
         const tabButton = document.createElement("button");
         tabButton.classList.add("tab-button");
         tabButton.textContent = tabTitle;
         tabButton.dataset.index = index;
 
-        // Step 3c: Create a panel for the tab content
         const tabPanel = document.createElement("div");
         tabPanel.classList.add("tab-panel");
-        if (index === 0) tabPanel.classList.add("active"); // Set first panel as active by default
+        if (index === 0) tabPanel.classList.add("active");
 
-        // Step 3d: Move content from section into the tab panel
-        const tabContent = section;
-        while (tabContent.firstChild) {
-            tabPanel.appendChild(tabContent.firstChild);
+        // Move content into the panel
+        while (section.firstChild) {
+            tabPanel.appendChild(section.firstChild);
         }
 
-        // Step 3e: Remove the original section after moving content
+        // Remove the original section after moving content
         section.remove();
 
-        // Step 3f: Append the tab button and content panel to their respective containers
         tabsNav.appendChild(tabButton);
         tabsContent.appendChild(tabPanel);
     });
 
-    // Step 4: Append the navigation and content to the wrapper
     tabsWrapper.appendChild(tabsNav);
     tabsWrapper.appendChild(tabsContent);
     main.appendChild(tabsWrapper);
 
-    // Step 5: Handle tab switching (show the correct tab content when a tab is clicked)
+    // Handle tab switching
     tabsNav.addEventListener("click", (event) => {
         if (event.target.classList.contains("tab-button")) {
             const index = event.target.dataset.index;
@@ -128,7 +120,7 @@ function buildAutoBlocks(main) {
         }
     });
 
-    // Step 6: Activate the first tab by default
+    // Activate the first tab by default
     tabsNav.children[0]?.classList.add("active");
   } catch (error) {
     // eslint-disable-next-line no-console
