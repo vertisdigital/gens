@@ -163,6 +163,6 @@
     }
 }
 
-/* .footer [data-aue-prop="linkTarget"]:not(.EditableOverlays) {
+.footer [data-aue-prop="linkTarget"]:not(.EditableOverlays) {
     display: none !important;
-} */
+}
