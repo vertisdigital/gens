@@ -79,11 +79,11 @@ function buildAutoBlocks(main) {
 
     sections.forEach((section, index) => {
       const metadata = section.querySelector(".section-metadata");
-      if (metadata) {
-        const tabTitleElement = metadata ? metadata.querySelector("div:nth-child(2)") : null;
-        const tabTitle = tabTitleElement ? tabTitleElement.textContent.trim() : `TabTitle ${index + 1}`;
-        console.log("tabTitle", tabTitle);
-
+      //if (metadata) {
+      const tabTitleElement = metadata ? metadata.querySelector("div:nth-child(2)") : null;
+      const tabTitle = tabTitleElement ? tabTitleElement.textContent.trim() : `CustTitle ${index + 1}`;
+      console.log("tabTitle", tabTitle);
+      if (!tabTitle.startsWith("CustTitle")) {
         const tabButton = document.createElement("button");
         tabButton.classList.add("tab-button");
         tabButton.textContent = tabTitle;
