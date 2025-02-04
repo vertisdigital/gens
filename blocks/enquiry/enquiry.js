@@ -136,6 +136,6 @@ export default function decorate(block) {
   container.appendChild(row);
 
   // Replace original content
-  wrapper.innerHTML = '';
+  //wrapper.innerHTML = '';
   wrapper.appendChild(container);
 }
