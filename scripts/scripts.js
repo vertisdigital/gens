@@ -65,7 +65,6 @@ async function loadFonts() {
 function buildAutoBlocks(main) {
   console.log("buildAutoBlocks", main);
   try {
-    // TODO: add auto block, if needed
     const sections = [...main.querySelectorAll('[data-aue-model="tabs"]')];
     if (sections.length === 0) return;
 
@@ -79,25 +78,34 @@ function buildAutoBlocks(main) {
     tabsContent.classList.add("tabs-content");
 
     sections.forEach((section, index) => {
-        const metadata = section.querySelector(".section-metadata div:last-child");
-        const tabTitle = metadata ? metadata.textContent.trim() : `Tab ${index + 1}`;
+        // Find the section-metadata div and extract the tab title
+        const metadata = section.querySelector(".section-metadata");
+        let tabTitle = `Tab ${index + 1}`; // Default title
 
+        if (metadata) {
+            const titleDiv = metadata.querySelector("div:last-child");
+            if (titleDiv) {
+                tabTitle = titleDiv.textContent.trim();
+            }
+            metadata.style.display = "none"; // Hide the metadata div
+        }
+
+        // Create tab button
         const tabButton = document.createElement("button");
         tabButton.classList.add("tab-button");
         tabButton.textContent = tabTitle;
         tabButton.dataset.index = index;
 
+        // Create tab panel and move content inside it
         const tabPanel = document.createElement("div");
         tabPanel.classList.add("tab-panel");
         if (index === 0) tabPanel.classList.add("active");
 
-        // Move content into the panel
         while (section.firstChild) {
             tabPanel.appendChild(section.firstChild);
         }
 
-        // Remove the original section after moving content
-        section.remove();
+        section.remove(); // Remove original section
 
         tabsNav.appendChild(tabButton);
         tabsContent.appendChild(tabPanel);
