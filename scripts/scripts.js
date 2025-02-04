@@ -78,28 +78,33 @@ function buildAutoBlocks(main) {
     tabsContent.classList.add("tabs-content");
 
     sections.forEach((section, index) => {
-        // Find the section-metadata div and extract the tab title
+        // Find the section-metadata div and extract the correct tab title
         const metadata = section.querySelector(".section-metadata");
         let tabTitle = `Tab ${index + 1}`; // Default title
 
         if (metadata) {
-            const titleDiv = metadata.querySelector("div:last-child");
-            if (titleDiv) {
-                tabTitle = titleDiv.textContent.trim();
+            const titleDivs = metadata.querySelectorAll("div");
+            if (titleDivs.length > 1) {
+                tabTitle = titleDivs[1].textContent.trim(); // Get the actual tab name
             }
-            metadata.style.display = "none"; // Hide the metadata div
+            metadata.style.display = "none"; // Hide metadata div
+        }
+
+        // Avoid duplicates
+        if ([...tabsNav.children].some(btn => btn.textContent === tabTitle)) {
+            return;
         }
 
         // Create tab button
         const tabButton = document.createElement("button");
         tabButton.classList.add("tab-button");
         tabButton.textContent = tabTitle;
-        tabButton.dataset.index = index;
+        tabButton.dataset.index = tabsNav.children.length; // Ensure index matches visible tabs
 
         // Create tab panel and move content inside it
         const tabPanel = document.createElement("div");
         tabPanel.classList.add("tab-panel");
-        if (index === 0) tabPanel.classList.add("active");
+        if (tabsNav.children.length === 0) tabPanel.classList.add("active"); // First tab active by default
 
         while (section.firstChild) {
             tabPanel.appendChild(section.firstChild);
