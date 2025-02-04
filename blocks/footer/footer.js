@@ -478,7 +478,6 @@ export default async function decorate(block) {
           targetDiv.setAttribute('data-aue-type', 'text');
           targetDiv.setAttribute('data-aue-label', 'Link Target');
           targetDiv.textContent = originalTarget.textContent;
-          // /targetDiv.style.display = 'none';
           linkFieldContainer.appendChild(targetDiv);
         }
 
@@ -521,11 +520,11 @@ export default async function decorate(block) {
     section.appendChild(footer);
 
     // After all content is ready, update the DOM
-    // if (existingMain) {
-    //   // Clear existing content without removing the element
-    //   existingMain.innerHTML = '';
-    //   // Copy over any important attributes
-    // }
+    if (existingMain) {
+      // Clear existing content without removing the element
+      existingMain.innerHTML = '';
+      // Copy over any important attributes
+    }
     block.appendChild(main);
   }
 }
