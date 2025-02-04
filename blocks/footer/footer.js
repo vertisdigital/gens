@@ -1,5 +1,5 @@
-// import { getMetadata } from '../../scripts/aem.js';
-// import { loadFragmentCustom } from '../fragment/fragment.js';
+import { getMetadata } from '../../scripts/aem.js';
+import { loadFragmentCustom } from '../fragment/fragment.js';
 import SVGIcon from '../../shared-components/SvgIcon.js';
 
 /**
@@ -8,10 +8,10 @@ import SVGIcon from '../../shared-components/SvgIcon.js';
  */
 export default async function decorate(block) {
   // load footer as fragment
-  // const footerMeta = getMetadata('footer');
-  // const footerPath = footerMeta ? new URL(footerMeta, window.location).pathname : '/footer';
-  // const fragment = await loadFragmentCustom(footerPath);
-  const fragment = block;
+  const footerMeta = getMetadata('footer');
+  const footerPath = footerMeta ? new URL(footerMeta, window.location).pathname : '/footer';
+  const fragment = await loadFragmentCustom(footerPath);
+  // const fragment = block;
   if (fragment) {
     // Create main element with data attributes
     const main = document.createElement('main');
@@ -23,25 +23,25 @@ export default async function decorate(block) {
     // Create section element with data attributes
     const section = document.createElement('section');
     // Get the source section element from fragment
-    // const sourceSection = fragment.querySelector('[data-aue-model="section"]');
+    const sourceSection = fragment.querySelector('[data-aue-model="section"]');
 
     // Copy all data attributes from source section
-    // if (sourceSection) {
-    const dataAttributes = {
-      'data-aue-type': 'container',
-      'data-aue-resource': fragment.getAttribute('data-aue-resource'),
-      'data-aue-behavior': 'component',
-      'data-aue-model': 'section',
-      'data-aue-label': 'Section',
-      'data-aue-filter': 'section',
-    };
+    if (sourceSection) {
+      const dataAttributes = {
+        'data-aue-type': 'container',
+        'data-aue-resource': sourceSection.getAttribute('data-aue-resource'),
+        'data-aue-behavior': 'component',
+        'data-aue-model': 'section',
+        'data-aue-label': 'Section',
+        'data-aue-filter': 'section',
+      };
 
-    Object.entries(dataAttributes).forEach(([key, value]) => {
-      if (value) {
-        section.setAttribute(key, value);
-      }
-    });
-    // }
+      Object.entries(dataAttributes).forEach(([key, value]) => {
+        if (value) {
+          section.setAttribute(key, value);
+        }
+      });
+    }
 
     // Append section and footer to main
     main.appendChild(section);
@@ -51,7 +51,7 @@ export default async function decorate(block) {
 
     // Create and build all the footer content
     const footer = document.createElement('div');
-    footer.classList.add('footer');
+    // footer.classList.add('footer');
     // const container = fragment.firstElementChild;
     const findColumnWrapper = (blockElement, index) => {
       // Check first and last children for columns-wrapper
@@ -63,7 +63,7 @@ export default async function decorate(block) {
       return null;
     };
 
-    const container = findColumnWrapper(fragment, 0);
+    const container = findColumnWrapper(fragment.firstElementChild, 0);
 
     footer.setAttribute('role', 'contentinfo');
     // footer.className = container.className;
@@ -105,7 +105,7 @@ export default async function decorate(block) {
     // Add description
     const description = document.createElement('p');
     description.className = 'footer-description';
-    description.textContent = container.querySelector('[data-aue-prop="description"]')?.textContent;
+    description.textContent = container.querySelector('[data-richtext-prop="description"]')?.textContent;
     description.setAttribute('data-aue-prop', 'linkText');
     description.setAttribute('data-aue-label', 'Text');
     description.setAttribute('data-aue-type', 'text');
@@ -359,48 +359,12 @@ export default async function decorate(block) {
         topContainer.appendChild(leftSection);
         mainContainer.appendChild(topContainer);
       } else if (!isDesktop) {
-        // Remove sections and restore original layout for tablet/mobile
-        // const rightSection = mainContainer.querySelector('.right-section');
-        // const leftSection = mainContainer.querySelector('.left-section');
-
-        // if (rightSection && leftSection) {
-        // Move columns back to columns container
         columnsContainer.appendChild(logoColumn);
         navColumns.forEach((col) => {
           columnsContainer.appendChild(col);
         });
-
-        // Remove sections
-        // rightSection.remove();
-        // leftSection.remove();
-
-        // Add columns container back to main container
         mainContainer.insertBefore(columnsContainer, mainContainer.firstChild);
-        // }
       }
-
-      // else if (!isDesktop && mainContainer.querySelector('.right-section')) {
-      //   console.log("mobile-view");
-
-      //   // Remove sections and restore original layout for tablet/mobile
-      //   const rightSection = mainContainer.querySelector('.right-section');
-      //   const leftSection = mainContainer.querySelector('.left-section');
-
-      //   if (rightSection && leftSection) {
-      //     // Move columns back to columns container
-      //     columnsContainer.appendChild(logoColumn);
-      //     navColumns.forEach((col) => {
-      //       columnsContainer.appendChild(col);
-      //     });
-
-      //     // Remove sections
-      //     rightSection.remove();
-      //     leftSection.remove();
-
-      //     // Add columns container back to main container
-      //     mainContainer.insertBefore(columnsContainer, mainContainer.firstChild);
-      //   }
-      // }
     };
 
     // Initial layout setup
@@ -414,7 +378,7 @@ export default async function decorate(block) {
     bottomSection.className = 'mt-4';
 
     // Get bottom section content
-    const bottomContent = findColumnWrapper(fragment, 1);
+    const bottomContent = findColumnWrapper(fragment.firstElementChild, 1);
 
     if (bottomContent) {
       // Create columns container - renamed to avoid shadowing
@@ -448,7 +412,7 @@ export default async function decorate(block) {
       textContainer.setAttribute('data-aue-resource', bottomContent.querySelector('[data-richtext-prop="text"]')?.getAttribute('data-richtext-resource'));
 
       // Add text content
-      const textContent = bottomContent.querySelector('[data-aue-prop="text"]');
+      const textContent = bottomContent.querySelector('[data-richtext-prop="text"]');
       if (textContent) {
         const textDiv = document.createElement('div');
         textDiv.className = 'copywrite';
