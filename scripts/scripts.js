@@ -143,7 +143,6 @@ function buildAutoBlocks(main) {
 
   } catch (error) {
     // Handle errors
-    // The console.log here could be replaced with a more formal error handling mechanism (depending on your setup)
     if (process.env.NODE_ENV === 'development') {
       console.error('Auto Blocking failed', error);
     }
