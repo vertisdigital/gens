@@ -523,6 +523,7 @@ export default async function decorate(block) {
     if (existingMain) {
       // Clear existing content without removing the element
       existingMain.innerHTML = '';
+      existingMain.remove();
       // Copy over any important attributes
     }
     block.appendChild(main);
