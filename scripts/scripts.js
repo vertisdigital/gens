@@ -79,29 +79,31 @@ function buildAutoBlocks(main) {
 
     sections.forEach((section, index) => {
       const metadata = section.querySelector(".section-metadata");
-      const tabTitleElement = metadata ? metadata.querySelector("div:nth-child(2)") : null;
-      const tabTitle = tabTitleElement ? tabTitleElement.textContent.trim() : `TabTitle ${index + 1}`;
-      console.log("tabTitle", tabTitle);
+      if (metadata) {
+        const tabTitleElement = metadata ? metadata.querySelector("div:nth-child(2)") : null;
+        const tabTitle = tabTitleElement ? tabTitleElement.textContent.trim() : `TabTitle ${index + 1}`;
+        console.log("tabTitle", tabTitle);
 
-      const tabButton = document.createElement("button");
-      tabButton.classList.add("tab-button");
-      tabButton.textContent = tabTitle;
-      tabButton.dataset.index = index;
+        const tabButton = document.createElement("button");
+        tabButton.classList.add("tab-button");
+        tabButton.textContent = tabTitle;
+        tabButton.dataset.index = index;
 
-      const tabPanel = document.createElement("div");
-      tabPanel.classList.add("tab-panel");
-      if (index === 0) tabPanel.classList.add("active");
+        const tabPanel = document.createElement("div");
+        tabPanel.classList.add("tab-panel");
+        if (index === 0) tabPanel.classList.add("active");
 
-      // Move content into the panel
-      while (section.firstChild) {
-        tabPanel.appendChild(section.firstChild);
+        // Move content into the panel
+        while (section.firstChild) {
+          tabPanel.appendChild(section.firstChild);
+        }
+
+        // Remove the original section after moving content
+        section.remove();
+
+        tabsNav.appendChild(tabButton);
+        tabsContent.appendChild(tabPanel);
       }
-
-      // Remove the original section after moving content
-      section.remove();
-
-      tabsNav.appendChild(tabButton);
-      tabsContent.appendChild(tabPanel);
     });
 
     tabsWrapper.appendChild(tabsNav);
