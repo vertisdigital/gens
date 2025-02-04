@@ -357,7 +357,7 @@ export default async function decorate(block) {
         topContainer.appendChild(rightSection);
         topContainer.appendChild(leftSection);
         mainContainer.appendChild(topContainer);
-      } else if (!isDesktop && mainContainer.querySelector('.right-section')) {
+      } else if (!isDesktop) {
         // Remove sections and restore original layout for tablet/mobile
         // const rightSection = mainContainer.querySelector('.right-section');
         // const leftSection = mainContainer.querySelector('.left-section');
