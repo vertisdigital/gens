@@ -417,10 +417,10 @@ export default async function decorate(block) {
       // Create text section
       const textContainer = document.createElement('div');
       textContainer.className = 'col-xl-6 col-md-3 col-sm-4';
-      textContainer.setAttribute('data-aue-type', 'container');
-      textContainer.setAttribute('data-aue-model', 'richtext');
-      textContainer.setAttribute('data-aue-label', 'Rich Text');
-      textContainer.setAttribute('data-aue-filter', 'richtext');
+      textContainer.setAttribute('data-aue-type', 'richtext');
+      textContainer.setAttribute('data-aue-label', 'Text');
+      textContainer.setAttribute('data-aue-prop', 'text');
+      textContainer.setAttribute('data-aue-type', 'richtext');
       textContainer.setAttribute('data-aue-resource', bottomContent.querySelector('[data-richtext-prop="text"]')?.getAttribute('data-richtext-resource'));
 
       // Add text content
