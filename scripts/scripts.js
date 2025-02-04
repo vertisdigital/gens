@@ -63,7 +63,6 @@ async function loadFonts() {
  * @param {Element} main The container element
  */
 function buildAutoBlocks(main) {
-  console.log("buildAutoBlocks", main);
   try {
     // Get sections with data-aue-model="tabs"
     const sections = [...main.querySelectorAll('[data-aue-model="tabs"]')];
@@ -80,7 +79,7 @@ function buildAutoBlocks(main) {
 
     const tabTitles = new Set(); // To avoid duplicate tabs
 
-    sections.forEach((section, index) => {
+    sections.forEach((section) => {
       // Extract tab title from section-metadata
       const metadata = section.querySelector(".section-metadata");
       if (metadata) {
@@ -143,7 +142,11 @@ function buildAutoBlocks(main) {
     tabsNav.children[0]?.classList.add("active");
 
   } catch (error) {
-    console.error('Auto Blocking failed', error);
+    // Handle errors
+    // The console.log here could be replaced with a more formal error handling mechanism (depending on your setup)
+    if (process.env.NODE_ENV === 'development') {
+      console.error('Auto Blocking failed', error);
+    }
   }
 }
 
