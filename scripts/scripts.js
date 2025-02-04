@@ -85,11 +85,11 @@ function buildAutoBlocks(main) {
       if (metadata) {
         const titleDivs = metadata.querySelectorAll("div");
 
-        // Extract the actual tab title from the second div (skip tabtitle label)
+        // Ensure we are extracting the second div as the tab title (Tab1, Tab2, etc.)
         if (titleDivs.length > 1) {
-          const tabTitle = titleDivs[1].textContent.trim();
+          const tabTitle = titleDivs[1].textContent.trim(); // Get the correct title
 
-          // Skip duplicate titles
+          // Skip duplicate titles (if already added)
           if (tabTitles.has(tabTitle)) return;
           tabTitles.add(tabTitle);
 
@@ -104,10 +104,10 @@ function buildAutoBlocks(main) {
           tabPanel.classList.add("tab-panel");
           if (tabsNav.children.length === 0) tabPanel.classList.add("active");
 
-          // Move content into tab panel (content inside data-aue-filter="tabs")
+          // Move content inside the panel (content inside data-aue-filter="tabs")
           const tabContent = section.querySelector('[data-aue-filter="tabs"]');
           if (tabContent) {
-            // Move the content inside the panel
+            // Move the content inside the tab panel
             tabPanel.appendChild(tabContent);
           }
 
@@ -148,6 +148,7 @@ function buildAutoBlocks(main) {
     }
   }
 }
+
 
 /**
  * Decorates the main element.
