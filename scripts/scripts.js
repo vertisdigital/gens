@@ -63,6 +63,7 @@ async function loadFonts() {
  * @param {Element} main The container element
  */
 function buildAutoBlocks(main) {
+  console.log("buildAutoBlocks", main);
   try {
     // TODO: add auto block, if needed
     const sections = [...main.querySelectorAll('[data-aue-model="tabs"]')];
