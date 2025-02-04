@@ -79,7 +79,7 @@ function buildAutoBlocks(main) {
 
     sections.forEach((section, index) => {
         const metadata = section.querySelector(".section-metadata div:last-child");
-        console.log("metadata", metadata);
+        console.log("metadata", section.querySelector(".section-metadata div:last-child"));
         const tabTitle = metadata ? metadata.textContent.trim() : `Tab ${index + 1}`;
         console.log("tabTitle", tabTitle);
 
