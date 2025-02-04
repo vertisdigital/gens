@@ -1,10 +1,9 @@
 # Authoring Requirements:
-Need to create a tabs component with following:
-1. multiple tabs with following fields:
-    - Title text field mandatory 150 characters max
-2. Each tab can be a section and it should be able to contain one or more other blocks such as title, text, image, link, button, etc.
-3. you can refer the tabs folder under blocks folder for reference. Use the same styling and logic for the tabs component.
+check component-definition.json, component-models.json, component-filters.json for tabs component. I am trying to create tabs as a section component. 
+I need to utilize the autoblocking feature of AEM to decorate the tabs component.
+use 30-default-html-output.html as reference to create the tabs component.
 
 
 # Rendering Requirements:
-    
+    Pick the font, color, layout and other styling as per the image provided
+    Use data attributes for the elements and items which will come from snippet such as data-aue-label="Title" etc.
