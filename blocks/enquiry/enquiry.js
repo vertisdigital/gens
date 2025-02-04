@@ -82,7 +82,7 @@ export default function decorate(block) {
     iconWrapper.className = 'contact-icon';
     iconWrapper.setAttribute('aria-hidden', 'true');
 
-    const imageLink = wrapper.querySelector(`a[href*="/content/dam/"][title="${prop} Icon"]`);
+    const imageLink = wrapper.querySelector('a[href*="/content/dam/"][href$=".png"], a[href*="/content/dam/"][href$=".jpeg"], a[href*="/content/dam/"][href$=".jpg"], a[href*="/content/dam/"][href$=".gif"], a[href*="/content/dam/"][href$=".svg"]');
     if (imageLink) {
       // Create optimized picture element
       const picture = createOptimizedPicture(imageLink.href, '', false);
