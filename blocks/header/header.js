@@ -66,7 +66,7 @@ function createNavItem(itemData, resourcePath) {
     const linksUl = document.createElement('ul');
     linksUl.className = 'nav-links row';
 
-    itemData.links.forEach((link, index) => {
+    itemData.links.forEach((link) => {
       const li = document.createElement('li');
       li.className = 'col-xl-4 col-lg-4';
       setAEMAttributes(li, {
@@ -74,7 +74,7 @@ function createNavItem(itemData, resourcePath) {
         model: 'linkField',
         filter: 'linkField',
         label: 'Link Field',
-      }, `${resourcePath}/item`);
+      }, link.resourcePath);
 
       const linkContainer = document.createElement('div');
       linkContainer.className = 'button-container';
@@ -180,6 +180,7 @@ function createHeaderStructure(block) {
         text: link.querySelector('[data-aue-prop="linkText"]')?.textContent,
         href: link.querySelector('a')?.getAttribute('href'),
         target: link.querySelector('[data-aue-prop="linkTarget"]')?.textContent,
+        resourcePath: link.getAttribute('data-aue-resource'),
       })),
     }, resourcePath || `nav_${index}`);
   });
@@ -429,7 +430,7 @@ export default async function decorate(block) {
   const navPath = navMeta ? new URL(navMeta, window.location).pathname : '/nav';
   const fragment = await loadFragmentCustom(navPath);
 
-  if (fragment && true) {
+  if (fragment && false) {
     const header = createHeaderStructure(fragment);
     document.getElementsByTagName('main')[0].remove();
     block.innerHTML = '';
