@@ -9,7 +9,7 @@ import stringToHTML from '../../shared-components/Utility.js';
 */
 export default function decorate(block) {
   const container = document.createElement('div');
-  container.className = 'container';block.querySelector('[data-aue-model="linkField"]');
+  container.className = 'container'; block.querySelector('[data-aue-model="linkField"]');
 
   const aboutUsStats = document.createElement('div');
   aboutUsStats.className = 'row about-us-stats';
@@ -48,7 +48,7 @@ export default function decorate(block) {
   }
 
   // Find the sub-heading and replace it with a sub-heading
-  
+
   const subHeading = block.querySelector('[data-aue-prop="sub-heading"]');
   if (subHeading) {
     const subHeadingText = subHeading.querySelector('p').textContent;
@@ -76,34 +76,33 @@ export default function decorate(block) {
     const linkTextDiv = document.createElement('div');
     const linkTextP = document.createElement('p');
     linkTextP.className = 'button-container';
-    
+
     // Handle link text
     const originalLink = linkField.querySelector('[data-aue-prop="linkText"]');
     const originalTarget = linkField.querySelector('[data-aue-prop="linkTarget"]');
     const originalTargetName = originalTarget.textContent;
-    originalLink.setAttribute('target',originalTargetName);
-    originalLink.innerHTML = "";
-    originalTarget.innerHTML = "";
+    originalLink.setAttribute('target', originalTargetName);
+    originalLink.innerHTML = '';
+    originalTarget.innerHTML = '';
     if (originalLink) {
       const linkElement = document.createElement('a');
-      
+
       // Copy all attributes from original link
       Array.from(originalLink.attributes).forEach((attr) => {
         linkElement.setAttribute(attr.name, attr.value);
       });
-      
+
       // Set additional attributes
       linkElement.className = 'button';
 
       const arrowIcon = linkField.querySelector('[data-aue-prop="linkSvgIcon"]');
-      const arrowIconName = arrowIcon.textContent.replace("-", "");
-      arrowIcon.innerHTML= "";
-      if(!arrowIcon){
-      linkElement.textContent = originalLink.textContent;
-      }
-      else{
-      const arrowSVG = SvgIcon({ name: `${arrowIconName}`, className: 'about-us-left-link', size: '18px' });
-      linkElement.append(stringToHTML(arrowSVG));
+      const arrowIconName = arrowIcon.textContent.replace('-', '');
+      arrowIcon.innerHTML = '';
+      if (!arrowIcon) {
+        linkElement.textContent = originalLink.textContent;
+      } else {
+        const arrowSVG = SvgIcon({ name: `${arrowIconName}`, className: 'about-us-left-link', size: '18px' });
+        linkElement.append(stringToHTML(arrowSVG));
       }
 
       // Assemble link structure
@@ -127,7 +126,7 @@ export default function decorate(block) {
     const featureContainer = document.createElement('div');
     Array.from(description.attributes).forEach((attr) => {
       featureContainer.setAttribute(attr.name, attr.value);
-      featureContainer.classList.add("about-us-right-content")
+      featureContainer.classList.add('about-us-right-content');
     });
 
     // Handle image feature

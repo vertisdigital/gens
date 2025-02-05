@@ -44,7 +44,7 @@ export async function loadFragment(path) {
 }
 
 export async function loadFragmentCustom(path) {
-  let newPath = window.location.href;
+  const newPath = window.location.href;
   if (path && path.startsWith('/')) {
     const resp = await fetch(`${newPath}`);
     if (resp.ok) {

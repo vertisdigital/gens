@@ -69,15 +69,18 @@
   width: 56px;
   height: 56px;
 }
+
 .about-us-stats .about-us-right-content.image-container>div:first-child picture{
   width: 100%;
   height: 100%;
 
 }
+
 .about-us-stats .about-us-right-content.image-container>div:first-child picture img{
   width: 100%;
   height: 100%;
 }
+
 .about-us-stats .about-us-right-content.text-container{
 
   border-top: 1px solid var(--text-color);
@@ -88,6 +91,7 @@
   /* padding-bottom: 40px; */
 
 }
+
 .about-us-stats .about-us-right-content.image-container{
   margin-bottom: 24px;
 }
@@ -160,6 +164,7 @@ color: var(--body-text-color);
     font-size: 64px;
     line-height: 64px;
   }
+
   .about-us-stats .about-us-right-content>div:nth-child(2) p{
     font-size: 16px;
   }
