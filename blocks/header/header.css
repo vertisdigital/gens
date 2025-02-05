@@ -419,6 +419,11 @@ header nav .nav-tools {
   list-style: none;
 }
 
+
+.primary-nav .nav-links {
+  display: none;
+}
+
 .nav-links a {
   display: block;
   color: var(--text-color);

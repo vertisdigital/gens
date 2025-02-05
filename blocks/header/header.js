@@ -8,7 +8,6 @@ import { loadFragmentCustom } from '../fragment/fragment.js';
  * @param {string} resourcePath Resource path
  */
 function setAEMAttributes(element, config, resourcePath = '') {
-
   if (resourcePath) {
     element.setAttribute('data-aue-resource', `${resourcePath}`);
   }
@@ -265,10 +264,10 @@ function initializeHeader(header) {
   navItems.forEach((item) => {
     const linksDiv = item.querySelector('.links');
     const detailedCaption = linksDiv?.dataset.caption;
-    const links = item.querySelector('.nav-links');
+    const originalLinks = item.querySelector('.nav-links');
 
-    if (links) {
-      // Update secondary nav for mobile
+    if (originalLinks) {
+      // Create empty secondary nav structure
       const secondaryNav = document.createElement('div');
       secondaryNav.className = 'secondary-nav container';
 
@@ -286,7 +285,7 @@ function initializeHeader(header) {
       const heading = document.createElement('h2');
       heading.textContent = detailedCaption || 'Overview';
 
-      // Use grid classes from styles.css
+      // Create empty structure for links
       const secondaryHeader = document.createElement('div');
       secondaryHeader.className = 'secondary-header row';
 
@@ -295,37 +294,22 @@ function initializeHeader(header) {
       headerCol.append(backBtn, heading, closeBtn);
       secondaryHeader.appendChild(headerCol);
 
-      // Update links container with grid classes
       const linksContainer = document.createElement('div');
       linksContainer.className = 'row';
 
       const linksCol = document.createElement('div');
       linksCol.className = 'col-12 col-md-6 col-sm-4';
-      linksCol.appendChild(links);
+
+      // Create empty ul for links
+      const emptyLinks = document.createElement('ul');
+      emptyLinks.className = 'nav-links row';
+      linksCol.appendChild(emptyLinks);
       linksContainer.appendChild(linksCol);
 
       secondaryNav.append(secondaryHeader, linksContainer);
       header.appendChild(secondaryNav);
 
-      // Handle back button click (mobile/tablet)
-      backBtn.addEventListener('click', (e) => {
-        e.stopPropagation();
-        item.classList.remove(activeClass);
-        secondaryNav.classList.remove(activeClass);
-        overlay.classList.remove(activeClass);
-        currentActive = null;
-      });
-
-      // Handle close button click (desktop)
-      closeBtn.addEventListener('click', (e) => {
-        e.stopPropagation();
-        item.classList.remove(activeClass);
-        secondaryNav.classList.remove(activeClass);
-        overlay.classList.remove(activeClass);
-        currentActive = null;
-      });
-
-      // Handle click on nav item
+      // Handle click on nav item - Clone links here
       item.addEventListener('click', (e) => {
         e.preventDefault();
 
@@ -335,15 +319,47 @@ function initializeHeader(header) {
           const activeSecondary = header.querySelector('.secondary-nav.active');
           if (activeSecondary) {
             activeSecondary.classList.remove(activeClass);
+            // Clear links when closing
+            activeSecondary.querySelector('.nav-links').innerHTML = '';
           }
         }
 
         // Toggle current item
         item.classList.toggle(activeClass);
+
+        if (item.classList.contains(activeClass)) {
+          // Clone and append links only when opening
+          const clonedLinks = originalLinks.cloneNode(true);
+          emptyLinks.innerHTML = ''; // Clear previous links
+          emptyLinks.append(...clonedLinks.children); // Append cloned children
+        } else {
+          // Clear links when closing
+          emptyLinks.innerHTML = '';
+        }
+
         secondaryNav.classList.toggle(activeClass);
         overlay.classList.toggle(activeClass);
 
         currentActive = item.classList.contains(activeClass) ? item : null;
+      });
+
+      // Handle back/close buttons
+      const closeSecondary = () => {
+        item.classList.remove(activeClass);
+        secondaryNav.classList.remove(activeClass);
+        overlay.classList.remove(activeClass);
+        emptyLinks.innerHTML = ''; // Clear links
+        currentActive = null;
+      };
+
+      backBtn.addEventListener('click', (e) => {
+        e.stopPropagation();
+        closeSecondary();
+      });
+
+      closeBtn.addEventListener('click', (e) => {
+        e.stopPropagation();
+        closeSecondary();
       });
     }
   });
@@ -413,9 +429,9 @@ export default async function decorate(block) {
   const navPath = navMeta ? new URL(navMeta, window.location).pathname : '/nav';
   const fragment = await loadFragmentCustom(navPath);
 
-  if (fragment && true) {
+  if (fragment && false) {
     const header = createHeaderStructure(fragment);
-    document.getElementsByTagName('main')[0].remove()
+    document.getElementsByTagName('main')[0].remove();
     block.innerHTML = '';
     block.appendChild(header);
 
