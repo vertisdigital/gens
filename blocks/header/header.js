@@ -136,23 +136,26 @@ function createHeaderStructure(block) {
   // Create columns container
   const columns = document.createElement('div');
   columns.className = 'columns block';
+  const columnsResource = block.querySelector('[data-aue-label="Columns"]')?.getAttribute('data-aue-resource');
   setAEMAttributes(columns, {
-    type: 'container',
+    type: 'container', 
     model: 'columns',
     label: 'Columns',
     filter: 'columns',
     behavior: 'component',
-  }, 'urn:aemconnection:/content/genting-singapore/nav/jcr:content/root/section_0/columns');
+  }, columnsResource);
   columns.setAttribute('data-block-name', 'columns');
   columns.setAttribute('data-block-status', 'loaded');
 
   // Create column content
   const column = document.createElement('div');
+  const columnResource = block.querySelector('[data-aue-label="Column"]')?.getAttribute('data-aue-resource');
+
   setAEMAttributes(column, {
     type: 'container',
     label: 'Column',
     filter: 'column',
-  }, 'urn:aemconnection:/content/genting-singapore/nav/jcr:content/root/section_0/columns/row1/col1');
+  }, columnResource);
 
   // Create navigation list
   const nav = document.createElement('nav');
