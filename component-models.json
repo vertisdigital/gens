@@ -92,6 +92,21 @@
             "value": "secondary"
           }
         ]
+      },
+      {
+        "component": "select",
+        "name": "linkType1",
+        "label": "Type",
+        "options": [
+          {
+            "name": "self",
+            "value": "_self"
+          },
+          {
+            "name": "blank",
+            "value": "_blank"
+          }
+        ]
       }
     ]
   },
@@ -332,6 +347,25 @@
         "component": "aem-content",
         "name": "link",
         "label": "Link"
+      },
+      {
+        "component": "select",
+        "name": "linkSvgIcon",
+        "label": "Link SVG Icon",
+        "options": [
+          {
+            "name": "Right Arrow",
+            "value": "right-arrow"
+          },
+          {
+            "name": "Download Arrow",
+            "value": "download-arrow"
+          },
+          {
+            "name": "Top Right Arrow",
+            "value": "top-right-arrow"
+          }
+        ]
       },
       {
         "component": "text",
