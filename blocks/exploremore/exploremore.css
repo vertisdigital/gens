@@ -1,9 +1,11 @@
-.exploremore-wrapper{
+.exploremore-container{
   background-color: var(--neutral-grey);
 } 
+
 .exploremore .exploremore-wrapper-container{
   padding: 80px 0;
 }
+
 .exploremore .exploremore-wrapper-container .exploremore-title{
   font-size: 40px;
   font-weight: 500;
@@ -12,6 +14,7 @@
   color: var(--text-color);
   margin-bottom: 80px;
 }
+
 .exploremore-wrapper-container .exploremore-item{
    padding: 18px;
    padding-top: 20px;
@@ -19,18 +22,23 @@
    display: flex;
    justify-content: space-between;
 }
+
 .exploremore-wrapper-container .exploremore-item:first-child{
   padding-left: 0;
 }
+
 .exploremore-wrapper-container .exploremore-item:last-child{
   padding-right: 0;
 }
+
 .exploremore-wrapper-container .exploremore-item .exploremore-caption{
   font-size: 30px;
   font-weight: 400;
   line-height: 50px; 
   letter-spacing: -0.5px;
+  color: var(--text-color);
 }
+
 .exploremore-wrapper-container .exploremore-item .exploremore-link-container{
   padding: 16px;
   display: flex;
@@ -38,16 +46,22 @@
   justify-content: center;
 }
 
+.exploremore-wrapper-container .exploremore-item .exploremore-link-container a .icon-wrapper{
+  color:  var(--primary-gold);
+}
+
 @media(width<=992px){
   .exploremore .exploremore-wrapper-container{
     padding: 40px 0;
   }
+
   .exploremore .exploremore-wrapper-container .exploremore-title{
     font-size: 32px;
     font-weight: 500;
     line-height: 42px;
     margin-bottom: 40px;
   }
+
   .exploremore-wrapper-container .exploremore-item{
      padding: 12px;
   }
@@ -57,6 +71,7 @@
     font-weight: 400;
     line-height: 42px; 
   }
+
   .exploremore-wrapper-container .exploremore-item .exploremore-link-container{
     padding: 12px;
   }
@@ -66,11 +81,13 @@
   .exploremore .exploremore-wrapper-container{
     padding: 32px 0;
   }
+
   .exploremore .exploremore-wrapper-container .exploremore-title{
     font-size: 28px;
     line-height: 34px;
     margin-bottom: 32px;
   }
+
   .exploremore-wrapper-container .exploremore-item{
      padding: 0;
      margin-bottom: 18px;
@@ -80,7 +97,9 @@
     font-size: 22px;
     line-height: 34px; 
   }
+
   .exploremore-wrapper-container .exploremore-item .exploremore-link-container{
     padding: 10px;
   }
+
 }
