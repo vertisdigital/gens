@@ -213,8 +213,28 @@
       },
       {
         "component": "text",
+        "name": "ctabuttonText",
+        "label": "Text"
+      },
+      {
+        "component": "text",
         "name": "ctabuttonTitle",
         "label": "Title"
+      },
+      {
+        "component": "select",
+        "name": "ctabuttonType",
+        "label": "Type",
+        "options": [
+          {
+            "name": "self",
+            "value": "_self"
+          },
+          {
+            "name": "blank",
+            "value": "_blank"
+          }
+        ]
       },
       {
         "component": "number",
