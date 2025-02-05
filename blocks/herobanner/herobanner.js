@@ -88,7 +88,7 @@ export default function decorate(block) {
     descElement.remove();
   }
 
-  const arrowIconLink = block.querySelector('.button-container');
+  const arrowIconLink = block.querySelector('[data-aue-prop="ctabuttonText"]');
   if(arrowIconLink){
     const arrowIconHtml = SvgIcon({
       name: 'arrow',
