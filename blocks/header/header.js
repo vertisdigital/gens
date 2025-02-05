@@ -70,7 +70,7 @@ function createNavItem(itemData, resourcePath) {
     itemData.links.forEach((link, index) => {
       const li = document.createElement('li');
       li.className = 'col-xl-4 col-lg-4';
-      setAEMAttributes(linksUl, {
+      setAEMAttributes(li, {
         type: 'component',
         model: 'linkField',
         filter: 'linkField',
