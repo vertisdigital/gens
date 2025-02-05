@@ -431,10 +431,6 @@ header nav .nav-tools {
   color: var(--link-hover-color);
 }
 
-.nav-item .nav-links {
-  display: none;
-}
-
 /* Search Icon */
 .header-nav .icon-search {
   flex: 0 0 10%;

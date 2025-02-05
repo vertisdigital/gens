@@ -8,6 +8,7 @@ import { loadFragmentCustom } from '../fragment/fragment.js';
  * @param {string} resourcePath Resource path
  */
 function setAEMAttributes(element, config, resourcePath = '') {
+
   if (resourcePath) {
     element.setAttribute('data-aue-resource', `${resourcePath}`);
   }
@@ -65,12 +66,6 @@ function createNavItem(itemData, resourcePath) {
   if (itemData.links?.length) {
     const linksUl = document.createElement('ul');
     linksUl.className = 'nav-links row';
-    setAEMAttributes(linksUl, {
-      type: 'container',
-      model: 'linkFields',
-      filter: 'linkFields',
-      label: 'Link Fields',
-    }, resourcePath);
 
     itemData.links.forEach((link, index) => {
       const li = document.createElement('li');
@@ -82,28 +77,11 @@ function createNavItem(itemData, resourcePath) {
         label: 'Link Field',
       }, `${resourcePath}/item${index > 0 ? `_${index}` : ''}`);
 
-      // Create link container
       const linkContainer = document.createElement('div');
       linkContainer.className = 'button-container';
-      setAEMAttributes(linkContainer, {
-        type: 'container',
-        model: 'linkContainer',
-        filter: 'linkContainer',
-        label: 'Link Container',
-      });
 
-      // Create link text wrapper
-      const linkTextWrapper = document.createElement('div');
-      setAEMAttributes(linkTextWrapper, {
-        type: 'container',
-        model: 'linkText',
-        filter: 'linkText',
-        label: 'Link Text',
-      });
-
-      // Create actual link
       const a = document.createElement('a');
-      a.href = link.href || '#';
+      a.href = link.href;
       a.className = 'button';
       a.title = link.text;
       setAEMAttributes(a, {
@@ -112,18 +90,8 @@ function createNavItem(itemData, resourcePath) {
         type: 'text',
       });
       a.textContent = link.text;
-      linkTextWrapper.appendChild(a);
 
-      // Create target wrapper
       if (link.target) {
-        const targetWrapper = document.createElement('div');
-        setAEMAttributes(targetWrapper, {
-          type: 'container',
-          model: 'linkTarget',
-          filter: 'linkTarget',
-          label: 'Link Target',
-        });
-
         const targetDiv = document.createElement('div');
         setAEMAttributes(targetDiv, {
           prop: 'linkTarget',
@@ -131,31 +99,13 @@ function createNavItem(itemData, resourcePath) {
           type: 'text',
         });
         targetDiv.textContent = link.target;
-        targetWrapper.appendChild(targetDiv);
-        li.appendChild(targetWrapper);
+        li.appendChild(targetDiv);
       }
 
-      linkContainer.appendChild(linkTextWrapper);
+      linkContainer.appendChild(a);
       li.appendChild(linkContainer);
       linksUl.appendChild(li);
     });
-
-    // Add button to create new link field
-    const addLinkLi = document.createElement('li');
-    addLinkLi.className = 'col-xl-4 col-lg-4';
-    setAEMAttributes(addLinkLi, {
-      type: 'container',
-      model: 'addLinkField',
-      filter: 'addLinkField',
-      label: 'Add Link Field',
-      behavior: 'component',
-    }, `${resourcePath}/item_new`);
-
-    const addButton = document.createElement('button');
-    addButton.className = 'add-link-btn';
-    addButton.textContent = '+ Add Link';
-    addLinkLi.appendChild(addButton);
-    linksUl.appendChild(addLinkLi);
 
     navItem.appendChild(linksUl);
   }
@@ -315,10 +265,10 @@ function initializeHeader(header) {
   navItems.forEach((item) => {
     const linksDiv = item.querySelector('.links');
     const detailedCaption = linksDiv?.dataset.caption;
-    const originalLinks = item.querySelector('.nav-links');
+    const links = item.querySelector('.nav-links');
 
-    if (originalLinks) {
-      // Create empty secondary nav structure
+    if (links) {
+      // Update secondary nav for mobile
       const secondaryNav = document.createElement('div');
       secondaryNav.className = 'secondary-nav container';
 
@@ -336,7 +286,7 @@ function initializeHeader(header) {
       const heading = document.createElement('h2');
       heading.textContent = detailedCaption || 'Overview';
 
-      // Create empty structure for links
+      // Use grid classes from styles.css
       const secondaryHeader = document.createElement('div');
       secondaryHeader.className = 'secondary-header row';
 
@@ -345,22 +295,37 @@ function initializeHeader(header) {
       headerCol.append(backBtn, heading, closeBtn);
       secondaryHeader.appendChild(headerCol);
 
+      // Update links container with grid classes
       const linksContainer = document.createElement('div');
       linksContainer.className = 'row';
 
       const linksCol = document.createElement('div');
       linksCol.className = 'col-12 col-md-6 col-sm-4';
-
-      // Create empty ul for links
-      const emptyLinks = document.createElement('ul');
-      emptyLinks.className = 'nav-links row';
-      linksCol.appendChild(emptyLinks);
+      linksCol.appendChild(links);
       linksContainer.appendChild(linksCol);
 
       secondaryNav.append(secondaryHeader, linksContainer);
       header.appendChild(secondaryNav);
 
-      // Handle click on nav item - Clone links here
+      // Handle back button click (mobile/tablet)
+      backBtn.addEventListener('click', (e) => {
+        e.stopPropagation();
+        item.classList.remove(activeClass);
+        secondaryNav.classList.remove(activeClass);
+        overlay.classList.remove(activeClass);
+        currentActive = null;
+      });
+
+      // Handle close button click (desktop)
+      closeBtn.addEventListener('click', (e) => {
+        e.stopPropagation();
+        item.classList.remove(activeClass);
+        secondaryNav.classList.remove(activeClass);
+        overlay.classList.remove(activeClass);
+        currentActive = null;
+      });
+
+      // Handle click on nav item
       item.addEventListener('click', (e) => {
         e.preventDefault();
 
@@ -370,47 +335,15 @@ function initializeHeader(header) {
           const activeSecondary = header.querySelector('.secondary-nav.active');
           if (activeSecondary) {
             activeSecondary.classList.remove(activeClass);
-            // Clear links when closing
-            activeSecondary.querySelector('.nav-links').innerHTML = '';
           }
         }
 
         // Toggle current item
         item.classList.toggle(activeClass);
-
-        if (item.classList.contains(activeClass)) {
-          // Clone and append links only when opening
-          const clonedLinks = originalLinks.cloneNode(true);
-          emptyLinks.innerHTML = ''; // Clear previous links
-          emptyLinks.append(...clonedLinks.children); // Append cloned children
-        } else {
-          // Clear links when closing
-          emptyLinks.innerHTML = '';
-        }
-
         secondaryNav.classList.toggle(activeClass);
         overlay.classList.toggle(activeClass);
 
         currentActive = item.classList.contains(activeClass) ? item : null;
-      });
-
-      // Handle back/close buttons
-      const closeSecondary = () => {
-        item.classList.remove(activeClass);
-        secondaryNav.classList.remove(activeClass);
-        overlay.classList.remove(activeClass);
-        emptyLinks.innerHTML = ''; // Clear links
-        currentActive = null;
-      };
-
-      backBtn.addEventListener('click', (e) => {
-        e.stopPropagation();
-        closeSecondary();
-      });
-
-      closeBtn.addEventListener('click', (e) => {
-        e.stopPropagation();
-        closeSecondary();
       });
     }
   });
@@ -482,7 +415,7 @@ export default async function decorate(block) {
 
   if (fragment && true) {
     const header = createHeaderStructure(fragment);
-    block.textContent = '';
+    block.innerHTML = '';
     block.appendChild(header);
 
     // Initialize header functionality
