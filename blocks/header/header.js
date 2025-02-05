@@ -138,7 +138,7 @@ function createHeaderStructure(block) {
   columns.className = 'columns block';
   const columnsResource = block.querySelector('[data-aue-label="Columns"]')?.getAttribute('data-aue-resource');
   setAEMAttributes(columns, {
-    type: 'container', 
+    type: 'container',
     model: 'columns',
     label: 'Columns',
     filter: 'columns',
@@ -435,7 +435,7 @@ export default async function decorate(block) {
 
   if (fragment && true) {
     const header = createHeaderStructure(fragment);
-    //document.getElementsByTagName('main')[0].remove();
+    document.getElementsByTagName('main')[0].remove();
     block.innerHTML = '';
     block.appendChild(header);
 
