@@ -1,3 +1,5 @@
+import {SvgIcon} from "../../shared-components/SvgIcon"
+import {stringToHTML} from "../../shared-components/Utility"
 /**
 * Loads and decorates the Hero Banner
 * @param {Element} block The herobanner block element
@@ -6,7 +8,7 @@ export default function decorate(block) {
   console.log(block)
   const exploreMoreContainer = block;
 
-  if (!exploreMoreContainer) return "hello";
+  if (!exploreMoreContainer) return ;
 
   // Function to extract attributes dynamically
   const extractAttributes = (element) => {
@@ -37,25 +39,36 @@ export default function decorate(block) {
   const secondCtaHref = secondCtaHrefElement?.getAttribute("href") || "#";
   const secondCtaHrefAttributes = extractAttributes(secondCtaHrefElement);
 
+  // SVG forward icon
+  const forwardArrow = SvgIcon(name,
+    className = 'forwardArrow',
+    size = '16',
+    color = 'currentColor',)
+    console.log(forwardArrow);
+
+  const parsedForwardArrow = stringToHTML(forwardArrow);
+    console.log(parsedForwardArrow)
   // Clear existing content
   exploreMoreContainer.innerHTML = "";
 
   // Create new structure with href inside a separate div
   exploreMoreContainer.innerHTML = `
-      <div class="exploremore-wrapper">
+      <div class="exploremore-wrapper container-xl container-lg container-md container-sm">
           <h2 class="exploremore-title" ${titleAttributes}>${title}</h2>
-          <div class="exploremore-links">
-              <div class="exploremore-item">
+          <div class="exploremore-links row">
+              <div class="exploremore-item col-lg-6 col-md-3 col-sm-4">
                   <div class="exploremore-caption" ${firstCtaAttributes}>${firstCtaCaption}</div>
                   <div class="exploremore-link-container">
                       <a href="${firstCtaHref}" class="exploremore-link exploremore-first" ${firstCtaHrefAttributes}>
+                        ${parsedForwardArrow}
                       </a>
                   </div>
               </div>
-              <div class="exploremore-item">
+              <div class="exploremore-item col-lg-6 col-md-3 col-sm-4">
                   <div class="exploremore-caption" ${secondCtaAttributes}>${secondCtaCaption}</div>
                   <div class="exploremore-link-container">
                       <a href="${secondCtaHref}" class="exploremore-link exploremore-second" ${secondCtaHrefAttributes}>
+                        ${parsedForwardArrow}
                       </a>
                   </div>
               </div>
