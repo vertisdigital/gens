@@ -15,7 +15,7 @@
   margin-bottom: 80px;
 }
 
-.exploremore-wrapper-container .explore-more-links{
+.exploremore-wrapper-container .exploremore-links{
   display: flex;
   justify-content: space-between;
 }
