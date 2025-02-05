@@ -80,5 +80,11 @@
     "components": [
       "linkField"
     ]
+  },
+  {
+    "id": "herobanner",
+    "components": [
+      "bannercarousel"
+    ]
   }
 ]
