@@ -56,16 +56,18 @@ export default function decorate(block) {
 
     // Convert title to h3 with preserved authoring attributes
     const title = item.querySelector('[data-aue-prop="title"]');
-    const h3 = document.createElement('h3');
-    h3.textContent = title.textContent;
-
-    // Preserve title data-aue attributes
-    const titleAttributes = [...title.attributes].filter((attr) => attr.name.startsWith('data-aue-'));
-    titleAttributes.forEach((attr) => {
-      h3.setAttribute(attr.name, attr.value);
-    });
-    title.replaceWith(h3);
-
+    if(title !== null) {
+      const h3 = document.createElement('h3');
+      h3.textContent = title.textContent;
+  
+      // Preserve title data-aue attributes
+      const titleAttributes = [...title.attributes].filter((attr) => attr.name.startsWith('data-aue-'));
+      titleAttributes.forEach((attr) => {
+        h3.setAttribute(attr.name, attr.value);
+      });
+      title.replaceWith(h3);  
+    }
+    
     // Preserve description data-aue attributes
     const description = item.querySelector('[data-richtext-prop="description"]');
     if (description) {
