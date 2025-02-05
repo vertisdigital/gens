@@ -1,21 +1,21 @@
-import {SvgIcon} from "../../shared-components/SvgIcon"
-import {stringToHTML} from "../../shared-components/Utility"
+import SvgIcon from '../../shared-components/SvgIcon.js';
+import stringToHTML from '../../shared-components/Utility.js';
 /**
 * Loads and decorates the Hero Banner
 * @param {Element} block The herobanner block element
 */
 export default function decorate(block) {
-  console.log(block)
+  console.log(block);
   const exploreMoreContainer = block;
 
-  if (!exploreMoreContainer) return ;
+  if (!exploreMoreContainer) return;
 
   // Function to extract attributes dynamically
   const extractAttributes = (element) => {
-      if (!element) return "";
-      return Array.from(element.attributes)
-          .map(attr => `${attr.name}="${attr.value}"`)
-          .join(" ");
+    if (!element) return '';
+    return Array.from(element.attributes)
+      .map((attr) => `${attr.name}="${attr.value}"`)
+      .join(' ');
   };
 
   // Extract elements
@@ -26,30 +26,29 @@ export default function decorate(block) {
   const secondCtaHrefElement = exploreMoreContainer.querySelector('a[href*="our-projects"]');
 
   // Extract text content and attributes
-  const title = titleElement?.textContent?.trim() || "";
+  const title = titleElement?.textContent?.trim() || '';
   const titleAttributes = extractAttributes(titleElement);
 
-  const firstCtaCaption = firstCtaElement?.textContent?.trim() || "";
+  const firstCtaCaption = firstCtaElement?.textContent?.trim() || '';
   const firstCtaAttributes = extractAttributes(firstCtaElement);
-  const firstCtaHref = firstCtaHrefElement?.getAttribute("href") || "#";
+  const firstCtaHref = firstCtaHrefElement?.getAttribute('href') || '#';
   const firstCtaHrefAttributes = extractAttributes(firstCtaHrefElement);
 
-  const secondCtaCaption = secondCtaElement?.textContent?.trim() || "";
+  const secondCtaCaption = secondCtaElement?.textContent?.trim() || '';
   const secondCtaAttributes = extractAttributes(secondCtaElement);
-  const secondCtaHref = secondCtaHrefElement?.getAttribute("href") || "#";
+  const secondCtaHref = secondCtaHrefElement?.getAttribute('href') || '#';
   const secondCtaHrefAttributes = extractAttributes(secondCtaHrefElement);
 
   // SVG forward icon
-  const forwardArrow = SvgIcon(name,
-    className = 'forwardArrow',
-    size = '16',
-    color = 'currentColor',)
-    console.log(forwardArrow);
+  const forwardArrow = SvgIcon({
+    name: 'arrow', className: 'forwardArrow', size: '16', color: 'currentColor',
+  });
+  console.log(forwardArrow);
 
   const parsedForwardArrow = stringToHTML(forwardArrow);
-    console.log(parsedForwardArrow)
+  console.log(parsedForwardArrow);
   // Clear existing content
-  exploreMoreContainer.innerHTML = "";
+  exploreMoreContainer.innerHTML = '';
 
   // Create new structure with href inside a separate div
   exploreMoreContainer.innerHTML = `
@@ -77,7 +76,6 @@ export default function decorate(block) {
   `;
 }
 
-
 // Wrap CTA sections for styling
 // document.addEventListener('DOMContentLoaded', function() {
 //   const exploreMore = document.querySelector('.exploremore');
@@ -86,7 +84,7 @@ export default function decorate(block) {
 //   // Create CTA group container
 //   const ctaGroup = document.createElement('div');
 //   ctaGroup.className = 'cta-group';
-  
+
 //   // Get title and move it before CTA group
 //   const title = exploreMore.querySelector('[data-aue-prop="title"]').parentNode;
 //   exploreMore.insertBefore(title, exploreMore.firstChild);
@@ -125,4 +123,4 @@ export default function decorate(block) {
 //   // Remove original link elements
 //   firstLink?.parentNode?.remove();
 //   secondLink?.parentNode?.remove();
-// }); 
+// });
