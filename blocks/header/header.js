@@ -415,7 +415,7 @@ export default async function decorate(block) {
 
   if (fragment && true) {
     const header = createHeaderStructure(fragment);
-    block.innerHTML = '';
+    fragment.innerHTML = '';
     block.appendChild(header);
 
     // Initialize header functionality
