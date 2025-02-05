@@ -103,6 +103,13 @@ export default function decorate(block) {
   const leftArrowDisabled = SvgIcon({ name: 'leftarrowdisabled', className: 'arrow-link', size: '12' });
   const rightArrowDisabled = SvgIcon({ name: 'rightarrowdisabled', className: 'arrow-link', size: '12' });
 
+  const scrollIntervalDiv = block.querySelector('[data-aue-prop="scrollInterval"]');
+
+  let scrollInterval = 3000;
+  if(scrollIntervalDiv){
+    scrollInterval = parseInt(scrollIntervalDiv.textContent, 10) * 1000;
+  }
+
   function moveCarousel(moveForward) {
     const carouselItemsEl = heroContainer.querySelector('.carousel-item');
     const itemWidth = carouselItemsEl?.offsetWidth;
@@ -122,7 +129,7 @@ export default function decorate(block) {
       setTimeout(() => {
         carouselWrapper.style.transition = 'none';
         carouselWrapper.style.transform = 'translateX(0)';
-      }, 3000);
+      }, scrollInterval);
     }
   }
 
@@ -272,7 +279,8 @@ export default function decorate(block) {
       if (pTag) {
         const aTag = pTag.querySelector('a');
         if (aTag) {
-          const imgUrl = aTag.getAttribute('href');
+          // const imgUrl = aTag.getAttribute('href');
+          const imgUrl = 'https://cdn.builder.io/api/v1/image/assets/TEMP/3818aa4f34615b927264d6d8cab07f1e20d364cf0b7277c747dd56359fc99bce?placeholderIfAbsent=true&apiKey=16b1633103d8450ead7bc93647340540';
           const imgAlt = aTag.getAttribute('title') || 'Thumbnail';
 
           const imgHtml = ImageComponent({
@@ -313,12 +321,6 @@ export default function decorate(block) {
   }
 
   const carouselItemsAll = heroContainer.querySelectorAll('.carousel-item');
-  const scrollIntervalDiv = block.querySelector('[data-aue-prop="scrollInterval"]');
-
-  let scrollInterval = 3000;
-  if(scrollIntervalDiv){
-    scrollInterval = parseInt(scrollIntervalDiv.textContent, 10) * 1000;
-  }
 
   if (carouselItemsAll.length > 0) {
     setInterval(() => {
