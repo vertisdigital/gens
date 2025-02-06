@@ -430,9 +430,9 @@ export default function decorate(block) {
   const carouselItemsAll = heroContainer.querySelectorAll(".carousel-item");
 
   if (carouselItemsAll.length > 0) {
-    // setInterval(() => {
-    //   moveCarousel(true, false);
-    // }, scrollInterval);
+    setInterval(() => {
+      moveCarousel(true, false);
+    }, scrollInterval);
   }
 
   carouselItems.forEach((item) => {
