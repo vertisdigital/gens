@@ -204,7 +204,7 @@ function createHeaderStructure(block) {
     filter: 'text',
     type: 'richtext',
   }, 'section_0/columns/row1/col1/text');
-
+  searchWrapper.className = 'search-icon-wrapper';
   const searchIcon = document.createElement('span');
   searchIcon.className = 'icon icon-search';
   const searchImg = document.createElement('img');
@@ -289,17 +289,21 @@ function initializeHeader(header) {
       const heading = document.createElement('h2');
       heading.textContent = detailedCaption || 'Overview';
 
+      // Wrapper for secondaryHeader and linksContainer
+      const secondaryNavWrapper = document.createElement('div');
+      secondaryNavWrapper.className = 'container-xl container-lg container-md container-sm';
+
       // Create empty structure for links
       const secondaryHeader = document.createElement('div');
       secondaryHeader.className = 'secondary-header row';
 
       const headerCol = document.createElement('div');
-      headerCol.className = 'col-12 col-md-6 col-sm-4';
+      headerCol.className = 'secondary-header-wrapper col-12 col-md-6 col-sm-4';
       headerCol.append(backBtn, heading, closeBtn);
       secondaryHeader.appendChild(headerCol);
 
       const linksContainer = document.createElement('div');
-      linksContainer.className = 'row';
+      linksContainer.className = 'secondary-header-links row';
 
       const linksCol = document.createElement('div');
       linksCol.className = 'col-12 col-md-6 col-sm-4';
@@ -310,7 +314,8 @@ function initializeHeader(header) {
       linksCol.appendChild(emptyLinks);
       linksContainer.appendChild(linksCol);
 
-      secondaryNav.append(secondaryHeader, linksContainer);
+      secondaryNavWrapper.append(secondaryHeader, linksContainer);
+      secondaryNav.append(secondaryNavWrapper);
       header.appendChild(secondaryNav);
 
       // Handle click on nav item - Clone links here
