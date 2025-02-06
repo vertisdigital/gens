@@ -364,18 +364,6 @@
           {
             "name": "Top Right Arrow",
             "value": "top-right-arrow"
-          },
-          {
-            "name": "Twitter",
-            "value": "twitter"
-          },
-          {
-            "name": "Linked In",
-            "value": "linkedin"
-          },
-          {
-            "name": "Youtube",
-            "value": "youtube"
           }
         ]
       },
@@ -425,13 +413,6 @@
         "name": "linkImage",
         "label": "Link Image",
         "multi": false
-      },
-      {
-        "component": "richtext",
-        "name": "description",
-        "value": "",
-        "label": "Description",
-        "valueType": "string"
       }
     ]
   },
@@ -527,12 +508,11 @@
         "component": "text",
         "name": "heading",
         "label": "Heading",
+        "required": true,
         "validation": {
-          "minLength": 1,
           "maxLength": 100,
           "customErrorMsg": "Heading cannot exceed 100 characters"
         }
-
       },
       {
         "component": "richtext",
