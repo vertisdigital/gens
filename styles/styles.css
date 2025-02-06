@@ -368,6 +368,8 @@ main .section.highlight {
     flex-wrap: wrap;
 
     --bs-gutter-x: 36px;
+    display: flex;
+    flex-wrap: wrap;
   }
 
   /* Row-cols selectors first */
