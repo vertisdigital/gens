@@ -282,6 +282,84 @@
               }
             }
           }
+        },
+        {
+          "title": "Listing",
+          "id": "listing",
+          "plugins": {
+            "xwalk": {
+              "page": {
+                "resourceType": "core/franklin/components/block/v1/block",
+                "template": {
+                  "name": "Listing",
+                  "model": "listing",
+                  "filter": "listing"
+                }
+              }
+            }
+          }
+        },
+        {
+          "title": "List Item",
+          "id": "listitem",
+          "plugins": {
+            "xwalk": {
+              "page": {
+                "resourceType": "core/franklin/components/block/v1/block/item",
+                "template": {
+                  "name": "List Item",
+                  "model": "listitem"
+                }
+              }
+            }
+          }
+        },
+        {
+          "title": "ProjectCards",
+          "id": "projectcards",
+          "plugins": {
+            "xwalk": {
+              "page": {
+                "resourceType": "core/franklin/components/block/v1/block",
+                "template": {
+                  "name": "ProjectCards",
+                  "model": "projectcards",
+                  "filter": "projectcards"
+                }
+              }
+            }
+          }
+        },
+        {
+          "title": "ProjectCard",
+          "id": "projectcard",
+          "plugins": {
+            "xwalk": {
+              "page": {
+                "resourceType": "core/franklin/components/block/v1/block/item",
+                "template": {
+                  "name": "ProjectCard",
+                  "model": "projectcard"
+                }
+              }
+            }
+          }
+        },
+        {
+          "title": "Enquiry",
+          "id": "enquiry",
+          "plugins": {
+            "xwalk": {
+              "page": {
+                "resourceType": "core/franklin/components/block/v1/block",
+                "template": {
+                  "name": "Enquiry",
+                  "model": "enquiry",
+                  "filter": "enquiry"
+                }
+              }
+            }
+          }
         }
       ]
     }

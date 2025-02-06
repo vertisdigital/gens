@@ -21,7 +21,10 @@
       "linkField",
       "socialLinks",
       "links",
-      "imageLink"
+      "imageLink",
+      "listing",
+      "projectcards",
+      "enquiry"
     ]
   },
   {
@@ -45,7 +48,10 @@
       "title",
       "imageLink",
       "socialLinks",
-      "links"
+      "links",
+      "listing",
+      "projectcards",
+      "enquiry"
     ]
   },
   {
@@ -80,9 +86,24 @@
     ]
   },
   {
+    "id": "listing",
+    "components": [
+      "listitem",
+      "linkField"
+      ]
+  },
+  {
+    "id": "projectcards",
+    "components": [
+      "projectcard",
+      "linkField"
+    ]
+  },
+  {
     "id": "herobanner",
     "components": [
       "bannercarousel"
     ]
+
   }
 ]

@@ -9,14 +9,15 @@ import stringToHTML from '../../shared-components/Utility.js';
 */
 export default function decorate(block) {
   const container = document.createElement('div');
-  container.className = 'container'; block.querySelector('[data-aue-model="linkField"]');
+
+  container.classList.add('container-xl', 'container-lg', 'container-md', 'container-sm');
 
   const aboutUsStats = document.createElement('div');
-  aboutUsStats.className = 'row about-us-stats';
+  aboutUsStats.classList.add('row', 'about-us-stats');
 
   // About-Us left container
   const aboutUsLeftContent = document.createElement('div');
-  aboutUsLeftContent.className = 'col-lg-6 col-md-3 col-sm-4 about-us-left';
+  aboutUsLeftContent.classList.add('col-xl-6', 'col-md-3', 'col-sm-4', 'about-us-left');
 
   // Find the title and replace it with a heading
   const titleElement = block.querySelector('[data-aue-prop="title"]');
@@ -96,14 +97,15 @@ export default function decorate(block) {
       linkElement.className = 'button';
 
       const arrowIcon = linkField.querySelector('[data-aue-prop="linkSvgIcon"]');
-      const arrowIconName = arrowIcon.textContent.replace('-', '');
-      arrowIcon.innerHTML = '';
-      if (!arrowIcon) {
-        linkElement.textContent = originalLink.textContent;
-      } else {
-        const arrowSVG = SvgIcon({ name: `${arrowIconName}`, className: 'about-us-left-link', size: '18px' });
-        linkElement.append(stringToHTML(arrowSVG));
+
+      const arrowIconName = arrowIcon.textContent.replace("-", "");
+      arrowIcon.innerHTML= "";
+      if(!arrowIcon){
+      linkElement.textContent = originalLink.textContent;
       }
+      else{
+      const arrowSVG = SvgIcon({ name: `${arrowIconName}`, className: 'about-us-left-link', size: '16px' });
+      linkElement.append(stringToHTML(arrowSVG));
 
       // Assemble link structure
       linkTextP.appendChild(linkElement);
@@ -117,7 +119,7 @@ export default function decorate(block) {
 
   // About-Us right container
   const aboutUsRightContent = document.createElement('div');
-  aboutUsRightContent.className = 'col-lg-6 col-md-3 col-sm-4 about-us-right';
+  aboutUsRightContent.classList.add('col-xl-6', 'col-md-3', 'col-sm-4', 'about-us-right');
 
   // Collect all imageAndDescription elements first
   const aboutUsDescription = block.querySelectorAll('[data-aue-model="featureItem"]');
