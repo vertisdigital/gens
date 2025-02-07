@@ -94,6 +94,7 @@ function buildAutoBlocks(main) {
         tabPanel.appendChild(section.firstChild);
       }
 
+      console.log(tabPanel);
       // Remove the original section after moving content
       section.remove();
 
