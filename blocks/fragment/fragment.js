@@ -23,7 +23,7 @@ export async function loadFragment(path) {
     path = path.replace(/(\.plain)?\.html/, '');
      let newPath = window.location.href;
      newPath = newPath.replace(".html", ".plain.html");
-        const resp = await fetch(`${newPath}`);
+        let resp = await fetch(`${newPath}`);
     resp = await fetch(`${path}.plain.html`);
     if (resp.ok) {
       const main = document.createElement('main');
