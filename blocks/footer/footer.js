@@ -13,14 +13,6 @@ export default async function decorate(block) {
   const fragment = await loadFragmentCustom(footerPath);
   // const fragment = block;
   if (fragment) {
-    // Create main element with data attributes
-   /* const main = document.createElement('main');
-    main.setAttribute('data-aue-resource', 'urn:aemconnection:/content/genting-singapore/footer/jcr:content/root');
-    main.setAttribute('data-aue-label', 'Main');
-    main.setAttribute('data-aue-filter', 'main');
-    main.setAttribute('data-aue-type', 'container');*/
-
-    // Create section element with data attributes
     const section = document.createElement('section');
     // Get the source section element from fragment
     const sourceSection = fragment.querySelector('[data-aue-model="section"]');
