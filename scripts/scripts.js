@@ -65,7 +65,7 @@ async function loadFonts() {
 function buildAutoBlocks(main) {
   try {
     // TODO: add auto block, if needed
-    const sections = [...main.querySelectorAll('[data-aue-model="tabs"]')];
+    const sections = [...main.querySelectorAll('[data-aue-model="tabs"]:not(.section-metadata)')];
     if (sections.length === 0) return;
 
     const tabsWrapper = document.createElement("div");
