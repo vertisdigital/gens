@@ -65,7 +65,6 @@ async function loadFonts() {
 function buildAutoBlocks(main) {
   try {
     const sections = [...main.querySelectorAll('[data-aue-model="tabs"]:not(.section-metadata)')];
-    console.log(sections);
     if (sections.length === 0) return;
 
     const tabsWrapper = document.createElement("div");
@@ -90,9 +89,12 @@ function buildAutoBlocks(main) {
       tabPanel.classList.add("tab-panel");
       if (index === 0) tabPanel.classList.add("active");
 
-      // Move content into the panel
-      while (section.firstChild) {
-        tabPanel.appendChild(section.firstChild);
+      // Clone the section content instead of moving it
+      const clonedContent = section.cloneNode(true);
+      clonedContent.querySelector(".section-metadata")?.remove(); // Remove metadata from content
+
+      while (clonedContent.firstChild) {
+        tabPanel.appendChild(clonedContent.firstChild);
       }
       
       console.log(tabButton.outerHTML);
