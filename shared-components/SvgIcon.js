@@ -17,7 +17,6 @@ export default function SvgIcon({
 }) {
   const iconSvg = getIcon(name);
   if (!iconSvg) {
-    // console.warn(`Icon "${name}" not found`);
     return '';
   }
 

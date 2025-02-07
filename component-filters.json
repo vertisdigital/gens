@@ -20,7 +20,11 @@
       "linkField",
       "socialLinks",
       "links",
-      "imageLink"
+      "imageLink",
+      "listing",
+      "projectcards",
+      "enquiry",
+      "tiles"
     ]
   },
   {
@@ -44,7 +48,11 @@
       "title",
       "imageLink",
       "socialLinks",
-      "links"
+      "links",
+      "listing",
+      "projectcards",
+      "enquiry",
+      "tiles"
     ]
   },
   {
@@ -79,9 +87,30 @@
     ]
   },
   {
+    "id": "listing",
+    "components": [
+      "listitem",
+      "linkField"
+      ]
+  },
+  {
+    "id": "projectcards",
+    "components": [
+      "projectcard",
+      "linkField"
+    ]
+  },
+  {
     "id": "herobanner",
     "components": [
       "bannercarousel"
+    ]
+
+  },
+  {
+    "id": "tiles",
+    "components": [
+      "tile"
     ]
   }
 ]
