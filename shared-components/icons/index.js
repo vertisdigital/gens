@@ -18,9 +18,6 @@ export const icons = {
   ellipse: `<svg xmlns="http://www.w3.org/2000/svg" width="6" height="6" viewBox="0 0 6 6" fill="none">
 <circle id="Ellipse 8" cx="3" cy="3" r="3" fill="currentColor"/>
 </svg>`,
-  rightarrow: `<svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-    <path d="M12 4L10.59 5.41L16.17 11H4V13H16.17L10.59 18.59L12 20L20 12L12 4Z" fill="currentColor"/>
-  </svg>`,
   twitter: `<svg xmlns="http://www.w3.org/2000/svg" width="19" height="19" viewBox="0 0 19 19" fill="none">
 <g clip-path="url(#clip0_5202_713)">
 <path d="M14.8461 1.25781H17.6636L11.508 8.29391L18.75 17.8665H13.0798L8.63916 12.06L3.55694 17.8665H0.737906L7.32228 10.3404L0.375 1.25858H6.18916L10.2033 6.56589L14.8461 1.25781ZM13.8577 16.1806H15.4188L5.34084 2.85567H3.66566L13.8577 16.1806Z" fill="white"/>
