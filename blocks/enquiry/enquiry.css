@@ -14,14 +14,17 @@
 .enquiry-wrapper .row>div{
   padding: 0;
 }
+
 .enquiry-wrapper .row>div:first-child{
   padding-right: 18px;
 
 }
+
 .enquiry-wrapper .row>div:last-child{
   padding-left: 18px;
   
 }
+
 .enquiry-wrapper .enquiry-heading {
   font-size: 40px;
   font-weight: 500;
@@ -81,11 +84,11 @@
     font-size: 16px;
     font-weight: 700;
     line-height: 24px;
-    color: var(--text-color);
     margin: 0;
     color: var(--text-color);
     text-decoration: none;
 }
+
 .enquiry-wrapper .contact-items .contact-text a{
     color: var(--text-color);
     text-decoration: none;
@@ -107,8 +110,6 @@
 
 /* Tablet Layout  */
  @media (width >= 768px) and (width < 1024px) {
- 
- 
   .enquiry-wrapper .enquiry-heading {
     font-size: 32px;
     line-height: 42px; 
@@ -155,21 +156,21 @@
 
 /* Mobile Layout  */
 @media (width < 768px) {
-  
-
-  
   /* Typography */
   .enquiry-wrapper .row>div{
     padding: 0;
   }
+
   .enquiry-wrapper .row>div:first-child{
     padding-right: 0;
   
   }
+
   .enquiry-wrapper .row>div:last-child{
     padding-left: 0;
     
   }
+
   .enquiry-wrapper .enquiry-heading {
     font-size: 28px;
     line-height: 34px; 
@@ -200,6 +201,7 @@
   }
   
   /* Icon Styling */
+
   /* .enquiry-wrapper .contact-items .contact-icon {
     display: flex;
     align-items: center;
@@ -220,6 +222,7 @@
       margin: 0;
       text-decoration: none;
   }
+
   .enquiry-wrapper .contact-items .contact-text a{
       color: var(--text-color);
       text-decoration: none;

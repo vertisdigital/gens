@@ -182,55 +182,70 @@
         "valueType": "string",
         "name": "bannerimage",
         "label": "Banner Image",
-        "configUrl": "https://main--aem-eds-universaleditor--josephverticurl.aem.page/tools/assets-selector/config.json",
-        "multi": false
+        "configUrl": "https://main--genting--wppopen.aem.page/tools/assets-selector/config.json",
+        "multi": false,
+        "validation": {
+          "rootPath": "/content/dam/genting-singapore"
+        }
       },
       {
         "component": "text",
         "name": "bannertitle",
-        "label": "Title"
+        "label": "Banner Title",
+        "validation": {
+          "maxLength": 100,
+          "customErrorMsg": "Banner title cannot exceed 100 characters"
+        }
       },
       {
         "component": "text",
+        "name": "bannerheading",
+        "label": "Banner Heading",
+        "required": true,
+        "validation": {
+          "maxLength": 100,
+          "customErrorMsg": "Banner title cannot exceed 100 characters"
+        }
+      },
+      {
+        "component": "richtext",
         "name": "bannerdescription",
-        "label": "Description"
+        "label": "Banner Description",
+        "validation": {
+          "maxSize": 250,
+          "customErrorMsg": "Banner description cannot exceed 250 characters"
+        }
       },
       {
         "component": "aem-content",
         "valueType": "string",
         "name": "ctabutton",
         "label": "CTA Link",
-        "multi": false
+        "multi": false,
+        "validation": {
+          "rootPath": "/content/genting-singapore/index"
+        }
       },
       {
-        "component": "select",
-        "name": "herovariation",
-        "value": "",
-        "label": "Variations",
-        "description": "Variations for hero component",
-        "valueType": "string",
-        "options": [
-          {
-            "name": "Concept 1 - Tone 1",
-            "value": "cls_c1t1"
-          },
-          {
-            "name": "Concept 1 - Tone 2",
-            "value": "cls_c1t2"
-          },
-          {
-            "name": "Concept 1 - Tone 3",
-            "value": "cls_c1t3"
-          },
-          {
-            "name": "Concept 2",
-            "value": "cls_c2"
-          },
-          {
-            "name": "Concept 3",
-            "value": "cls_c3"
-          }
-        ]
+        "component": "text",
+        "name": "ctabuttonText",
+        "label": "Text"
+      },
+      {
+        "component": "text",
+        "name": "ctabuttonTitle",
+        "label": "Title"
+      },
+      {
+        "component": "number",
+        "name": "scrollInterval",
+        "label": "Scroll Interval",
+        "required": true,
+        "value": 5,
+        "description": "Interval in seconds",
+        "validation": {
+          "customErrorMsg": "Please enter a valid number"
+        }
       }
     ]
   },
@@ -241,25 +256,45 @@
         "component": "custom-asset-namespace:custom-asset",
         "name": "image",
         "label": "Carousel Image",
-        "configUrl": "https://main--aem-eds-universaleditor--josephverticurl.aem.page/tools/assets-selector/config.json",
-        "valueType": "string"
+        "configUrl": "https://main--genting--wppopen.aem.page/tools/assets-selector/config.json",
+        "valueType": "string",
+        "validation": {
+          "rootPath": "/content/dam/genting-singapore"
+        }
       },
       {
         "component": "text",
         "name": "title",
-        "label": "Title"
+        "label": "Title",
+        "validation": {
+          "maxLength": 25,
+          "customErrorMsg": "Title cannot exceed 25 characters"
+        }
       },
       {
         "component": "text",
         "name": "description",
-        "label": "Description"
+        "label": "Description",
+        "validation": {
+          "maxLength": 60,
+          "customErrorMsg": "Description cannot exceed 60 characters"        
+        }
+      },
+      {
+        "component": "text",
+        "name": "readmorelabel",
+        "label": "Read More Label",
+        "value": "Read More"
       },
       {
         "component": "aem-content",
         "valueType": "string",
         "name": "readmorelink",
         "label": "Read More Link",
-        "multi": false
+        "multi": false,
+        "validation": {
+          "rootPath": "/content/genting-singapore/index"
+        }
       }
     ]
   },

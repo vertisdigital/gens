@@ -1,6 +1,7 @@
 *{
   box-sizing: border-box;
 }
+
 .projectcards{
   padding-top: 80px;
   padding-bottom: 80px;
@@ -47,18 +48,22 @@
 }
 
 .projectcards .project-card {
-  padding: 0px 18px 0 18px;
+  padding: 0 18px;
 }
+
 .projectcards .project-card:first-child{
   padding-left: 0;
 }
+
 .projectcards .project-card:last-child{
   padding-right: 0;
 }
+
 .projectcards .project-card [data-aue-prop="image"]{
   /* height: 253px; */
   margin-bottom: 12px;
 }
+
 .projectcards .project-card [data-aue-prop="image"] picture{
   width: 100%;
   height: 100%;
@@ -69,6 +74,7 @@
   height: 100%;
   object-fit: cover;
 }
+
 .projectcards .project-card-content {
   padding: 0
 }
@@ -94,7 +100,6 @@
 
 .projectcards .view-all-link {
   font-size: 16px;
-  font-weight: 700;
   line-height: 24px;
   color: var(--primary-gold)!important;
   text-decoration: none;
@@ -111,6 +116,7 @@
   .projectcards{
     padding: 40px 44px;
   }
+
   .projectcards .projectcards-header {
     margin-bottom: 34px;
   }
@@ -138,8 +144,9 @@
   }
   
   .projectcards .project-card {
-    padding: 0 12px 0 12px!important;
+    padding: 0 12px!important;
   }
+
   .projectcards .project-card [data-aue-prop="image"]{
     /* height: 361px; */
     margin-bottom: 10px;
@@ -152,6 +159,7 @@
     .projectcards{
       padding: 32px 24px;
     }
+
     .projectcards .projectcards-header {
       margin-bottom: 26px;
     }
@@ -183,13 +191,14 @@
     }
     
     .projectcards .project-card {
-      padding: 0 9px 0 9px!important;
+      padding: 0 9px!important;
     }
     
     .projectcards .project-card [data-aue-prop="image"]{
       /* height: 206px; */
       margin-bottom: 8px;
     }
+
     .projectcards .project-card-title {
       font-size: 14px;
       font-weight: 700;
@@ -202,6 +211,7 @@
       line-height: 20px; 
     
     }
+
     .projectcards .view-all-link {
       font-size: 14px;
       line-height: 20px;

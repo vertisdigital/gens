@@ -21,18 +21,25 @@
 .hero-title {
   font-size: 60px;
   font-weight: 400;
-  margin-bottom: 24px;
-  max-width: 656px;
+  margin: 0px 0px 24px 0px;
+  max-width: 750px;
   color: var(--background-color);
   text-shadow: 0 2px 4px rgb(0 0 0 / 30%);
-  padding-left: 157px;  
+  padding-left: 157px;
+}
+
+.hero-heading {
+  font-weight: 400;
+  color: var(--background-color);
+  text-shadow: 0 2px 4px rgb(0 0 0 / 30%);
+  padding-left: 157px;
 }
 
 .hero-description {
   font-family: var(--heading-font-family);
   font-size: 14px;
   line-height: 1.6;
-  max-width: 511px;
+  max-width: 638px;
   text-align: left;
   color: var(--light-grey);
   margin: 0;
@@ -50,41 +57,12 @@
   transform: translateY(4px);
 }
 
-/* Responsive adjustments */
-@media (width <= 768px) {
-  .hero-banner-container {
-    padding: 60px 20px;
-    min-height: 450px;
-  }
-
-  .hero-title {
-    font-size: 36px;
-    margin-bottom: 16px;
-    padding-left: 10px;
-  }
-
-  .hero-description {
-    font-size: 16px;
-    padding-left: 10px;
-  }
-
-  .hero-arrow-icon { 
-    padding-left: 10px;
-  }
-}
-
 .icon-wrapper {
   display: inline-flex;
   align-items: center;
   justify-content: left;
   line-height: 0;
   padding-top: 20px;
-}
-
-.icon-wrapper svg {
-  width: 24px;
-  height: 100%;
-  color: var(--primary-gold);
 }
 
 /* Ensure proper icon color inheritance */
@@ -101,14 +79,40 @@
   justify-content: end;
   overflow: hidden;
   background: var(--background-color);
-  color: var(--text-color)
+  color: var(--text-color);
 }
 
 .carousel-wrapper {
   display: flex;
   transition: transform 0.3s ease;
   padding: 0 0 10px 20px;
-  width: 680px;
+  height: 190px;
+  width: 608px;
+}
+
+.navigation-arrows{
+  padding-right: 45px;
+  display: flex;
+  gap: 3px;
+  position: absolute;
+  right: 155px;
+  bottom: 20px;
+}
+
+.ellipse {
+  padding-top: 10px;
+}
+
+.ellipse-enabled {
+  color: #B29152 !important;
+
+}
+.ellipse-disabled {
+  color: #DBDBDB !important;
+}
+
+.left-carousel-arrow {
+  margin-top: 3px;
 }
 
 /* Carousel item container */
@@ -117,7 +121,7 @@
   flex: 0 0 100%;
   justify-content: flex-start;
   align-items: center;
-  height: 140px;
+  align-self: stretch;
 }
 
 /* Left side: Text content (Title, Description, Read More) */
@@ -148,14 +152,14 @@
 }
 
 .news-link {
-  color: var(--primary-gold);
+  color: var(--primary-gold) !important;
   font-size: 16px;
-  text-decoration: underline;
+  font-weight: 600;
+  text-decoration: underline !important;
 }
 
 .news-link-container {
   display: flex;
-  align-items: baseline;
   justify-content: space-between;
 }
 
@@ -190,6 +194,10 @@
   fill: var(--background-color);
 }
 
+.arrow-link svg {
+  margin: 0px 5px;  
+}
+
 .news-thumbnail {
   width: 151px;
   height: 118px;
@@ -205,10 +213,68 @@
     flex-wrap: nowrap;
     padding: 0 0 10px;
   }
+
+  .arrow-link svg {
+    margin: 0px 3px;  
+  }
+}
+
+@media (width <= 396px) and ((width > 366px)) {
+  .hero-arrow-icon {
+    margin-bottom: 10px;  
+  }
+}
+
+@media (width <= 366px) {
+  .hero-arrow-icon {
+    margin-bottom: 50px;  
+  }
+}
+
+@media (width <= 361px) {
+  .hero-arrow-icon {
+    margin-bottom: 80px;  
+  }
 }
 
 /* Ensure responsive layout */
 @media (width <= 767px) {
+  .hero-banner-container {
+    padding: 60px 20px;
+    min-height: 450px;
+  }
+
+  .hero-title {
+    font-size: 36px;
+    margin-bottom: 16px;
+    padding-left: 10px;
+  }
+
+  .hero-heading {
+    padding-left: 10px;
+  }
+
+  .hero-description {
+    font-size: 16px;
+    padding-left: 10px;
+  }
+
+  .hero-arrow-icon { 
+    padding-left: 10px;
+  }
+
+  .hero-banner-carousal {
+    left: 0;
+  }
+
+  .news-title {
+    font-size: 12px;
+  }
+
+  .news-description {
+    font-size: 14px;
+  }
+
   .carousel-item {
     text-align: center;
   }
@@ -229,5 +295,31 @@
   .carousel-image img {
     height: 92px;
     flex: 1 0 0;
+  }
+
+  .navigation-arrows {
+    gap:3px;
+    padding-right: 5px;
+    bottom: 40px;
+  }
+
+  .left-carousel-arrow {
+    margin-top: 0;
+    padding-top: 1px;
+  }
+
+  .navigation-arrows svg {
+    height: 12px;
+    width: 12px;
+    margin: 0px 1px;
+  }
+
+  .ellipse svg {
+    height: 6px;
+    width: 6px;
+  }
+
+  .icon-wrapper {
+    padding-top: 0px;
   }
 }
