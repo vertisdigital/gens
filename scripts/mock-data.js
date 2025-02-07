@@ -160,6 +160,244 @@ drive sustainable growth and transformative impact through world-class integrate
   </svg>
     </span>
   </div></div>`,
+  tiles: `<div data-aue-resource="urn:aemconnection:/content/genting-singapore/index/tiles/jcr:content/root/section/block"
+  data-aue-type="container" 
+  data-aue-behavior="component"
+  data-aue-model="tiles"
+  data-aue-label="Tiles"
+  data-aue-filter="tiles"
+  class="tiles block"
+  data-block-name="tiles"
+  data-block-status="loaded"
+>
+  <div
+    data-aue-resource="urn:aemconnection:/content/genting-singapore/index/tiles/jcr:content/root/section/block/item"
+    data-aue-type="component"
+    data-aue-model="tile"
+    data-aue-label="Tile"
+  >
+    <div>
+      <p data-aue-prop="heading" data-aue-label="Heading" data-aue-type="text">
+        A Destination of Opportunity
+      </p>
+    </div>
+
+    <div>
+      <div
+        data-aue-prop="description"
+        data-aue-label="Description"
+        data-aue-filter="text"
+        data-aue-type="richtext"
+      >
+        <p>
+          We have laid a strong foundation for investments as a key player in
+          Singapore, and the broader Asia region. Through a commitment tomutual
+          growth, our success is built by boosting tourism and economic
+          development, ensuring communities thrive within and beyondour borders.
+        </p>
+      </div>
+    </div>
+
+    <div></div>
+
+    <div>
+      <p
+        data-aue-prop="ctaCaption"
+        data-aue-label="CTA Caption"
+        data-aue-type="text"
+      >
+        Download Factsheet
+      </p>
+    </div>
+
+    <div>
+      <p class="button-container">
+        <a
+          href="/content/genting-singapore/index/sustainability.html"
+          title="/content/genting-singapore/index/sustainability"
+          class="button"
+          >/content/genting-singapore/index/sustainability</a
+        >
+      </p>
+    </div>
+  </div>
+  <div
+    data-aue-resource="urn:aemconnection:/content/genting-singapore/index/tiles/jcr:content/root/section/block/item_1190373758"
+    data-aue-type="component"
+    data-aue-model="tile"
+    data-aue-label="Tile"
+  >
+    <div>
+      <p data-aue-prop="heading" data-aue-label="Heading" data-aue-type="text">
+        Prime Location, Financial Strength
+      </p>
+    </div>
+
+    <div>
+      <div
+        data-aue-prop="description"
+        data-aue-label="Description"
+        data-aue-filter="text"
+        data-aue-type="richtext"
+      >
+        <p>
+          We leverage our prime location and regulatory strength for financial
+          stability – with a record of strong and consistent revenue generation
+          positioning us for sustainable growth.
+        </p>
+      </div>
+    </div>
+
+    <div>
+      <p>
+        <a
+          href="https://author-p144202-e1488374.adobeaemcloud.com/content/dam/genting-singapore/hero.png"
+          title="https://author-p144202-e1488374.adobeaemcloud.com/content/dam/genting-singapore/hero.png"
+          >https://author-p144202-e1488374.adobeaemcloud.com/content/dam/genting-singapore/hero.png</a
+        >
+      </p>
+    </div>
+
+    <div>
+      <p
+        data-aue-prop="ctaCaption"
+        data-aue-label="CTA Caption"
+        data-aue-type="text"
+      >
+        Learn more
+      </p>
+    </div>
+
+    <div>
+      <p class="button-container">
+        <a
+          href="/content/genting-singapore/index/herobannertest.html"
+          title="/content/genting-singapore/index/herobannertest"
+          class="button"
+          >/content/genting-singapore/index/herobannertest</a
+        >
+      </p>
+    </div>
+  </div>
+  <div
+    data-aue-resource="urn:aemconnection:/content/genting-singapore/index/tiles/jcr:content/root/section/block/item_1716465102"
+    data-aue-type="component"
+    data-aue-model="tile"
+    data-aue-label="Tile"
+  >
+    <div>
+      <p data-aue-prop="heading" data-aue-label="Heading" data-aue-type="text">
+        Dynamic Growth Pipeline
+      </p>
+    </div>
+
+    <div>
+      <div
+        data-aue-prop="description"
+        data-aue-label="Description"
+        data-aue-filter="text"
+        data-aue-type="richtext"
+      >
+        <p>
+          Our investment in RWS 2.0 highlights a commitment to valueand future
+          growth, aiming to solidify us as Asia's top tourismdestination while
+          ensuring sustainable shareholder returns and geographical
+          diversification.
+        </p>
+      </div>
+    </div>
+
+    <div>
+      <p>
+        <a
+          href="https://author-p144202-e1488374.adobeaemcloud.com/content/dam/genting-singapore/content-at-scale.png"
+          title="https://author-p144202-e1488374.adobeaemcloud.com/content/dam/genting-singapore/content-at-scale.png"
+          >https://author-p144202-e1488374.adobeaemcloud.com/content/dam/genting-singapore/content-at-scale.png</a
+        >
+      </p>
+    </div>
+
+    <div>
+      <p
+        data-aue-prop="ctaCaption"
+        data-aue-label="CTA Caption"
+        data-aue-type="text"
+      >
+        Learn More
+      </p>
+    </div>
+
+    <div>
+      <p class="button-container">
+        <a
+          href="/content/genting-singapore/index/investor-relations.html"
+          title="/content/genting-singapore/index/investor-relations"
+          class="button"
+          >/content/genting-singapore/index/investor-relations</a
+        >
+      </p>
+    </div>
+  </div>
+  <div
+    data-aue-resource="urn:aemconnection:/content/genting-singapore/index/tiles/jcr:content/root/section/block/item_741832595"
+    data-aue-type="component"
+    data-aue-model="tile"
+    data-aue-label="Tile"
+  >
+    <div>
+      <p data-aue-prop="heading" data-aue-label="Heading" data-aue-type="text">
+        Effective Governance &amp; ESG
+      </p>
+    </div>
+
+    <div>
+      <div
+        data-aue-prop="description"
+        data-aue-label="Description"
+        data-aue-filter="text"
+        data-aue-type="richtext"
+      >
+        <p>
+          Exceeding industry standards, we are committed to ESG principles,
+          prioritising accountability, Responsible Gaming, and the Prevention of
+          Money Laundering and Terrorism Financing.
+        </p>
+      </div>
+    </div>
+
+    <div>
+      <p>
+        <a
+          href="https://author-p144202-e1488374.adobeaemcloud.com/content/dam/genting-singapore/hero.png"
+          title="https://author-p144202-e1488374.adobeaemcloud.com/content/dam/genting-singapore/hero.png"
+          >https://author-p144202-e1488374.adobeaemcloud.com/content/dam/genting-singapore/hero.png</a
+        >
+      </p>
+    </div>
+
+    <div>
+      <p
+        data-aue-prop="ctaCaption"
+        data-aue-label="CTA Caption"
+        data-aue-type="text"
+      >
+        Learn More
+      </p>
+    </div>
+
+    <div>
+      <p class="button-container">
+        <a
+          href="/content/genting-singapore/index/sustainability.html"
+          title="/content/genting-singapore/index/sustainability"
+          class="button"
+          >/content/genting-singapore/index/sustainability</a
+        >
+      </p>
+    </div>
+  </div>
+</div>`,
+// Add other block mock content
   listing: `<div data-aue-resource="urn:aemconnection:/content/genting-singapore/index/listing/jcr:content/root/section/block" data-aue-type="container" data-block-name="listing" data-aue-behavior="component" data-aue-model="listing" data-aue-label="Listing" data-aue-filter="listing" class="listing">
 <div>
 <div data-aue-prop="title" data-aue-label="Title" data-aue-type="text">Investor’s Initatives</div>

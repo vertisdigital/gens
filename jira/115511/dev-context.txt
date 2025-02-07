@@ -1,16 +1,11 @@
 Authoring Requirements:
-Make it a custom container block like cards block that will have following fields:
-1. an optional text field heading
-2. an optional textarea field Description
-3. any number of following items:
+Refer cards block which is having cards as container block and card as child block which can be added multiple times.
+Parent block wont have any fields but can contain any number of child blocks and Make child block with the following fields:
     a. a text field heading
-    b. a textarea field Description
+    b. a rich text field Description
     c. an optional custom-asset-namespace:custom-asset image
-    d. an optional cta button of type aem-content with the following fields
-    e. a select component with name classes with the following options:
-        i. With Image
-        ii. Without Image
-
+    d. a text filed cta button caption
+    e. an optional cta button of type aem-content
 
 
 Rendering Requirements:

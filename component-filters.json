@@ -13,18 +13,9 @@
       "button",
       "title",
       "hero",
-      "herobanner",
       "cards",
       "columns",
-      "fragment",
-      "feature",
-      "linkField",
-      "socialLinks",
-      "links",
-      "imageLink",
-      "listing",
-      "projectcards",
-      "enquiry"
+      "fragment"
     ]
   },
   {
@@ -45,13 +36,7 @@
       "text",
       "image",
       "button",
-      "title",
-      "imageLink",
-      "socialLinks",
-      "links",
-      "listing",
-      "projectcards",
-      "enquiry"
+      "title"
     ]
   },
   {
@@ -66,44 +51,5 @@
     "components": [
       "linkField"
     ]
-  },
-  {
-    "id": "socialLinks",
-    "components": [
-      "linkField"
-    ]
-  },
-  {
-    "id": "links",
-    "components": [
-      "linkField"
-    ]
-  },
-  {
-    "id": "imageLink",
-    "components": [
-      "linkField"
-    ]
-  },
-  {
-    "id": "listing",
-    "components": [
-      "listitem",
-      "linkField"
-      ]
-  },
-  {
-    "id": "projectcards",
-    "components": [
-      "projectcard",
-      "linkField"
-    ]
-  },
-  {
-    "id": "herobanner",
-    "components": [
-      "bannercarousel"
-    ]
-
   }
 ]
