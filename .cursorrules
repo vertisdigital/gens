@@ -13,8 +13,15 @@
         - Keyboard navigation support
     9. Responsive design requirements:
         - Mobile-first approach
-        - Standard breakpoints (768px, 1024px)
-        - Flexible layouts using CSS Grid/Flexbox
+        - Standard breakpoints (320px, 768px, 992px)
+        - While creating blocks, make sure to use the defined classes such as container-xl, container-lg, container-sm from styles.css file.
+        - Follow below hierarchy while creating blocks:
+            <div class="container-xl, container-lg, container-md, container-sm">
+                <div class="row">
+                    <div class="col-sm-6 col-md-4 col-lg-3">Column</div>
+                </div>
+            </div>
+        -  Always pick grid classes from styles.css file.
     10. Make sure following linting error doesn't occur:
         ✖  Unexpected duplicate "padding"                   declaration-block-no-duplicate-properties
         ✖  Expected modern color-function notation          color-function-notation
@@ -161,5 +168,3 @@
             Medium Priority (Score 3-4)
             Low Priority (Score 4-5)
 ---
-
-

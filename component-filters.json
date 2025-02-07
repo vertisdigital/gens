@@ -22,6 +22,10 @@
       "socialLinks",
       "links",
       "imageLink",
+      "listing",
+      "projectcards",
+      "enquiry",
+      "tiles",
       "textsection"
     ]
   },
@@ -47,6 +51,10 @@
       "imageLink",
       "socialLinks",
       "links",
+      "listing",
+      "projectcards",
+      "enquiry",
+      "tiles",
       "textsection"
     ]
   },
@@ -82,9 +90,30 @@
     ]
   },
   {
+    "id": "listing",
+    "components": [
+      "listitem",
+      "linkField"
+      ]
+  },
+  {
+    "id": "projectcards",
+    "components": [
+      "projectcard",
+      "linkField"
+    ]
+  },
+  {
     "id": "herobanner",
     "components": [
       "bannercarousel"
+    ]
+
+  },
+  {
+    "id": "tiles",
+    "components": [
+      "tile"
     ]
   }
 ]
