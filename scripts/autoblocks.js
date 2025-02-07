@@ -2,7 +2,7 @@
  * Process all the tab auto blocks 
  * @param {Element} main The container element
  */
-export function processTabs(main){
+export default function processTabs(main){
     const sections = [...main.querySelectorAll('[data-aue-model="tabs"]:not(.section-metadata)')];
     if (sections.length === 0) return;
 
