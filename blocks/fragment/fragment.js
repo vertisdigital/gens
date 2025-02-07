@@ -21,7 +21,10 @@ export async function loadFragment(path) {
   if (path && path.startsWith('/')) {
     // eslint-disable-next-line no-param-reassign
     path = path.replace(/(\.plain)?\.html/, '');
-    const resp = await fetch(`${path}.plain.html`);
+     let newPath = window.location.href;
+     newPath = newPath.replace(".html", ".plain.html");
+        const resp = await fetch(`${newPath}`);
+    resp = await fetch(`${path}.plain.html`);
     if (resp.ok) {
       const main = document.createElement('main');
       main.innerHTML = await resp.text();
