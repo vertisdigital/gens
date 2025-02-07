@@ -64,7 +64,6 @@ async function loadFonts() {
  */
 function buildAutoBlocks(main) {
   try {
-    // TODO: add auto block, if needed
     const sections = [...main.querySelectorAll('[data-aue-model="tabs"]:not(.section-metadata)')];
     if (sections.length === 0) return;
 
@@ -77,32 +76,29 @@ function buildAutoBlocks(main) {
     const tabsContent = document.createElement("div");
     tabsContent.classList.add("tabs-content");
 
-    sections.forEach((section, index) => { 
-      const metadata = section.querySelector(".section-metadata div:last-child"); ;
-      const tabTitle = metadata ? metadata.textContent.trim() : `CustTitle ${index + 1}`;
-      
-      //if (!tabTitle.startsWith("CustTitle")) {
-        console.log("tabTitle : ", tabTitle);
-        const tabButton = document.createElement("button");
-        tabButton.classList.add("tab-button");
-        tabButton.textContent = tabTitle;
-        tabButton.dataset.index = index;
+    sections.forEach((section, index) => {
+      const metadata = section.querySelector(".section-metadata > div :last-child");
+      const tabTitle = metadata ? metadata.textContent.trim(): `CustTitle ${index + 1}`;
+      const tabButton = document.createElement("button");
+      tabButton.classList.add("tab-button");
+      tabButton.textContent = tabTitle;
+      tabButton.dataset.index = index;
 
-        const tabPanel = document.createElement("div");
-        tabPanel.classList.add("tab-panel");
-        if (index === 0) tabPanel.classList.add("active");
+      const tabPanel = document.createElement("div");
+      tabPanel.classList.add("tab-panel");
+      if (index === 0) tabPanel.classList.add("active");
 
-        // Move content into the panel
-        while (section.firstChild) {
-          tabPanel.appendChild(section.firstChild);
-        }
+      // Move content into the panel
+      while (section.firstChild) {
+        tabPanel.appendChild(section.firstChild);
+      }
 
-        // Remove the original section after moving content
-        section.remove();
+      // Remove the original section after moving content
+      section.remove();
 
-        tabsNav.appendChild(tabButton);
-        tabsContent.appendChild(tabPanel);
-    //  }
+      tabsNav.appendChild(tabButton);
+      tabsContent.appendChild(tabPanel);
+
     });
 
     tabsWrapper.appendChild(tabsNav);
