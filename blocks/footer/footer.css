@@ -209,11 +209,11 @@
         text-align: start;
     }
 
-    .footer .mt-4 .footer-bottom-links .row [data-aue-model="links"]{
+    .footer .mt-4 .footer-bottom-links .row [data-link-model="links"]{
         padding: 0 18px!important;
     }
   
-    .footer .mt-4 .footer-bottom-links .row [data-aue-model="linkField"]{
+    .footer .mt-4 .footer-bottom-links .row [data-linkfield-model="linkField"]{
         padding: 0;
         margin: 0;
     }

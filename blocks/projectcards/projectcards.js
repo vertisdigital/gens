@@ -157,41 +157,41 @@ export default function decorate(block) {
   projectCardsContainer.appendChild(cardsGridContainer);
 
   // Handle View All link
-  if(projectCards.length>0){
-  const linkFieldElement = block.querySelector('[data-aue-model="linkField"]');
-  if (linkFieldElement) {
-    const linkContainer = document.createElement('div');
-    linkContainer.className = 'projectcards-view-all';
-    linkContainer.setAttribute('data-aue-type', 'component');
-    linkContainer.setAttribute('data-aue-model', 'linkField');
-    linkContainer.setAttribute('data-aue-filter', 'linkField');
-    linkContainer.setAttribute('data-aue-label', 'Link Field');
+  if (projectCards.length > 0) {
+    const linkFieldElement = block.querySelector('[data-aue-model="linkField"]');
+    if (linkFieldElement) {
+      const linkContainer = document.createElement('div');
+      linkContainer.className = 'projectcards-view-all';
+      linkContainer.setAttribute('data-aue-type', 'component');
+      linkContainer.setAttribute('data-aue-model', 'linkField');
+      linkContainer.setAttribute('data-aue-filter', 'linkField');
+      linkContainer.setAttribute('data-aue-label', 'Link Field');
 
-    const linkElement = linkFieldElement.querySelector('a');
-    if (linkElement) {
-      const linkDiv = document.createElement('div');
-      const viewAllLink = document.createElement('a');
-      viewAllLink.href = linkElement.getAttribute('href');
-      viewAllLink.textContent = linkElement.textContent;
-      viewAllLink.className = 'view-all-link';
-      viewAllLink.setAttribute('data-aue-prop', 'linkText');
-      viewAllLink.setAttribute('data-aue-label', 'Text');
-      viewAllLink.setAttribute('data-aue-type', 'text');
+      const linkElement = linkFieldElement.querySelector('a');
+      if (linkElement) {
+        const linkDiv = document.createElement('div');
+        const viewAllLink = document.createElement('a');
+        viewAllLink.href = linkElement.getAttribute('href');
+        viewAllLink.textContent = linkElement.textContent;
+        viewAllLink.className = 'view-all-link';
+        viewAllLink.setAttribute('data-aue-prop', 'linkText');
+        viewAllLink.setAttribute('data-aue-label', 'Text');
+        viewAllLink.setAttribute('data-aue-type', 'text');
 
-      const targetDiv = document.createElement('div');
-      targetDiv.setAttribute('data-aue-prop', 'linkTarget');
-      targetDiv.setAttribute('data-aue-label', 'Link Target');
-      targetDiv.setAttribute('data-aue-type', 'text');
-      viewAllLink.target = linkFieldElement.querySelector('[data-aue-prop="linkTarget"]')?.textContent || '_self';
+        const targetDiv = document.createElement('div');
+        targetDiv.setAttribute('data-aue-prop', 'linkTarget');
+        targetDiv.setAttribute('data-aue-label', 'Link Target');
+        targetDiv.setAttribute('data-aue-type', 'text');
+        viewAllLink.target = linkFieldElement.querySelector('[data-aue-prop="linkTarget"]')?.textContent || '_self';
 
-      linkDiv.appendChild(viewAllLink);
-      linkContainer.appendChild(linkDiv);
-      linkContainer.appendChild(targetDiv);
+        linkDiv.appendChild(viewAllLink);
+        linkContainer.appendChild(linkDiv);
+        linkContainer.appendChild(targetDiv);
+      }
+
+      projectCardsContainer.appendChild(linkContainer);
+      linkFieldElement.remove();
     }
-
-    projectCardsContainer.appendChild(linkContainer);
-    linkFieldElement.remove();
-  }
   }
 
   // Clear original block content and append new structure
