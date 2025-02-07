@@ -317,14 +317,6 @@ export default async function decorate(block) {
           linkTextContainer.appendChild(link);
         }
 
-        // Add link target
-        const originalTarget = originalLinkField.querySelector('[data-aue-prop="linkTarget"]');
-        if (originalTarget) {
-          const targetDiv = document.createElement('div');
-          targetDiv.textContent = originalTarget.textContent;
-          linkFieldContainer.appendChild(targetDiv);
-        }
-
         linkFieldContainer.appendChild(linkTextContainer);
         linksContainer.appendChild(linkFieldContainer);
       });
