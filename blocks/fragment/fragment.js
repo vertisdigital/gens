@@ -48,10 +48,10 @@ export async function loadFragment(path) {
 export async function loadFragmentCustom(path) {
   let newPath = window.location.href;
   if (path && path.startsWith('/')) {
-    const resp = await fetch(`${newPath}`);
-    if (resp.ok) {
+    const resp1 = await fetch(`${newPath}`);
+    if (resp1.ok) {
       const main = document.createElement('main');
-      main.innerHTML = await resp.text();
+      main.innerHTML = await resp1.text();
       const parser = new DOMParser();
       const doc = parser.parseFromString(main.innerHTML, 'text/html');
 
