@@ -402,6 +402,10 @@
           {
             "name": "Top Right Arrow",
             "value": "top-right-arrow"
+          },
+          {
+            "name": "Search",
+            "value": "search"
           }
         ]
       },
