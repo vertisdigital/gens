@@ -10,6 +10,7 @@
 
 .projectcards .projectcards-header {
   margin-bottom: 42px;
+  padding: 0 18px;
 }
 
 .projectcards .projectcards-title {
@@ -52,11 +53,11 @@
 }
 
 .projectcards .project-card:first-child{
-  padding-left: 0;
+  padding-left: 18px;
 }
 
 .projectcards .project-card:last-child{
-  padding-right: 0;
+  padding-right: 18px;
 }
 
 .projectcards .project-card [data-aue-prop="image"]{
