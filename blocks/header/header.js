@@ -120,11 +120,11 @@ function createNavItem(itemData, resourcePath) {
 
       if (link.target) {
         const targetDiv = document.createElement('div');
-        setAEMAttributes(targetDiv, {
-          prop: 'linkTarget',
-          label: 'Link Target',
-          type: 'text',
-        });
+        // setAEMAttributes(targetDiv, {
+        //   prop: 'linkTarget',
+        //   label: 'Link Target',
+        //   type: 'text',
+        // });
         targetDiv.textContent = link.target;
         li.appendChild(targetDiv);
       }
