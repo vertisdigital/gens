@@ -451,7 +451,12 @@
       {
         "component": "text",
         "name": "title",
-        "label": "Title"
+        "label": "Title",
+        "validation": {
+          "minLength": 5,
+          "maxLength": 40,
+          "customErrorMsg": "Title must be between 5 and 40 characters"
+        }
       }
     ]
   },
@@ -470,7 +475,11 @@
         "name": "description",
         "value": "",
         "label": "Description",
-        "valueType": "string"
+        "valueType": "string",
+        "validation": {
+          "maxLength": 500,
+          "customErrorMsg": "Description must not exceed 500 characters"
+        }
       }
     ]
   },
