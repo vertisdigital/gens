@@ -193,7 +193,7 @@ function createHeaderStructure(block) {
   // Create logo section
   const logoWrapper = document.createElement('div');
   logoWrapper.className = 'logo-wrapper';
-  const logoContent = block.querySelectorAll('[data-aue-model="image"]')[0]?.cloneNode(true);
+  const logoContent = block.querySelectorAll('[data-aue-model="image"]')[0]?.getElementsByTagName("picture");
   if (logoContent) {
     logoWrapper.appendChild(logoContent);
   }
@@ -471,14 +471,14 @@ hamburger.addEventListener('click', () => {
 
       if (headerTop <= 0) {
         header.classList.add('fixed-header'); // Add class when it reaches top: 0
-        const logoContentTwo = header.querySelectorAll('[data-aue-model="image"]')[1]?.cloneNode(true);
+        const logoContentTwo = header.querySelectorAll('[data-aue-model="image"]')[1]?.getElementsByTagName("picture");
         if (logoContentTwo) {
           headerLogo.innerHTML="";
           headerLogo.appendChild(logoContentTwo);
         }
 
       } else {
-        const logoContentOne = header.querySelectorAll('[data-aue-model="image"]')[0]?.cloneNode(true);
+        const logoContentOne = header.querySelectorAll('[data-aue-model="image"]')[0]?.getElementsByTagName("picture");
         header.classList.remove('fixed-header'); // Remove class if not at top
         headerLogo.innerHTML="";
         if (logoContentOne) {
