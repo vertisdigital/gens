@@ -17,6 +17,7 @@
       "cards",
       "columns",
       "fragment",
+      "coreprinciples",
       "feature",
       "linkField",
       "socialLinks",
@@ -48,6 +49,7 @@
       "image",
       "button",
       "title",
+      "coreprinciples",
       "imageLink",
       "socialLinks",
       "links",
@@ -114,6 +116,12 @@
     "id": "tiles",
     "components": [
       "tile"
+    ]
+  },
+  {
+    "id": "coreprinciples",
+    "components": [
+      "coreprinciple"
     ]
   }
 ]
