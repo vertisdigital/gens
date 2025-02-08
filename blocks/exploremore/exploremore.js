@@ -1,11 +1,9 @@
 import SvgIcon from '../../shared-components/SvgIcon.js';
-import stringToHTML from '../../shared-components/Utility.js';
 /**
 * Loads and decorates the Hero Banner
 * @param {Element} block The herobanner block element
 */
 export default function decorate(block) {
-  console.log(block);
   const exploreMoreContainer = block;
 
   if (!exploreMoreContainer) return;
@@ -43,10 +41,7 @@ export default function decorate(block) {
   const forwardArrow = SvgIcon({
     name: 'arrow', className: 'forwardArrow', size: '16', color: '',
   });
-  console.log(forwardArrow);
 
-  const parsedForwardArrow = stringToHTML(forwardArrow);
-  console.log(parsedForwardArrow);
   // Clear existing content
   exploreMoreContainer.innerHTML = '';
 
