@@ -142,6 +142,7 @@
   {
     "id": "statistics",
     "components": [
+      "statisticsDescription",
       "featureItem"
     ]
   }
