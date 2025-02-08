@@ -476,6 +476,7 @@
         "value": "",
         "label": "Description",
         "valueType": "string",
+        "plugins": ["source"],
         "validation": {
           "maxLength": 500,
           "customErrorMsg": "Description must not exceed 500 characters"

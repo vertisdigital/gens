@@ -1,0 +1,5 @@
+{
+  "toolbar": ["bold", "italic", "underline", "source"],
+  "extraPlugins": ["sourcearea"],
+  "removePlugins": ["image"]
+}
