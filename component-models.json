@@ -592,7 +592,7 @@
         "component": "custom-asset-namespace:custom-asset",
         "name": "image",
         "label": "ProjectImage",
-        "configUrl": "https://main--aem-eds-universaleditor--josephverticurl.aem.page/tools/assets-selector/config.json",
+        "configUrl": "https://main--genting--wppopen.aem.page/tools/assets-selector/config.json",
         "multi": false,
         "validation": {
           "rootPath": "/content/dam/genting-singapore/index"
@@ -654,7 +654,7 @@
         "component": "custom-asset-namespace:custom-asset",
         "name": "phoneIcon",
         "label": "PhoneIcon",
-        "configUrl": "https://main--aem-eds-universaleditor--josephverticurl.aem.page/tools/assets-selector/config.json",
+        "configUrl": "https://main--genting--wppopen.aem.page/tools/assets-selector/config.json",
         "multi": false
       },
       {
@@ -679,7 +679,7 @@
         "component": "custom-asset-namespace:custom-asset",
         "name": "emailIcon",
         "label": "EmailIcon",
-        "configUrl": "https://main--aem-eds-universaleditor--josephverticurl.aem.page/tools/assets-selector/config.json",
+        "configUrl": "https://main--genting--wppopen.aem.page/tools/assets-selector/config.json",
         "multi": false
       },
       {
@@ -704,7 +704,7 @@
         "component": "custom-asset-namespace:custom-asset",
         "name": "addressIcon",
         "label": "AddressIcon",
-        "configUrl": "https://main--aem-eds-universaleditor--josephverticurl.aem.page/tools/assets-selector/config.json",
+        "configUrl": "https://main--genting--wppopen.aem.page/tools/assets-selector/config.json",
         "multi": false
       },
       {
@@ -726,12 +726,22 @@
       {
         "component": "text",
         "name": "heading",
-        "label": "Heading"
+        "label": "Heading",
+        "required": true,
+        "validation": {
+          "maxLength": 100,
+          "customErrorMsg": "Heading cannot exceed 100 characters"
+        }
       },
       {
-        "component": "textarea",
+        "component": "richtext",
         "name": "description",
-        "label": "Description"
+        "label": "Description",
+        "valueType": "string",
+        "validation": {
+          "maxSize": 250,
+          "customErrorMsg": "Description cannot exceed 250 characters"
+        }
       },
       {
         "component": "custom-asset-namespace:custom-asset",
@@ -743,7 +753,12 @@
       {
         "component": "aem-content",
         "name": "cta",
-        "label": "CTA"
+        "label": "CTA"  
+      },
+      {
+        "component": "text",
+        "name": "ctaCaption",
+        "label": "CTA Caption"
       }
     ]
   },
@@ -783,7 +798,7 @@
         "component": "custom-asset-namespace:custom-asset",
         "name": "image",
         "label": "Image",
-        "configUrl": "https://main--aem-eds-universaleditor--josephverticurl.aem.page/tools/assets-selector/config.json",
+        "configUrl": "https://main--genting--wppopen.aem.page/tools/assets-selector/config.json",
         "multi": false
       },
       {
