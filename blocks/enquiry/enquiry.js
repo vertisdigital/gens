@@ -40,14 +40,14 @@ export default function decorate(block) {
       className: 'enquiry-heading',
     });
   // Add authoring attributes to heading
-  const heading = headingElement.firstElementChild;
+  const heading = headingElement.firstElementChild || '';
     heading.setAttribute('data-aue-prop', 'heading');
     heading.setAttribute('data-aue-label', 'Heading');
     heading.setAttribute('data-aue-type', 'text');
-  }
 
-  headingContainer.appendChild(heading);
-  leftCol.appendChild(headingContainer);
+    headingContainer.appendChild(heading);
+    leftCol.appendChild(headingContainer);
+  }
 
   // Create right column (description and contacts) - 60% on desktop and tablet
   const rightCol = document.createElement('div');
