@@ -14,12 +14,6 @@ export default function decorate(block) {
   // Create single container with all responsive classes
   const container = document.createElement('div');
   container.className = 'container-xl container-md container-sm';
-  container.setAttribute('data-aue-resource', block.getAttribute('data-aue-resource'));
-  container.setAttribute('data-aue-type', 'container');
-  container.setAttribute('data-aue-behavior', 'component');
-  container.setAttribute('data-aue-model', 'enquiry');
-  container.setAttribute('data-aue-label', 'Enquiry');
-  container.setAttribute('data-aue-filter', 'enquiry');
 
   const row = document.createElement('div');
   row.className = 'row';
