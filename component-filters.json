@@ -28,7 +28,8 @@
       "projectcards",
       "enquiry",
       "tiles",
-      "textsection"
+      "textsection",
+      "statisticsSection"
     ]
   },
   {
@@ -66,7 +67,8 @@
     "id": "feature",
     "components": [
       "featureItem",
-      "linkField"
+      "linkField",
+      "indices"
     ]
   },
   {
@@ -124,6 +126,20 @@
     "id": "coreprinciples",
     "components": [
       "coreprinciple"
+    ]
+  },
+  {
+    "id": "statisticsSection",
+    "components": [
+      "statistics",
+      "statisticsDescription",
+      "feature"
+    ]
+  },
+  {
+    "id": "statistics",
+    "components": [
+      "featureItem"
     ]
   }
 ]
