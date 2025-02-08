@@ -121,6 +121,10 @@
           {
             "name": "Highlight",
             "value": "highlight"
+          },
+          {
+            "name": "Statistics",
+            "value": "statistics"
           }
         ]
       }
