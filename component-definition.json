@@ -79,6 +79,26 @@
       ]
     },
     {
+      "title": "Statistics Section",
+      "id": "statisticsSection",
+      "components": [
+        {
+          "title": "Statistics",
+          "id": "statistics",
+          "plugins": {
+            "xwalk": {
+              "page": {
+                "resourceType": "core/franklin/components/section/v1/section",
+                "template": {
+                  "model": "statistics"
+                }
+              }
+            }
+          }
+        }
+      ]
+    },
+    {
       "title": "Blocks",
       "id": "blocks",
       "components": [
