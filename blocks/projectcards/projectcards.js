@@ -8,12 +8,7 @@ export default function decorate(block) {
   if (!projectCardsContainer) {
     projectCardsContainer = document.createElement('div');
     projectCardsContainer.className = 'projectcards-container container-xl';
-    projectCardsContainer.setAttribute('data-aue-type', 'container');
-    projectCardsContainer.setAttribute('data-aue-behavior', 'component');
-    projectCardsContainer.setAttribute('data-aue-model', 'projectcards');
-    projectCardsContainer.setAttribute('data-aue-label', 'ProjectCards');
-    projectCardsContainer.setAttribute('data-aue-filter', 'projectcards');
-    projectCardsContainer.setAttribute('data-block-name', 'projectcards');
+    moveInstrumentation(block, projectCardsContainer);
   }
 
   // Create header section
@@ -24,9 +19,7 @@ export default function decorate(block) {
   const titleElement = block.querySelector('[data-aue-prop="title"]');
   if (titleElement) {
     const titleDiv = document.createElement('div');
-    titleDiv.setAttribute('data-aue-prop', 'title');
-    titleDiv.setAttribute('data-aue-label', 'Title');
-    titleDiv.setAttribute('data-aue-type', 'text');
+    moveInstrumentation(titleElement, titleDiv);
     titleDiv.className = 'projectcards-title';
     titleDiv.textContent = titleElement.textContent;
     headerContainer.appendChild(titleDiv);
@@ -59,9 +52,7 @@ export default function decorate(block) {
   const descElement = block.querySelector('[data-aue-prop="description"]');
   if (descElement) {
     const descriptionDiv = document.createElement('div');
-    descriptionDiv.setAttribute('data-aue-prop', 'description');
-    descriptionDiv.setAttribute('data-aue-label', 'Description');
-    descriptionDiv.setAttribute('data-aue-filter', 'text');
+    moveInstrumentation(descElement, descriptionDiv);
     descriptionDiv.className = 'projectcards-description';
     descriptionDiv.textContent = descElement.textContent;
     headerContainer.appendChild(descriptionDiv);
@@ -79,10 +70,7 @@ export default function decorate(block) {
   projectCards.forEach((card) => {
     const cardElement = document.createElement('div');
     cardElement.className = 'project-card col-xl-3 col-lg-3 col-md-3 col-sm-2';
-    cardElement.setAttribute('data-aue-type', 'component');
-    cardElement.setAttribute('data-aue-model', 'projectcard');
-    cardElement.setAttribute('data-aue-label', 'ProjectCard');
-    cardElement.setAttribute('data-aue-resource', card.getAttribute('data-aue-resource'));
+    moveInstrumentation(card, cardElement);
 
     // Handle card image
     const imageLink = card.querySelector('a[href]');
@@ -129,9 +117,7 @@ export default function decorate(block) {
     const cardTitle = card.querySelector('[data-aue-prop="title"]');
     if (cardTitle) {
       const titleDiv = document.createElement('div');
-      titleDiv.setAttribute('data-aue-prop', 'title');
-      titleDiv.setAttribute('data-aue-label', 'Title');
-      titleDiv.setAttribute('data-aue-type', 'text');
+      moveInstrumentation(cardTitle, titleDiv);
       titleDiv.className = 'project-card-title';
       titleDiv.textContent = cardTitle.textContent;
       cardContent.appendChild(titleDiv);
@@ -171,14 +157,10 @@ export default function decorate(block) {
         viewAllLink.href = linkElement.getAttribute('href');
         viewAllLink.textContent = linkElement.textContent;
         viewAllLink.className = 'view-all-link';
-        viewAllLink.setAttribute('data-aue-prop', 'linkText');
-        viewAllLink.setAttribute('data-aue-label', 'Text');
-        viewAllLink.setAttribute('data-aue-type', 'text');
+        moveInstrumentation(linkElement, viewAllLink);
 
         const targetDiv = document.createElement('div');
-        targetDiv.setAttribute('data-aue-prop', 'linkTarget');
-        targetDiv.setAttribute('data-aue-label', 'Link Target');
-        targetDiv.setAttribute('data-aue-type', 'text');
+        moveInstrumentation(linkFieldElement.querySelector('[data-aue-prop="linkTarget"]'), targetDiv);
         viewAllLink.target = linkFieldElement.querySelector('[data-aue-prop="linkTarget"]')?.textContent || '_self';
 
         linkDiv.appendChild(viewAllLink);
