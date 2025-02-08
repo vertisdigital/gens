@@ -1,27 +1,19 @@
 import Heading from '../../shared-components/Heading.js';
 import { createOptimizedPicture } from '../../scripts/aem.js';
+import { moveInstrumentation } from '../../scripts/scripts.js';
+
 
 export default function decorate(block) {
-  // Add block level attributes for authoring
-  block.setAttribute('data-aue-resource', 'urn:aemconnection:/content/genting-singapore/index/enquiry/jcr:content/root/section/block');
-  block.setAttribute('data-aue-type', 'container');
-  block.setAttribute('data-aue-behavior', 'component');
-  block.setAttribute('data-aue-model', 'enquiry');
-  block.setAttribute('data-aue-label', 'Enquiry');
-  block.setAttribute('data-aue-filter', 'enquiry');
 
   // Restructure the HTML for better semantics and accessibility
   const wrapper = block.closest('.enquiry-wrapper');
+  const enquiryResource = wrapper.querySelector('[data-aue-label="Enquiry"]');
+  
+  moveInstrumentation(enquiryResource, wrapper);
 
   // Create single container with all responsive classes
   const container = document.createElement('div');
   container.className = 'container-xl container-md container-sm';
-  container.setAttribute('data-aue-resource', block.getAttribute('data-aue-resource'));
-  container.setAttribute('data-aue-type', 'container');
-  container.setAttribute('data-aue-behavior', 'component');
-  container.setAttribute('data-aue-model', 'enquiry');
-  container.setAttribute('data-aue-label', 'Enquiry');
-  container.setAttribute('data-aue-filter', 'enquiry');
 
   const row = document.createElement('div');
   row.className = 'row';
@@ -34,20 +26,22 @@ export default function decorate(block) {
   const headingContainer = document.createElement('div');
   const headingText = wrapper.querySelector('[data-aue-prop="heading"]')?.textContent.trim();
   const headingElement = document.createElement('div');
-  headingElement.innerHTML = Heading({
-    text: headingText,
-    level: 2,
-    className: 'enquiry-heading',
-  });
-
+  
+  if (headingText) {
+    headingElement.innerHTML = Heading({
+      text: headingText,
+      level: 2,
+      className: 'enquiry-heading',
+    });
   // Add authoring attributes to heading
-  const heading = headingElement.firstElementChild;
-  heading.setAttribute('data-aue-prop', 'heading');
-  heading.setAttribute('data-aue-label', 'Heading');
-  heading.setAttribute('data-aue-type', 'text');
+  const heading = headingElement.firstElementChild || '';
+    heading.setAttribute('data-aue-prop', 'heading');
+    heading.setAttribute('data-aue-label', 'Heading');
+    heading.setAttribute('data-aue-type', 'text');
 
-  headingContainer.appendChild(heading);
-  leftCol.appendChild(headingContainer);
+    headingContainer.appendChild(heading);
+    leftCol.appendChild(headingContainer);
+  }
 
   // Create right column (description and contacts) - 60% on desktop and tablet
   const rightCol = document.createElement('div');
