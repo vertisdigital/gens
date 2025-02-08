@@ -1,5 +1,6 @@
 import ImageComponent from '../../shared-components/ImageComponent.js';
 import Heading from '../../shared-components/Heading.js';
+import { moveInstrumentation } from '../../scripts/scripts.js';
 
 export default function decorate(block) {
   // Create main container
@@ -161,12 +162,8 @@ export default function decorate(block) {
     const linkFieldElement = block.querySelector('[data-aue-model="linkField"]');
     if (linkFieldElement) {
       const linkContainer = document.createElement('div');
+      moveInstrumentation(linkFieldElement, linkContainer);
       linkContainer.className = 'projectcards-view-all';
-      linkContainer.setAttribute('data-aue-type', 'component');
-      linkContainer.setAttribute('data-aue-model', 'linkField');
-      linkContainer.setAttribute('data-aue-filter', 'linkField');
-      linkContainer.setAttribute('data-aue-label', 'Link Field');
-
       const linkElement = linkFieldElement.querySelector('a');
       if (linkElement) {
         const linkDiv = document.createElement('div');
@@ -195,7 +192,7 @@ export default function decorate(block) {
   }
 
   // Clear original block content and append new structure
-  //block.textContent = '';
+  block.textContent = '';
   block.appendChild(projectCardsContainer);
 
   // Add keyboard navigation and accessibility attributes
