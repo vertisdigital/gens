@@ -25,7 +25,8 @@
       "listing",
       "projectcards",
       "enquiry",
-      "tiles"
+      "tiles",
+      "textsection"
     ]
   },
   {
@@ -53,7 +54,8 @@
       "listing",
       "projectcards",
       "enquiry",
-      "tiles"
+      "tiles",
+      "textsection"
     ]
   },
   {

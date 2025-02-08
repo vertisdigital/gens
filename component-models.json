@@ -723,5 +723,34 @@
         "label": "CTA"
       }
     ]
+  },
+  {
+    "id": "textsection",
+    "fields": [
+      {
+        "component": "text",
+        "name": "heading",
+        "label": "Heading",
+        "required": true,
+        "validation": {
+          "maxLength": 100,
+          "customErrorMsg": "Heading cannot exceed 100 characters",
+          "requiredErrorMsg": "Heading is mandatory"
+        }
+      },
+      {
+        "component": "richtext",
+        "name": "description",
+        "value": "",
+        "label": "Description",
+        "valueType": "string",
+        "required": true,
+        "validation": {
+          "maxSize": 250,
+          "customErrorMsg": "Description cannot exceed 250 characters",
+          "requiredErrorMsg": "Description is mandatory"
+        }
+      }
+    ]
   }
 ]
