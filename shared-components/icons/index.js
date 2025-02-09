@@ -48,14 +48,17 @@ export const icons = {
     </clipPath>
   </defs>
 </svg>`,
-hamburger:`<svg xmlns="http://www.w3.org/2000/svg" width="30" height="24" viewBox="0 0 30 24" fill="none">
-<line x1="3" y1="1.5119" x2="28" y2="1.5119" stroke="black" stroke-width="2.97619"/>
-<line x1="3" y1="10.5119" x2="28" y2="10.5119" stroke="black" stroke-width="2.97619"/>
-<line x1="3" y1="20.5119" x2="28" y2="20.5119" stroke="black" stroke-width="2.97619"/>
+hamburger:`<svg xmlns="http://www.w3.org/2000/svg" width="30" height="24" viewBox="0 0 30 24" fill="none" stroke="currentColor">
+<line x1="3" y1="1.5119" x2="28" y2="1.5119"  stroke-width="2.97619"/>
+<line x1="3" y1="10.5119" x2="28" y2="10.5119"  stroke-width="2.97619"/>
+<line x1="3" y1="20.5119" x2="28" y2="20.5119"  stroke-width="2.97619"/>
 </svg>`,
   close: `<svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 18 18" fill="none">
-  <path d="M15.4 1L17 2.6L10.6 9L17 15.4L15.4 17L9 10.6L2.6 17L0.999998 15.4L7.4 9L0.999999 2.6L2.6 1L9 7.4L15.4 1Z" fill="black"/>
-</svg>`
+  <path d="M15.4 1L17 2.6L10.6 9L17 15.4L15.4 17L9 10.6L2.6 17L0.999998 15.4L7.4 9L0.999999 2.6L2.6 1L9 7.4L15.4 1Z" fill="currentColor"/>
+</svg>`,
+search: `<svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 32 32" fill="currentColor">
+  <path d="M13.3307 23.9993C15.6974 23.9991 17.9959 23.2068 19.8601 21.7487L25.7214 27.61L27.6067 25.7247L21.7454 19.8633C23.2042 17.999 23.997 15.7 23.9974 13.3327C23.9974 7.45135 19.2121 2.66602 13.3307 2.66602C7.4494 2.66602 2.66406 7.45135 2.66406 13.3327C2.66406 19.214 7.4494 23.9993 13.3307 23.9993ZM13.3307 5.33268C17.7427 5.33268 21.3307 8.92068 21.3307 13.3327C21.3307 17.7447 17.7427 21.3327 13.3307 21.3327C8.91873 21.3327 5.33073 17.7447 5.33073 13.3327C5.33073 8.92068 8.91873 5.33268 13.3307 5.33268Z" fill="currentColor"/>
+</svg>`,
   // Add other icons here as needed
 };
 

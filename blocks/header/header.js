@@ -31,33 +31,13 @@ import stringToHtml from "../../shared-components/Utility.js";
  */
 function createNavItem(itemData, resourcePath) {
   const navItem = document.createElement('div');
-  // setAEMAttributes(navItem, {
-  //   type: 'container',
-  //   behavior: 'component',
-  //   model: 'links',
-  //   label: 'Links',
-  //   filter: 'links',
-  // }, resourcePath);
   navItem.className = 'links';
 
   // Create title
   const titleDiv = document.createElement('div');
+  titleDiv.className = 'primary-menu-links';
   const titleContent = document.createElement('div');
   const detailedcaption = document.createElement('a');
-  // const detailedCaptionLink = document.querySelector('[data-aue-prop]="linkText"');
-  // console.log(detailedCaptionLink);
-  // detailedcaption.href = detailedCaptionLink.href;
-  // setAEMAttributes(titleContent, {
-  //   prop: 'title',
-  //   label: 'Title',
-  //   type: 'text',
-  // });
-
-  // setAEMAttributes(detailedcaption, {
-  //   prop: 'linkText',
-  //   label: 'Text',
-  //   type: 'text',
-  // });
   titleContent.textContent = itemData.title;
   if (itemData.caption) {
     detailedcaption.textContent = typeof itemData.caption === 'string' 
@@ -79,15 +59,12 @@ function createNavItem(itemData, resourcePath) {
   navItem.appendChild(titleDiv);
   navItem.appendChild(detailedcaption);
 
-  // Store caption as data attribute instead of creating element
-  // if (itemData.caption) {
-  //   navItem.dataset.caption = itemData.caption;
-  // }
   if (itemData.caption && itemData.captionTarget) {
     navItem.dataset.captionText = itemData.caption.textContent?.trim() || '';
     navItem.dataset.captionHref = itemData.caption.href;
     navItem.dataset.captionTarget = itemData.captionTarget;
   }
+  detailedcaption.innerText = "";
 
   // Create links
   if (itemData.links?.length) {
@@ -97,27 +74,13 @@ function createNavItem(itemData, resourcePath) {
     itemData.links.forEach((link) => {
       const li = document.createElement('li');
       li.className = 'col-xl-4 col-lg-4';
-      // setAEMAttributes(li, {
-      //   type: 'component',
-      //   model: 'linkField',
-      //   filter: 'linkField',
-      //   label: 'Link Field',
-      // }, link.resourcePath);
-
       const linkContainer = document.createElement('div');
       linkContainer.className = 'button-container';
-
       const a = document.createElement('a');
       a.href = link.href;
       a.className = 'button';
       a.title = link.text;
-      // setAEMAttributes(a, {
-      //   prop: 'linkText',
-      //   label: 'Text',
-      //   type: 'text',
-      // });
-      a.textContent = link.text;
-  
+      a.textContent = link.text;  
       linkContainer.appendChild(a);
       li.appendChild(linkContainer);
       linksUl.appendChild(li);
@@ -134,19 +97,9 @@ function createNavItem(itemData, resourcePath) {
  * @param {Element} block The header block element
  */
 function createHeaderStructure(block) {
-  console.log(block);
   // Create main section container
   const section = document.createElement('div');
-  section.className = 'section columns-container container-xl container-md container-sm';
-  // setAEMAttributes(section, {
-  //   type: 'container',
-  //   behavior: 'component',
-  //   model: 'section',
-  //   label: 'Section',
-  //   filter: 'section',
-  // }, 'urn:aemconnection:/content/genting-singapore/nav/jcr:content/root/section_0');
-  // section.setAttribute('data-section-status', 'loaded');
-
+  section.className = 'header-wrapper section columns-container container-xl container-md container-sm';
   // Create columns wrapper
   const columnsWrapper = document.createElement('div');
   columnsWrapper.className = 'columns-wrapper';
@@ -154,26 +107,9 @@ function createHeaderStructure(block) {
   // Create columns container
   const columns = document.createElement('div');
   columns.className = 'columns block';
-  const columnsResource = block.querySelector('[data-aue-label="Columns"]')?.getAttribute('data-aue-resource');
-  // setAEMAttributes(columns, {
-  //   type: 'container',
-  //   model: 'columns',
-  //   label: 'Columns',
-  //   filter: 'columns',
-  //   behavior: 'component',
-  // }, columnsResource);
-  // columns.setAttribute('data-block-name', 'columns');
-  // columns.setAttribute('data-block-status', 'loaded');
 
   // Create column content
   const column = document.createElement('div');
-  const columnResource = block.querySelector('[data-aue-label="Column"]')?.getAttribute('data-aue-resource');
-
-  // setAEMAttributes(column, {
-  //   type: 'container',
-  //   label: 'Column',
-  //   filter: 'column',
-  // }, columnResource);
 
   // Create navigation list
   const nav = document.createElement('nav');
@@ -183,6 +119,7 @@ function createHeaderStructure(block) {
   const logoWrapper = document.createElement('div');
   logoWrapper.className = 'logo-wrapper';
   const logoContent = block.querySelectorAll('[data-aue-model="image"]')[0]?.getElementsByTagName("picture")[0];
+
   if (logoContent) {
     logoWrapper.appendChild(logoContent);
   }
@@ -216,27 +153,12 @@ function createHeaderStructure(block) {
   });
 
   // Create search icon
-  // const searchWrapper = document.createElement('div');
-  // setAEMAttributes(searchWrapper, {
-  //   behavior: 'component',
-  //   prop: 'text',
-  //   label: 'Text',
-  //   filter: 'text',
-  //   type: 'richtext',
-  // }, 'section_0/columns/row1/col1/text');
-  // searchWrapper.className = 'search-icon-wrapper';
-  // const searchIcon = document.createElement('span');
-  // searchIcon.className = 'icon icon-search';
-  // const searchImg = document.createElement('img');
-  // searchImg.setAttribute('data-icon-name', 'search');
-  // searchImg.src = '/content/genting-singapore.headerbackend.resource/icons/search.svg';
-  // searchImg.alt = '';
-  // searchImg.loading = 'lazy';
-  // searchIcon.appendChild(searchImg);
-  // searchWrapper.appendChild(searchIcon);
+  const searchWrapper = document.createElement('div');
+  const searchIcon =SvgIcon({name:'search', className:'icon-search', size:'14'})
+  searchWrapper.appendChild(stringToHtml(searchIcon));
 
   // Assemble the structure
-  nav.append(logoWrapper, primaryNav);
+  nav.append(logoWrapper, primaryNav, searchWrapper);
   column.appendChild(nav);
   columns.appendChild(column);
   columnsWrapper.appendChild(columns);
@@ -323,11 +245,10 @@ hamburger.addEventListener('click', () => {
       closeBtn.className = 'close-btn';
       closeBtn.setAttribute('aria-label', 'Close menu');
       const closeBtnIcon = SvgIcon({name:'close', className:'close-icon',size:18});
-      console.log(closeBtnIcon);
-      // closeBtn.append(stringToHtml(closeBtnIcon));,
       closeBtn.innerHTML = closeBtnIcon;
 
       const heading = document.createElement('a');
+      heading.className = 'secondary-header-title';
       heading.textContent = detailedCaptionText || 'Overview';
       heading.href = detailedCaptionLink;
       heading.setAttribute('target', detailedCaptionTarget);
@@ -437,51 +358,6 @@ hamburger.addEventListener('click', () => {
     }
   });
 
-  // Handle scroll behavior
-  // let lastScroll = 0;
-  // window.addEventListener('scroll', () => {
-  //   const currentScroll = window.scrollY;
-  //   header.classList.toggle('header--scrolled', currentScroll > 0);
-
-  //   if (currentScroll > lastScroll && currentScroll > 100) {
-  //     header.classList.add('header--hidden');
-  //   } else {
-  //     header.classList.remove('header--hidden');
-  //   }
-  //   lastScroll = currentScroll;
-  
-  // });
-
-    const handleScroll = () => {
-      if (!header) return;
-
-      const headerTop = header.getBoundingClientRect().top;
-      const headerLogo = header.querySelector('.logo-wrapper');
-
-      if (headerTop <= 0) {
-        header.classList.add('fixed-header'); // Add class when it reaches top: 0
-        const logoContentTwo = header.querySelectorAll('[data-aue-model="image"]')[1]?.getElementsByTagName("picture")[1];
-        if (logoContentTwo) {
-          headerLogo.innerHTML="";
-          headerLogo.appendChild(logoContentTwo);
-        }
-
-      } else {
-        const logoContentOne = header.querySelectorAll('[data-aue-model="image"]')[0]?.getElementsByTagName("picture")[0];
-        header.classList.remove('fixed-header'); // Remove class if not at top
-        headerLogo.innerHTML="";
-        if (logoContentOne) {
-        logoContentOne.appendChild(logoContentOne);
-        }
-      }
-    };
-
-    // Optimize performance using debounce
-    let scrollTimeout;
-    window.addEventListener('scroll', () => {
-      clearTimeout(scrollTimeout);
-      scrollTimeout = setTimeout(handleScroll, 10);
-    });
 
 
   // Update nav items with grid classes
@@ -514,7 +390,9 @@ export default async function decorate(block) {
   const navPath = navMeta ? new URL(navMeta, window.location).pathname : '/nav';
   const fragment = await loadFragmentCustom(navPath);
 
-  if (fragment && true) {
+  if (fragment && false) {
+    const imageOne = block.querySelectorAll('[data-aue-model="image"]')[0]?.getElementsByTagName("picture")[0];
+    const imageTwo = block.querySelectorAll('[data-aue-model="image"]')[1]?.getElementsByTagName("picture")[0];
     const header = createHeaderStructure(fragment);
     // document.getElementsByTagName('main')[0].remove();
     block.innerHTML = '';
@@ -522,10 +400,81 @@ export default async function decorate(block) {
 
     // Initialize header functionality
     initializeHeader(header);
+
+    // header scroll event handling
+    const handleScroll = () => {
+      if (!header) return;
+
+      const headerTop = header.getBoundingClientRect().top;
+      const headerLogo = header.querySelector('.logo-wrapper');
+      console.log(headerTop);
+
+      if (headerTop <= 0) {
+        header.classList.add('fixed-header'); // Add class when it reaches top: 0
+        const logoContentTwo = imageTwo;
+        
+        console.log(header)
+        if (logoContentTwo) {
+          headerLogo.innerHTML="";
+          headerLogo.appendChild(logoContentTwo);
+        }
+
+      } else {
+        const logoContentOne = imageOne;
+        header.classList.remove('fixed-header'); // Remove class if not at top
+        headerLogo.innerHTML="";
+        if (logoContentOne) {
+        logoContentOne.appendChild(logoContentOne);
+        }
+      }
+    };
+
+    // // Optimize performance using debounce
+    let scrollTimeout;
+    window.addEventListener('scroll', () => {
+      clearTimeout(scrollTimeout);
+      scrollTimeout = setTimeout(handleScroll, 10);
+    });
   } else {
+    const imageOne = block.querySelectorAll('[data-aue-model="image"]')[0]?.getElementsByTagName("picture")[0];
+    const imageTwo = block.querySelectorAll('[data-aue-model="image"]')[1]?.getElementsByTagName("picture")[0];
     const header = createHeaderStructure(block);
     block.textContent = '';
     block.appendChild(header);
     initializeHeader(header);
+    
+    const handleScroll = () => {
+      if (!header) return;
+
+      const headerTop = header.getBoundingClientRect().top;
+      const headerLogo = header.querySelector('.logo-wrapper');
+      console.log(headerTop);
+
+      if (headerTop <= 0) {
+        header.classList.add('fixed-header'); // Add class when it reaches top: 0
+        const logoContentTwo = imageTwo;
+        
+        console.log(header)
+        if (logoContentTwo) {
+          headerLogo.innerHTML="";
+          headerLogo.appendChild(logoContentTwo);
+        }
+
+      } else {
+        const logoContentOne = imageOne;
+        header.classList.remove('fixed-header'); // Remove class if not at top
+        headerLogo.innerHTML="";
+        if (logoContentOne) {
+        logoContentOne.appendChild(logoContentOne);
+        }
+      }
+    };
+
+    // // Optimize performance using debounce
+    let scrollTimeout;
+    window.addEventListener('scroll', () => {
+      clearTimeout(scrollTimeout);
+      scrollTimeout = setTimeout(handleScroll, 10);
+    });
   }
 }
