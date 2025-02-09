@@ -118,7 +118,7 @@
 
   /* Text First Layout */
   .textmediablock[data-layout="textfirst"] > div:not(:first-child) {
-    flex-direction: row-reverse;
+    flex-direction: row;
   }
 
   /* Ensure text content appears together with heading first */
@@ -126,6 +126,7 @@
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
+    order: -1;
   }
 
   .textmediablock[data-layout="textfirst"] [data-aue-prop="heading"] {
