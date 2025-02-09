@@ -208,11 +208,11 @@
         }
       },      
       {
-        "component": "richtext",
+        "component": "text",
         "name": "bannerdescription",
         "label": "Banner Description",
         "validation": {
-          "maxSize": 250,
+          "maxSize": 300,
           "customErrorMsg": "Banner description cannot exceed 250 characters"
         }
       },
