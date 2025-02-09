@@ -5,9 +5,20 @@ function initTextMediaBlock() {
     // Add loading state at start
     block.classList.add('is-loading');
 
+    // Check layout and add appropriate class
+    const layoutElement = block.querySelector('[data-aue-prop="layout"]');
+    if (layoutElement) {
+      const layoutValue = layoutElement.textContent.trim();
+      if (layoutValue === 'textfirst') {
+        block.classList.add('textmediablock--text-first');
+      }
+      layoutElement.parentElement.style.display = 'none';
+    }
+
     // Handle image elements
     const mediaBlock = block.querySelector('[data-aue-model="media"]');
     if (mediaBlock) {
+      mediaBlock.classList.add('textmediablock__media');
       const linkElement = mediaBlock.querySelector('a');
       if (linkElement) {
         const imageUrl = linkElement.href;
@@ -16,7 +27,10 @@ function initTextMediaBlock() {
         
         // Accessibility improvements
         const heading = block.querySelector('[data-aue-prop="heading"]');
-        img.alt = heading ? heading.textContent : 'Feature image';
+        if (heading) {
+          heading.classList.add('textmediablock__heading');
+          img.alt = heading.textContent || 'Feature image';
+        }
         img.setAttribute('role', 'img');
         img.setAttribute('loading', 'lazy');
 
@@ -36,9 +50,20 @@ function initTextMediaBlock() {
       }
     }
 
+    // Add classes to text section
+    const textSection = block.querySelector('[data-aue-model="textsection"]');
+    if (textSection) {
+      textSection.classList.add('textmediablock__content');
+    }
+
+    const description = block.querySelector('[data-richtext-prop="description"]');
+    if (description) {
+      description.classList.add('textmediablock__description');
+    }
+
     // Add ARIA attributes for better screen reader support
     block.setAttribute('role', 'region');
-    block.setAttribute('aria-label', block.querySelector('[data-aue-prop="heading"]')?.textContent || 'Text media section');
+    block.setAttribute('aria-label', block.querySelector('.textmediablock__heading')?.textContent || 'Text media section');
   });
 }
 
