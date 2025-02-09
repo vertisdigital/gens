@@ -74,7 +74,7 @@ export default function decorate(block) {
     );
     if (longDescriptionText) {
       const longDescription = document.createElement('p');
-      longDescription.className = 'project-longDescription';
+      longDescription.className = 'project-long-description';
       longDescription.setAttribute('data-aue-prop', 'longdescription');
       longDescription.setAttribute('data-aue-label', 'Long Description');
       longDescription.setAttribute('data-aue-filter', 'text');
@@ -88,7 +88,7 @@ export default function decorate(block) {
     );
     if (shortDescriptionText) {
       const shortDescription = document.createElement('p');
-      shortDescription.className = 'project-shortDescription';
+      shortDescription.className = 'project-short-description';
       shortDescription.setAttribute('data-aue-prop', 'shortdescription');
       shortDescription.setAttribute('data-aue-label', 'Short Description');
       shortDescription.setAttribute('data-aue-type', 'text');
