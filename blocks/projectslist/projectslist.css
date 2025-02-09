@@ -54,4 +54,12 @@ p {
         padding-top: 15px;
         width: 100%;
     }
+
+    .left-col {
+        padding: 0;
+    }
+    
+    .right-col {
+        padding: 0;
+    }
 }
