@@ -32,22 +32,23 @@
   display: flex;
   flex-direction: column;
   justify-content: center;
-  gap: 1rem;
+  gap: 1.5rem;
   padding: 1rem;
 }
 
 [data-aue-prop="heading"] {
-  font-size: 2.5rem;
-  font-weight: bold;
-  margin-bottom: 1rem;
+  font-size: 2.25rem;
+  font-weight: 600;
   color: var(--text-color);
-  line-height: 1.2;
+  line-height: 1.1;
+  white-space: nowrap; /* Prevent text wrapping */
 }
 
 [data-richtext-prop="description"] {
-  font-size: 1.125rem;
-  line-height: 1.6;
+  font-size: 1rem;
+  line-height: 1.5;
   color: var(--text-color);
+  max-width: 90%; /* Ensure text doesn't stretch too wide */
 }
 
 /* Layout variations */
@@ -68,7 +69,11 @@
   }
 
   [data-aue-model="textsection"] {
-    padding: 2rem 3rem;
+    padding: 2rem 4rem 2rem 3rem; /* More padding on right side */
+  }
+
+  [data-aue-prop="heading"] {
+    font-size: 2.5rem; /* Slightly larger on desktop */
   }
 
   /* Media First Layout */
