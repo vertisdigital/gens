@@ -59,27 +59,3 @@ if (document.readyState === 'loading') {
 } else {
   initTextMediaBlock();
 }
-
-// Add to existing JS
-function handleImageError(img) {
-  img.onerror = () => {
-    img.src = '/path/to/fallback-image.jpg';
-    img.classList.add('image-load-error');
-  };
-}
-
-function addLoadingState(block) {
-  block.classList.add('is-loading');
-  // Remove loading state once content is ready
-  Promise.all([
-    ...block.querySelectorAll('img')
-  ].map(img => {
-    return new Promise((resolve) => {
-      if (img.complete) resolve();
-      img.onload = resolve;
-      img.onerror = resolve;
-    });
-  })).then(() => {
-    block.classList.remove('is-loading');
-  });
-}
