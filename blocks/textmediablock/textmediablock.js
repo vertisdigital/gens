@@ -5,31 +5,20 @@ function initTextMediaBlock() {
     // Add loading state at start
     block.classList.add('is-loading');
 
-    const layoutElement = block.querySelector('[data-aue-prop="layout"]');
-    if (layoutElement) {
-      // Set layout value as data attribute on main container
-      const layoutValue = layoutElement.textContent.trim();
-      block.setAttribute('data-layout', layoutValue);
-      
-      // Hide the layout text element since we're using it as data attribute
-      layoutElement.parentElement.style.display = 'none';
-    }
-
     // Handle image elements
     const mediaBlock = block.querySelector('[data-aue-model="media"]');
     if (mediaBlock) {
       const linkElement = mediaBlock.querySelector('a');
       if (linkElement) {
         const imageUrl = linkElement.href;
-        // Create and insert image
         const img = document.createElement('img');
         img.src = imageUrl;
         
         // Accessibility improvements
         const heading = block.querySelector('[data-aue-prop="heading"]');
-        img.alt = heading ? heading.textContent : 'Feature image'; // Use heading as alt text
+        img.alt = heading ? heading.textContent : 'Feature image';
         img.setAttribute('role', 'img');
-        img.setAttribute('loading', 'lazy'); // Performance improvement
+        img.setAttribute('loading', 'lazy');
 
         // Handle image errors
         img.onerror = () => {
