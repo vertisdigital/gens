@@ -129,7 +129,7 @@
     ]
   },
   {
-    "id": "textmediasection",
+    "id": "TextMediaBlock",
     "components": [
       "media",
       "textsection"

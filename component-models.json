@@ -887,7 +887,7 @@
     ]
   },
   {
-    "id": "textmediasection",
+    "id": "TextMediaBlock",
     "fields": [
       {
         "component": "select",
