@@ -1,7 +1,8 @@
 .textmediablock {
-  width: 100%;
+  width: 100vw; /* Full viewport width */
+  margin-left: calc(-50vw + 50%); /* Center the full-width block */
+  margin-right: calc(-50vw + 50%);
   position: relative;
-  background-color: var(--background-color);
 }
 
 /* Container for media and text content */
@@ -9,10 +10,9 @@
   display: flex;
   flex-direction: column;
   gap: 3rem;
-  width: 100%;
-  max-width: var(--section-container-width);
+  max-width: var(--container-width);
   margin: 0 auto;
-  padding: 0 var(--spacing-m);
+  padding: 0 1rem;
 }
 
 /* Media styles */
@@ -34,23 +34,24 @@
   width: 100%;
   display: flex;
   flex-direction: column;
-  justify-content: flex-start;
+  justify-content: flex-start; /* Align to top */
+  padding: 0 1rem;
 }
 
 [data-aue-prop="heading"] {
-  font-size: var(--heading-l);
-  font-weight: var(--font-weight-semibold);
+  font-size: 2.25rem;
+  font-weight: 600;
   color: var(--text-color);
   line-height: 1.1;
   white-space: nowrap;
-  margin: 0;
+  margin: 0; /* Remove default margins */
 }
 
 [data-richtext-prop="description"] {
-  font-size: var(--body-m);
+  font-size: 1rem;
   line-height: 1.5;
   color: var(--text-color);
-  margin-top: var(--spacing-m);
+  margin-top: 1.5rem;
 }
 
 /* Layout variations */
@@ -59,8 +60,8 @@
     flex-direction: row;
     align-items: stretch;
     min-height: 400px;
-    gap: var(--spacing-xl);
-    padding: 0 var(--spacing-l);
+    gap: 4rem; /* Increase gap between image and text */
+    padding: 0 2rem;
   }
 
   [data-aue-model="media"],
@@ -69,16 +70,16 @@
   }
 
   [data-aue-model="textsection"] {
-    padding: 0;
+    padding: 0; /* Remove padding to align with image */
   }
 
   [data-aue-prop="heading"] {
-    font-size: var(--heading-xl);
+    font-size: 2.5rem;
   }
 
   [data-richtext-prop="description"] {
-    width: 100%;
-    word-wrap: break-word;
+    width: 100%; /* Ensure text fills available space */
+    word-wrap: break-word; /* Enable text wrapping */
   }
 
   /* Media First Layout */
