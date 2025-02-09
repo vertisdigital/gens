@@ -2,6 +2,9 @@ function initTextMediaBlock() {
   const blocks = document.querySelectorAll('.textmediablock');
   
   blocks.forEach(block => {
+    // Add loading state at start
+    block.classList.add('is-loading');
+
     const layoutElement = block.querySelector('[data-aue-prop="layout"]');
     if (layoutElement) {
       // Set layout value as data attribute on main container
@@ -27,6 +30,18 @@ function initTextMediaBlock() {
         img.alt = heading ? heading.textContent : 'Feature image'; // Use heading as alt text
         img.setAttribute('role', 'img');
         img.setAttribute('loading', 'lazy'); // Performance improvement
+
+        // Handle image errors
+        img.onerror = () => {
+          img.src = '/assets/fallback-image.jpg';
+          img.classList.add('image-load-error');
+          block.classList.remove('is-loading');
+        };
+
+        // Handle image load
+        img.onload = () => {
+          block.classList.remove('is-loading');
+        };
         
         linkElement.parentElement.replaceChild(img, linkElement);
       }
