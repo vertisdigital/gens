@@ -283,8 +283,7 @@
       {
         "component": "text",
         "name": "readmorelabel",
-        "label": "Read More Label",
-        "value": "Read More"
+        "label": "Read More Label"
       },
       {
         "component": "aem-content",
