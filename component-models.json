@@ -896,11 +896,7 @@
         "configUrl": "https://textmediasection--genting--wppopen.aem.page/tools/assets-selector/config.json",
         "valueType": "string",
         "validation": {
-          "rootPath": "/content/dam/genting-singapore",
-          "mimeTypes": [
-            "video/mp4",
-            "video/webm"
-          ]
+          "rootPath": "/content/dam/genting-singapore"
         }
       },
       {
