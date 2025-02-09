@@ -3,11 +3,14 @@
  * @param {Element} main The container element
  */
 export default function processTabs(main) {
-  const sections = [...main.querySelectorAll('[data-aue-model="tabs"]:not(.section-metadata)')];
+  const sections = [
+    ...main.querySelectorAll('[data-aue-model="tabs"]:not(.section-metadata)'),
+  ];
   if (sections.length === 0) return;
 
   const topContainer = document.createElement("div");
-  topContainer.classList ="container-xl container-lg container-md container-sm";
+  topContainer.classList =
+    "container-xl container-lg container-md container-sm";
 
   const tabsWrapper = document.createElement("div");
   tabsWrapper.classList.add("tabs-container1");
@@ -19,11 +22,15 @@ export default function processTabs(main) {
   tabsContent.classList.add("tabs-content");
 
   sections.forEach((section, index) => {
-    const metadata = section.querySelector(".section-metadata > div :last-child");
-    const tabTitle = metadata ? metadata.textContent.trim() : `CustTitle ${index + 1}`;
+    const metadata = section.querySelector(
+      ".section-metadata > div :last-child"
+    );
+    const tabTitle = metadata
+      ? metadata.textContent.trim()
+      : `CustTitle ${index + 1}`;
 
     const tabButton = document.createElement("div");
-    tabButton.classList.add("tab-title");    
+    tabButton.classList.add("tab-title");
     tabButton.dataset.index = index;
     tabButton.textContent = tabTitle;
 
@@ -56,7 +63,10 @@ export default function processTabs(main) {
     const tabButton = event.target.closest(".tab-title"); // Ensure we target the correct element
     if (!tabButton) return;
 
-    const index = parseInt((tabButton.dataset.index ?? tabButton.parentNode.dataset.index), 10); // Convert to integer
+    const index = parseInt(
+      tabButton.dataset.index ?? tabButton.parentNode.dataset.index,
+      10
+    ); // Convert to integer
     if (Number.isNaN(index)) return; // Prevent errors if index is undefined
 
     tabsWrapper
