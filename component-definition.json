@@ -455,8 +455,8 @@
           }
         },
         {
-          "title": "Text Media Section",
-          "id": "textmediasection",
+          "title": "Text Media Block",
+          "id": "TextMediaBlock",
           "plugins": {
             "xwalk": {
               "page": {
