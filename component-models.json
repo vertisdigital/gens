@@ -190,15 +190,6 @@
       },
       {
         "component": "text",
-        "name": "bannertitle",
-        "label": "Banner Title",
-        "validation": {
-          "maxLength": 100,
-          "customErrorMsg": "Banner title cannot exceed 100 characters"
-        }
-      },
-      {
-        "component": "text",
         "name": "bannerheading",
         "label": "Banner Heading",
         "required": true,
@@ -207,6 +198,15 @@
           "customErrorMsg": "Banner title cannot exceed 100 characters"
         }
       },
+      {
+        "component": "text",
+        "name": "bannertitle",
+        "label": "Banner Title",
+        "validation": {
+          "maxLength": 100,
+          "customErrorMsg": "Banner title cannot exceed 100 characters"
+        }
+      },      
       {
         "component": "richtext",
         "name": "bannerdescription",
