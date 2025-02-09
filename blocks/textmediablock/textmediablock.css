@@ -10,9 +10,9 @@
   flex-direction: column;
   gap: 3rem;
   width: 100%;
-  max-width: 1440px;
+  max-width: var(--container-width, 1200px); /* Standard container width */
   margin: 0 auto;
-  padding: 0 32px;
+  padding: 0 var(--container-padding, 32px);
 }
 
 /* Hide layout selector */
@@ -68,18 +68,21 @@
 
   .textmediablock > div:not(:first-child) {
     flex-direction: row;
-    align-items: stretch;
-    min-height: 480px; /* Taller on desktop */
-    gap: 64px; /* Increased gap between image and text */
+    align-items: flex-start;
+    gap: var(--container-gap, 64px);
   }
 
   [data-aue-model="media"],
   [data-aue-model="textsection"] {
-    width: calc(50% - 32px); /* Fixed width accounting for gap */
+    width: calc((100% - var(--container-gap, 64px)) / 2); /* Equal widths accounting for gap */
+  }
+
+  [data-aue-model="media"] {
+    min-height: 480px;
   }
 
   [data-aue-model="media"] img {
-    min-height: 480px; /* Match container height */
+    min-height: 480px;
   }
 
   [data-aue-model="textsection"] {
@@ -93,9 +96,7 @@
 
   [data-richtext-prop="description"] {
     margin-top: 32px;
-    max-width: 100%; /* Ensure text stays within container */
-    overflow-wrap: break-word;
-    display: inline-block; /* This helps contain the text */
+    width: 100%; /* Full width of parent */
   }
 
   /* Media First Layout */
