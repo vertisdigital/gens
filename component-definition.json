@@ -456,15 +456,15 @@
         },
         {
           "title": "Text Media Block",
-          "id": "TextMediaBlock",
+          "id": "textmediasection",
           "plugins": {
             "xwalk": {
               "page": {
                 "resourceType": "core/franklin/components/block/v1/block",
                 "template": {
-                  "name": "TextMediaBlock",
-                  "model": "TextMediaBlock",
-                  "filter": "TextMediaBlock"
+                  "name": "textmediasection",
+                  "model": "textmediasection",
+                  "filter": "textmediasection"
                 }
               }
             }
