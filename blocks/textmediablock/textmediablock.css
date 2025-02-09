@@ -1,8 +1,7 @@
 .textmediablock {
   width: 100%;
-  max-width: var(--container-width);
-  margin: 0 auto;
-  padding: 2rem 1rem;
+  position: relative;
+  background-color: var(--background-color);
 }
 
 /* Container for media and text content */
@@ -10,6 +9,10 @@
   display: flex;
   flex-direction: column;
   gap: 3rem;
+  width: 100%;
+  max-width: var(--section-container-width);
+  margin: 0 auto;
+  padding: 0 var(--spacing-m);
 }
 
 /* Media styles */
@@ -31,37 +34,33 @@
   width: 100%;
   display: flex;
   flex-direction: column;
-  justify-content: flex-start; /* Align to top */
-  padding: 0 1rem;
+  justify-content: flex-start;
 }
 
 [data-aue-prop="heading"] {
-  font-size: 2.25rem;
-  font-weight: 600;
+  font-size: var(--heading-l);
+  font-weight: var(--font-weight-semibold);
   color: var(--text-color);
   line-height: 1.1;
   white-space: nowrap;
-  margin: 0; /* Remove default margins */
+  margin: 0;
 }
 
 [data-richtext-prop="description"] {
-  font-size: 1rem;
+  font-size: var(--body-m);
   line-height: 1.5;
   color: var(--text-color);
-  margin-top: 1.5rem;
+  margin-top: var(--spacing-m);
 }
 
 /* Layout variations */
 @media (min-width: 768px) {
-  .textmediablock {
-    padding: 4rem 2rem;
-  }
-
   .textmediablock > div:not(:first-child) {
     flex-direction: row;
     align-items: stretch;
     min-height: 400px;
-    gap: 4rem; /* Increase gap between image and text */
+    gap: var(--spacing-xl);
+    padding: 0 var(--spacing-l);
   }
 
   [data-aue-model="media"],
@@ -70,16 +69,16 @@
   }
 
   [data-aue-model="textsection"] {
-    padding: 0; /* Remove padding to align with image */
+    padding: 0;
   }
 
   [data-aue-prop="heading"] {
-    font-size: 2.5rem;
+    font-size: var(--heading-xl);
   }
 
   [data-richtext-prop="description"] {
-    width: 100%; /* Ensure text fills available space */
-    word-wrap: break-word; /* Enable text wrapping */
+    width: 100%;
+    word-wrap: break-word;
   }
 
   /* Media First Layout */
