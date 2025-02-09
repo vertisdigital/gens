@@ -893,11 +893,13 @@
         "component": "custom-asset-namespace:custom-asset",
         "name": "image",
         "label": "Image",
-        "configUrl": "https://textmediasection--genting--wppopen.aem.page/tools/assets-selector/config.json",
-        "valueType": "string",
-        "validation": {
-          "rootPath": "/content/dam/genting-singapore"
-        }
+        "configUrl": "https://textmediasection--genting--wppopen.aem.page/tools/assets-selector/config.json"
+      },
+      {
+        "component": "custom-asset-namespace:custom-asset",
+        "name": "video",
+        "label": "video",
+        "configUrl": "https://textmediasection--genting--wppopen.aem.page/tools/assets-selector/config.json"
       },
       {
         "component": "text",
