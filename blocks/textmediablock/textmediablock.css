@@ -1,6 +1,7 @@
 .textmediablock {
   width: 100%;
   position: relative;
+  padding: 64px 0; /* Add vertical padding for spacing between components */
 }
 
 /* Container for media and text content */
@@ -9,9 +10,14 @@
   flex-direction: column;
   gap: 3rem;
   width: 100%;
-  max-width: 1440px; /* Match coreprinciples max-width */
+  max-width: 1440px;
   margin: 0 auto;
-  padding: 0 32px; /* Standard padding from coreprinciples */
+  padding: 0 32px;
+}
+
+/* Hide layout selector */
+.textmediablock > div:first-child {
+  display: none;
 }
 
 /* Media styles */
@@ -25,6 +31,7 @@
 [data-aue-model="media"] img {
   width: 100%;
   height: 100%;
+  min-height: 320px; /* Minimum height for mobile */
   object-fit: cover;
 }
 
@@ -34,6 +41,7 @@
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
+  padding-top: 32px; /* Space between image and text on mobile */
 }
 
 [data-aue-prop="heading"] {
@@ -49,16 +57,20 @@
   font-size: 1rem;
   line-height: 1.5;
   color: var(--text-color);
-  margin-top: 1.5rem;
+  margin-top: 24px; /* Consistent spacing between heading and description */
 }
 
 /* Layout variations */
 @media (min-width: 768px) {
+  .textmediablock {
+    padding: 96px 0; /* Increased padding on desktop */
+  }
+
   .textmediablock > div:not(:first-child) {
     flex-direction: row;
     align-items: stretch;
-    min-height: 400px;
-    gap: 4rem;
+    min-height: 480px; /* Taller on desktop */
+    gap: 64px; /* Increased gap between image and text */
   }
 
   [data-aue-model="media"],
@@ -66,17 +78,25 @@
     width: 50%;
   }
 
+  [data-aue-model="media"] img {
+    min-height: 480px; /* Match container height */
+  }
+
   [data-aue-model="textsection"] {
-    padding: 0;
+    padding-top: 0; /* Remove mobile padding */
+    padding-left: 0;
+    padding-right: 0;
   }
 
   [data-aue-prop="heading"] {
     font-size: 2.5rem;
+    margin-top: 32px; /* Align with image top */
   }
 
   [data-richtext-prop="description"] {
     width: 100%;
     word-wrap: break-word;
+    margin-top: 32px; /* Increased spacing on desktop */
   }
 
   /* Media First Layout */
