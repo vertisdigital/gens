@@ -9,3 +9,7 @@ create a new block with the following specifications
             b. existing text section block
 
 # Rendering Requirements:
+1. based on the layout selected, the image block should be rendered first or the text section block should be rendered first
+2. use already existing text section block as is
+3. refer the images provided with the jira ticket
+
