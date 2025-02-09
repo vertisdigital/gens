@@ -45,28 +45,13 @@
     padding: 3rem 2rem;
   }
 
-  .textmediablock > div:not(:first-child) {
-    display: flex;
-    gap: 4rem; /* Add gap between media and text */
-    align-items: flex-start;
-  }
-
-  [data-aue-model="media"],
   [data-aue-model="textsection"] {
-    width: calc(50% - 2rem); /* Account for the gap */
-  }
-
-  [data-aue-model="media"] {
-    margin-bottom: 0; /* Remove mobile margin */
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2rem;
   }
 
   [data-aue-prop="heading"] {
     font-size: 2.5rem;
-    grid-column: 1 / -1; /* Heading spans full width */
-  }
-
-  /* Layout variations */
-  .textmediablock[data-layout="textfirst"] > div:not(:first-child) {
-    flex-direction: row-reverse;
   }
 } 
