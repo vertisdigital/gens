@@ -49,15 +49,13 @@
   }
 
   .textmediablock {
-    flex-direction: row;
-    align-items: flex-start;
+    flex-direction: column;
     gap: 64px;
   }
 
   [data-aue-model="media"],
   [data-aue-model="textsection"] {
-    flex: 0 0 calc(50% - 32px);
-    width: calc(50% - 32px);
+    width: 100%;
   }
 
   [data-aue-model="media"] img {
@@ -68,4 +66,9 @@
     font-size: 2.5rem;
     margin: 0 0 32px 0;
   }
+}
+
+/* Handle order based on HTML structure */
+.textmediablock > [data-aue-model="textsection"] + [data-aue-model="media"] {
+  order: 1;
 } 
