@@ -27,8 +27,6 @@
 /* Text section styles */
 [data-aue-model="textsection"] {
   width: 100%;
-  max-width: 50%;
-  margin: 0 auto;
 }
 
 [data-aue-prop="heading"] {
@@ -37,13 +35,14 @@
   color: var(--text-color);
   line-height: 1.1;
   margin: 0 0 24px 0;
+  max-width: 50%;
 }
 
 [data-richtext-prop="description"] {
   font-size: 1rem;
   line-height: 1.5;
   color: var(--text-color);
-  width: 100%;
+  max-width: 50%;
 }
 
 @media (min-width: 768px) {
@@ -57,13 +56,11 @@
   }
 
   [data-aue-model="media"] {
-    width: 50%;
-    margin: 0 auto;
+    width: 100%;
   }
 
   [data-aue-model="textsection"] {
-    width: 50%;
-    margin: 0 auto;
+    width: 100%;
   }
 
   [data-aue-prop="heading"] {
