@@ -769,74 +769,60 @@ main .section.highlight {
   border-radius: 10px;
   overflow: hidden;
 }
-
-/* Tab Navigation (Tabs at the top) */
-.tabs-nav {
-  display: flex;
-  margin-bottom: 20px;
-  padding: 0;
-  list-style: none;
+.tabs-header-wrapper {
+  background: #f5efe2; /* Light beige background */
+  padding: 15px;
   border-bottom: 2px solid #ddd;
 }
 
-/* Tab Button (Individual Tab) */
-.tab-button {
-  background-color: #fff;
-  padding: 12px 24px;
-  font-size: 16px;
-  font-weight: 500;
-  border: 2px solid #ddd;
-  margin-right: 5px;
-  cursor: pointer;
-  transition: all 0.3s ease-in-out;
-  border-radius: 5px 5px 0 0;
+.tabs-header {
+  display: flex;
+}
+
+.tab-title {
+  flex: 1;
   text-align: center;
+  font-size: 18px;
+  font-weight: bold;
   color: #333;
-  display: inline-block;
-}
-
-.tab-button:hover {
-  background-color: #f7f7f7;
-  border-color: #888;
-}
-
-/* Active Tab (Highlight the selected tab) */
-.tab-button.active {
-  background-color: #007bff;
-  color: #fff;
-  border-color: #007bff;
-}
-
-.tab-button:focus {
-  outline: none;
-}
-
-/* Tab Panels (Content area of each tab) */
-.tabs-content {
+  padding: 10px;
+  cursor: pointer;
   position: relative;
 }
 
-/* Tab Panel (Hidden until activated) */
+.tab-title.active {
+  background: #e3d5b1; /* Slightly darker beige */
+  color: #b5904b; /* Golden brown */
+}
+
+.tab-title.active::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 4px;
+  background: #b5904b; /* Golden brown underline */
+}
+
+.tabs-content-wrapper {
+  padding: 20px;
+}
+
 .tab-panel {
   display: none;
-  opacity: 0;
-  transition: opacity 0.5s ease-in-out;
-  padding: 20px;
-  background-color: #f9f9f9;
-  border-radius: 5px;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
 
-/* Show Active Tab */
 .tab-panel.active {
   display: block;
-  opacity: 1;
 }
 
-/* Add some padding to the tab content for better readability */
-.tab-panel p {
-  font-size: 16px;
-  line-height: 1.5;
-  color: #555;
+.cards {
+  margin-top: 10px;
 }
 
+.cards img {
+  width: 100%;
+  height: auto;
+  border-radius: 8px;
+}
