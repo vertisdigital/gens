@@ -918,3 +918,7 @@ content: '🡢';
 }
 
 /* Sticky header */
+
+.displayNone {
+  display: none;
+}

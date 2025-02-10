@@ -29,7 +29,7 @@ import stringToHtml from "../../shared-components/Utility.js";
  * @param {string} resourcePath Resource path
  * @returns {Element} Navigation item element
  */
-function createNavItem(itemData, resourcePath) {
+function createNavItem(itemData) {
   const navItem = document.createElement('div');
   navItem.className = 'links';
 
@@ -54,10 +54,18 @@ function createNavItem(itemData, resourcePath) {
       detailedcaption.setAttribute('target', itemData.captionTarget);
     }
   }
+
+  // create overview link
+  const overviewLink = document.createElement('a');
+  overviewLink.className = 'overview-link displayNone';
+  overviewLink.textContent = itemData.overviewLinkText;
+  overviewLink.href = itemData.overviewLinkHref;
+  overviewLink.setAttribute('target', itemData.overviewLinkTarget);
   
   titleDiv.appendChild(titleContent);
   navItem.appendChild(titleDiv);
   navItem.appendChild(detailedcaption);
+  navItem.appendChild(overviewLink);
 
   if (itemData.caption && itemData.captionTarget) {
     navItem.dataset.captionText = itemData.caption.textContent?.trim() || '';
@@ -131,11 +139,11 @@ function createHeaderStructure(block) {
 
   // Extract and create navigation items
   const navItems = Array.from(block.querySelectorAll('[data-aue-model="links"]')).map((navSection, index) => {
-    const resourcePath = navSection.getAttribute('data-aue-resource');
-    console.log(navSection);
     return createNavItem({
       title: navSection.querySelector('[data-aue-prop="title"]')?.textContent,
-      // caption: navSection.querySelector('[data-aue-prop="detailedcaption"]')?.textContent,
+      overviewLinkText: navSection.querySelector('[data-aue-prop="linkText"]')?.textContent,
+      overviewLinkHref: navSection.querySelector('[data-aue-prop="linkText"]')?.getAttribute('href'),
+      overviewLinkTarget: navSection.querySelector('[data-aue-prop="linkTarget"]')?.textContent,
       caption: navSection.querySelector('[title="Overview"]'),
       captionTarget: '_self',
       links: Array.from(navSection.querySelectorAll('[data-aue-model="linkField"]')).map((link) => ({
@@ -144,7 +152,7 @@ function createHeaderStructure(block) {
         target: link.querySelector('[data-aue-prop="linkTarget"]')?.textContent,
         resourcePath: link.getAttribute('data-aue-resource'),
       })),
-    }, resourcePath || `nav_${index}`);
+    });
   });
 
   navItems.forEach((item) => {
@@ -226,9 +234,10 @@ hamburger.addEventListener('click', () => {
 
   navItems.forEach((item) => {
     const linksDiv = item.querySelector('.links');
-    const detailedCaptionText = linksDiv?.dataset.captionText;
-    const detailedCaptionLink = linksDiv?.dataset.captionHref;
-    const detailedCaptionTarget = linksDiv?.dataset.captionTarget;
+    const overviewLink = linksDiv?.querySelector('.overview-link');
+    const detailedCaptionText = overviewLink?.innerText;
+    const detailedCaptionLink = overviewLink?.getAttribute('href');
+    const detailedCaptionTarget = overviewLink?.getAttribute('target');
 
     const originalLinks = item.querySelector('.nav-links');
 
@@ -392,7 +401,7 @@ export default async function decorate(block) {
   const navPath = navMeta ? new URL(navMeta, window.location).pathname : '/nav';
   const fragment = await loadFragmentCustom(navPath);
 
-  if (fragment && true) {
+  if (fragment && false) {
     const imageOne = block.querySelectorAll('[data-aue-model="image"]')[0]?.getElementsByTagName("picture")[0];
     const imageTwo = block.querySelectorAll('[data-aue-model="image"]')[1]?.getElementsByTagName("picture")[0];
     const header = createHeaderStructure(fragment);
