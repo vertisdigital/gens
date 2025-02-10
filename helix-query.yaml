@@ -1,16 +1,270 @@
 version: 1
 
 indices:
-  pages:
+  blocks:
     include:
-      - '/**'
+      - /**
     exclude:
-      - '/**.json'
+      - /drafts/**
+      - /fragments/**
+      - /tools/**
+      - /blocks/**
+      - /_*.json
     target: /query-index.json
+    # Generate on main and current branch
+    conditions:
+      branch:
+        - main
+        - ${branch} # This will use the current branch name
     properties:
+      # Common metadata
+      title:
+        select: head > meta[property="og:title"]
+        value: |
+          attribute(el, 'content')
+      description:
+        select: head > meta[name="description"]
+        value: |
+          attribute(el, 'content')
       lastModified:
         select: none
-        value: parseTimestamp(headers["last-modified"], "ddd, DD MMM YYYY hh:mm:ss GMT")
+        value: |
+          parseTimestamp(headers["last-modified"], "ddd, DD MMM YYYY hh:mm:ss GMT")
+
+      # 1. Text Media Block
+      textMediaContent:
+        select: div[data-aue-model="textmediablock"]
+        values:
+          heading:
+            select: [data-aue-prop="heading"]
+            value: |
+              textContent(el)
+          description:
+            select: [data-richtext-prop="description"]
+            value: |
+              textContent(el)
+
+      # 2. Core Principles
+      corePrinciples:
+        select: div[data-aue-model="coreprinciple"]
+        values:
+          title:
+            select: [data-aue-prop="title"]
+            value: |
+              textContent(el)
+          description:
+            select: [data-richtext-prop="description"]
+            value: |
+              textContent(el)
+
+      # 3. Hero Banner
+      heroBanner:
+        select: div[data-aue-model="herobanner"]
+        values:
+          heading:
+            select: [data-aue-prop="bannerheading"]
+            value: |
+              textContent(el)
+          description:
+            select: [data-richtext-prop="bannerdescription"]
+            value: |
+              textContent(el)
+
+      # 4. Cards
+      cards:
+        select: .cards > ul > li
+        values:
+          cardText:
+            select: .cards-card-body
+            value: |
+              textContent(el)
+
+      # 5. Columns
+      columns:
+        select: .columns > div
+        values:
+          columnContent:
+            select: .columns-img-col
+            value: |
+              textContent(el)
+
+      # 6. Feature
+      features:
+        select: div[data-aue-model="featureItem"]
+        values:
+          title:
+            select: [data-aue-prop="feature-title"]
+            value: |
+              textContent(el)
+          heading:
+            select: [data-aue-prop="feature-heading"]
+            value: |
+              textContent(el)
+
+      # 7. Explore More
+      exploreMore:
+        select: .exploremore
+        values:
+          title:
+            select: [data-aue-prop="title"]
+            value: |
+              textContent(el)
+          firstCta:
+            select: [data-aue-prop="firstCtaCaption"]
+            value: |
+              textContent(el)
+          secondCta:
+            select: [data-aue-prop="secondCtaCaption"]
+            value: |
+              textContent(el)
+
+      # 8. Enquiry
+      enquiry:
+        select: .enquiry-wrapper
+        values:
+          heading:
+            select: [data-aue-prop="heading"]
+            value: |
+              textContent(el)
+          description:
+            select: [data-aue-prop="description"]
+            value: |
+              textContent(el)
+          phone:
+            select: [data-aue-prop="phoneNumber"]
+            value: |
+              textContent(el)
+          email:
+            select: [data-aue-prop="emailAddress"]
+            value: |
+              textContent(el)
+
+      # 9. Footer
+      footer:
+        select: .footer
+        values:
+          description:
+            select: [data-richtext-prop="description"]
+            value: |
+              textContent(el)
+          links:
+            select: .nav-sections a
+            value: |
+              textContent(el)
+
+      # 10. Fragment
+      fragment:
+        select: .fragment
+        values:
+          reference:
+            select: [data-aue-prop="reference"]
+            value: |
+              textContent(el)
+
+      # 11. Header/Nav
+      header:
+        select: .nav-wrapper
+        values:
+          navLinks:
+            select: .nav-sections a
+            value: |
+              textContent(el)
+
+      # 12. Hero
+      hero:
+        select: .hero
+        values:
+          text:
+            select: [data-richtext-prop="text"]
+            value: |
+              textContent(el)
+
+      # 13. Image Link
+      imageLink:
+        select: div[data-aue-model="imageLink"]
+        values:
+          description:
+            select: [data-richtext-prop="description"]
+            value: |
+              textContent(el)
+
+      # 14. Links
+      links:
+        select: div[data-aue-model="links"]
+        values:
+          title:
+            select: [data-aue-prop="title"]
+            value: |
+              textContent(el)
+
+      # 15. Project Cards
+      projectCards:
+        select: div[data-aue-model="projectcard"]
+        values:
+          title:
+            select: [data-aue-prop="title"]
+            value: |
+              textContent(el)
+          location:
+            select: [data-aue-prop="location"]
+            value: |
+              textContent(el)
+
+      # 16. Tiles
+      tiles:
+        select: div[data-aue-model="tile"]
+        values:
+          heading:
+            select: [data-aue-prop="heading"]
+            value: |
+              textContent(el)
+          description:
+            select: [data-richtext-prop="description"]
+            value: |
+              textContent(el)
+
+      # Add Listing block
+      listing:
+        select: div[data-aue-model="listing"]
+        values:
+          title:
+            select: [data-aue-prop="title"]
+            value: |
+              textContent(el)
+          heading:
+            select: [data-aue-prop="heading"]
+            value: |
+              textContent(el)
+          listItems:
+            select: div[data-aue-model="listitem"]
+            values:
+              title:
+                select: [data-aue-prop="title"]
+                value: |
+                  textContent(el)
+              description:
+                select: [data-aue-prop="description"]
+                value: |
+                  textContent(el)
+
+      # Add TextSection block
+      textSection:
+        select: div[data-aue-model="textsection"]
+        values:
+          heading:
+            select: [data-aue-prop="heading"]
+            value: |
+              textContent(el)
+          description:
+            select: [data-richtext-prop="description"]
+            value: |
+              textContent(el)
+
+      # Common metadata
+      image:
+        select: head > meta[property="og:image"]
+        value: |
+          attribute(el, 'content')
       robots:
         select: head > meta[name="robots"]
         value: attribute(el, "content")
