@@ -762,7 +762,7 @@
       {
         "component": "aem-content",
         "name": "cta",
-        "label": "CTA"  
+        "label": "CTA"
       },
       {
         "component": "text",
@@ -777,7 +777,7 @@
       {
         "component": "text",
         "name": "heading",
-        "label": "Heading",
+        "label": "Title",
         "required": true,
         "validation": {
           "maxLength": 100,
@@ -786,15 +786,15 @@
         }
       },
       {
-        "component": "richtext",
+        "component": "text",
         "name": "description",
         "value": "",
         "label": "Description",
         "valueType": "string",
         "required": true,
         "validation": {
-          "maxSize": 250,
-          "customErrorMsg": "Description cannot exceed 250 characters",
+          "maxLength": 500,
+          "customErrorMsg": "Description cannot exceed 500 characters",
           "requiredErrorMsg": "Description is mandatory"
         }
       }
@@ -883,6 +883,28 @@
           "requiredErrorMsg": "Second CTA link is mandatory",
           "rootPath": "/content/genting-singapore/index"
         }
+      }
+    ]
+  },
+  {
+    "id": "media",
+    "fields": [
+      {
+        "component": "custom-asset-namespace:custom-asset",
+        "name": "image",
+        "label": "Image",
+        "configUrl": "https://textmediasection--genting--wppopen.aem.page/tools/assets-selector/config.json"
+      },
+      {
+        "component": "reference",
+        "name": "video",
+        "label": "video"
+      },
+      {
+        "component": "text",
+        "name": "imageAlt",
+        "label": "Alt Text",
+        "valueType": "string"
       }
     ]
   }

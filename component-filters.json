@@ -28,7 +28,8 @@
       "projectcards",
       "enquiry",
       "tiles",
-      "textsection"
+      "textsection",
+      "textmediablock"
     ]
   },
   {
@@ -59,7 +60,8 @@
       "projectcards",
       "enquiry",
       "tiles",
-      "textsection"
+      "textsection",
+      "textmediablock"
     ]
   },
   {
@@ -124,6 +126,13 @@
     "id": "coreprinciples",
     "components": [
       "coreprinciple"
+    ]
+  },
+  {
+    "id": "textmediablock",
+    "components": [
+      "media",
+      "textsection"
     ]
   }
 ]
