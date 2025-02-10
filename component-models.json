@@ -812,7 +812,7 @@
       },
       {
         "component": "text",
-        "name": "imageAlt",
+        "name": "altText",
         "label": "Alt Text",
         "valueType": "string"
       },
