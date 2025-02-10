@@ -267,7 +267,7 @@
         "name": "title",
         "label": "Title",
         "validation": {
-          "maxLength": 25,
+          "maxLength": 100,
           "customErrorMsg": "Title cannot exceed 25 characters"
         }
       },
@@ -276,7 +276,7 @@
         "name": "description",
         "label": "Description",
         "validation": {
-          "maxLength": 60,
+          "maxLength": 250,
           "customErrorMsg": "Description cannot exceed 60 characters"        
         }
       },
@@ -284,7 +284,7 @@
         "component": "text",
         "name": "readmorelabel",
         "label": "Read More Label",
-        "value": "Read More"
+        "value": ""
       },
       {
         "component": "aem-content",
