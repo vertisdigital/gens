@@ -45,7 +45,7 @@ export default function processTabs(main, moveInstrumentation) {
     while (clonedContent.firstChild) {
       tabPanel.appendChild(clonedContent.firstChild);
     }
-    tabsNav.appendChild(tabButgton);
+    tabsNav.appendChild(tabButton);
     tabsContent.appendChild(tabPanel);
   });
 
