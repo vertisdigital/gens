@@ -79,19 +79,21 @@ function createNavItem(itemData) {
     const linksUl = document.createElement('ul');
     linksUl.className = 'nav-links row';
 
-    itemData.links.forEach((link) => {
-      const li = document.createElement('li');
-      li.className = 'col-xl-4 col-lg-4';
-      const linkContainer = document.createElement('div');
-      linkContainer.className = 'button-container';
-      const a = document.createElement('a');
-      a.href = link.href;
-      a.className = 'button';
-      a.title = link.text;
-      a.textContent = link.text;  
-      linkContainer.appendChild(a);
-      li.appendChild(linkContainer);
-      linksUl.appendChild(li);
+    itemData.links.forEach((link, index) => {
+      if (index > 0) { // Skip first item
+        const li = document.createElement('li');
+        li.className = 'col-xl-4 col-lg-4';
+        const linkContainer = document.createElement('div');
+        linkContainer.className = 'button-container';
+        const a = document.createElement('a');
+        a.href = link.href;
+        a.className = 'button';
+        a.title = link.text;
+        a.textContent = link.text;  
+        linkContainer.appendChild(a);
+        li.appendChild(linkContainer);
+        linksUl.appendChild(li);
+      }
     });
 
     navItem.appendChild(linksUl);
