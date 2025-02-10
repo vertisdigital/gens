@@ -116,9 +116,10 @@ function createHeaderStructure(block) {
   nav.className = 'header-nav';
 
   // Create logo section
-  const logoWrapper = document.createElement('div');
+  const logoWrapper = document.createElement('a');
   logoWrapper.className = 'logo-wrapper';
   const logoContent = block.querySelectorAll('[data-aue-model="image"]')[0]?.getElementsByTagName("picture")[0];
+  logoWrapper.href ="/";
 
   if (logoContent) {
     logoWrapper.appendChild(logoContent);
@@ -131,6 +132,7 @@ function createHeaderStructure(block) {
   // Extract and create navigation items
   const navItems = Array.from(block.querySelectorAll('[data-aue-model="links"]')).map((navSection, index) => {
     const resourcePath = navSection.getAttribute('data-aue-resource');
+    console.log(navSection);
     return createNavItem({
       title: navSection.querySelector('[data-aue-prop="title"]')?.textContent,
       // caption: navSection.querySelector('[data-aue-prop="detailedcaption"]')?.textContent,
@@ -440,6 +442,24 @@ export default async function decorate(block) {
     block.textContent = '';
     block.appendChild(header);
     initializeHeader(header);
+
+    function updateSubMenuPosition() {
+      const headerHeight = header.offsetHeight;
+      const primaryNavigation = header.querySelector(".primary-nav");
+      primaryNavigation.style.top = `${headerHeight}px`;
+      const subMenus = header.querySelectorAll(".secondary-nav");
+  
+      subMenus.forEach((subMenu) => {
+          subMenu.style.top = `${headerHeight}px`;
+      });
+  }
+  
+  // Initial execution after a short delay
+  setTimeout(updateSubMenuPosition, 0);
+  
+  // Update on window resize
+  window.addEventListener("resize", updateSubMenuPosition);
+  
     
     const handleScroll = () => {
       if (!header) return;
