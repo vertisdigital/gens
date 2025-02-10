@@ -474,7 +474,8 @@ header nav .nav-tools {
   }
 
   /* Logo centered */
-  .header-inner-wrapper .header-nav .logo-wrapper {
+  .header-inner-wrapper .header-nav .logo-wrapper{
+ 
     flex: 0 0 60%;
     display: flex;
     justify-content: center;
@@ -582,8 +583,9 @@ header nav .nav-tools {
 
 /* My header css */
 
-.header-inner-wrapper{
+.header-inner-wrapper>div:first-child{
   background-color: transparent;
+  padding: 30px 0;
 }
 .header-inner-wrapper.fixed-header{ 
   position: fixed;
@@ -603,7 +605,7 @@ header nav .nav-tools {
 }
 .header-inner-wrapper .header-nav{
   width: 100%;
-  padding: 30px 0; 
+  /* padding: 30px 0;  */
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -615,7 +617,8 @@ header nav .nav-tools {
 }
 
 .header-inner-wrapper .header-nav .logo-wrapper{
-  max-width: 50px;
+  max-width: 168px;
+  max-height: 50px;
 }
 
 .header-inner-wrapper .header-nav .logo-wrapper p{
@@ -789,12 +792,14 @@ content: '🡢';
 
 
 @media(width<=992px){
-.header-inner-wrapper .header-nav {
+.header-inner-wrapper>div:first-child{
     padding: 24px 0;
- }
+  }
+
 
 .header-inner-wrapper .header-nav .logo-wrapper{
-  max-width: 42px;
+  max-width: 140px;
+ max-height: 42px;
 }
 
   .header-inner-wrapper .header-nav .hamburger{
@@ -878,8 +883,12 @@ content: '🡢';
 }
 
 @media(width<768px){
+  .header-inner-wrapper>div:first-child{
+    padding: 20px 0;
+  }
   .header-inner-wrapper .header-nav .logo-wrapper{
-    max-width: 34px;
+    max-width: 114px;
+    max-height: 34px;
   }
 
   .header-inner-wrapper .header-nav .primary-nav {
