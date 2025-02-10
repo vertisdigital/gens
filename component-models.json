@@ -847,7 +847,7 @@
       {
         "component": "text",
         "name": "firstCtaCaption",
-        "label": "Investors",
+        "label": "First CTA Caption",
         "validation": {
           "maxLength": 50,
           "customErrorMsg": "Investors caption cannot exceed 50 characters"
@@ -866,11 +866,12 @@
       {
         "component": "text",
         "name": "secondCtaCaption",
-        "label": "Awards & Recognition",
+        "label": "Second CTA Caption",
         "validation": {
           "maxLength": 50,
-          "customErrorMsg": "Awards & Recognition caption cannot exceed 50 characters"
+          "customErrorMsg": "Second CTA caption cannot exceed 50 characters"
         }
+
       },
       {
         "component": "aem-content",
