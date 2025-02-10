@@ -15,7 +15,7 @@ export default function processTabs(main, moveInstrumentation) {
   tabsWrapper.classList.add('tabs-container');
 
   const tabsNav = document.createElement('div');
-  tabsNav.classList.add('tabs-header');
+  tabsNav.classList.add('tabs-header','row');
 
   const tabsContent = document.createElement('div');
   tabsContent.classList.add('tabs-content');
@@ -29,7 +29,7 @@ export default function processTabs(main, moveInstrumentation) {
       : `CustTitle ${index + 1}`;
 
     const tabButton = document.createElement('div');
-    tabButton.classList.add('tab-title');
+    tabButton.classList.add('tab-title','col-xl-6','col-lg-6','col-3','col-2');
     tabButton.dataset.index = index;
     tabButton.textContent = tabTitle;
 
