@@ -212,7 +212,7 @@
         "name": "bannerdescription",
         "label": "Banner Description",
         "validation": {
-          "maxSize": 300,
+          "maxLength": 300,
           "customErrorMsg": "Banner description cannot exceed 250 characters"
         }
       },
