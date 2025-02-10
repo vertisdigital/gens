@@ -812,8 +812,8 @@
       },
       {
         "component": "text",
-        "name": "altText",
-        "label": "Alt Text"
+        "name": "imageAltText",
+        "label": "ImageAltText"
       },
       {
         "component": "text",
