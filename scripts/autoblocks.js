@@ -13,7 +13,7 @@ export default function processTabs(main) {
     "container-xl container-lg container-md container-sm";
 
   const tabsWrapper = document.createElement("div");
-  tabsWrapper.classList.add("tabs-container1");
+  tabsWrapper.classList.add("tabs-container");
 
   const tabsNav = document.createElement("div");
   tabsNav.classList.add("tabs-header");

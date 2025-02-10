@@ -789,6 +789,15 @@ main .section.highlight {
   cursor: pointer;
   position: relative;
 }
+.tabs-header > div {
+  display: flex;
+  padding-top: 36px;
+  flex-direction: column;
+  justify-content: flex-end;
+  align-items: center;
+  gap: 36px;
+  flex: 1 0 0;
+}
 
 .tab-title.active {
   background: #e3d5b1; /* Slightly darker beige */
