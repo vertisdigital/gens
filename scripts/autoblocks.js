@@ -37,7 +37,7 @@ export default function processTabs(main, moveInstrumentation) {
     tabPanel.classList.add('tab-panel');
     if (index === 0) tabPanel.classList.add('active');
 
-    moveInstrumentation(tabPanel, section);
+    moveInstrumentation(section, tabPanel);
     // Clone the section content instead of moving it
     const clonedContent = section.cloneNode(true);
     clonedContent.querySelector('.section-metadata')?.remove(); // Remove metadata from content
