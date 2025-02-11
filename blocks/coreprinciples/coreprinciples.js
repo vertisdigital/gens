@@ -40,15 +40,21 @@ export default function decorate(block) {
       });
     }
 
+    // Alt image text
+    const altText = item.querySelector('[data-aue-prop="altTextImg"]');
+
     // Create and add image using ImageComponent
     if (iconUrl) {
       const img = document.createElement('img');
       img.src = iconUrl;
-      img.alt = '';
       img.loading = 'lazy';
       img.width = 64;
       img.height = 64;
 
+      if(altText){
+        img.alt = altText?.textContent;
+      }
+      
       const picture = document.createElement('picture');
       picture.appendChild(img);
       iconWrapper.appendChild(picture);
@@ -79,6 +85,9 @@ export default function decorate(block) {
 
     // Clean up original icon link
     iconLink?.parentElement.remove();
+
+    // Clean up original image alt text
+    altText?.parentElement.removeChild(altText)  
 
     // Insert icon wrapper at start
     item.insertBefore(iconWrapper, item.firstChild);
