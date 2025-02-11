@@ -66,7 +66,7 @@ export default function processTabs(main, moveInstrumentation) {
       tabButton.dataset.index ?? tabButton.parentNode.dataset.index,
       10,
     ); // Convert to integer
-    if (Number.isNaN(index)) return; // Prevent errors if index is undefined
+    if (Number.isNaN(index)) return; // Prevent errors if index is undefined 
 
     tabsWrapper
       .querySelectorAll('.tab-title')
