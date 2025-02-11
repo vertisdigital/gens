@@ -3,7 +3,10 @@ import { loadFragmentCustom } from '../fragment/fragment.js';
 import SvgIcon from "../../shared-components/SvgIcon.js";
 import stringToHtml from "../../shared-components/Utility.js";
 
-
+// Add these variables at the top level of the file
+let lastScrollPosition = 0;
+let ticking = false;
+let isHeaderFixed = false;
 
 /**
  * Sets AEM data attributes
@@ -395,6 +398,50 @@ hamburger.addEventListener('click', () => {
 }
 
 /**
+ * Updates header state based on scroll position
+ * @param {Element} header Header element
+ * @param {Element} imageOne First logo image
+ * @param {Element} imageTwo Second logo image
+ */
+function updateHeaderState(header, imageOne, imageTwo) {
+  const headerTop = header.getBoundingClientRect().top;
+  const headerLogo = header.querySelector('.logo-wrapper');
+  
+  // Only update if state needs to change
+  if (headerTop <= 0 && !isHeaderFixed) {
+    header.classList.add('fixed-header');
+    if (imageTwo && headerLogo) {
+      headerLogo.replaceChildren(imageTwo.cloneNode(true));
+    }
+    isHeaderFixed = true;
+  } else if (headerTop > 0 && isHeaderFixed) {
+    header.classList.remove('fixed-header');
+    if (imageOne && headerLogo) {
+      headerLogo.replaceChildren(imageOne.cloneNode(true));
+    }
+    isHeaderFixed = false;
+  }
+}
+
+/**
+ * Handles scroll events using requestAnimationFrame
+ * @param {Element} header Header element
+ * @param {Element} imageOne First logo image 
+ * @param {Element} imageTwo Second logo image
+ */
+function handleScroll(header, imageOne, imageTwo) {
+  lastScrollPosition = window.scrollY;
+
+  if (!ticking) {
+    window.requestAnimationFrame(() => {
+      updateHeaderState(header, imageOne, imageTwo);
+      ticking = false;
+    });
+    ticking = true;
+  }
+}
+
+/**
  * decorates the header
  * @param {Element} block The header block element
  */
@@ -407,45 +454,18 @@ export default async function decorate(block) {
     const imageOne = block.querySelectorAll('[data-aue-model="image"]')[0]?.getElementsByTagName("picture")[0];
     const imageTwo = block.querySelectorAll('[data-aue-model="image"]')[1]?.getElementsByTagName("picture")[0];
     const header = createHeaderStructure(fragment);
-    // document.getElementsByTagName('main')[0].remove();
     block.innerHTML = '';
     block.appendChild(header);
 
     // Initialize header functionality
     initializeHeader(header);
 
-    // header scroll event handling
-    const handleScroll = () => {
-      if (!header) return;
+    // Add optimized scroll handler
+    window.addEventListener('scroll', () => handleScroll(header, imageOne, imageTwo), { passive: true });
+    
+    // Initial check in case page loads scrolled
+    updateHeaderState(header, imageOne, imageTwo);
 
-      const headerTop = header.getBoundingClientRect().top;
-      const headerLogo = header.querySelector('.logo-wrapper');
-
-      if (headerTop <= 0) {
-        header.classList.add('fixed-header'); // Add class when it reaches top: 0
-        const logoContentTwo = imageTwo;
-        
-        if (logoContentTwo) {
-          headerLogo.innerHTML="";
-          headerLogo.appendChild(logoContentTwo);
-        }
-
-      } else {
-        const logoContentOne = imageOne;
-        header.classList.remove('fixed-header'); // Remove class if not at top
-        headerLogo.innerHTML="";
-        if (logoContentOne) {
-        logoContentOne.appendChild(logoContentOne);
-        }
-      }
-    };
-
-    // // Optimize performance using debounce
-    let scrollTimeout;
-    window.addEventListener('scroll', () => {
-      clearTimeout(scrollTimeout);
-      scrollTimeout = setTimeout(handleScroll, 10);
-    });
   } else {
     const imageOne = block.querySelectorAll('[data-aue-model="image"]')[0]?.getElementsByTagName("picture")[0];
     const imageTwo = block.querySelectorAll('[data-aue-model="image"]')[1]?.getElementsByTagName("picture")[0];
@@ -454,54 +474,11 @@ export default async function decorate(block) {
     block.appendChild(header);
     initializeHeader(header);
 
-    function updateSubMenuPosition() {
-      const headerHeight = header.offsetHeight;
-      const primaryNavigation = header.querySelector(".primary-nav");
-      primaryNavigation.style.top = `${headerHeight}px`;
-      const subMenus = header.querySelectorAll(".secondary-nav");
-  
-      subMenus.forEach((subMenu) => {
-          subMenu.style.top = `${headerHeight}px`;
-      });
-  }
-  
-  // Initial execution after a short delay
-  setTimeout(updateSubMenuPosition, 0);
-  
-  // Update on window resize
-  window.addEventListener("resize", updateSubMenuPosition);
-  
+    // Add optimized scroll handler
+    window.addEventListener('scroll', () => handleScroll(header, imageOne, imageTwo), { passive: true });
     
-    const handleScroll = () => {
-      if (!header) return;
-
-      const headerTop = header.getBoundingClientRect().top;
-      const headerLogo = header.querySelector('.logo-wrapper');
-
-      if (headerTop <= 0) {
-        header.classList.add('fixed-header'); // Add class when it reaches top: 0
-        const logoContentTwo = imageTwo;
-        
-        if (logoContentTwo) {
-          headerLogo.innerHTML="";
-          headerLogo.appendChild(logoContentTwo);
-        }
-
-      } else {
-        const logoContentOne = imageOne;
-        header.classList.remove('fixed-header'); // Remove class if not at top
-        headerLogo.innerHTML="";
-        if (logoContentOne) {
-          headerLogo.appendChild(logoContentOne);
-        }
-      }
-    };
-
-    // // Optimize performance using debounce
-    let scrollTimeout;
-    window.addEventListener('scroll', () => {
-      clearTimeout(scrollTimeout);
-      scrollTimeout = setTimeout(handleScroll, 10);
-    });
+    // Initial check in case page loads scrolled
+    updateHeaderState(header, imageOne, imageTwo);
+    
   }
 }
