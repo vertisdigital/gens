@@ -4,7 +4,6 @@ import {
   decorateButtons,
   decorateIcons,
   decorateSections,
-  decorateBlocks,
   decorateTemplateAndTheme,
   waitForFirstImage,
   loadSection,
