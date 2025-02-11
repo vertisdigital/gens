@@ -41,16 +41,22 @@ function createNavItem(itemData) {
   titleDiv.className = 'primary-menu-links';
   const titleContent = document.createElement('div');
   const detailedcaption = document.createElement('a');
-  if(itemData?.overviewLinkText!=="Contact"){
-  titleContent.textContent = itemData.title;
+
+  if (itemData?.overviewLinkText === "Contact") {
+    // For Contact menu item, create a direct link using the button container data
+    const contactLink = document.createElement('a');
+    contactLink.href = itemData.links?.[0]?.href || itemData.overviewLinkHref;
+    contactLink.textContent = itemData.title || 'Contact';
+    contactLink.setAttribute('target', itemData.links?.[0]?.target || itemData.overviewLinkTarget || '_self');
+    titleContent.appendChild(contactLink);
+    
+    // Skip creating submenu elements for Contact
+    detailedcaption.style.display = 'none';
+    overviewLink.style.display = 'none';
+  } else {
+    titleContent.textContent = itemData.title;
   }
-  else{
-    const contactUs = document.createElement('a');
-    contactUs.textContent = itemData?.overviewLinkText;
-    contactUs.href = itemData?.overviewLinkHref;
-    contactUs.setAttribute('target', itemData?.captionTarget);
-    titleContent.append(contactUs);
-  }
+
   if (itemData.caption) {
     detailedcaption.textContent = typeof itemData.caption === 'string' 
       ? itemData.caption 
@@ -86,8 +92,8 @@ function createNavItem(itemData) {
   }
   detailedcaption.innerText = "";
 
-  // Create links
-  if (itemData.links?.length) {
+  // Create links (skip for Contact)
+  if (itemData.links?.length && itemData?.overviewLinkText !== "Contact") {
     const linksUl = document.createElement('ul');
     linksUl.className = 'nav-links row';
 
