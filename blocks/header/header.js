@@ -413,17 +413,18 @@ hamburger.addEventListener('click', () => {
  * @param {Element} imageTwo Second logo image
  */
 function updateHeaderState(header, imageOne, imageTwo) {
-  const headerTop = header.getBoundingClientRect().top;
+  // Get scroll position instead of getBoundingClientRect
+  const scrollPosition = window.scrollY;
   const headerLogo = header.querySelector('.logo-wrapper');
   
   // Only update if state needs to change
-  if (headerTop <= 0 && !isHeaderFixed) {
+  if (scrollPosition > 0 && !isHeaderFixed) {
     header.classList.add('fixed-header');
     if (imageTwo && headerLogo) {
       headerLogo.replaceChildren(imageTwo.cloneNode(true));
     }
     isHeaderFixed = true;
-  } else if (headerTop > 0 && isHeaderFixed) {
+  } else if (scrollPosition === 0 && isHeaderFixed) {
     header.classList.remove('fixed-header');
     if (imageOne && headerLogo) {
       headerLogo.replaceChildren(imageOne.cloneNode(true));
@@ -472,8 +473,13 @@ export default async function decorate(block) {
     // Add optimized scroll handler
     window.addEventListener('scroll', () => handleScroll(header, imageOne, imageTwo), { passive: true });
     
-    // Initial check in case page loads scrolled
-    updateHeaderState(header, imageOne, imageTwo);
+    // Initial setup - ensure header starts with imageOne and no fixed class
+    const headerLogo = header.querySelector('.logo-wrapper');
+    if (imageOne && headerLogo) {
+      headerLogo.replaceChildren(imageOne.cloneNode(true));
+    }
+    header.classList.remove('fixed-header');
+    isHeaderFixed = false;
 
   } else {
     const imageOne = block.querySelectorAll('[data-aue-model="image"]')[0]?.getElementsByTagName("picture")[0];
@@ -486,8 +492,12 @@ export default async function decorate(block) {
     // Add optimized scroll handler
     window.addEventListener('scroll', () => handleScroll(header, imageOne, imageTwo), { passive: true });
     
-    // Initial check in case page loads scrolled
-    updateHeaderState(header, imageOne, imageTwo);
-    
+    // Initial setup - ensure header starts with imageOne and no fixed class
+    const headerLogo = header.querySelector('.logo-wrapper');
+    if (imageOne && headerLogo) {
+      headerLogo.replaceChildren(imageOne.cloneNode(true));
+    }
+    header.classList.remove('fixed-header');
+    isHeaderFixed = false;
   }
 }
