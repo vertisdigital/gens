@@ -148,15 +148,18 @@ function createHeaderStructure(block) {
   const defaultLogo = images[0]?.querySelector('picture');
   const scrollLogo = images[1]?.querySelector('picture');
 
-  // Set default logo initially
+  // Add both logos with appropriate classes
   if (defaultLogo) {
-    logoWrapper.appendChild(defaultLogo.cloneNode(true));
+    const defaultLogoWrapper = defaultLogo.cloneNode(true);
+    defaultLogoWrapper.classList.add('default-logo');
+    logoWrapper.appendChild(defaultLogoWrapper);
   }
 
-  // Store both logos as data attributes for easy access
-  if (defaultLogo && scrollLogo) {
-    logoWrapper.dataset.defaultLogo = defaultLogo.outerHTML;
-    logoWrapper.dataset.scrollLogo = scrollLogo.outerHTML;
+  if (scrollLogo) {
+    const scrollLogoWrapper = scrollLogo.cloneNode(true);
+    scrollLogoWrapper.classList.add('scroll-logo');
+    scrollLogoWrapper.style.display = 'none'; // Initially hidden
+    logoWrapper.appendChild(scrollLogoWrapper);
   }
 
   // Create primary navigation
@@ -424,17 +427,19 @@ hamburger.addEventListener('click', () => {
  */
 function updateHeaderState(header) {
   const scrollPosition = window.scrollY;
-  const headerLogo = header.querySelector('.logo-wrapper');
+  const defaultLogo = header.querySelector('.default-logo');
+  const scrollLogo = header.querySelector('.scroll-logo');
   
-  // Only update if state needs to change and we have both logos
-  if (headerLogo?.dataset.defaultLogo && headerLogo?.dataset.scrollLogo) {
+  if (defaultLogo && scrollLogo) {
     if (scrollPosition > 0 && !isHeaderFixed) {
       header.classList.add('fixed-header');
-      headerLogo.innerHTML = headerLogo.dataset.scrollLogo;
+      defaultLogo.style.display = 'none';
+      scrollLogo.style.display = 'block';
       isHeaderFixed = true;
     } else if (scrollPosition === 0 && isHeaderFixed) {
       header.classList.remove('fixed-header');
-      headerLogo.innerHTML = headerLogo.dataset.defaultLogo;
+      defaultLogo.style.display = 'block';
+      scrollLogo.style.display = 'none';
       isHeaderFixed = false;
     }
   }
