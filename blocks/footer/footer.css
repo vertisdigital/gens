@@ -70,6 +70,7 @@
     justify-content: center;
     line-height: 1;
 }
+
 .footer .social-icons .social-links a .social-icon-wrapper .icon-wrapper{
     padding: 0!important;
     line-height: 0;
@@ -106,6 +107,7 @@
     line-height: 24px;
     margin-bottom: 6px;
 }
+
 .footer .footer-bottom-links .button-container a{
     font-size: 16px;
     font-weight: 400;
@@ -133,6 +135,7 @@
     width: calc(33.33% - 10px);
     box-sizing: border-box; 
   }
+
   .footer .copywrite-right .copywrite-links .button-container a{
     white-space: nowrap;
   }
@@ -186,10 +189,12 @@
     .footer .mt-4 .footer-bottom-links .row>div:nth-child(2){
         padding: 0;
     }
+
     .footer .copywrite-right .copywrite-links {
         width: calc(50% - 10px);
         justify-content: space-between;
     }
+
     .footer .mt-4 .footer-bottom-links .row [data-link-model="links"]{
         padding: 0;
     }

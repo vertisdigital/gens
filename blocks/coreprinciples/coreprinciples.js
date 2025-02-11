@@ -1,7 +1,6 @@
-
 export default function decorate(block) {
   // Get the inner block that has the coreprinciples class
-  const coreBlock = block
+  const coreBlock = block;
   if (!coreBlock) return;
 
   // Add container classes for responsive layout
@@ -51,10 +50,10 @@ export default function decorate(block) {
       img.width = 64;
       img.height = 64;
 
-      if(altText){
+      if (altText) {
         img.alt = altText?.textContent;
       }
-      
+
       const picture = document.createElement('picture');
       picture.appendChild(img);
       iconWrapper.appendChild(picture);
@@ -62,18 +61,18 @@ export default function decorate(block) {
 
     // Convert title to h3 with preserved authoring attributes
     const title = item.querySelector('[data-aue-prop="title"]');
-    if(title !== null) {
+    if (title !== null) {
       const h3 = document.createElement('h3');
       h3.textContent = title.textContent;
-  
+
       // Preserve title data-aue attributes
       const titleAttributes = [...title.attributes].filter((attr) => attr.name.startsWith('data-aue-'));
       titleAttributes.forEach((attr) => {
         h3.setAttribute(attr.name, attr.value);
       });
-      title.replaceWith(h3);  
+      title.replaceWith(h3);
     }
-    
+
     // Preserve description data-aue attributes
     const description = item.querySelector('[data-richtext-prop="description"]');
     if (description) {
@@ -87,7 +86,7 @@ export default function decorate(block) {
     iconLink?.parentElement.remove();
 
     // Clean up original image alt text
-    altText?.parentElement.removeChild(altText)  
+    altText?.parentElement.removeChild(altText);
 
     // Insert icon wrapper at start
     item.insertBefore(iconWrapper, item.firstChild);

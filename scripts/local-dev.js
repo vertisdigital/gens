@@ -32,7 +32,8 @@ class LocalDevelopment {
       Array.from(blocks).map(async (block) => {
         const blockName = block.getAttribute('data-block-name');
         try {
-          const module = await import(`../blocks/${blockName}/${blockName}.js`);
+          const blockNameFromUrl = new URL(window.location.href).searchParams.get('block') || blockName;
+          const module = await import(`../blocks/${blockNameFromUrl}/${blockNameFromUrl}.js`);
           if (module.default) {
             this.blockModules.set(blockName, module);
             module.default(block);

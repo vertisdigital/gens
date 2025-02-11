@@ -33,7 +33,7 @@
 }
 
 /* Tablet and up: Grid layout */
-@media (min-width: 768px) {
+@media (width >= 768px) {
   [data-aue-model="textsection"] {
     display: grid;
     grid-template-columns: 1fr 1fr;
