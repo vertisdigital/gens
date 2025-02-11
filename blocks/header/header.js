@@ -122,6 +122,7 @@ function createHeaderStructure(block) {
   // Create main section container
   const section = document.createElement('div');
   section.className = 'header-inner-wrapper section columns-container container-xl container-md container-sm';
+  
   // Create columns wrapper
   const columnsWrapper = document.createElement('div');
   columnsWrapper.className = 'columns-wrapper';
@@ -140,11 +141,22 @@ function createHeaderStructure(block) {
   // Create logo section
   const logoWrapper = document.createElement('a');
   logoWrapper.className = 'logo-wrapper';
-  const logoContent = block.querySelectorAll('[data-aue-model="image"]')[0]?.getElementsByTagName("picture")[0];
-  logoWrapper.href ="/";
+  logoWrapper.href = "/";
 
-  if (logoContent) {
-    logoWrapper.appendChild(logoContent);
+  // Get both logo images from fragment
+  const images = block.querySelectorAll('[data-aue-model="image"]');
+  const defaultLogo = images[0]?.querySelector('picture');
+  const scrollLogo = images[1]?.querySelector('picture');
+
+  // Set default logo initially
+  if (defaultLogo) {
+    logoWrapper.appendChild(defaultLogo.cloneNode(true));
+  }
+
+  // Store both logos as data attributes for easy access
+  if (defaultLogo && scrollLogo) {
+    logoWrapper.dataset.defaultLogo = defaultLogo.outerHTML;
+    logoWrapper.dataset.scrollLogo = scrollLogo.outerHTML;
   }
 
   // Create primary navigation
@@ -409,42 +421,35 @@ hamburger.addEventListener('click', () => {
 /**
  * Updates header state based on scroll position
  * @param {Element} header Header element
- * @param {Element} imageOne First logo image
- * @param {Element} imageTwo Second logo image
  */
-function updateHeaderState(header, imageOne, imageTwo) {
-  // Get scroll position instead of getBoundingClientRect
+function updateHeaderState(header) {
   const scrollPosition = window.scrollY;
   const headerLogo = header.querySelector('.logo-wrapper');
   
-  // Only update if state needs to change
-  if (scrollPosition > 0 && !isHeaderFixed) {
-    header.classList.add('fixed-header');
-    if (imageTwo && headerLogo) {
-      headerLogo.replaceChildren(imageTwo.cloneNode(true));
+  // Only update if state needs to change and we have both logos
+  if (headerLogo?.dataset.defaultLogo && headerLogo?.dataset.scrollLogo) {
+    if (scrollPosition > 0 && !isHeaderFixed) {
+      header.classList.add('fixed-header');
+      headerLogo.innerHTML = headerLogo.dataset.scrollLogo;
+      isHeaderFixed = true;
+    } else if (scrollPosition === 0 && isHeaderFixed) {
+      header.classList.remove('fixed-header');
+      headerLogo.innerHTML = headerLogo.dataset.defaultLogo;
+      isHeaderFixed = false;
     }
-    isHeaderFixed = true;
-  } else if (scrollPosition === 0 && isHeaderFixed) {
-    header.classList.remove('fixed-header');
-    if (imageOne && headerLogo) {
-      headerLogo.replaceChildren(imageOne.cloneNode(true));
-    }
-    isHeaderFixed = false;
   }
 }
 
 /**
  * Handles scroll events using requestAnimationFrame
  * @param {Element} header Header element
- * @param {Element} imageOne First logo image 
- * @param {Element} imageTwo Second logo image
  */
-function handleScroll(header, imageOne, imageTwo) {
+function handleScroll(header) {
   lastScrollPosition = window.scrollY;
 
   if (!ticking) {
     window.requestAnimationFrame(() => {
-      updateHeaderState(header, imageOne, imageTwo);
+      updateHeaderState(header);
       ticking = false;
     });
     ticking = true;
@@ -461,8 +466,6 @@ export default async function decorate(block) {
   const fragment = await loadFragmentCustom(navPath);
 
   if (fragment && true) {
-    const imageOne = block.querySelectorAll('[data-aue-model="image"]')[0]?.getElementsByTagName("picture")[0];
-    const imageTwo = block.querySelectorAll('[data-aue-model="image"]')[1]?.getElementsByTagName("picture")[0];
     const header = createHeaderStructure(fragment);
     block.innerHTML = '';
     block.appendChild(header);
@@ -471,32 +474,22 @@ export default async function decorate(block) {
     initializeHeader(header);
 
     // Add optimized scroll handler
-    window.addEventListener('scroll', () => handleScroll(header, imageOne, imageTwo), { passive: true });
+    window.addEventListener('scroll', () => handleScroll(header), { passive: true });
     
-    // Initial setup - ensure header starts with imageOne and no fixed class
-    const headerLogo = header.querySelector('.logo-wrapper');
-    if (imageOne && headerLogo) {
-      headerLogo.replaceChildren(imageOne.cloneNode(true));
-    }
+    // Ensure header starts with no fixed class
     header.classList.remove('fixed-header');
     isHeaderFixed = false;
 
   } else {
-    const imageOne = block.querySelectorAll('[data-aue-model="image"]')[0]?.getElementsByTagName("picture")[0];
-    const imageTwo = block.querySelectorAll('[data-aue-model="image"]')[1]?.getElementsByTagName("picture")[0];
     const header = createHeaderStructure(block);
     block.textContent = '';
     block.appendChild(header);
     initializeHeader(header);
 
     // Add optimized scroll handler
-    window.addEventListener('scroll', () => handleScroll(header, imageOne, imageTwo), { passive: true });
+    window.addEventListener('scroll', () => handleScroll(header), { passive: true });
     
-    // Initial setup - ensure header starts with imageOne and no fixed class
-    const headerLogo = header.querySelector('.logo-wrapper');
-    if (imageOne && headerLogo) {
-      headerLogo.replaceChildren(imageOne.cloneNode(true));
-    }
+    // Ensure header starts with no fixed class
     header.classList.remove('fixed-header');
     isHeaderFixed = false;
   }
