@@ -291,7 +291,7 @@ export default async function decorate(block) {
 
       // Create links container
       const linksContainer = document.createElement('div');
-      linksContainer.className = 'row col-xl-6 col-md-3 col-sm-4 copywrite-right';
+      linksContainer.className = 'col-xl-6 col-md-3 col-sm-4 copywrite-right';
 
       linksContainer.setAttribute('data-link-model', 'links');
 
@@ -301,7 +301,7 @@ export default async function decorate(block) {
         // Create link field container
         const linkFieldContainer = document.createElement('div');
         linkFieldContainer.setAttribute('data-linkfield-model', 'linkField');
-        linkFieldContainer.className = 'col-xl-4 col-md-2 col-sm-4';
+        linkFieldContainer.className = 'copywrite-links';
 
         // Create link text container
         const linkTextContainer = document.createElement('div');

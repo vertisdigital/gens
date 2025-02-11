@@ -2,8 +2,7 @@
   {
     "id": "main",
     "components": [
-      "section",
-      "statisticsSection"
+      "section"
     ]
   },
   {
@@ -14,25 +13,9 @@
       "button",
       "title",
       "hero",
-      "herobanner",
       "cards",
       "columns",
-      "fragment",
-      "coreprinciples",
-      "feature",
-      "linkField",
-      "socialLinks",
-      "links",
-      "imageLink",
-      "exploremore",
-      "listing",
-      "projectcards",
-      "enquiry",
-      "tiles",
-      "textsection",
-      "statisticsSection",
-      "statistics",
-      "statisticsDescription"
+      "fragment"
     ]
   },
   {
@@ -54,96 +37,22 @@
       "image",
       "button",
       "title",
-      "coreprinciples",
       "imageLink",
       "socialLinks",
-      "links",
-      "exploremore",
-      "listing",
-      "projectcards",
-      "enquiry",
-      "tiles",
-      "textsection"
+      "links"
     ]
   },
   {
     "id": "feature",
     "components": [
       "featureItem",
-      "linkField",
-      "indices"
+      "linkField"
     ]
   },
   {
     "id": "featureItem",
     "components": [
       "linkField"
-    ]
-  },
-  {
-    "id": "socialLinks",
-    "components": [
-      "linkField"
-    ]
-  },
-  {
-    "id": "links",
-    "components": [
-      "linkField"
-    ]
-  },
-  {
-    "id": "imageLink",
-    "components": [
-      "linkField"
-    ]
-  },
-  {
-    "id": "listing",
-    "components": [
-      "listitem",
-      "linkField"
-      ]
-  },
-  {
-    "id": "projectcards",
-    "components": [
-      "projectcard",
-      "linkField"
-    ]
-  },
-  {
-    "id": "herobanner",
-    "components": [
-      "bannercarousel"
-    ]
-
-  },
-  {
-    "id": "tiles",
-    "components": [
-      "tile"
-    ]
-  },
-  {
-    "id": "coreprinciples",
-    "components": [
-      "coreprinciple"
-    ]
-  },
-  {
-    "id": "statisticsSection",
-    "components": [
-      "statistics",
-      "statisticsDescription",
-      "feature"
-    ]
-  },
-  {
-    "id": "statistics",
-    "components": [
-      "statisticsDescription",
-      "featureItem"
     ]
   }
 ]

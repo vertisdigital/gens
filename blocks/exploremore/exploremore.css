@@ -2,10 +2,6 @@
   background-color: var(--whisper-gray);
 } 
 
-.exploremore .exploremore-wrapper-container{
-  padding: 80px 0;
-}
-
 .exploremore .exploremore-wrapper-container .exploremore-title{
   font-size: 40px;
   font-weight: 500;
