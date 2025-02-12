@@ -34,8 +34,7 @@ export default function decorate(block) {
     const titleHtml = Heading({ level: 3, text: titleText, className: 'about-us-left-title' });
     const parsedHtml = stringToHTML(titleHtml);
     header.append(parsedHtml);
-    aboutUsLeftContent.appendChild(header);
-    titleElement.remove();
+    aboutUsLeftContent.append(header);
   }
 
   // Find the heading and replace it with a heading
@@ -46,21 +45,17 @@ export default function decorate(block) {
     const parsedHtml = stringToHTML(headingHtml);
     moveInstrumentation(headingElement, parsedHtml);
     aboutUsLeftContent.append(parsedHtml);
-    headingElement.remove();
   }
 
   // Find the sub-heading and replace it with a sub-heading
-
   const subHeading = block.querySelector('[data-aue-prop="sub-heading"]');
   if (subHeading) {
     const subHeadingElement = document.createElement('p');
     subHeadingElement.className = 'about-us-left-sub-heading';
     moveInstrumentation(subHeading, subHeadingElement);
-    const subHeadingText = subHeading.querySelector('p').textContent;
+    const subHeadingText = subHeading.querySelector('p')?.textContent || '';
     subHeadingElement.textContent = subHeadingText;
-
     aboutUsLeftContent.appendChild(subHeadingElement);
-    subHeading.remove();
   }
 
   // Find the LinkField and replace it with arrow icon
@@ -188,7 +183,10 @@ export default function decorate(block) {
       aboutUsRightContent.appendChild(featureContainer);
     });
 
-    block.innerHTML = '';
+    // Instead of clearing the entire block HTML, only clear the processed elements
+    const processedElements = block.querySelectorAll('[data-processed="true"]');
+    processedElements.forEach(element => element.remove());
+
     aboutUsStats.appendChild(aboutUsLeftContent);
     aboutUsStats.appendChild(aboutUsRightContent);
     container.append(aboutUsStats);
