@@ -24,3 +24,4 @@ indices:
     # Enable data attribute preservation in publish
     publish:
       preserveDataAttributes: true
+    
