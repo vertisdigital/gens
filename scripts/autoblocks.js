@@ -49,15 +49,18 @@ export default function processTabs(main, moveInstrumentation) {
     const tabsContent = document.createElement('div');
     tabsContent.classList.add('tabs-content-wrapper');
 
-    // Get all tab panels (excluding metadata)
-    const tabPanels = Array.from(section.children).filter(
+    // Store panels for reference
+    const panels = [];
+
+    // Get all tab sections (excluding metadata)
+    const tabSections = Array.from(section.children).filter(
       child => !child.classList.contains('section-metadata')
     );
 
-    // Process each panel
-    tabPanels.forEach((panel, index) => {
+    // Process each section
+    tabSections.forEach((tabSection, index) => {
       // Get tab title
-      const metadata = panel.querySelector('.section-metadata');
+      const metadata = tabSection.querySelector('.section-metadata');
       let tabTitle = `Tab ${index + 1}`;
       if (metadata) {
         const titleDivs = metadata.querySelectorAll('div > div');
@@ -76,28 +79,42 @@ export default function processTabs(main, moveInstrumentation) {
       const tabPanel = document.createElement('div');
       tabPanel.classList.add('tab-panel');
 
+      // Process blocks in the section
+      const blocks = tabSection.querySelectorAll('div[class]');
+      blocks.forEach(block => {
+        if (!block.classList.contains('section-metadata')) {
+          // Create a new block element
+          const newBlock = document.createElement('div');
+          
+          // Copy classes and add block class
+          const blockName = Array.from(block.classList)[0];
+          newBlock.classList.add(blockName, 'block');
+          newBlock.dataset.blockName = blockName;
+          
+          // Copy content and attributes
+          newBlock.innerHTML = block.innerHTML;
+          Array.from(block.attributes).forEach(attr => {
+            if (attr.name !== 'class') {
+              newBlock.setAttribute(attr.name, attr.value);
+            }
+          });
+          
+          tabPanel.appendChild(newBlock);
+          
+          // Load block resources for first tab
+          if (index === 0) {
+            loadBlock(newBlock);
+          }
+        }
+      });
+
       // Set initial active state
       if (index === 0) {
         tabButton.classList.add('active');
         tabPanel.classList.add('active');
       }
 
-      // Move content to panel
-      Array.from(panel.children).forEach(child => {
-        if (!child.classList?.contains('section-metadata')) {
-          const clone = child.cloneNode(true);
-          if (clone.classList && clone.classList.length > 0) {
-            const blockName = clone.classList[0];
-            clone.classList.add('block');
-            clone.dataset.blockName = blockName;
-            if (index === 0) {
-              loadBlock(clone);
-            }
-          }
-          tabPanel.appendChild(clone);
-        }
-      });
-
+      panels.push(tabPanel);
       tabsHeader.appendChild(tabButton);
       tabsContent.appendChild(tabPanel);
     });
@@ -112,28 +129,35 @@ export default function processTabs(main, moveInstrumentation) {
 
     // Handle tab switching
     tabsHeader.addEventListener('click', async (event) => {
-      const tabButton = event.target.closest('.tab-title');
-      if (!tabButton) return;
+      const clickedTab = event.target.closest('.tab-title');
+      if (!clickedTab) return;
 
-      const index = parseInt(tabButton.dataset.index, 10);
+      const index = parseInt(clickedTab.dataset.index, 10);
       if (Number.isNaN(index)) return;
 
-      // Update tabs
-      tabsHeader.querySelectorAll('.tab-title').forEach((tab, i) => {
-        tab.classList.toggle('active', i === index);
+      // Deactivate all tabs and panels
+      tabsHeader.querySelectorAll('.tab-title').forEach(tab => {
+        tab.classList.remove('active');
+      });
+      panels.forEach(panel => {
+        panel.classList.remove('active');
       });
 
-      // Update panels
-      const panels = tabsContent.querySelectorAll('.tab-panel');
-      panels.forEach((panel, i) => {
-        const isVisible = i === index;
-        panel.classList.toggle('active', isVisible);
-
-        if (isVisible) {
-          const blocks = panel.querySelectorAll('[data-block-name]');
-          blocks.forEach(block => loadBlock(block));
-        }
-      });
+      // Activate clicked tab and its panel
+      clickedTab.classList.add('active');
+      const activePanel = panels[index];
+      if (activePanel) {
+        activePanel.classList.add('active');
+        
+        // Load blocks in newly visible panel
+        const blocks = activePanel.querySelectorAll('[data-block-name]');
+        blocks.forEach(block => {
+          if (!block.classList.contains('block-loaded')) {
+            loadBlock(block);
+            block.classList.add('block-loaded');
+          }
+        });
+      }
     });
   });
 }
