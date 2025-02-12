@@ -84,11 +84,9 @@ function buildAutoBlocks(main) {
         if (!className.startsWith('columns-') && !className.startsWith('tabs-') 
             && className !== 'columns' && className !== 'tabs'
             && className !== 'section-metadata') {
-          // Add block class and ensure block type is the first class
           block.classList.remove(className);
           block.classList.add(className, 'block');
           
-          // Force block decoration for this element
           if (!block.dataset.blockName) {
             block.dataset.blockName = className;
           }
@@ -96,38 +94,10 @@ function buildAutoBlocks(main) {
       });
     });
     
-    // Add tab switching functionality
-    const tabTitles = main.querySelectorAll('.tab-title');
-    const tabPanels = main.querySelectorAll('.tab-panel');
-    
-    tabTitles.forEach((title, index) => {
-      title.addEventListener('click', () => {
-        // Remove active class from all titles and panels
-        tabTitles.forEach(t => t.classList.remove('active'));
-        tabPanels.forEach(p => p.classList.remove('active'));
-        
-        // Add active class to clicked title and corresponding panel
-        title.classList.add('active');
-        if (tabPanels[index]) {
-          tabPanels[index].classList.add('active');
-        }
-      });
-    });
-    
-    // Activate first tab by default if none are active
-    if (tabTitles.length && !main.querySelector('.tab-title.active')) {
-      tabTitles[0].classList.add('active');
-      if (tabPanels[0]) {
-        tabPanels[0].classList.add('active');
-      }
-    }
-    
-    // Debug after processing
     console.log('After processing - Blocks with "block" class:', main.querySelectorAll('.block').length);
     console.log('Block elements:', main.querySelectorAll('.block'));
     
   } catch (error) {
-    // eslint-disable-next-line no-console
     console.error('Auto Blocking failed', error);
   }
 }
