@@ -10,10 +10,7 @@ export default function processTabs(main, moveInstrumentation) {
   if (sections.length === 0) return;
 
   sections.forEach((tabSection) => {
-    // Store the original position and next sibling
-    const nextSibling = tabSection.nextElementSibling;
-    
-    // Create container structure
+    // Create container structure but preserve original tab section
     const tabsWrapper = document.createElement('div');
     tabsWrapper.classList.add('tabs-container');
 
@@ -44,30 +41,32 @@ export default function processTabs(main, moveInstrumentation) {
     tabPanel.classList.add('tab-panel');
     tabPanel.setAttribute('role', 'tabpanel');
 
-    // Move content to panel
+    // Clone content to panel instead of moving it
     tabBlocks.forEach(block => {
-      tabPanel.appendChild(block);
+      const clonedBlock = block.cloneNode(true);
+      tabPanel.appendChild(clonedBlock);
     });
 
     // Set initial active states
     tabButton.classList.add('active');
     tabPanel.classList.add('active');
 
-    // Add to DOM
+    // Add to DOM structure
     tabsNav.appendChild(tabButton);
     tabsContent.appendChild(tabPanel);
     tabsWrapper.appendChild(tabsNav);
     tabsWrapper.appendChild(tabsContent);
 
-    // Insert the new structure in the original position
-    if (nextSibling) {
-      main.insertBefore(tabsWrapper, nextSibling);
-    } else {
-      main.appendChild(tabsWrapper);
+    // Preserve AEM structure by adding our wrapper inside the original section
+    // Clear original content first
+    while (tabSection.firstChild) {
+      if (!tabSection.firstChild.classList.contains('section-metadata')) {
+        tabSection.removeChild(tabSection.firstChild);
+      }
     }
-
-    // Remove the original section
-    tabSection.remove();
+    
+    // Add our new structure while preserving metadata
+    tabSection.appendChild(tabsWrapper);
 
     // Add click handler
     tabButton.addEventListener('click', () => {
@@ -77,5 +76,10 @@ export default function processTabs(main, moveInstrumentation) {
         tabPanel.classList.add('active');
       }
     });
+
+    // Move instrumentation attributes if needed
+    if (moveInstrumentation) {
+      moveInstrumentation(tabSection, tabsWrapper);
+    }
   });
 }
