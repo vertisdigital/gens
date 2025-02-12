@@ -3,9 +3,12 @@
  * @param {Element} main The container element
  */
 export default function processTabs(main, moveInstrumentation) {
+  console.log('Starting processTabs...');
+  
   const sections = [
     ...main.querySelectorAll('[data-aue-model="tabs"]:not(.section-metadata)'),
   ];
+  console.log('Found tab sections:', sections.length);
   if (sections.length === 0) return;
 
   const topContainer = document.createElement('div');
@@ -18,12 +21,15 @@ export default function processTabs(main, moveInstrumentation) {
   tabsNav.classList.add('tabs-header', 'row');
 
   const tabsContent = document.createElement('div');
-  tabsContent.classList.add('tabs-content-wrapper'); // Changed class name for better semantics
+  tabsContent.classList.add('tabs-content-wrapper');
 
   sections.forEach((section, index) => {
-    // Get tab title from metadata or data attribute
-    const metadata = section.querySelector('.section-metadata > div :last-child');
-    const tabTitle = metadata?.textContent.trim() || section.getAttribute('data-tab-title') || `Tab ${index + 1}`;
+    console.log(`Processing tab section ${index}`);
+    
+    // Get tab title from metadata
+    const metadata = section.querySelector('.section-metadata > div:last-child');
+    const tabTitle = metadata?.textContent.trim() || `Tab ${index + 1}`;
+    console.log('Tab title:', tabTitle);
 
     // Create tab button
     const tabButton = document.createElement('div');
@@ -39,6 +45,8 @@ export default function processTabs(main, moveInstrumentation) {
     tabPanel.classList.add('tab-panel');
     tabPanel.setAttribute('role', 'tabpanel');
     tabPanel.setAttribute('aria-hidden', index === 0 ? 'false' : 'true');
+    
+    // Set initial active state
     if (index === 0) {
       tabButton.classList.add('active');
       tabPanel.classList.add('active');
@@ -46,14 +54,13 @@ export default function processTabs(main, moveInstrumentation) {
 
     // Move content to tab panel
     moveInstrumentation(section, tabPanel);
-    while (section.firstChild) {
-      const child = section.firstChild;
+    
+    // Move all non-metadata content to the panel
+    Array.from(section.children).forEach(child => {
       if (!child.classList?.contains('section-metadata')) {
         tabPanel.appendChild(child);
-      } else {
-        section.removeChild(child);
       }
-    }
+    });
 
     tabsNav.appendChild(tabButton);
     tabsContent.appendChild(tabPanel);
@@ -68,14 +75,24 @@ export default function processTabs(main, moveInstrumentation) {
   topContainer.appendChild(tabsWrapper);
   main.appendChild(topContainer);
 
-  // Single event listener for tab switching using event delegation
+  // Add click handler with debugging
   tabsNav.addEventListener('click', (event) => {
+    console.log('Tab click detected');
     const clickedTab = event.target.closest('.tab-title');
-    if (!clickedTab) return;
+    if (!clickedTab) {
+      console.log('No tab title element found in click target');
+      return;
+    }
 
+    console.log('Clicked tab:', clickedTab.textContent);
     const index = parseInt(clickedTab.dataset.tabIndex, 10);
+    console.log('Tab index:', index);
+
     const allTabs = tabsNav.querySelectorAll('.tab-title');
     const allPanels = tabsContent.querySelectorAll('.tab-panel');
+    
+    console.log('Number of tabs:', allTabs.length);
+    console.log('Number of panels:', allPanels.length);
 
     // Update tabs
     allTabs.forEach((tab, i) => {
@@ -91,6 +108,8 @@ export default function processTabs(main, moveInstrumentation) {
       panel.classList.toggle('active', isVisible);
       panel.setAttribute('aria-hidden', !isVisible);
     });
+
+    console.log('Tab switch complete');
   });
 
   // Add keyboard navigation
@@ -117,4 +136,6 @@ export default function processTabs(main, moveInstrumentation) {
     tabs[newIndex].click();
     tabs[newIndex].focus();
   });
+
+  console.log('Tab initialization complete');
 }
