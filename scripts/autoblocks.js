@@ -50,10 +50,6 @@ export default function processTabs(main, moveInstrumentation) {
     tabBlocks.forEach((block, index) => {
       console.log(`Creating tab ${index} with title: ${defaultTitles[index]}`);
       
-      // Create tab title container
-      const tabTitleContainer = document.createElement('div');
-      tabTitleContainer.classList.add('tab-title-container');
-
       // Create tab button
       const tabButton = document.createElement('button');
       tabButton.classList.add('tab-title');
@@ -64,29 +60,24 @@ export default function processTabs(main, moveInstrumentation) {
       // Create the indicator element
       const indicator = document.createElement('div');
       indicator.classList.add('tab-indicator');
-
-      // Add button and indicator to container
-      tabTitleContainer.appendChild(tabButton);
-      tabTitleContainer.appendChild(indicator);
+      tabButton.appendChild(indicator);
 
       // Create tab panel
       const tabPanel = document.createElement('div');
       tabPanel.classList.add('tab-panel');
       tabPanel.setAttribute('role', 'tabpanel');
-      tabPanel.setAttribute('aria-labelledby', `tab-${index}`);
-      tabPanel.id = `panel-${index}`;
 
       // Set initial active state for first tab
       if (index === 0) {
-        tabTitleContainer.classList.add('active');
+        tabButton.classList.add('active');
         tabPanel.classList.add('active');
       }
 
       // Move the content to panel
       tabPanel.appendChild(block);
 
-      // Add title container to nav and panel to content
-      tabsNav.appendChild(tabTitleContainer);
+      // Add button to nav and panel to content
+      tabsNav.appendChild(tabButton);
       tabsContent.appendChild(tabPanel);
     });
 
