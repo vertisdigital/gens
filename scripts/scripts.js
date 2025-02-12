@@ -64,12 +64,13 @@ async function loadFonts() {
  */
 function buildAutoBlocks(main) {
   try {
+    // Process tabs first but maintain their position
     processTabs(main, moveInstrumentation);
     
     // Debug before processing
     console.log('Before processing - Blocks with "block" class:', main.querySelectorAll('.block').length);
     
-    // Updated selectors to handle both class and data-attribute based containers
+    // Find blocks inside columns and tabs containers
     const containerBlocks = main.querySelectorAll(`
       .columns div[class],
       [data-aue-model="tabs"] div[class],
@@ -84,9 +85,11 @@ function buildAutoBlocks(main) {
         if (!className.startsWith('columns-') && !className.startsWith('tabs-') 
             && className !== 'columns' && className !== 'tabs'
             && className !== 'section-metadata') {
+          // Add block class and ensure block type is the first class
           block.classList.remove(className);
           block.classList.add(className, 'block');
           
+          // Force block decoration for this element
           if (!block.dataset.blockName) {
             block.dataset.blockName = className;
           }
@@ -94,10 +97,12 @@ function buildAutoBlocks(main) {
       });
     });
     
+    // Debug after processing
     console.log('After processing - Blocks with "block" class:', main.querySelectorAll('.block').length);
     console.log('Block elements:', main.querySelectorAll('.block'));
     
   } catch (error) {
+    // eslint-disable-next-line no-console
     console.error('Auto Blocking failed', error);
   }
 }
