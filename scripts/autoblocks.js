@@ -9,11 +9,10 @@ export default function processTabs(main, moveInstrumentation) {
   }
 
   // Find tab sections that are direct containers
-  const sections = main.querySelectorAll('[data-aue-model="tabs"]');
-  if (!sections || sections.length === 0) {
-    console.log('No tab sections found');
-    return;
-  }
+  const sections = [
+    ...main.querySelectorAll('[data-aue-model="tabs"]'),
+  ];
+  if (!sections.length) return;
 
   try {
     sections.forEach((tabSection) => {
@@ -35,26 +34,22 @@ export default function processTabs(main, moveInstrumentation) {
       const tabsContent = document.createElement('div');
       tabsContent.classList.add('tabs-content');
 
-      // Get all direct child blocks safely
-      const children = tabSection.children ? Array.from(tabSection.children) : [];
-      const tabBlocks = children.filter(child => 
-        child && child.classList && !child.classList.contains('section-metadata')
+      // Get all direct child blocks excluding metadata
+      const tabBlocks = Array.from(tabSection.children).filter(child => 
+        !child.classList.contains('section-metadata')
       );
 
-      // Get tab titles from metadata
-      const metadata = tabSection.querySelector('.section-metadata');
-      const tabTitles = metadata ? 
-        Array.from(metadata.querySelectorAll('div')).map(div => div?.textContent?.trim() || 'Tab') :
-        tabBlocks.map((_, index) => `Tab ${index + 1}`);
+      // Create default tab titles if metadata is not present
+      const defaultTitles = ['RWS', 'RWS 2.0']; // Default tab titles
 
       // Create tabs for each block
       tabBlocks.forEach((block, index) => {
         if (!block) return;
 
-        // Create tab button
+        // Create tab button with default title
         const tabButton = document.createElement('button');
         tabButton.classList.add('tab-title');
-        tabButton.textContent = tabTitles[index] || `Tab ${index + 1}`;
+        tabButton.textContent = defaultTitles[index] || `Tab ${index + 1}`;
         tabButton.setAttribute('role', 'tab');
         tabButton.dataset.index = index.toString();
 
@@ -102,7 +97,7 @@ export default function processTabs(main, moveInstrumentation) {
 
       // Clear original content except metadata
       while (tabSection.firstChild) {
-        if (!tabSection.firstChild.classList?.contains('section-metadata')) {
+        if (!tabSection.firstChild.classList.contains('section-metadata')) {
           tabSection.removeChild(tabSection.firstChild);
         }
       }
