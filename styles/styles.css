@@ -750,12 +750,13 @@ main .section.highlight {
 }
 
 .tabs-header {
-  margin-bottom: 36px;
   display: flex;
-  flex-wrap: wrap;
+  margin-bottom: 36px;
+  gap: 24px;
 }
 
 .tab-title {
+  flex: 1;
   position: relative;
   text-align: center;
   padding: 36px 0 45px 0;
@@ -769,7 +770,7 @@ main .section.highlight {
   cursor: pointer;
   user-select: none;
   transition: all 0.3s ease;
-  width: 100%;
+  min-width: 200px;
 }
 
 .tab-title:hover {

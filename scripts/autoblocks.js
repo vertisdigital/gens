@@ -18,7 +18,7 @@ export default function processTabs(main, moveInstrumentation) {
   tabsWrapper.classList.add('tabs-container');
 
   const tabsNav = document.createElement('div');
-  tabsNav.classList.add('tabs-header', 'row');
+  tabsNav.classList.add('tabs-header');
 
   const tabsContent = document.createElement('div');
   tabsContent.classList.add('tabs-content-wrapper');
@@ -40,15 +40,14 @@ export default function processTabs(main, moveInstrumentation) {
     console.log('Tab title:', tabTitle);
 
     // Create tab button
-    const tabButton = document.createElement('button'); // Changed from div to button
-    tabButton.classList.add('tab-title', 'col-xl-6', 'col-lg-6', 'col-md-3', 'col-sm-2');
+    const tabButton = document.createElement('button');
+    tabButton.classList.add('tab-title');
     tabButton.setAttribute('role', 'tab');
     tabButton.setAttribute('aria-selected', index === 0 ? 'true' : 'false');
     tabButton.setAttribute('tabindex', index === 0 ? '0' : '-1');
     tabButton.dataset.tabIndex = index;
     tabButton.textContent = tabTitle;
-    tabButton.style.cursor = 'pointer'; // Ensure cursor is pointer
-    tabButton.type = 'button'; // Add button type
+    tabButton.type = 'button';
 
     // Create tab panel
     const tabPanel = document.createElement('div');
