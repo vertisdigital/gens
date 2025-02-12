@@ -182,55 +182,70 @@
         "valueType": "string",
         "name": "bannerimage",
         "label": "Banner Image",
-        "configUrl": "https://main--aem-eds-universaleditor--josephverticurl.aem.page/tools/assets-selector/config.json",
-        "multi": false
+        "configUrl": "https://main--genting--wppopen.aem.page/tools/assets-selector/config.json",
+        "multi": false,
+        "validation": {
+          "rootPath": "/content/dam/genting-singapore"
+        }
+      },
+      {
+        "component": "text",
+        "name": "bannerheading",
+        "label": "Banner Heading",
+        "required": true,
+        "validation": {
+          "maxLength": 100,
+          "customErrorMsg": "Banner title cannot exceed 100 characters"
+        }
       },
       {
         "component": "text",
         "name": "bannertitle",
-        "label": "Title"
-      },
+        "label": "Banner Title",
+        "validation": {
+          "maxLength": 100,
+          "customErrorMsg": "Banner title cannot exceed 100 characters"
+        }
+      },      
       {
         "component": "text",
         "name": "bannerdescription",
-        "label": "Description"
+        "label": "Banner Description",
+        "validation": {
+          "maxLength": 300,
+          "customErrorMsg": "Banner description cannot exceed 250 characters"
+        }
       },
       {
         "component": "aem-content",
         "valueType": "string",
         "name": "ctabutton",
         "label": "CTA Link",
-        "multi": false
+        "multi": false,
+        "validation": {
+          "rootPath": "/content/genting-singapore/index"
+        }
       },
       {
-        "component": "select",
-        "name": "herovariation",
-        "value": "",
-        "label": "Variations",
-        "description": "Variations for hero component",
-        "valueType": "string",
-        "options": [
-          {
-            "name": "Concept 1 - Tone 1",
-            "value": "cls_c1t1"
-          },
-          {
-            "name": "Concept 1 - Tone 2",
-            "value": "cls_c1t2"
-          },
-          {
-            "name": "Concept 1 - Tone 3",
-            "value": "cls_c1t3"
-          },
-          {
-            "name": "Concept 2",
-            "value": "cls_c2"
-          },
-          {
-            "name": "Concept 3",
-            "value": "cls_c3"
-          }
-        ]
+        "component": "text",
+        "name": "ctabuttonText",
+        "label": "Text"
+      },
+      {
+        "component": "text",
+        "name": "ctabuttonTitle",
+        "label": "Title"
+      },
+      {
+        "component": "number",
+        "name": "scrollInterval",
+        "label": "Scroll Interval",
+        "required": true,
+        "value": 5,
+        "description": "Interval in seconds",
+        "validation": {
+          "customErrorMsg": "Please enter a valid number"
+        }
       }
     ]
   },
@@ -241,25 +256,45 @@
         "component": "custom-asset-namespace:custom-asset",
         "name": "image",
         "label": "Carousel Image",
-        "configUrl": "https://main--aem-eds-universaleditor--josephverticurl.aem.page/tools/assets-selector/config.json",
-        "valueType": "string"
+        "configUrl": "https://main--genting--wppopen.aem.page/tools/assets-selector/config.json",
+        "valueType": "string",
+        "validation": {
+          "rootPath": "/content/dam/genting-singapore"
+        }
       },
       {
         "component": "text",
         "name": "title",
-        "label": "Title"
+        "label": "Title",
+        "validation": {
+          "maxLength": 100,
+          "customErrorMsg": "Title cannot exceed 25 characters"
+        }
       },
       {
         "component": "text",
         "name": "description",
-        "label": "Description"
+        "label": "Description",
+        "validation": {
+          "maxLength": 250,
+          "customErrorMsg": "Description cannot exceed 60 characters"        
+        }
+      },
+      {
+        "component": "text",
+        "name": "readmorelabel",
+        "label": "Read More Label",
+        "value": ""
       },
       {
         "component": "aem-content",
         "valueType": "string",
         "name": "readmorelink",
         "label": "Read More Link",
-        "multi": false
+        "multi": false,
+        "validation": {
+          "rootPath": "/content/genting-singapore/index"
+        }
       }
     ]
   },
@@ -346,13 +381,20 @@
       {
         "component": "aem-content",
         "name": "link",
-        "label": "Link"
+        "label": "Link",
+        "validation": {
+          "rootPath": "/content/genting-singapore/index"
+        }
       },
       {
         "component": "select",
         "name": "linkSvgIcon",
         "label": "Link SVG Icon",
         "options": [
+          {
+            "name": "Select",
+            "value": "select"
+          },
           {
             "name": "Right Arrow",
             "value": "right-arrow"
@@ -364,6 +406,22 @@
           {
             "name": "Top Right Arrow",
             "value": "top-right-arrow"
+          },
+          {
+            "name": "Twitter",
+            "value": "twitter"
+          },
+          {
+            "name": "Linked In",
+            "value": "linkedin"
+          },
+          {
+            "name": "Youtube",
+            "value": "youtube"
+          },
+          {
+            "name": "Search",
+            "value": "search"
           }
         ]
       },
@@ -400,7 +458,47 @@
       {
         "component": "text",
         "name": "title",
+        "label": "Title",
+        "validation": {
+          "minLength": 5,
+          "maxLength": 40,
+          "customErrorMsg": "Title must be between 5 and 40 characters"
+        }
+      },
+      {
+        "component": "aem-content",
+        "name": "link",
+        "label": "Link", 
+        "required":true,
+        "validation": {
+          "rootPath": "/content/genting-singapore/index"          
+        }
+      },
+      {
+        "component": "text",
+        "name": "linkText",
+        "label": "Text"
+      },
+
+      {
+        "component": "text",
+        "name": "linkTitle",
         "label": "Title"
+      },
+      {
+        "component": "select",
+        "name": "linkTarget",
+        "label": "Link Target",
+        "options": [
+          {
+            "name": "Same Window",
+            "value": "_self"
+          },
+          {
+            "name": "New Window",
+            "value": "_blank"
+          }
+        ]
       }
     ]
   },
@@ -413,6 +511,17 @@
         "name": "linkImage",
         "label": "Link Image",
         "multi": false
+      },
+      {
+        "component": "richtext",
+        "name": "description",
+        "value": "",
+        "label": "Description",
+        "valueType": "string",
+        "validation": {
+          "maxLength": 500,
+          "customErrorMsg": "Description must not exceed 500 characters"
+        }
       }
     ]
   },
@@ -422,21 +531,17 @@
       {
         "component": "text",
         "name": "title",
-        "label": "Title",
+        "label": "Section Name",
         "required": true,
         "validation": {
-          "maxLength": 100,
-          "customErrorMsg": "Title cannot exceed 100 characters"
+          "maxLength": 50,
+          "customErrorMsg": "Title cannot exceed 50 characters"
         }
       },
       {
         "component": "text",
         "name": "heading",
-        "label": "Heading",
-        "validation": {
-          "maxLength": 250,
-          "customErrorMsg": "Heading cannot exceed 250 characters"
-        }
+        "label": "Title"
       }
     ]
   },
@@ -450,6 +555,7 @@
         "configUrl": "https://main--genting--wppopen.aem.page/tools/assets-selector/config.json",
         "multi": false,
         "title": "Image",
+        "required": true,
         "validation": {
           "rootPath": "/content/dam/genting-singapore"
         }
@@ -464,15 +570,15 @@
       {
         "component": "text",
         "name": "title",
-        "label": "Title",
+        "label": "Report Name",
         "required": true,
         "validation": {
-          "maxLength": 30,
-          "customErrorMsg": "Title cannot exceed 30 characters"
+          "maxLength": 60,
+          "customErrorMsg": "Title cannot exceed 60 characters"
         }
       },
       {
-        "component": "richtext",
+        "component": "text",
         "name": "description",
         "value": "",
         "label": "Description",
@@ -489,6 +595,26 @@
         "validation": {
           "rootPath": "/content/genting-singapore/index"
         }
+      },
+      {
+        "component": "text",
+        "name": "ctaTitle",
+        "label": "Title"
+      },
+      {
+        "component": "select",
+        "name": "ctaTarget",
+        "label": "Target",
+        "options": [
+          {
+            "name": "Same Tab",
+            "value": "_self"
+          },
+          {
+            "name": "New Tab",
+            "value": "_blank"
+          }
+        ]
       }
     ]
   },
@@ -498,7 +624,7 @@
       {
         "component": "text",
         "name": "title",
-        "label": "Title",
+        "label": "Section Name",
         "validation": {
           "maxLength": 100,
           "customErrorMsg": "Title cannot exceed 100 characters"
@@ -507,7 +633,7 @@
       {
         "component": "text",
         "name": "heading",
-        "label": "Heading",
+        "label": "Section Title",
         "required": true,
         "validation": {
           "minLength": 1,
@@ -516,13 +642,13 @@
         }
       },
       {
-        "component": "richtext",
+        "component": "text",
         "name": "description",
         "value": "",
-        "label": "Description",
+        "label": "Section Description",
         "valueType": "string",
         "validation": {
-          "maxSize": 250,
+          "maxLength": 500,
           "customErrorMsg": "Description cannot exceed 250 characters"
         }
       }
@@ -535,7 +661,7 @@
         "component": "custom-asset-namespace:custom-asset",
         "name": "image",
         "label": "ProjectImage",
-        "configUrl": "https://main--aem-eds-universaleditor--josephverticurl.aem.page/tools/assets-selector/config.json",
+        "configUrl": "https://main--genting--wppopen.aem.page/tools/assets-selector/config.json",
         "multi": false,
         "validation": {
           "rootPath": "/content/dam/genting-singapore/index"
@@ -550,10 +676,10 @@
       {
         "component": "text",
         "name": "title",
-        "label": "Title",
+        "label": "ProjectTitle",
         "required": true,
         "validation": {
-          "maxLength": 10,
+          "maxLength": 25,
           "customErrorMsg": "Title cannot exceed 10 characters"
         }
       },
@@ -561,9 +687,8 @@
         "component": "text",
         "name": "location",
         "label": "Location",
-        "required": true,
         "validation": {
-          "maxLength": 10,
+          "maxLength": 15,
           "customErrorMsg": "Location cannot exceed 10 characters"
         }
       }
@@ -575,7 +700,7 @@
       {
         "component": "text",
         "name": "heading",
-        "label": "Heading",
+        "label": "Title",
         "required": true,
         "validation": {
           "maxLength": 100,
@@ -583,28 +708,28 @@
         }
       },
       {
-        "component": "richtext",
+        "component": "text",
         "name": "description",
         "value": "",
         "label": "Description",
         "valueType": "string",
         "validation": {
-          "maxSize": 250,
-          "customErrorMsg": "Description cannot exceed 250 characters"
+          "maxLength": 300,
+          "customErrorMsg": "Description cannot exceed 300 characters"
         }
       },
       {
         "component": "custom-asset-namespace:custom-asset",
         "name": "phoneIcon",
         "label": "PhoneIcon",
-        "configUrl": "https://main--aem-eds-universaleditor--josephverticurl.aem.page/tools/assets-selector/config.json",
+        "configUrl": "https://main--genting--wppopen.aem.page/tools/assets-selector/config.json",
         "multi": false
       },
       {
         "component": "text",
         "name": "phoneIconAlt",
         "label": "PhoneIconAltText",
-        "description": "DescriptiveTextForScreenReaders"
+        "description": "Alt Text For Phone Icon"
       },
       {
         "component": "text",
@@ -622,14 +747,14 @@
         "component": "custom-asset-namespace:custom-asset",
         "name": "emailIcon",
         "label": "EmailIcon",
-        "configUrl": "https://main--aem-eds-universaleditor--josephverticurl.aem.page/tools/assets-selector/config.json",
+        "configUrl": "https://main--genting--wppopen.aem.page/tools/assets-selector/config.json",
         "multi": false
       },
       {
         "component": "text",
         "name": "emailIconAlt",
         "label": "EmailIconAltText",
-        "description": "DescriptiveTextForScreenReaders"
+        "description": "Alt Text For Email Icon"
       },
       {
         "component": "text",
@@ -647,19 +772,205 @@
         "component": "custom-asset-namespace:custom-asset",
         "name": "addressIcon",
         "label": "AddressIcon",
-        "configUrl": "https://main--aem-eds-universaleditor--josephverticurl.aem.page/tools/assets-selector/config.json",
+        "configUrl": "https://main--genting--wppopen.aem.page/tools/assets-selector/config.json",
         "multi": false
       },
       {
         "component": "text",
         "name": "addressIconAlt",
         "label": "AddressIconAltText",
-        "description": "DescriptiveTextForScreenReaders"
+        "description": "Alt Text For Address Icon"
       },
       {
         "component": "text",
         "name": "address",
         "label": "Address"
+      }
+    ]
+  },
+  {
+    "id": "tile",
+    "fields": [
+      {
+        "component": "text",
+        "name": "heading",
+        "label": "Heading",
+        "required": true,
+        "validation": {
+          "maxLength": 100,
+          "customErrorMsg": "Heading cannot exceed 100 characters"
+        }
+      },
+      {
+        "component": "richtext",
+        "name": "description",
+        "label": "Description",
+        "valueType": "string",
+        "validation": {
+          "maxSize": 250,
+          "customErrorMsg": "Description cannot exceed 250 characters"
+        }
+      },
+      {
+        "component": "custom-asset-namespace:custom-asset",
+        "name": "image",
+        "label": "Image",
+        "configUrl": "https://main--genting--wppopen.aem.page/tools/assets-selector/config.json",
+        "multi": false
+      },
+      {
+        "component": "aem-content",
+        "name": "cta",
+        "label": "CTA"
+      },
+      {
+        "component": "text",
+        "name": "ctaCaption",
+        "label": "CTA Caption"
+      }
+    ]
+  },
+  {
+    "id": "textsection",
+    "fields": [
+      {
+        "component": "text",
+        "name": "heading",
+        "label": "Title",
+        "required": true,
+        "validation": {
+          "maxLength": 100,
+          "customErrorMsg": "Heading cannot exceed 100 characters",
+          "requiredErrorMsg": "Heading is mandatory"
+        }
+      },
+      {
+        "component": "text",
+        "name": "description",
+        "value": "",
+        "label": "Description",
+        "valueType": "string",
+        "required": true,
+        "validation": {
+          "maxLength": 500,
+          "customErrorMsg": "Description cannot exceed 500 characters",
+          "requiredErrorMsg": "Description is mandatory"
+        }
+      }
+    ]
+  },
+  {
+    "id": "coreprinciple",
+    "fields": [
+      {
+        "component": "custom-asset-namespace:custom-asset",
+        "name": "image",
+        "label": "Image",
+        "configUrl": "https://main--genting--wppopen.aem.page/tools/assets-selector/config.json",
+        "multi": false
+      },
+      {
+        "component": "text",
+        "name": "altTextImg",
+        "label": "Image Alt Text",
+        "valueType": "string"
+      },
+      {
+        "component": "text",
+        "name": "title",
+        "label": "Title",
+        "validation": {
+          "maxLength": 30,
+          "customErrorMsg": "Title cannot exceed 30 characters"
+        }
+      },
+      {
+        "component": "text",
+        "name": "description",
+        "value": "",
+        "label": "Description",
+        "valueType": "string",
+        "validation": {
+          "maxLength": 200,
+          "customErrorMsg": "Description cannot exceed 200 characters"
+        }
+      }
+
+    ]
+  },
+  {
+    "id": "exploremore",
+    "fields": [
+      {
+        "component": "text",
+        "name": "title",
+        "label": "Section Title",
+        "required": true,
+        "validation": {
+          "maxLength": 100,
+          "customErrorMsg": "Title cannot exceed 100 characters",
+          "requiredErrorMsg": "Title is mandatory"
+        }
+      },
+      {
+        "component": "text",
+        "name": "firstCtaCaption",
+        "label": "First CTA Caption",
+        "validation": {
+          "maxLength": 50,
+          "customErrorMsg": "Investors caption cannot exceed 50 characters"
+        }
+      },
+      {
+        "component": "aem-content",
+        "name": "firstCta",
+        "label": "cta link",
+        "linkTarget": "_blank",
+        "validation": {
+          "requiredErrorMsg": "First CTA link is mandatory",
+          "rootPath": "/content/genting-singapore/index"
+        }
+      },
+      {
+        "component": "text",
+        "name": "secondCtaCaption",
+        "label": "Second CTA Caption",
+        "validation": {
+          "maxLength": 50,
+          "customErrorMsg": "Second CTA caption cannot exceed 50 characters"
+        }
+
+      },
+      {
+        "component": "aem-content",
+        "name": "secondCta",
+        "label": "cta link",
+        "linkTarget": "_blank",
+        "validation": {
+          "rootPath": "/content/genting-singapore/index"
+        }
+      }
+    ]
+  },
+  {
+    "id": "media",
+    "fields": [
+      {
+        "component": "custom-asset-namespace:custom-asset",
+        "name": "image",
+        "label": "Image",
+        "configUrl": "https://textmediasection--genting--wppopen.aem.page/tools/assets-selector/config.json"
+      },
+      {
+        "component": "reference",
+        "name": "video",
+        "label": "video"
+      },
+      {
+        "component": "text",
+        "name": "imageAlt",
+        "label": "Alt Text",
+        "valueType": "string"
       }
     ]
   },

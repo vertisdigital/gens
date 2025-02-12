@@ -341,9 +341,6 @@ main .section.highlight {
   }
 
   .row {
-    display: flex;
-    flex-wrap: wrap;
-
     --bs-gutter-x: 36px;
     display: flex;
     flex-wrap: wrap;

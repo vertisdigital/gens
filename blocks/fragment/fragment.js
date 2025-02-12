@@ -44,9 +44,18 @@ export async function loadFragment(path) {
 }
 
 export async function loadFragmentCustom(path) {
-  const newPath = window.location.href;
+  // let newPath = window.location.href;
+
   if (path && path.startsWith('/')) {
-    const resp = await fetch(`${newPath}`);
+    // const resp = await fetch(`${newPath}`);
+
+    // eslint-disable-next-line no-param-reassign
+    path = path.replace(/(\.plain)?\.html/, '');
+
+    // Get query parameters from current URL
+    const queryParams = window.location.search; // Includes "?" if parameters exist
+    const resp = await fetch(`${path}.html${queryParams}`);
+
     if (resp.ok) {
       const main = document.createElement('main');
       main.innerHTML = await resp.text();
