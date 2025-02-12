@@ -13,10 +13,32 @@ export default function decorate(block) {
 
   // const featureResource = block.querySelector('[data-aue-label="Feature"]');
 
-  const container = document.createElement('div');
-  // moveInstrumentation(featureResource, container);
+  // First remove any existing container to prevent duplication
+  const existingContainer = block.querySelector('.container-xl');
+  if (existingContainer) {
+    existingContainer.remove();
+  }
 
-  container.classList.add('container-xl', 'container-lg', 'container-md', 'container-sm');
+  const container = document.createElement('div');
+  
+  // Add classes individually and check if they exist first
+  const containerClasses = ['container-xl', 'container-lg', 'container-md', 'container-sm'];
+  containerClasses.forEach(className => {
+    if (!container.classList.contains(className)) {
+      container.classList.add(className);
+    }
+  });
+
+  // Move all existing content into the new container
+  while (block.firstChild) {
+    if (!block.firstChild.classList || !block.firstChild.classList.contains('container-xl')) {
+      container.appendChild(block.firstChild);
+    } else {
+      block.firstChild.remove();
+    }
+  }
+
+  // moveInstrumentation(featureResource, container);
 
   const aboutUsStats = document.createElement('div');
   aboutUsStats.classList.add('row', 'about-us-stats');
