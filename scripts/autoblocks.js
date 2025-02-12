@@ -19,6 +19,11 @@ export default function processTabs(main, moveInstrumentation) {
   if (!sections.length) return;
 
   sections.forEach((tabSection) => {
+    // Skip if this is a nested tab
+    if (tabSection.closest('[data-aue-model="tabs"]') !== tabSection) {
+      return;
+    }
+
     console.log(`Processing tab section ${sections.indexOf(tabSection)}`);
     
     // Ensure tab section has the required classes
@@ -36,25 +41,28 @@ export default function processTabs(main, moveInstrumentation) {
     const tabsContent = document.createElement('div');
     tabsContent.classList.add('tabs-content');
 
-    // Get direct tab content sections (excluding metadata)
+    // Get only the content blocks (text and blocks), excluding metadata and nested tabs
     const tabBlocks = Array.from(tabSection.children).filter(child => 
       !child.classList.contains('section-metadata') &&
-      child.getAttribute('data-aue-type') !== 'component'
+      child.getAttribute('data-aue-model') !== 'tabs' &&
+      (child.hasAttribute('data-richtext-resource') || 
+       child.getAttribute('data-aue-type') === 'container')
     );
     console.log('Found tab blocks:', tabBlocks.length);
 
     // Create default tab titles
     const defaultTitles = ['RWS', 'RWS 2.0'];
 
-    // Create tabs for each block
-    tabBlocks.forEach((block, index) => {
+    // Create tabs only for the first two blocks
+    tabBlocks.slice(0, 2).forEach((block, index) => {
       console.log(`Creating tab ${index} with title: ${defaultTitles[index]}`);
       
       // Create tab button
       const tabButton = document.createElement('button');
       tabButton.classList.add('tab-title');
-      tabButton.textContent = defaultTitles[index] || `Tab ${index + 1}`;
+      tabButton.textContent = defaultTitles[index];
       tabButton.setAttribute('role', 'tab');
+      tabButton.setAttribute('aria-selected', index === 0 ? 'true' : 'false');
       tabButton.dataset.index = index.toString();
 
       // Create the indicator element
@@ -66,6 +74,8 @@ export default function processTabs(main, moveInstrumentation) {
       const tabPanel = document.createElement('div');
       tabPanel.classList.add('tab-panel');
       tabPanel.setAttribute('role', 'tabpanel');
+      tabPanel.id = `tab-panel-${index}`;
+      tabButton.setAttribute('aria-controls', `tab-panel-${index}`);
 
       // Set initial active state for first tab
       if (index === 0) {
@@ -74,7 +84,7 @@ export default function processTabs(main, moveInstrumentation) {
       }
 
       // Move the content to panel
-      tabPanel.appendChild(block);
+      tabPanel.appendChild(block.cloneNode(true));
 
       // Add button to nav and panel to content
       tabsNav.appendChild(tabButton);
@@ -83,20 +93,24 @@ export default function processTabs(main, moveInstrumentation) {
 
     // Add click handlers
     tabsNav.addEventListener('click', (event) => {
-      const clickedTab = event.target.closest('.tab-title-container');
+      const clickedTab = event.target.closest('.tab-title');
       if (!clickedTab) return;
 
-      const index = parseInt(clickedTab.querySelector('.tab-title').dataset.index, 10);
-      const allTabs = tabsNav.querySelectorAll('.tab-title-container');
+      const index = parseInt(clickedTab.dataset.index, 10);
+      const allTabs = tabsNav.querySelectorAll('.tab-title');
       const allPanels = tabsContent.querySelectorAll('.tab-panel');
 
       // Remove active class from all tabs and panels
-      allTabs.forEach(tab => tab.classList.remove('active'));
+      allTabs.forEach(tab => {
+        tab.classList.remove('active');
+        tab.setAttribute('aria-selected', 'false');
+      });
       allPanels.forEach(panel => panel.classList.remove('active'));
 
       // Add active class to clicked tab and corresponding panel
       clickedTab.classList.add('active');
-      allPanels[index]?.classList.add('active');
+      clickedTab.setAttribute('aria-selected', 'true');
+      allPanels[index].classList.add('active');
     });
 
     // Create horizontal line element
@@ -108,12 +122,8 @@ export default function processTabs(main, moveInstrumentation) {
     tabsWrapper.appendChild(horizontalLine);
     tabsWrapper.appendChild(tabsContent);
 
-    // Clear original content except metadata
-    const metadata = tabSection.querySelector('.section-metadata');
+    // Clear original content
     tabSection.innerHTML = '';
-    if (metadata) {
-      tabSection.appendChild(metadata);
-    }
     
     // Add the new structure
     tabSection.appendChild(tabsWrapper);
