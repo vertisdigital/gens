@@ -78,9 +78,9 @@ export default function decorate(block) {
 
     const descriptionChildren = statisticBlock.querySelector(
       '[data-aue-prop="description"]',
-    ).children;
+    )?.children;
 
-    if (descriptionChildren.length > 1) {
+    if (descriptionChildren?.length > 1) {
       for (let i = 1; i < descriptionChildren.length; i += 1) {
         descriptionChildren[i].classList.add('hide');
       }
@@ -124,6 +124,7 @@ export default function decorate(block) {
       readLessContent.remove();
 
       block.appendChild(statisticBlock);
+      block.classList.add('container-xl','container-lg', 'container-md', 'container-sm');
     }
   }
 }
