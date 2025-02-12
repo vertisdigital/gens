@@ -13,72 +13,131 @@ export default function processTabs(main, moveInstrumentation) {
 
   const tabsWrapper = document.createElement('div');
   tabsWrapper.classList.add('tabs-container');
+  tabsWrapper.dataset.blockName = 'tabs'; // Add block name for decoration
 
   const tabsNav = document.createElement('div');
-  tabsNav.classList.add('tabs-header','row');
+  tabsNav.classList.add('tabs-header', 'row');
 
   const tabsContent = document.createElement('div');
   tabsContent.classList.add('tabs-content');
 
   sections.forEach((section, index) => {
-    const metadata = section.querySelector(
-      '.section-metadata > div :last-child',
-    );
-    const tabTitle = metadata
-      ? metadata.textContent.trim()
-      : `CustTitle ${index + 1}`;
+    // Get tab title from metadata
+    const metadata = section.querySelector('.section-metadata');
+    let tabTitle = `Tab ${index + 1}`; // Default title
+    
+    if (metadata) {
+      const titleDiv = metadata.querySelector('div:last-child');
+      if (titleDiv && titleDiv.textContent.trim()) {
+        const titleParts = titleDiv.textContent.trim().split(' ');
+        if (titleParts.length > 1) {
+          tabTitle = titleParts.slice(1).join(' ');
+        }
+      }
+    }
 
+    // Create tab button
     const tabButton = document.createElement('div');
-    tabButton.classList.add('tab-title','col-xl-6','col-lg-6','col-md-3','col-sm-2');
+    tabButton.classList.add('tab-title', 'col-xl-6', 'col-lg-6', 'col-md-3', 'col-sm-2');
+    tabButton.setAttribute('role', 'tab');
+    tabButton.setAttribute('aria-selected', index === 0 ? 'true' : 'false');
     tabButton.dataset.index = index;
     tabButton.textContent = tabTitle;
+    tabButton.style.cursor = 'pointer';
 
+    // Create tab panel
     const tabPanel = document.createElement('div');
     tabPanel.classList.add('tab-panel');
-    if (index === 0) tabPanel.classList.add('active');
+    tabPanel.setAttribute('role', 'tabpanel');
+    tabPanel.setAttribute('aria-hidden', index === 0 ? 'false' : 'true');
 
-    moveInstrumentation(section, tabPanel);
-    // Clone the section content instead of moving it
-    const clonedContent = section.cloneNode(true);
-    clonedContent.querySelector('.section-metadata')?.remove(); // Remove metadata from content
-
-    while (clonedContent.firstChild) {
-      tabPanel.appendChild(clonedContent.firstChild);
+    // Set initial active state
+    if (index === 0) {
+      tabButton.classList.add('active');
+      tabPanel.classList.add('active');
     }
+
+    // Preserve block decoration data
+    const blocks = section.querySelectorAll('[class]');
+    blocks.forEach(block => {
+      if (block.className && !block.className.includes('section-metadata')) {
+        block.dataset.blockName = block.className.split(' ')[0];
+      }
+    });
+
+    // Clone and move content with instrumentation
+    const contentElements = Array.from(section.children).filter(child => 
+      !child.classList?.contains('section-metadata')
+    );
+
+    contentElements.forEach(element => {
+      const clone = element.cloneNode(true);
+      // Preserve block data for decoration
+      if (element.dataset.blockName) {
+        clone.dataset.blockName = element.dataset.blockName;
+      }
+      moveInstrumentation(element, clone);
+      tabPanel.appendChild(clone);
+    });
+
     tabsNav.appendChild(tabButton);
     tabsContent.appendChild(tabPanel);
   });
 
-  // Remove the original section after moving content
-  sections.forEach((section) => section.parentNode.removeChild(section));
+  // Remove original sections after cloning
+  sections.forEach(section => section.parentNode.removeChild(section));
 
   tabsWrapper.appendChild(tabsNav);
   tabsWrapper.appendChild(tabsContent);
   topContainer.appendChild(tabsWrapper);
-  main.appendChild(topContainer);
+
+  // Insert the tabs before removing sections to maintain position
+  const firstSection = sections[0];
+  if (firstSection && firstSection.parentNode) {
+    firstSection.parentNode.insertBefore(topContainer, firstSection);
+  } else {
+    main.appendChild(topContainer);
+  }
 
   // Handle tab switching
-  tabsNav.addEventListener('click', (event) => {
-    const tabButton = event.target.closest('.tab-title'); // Ensure we target the correct element
+  tabsWrapper.addEventListener('click', (event) => {
+    const tabButton = event.target.closest('.tab-title');
     if (!tabButton) return;
 
-    const index = parseInt(
-      tabButton.dataset.index ?? tabButton.parentNode.dataset.index,
-      10,
-    ); // Convert to integer
-    if (Number.isNaN(index)) return; // Prevent errors if index is undefined 
+    const index = parseInt(tabButton.dataset.index, 10);
+    if (Number.isNaN(index)) return;
 
-    tabsWrapper
-      .querySelectorAll('.tab-title')
-      .forEach((btn) => btn.classList.remove('active'));
-    tabsWrapper
-      .querySelectorAll('.tab-panel')
-      .forEach((panel) => panel.classList.remove('active'));
+    // Update tab states
+    tabsWrapper.querySelectorAll('.tab-title').forEach((btn, i) => {
+      const isSelected = i === index;
+      btn.classList.toggle('active', isSelected);
+      btn.setAttribute('aria-selected', isSelected);
+    });
 
-    tabButton.classList.add('active');
-    tabsContent.children[index]?.classList.add('active'); // Ensure safe access
+    // Update panel states
+    tabsWrapper.querySelectorAll('.tab-panel').forEach((panel, i) => {
+      const isVisible = i === index;
+      panel.classList.toggle('active', isVisible);
+      panel.setAttribute('aria-hidden', !isVisible);
+
+      // Ensure blocks in newly visible panels are decorated
+      if (isVisible) {
+        const undecorated = panel.querySelectorAll('[data-block-name]:not(.block)');
+        undecorated.forEach(block => {
+          block.classList.add('block', block.dataset.blockName);
+        });
+      }
+    });
   });
 
-  // Activate the first tab by default
-  tabsNav.children[0]?.classList.add('active');
+  // Ensure first tab content is properly decorated
+  const firstPanel = tabsContent.querySelector('.tab-panel.active');
+  if (firstPanel) {
+    const blocks = firstPanel.querySelectorAll('[data-block-name]');
+    blocks.forEach(block => {
+      if (!block.classList.contains('block')) {
+        block.classList.add('block', block.dataset.blockName);
+      }
+    });
+  }
 }
