@@ -36,22 +36,22 @@ export default function processTabs(main, moveInstrumentation) {
     }
   }
  
-  // Process each tabs section
   sections.forEach((tabsSection) => {
-    // Create tabs container
-    const tabsContainer = document.createElement('div');
-    tabsContainer.classList.add('tabs-container');
-    tabsContainer.dataset.aueModel = 'tabs';
+    // Create container structure
+    const container = document.createElement('div');
+    container.classList.add('container-xl', 'container-lg', 'container-md', 'container-sm');
  
-    // Create tabs header
-    const tabsHeader = document.createElement('div');
-    tabsHeader.classList.add('tabs-header');
+    const tabsWrapper = document.createElement('div');
+    tabsWrapper.classList.add('tabs-container');
+    tabsWrapper.dataset.aueModel = 'tabs';
  
-    // Create tabs content
+    const tabsNav = document.createElement('div');
+    tabsNav.classList.add('tabs-header', 'row');
+ 
     const tabsContent = document.createElement('div');
-    tabsContent.classList.add('tabs-content');
+    tabsContent.classList.add('tabs-content-wrapper');
  
-    // Get all tab sections
+    // Get all tab sections (excluding metadata)
     const tabSections = Array.from(tabsSection.children).filter(
       child => !child.classList.contains('section-metadata')
     );
@@ -62,21 +62,27 @@ export default function processTabs(main, moveInstrumentation) {
       const metadata = section.querySelector('.section-metadata');
       let tabTitle = `Tab ${index + 1}`;
       if (metadata) {
-        const titleDiv = metadata.querySelector('div:last-child');
-        if (titleDiv && titleDiv.textContent.trim()) {
-          tabTitle = titleDiv.textContent.trim().replace('tabtitle ', '');
+        const titleDivs = metadata.querySelectorAll('div > div');
+        if (titleDivs.length >= 2) {
+          tabTitle = titleDivs[1].textContent.trim();
         }
       }
  
       // Create tab button
       const tabButton = document.createElement('div');
-      tabButton.classList.add('tab-title');
+      tabButton.classList.add('tab-title', 'col-xl-6', 'col-lg-6', 'col-md-6', 'col-sm-6');
+      tabButton.setAttribute('role', 'tab');
+      tabButton.setAttribute('aria-selected', index === 0 ? 'true' : 'false');
       tabButton.dataset.index = index;
       tabButton.textContent = tabTitle;
  
       // Create tab panel
       const tabPanel = document.createElement('div');
       tabPanel.classList.add('tab-panel');
+      tabPanel.setAttribute('role', 'tabpanel');
+      tabPanel.setAttribute('aria-hidden', index === 0 ? 'false' : 'true');
+ 
+      // Set initial active state
       if (index === 0) {
         tabButton.classList.add('active');
         tabPanel.classList.add('active');
@@ -85,40 +91,39 @@ export default function processTabs(main, moveInstrumentation) {
       // Process blocks in the section
       const blocks = section.querySelectorAll('div[class]');
       blocks.forEach(block => {
-        const classes = Array.from(block.classList);
-        classes.forEach(className => {
-          if (!className.includes('section-metadata') && 
-              !className.startsWith('tabs-')) {
-            block.dataset.blockName = className;
+        if (!block.classList.contains('section-metadata')) {
+          const blockName = Array.from(block.classList)[0];
+          if (blockName) {
+            block.classList.add('block');
+            block.dataset.blockName = blockName;
             if (index === 0) {
               loadBlock(block);
             }
           }
-        });
+        }
       });
  
       // Move section content to panel
-      while (section.firstChild) {
-        if (!section.firstChild.classList?.contains('section-metadata')) {
-          tabPanel.appendChild(section.firstChild);
-        } else {
-          section.removeChild(section.firstChild);
+      Array.from(section.children).forEach(child => {
+        if (!child.classList?.contains('section-metadata')) {
+          tabPanel.appendChild(child);
         }
-      }
+      });
  
-      tabsHeader.appendChild(tabButton);
+      tabsNav.appendChild(tabButton);
       tabsContent.appendChild(tabPanel);
     });
  
-    // Build tabs structure
-    tabsContainer.appendChild(tabsHeader);
-    tabsContainer.appendChild(tabsContent);
+    // Build structure
+    tabsWrapper.appendChild(tabsNav);
+    tabsWrapper.appendChild(tabsContent);
+    container.appendChild(tabsWrapper);
  
-    // Replace original section with tabs container
-    tabsSection.parentNode.replaceChild(tabsContainer, tabsSection);
+    // Replace original section with new structure
+    tabsSection.parentNode.replaceChild(container, tabsSection);
  
     // Handle tab switching
-    tabsContainer.addEventListener('click', async (event) => {
+    tabsNav.addEventListener('click', async (event) => {
       const tabButton = event.target.closest('.tab-title');
       if (!tabButton) return;
  
@@ -126,24 +131,25 @@ export default function processTabs(main, moveInstrumentation) {
       if (Number.isNaN(index)) return;
  
       // Update tabs
-      tabsContainer.querySelectorAll('.tab-title').forEach(btn => {
-        btn.classList.remove('active');
+      const allTabs = tabsNav.querySelectorAll('.tab-title');
+      allTabs.forEach((tab, i) => {
+        const isSelected = i === index;
+        tab.classList.toggle('active', isSelected);
+        tab.setAttribute('aria-selected', isSelected);
       });
-      tabButton.classList.add('active');
  
       // Update panels
       const panels = tabsContent.querySelectorAll('.tab-panel');
-      panels.forEach(panel => {
-        panel.classList.remove('active');
-      });
+      panels.forEach((panel, i) => {
+        const isVisible = i === index;
+        panel.classList.toggle('active', isVisible);
+        panel.setAttribute('aria-hidden', !isVisible);
  
-      const activePanel = panels[index];
-      if (activePanel) {
-        activePanel.classList.add('active');
-        // Load blocks in newly visible panel
-        const blocks = activePanel.querySelectorAll('[data-block-name]');
-        await Promise.all(Array.from(blocks).map(block => loadBlock(block)));
-      }
+        if (isVisible) {
+          const blocks = panel.querySelectorAll('[data-block-name]');
+          blocks.forEach(block => loadBlock(block));
+        }
+      });
     });
   });
 }
