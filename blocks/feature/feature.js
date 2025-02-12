@@ -27,9 +27,11 @@ export default function decorate(block) {
 
   // Find the title and replace it with a heading
   const titleElement = block.querySelector('[data-aue-prop="title"]');
-  const header = document.createElement('header');
-  moveInstrumentation(titleElement, header);
   if (titleElement) {
+    const header = document.createElement('header');
+    header.setAttribute('data-aue-label', 'Feature');
+    header.setAttribute('data-aue-model', 'featureItem');
+    moveInstrumentation(titleElement, header);
     const titleText = titleElement.textContent;
     const titleHtml = Heading({ level: 3, text: titleText, className: 'about-us-left-title' });
     const parsedHtml = stringToHTML(titleHtml);
@@ -78,10 +80,14 @@ export default function decorate(block) {
     // Handle link text
     const originalLink = linkField.querySelector('[data-aue-prop="linkText"]');
     const originalTarget = linkField.querySelector('[data-aue-prop="linkTarget"]');
-    const originalTargetName = originalTarget.textContent;
-    originalLink.setAttribute('target', originalTargetName);
-    originalLink.innerHTML = '';
-    originalTarget.innerHTML = '';
+    
+    if (originalTarget) {
+      const originalTargetName = originalTarget.textContent;
+      originalLink.setAttribute('target', originalTargetName);
+      originalLink.innerHTML = '';
+      originalTarget.innerHTML = '';
+    }
+    
     if (originalLink) {
       const linkElement = document.createElement('a');
 
