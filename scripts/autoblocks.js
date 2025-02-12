@@ -40,72 +40,77 @@ export default function processTabs(main, moveInstrumentation) {
   topContainer.classList = 'container-xl container-lg container-md container-sm';
 
   const tabsWrapper = document.createElement('div');
-  tabsWrapper.classList.add('tabs-container', 'block');
-  tabsWrapper.dataset.blockName = 'tabs';
+  tabsWrapper.classList.add('tabs-container');
 
   const tabsNav = document.createElement('div');
-  tabsNav.classList.add('tabs-header', 'row');
+  tabsNav.classList.add('tabs-header');
 
   const tabsContent = document.createElement('div');
-  tabsContent.classList.add('tabs-content');
+  tabsContent.classList.add('tabs-content-wrapper');
+
+  // Store panels for reference
+  const panels = [];
 
   sections.forEach((section, index) => {
-    const metadata = section.querySelector('.section-metadata > div :last-child');
-    const tabTitle = metadata ? metadata.textContent.trim() : `Tab ${index + 1}`;
+    // Get tab title from metadata
+    const metadata = section.querySelector('.section-metadata');
+    let tabTitle = `Tab ${index + 1}`;
+    
+    if (metadata) {
+      const titleDiv = metadata.querySelector('div:last-child');
+      if (titleDiv && titleDiv.textContent.trim()) {
+        const titleParts = titleDiv.textContent.trim().split(' ');
+        if (titleParts.length > 1) {
+          tabTitle = titleParts.slice(1).join(' ');
+        }
+      }
+    }
 
-    const tabButton = document.createElement('div');
-    tabButton.classList.add('tab-title', 'col-xl-6', 'col-lg-6', 'col-md-3', 'col-sm-2');
+    // Create tab button
+    const tabButton = document.createElement('button');
+    tabButton.classList.add('tab-title');
+    tabButton.setAttribute('role', 'tab');
+    tabButton.setAttribute('aria-selected', index === 0 ? 'true' : 'false');
     tabButton.dataset.index = index;
     tabButton.textContent = tabTitle;
+    tabButton.type = 'button';
 
+    // Create tab panel
     const tabPanel = document.createElement('div');
     tabPanel.classList.add('tab-panel');
+    tabPanel.setAttribute('role', 'tabpanel');
+    tabPanel.setAttribute('aria-hidden', index === 0 ? 'false' : 'true');
 
-    // Set initial active state for first tab
+    // Set initial active state
     if (index === 0) {
       tabButton.classList.add('active');
       tabPanel.classList.add('active');
     }
 
-    // Process blocks in the section
-    const blocks = section.querySelectorAll('div[class]');
-    blocks.forEach(block => {
-      const classes = Array.from(block.classList);
-      classes.forEach(className => {
-        if (!className.includes('section-metadata') && 
-            !className.startsWith('tabs-') && 
-            !className.startsWith('col-')) {
-          // Create a new block element
-          const newBlock = document.createElement('div');
-          newBlock.classList.add(className, 'block');
-          newBlock.dataset.blockName = className;
-          
-          // Copy content and attributes
-          newBlock.innerHTML = block.innerHTML;
-          Array.from(block.attributes).forEach(attr => {
-            if (!attr.name.startsWith('class')) {
-              newBlock.setAttribute(attr.name, attr.value);
-            }
-          });
-          
-          // Replace original block with new one
-          block.replaceWith(newBlock);
-          
-          // If this is in the first tab, load the block immediately
-          if (index === 0) {
-            loadBlock(newBlock);
-          }
+    // Clone and process content
+    const contentElements = Array.from(section.children).filter(child => 
+      !child.classList?.contains('section-metadata')
+    );
+
+    contentElements.forEach(element => {
+      const clone = element.cloneNode(true);
+      
+      // Process blocks in the cloned content
+      if (clone.classList && clone.classList.length > 0) {
+        const blockName = Array.from(clone.classList)[0];
+        clone.classList.add('block');
+        clone.dataset.blockName = blockName;
+        
+        // Load block resources for first tab immediately
+        if (index === 0) {
+          loadBlock(clone);
         }
-      });
-    });
-
-    // Move content to panel
-    Array.from(section.children).forEach(child => {
-      if (!child.classList?.contains('section-metadata')) {
-        tabPanel.appendChild(child);
       }
+      
+      tabPanel.appendChild(clone);
     });
 
+    panels.push(tabPanel);
     tabsNav.appendChild(tabButton);
     tabsContent.appendChild(tabPanel);
   });
@@ -128,23 +133,32 @@ export default function processTabs(main, moveInstrumentation) {
     if (Number.isNaN(index)) return;
 
     // Update tabs
-    tabsWrapper.querySelectorAll('.tab-title').forEach(btn => {
-      btn.classList.remove('active');
+    const allTabs = tabsNav.querySelectorAll('.tab-title');
+    allTabs.forEach((tab, i) => {
+      const isSelected = i === index;
+      tab.classList.toggle('active', isSelected);
+      tab.setAttribute('aria-selected', isSelected);
     });
-    tabButton.classList.add('active');
 
     // Update panels
-    tabsWrapper.querySelectorAll('.tab-panel').forEach(panel => {
-      panel.classList.remove('active');
+    panels.forEach((panel, i) => {
+      const isVisible = i === index;
+      panel.classList.toggle('active', isVisible);
+      panel.setAttribute('aria-hidden', !isVisible);
+
+      // Load blocks if this panel is becoming visible
+      if (isVisible) {
+        const blocks = panel.querySelectorAll('[data-block-name]');
+        await Promise.all(Array.from(blocks).map(block => loadBlock(block)));
+      }
     });
-    
-    const activePanel = tabsContent.children[index];
-    if (activePanel) {
-      activePanel.classList.add('active');
-      
-      // Load blocks in the newly active panel if not already loaded
-      const blocks = activePanel.querySelectorAll('[data-block-name]');
-      await Promise.all(Array.from(blocks).map(block => loadBlock(block)));
-    }
   });
+
+  // Ensure first tab is active
+  const firstTab = tabsNav.querySelector('.tab-title');
+  const firstPanel = panels[0];
+  if (firstTab && firstPanel) {
+    firstTab.classList.add('active');
+    firstPanel.classList.add('active');
+  }
 }
