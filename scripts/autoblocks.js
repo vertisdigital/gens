@@ -71,24 +71,24 @@ export default function processTabs(main, moveInstrumentation) {
         tabPanel.classList.add('active');
       }
  
-      // Move content to panel
+      // Clone content for tab panel
       Array.from(tabSection.children).forEach(child => {
         if (!child.classList?.contains('section-metadata')) {
-          tabPanel.appendChild(child);
+          const clone = child.cloneNode(true);
+          tabPanel.appendChild(clone);
         }
       });
  
       tabsNav.appendChild(tabButton);
       tabsContent.appendChild(tabPanel);
- 
-      // Keep original section in DOM but hide it
-      tabSection.style.cssText = 'position: absolute; visibility: hidden; height: 0; overflow: hidden;';
     });
  
     tabsWrapper.appendChild(tabsNav);
     tabsWrapper.appendChild(tabsContent);
     topContainer.appendChild(tabsWrapper);
-    main.appendChild(topContainer);
+ 
+    // Insert tab structure before the sections
+    section.insertBefore(topContainer, section.firstChild);
  
     // Handle tab switching
     tabsNav.addEventListener('click', async (event) => {
