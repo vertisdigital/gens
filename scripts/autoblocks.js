@@ -43,7 +43,7 @@ export default function processTabs(main, moveInstrumentation) {
   tabsWrapper.classList.add('tabs-container');
 
   const tabsNav = document.createElement('div');
-  tabsNav.classList.add('tabs-header');
+  tabsNav.classList.add('tabs-header', 'row');
 
   const tabsContent = document.createElement('div');
   tabsContent.classList.add('tabs-content-wrapper');
@@ -66,14 +66,13 @@ export default function processTabs(main, moveInstrumentation) {
       }
     }
 
-    // Create tab button
-    const tabButton = document.createElement('button');
-    tabButton.classList.add('tab-title');
+    // Create tab button with column classes
+    const tabButton = document.createElement('div');
+    tabButton.classList.add('tab-title', 'col-xl-6', 'col-lg-6', 'col-md-6', 'col-sm-6');
     tabButton.setAttribute('role', 'tab');
     tabButton.setAttribute('aria-selected', index === 0 ? 'true' : 'false');
     tabButton.dataset.index = index;
     tabButton.textContent = tabTitle;
-    tabButton.type = 'button';
 
     // Create tab panel
     const tabPanel = document.createElement('div');
