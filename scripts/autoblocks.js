@@ -37,10 +37,6 @@ export default function processTabs(main, moveInstrumentation) {
   }
  
   sections.forEach((section) => {
-    // Create main container
-    const mainContainer = document.createElement('div');
-    mainContainer.classList.add('container-xl', 'container-lg', 'container-md', 'container-sm');
-
     // Create tabs container
     const tabsContainer = document.createElement('div');
     tabsContainer.classList.add('tabs-container');
@@ -76,7 +72,7 @@ export default function processTabs(main, moveInstrumentation) {
       tabButton.dataset.index = index;
       tabButton.textContent = tabTitle;
 
-      // Create tab panel wrapper
+      // Create tab panel
       const tabPanel = document.createElement('div');
       tabPanel.classList.add('tab-panel');
 
@@ -86,33 +82,19 @@ export default function processTabs(main, moveInstrumentation) {
         tabPanel.classList.add('active');
       }
 
-      // Process blocks in the panel
-      const blocks = panel.querySelectorAll('div[class]');
-      blocks.forEach(block => {
-        if (!block.classList.contains('section-metadata')) {
-          const blockClasses = Array.from(block.classList);
-          const blockName = blockClasses[0]; // Get the first class as block name
-          
-          if (blockName) {
-            const blockWrapper = document.createElement('div');
-            blockWrapper.classList.add('block', blockName);
-            blockWrapper.dataset.blockName = blockName;
-            
-            // Copy content and attributes
-            blockWrapper.innerHTML = block.innerHTML;
-            Array.from(block.attributes).forEach(attr => {
-              if (attr.name !== 'class') {
-                blockWrapper.setAttribute(attr.name, attr.value);
-              }
-            });
-
-            // Load block resources for first tab
+      // Move content to panel
+      Array.from(panel.children).forEach(child => {
+        if (!child.classList?.contains('section-metadata')) {
+          const clone = child.cloneNode(true);
+          if (clone.classList && clone.classList.length > 0) {
+            const blockName = clone.classList[0];
+            clone.classList.add('block');
+            clone.dataset.blockName = blockName;
             if (index === 0) {
-              loadBlock(blockWrapper);
+              loadBlock(clone);
             }
-
-            tabPanel.appendChild(blockWrapper);
           }
+          tabPanel.appendChild(clone);
         }
       });
 
@@ -123,11 +105,10 @@ export default function processTabs(main, moveInstrumentation) {
     // Build structure
     tabsContainer.appendChild(tabsHeader);
     tabsContainer.appendChild(tabsContent);
-    mainContainer.appendChild(tabsContainer);
 
     // Replace section content
     section.innerHTML = '';
-    section.appendChild(mainContainer);
+    section.appendChild(tabsContainer);
 
     // Handle tab switching
     tabsHeader.addEventListener('click', async (event) => {
@@ -149,7 +130,6 @@ export default function processTabs(main, moveInstrumentation) {
         panel.classList.toggle('active', isVisible);
 
         if (isVisible) {
-          // Load blocks in newly visible panel
           const blocks = panel.querySelectorAll('[data-block-name]');
           blocks.forEach(block => loadBlock(block));
         }
