@@ -4,102 +4,94 @@
  */
 export default function processTabs(main, moveInstrumentation) {
   const sections = [
-    ...main.querySelectorAll('[data-aue-model="tabs"]:not(.section-metadata)'),
+    ...main.querySelectorAll('[data-aue-model="tabs"]'),
   ];
-  if (sections.length === 0) return;
+  
+  if (!sections.length) return;
 
-  const topContainer = document.createElement('div');
-  topContainer.classList = 'container-xl container-lg container-md container-sm';
+  sections.forEach((tabSection) => {
+    // Skip if this is a nested tab
+    if (tabSection.closest('[data-aue-model="tabs"]') !== tabSection) {
+      return;
+    }
 
-  const tabsWrapper = document.createElement('div');
-  tabsWrapper.classList.add('tabs-container');
-
-  const tabsNav = document.createElement('div');
-  tabsNav.classList.add('tabs-header');
-
-  const tabsContent = document.createElement('div');
-  tabsContent.classList.add('tabs-content-wrapper');
-
-  sections.forEach((section, index) => {
-    // Get tab title from metadata
-    const metadata = section.querySelector('.section-metadata');
-    let tabTitle = `Tab ${index + 1}`; // Default title
+    // Ensure tab section has the required classes
+    tabSection.classList.add('tabs', 'block');
     
+    // Create container structure
+    const tabsWrapper = document.createElement('div');
+    tabsWrapper.classList.add('tabs-container');
+
+    const tabsNav = document.createElement('div');
+    tabsNav.classList.add('tabs-header');
+
+    const tabsContent = document.createElement('div');
+    tabsContent.classList.add('tabs-content');
+
+    // Get all direct children excluding metadata
+    const tabBlocks = Array.from(tabSection.children).filter(child => 
+      !child.classList.contains('section-metadata')
+    );
+
+    // Create tabs for each block
+    tabBlocks.forEach((block, index) => {
+      // Create tab button
+      const tabButton = document.createElement('button');
+      tabButton.classList.add('tab-title');
+      tabButton.textContent = `Tab ${index + 1}`;
+      tabButton.dataset.index = index.toString();
+
+      // Create tab panel
+      const tabPanel = document.createElement('div');
+      tabPanel.classList.add('tab-panel');
+
+      // Set initial active state for first tab
+      if (index === 0) {
+        tabButton.classList.add('active');
+        tabPanel.classList.add('active');
+      }
+
+      // Move the content to panel
+      tabPanel.appendChild(block);
+
+      // Add button to nav and panel to content
+      tabsNav.appendChild(tabButton);
+      tabsContent.appendChild(tabPanel);
+    });
+
+    // Add click handlers with event delegation
+    tabsWrapper.addEventListener('click', (event) => {
+      const clickedTab = event.target.closest('.tab-title');
+      if (!clickedTab) return;
+
+      const index = parseInt(clickedTab.dataset.index, 10);
+      const allTabs = tabsNav.querySelectorAll('.tab-title');
+      const allPanels = tabsContent.querySelectorAll('.tab-panel');
+
+      allTabs.forEach(tab => tab.classList.remove('active'));
+      allPanels.forEach(panel => panel.classList.remove('active'));
+
+      clickedTab.classList.add('active');
+      allPanels[index].classList.add('active');
+    });
+
+    // Assemble the tabs structure
+    tabsWrapper.appendChild(tabsNav);
+    tabsWrapper.appendChild(tabsContent);
+
+    // Clear original content except metadata
+    const metadata = tabSection.querySelector('.section-metadata');
+    tabSection.innerHTML = '';
     if (metadata) {
-      const titleDivs = metadata.querySelectorAll('div > div');
-      if (titleDivs.length >= 2) {
-        // Get the second div which contains the actual title
-        tabTitle = titleDivs[1].textContent.trim();
-      }
+      tabSection.appendChild(metadata);
     }
+    
+    // Add the new structure
+    tabSection.appendChild(tabsWrapper);
 
-    // Create tab button
-    const tabButton = document.createElement('button');
-    tabButton.classList.add('tab-title');
-    tabButton.setAttribute('role', 'tab');
-    tabButton.setAttribute('aria-selected', index === 0 ? 'true' : 'false');
-    tabButton.dataset.tabIndex = index;
-    tabButton.textContent = tabTitle;
-    tabButton.type = 'button';
-
-    // Create tab panel
-    const tabPanel = document.createElement('div');
-    tabPanel.classList.add('tab-panel');
-    tabPanel.setAttribute('role', 'tabpanel');
-    tabPanel.setAttribute('aria-hidden', index === 0 ? 'false' : 'true');
-    tabPanel.id = `tab-panel-${index}`;
-    tabButton.setAttribute('aria-controls', `tab-panel-${index}`);
-
-    // Set initial active state
-    if (index === 0) {
-      tabButton.classList.add('active');
-      tabPanel.classList.add('active');
+    // Move instrumentation if needed
+    if (moveInstrumentation) {
+      moveInstrumentation(tabSection, tabsWrapper);
     }
-
-    // Move content to panel
-    Array.from(section.children).forEach(child => {
-      if (!child.classList?.contains('section-metadata')) {
-        const clone = child.cloneNode(true);
-        moveInstrumentation(child, clone);
-        tabPanel.appendChild(clone);
-      }
-    });
-
-    tabsNav.appendChild(tabButton);
-    tabsContent.appendChild(tabPanel);
-  });
-
-  // Remove original sections after cloning content
-  sections.forEach(section => section.remove());
-
-  // Build tab structure
-  tabsWrapper.appendChild(tabsNav);
-  tabsWrapper.appendChild(tabsContent);
-  topContainer.appendChild(tabsWrapper);
-  main.appendChild(topContainer);
-
-  // Add click handler using event delegation
-  tabsNav.addEventListener('click', (event) => {
-    const clickedTab = event.target.closest('.tab-title');
-    if (!clickedTab) return;
-
-    const index = parseInt(clickedTab.dataset.tabIndex, 10);
-    const allTabs = tabsNav.querySelectorAll('.tab-title');
-    const allPanels = tabsContent.querySelectorAll('.tab-panel');
-
-    // Update tabs
-    allTabs.forEach((tab, i) => {
-      const isSelected = i === index;
-      tab.classList.toggle('active', isSelected);
-      tab.setAttribute('aria-selected', isSelected);
-      tab.setAttribute('tabindex', isSelected ? '0' : '-1');
-    });
-
-    // Update panels
-    allPanels.forEach((panel, i) => {
-      const isVisible = i === index;
-      panel.classList.toggle('active', isVisible);
-      panel.setAttribute('aria-hidden', !isVisible);
-    });
   });
 }
