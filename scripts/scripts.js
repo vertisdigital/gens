@@ -3,7 +3,6 @@ import {
   loadFooter,
   decorateButtons,
   decorateIcons,
-  decorateBlocks,
   decorateSections,
   decorateTemplateAndTheme,
   waitForFirstImage,
