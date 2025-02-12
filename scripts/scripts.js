@@ -64,7 +64,7 @@ async function loadFonts() {
  */
 function buildAutoBlocks(main) {
   try {
-    // Process tabs first - this creates the tab structure
+    // Process tabs first but maintain their position
     processTabs(main, moveInstrumentation);
     
     // Debug before processing
@@ -96,15 +96,6 @@ function buildAutoBlocks(main) {
         }
       });
     });
-
-    // Add block class to tab containers themselves
-    const tabContainers = main.querySelectorAll('[data-aue-model="tabs"]');
-    tabContainers.forEach(container => {
-      if (!container.classList.contains('block')) {
-        container.classList.add('tabs', 'block');
-        container.dataset.blockName = 'tabs';
-      }
-    });
     
     // Debug after processing
     console.log('After processing - Blocks with "block" class:', main.querySelectorAll('.block').length);
@@ -123,10 +114,10 @@ function buildAutoBlocks(main) {
 // eslint-disable-next-line import/prefer-default-export
 export function decorateMain(main) {
   // hopefully forward compatible button decoration
- // decorateButtons(main);
- // decorateIcons(main);
- // buildAutoBlocks(main);
- // decorateSections(main);
+  decorateButtons(main);
+  decorateIcons(main);
+  buildAutoBlocks(main);
+  decorateSections(main);
   //decorateBlocks(main);
 }
 
@@ -190,3 +181,6 @@ async function loadPage() {
 }
 
 loadPage();
+
+// Add this in your initialization code
+loadCSS(`${window.hlx.codeBasePath}/blocks/tabs/tabs.css`);
