@@ -10,6 +10,9 @@ import { moveInstrumentation } from '../../scripts/scripts.js';
 * @param {Element} block The herobanner block element
 */
 export default function decorate(block) {
+  // Create a unique identifier for this block instance
+  const blockId = `feature-${Math.random().toString(36).substr(2, 9)}`;
+  block.setAttribute('id', blockId);
 
   // const featureResource = block.querySelector('[data-aue-label="Feature"]');
 
@@ -25,7 +28,7 @@ export default function decorate(block) {
   const aboutUsLeftContent = document.createElement('div');
   aboutUsLeftContent.classList.add('col-xl-6', 'col-md-3', 'col-sm-4', 'about-us-left');
 
-  // Find the title and replace it with a heading
+  // Scope all querySelector calls to this specific block
   const titleElement = block.querySelector('[data-aue-prop="title"]');
   if (titleElement) {
     const header = document.createElement('header');
@@ -35,6 +38,7 @@ export default function decorate(block) {
     const parsedHtml = stringToHTML(titleHtml);
     header.append(parsedHtml);
     aboutUsLeftContent.append(header);
+    titleElement.remove();
   }
 
   // Find the heading and replace it with a heading
@@ -45,17 +49,21 @@ export default function decorate(block) {
     const parsedHtml = stringToHTML(headingHtml);
     moveInstrumentation(headingElement, parsedHtml);
     aboutUsLeftContent.append(parsedHtml);
+    headingElement.remove();
   }
 
   // Find the sub-heading and replace it with a sub-heading
+
   const subHeading = block.querySelector('[data-aue-prop="sub-heading"]');
   if (subHeading) {
     const subHeadingElement = document.createElement('p');
     subHeadingElement.className = 'about-us-left-sub-heading';
     moveInstrumentation(subHeading, subHeadingElement);
-    const subHeadingText = subHeading.querySelector('p')?.textContent || '';
+    const subHeadingText = subHeading.querySelector('p').textContent;
     subHeadingElement.textContent = subHeadingText;
+
     aboutUsLeftContent.appendChild(subHeadingElement);
+    subHeading.remove();
   }
 
   // Find the LinkField and replace it with arrow icon
@@ -110,7 +118,7 @@ export default function decorate(block) {
     const aboutUsRightContent = document.createElement('div');
     aboutUsRightContent.classList.add('col-xl-6', 'col-md-3', 'col-sm-4', 'about-us-right');
 
-    // Collect all imageAndDescription elements first
+    // Scope the querySelectorAll to this specific block
     const aboutUsDescription = block.querySelectorAll('[data-aue-model="featureItem"]');
     aboutUsDescription.forEach((description) => {
     // Create feature item container
@@ -183,10 +191,8 @@ export default function decorate(block) {
       aboutUsRightContent.appendChild(featureContainer);
     });
 
-    // Instead of clearing the entire block HTML, only clear the processed elements
-    const processedElements = block.querySelectorAll('[data-processed="true"]');
-    processedElements.forEach(element => element.remove());
-
+    // Clear only this block's content
+    block.innerHTML = '';
     aboutUsStats.appendChild(aboutUsLeftContent);
     aboutUsStats.appendChild(aboutUsRightContent);
     container.append(aboutUsStats);
