@@ -79,6 +79,7 @@ function buildAutoBlocks() {
 export function decorateMain(main) {
   console.log('decorateMain', main);
   // hopefully forward compatible button decoration
+  
   decorateButtons(main);
   decorateIcons(main);
   buildAutoBlocks(main);
