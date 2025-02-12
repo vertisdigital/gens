@@ -64,7 +64,7 @@ async function loadFonts() {
  */
 function buildAutoBlocks(main) {
   try {
-    // Process tabs first but maintain their position
+    // Process tabs first - this creates the tab structure
     processTabs(main, moveInstrumentation);
     
     // Debug before processing
@@ -95,6 +95,15 @@ function buildAutoBlocks(main) {
           }
         }
       });
+    });
+
+    // Add block class to tab containers themselves
+    const tabContainers = main.querySelectorAll('[data-aue-model="tabs"]');
+    tabContainers.forEach(container => {
+      if (!container.classList.contains('block')) {
+        container.classList.add('tabs', 'block');
+        container.dataset.blockName = 'tabs';
+      }
     });
     
     // Debug after processing
