@@ -351,6 +351,8 @@ function decorateTemplateAndTheme() {
  */
 function wrapTextNodes(block) {
   const validWrappers = [
+    'div',
+    'span',
     'P',
     'PRE',
     'UL',
@@ -366,6 +368,7 @@ function wrapTextNodes(block) {
   ];
 
   const wrap = (el) => {
+    console.log('wrap', el);
     const wrapper = document.createElement('p');
     wrapper.append(...el.childNodes);
     [...el.attributes]
