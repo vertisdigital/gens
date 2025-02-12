@@ -50,10 +50,12 @@ export default function processTabs(main, moveInstrumentation) {
     const tabsContent = document.createElement('div');
     tabsContent.classList.add('tabs-content');
  
+    // Get sections for tabs
     const tabSections = Array.from(section.children).filter(
       child => !child.classList.contains('section-metadata')
     );
  
+    // Create tab structure first
     tabSections.forEach((tabSection, index) => {
       const metadata = tabSection.querySelector('.section-metadata > div :last-child');
       const tabTitle = metadata ? metadata.textContent.trim() : `Tab ${index + 1}`;
@@ -71,11 +73,10 @@ export default function processTabs(main, moveInstrumentation) {
         tabPanel.classList.add('active');
       }
  
-      // Clone content for tab panel
+      // Move (not clone) content to panel
       Array.from(tabSection.children).forEach(child => {
         if (!child.classList?.contains('section-metadata')) {
-          const clone = child.cloneNode(true);
-          tabPanel.appendChild(clone);
+          tabPanel.appendChild(child);
         }
       });
  
@@ -83,12 +84,14 @@ export default function processTabs(main, moveInstrumentation) {
       tabsContent.appendChild(tabPanel);
     });
  
+    // Build tab structure
     tabsWrapper.appendChild(tabsNav);
     tabsWrapper.appendChild(tabsContent);
     topContainer.appendChild(tabsWrapper);
  
-    // Insert tab structure before the sections
-    section.insertBefore(topContainer, section.firstChild);
+    // Replace section content
+    section.innerHTML = '';
+    section.appendChild(topContainer);
  
     // Handle tab switching
     tabsNav.addEventListener('click', async (event) => {
