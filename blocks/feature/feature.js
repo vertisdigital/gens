@@ -35,7 +35,7 @@ export default function decorate(block) {
     const parsedHtml = stringToHTML(titleHtml);
     header.append(parsedHtml);
     aboutUsLeftContent.append(header);
-    titleElement.remove();
+    //titleElement.remove();
   }
 
   // Find the heading and replace it with a heading
@@ -46,7 +46,7 @@ export default function decorate(block) {
     const parsedHtml = stringToHTML(headingHtml);
     moveInstrumentation(headingElement, parsedHtml);
     aboutUsLeftContent.append(parsedHtml);
-    headingElement.remove();
+    //headingElement.remove();
   }
 
   // Find the sub-heading and replace it with a sub-heading
@@ -60,7 +60,7 @@ export default function decorate(block) {
     moveInstrumentation(subHeading, subHeadingElement);
 
     aboutUsLeftContent.appendChild(subHeadingElement);
-    subHeading.remove();
+    //subHeading.remove();
   }
 
   // Find the LinkField and replace it with arrow icon
