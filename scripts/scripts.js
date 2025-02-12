@@ -117,9 +117,9 @@ export function decorateMain(main) {
   // hopefully forward compatible button decoration
   decorateButtons(main);
   decorateIcons(main);
-  buildAutoBlocks(main);
   decorateSections(main);
-  decorateBlocks(main);  
+  decorateBlocks(main);  // First decorate all blocks
+  buildAutoBlocks(main); // Then build auto blocks which will preserve block decoration
 }
 
 /**
