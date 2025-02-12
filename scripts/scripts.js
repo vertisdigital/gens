@@ -4,13 +4,14 @@ import {
   decorateButtons,
   decorateIcons,
   decorateSections,
-  decorateBlocks,
   decorateTemplateAndTheme,
+  decorateBlocks,
   waitForFirstImage,
   loadSection,
   loadSections,
   loadCSS,
 } from './aem.js';
+import processTabs from './autoblocks.js';
 
 /**
  * Moves all the attributes from a given elmenet to another given element.
@@ -62,9 +63,9 @@ async function loadFonts() {
  * Builds all synthetic blocks in a container element.
  * @param {Element} main The container element
  */
-function buildAutoBlocks() {
+function buildAutoBlocks(main) {
   try {
-    // TODO: add auto block, if needed
+    processTabs(main, moveInstrumentation);
   } catch (error) {
     // eslint-disable-next-line no-console
     console.error('Auto Blocking failed', error);
@@ -72,7 +73,7 @@ function buildAutoBlocks() {
 }
 
 /**
- * Decorates the main element.
+ * Decorates the main element. 
  * @param {Element} main The main element
  */
 // eslint-disable-next-line import/prefer-default-export

@@ -2,7 +2,8 @@
   {
     "id": "main",
     "components": [
-      "section"
+      "section",
+      "tabs" 
     ]
   },
   {
@@ -31,6 +32,15 @@
       "textsection",
       "textmediablock",
       "projectslist"
+    ]
+  },
+  {
+    "id": "tabs",
+    "components": [
+      "text",
+      "image",
+      "cards",
+      "linkField"
     ]
   },
   {
