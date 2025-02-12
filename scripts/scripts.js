@@ -77,6 +77,7 @@ function buildAutoBlocks() {
  */
 // eslint-disable-next-line import/prefer-default-export
 export function decorateMain(main) {
+  console.log('decorateMain', main);
   // hopefully forward compatible button decoration
   decorateButtons(main);
   decorateIcons(main);
