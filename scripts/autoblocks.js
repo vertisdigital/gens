@@ -28,13 +28,14 @@ export default function processTabs(main, moveInstrumentation) {
     const tabsWrapper = document.createElement('div');
     tabsWrapper.classList.add('tabs-container');
 
+    // Create tab header with row class for proper styling
     const tabsNav = document.createElement('div');
-    tabsNav.classList.add('tabs-header');
+    tabsNav.classList.add('tabs-header', 'row');
 
     const tabsContent = document.createElement('div');
     tabsContent.classList.add('tabs-content');
 
-    // Get direct tab content sections (excluding nested tabs and metadata)
+    // Get direct tab content sections (excluding metadata)
     const tabBlocks = Array.from(tabSection.children).filter(child => 
       !child.classList.contains('section-metadata')
     );
@@ -47,17 +48,20 @@ export default function processTabs(main, moveInstrumentation) {
     tabBlocks.forEach((block, index) => {
       console.log(`Creating tab ${index} with title: ${defaultTitles[index]}`);
       
-      // Create tab button with default title
+      // Create tab button with proper column class
       const tabButton = document.createElement('button');
-      tabButton.classList.add('tab-title');
+      tabButton.classList.add('tab-title', 'col-6');  // Added col-6 class
       tabButton.textContent = defaultTitles[index] || `Tab ${index + 1}`;
       tabButton.setAttribute('role', 'tab');
+      tabButton.setAttribute('aria-selected', index === 0 ? 'true' : 'false');
       tabButton.dataset.index = index.toString();
 
       // Create tab panel
       const tabPanel = document.createElement('div');
       tabPanel.classList.add('tab-panel');
       tabPanel.setAttribute('role', 'tabpanel');
+      tabPanel.setAttribute('aria-labelledby', `tab-${index}`);
+      tabPanel.id = `panel-${index}`;
 
       // Set initial active state for first tab
       if (index === 0) {
@@ -65,9 +69,10 @@ export default function processTabs(main, moveInstrumentation) {
         tabPanel.classList.add('active');
       }
 
-      // Move the content to panel instead of cloning
+      // Move the content to panel
       tabPanel.appendChild(block);
 
+      // Add button to nav and panel to content
       tabsNav.appendChild(tabButton);
       tabsContent.appendChild(tabPanel);
     });
@@ -82,11 +87,15 @@ export default function processTabs(main, moveInstrumentation) {
       const allPanels = tabsContent.querySelectorAll('.tab-panel');
 
       // Remove active class from all tabs and panels
-      allTabs.forEach(tab => tab.classList.remove('active'));
+      allTabs.forEach(tab => {
+        tab.classList.remove('active');
+        tab.setAttribute('aria-selected', 'false');
+      });
       allPanels.forEach(panel => panel.classList.remove('active'));
 
       // Add active class to clicked tab and corresponding panel
       clickedTab.classList.add('active');
+      clickedTab.setAttribute('aria-selected', 'true');
       allPanels[index]?.classList.add('active');
     });
 
