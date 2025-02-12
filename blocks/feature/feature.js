@@ -28,9 +28,9 @@ export default function decorate(block) {
   // Find the title and replace it with a heading
   const titleElement = block.querySelector('[data-aue-prop="title"]');
   if (titleElement) {
-    const titleText = titleElement.textContent;
     const header = document.createElement('header');
     moveInstrumentation(titleElement, header);
+    const titleText = titleElement.textContent;
     const titleHtml = Heading({ level: 3, text: titleText, className: 'about-us-left-title' });
     const parsedHtml = stringToHTML(titleHtml);
     header.append(parsedHtml);
@@ -41,10 +41,10 @@ export default function decorate(block) {
   // Find the heading and replace it with a heading
   const headingElement = block.querySelector('[data-aue-prop="heading"]');
   if (headingElement) {
-    const headingText = headingElement.textContent;
     const headingHtml = Heading({ level: 2, text: headingText, className: 'about-us-left-heading' });
     const parsedHtml = stringToHTML(headingHtml);
     moveInstrumentation(headingElement, parsedHtml);
+    const headingText = headingElement.textContent;
     aboutUsLeftContent.append(parsedHtml);
     //headingElement.remove();
   }
@@ -53,11 +53,11 @@ export default function decorate(block) {
 
   const subHeading = block.querySelector('[data-aue-prop="sub-heading"]');
   if (subHeading) {
-    const subHeadingText = subHeading.querySelector('p').textContent;
     const subHeadingElement = document.createElement('p');
     subHeadingElement.className = 'about-us-left-sub-heading';
-    subHeadingElement.textContent = subHeadingText;
     moveInstrumentation(subHeading, subHeadingElement);
+    const subHeadingText = subHeading.querySelector('p').textContent;
+    subHeadingElement.textContent = subHeadingText;
 
     aboutUsLeftContent.appendChild(subHeadingElement);
     //subHeading.remove();
