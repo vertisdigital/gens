@@ -40,18 +40,25 @@ export default function processTabs(main, moveInstrumentation) {
     // Keep original section and add tabs class
     section.classList.add('tabs');
     
+    // Create container for proper layout
+    const container = document.createElement('div');
+    container.classList.add('container-xl', 'container-lg', 'container-md', 'container-sm');
+    
+    const tabsWrapper = document.createElement('div');
+    tabsWrapper.classList.add('tabs-container');
+
     // Create tabs structure inside the section
     const tabsNav = document.createElement('div');
-    tabsNav.classList.add('tabs-header');
- 
+    tabsNav.classList.add('tabs-header', 'row');
+
     const tabsContent = document.createElement('div');
     tabsContent.classList.add('tabs-content-wrapper');
- 
+
     // Get tab sections (direct children that aren't metadata)
     const tabPanels = Array.from(section.children).filter(
       child => !child.classList.contains('section-metadata')
     );
- 
+
     // Process each panel
     tabPanels.forEach((panel, index) => {
       // Get tab title from panel's metadata
@@ -63,20 +70,20 @@ export default function processTabs(main, moveInstrumentation) {
           tabTitle = titleDivs[1].textContent.trim();
         }
       }
- 
-      // Create tab button
+
+      // Create tab button with proper styling classes
       const tabButton = document.createElement('div');
-      tabButton.classList.add('tab-title');
+      tabButton.classList.add('tab-title', 'col-xl-6', 'col-lg-6', 'col-md-6', 'col-sm-6');
       tabButton.dataset.index = index;
       tabButton.textContent = tabTitle;
- 
+
       // Setup panel
       panel.classList.add('tab-panel');
       if (index === 0) {
         tabButton.classList.add('active');
         panel.classList.add('active');
       }
- 
+
       // Process blocks in panel
       const blocks = panel.querySelectorAll('div[class]');
       blocks.forEach(block => {
@@ -96,35 +103,39 @@ export default function processTabs(main, moveInstrumentation) {
           }
         }
       });
- 
+
       tabsNav.appendChild(tabButton);
       tabsContent.appendChild(panel);
     });
- 
+
+    // Build proper structure
+    tabsWrapper.appendChild(tabsNav);
+    tabsWrapper.appendChild(tabsContent);
+    container.appendChild(tabsWrapper);
+
     // Clear section and add new structure
     section.innerHTML = '';
-    section.appendChild(tabsNav);
-    section.appendChild(tabsContent);
- 
+    section.appendChild(container);
+
     // Handle tab switching
     tabsNav.addEventListener('click', async (event) => {
       const tabButton = event.target.closest('.tab-title');
       if (!tabButton) return;
- 
+
       const index = parseInt(tabButton.dataset.index, 10);
       if (Number.isNaN(index)) return;
- 
+
       // Update tabs
       tabsNav.querySelectorAll('.tab-title').forEach((tab, i) => {
         tab.classList.toggle('active', i === index);
       });
- 
+
       // Update panels
       const panels = tabsContent.querySelectorAll('.tab-panel');
       panels.forEach((panel, i) => {
         const isVisible = i === index;
         panel.classList.toggle('active', isVisible);
- 
+
         if (isVisible) {
           const blocks = panel.querySelectorAll('[data-block-name]');
           blocks.forEach(block => loadBlock(block));
