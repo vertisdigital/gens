@@ -743,63 +743,48 @@ main .section.highlight {
 
 /* Tab Container */
 .tabs-container {
+  display: flex;
+  flex-direction: column;
   width: 100%;
   margin: 0 auto;
 }
 
-.tabs-header {
-  display: flex;
-  justify-content: flex-start;
-  border-bottom: 2px solid var(--body-text-color);
-  margin: 0;
+.tabs-header{
+  margin-bottom: 36px;
 }
 
-.tabs-header .col-6 {
-  padding: 0;
-}
-
-.tab-title {
+.tab-title{
   position: relative;
   text-align: center;
-  padding: 36px 0;
+  padding: 36px 0 45px 0;
   color: var(--body-text-color);
   font-size: 24px;
   font-weight: 600;
   line-height: 30px;
+  border-bottom: 2px solid  var(--body-text-color);
   cursor: pointer;
-  background: transparent;
-  border: none;
-  border-bottom: 2px solid transparent;
-  margin-bottom: -2px;
-  transition: all 0.3s ease;
-  width: 100%;
-}
-
-.tab-title:hover {
-  background-color: var(--soft-ivory);
 }
 
 .tab-title.active {
-  background: var(--soft-ivory);
+  background: var(--soft-ivory-light); 
   color: var(--primary-gold);
   border-bottom: 2px solid var(--primary-gold);
 }
-
 .tab-title.active::after {
   content: "";
   position: absolute;
-  bottom: -2px;
+  bottom: 0; 
   left: 50%;
   transform: translateX(-50%);
   width: 0;
   height: 0;
   border-left: 8px solid transparent;
   border-right: 8px solid transparent;
-  border-bottom: 8px solid var(--primary-gold);
+  border-bottom: 6px solid var(--primary-gold); 
 }
 
 .tabs-content-wrapper {
-  padding: 40px 0;
+  padding: 20px;
 }
 
 .tab-panel {
