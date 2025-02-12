@@ -38,41 +38,53 @@ export default function processTabs(main, moveInstrumentation) {
     topContainer.classList = 'container-xl container-lg container-md container-sm';
 
     const tabsWrapper = document.createElement('div');
-    tabsWrapper.classList.add('tabs-container', 'block');
-    tabsWrapper.dataset.blockName = 'tabs';
+    tabsWrapper.classList.add('tabs-container');
 
     const tabsNav = document.createElement('div');
-    tabsNav.classList.add('tabs-header', 'row');
+    tabsNav.classList.add('tabs-header');
 
     const tabsContent = document.createElement('div');
-    tabsContent.classList.add('tabs-content');
+    tabsContent.classList.add('tabs-content-wrapper');
 
-    // Store original sections for content tree
-    const originalSections = Array.from(section.children).filter(
+    // Get sections for tabs
+    const tabSections = Array.from(section.children).filter(
       child => !child.classList.contains('section-metadata')
     );
 
     // Process each section
-    originalSections.forEach((originalSection, index) => {
-      const metadata = originalSection.querySelector('.section-metadata > div :last-child');
-      const tabTitle = metadata ? metadata.textContent.trim() : `Tab ${index + 1}`;
+    tabSections.forEach((tabSection, index) => {
+      // Get tab title from metadata
+      const metadata = tabSection.querySelector('.section-metadata');
+      let tabTitle = `Tab ${index + 1}`;
+      if (metadata) {
+        const titleDivs = metadata.querySelectorAll('div > div');
+        if (titleDivs.length >= 2) {
+          tabTitle = titleDivs[1].textContent.trim();
+        }
+      }
 
+      // Create tab button
       const tabButton = document.createElement('div');
-      tabButton.classList.add('tab-title', 'col-xl-6', 'col-lg-6', 'col-md-3', 'col-sm-2');
+      tabButton.classList.add('tab-title');
       tabButton.dataset.index = index;
       tabButton.textContent = tabTitle;
 
+      // Create tab panel
       const tabPanel = document.createElement('div');
       tabPanel.classList.add('tab-panel');
+
+      // Set initial active state
       if (index === 0) {
         tabButton.classList.add('active');
         tabPanel.classList.add('active');
       }
 
-      // Clone content for tab panel
-      const clonedContent = originalSection.cloneNode(true);
-      clonedContent.querySelector('.section-metadata')?.remove();
-      tabPanel.appendChild(clonedContent);
+      // Move content to panel
+      Array.from(tabSection.children).forEach(child => {
+        if (!child.classList?.contains('section-metadata')) {
+          tabPanel.appendChild(child);
+        }
+      });
 
       tabsNav.appendChild(tabButton);
       tabsContent.appendChild(tabPanel);
@@ -83,14 +95,15 @@ export default function processTabs(main, moveInstrumentation) {
     tabsWrapper.appendChild(tabsContent);
     topContainer.appendChild(tabsWrapper);
 
-    // Insert tabs while keeping original content
-    section.insertBefore(topContainer, section.firstChild);
-
-    // Hide original sections but keep them in the DOM
-    originalSections.forEach(originalSection => {
-      originalSection.style.display = 'none';
-      originalSection.dataset.tabContent = 'true';
+    // Keep original sections in DOM but hide them
+    tabSections.forEach(tabSection => {
+      tabSection.style.visibility = 'hidden';
+      tabSection.style.height = '0';
+      tabSection.style.overflow = 'hidden';
     });
+
+    // Add tabs structure
+    section.insertBefore(topContainer, section.firstChild);
 
     // Handle tab switching
     tabsNav.addEventListener('click', (event) => {
@@ -101,13 +114,13 @@ export default function processTabs(main, moveInstrumentation) {
       if (Number.isNaN(index)) return;
 
       // Update tabs
-      tabsWrapper.querySelectorAll('.tab-title').forEach(btn => {
+      tabsNav.querySelectorAll('.tab-title').forEach(btn => {
         btn.classList.remove('active');
       });
       tabButton.classList.add('active');
 
       // Update panels
-      tabsWrapper.querySelectorAll('.tab-panel').forEach(panel => {
+      tabsContent.querySelectorAll('.tab-panel').forEach(panel => {
         panel.classList.remove('active');
       });
       tabsContent.children[index]?.classList.add('active');
