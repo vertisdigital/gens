@@ -68,149 +68,136 @@ export default function decorate(block) {
   // Find the LinkField and replace it with arrow icon
   const linkField = block.querySelector('[data-aue-model="linkField"]');
   if (linkField) {
+    // Preserve original container
     const linkContainer = document.createElement('div');
     moveInstrumentation(linkField, linkContainer);
-    linkContainer.setAttribute('data-aue-model', 'linkField');
 
+    // Create link text div
     const linkTextDiv = document.createElement('div');
     const linkTextP = document.createElement('p');
     linkTextP.className = 'button-container';
 
+    // Handle link text
     const originalLink = linkField.querySelector('[data-aue-prop="linkText"]');
     const originalTarget = linkField.querySelector('[data-aue-prop="linkTarget"]');
-    const arrowIcon = linkField.querySelector('[data-aue-prop="linkSvgIcon"]');
+    
+    if (originalTarget) {
+      const originalTargetName = originalTarget.textContent;
+      originalLink.setAttribute('target', originalTargetName);
+      originalLink.innerHTML = '';
+      originalTarget.innerHTML = '';
+    }
     
     if (originalLink) {
       const linkElement = document.createElement('a');
-      linkElement.setAttribute('data-aue-prop', 'linkText');
-      
-      // Copy the link text
-      linkElement.textContent = originalLink.textContent;
-      
-      // Set link attributes
-      if (originalTarget) {
-        const targetValue = originalTarget.textContent;
-        if (targetValue) {
-          linkElement.setAttribute('target', targetValue);
-        }
-      }
-      
+
+      // Copy all attributes from original link
+      moveInstrumentation(originalLink, linkElement);
+
+      // Set additional attributes
       linkElement.className = 'button';
 
-      // Handle arrow icon
-      if (arrowIcon) {
-        const arrowIconName = arrowIcon.textContent.replace('-', '');
-        const arrowSVG = SvgIcon({ 
-          name: arrowIconName, 
-          className: 'about-us-left-link', 
-          size: '16px' 
-        });
-        
-        // Create a span to hold the arrow icon with proper data attribute
-        const iconSpan = document.createElement('span');
-        iconSpan.setAttribute('data-aue-prop', 'linkSvgIcon');
-        iconSpan.appendChild(stringToHTML(arrowSVG));
-        
-        linkElement.appendChild(iconSpan);
+      const arrowIcon = linkField.querySelector('[data-aue-prop="linkSvgIcon"]');
+
+      const arrowIconName = arrowIcon.textContent.replace('-', '');
+      arrowIcon.innerHTML = '';
+      if (!arrowIcon) {
+        linkElement.textContent = originalLink.textContent;
+      } else {
+        const arrowSVG = SvgIcon({ name: `${arrowIconName}`, className: 'about-us-left-link', size: '16px' });
+        linkElement.append(stringToHTML(arrowSVG));
+
+        // Assemble link structure
+        linkTextP.appendChild(linkElement);
+        linkTextDiv.appendChild(linkTextP);
+        linkContainer.appendChild(linkTextDiv);
       }
 
-      // Preserve target element with its data attribute
-      if (originalTarget) {
-        const targetSpan = document.createElement('span');
-        targetSpan.setAttribute('data-aue-prop', 'linkTarget');
-        targetSpan.style.display = 'none';
-        targetSpan.textContent = originalTarget.textContent;
-        linkContainer.appendChild(targetSpan);
-      }
-
-      // Assemble the structure
-      linkTextP.appendChild(linkElement);
-      linkTextDiv.appendChild(linkTextP);
-      linkContainer.appendChild(linkTextDiv);
+      // Add to container
       aboutUsLeftContent.appendChild(linkContainer);
     }
-  }
 
-  // About-Us right container
-  const aboutUsRightContent = document.createElement('div');
-  aboutUsRightContent.classList.add('col-xl-6', 'col-md-3', 'col-sm-4', 'about-us-right');
+    // About-Us right container
+    const aboutUsRightContent = document.createElement('div');
+    aboutUsRightContent.classList.add('col-xl-6', 'col-md-3', 'col-sm-4', 'about-us-right');
 
-  // Collect all imageAndDescription elements first
-  const aboutUsDescription = block.querySelectorAll('[data-aue-model="featureItem"]');
-  aboutUsDescription.forEach((description) => {
-  // Create feature item container
-    const featureContainer = document.createElement('div');
-    featureContainer.classList.add('about-us-right-content');
-    moveInstrumentation(description, featureContainer);
+    // Collect all imageAndDescription elements first
+    const aboutUsDescription = block.querySelectorAll('[data-aue-model="featureItem"]');
+    aboutUsDescription.forEach((description) => {
+    // Create feature item container
+      const featureContainer = document.createElement('div');
+      featureContainer.classList.add('about-us-right-content');
+      moveInstrumentation(description, featureContainer);
 
-    // Handle image feature
-    const imageElement = description.querySelector('[data-aue-prop="feature-icon"]');
-    if (imageElement) {
-      const imageContainer = document.createElement('div');
-      const imageLink = imageElement.getAttribute('src');
-      const imgAltText = description.querySelector('[data-aue-prop="feature-icon-alt"]')?.textContent || '';
+      // Handle image feature
+      const imageElement = description.querySelector('[data-aue-prop="feature-icon"]');
+      if (imageElement) {
+        const imageContainer = document.createElement('div');
+        const imageLink = imageElement.getAttribute('src');
+        const imgAltText = description.querySelector('[data-aue-prop="feature-icon-alt"]')?.textContent || '';
 
-      if (imageLink) {
-        const imageHtml = ImageComponent({
-          src: imageLink,
-          alt: imgAltText,
-          className: 'about-us-right-description-icon',
-          breakpoints: {
-            mobile: { width: 768, src: imageLink },
-            tablet: { width: 1024, src: imageLink },
-            desktop: { width: 1920, src: imageLink },
-          },
-          lazy: true,
+        if (imageLink) {
+          const imageHtml = ImageComponent({
+            src: imageLink,
+            alt: imgAltText,
+            className: 'about-us-right-description-icon',
+            breakpoints: {
+              mobile: { width: 768, src: imageLink },
+              tablet: { width: 1024, src: imageLink },
+              desktop: { width: 1920, src: imageLink },
+            },
+            lazy: true,
+          });
+
+          const parsedImage = stringToHTML(imageHtml);
+          moveInstrumentation(imageElement, parsedImage.querySelector('img'));
+
+          imageContainer.appendChild(parsedImage);
+          featureContainer.appendChild(imageContainer);
+          featureContainer.classList.add('image-container');
+        }
+      }
+
+      // Handle text feature
+      const textElement = description.querySelector('[data-aue-prop="feature-title"]');
+      if (textElement) {
+        const textContainer = document.createElement('div');
+        const statisticDiv = document.createElement('div');
+        statisticDiv.className = 'statistic';
+
+        const textContent = textElement.querySelectorAll('p');
+        textContent.forEach((text) => {
+          const span = document.createElement('span');
+          span.textContent = text.textContent;
+          moveInstrumentation(text, span);
+          statisticDiv.appendChild(span);
         });
 
-        const parsedImage = stringToHTML(imageHtml);
-        moveInstrumentation(imageElement, parsedImage.querySelector('img'));
-
-        imageContainer.appendChild(parsedImage);
-        featureContainer.appendChild(imageContainer);
-        featureContainer.classList.add('image-container');
+        textContainer.appendChild(statisticDiv);
+        featureContainer.appendChild(textContainer);
+        featureContainer.classList.add('text-container');
       }
-    }
 
-    // Handle text feature
-    const textElement = description.querySelector('[data-aue-prop="feature-title"]');
-    if (textElement) {
-      const textContainer = document.createElement('div');
-      const statisticDiv = document.createElement('div');
-      statisticDiv.className = 'statistic';
+      // Handle feature heading
+      const featureHeadingElement = description.querySelector('[data-aue-prop="feature-heading"]');
+      if (featureHeadingElement) {
+        const headingContainer = document.createElement('div');
+        const featureHeadingP = document.createElement('p');
+        featureHeadingP.textContent = featureHeadingElement.textContent;
+        Array.from(featureHeadingElement.attributes).forEach((attr) => {
+          featureHeadingP.setAttribute(attr.name, attr.value);
+        });
+        headingContainer.appendChild(featureHeadingP);
+        featureContainer.appendChild(headingContainer);
+      }
 
-      const textContent = textElement.querySelectorAll('p');
-      textContent.forEach((text) => {
-        const span = document.createElement('span');
-        span.textContent = text.textContent;
-        moveInstrumentation(text, span);
-        statisticDiv.appendChild(span);
-      });
+      aboutUsRightContent.appendChild(featureContainer);
+    });
 
-      textContainer.appendChild(statisticDiv);
-      featureContainer.appendChild(textContainer);
-      featureContainer.classList.add('text-container');
-    }
-
-    // Handle feature heading
-    const featureHeadingElement = description.querySelector('[data-aue-prop="feature-heading"]');
-    if (featureHeadingElement) {
-      const headingContainer = document.createElement('div');
-      const featureHeadingP = document.createElement('p');
-      featureHeadingP.textContent = featureHeadingElement.textContent;
-      Array.from(featureHeadingElement.attributes).forEach((attr) => {
-        featureHeadingP.setAttribute(attr.name, attr.value);
-      });
-      headingContainer.appendChild(featureHeadingP);
-      featureContainer.appendChild(headingContainer);
-    }
-
-    aboutUsRightContent.appendChild(featureContainer);
-  });
-
-  block.innerHTML = '';
-  aboutUsStats.appendChild(aboutUsLeftContent);
-  aboutUsStats.appendChild(aboutUsRightContent);
-  container.append(aboutUsStats);
-  block.appendChild(container);
+    block.innerHTML = '';
+    aboutUsStats.appendChild(aboutUsLeftContent);
+    aboutUsStats.appendChild(aboutUsRightContent);
+    container.append(aboutUsStats);
+    block.appendChild(container);
+  }
 }
