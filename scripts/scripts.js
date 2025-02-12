@@ -108,12 +108,34 @@ function buildAutoBlocks(main) {
  */
 // eslint-disable-next-line import/prefer-default-export
 export function decorateMain(main) {
-  // hopefully forward compatible button decoration
-  decorateButtons(main);
-  decorateIcons(main);
-  buildAutoBlocks(main);
-  decorateSections(main);
-  //decorateBlocks(main);
+  try {
+    // Log the initial order
+    console.log('Initial DOM order:', Array.from(main.children).map(el => el.getAttribute('data-aue-model')));
+    
+    // Decorate buttons and icons first
+    decorateButtons(main);
+    decorateIcons(main);
+    
+    // Process tabs while maintaining order
+    const mainElements = Array.from(main.children);
+    const tabSections = mainElements.filter(el => el.getAttribute('data-aue-model') === 'tabs');
+    const otherSections = mainElements.filter(el => el.getAttribute('data-aue-model') !== 'tabs');
+    
+    // Process each element in its original order
+    mainElements.forEach((element, index) => {
+      if (element.getAttribute('data-aue-model') === 'tabs') {
+        processTabs(element, moveInstrumentation);
+      }
+    });
+    
+    // Decorate sections
+    decorateSections(main);
+    
+    // Log the final order
+    console.log('Final DOM order:', Array.from(main.children).map(el => el.className));
+  } catch (error) {
+    console.error('Error in decorateMain:', error);
+  }
 }
 
 /**
