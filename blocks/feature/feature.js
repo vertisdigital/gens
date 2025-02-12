@@ -4,13 +4,11 @@ import SvgIcon from '../../shared-components/SvgIcon.js';
 import stringToHTML from '../../shared-components/Utility.js';
 import { moveInstrumentation } from '../../scripts/scripts.js';
 
-
 /**
 * Loads and decorates the Hero Banner
 * @param {Element} block The herobanner block element
 */
 export default function decorate(block) {
-
   // const featureResource = block.querySelector('[data-aue-label="Feature"]');
 
   const container = document.createElement('div');
@@ -80,14 +78,14 @@ export default function decorate(block) {
     // Handle link text
     const originalLink = linkField.querySelector('[data-aue-prop="linkText"]');
     const originalTarget = linkField.querySelector('[data-aue-prop="linkTarget"]');
-    
+
     if (originalTarget) {
       const originalTargetName = originalTarget.textContent;
       originalLink.setAttribute('target', originalTargetName);
       originalLink.innerHTML = '';
       originalTarget.innerHTML = '';
     }
-    
+
     if (originalLink) {
       const linkElement = document.createElement('a');
 
