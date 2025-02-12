@@ -11,7 +11,7 @@ import { moveInstrumentation } from '../../scripts/scripts.js';
 */
 export default function decorate(block) {
   // Handle multiple feature sections if present
-  const featureResources = block.querySelectorAll('[data-aue-label="Feature"]');
+  const featureResources = block;
   
   featureResources.forEach(featureResource => {
     const container = document.createElement('div');
