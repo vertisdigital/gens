@@ -10,16 +10,16 @@ export default function processTabs(main, moveInstrumentation) {
     return;
   }
 
-  // Find tab sections that are direct containers
+  // Find only the top-level tab sections
   const sections = [
-    ...main.querySelectorAll('[data-aue-model="tabs"]'),
+    ...main.querySelectorAll(':scope > [data-aue-model="tabs"]'),
   ];
   console.log('Found tab sections:', sections.length);
   
   if (!sections.length) return;
 
-  sections.forEach((tabSection, sectionIndex) => {
-    console.log(`Processing tab section ${sectionIndex}`);
+  sections.forEach((tabSection) => {
+    console.log(`Processing tab section ${sections.indexOf(tabSection)}`);
     
     // Ensure tab section has the required classes
     tabSection.classList.add('tabs', 'block');
@@ -34,9 +34,8 @@ export default function processTabs(main, moveInstrumentation) {
     const tabsContent = document.createElement('div');
     tabsContent.classList.add('tabs-content');
 
-    // Get all tab content sections (direct children that are also tabs)
+    // Get direct tab content sections (excluding nested tabs and metadata)
     const tabBlocks = Array.from(tabSection.children).filter(child => 
-      child.getAttribute('data-aue-model') === 'tabs' || 
       !child.classList.contains('section-metadata')
     );
     console.log('Found tab blocks:', tabBlocks.length);
@@ -66,9 +65,8 @@ export default function processTabs(main, moveInstrumentation) {
         tabPanel.classList.add('active');
       }
 
-      // Clone the content to preserve the original structure
-      const blockClone = block.cloneNode(true);
-      tabPanel.appendChild(blockClone);
+      // Move the content to panel instead of cloning
+      tabPanel.appendChild(block);
 
       tabsNav.appendChild(tabButton);
       tabsContent.appendChild(tabPanel);
@@ -92,22 +90,22 @@ export default function processTabs(main, moveInstrumentation) {
       allPanels[index]?.classList.add('active');
     });
 
-    // Assemble and insert the tabs structure
+    // Assemble the tabs structure
     tabsWrapper.appendChild(tabsNav);
     tabsWrapper.appendChild(tabsContent);
 
-    // Keep the original structure but hide it
-    tabBlocks.forEach(block => {
-      if (!block.classList.contains('section-metadata')) {
-        block.style.display = 'none';
-      }
-    });
-
-    // Add new structure at the beginning of the section
-    tabSection.insertBefore(tabsWrapper, tabSection.firstChild);
+    // Clear original content except metadata
+    const metadata = tabSection.querySelector('.section-metadata');
+    tabSection.innerHTML = '';
+    if (metadata) {
+      tabSection.appendChild(metadata);
+    }
+    
+    // Add the new structure
+    tabSection.appendChild(tabsWrapper);
 
     // Move instrumentation if needed
-    if (moveInstrumentation && typeof moveInstrumentation === 'function') {
+    if (moveInstrumentation) {
       moveInstrumentation(tabSection, tabsWrapper);
     }
 
