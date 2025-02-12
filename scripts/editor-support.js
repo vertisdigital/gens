@@ -10,13 +10,6 @@ import {
 import { decorateRichtext } from './editor-support-rte.js';
 import { decorateMain } from './scripts.js';
 
-const PRESERVED_ATTRIBUTES = [
-  'data-aue-prop',
-  'data-aue-model',
-  'data-aue-label',
-  'data-aue-resource'
-];
-
 async function applyChanges(event) {
   // redecorate default content and blocks on patches (in the properties rail)
   const { detail } = event;
@@ -111,11 +104,3 @@ function attachEventListners(main) {
 }
 
 attachEventListners(document.querySelector('main'));
-
-export function initializeEditor(config = {}) {
-  return {
-    // ... other config ...
-    preserveAttributes: PRESERVED_ATTRIBUTES,
-    // ... rest of config ...
-  };
-}

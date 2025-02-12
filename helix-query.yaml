@@ -14,7 +14,13 @@ indices:
       robots:
         select: head > meta[name="robots"]
         value: attribute(el, "content")
+    # Add data attribute preservation configuration
+    preserve:
       attributes:
-        - data-aue-prop
-        - data-aue-model
-        - data-aue-label
+        - "data-*"
+        - "data-aue-*"
+        - "data-richtext-*"
+        - "class"
+    # Enable data attribute preservation in publish
+    publish:
+      preserveDataAttributes: true
