@@ -31,6 +31,7 @@
       "tiles",
       "textsection",
       "textmediablock",
+      "projectslist",
       "statisticsSection",
       "statistics",
       "statisticsDescription"
@@ -66,7 +67,8 @@
       "tiles",
       "textsection",
       "textmediablock",
-      "linkField"
+      "linkField",
+      "projectslist"
     ]
   },
   {
@@ -138,6 +140,12 @@
     "components": [
       "media",
       "textsection"
+    ]
+  },
+  {
+    "id": "projectslist",
+    "components": [
+      "projectslistitem"
     ]
   },
   {

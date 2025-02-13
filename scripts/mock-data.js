@@ -242,7 +242,7 @@ drive sustainable growth and transformative impact through world-class integrate
       >
         <p>
           We leverage our prime location and regulatory strength for financial
-          stability – with a record of strong and consistent revenue generation
+          stability with a record of strong and consistent revenue generation
           positioning us for sustainable growth.
         </p>
       </div>
@@ -1615,6 +1615,138 @@ drive sustainable growth and transformative impact through world-class integrate
             </div>
           </div>
         </div>
+      </div>
+    </div>
+  </div>
+</div>
+`,
+  projectslist: `<div class="projectslist-wrapper">
+  <div
+    data-aue-resource="urn:aemconnection:/content/genting-singapore/index/projects-page-blocks/projects-rws-2-0/jcr:content/root/section/block"
+    data-aue-type="container"
+    data-aue-behavior="component"
+    data-aue-model="projectslist"
+    data-aue-label="projectslist"
+    data-aue-filter="projectslist"
+    class="projectslist block"
+    data-block-name="projectslist"
+    data-block-status="loaded"
+  >
+    <div
+      data-aue-resource="urn:aemconnection:/content/genting-singapore/index/projects-page-blocks/projects-rws-2-0/jcr:content/root/section/block/item"
+      data-aue-type="component"
+      data-aue-model="projectslistitem"
+      data-aue-label="projectslistitem"
+    >
+      <div>
+        <p data-aue-prop="title" data-aue-label="Title" data-aue-type="text">
+          Illumination’s Minion Land
+        </p>
+      </div>
+
+      <div>
+        <p
+          data-aue-prop="subtitle"
+          data-aue-label="Subtitle"
+          data-aue-type="text"
+        >
+          at Universal Studios Singapore&nbsp;
+        </p>
+      </div>
+
+      <div>
+        <div
+          data-aue-prop="longdescription"
+          data-aue-label="Long Description"
+          data-aue-filter="text"
+          data-aue-type="richtext"
+        >
+          <p>
+            Illumination’s Minion Land will transport guests in Southeast Asia
+            into an immersive, new land inspired by Illumination’s beloved
+            Despicable Me and Minions franchise. The highly anticipated land
+            will feature multiple rides, including Despicable Me Minion Mayhem
+            and an all-new carousel exclusive to Universal Studios Singapore,
+            Buggie Boogie, which features dance music remixed by the Minions, as
+            well as a variety of themed retail and dining experiences.
+          </p>
+        </div>
+      </div>
+
+      <div>
+        <p
+          data-aue-prop="shortdescription"
+          data-aue-label="Short Description"
+          data-aue-type="text"
+        >
+          Soft open: 1Q 2025 (Feb 2025)
+        </p>
+      </div>
+
+      <div>
+        <p>
+          <a
+            href="https://author-p144202-e1488374.adobeaemcloud.com/content/dam/genting-singapore/projectslist/projects-rws2/prj1.png"
+            title="https://author-p144202-e1488374.adobeaemcloud.com/content/dam/genting-singapore/projectslist/projects-rws2/prj1.png"
+            >https://author-p144202-e1488374.adobeaemcloud.com/content/dam/genting-singapore/projectslist/projects-rws2/prj1.png</a
+          >
+        </p>
+      </div>
+    </div>
+    <div
+      data-aue-resource="urn:aemconnection:/content/genting-singapore/index/projects-page-blocks/projects-rws-2-0/jcr:content/root/section/block/item_1526925826"
+      data-aue-type="component"
+      data-aue-model="projectslistitem"
+      data-aue-label="projectslistitem"
+    >
+      <div>
+        <p data-aue-prop="title" data-aue-label="Title" data-aue-type="text">
+          Singapore Oceanarium
+        </p>
+      </div>
+
+      <div></div>
+
+      <div>
+        <div
+          data-aue-prop="longdescription"
+          data-aue-label="Long Description"
+          data-aue-filter="text"
+          data-aue-type="richtext"
+        >
+          <p>
+            Singapore's new Oceanarium (SGO), a first-class institution that
+            champions marine education and protection of our environment, will
+            be three times larger than the current S.E.A. Aquarium. It will
+            provide a cutting-edge, immersive experience showcasing ocean
+            evolution, fascinating oceanic zones such as the largely unexplored
+            deep ocean, as well as unique representations of Singapore’s coastal
+            ecosystems. A carbon-neutral Research and Learning Centre will offer
+            advanced facilities for research, education, and community outreach,
+            fostering marine science innovation and inspiring ocean
+            conservation.
+          </p>
+        </div>
+      </div>
+
+      <div>
+        <p
+          data-aue-prop="shortdescription"
+          data-aue-label="Short Description"
+          data-aue-type="text"
+        >
+          Soft open: 1H 2025
+        </p>
+      </div>
+
+      <div>
+        <p>
+          <a
+            href="https://author-p144202-e1488374.adobeaemcloud.com/content/dam/genting-singapore/projectslist/projects-rws2/prj2.png"
+            title="https://author-p144202-e1488374.adobeaemcloud.com/content/dam/genting-singapore/projectslist/projects-rws2/prj2.png"
+            >https://author-p144202-e1488374.adobeaemcloud.com/content/dam/genting-singapore/projectslist/projects-rws2/prj2.png</a
+          >
+        </p>
       </div>
     </div>
   </div>

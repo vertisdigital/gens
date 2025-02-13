@@ -978,6 +978,56 @@
     ]
   },
   {
+    "id": "projectslistitem",
+    "fields": [
+      {
+        "component": "text",
+        "name": "title",
+        "label": "Title",
+        "required": true,
+        "validation": {
+          "maxLength": 100,
+          "customErrorMsg": "Title cannot exceed 100 characters"
+        }
+      },
+      {
+        "component": "text",
+        "name": "subtitle",
+        "label": "Subtitle",
+        "validation": {
+          "maxLength": 100,
+          "customErrorMsg": "Subtitle cannot exceed 100 characters"
+        }
+      },
+      {
+        "component": "text",
+        "name": "longdescription",
+        "label": "Long Description",
+        "valueType": "string",
+        "validation": {
+          "maxLength": 250,
+          "customErrorMsg": "Long description cannot exceed 250 characters"
+        }
+      },
+      {
+        "component": "text",
+        "name": "shortdescription",
+        "label": "Short Description",
+        "validation": {
+          "maxLength": 100,
+          "customErrorMsg": "Short description cannot exceed 100 characters"
+        }
+      },
+      {
+        "component": "custom-asset-namespace:custom-asset",
+        "name": "image",
+        "label": "Image",
+        "configUrl": "https://main--genting--wppopen.aem.page/tools/assets-selector/config.json",
+        "multi": false
+      }
+    ]
+  },
+  {
     "id": "statistics",
     "fields": [
       {
