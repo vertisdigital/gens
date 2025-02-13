@@ -740,14 +740,14 @@ header .header{
 
 .header-inner-wrapper .secondary-nav .secondary-header .secondary-header-wrapper a::after{
   margin-left: 48px;
-  margin-top: 5px;
+  margin-top: 4px;
   color: var(--primary-gold);
 }
 .header-inner-wrapper .secondary-nav .secondary-header .secondary-header-wrapper a:hover::after {
   content: '🡢';
-  width: 18px;
-  height: 18px;
-  text-decoration: none!important;
+  font-size: 24px;
+  position: absolute;
+  text-decoration: none !important;
 }
 
 /* .secondary-nav .secondary-header .secondary-header-wrapper a:hover::after{
