@@ -5,8 +5,9 @@ import { loadCSS } from './aem.js';
  * @param {Element} main The container element
  */
 export default function processTabs(main, moveInstrumentation) {
+  // Update selector to handle both tabs and section models that have tab titles
   const sections = [
-    ...main.querySelectorAll('[data-aue-model="tabs"]:not(.section-metadata)'),
+    ...main.querySelectorAll('[data-aue-model="tabs"], [data-aue-model="section"][data-tabtitle]'),
   ];
   if (sections.length === 0) return;
  
@@ -44,6 +45,12 @@ export default function processTabs(main, moveInstrumentation) {
   const tabsWrapper = document.createElement('div');
   tabsWrapper.classList.add('tabs-container', 'block');
   tabsWrapper.dataset.blockName = 'tabs';
+  // Preserve AEM authoring attributes
+  tabsWrapper.dataset.aueType = 'container';
+  tabsWrapper.dataset.aueBehavior = 'component';
+  tabsWrapper.dataset.aueModel = 'tabs';
+  tabsWrapper.dataset.aueLabel = 'tabs';
+  tabsWrapper.dataset.aueFilter = 'tabs';
  
   const tabsNav = document.createElement('div');
   tabsNav.classList.add('tabs-header', 'row');
@@ -52,9 +59,11 @@ export default function processTabs(main, moveInstrumentation) {
   tabsContent.classList.add('tabs-content');
  
   sections.forEach((section, index) => {
-    const metadata = section.querySelector('.section-metadata > div :last-child');
-    const tabTitle = metadata ? metadata.textContent.trim() : `Tab ${index + 1}`;
- 
+    // Get tab title from data-tabtitle attribute or metadata
+    const tabTitle = section.dataset.tabtitle || 
+                    section.querySelector('.section-metadata > div :last-child')?.textContent?.trim() || 
+                    `Tab ${index + 1}`;
+
     const tabButton = document.createElement('div');
     tabButton.classList.add('tab-title', 'col-xl-6', 'col-lg-6', 'col-md-3', 'col-sm-2');
     tabButton.dataset.index = index;
@@ -62,50 +71,39 @@ export default function processTabs(main, moveInstrumentation) {
  
     const tabPanel = document.createElement('div');
     tabPanel.classList.add('tab-panel');
-    moveInstrumentation(section, tabPanel);
+    // Preserve original section attributes
+    Array.from(section.attributes).forEach(attr => {
+      if (!['class', 'style'].includes(attr.name)) {
+        tabPanel.setAttribute(attr.name, attr.value);
+      }
+    });
  
-    // Set initial active state for first tab
+    // Set initial active state
     if (index === 0) {
       tabButton.classList.add('active');
       tabPanel.classList.add('active');
     }
  
-    // Process blocks in the section
-    const blocks = section.querySelectorAll('div[class]');
+    // Process blocks while preserving AEM authoring structure
+    const blocks = section.querySelectorAll('[data-aue-model]');
     blocks.forEach(block => {
-      const classes = Array.from(block.classList);
-      classes.forEach(className => {
-        if (!className.includes('section-metadata') &&
-            !className.startsWith('tabs-') &&
-            !className.startsWith('col-')) {
-          // Create a new block element
-          const newBlock = document.createElement('div');
-          newBlock.classList.add(className, 'block');
-          newBlock.dataset.blockName = className;
-         
-          // Copy content and attributes
-          newBlock.innerHTML = block.innerHTML;
-          Array.from(block.attributes).forEach(attr => {
-            if (!attr.name.startsWith('class')) {
-              newBlock.setAttribute(attr.name, attr.value);
-            }
-          });
-         
-          // Replace original block with new one
-          block.replaceWith(newBlock);
-         
-          // If this is in the first tab, load the block immediately
-          if (index === 0) {
-            loadBlock(newBlock);
+      if (!block.classList.contains('section-metadata')) {
+        const blockWrapper = document.createElement('div');
+        blockWrapper.className = block.className;
+        // Preserve all data attributes
+        Array.from(block.attributes).forEach(attr => {
+          if (attr.name.startsWith('data-')) {
+            blockWrapper.setAttribute(attr.name, attr.value);
           }
+        });
+        
+        blockWrapper.innerHTML = block.innerHTML;
+        tabPanel.appendChild(blockWrapper);
+
+        // Load block if in first tab
+        if (index === 0 && block.dataset.blockName) {
+          loadBlock(blockWrapper);
         }
-      });
-    });
- 
-    // Move content to panel
-    Array.from(section.children).forEach(child => {
-      if (!child.classList?.contains('section-metadata')) {
-        tabPanel.appendChild(child);
       }
     });
  
