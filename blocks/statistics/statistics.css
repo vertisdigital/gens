@@ -1,64 +1,66 @@
-.statistics  .statistics-row{
-  padding-bottom: 50px;
-  border: 1px solid var(--text-color);
+.statistics .statistics-row {
+    padding-bottom: 50px;
+    border: 1px solid var(--text-color);
 }
-.statistics  .statistics-description-wrapper{
-  padding: 50px 0;
-}
-.statistics  .statistics-description-wrapper h3{
-  font-size: 40px;
-  font-weight: 500;
-  line-height: 50px; 
-  color: var(--text-color); 
-}
+
 .statistics-description-wrapper {
-  font-size: 16px;
-  font-weight: 400;
-  line-height: 24px;
-  color: var(--body-text-color);
-}
-.statistics-description-wrapper .hide{
-  display: none;
-}
-.statistics-description-wrapper button{
-  display: block;
-  font-size: 16px;
-  font-weight: 700;
-  line-height: 24px;
-  text-decoration-line: underline;
-  color:var(--primary-gold);
-  margin-left: auto;
-  background: none;
-}
-.statistics-description-wrapper button.hide{
-  display: none;
-}
-.statistics  .statistic-item {
-  font-size: 80px;
-  font-weight: 400;
-  line-height: 80px; 
-  color: var(--primary-gold);
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 24px;
+    color: var(--body-text-color);
+    padding: 50px 0;
 }
 
-.statistics  .text-container{
-  font-size: 16px;
-  font-weight: 400;
-  line-height: 24px; 
-  color: var(--body-text-color);
+.statistics-description-wrapper .hide {
+    display: none;
 }
 
-@media(width<=992px){
-
-  .statistics  .statistic-item{
-    font-size: 64px;
-    line-height: 64px; 
-  }
-
+.statistics-description-wrapper button {
+    display: block;
+    font-size: 16px;
+    font-weight: 700;
+    line-height: 24px;
+    text-decoration-line: underline;
+    color: var(--primary-gold);
+    margin-left: auto;
+    background: none;
 }
 
-@media(width<768px){
-  .statistics  .statistic-item{
-    font-size: 48px;
-    line-height: 48px; 
-  }
+.statistics-description-wrapper button.hide {
+    display: none;
+}
+
+.statistics .statistics-description-wrapper h3 {
+    font-size: 40px;
+    font-weight: 500;
+    line-height: 50px;
+    color: var(--text-color);
+}
+
+.statistics .statistic-item {
+    font-size: 80px;
+    font-weight: 400;
+    line-height: 80px;
+    color: var(--primary-gold);
+}
+
+.statistics .text-container {
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 24px;
+    color: var(--body-text-color);
+}
+
+@media (width<=992px) {
+    .statistics .statistic-item {
+        font-size: 64px;
+        line-height: 64px;
+    }
+}
+
+@media (width<768px) {
+    .statistics .statistic-item {
+        font-size: 48px;
+        line-height: 48px;
+    }
 }

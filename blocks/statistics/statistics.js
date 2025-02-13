@@ -42,12 +42,12 @@ export default function decorate(block) {
   });
 
   block.appendChild(featureContainer);
-  
+
   // processing the statistics description block
   const statisticBlockDescription = block.querySelector(
     '[data-aue-model="statisticsDescription"]',
   );
-  
+
   if (statisticBlockDescription) {
     statisticBlockDescription.classList.add('statistics-description-wrapper');
     // replacing the title with  h2
@@ -83,7 +83,7 @@ export default function decorate(block) {
 
       readMoreElement.setAttribute('data-aue-prop', 'readMoreLabel');
       readMoreElement.textContent = statisticBlockDescription.readMoreContent?.textContent ?? 'Read More';
-     
+
       // removing the readMoreContent
       readMoreContent.remove();
 
@@ -117,7 +117,7 @@ export default function decorate(block) {
       statisticBlockDescription.appendChild(readLessElement);
     }
 
-      block.appendChild(statisticBlockDescription);
-      block.classList.add('container-xl','container-lg', 'container-md', 'container-sm');
-    }
+    block.appendChild(statisticBlockDescription);
+    block.classList.add('container-xl', 'container-lg', 'container-md', 'container-sm');
   }
+}
