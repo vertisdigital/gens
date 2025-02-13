@@ -62,55 +62,58 @@ export default function decorate(block) {
     subHeading.remove();
   }
 
-  // Find the LinkField and replace it with arrow icon
-  const linkField = block.querySelector('[data-aue-model="linkField"]');
-  if (linkField) {
-    // Preserve original container
-    const linkContainer = document.createElement('div');
-    moveInstrumentation(linkField, linkContainer);
+  // Find all LinkFields and replace with arrow icons
+  const linkFields = block.querySelectorAll('[data-aue-model="linkField"]');
+  if (linkFields.length) {
+    const linksContainer = document.createElement('div');
+    linksContainer.className = 'links-container';
+    //moveInstrumentation(linkFields[0].parentElement, linksContainer);
 
-    // Create link text div
-    const linkTextDiv = document.createElement('div');
-    const linkTextP = document.createElement('p');
-    linkTextP.className = 'button-container';
+    linkFields.forEach(linkField => {
+      // Create container for each link
+      const linkContainer = document.createElement('div');
+      moveInstrumentation(linkField, linkContainer);
 
-    // Handle link text
-    const originalLink = linkField.querySelector('[data-aue-prop="linkText"]');
-    const originalTarget = linkField.querySelector('[data-aue-prop="linkTarget"]');
+      // Create link text div
+      const linkTextDiv = document.createElement('div');
+      const linkTextP = document.createElement('p');
+      linkTextP.className = 'button-container';
 
-    if (originalTarget) {
-      const originalTargetName = originalTarget.textContent;
-      originalLink.setAttribute('target', originalTargetName);
-      originalLink.innerHTML = '';
-      originalTarget.innerHTML = '';
-    }
+      // Handle link text and target
+      const originalLink = linkField.querySelector('[data-aue-prop="linkText"]');
+      const originalTarget = linkField.querySelector('[data-aue-prop="linkTarget"]');
 
-    if (originalLink) {
-      const linkElement = document.createElement('a');
+      if (originalTarget) {
+        const originalTargetName = originalTarget.textContent;
+        originalLink.setAttribute('target', originalTargetName);
+        originalLink.innerHTML = '';
+        originalTarget.innerHTML = '';
+      }
 
-      // Copy all attributes from original link
-      moveInstrumentation(originalLink, linkElement);
+      if (originalLink) {
+        const linkElement = document.createElement('a');
+        moveInstrumentation(originalLink, linkElement);
+        linkElement.className = 'button';
 
-      // Set additional attributes
-      linkElement.className = 'button';
-
-      const arrowIcon = linkField.querySelector('[data-aue-prop="linkSvgIcon"]');
-
-      const arrowIconName = arrowIcon.textContent.replace('-', '');
-      arrowIcon.innerHTML = '';
-      if (!arrowIcon) {
-        linkElement.textContent = originalLink.textContent;
-      } else {
-        const arrowSVG = SvgIcon({ name: `${arrowIconName}`, className: 'about-us-left-link', size: '16px' });
-        linkElement.append(stringToHTML(arrowSVG));
+        const arrowIcon = linkField.querySelector('[data-aue-prop="linkSvgIcon"]');
+        if (arrowIcon) {
+          const arrowIconName = arrowIcon.textContent.replace('-', '');
+          arrowIcon.innerHTML = '';
+          const arrowSVG = SvgIcon({ name: `${arrowIconName}`, className: 'about-us-left-link', size: '16px' });
+          linkElement.append(stringToHTML(arrowSVG));
+        } else {
+          linkElement.textContent = originalLink.textContent;
+        }
 
         // Assemble link structure
         linkTextP.appendChild(linkElement);
         linkTextDiv.appendChild(linkTextP);
         linkContainer.appendChild(linkTextDiv);
       }
-    }
-    aboutUsLeftContent.appendChild(linkContainer);
+      linksContainer.appendChild(linkContainer);
+    });
+    
+    aboutUsLeftContent.appendChild(linksContainer);
   }
 
     // About-Us right container
