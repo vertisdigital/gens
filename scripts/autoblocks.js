@@ -1,190 +1,153 @@
 import { loadCSS } from './aem.js';
-
+ 
 /**
- * Process all the tab auto blocks with enhanced accessibility and error handling
+ * Process all the tab auto blocks
  * @param {Element} main The container element
- * @param {Function} moveInstrumentation Function to move instrumentation
  */
-export default async function processTabs(main, moveInstrumentation) {
-  // Early return if no tab sections found
-  const sections = [...main.querySelectorAll('[data-aue-model="tabs"]:not(.section-metadata)')];
+export default function processTabs(main, moveInstrumentation) {
+  const sections = [
+    ...main.querySelectorAll('[data-aue-model="tabs"]:not(.section-metadata)'),
+  ];
   if (sections.length === 0) return;
-
-  /**
-   * Loads block CSS and JS with enhanced error handling
-   * @param {Element} block The block element to load resources for
-   */
+ 
+  // Function to load block CSS and JS
   async function loadBlock(block) {
     const blockName = block.dataset.blockName;
     if (!blockName) return;
-
+ 
     try {
+      // Load block CSS
       const cssPath = `${window.hlx.codeBasePath}/blocks/${blockName}/${blockName}.css`;
       await loadCSS(cssPath);
-
+ 
+      // Load block JS
       const jsPath = `${window.hlx.codeBasePath}/blocks/${blockName}/${blockName}.js`;
-      const module = await import(jsPath);
-      if (module.default) {
-        await module.default(block);
+      try {
+        const module = await import(jsPath);
+        if (module.default) {
+          module.default(block);
+        }
+      } catch (error) {
+        // JS file might not exist, which is ok
+        console.debug(`No JS module for block ${blockName}`);
       }
     } catch (error) {
-      // Only log JS loading errors as errors, CSS/module may not exist
-      if (error.message.includes('.js')) {
-        console.error(`Error loading block ${blockName}:`, error);
-      } else {
-        console.debug(`No resources found for block ${blockName}`);
-      }
+      console.error(`Error loading block ${blockName}:`, error);
     }
   }
-
-  // Create container following proper grid hierarchy
+ 
   const topContainer = document.createElement('div');
-  topContainer.className = 'container-xl';
+  topContainer.classList = 'container-xl container-lg container-md container-sm';
+  //moveInstrumentation(section, topContainer);
 
-  const row = document.createElement('div');
-  row.className = 'row';
-  topContainer.appendChild(row);
-
+ 
   const tabsWrapper = document.createElement('div');
-  tabsWrapper.className = 'col-12';
-  tabsWrapper.setAttribute('role', 'tablist');
-  row.appendChild(tabsWrapper);
-
+  tabsWrapper.classList.add('tabs-container', 'block');
+  tabsWrapper.dataset.blockName = 'tabs';
+ 
   const tabsNav = document.createElement('div');
-  tabsNav.className = 'tabs-header row';
-  
+  tabsNav.classList.add('tabs-header', 'row');
+ 
   const tabsContent = document.createElement('div');
-  tabsContent.className = 'tabs-content';
-
-  // Process each tab section
+  tabsContent.classList.add('tabs-content');
+ 
   sections.forEach((section, index) => {
     const metadata = section.querySelector('.section-metadata > div :last-child');
-    const tabTitle = metadata?.textContent.trim() || `Tab ${index + 1}`;
-    const tabId = `tab-${index}`;
-    const panelId = `panel-${index}`;
-
-    // Create accessible tab button
-    const tabButton = document.createElement('button');
-    tabButton.className = 'tab-title col-md-3 col-sm-6';
-    tabButton.setAttribute('role', 'tab');
-    tabButton.setAttribute('aria-selected', index === 0 ? 'true' : 'false');
-    tabButton.setAttribute('aria-controls', panelId);
-    tabButton.id = tabId;
+    const tabTitle = metadata ? metadata.textContent.trim() : `Tab ${index + 1}`;
+ 
+    const tabButton = document.createElement('div');
+    tabButton.classList.add('tab-title', 'col-xl-6', 'col-lg-6', 'col-md-3', 'col-sm-2');
+    tabButton.dataset.index = index;
     tabButton.textContent = tabTitle;
-
-    // Create accessible tab panel
+ 
     const tabPanel = document.createElement('div');
-    tabPanel.className = 'tab-panel';
-    tabPanel.setAttribute('role', 'tabpanel');
-    tabPanel.setAttribute('aria-labelledby', tabId);
-    tabPanel.id = panelId;
-    tabPanel.hidden = index !== 0;
-
+    tabPanel.classList.add('tab-panel');
     moveInstrumentation(section, tabPanel);
-
-    // Process blocks within the section
+ 
+    // Set initial active state for first tab
+    if (index === 0) {
+      tabButton.classList.add('active');
+      tabPanel.classList.add('active');
+    }
+ 
+    // Process blocks in the section
     const blocks = section.querySelectorAll('div[class]');
     blocks.forEach(block => {
-      const blockClasses = Array.from(block.classList)
-        .filter(cls => !cls.includes('section-metadata') && 
-                      !cls.startsWith('tabs-') && 
-                      !cls.startsWith('col-'));
-
-      if (blockClasses.length) {
-        const newBlock = document.createElement('div');
-        newBlock.className = `${blockClasses[0]} block`;
-        newBlock.dataset.blockName = blockClasses[0];
-        
-        // Copy content and non-class attributes
-        newBlock.innerHTML = block.innerHTML;
-        Array.from(block.attributes)
-          .filter(attr => !attr.name.startsWith('class'))
-          .forEach(attr => newBlock.setAttribute(attr.name, attr.value));
-        
-        block.replaceWith(newBlock);
-        
-        if (index === 0) {
-          loadBlock(newBlock);
+      const classes = Array.from(block.classList);
+      classes.forEach(className => {
+        if (!className.includes('section-metadata') &&
+            !className.startsWith('tabs-') &&
+            !className.startsWith('col-')) {
+          // Create a new block element
+          const newBlock = document.createElement('div');
+          newBlock.classList.add(className, 'block');
+          newBlock.dataset.blockName = className;
+         
+          // Copy content and attributes
+          newBlock.innerHTML = block.innerHTML;
+          Array.from(block.attributes).forEach(attr => {
+            if (!attr.name.startsWith('class')) {
+              newBlock.setAttribute(attr.name, attr.value);
+            }
+          });
+         
+          // Replace original block with new one
+          block.replaceWith(newBlock);
+         
+          // If this is in the first tab, load the block immediately
+          if (index === 0) {
+            loadBlock(newBlock);
+          }
         }
+      });
+    });
+ 
+    // Move content to panel
+    Array.from(section.children).forEach(child => {
+      if (!child.classList?.contains('section-metadata')) {
+        tabPanel.appendChild(child);
       }
     });
-
-    // Move non-metadata content to panel
-    Array.from(section.children)
-      .filter(child => !child.classList?.contains('section-metadata'))
-      .forEach(child => tabPanel.appendChild(child));
-
+ 
     tabsNav.appendChild(tabButton);
     tabsContent.appendChild(tabPanel);
   });
-
-  // Clean up and build structure
+ 
+  // Remove original sections
   sections.forEach(section => section.remove());
-  tabsWrapper.append(tabsNav, tabsContent);
+ 
+  // Build structure
+  tabsWrapper.appendChild(tabsNav);
+  tabsWrapper.appendChild(tabsContent);
+  topContainer.appendChild(tabsWrapper);
   main.appendChild(topContainer);
-
-  // Handle tab switching with keyboard support
-  tabsNav.addEventListener('click', handleTabClick);
-  tabsNav.addEventListener('keydown', handleTabKeyboard);
-}
-
-/**
- * Handle tab click events
- * @param {Event} event Click event
- */
-async function handleTabClick(event) {
-  const tabButton = event.target.closest('[role="tab"]');
-  if (!tabButton) return;
-  
-  await switchToTab(tabButton);
-}
-
-/**
- * Handle keyboard navigation for tabs
- * @param {KeyboardEvent} event Keyboard event
- */
-function handleTabKeyboard(event) {
-  const targetTab = event.target.closest('[role="tab"]');
-  if (!targetTab) return;
-
-  const tabs = [...targetTab.parentElement.querySelectorAll('[role="tab"]')];
-  const index = tabs.indexOf(targetTab);
-
-  let newTab;
-  switch (event.key) {
-    case 'ArrowLeft':
-      newTab = tabs[index - 1] || tabs[tabs.length - 1];
-      break;
-    case 'ArrowRight':
-      newTab = tabs[index + 1] || tabs[0];
-      break;
-    default:
-      return;
-  }
-
-  event.preventDefault();
-  newTab.focus();
-  switchToTab(newTab);
-}
-
-/**
- * Switch to the specified tab
- * @param {Element} newTab The tab to switch to
- */
-async function switchToTab(newTab) {
-  const wrapper = newTab.closest('[role="tablist"]');
-  const oldTab = wrapper.querySelector('[aria-selected="true"]');
-  
-  if (oldTab) {
-    oldTab.setAttribute('aria-selected', 'false');
-    document.getElementById(oldTab.getAttribute('aria-controls')).hidden = true;
-  }
-
-  newTab.setAttribute('aria-selected', 'true');
-  const newPanel = document.getElementById(newTab.getAttribute('aria-controls'));
-  newPanel.hidden = false;
-
-  // Load blocks in newly visible panel
-  const blocks = newPanel.querySelectorAll('[data-block-name]');
-  await Promise.all([...blocks].map(block => loadBlock(block)));
+ 
+  // Handle tab switching
+  tabsNav.addEventListener('click', async (event) => {
+    const tabButton = event.target.closest('.tab-title');
+    if (!tabButton) return;
+ 
+    const index = parseInt(tabButton.dataset.index, 10);
+    if (Number.isNaN(index)) return;
+ 
+    // Update tabs
+    tabsWrapper.querySelectorAll('.tab-title').forEach(btn => {
+      btn.classList.remove('active');
+    });
+    tabButton.classList.add('active');
+ 
+    // Update panels
+    tabsWrapper.querySelectorAll('.tab-panel').forEach(panel => {
+      panel.classList.remove('active');
+    });
+   
+    const activePanel = tabsContent.children[index];
+    if (activePanel) {
+      activePanel.classList.add('active');
+     
+      // Load blocks in the newly active panel if not already loaded
+      const blocks = activePanel.querySelectorAll('[data-block-name]');
+      await Promise.all(Array.from(blocks).map(block => loadBlock(block)));
+    }
+  });
 }
