@@ -67,9 +67,9 @@ export default function decorate(block) {
     }
 
     // adding class  statistics-description to description
-    const descriptionChildren = statisticBlockDescription.querySelectorAll(
+    const descriptionChildren = statisticBlockDescription.querySelector(
       '[data-aue-prop="description"]',
-    );
+    )?.children;
     if (descriptionChildren?.length > 1) {
       for (let i = 1; i < descriptionChildren.length; i += 1) {
         descriptionChildren[i].classList.add('hide');
