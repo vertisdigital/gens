@@ -734,13 +734,13 @@
         }
       },
       {
-        "component": "richtext",
+        "component": "text",
         "name": "description",
         "label": "Description",
         "valueType": "string",
         "validation": {
-          "maxSize": 250,
-          "customErrorMsg": "Description cannot exceed 250 characters"
+          "maxLength": 500,
+          "customErrorMsg": "Description cannot exceed 500 characters"
         }
       },
       {
