@@ -48,6 +48,13 @@ export default function processTabs(main, moveInstrumentation) {
   const tabsNav = document.createElement('div');
   tabsNav.classList.add('tabs-header', 'row');
  
+  // Create tab0 and tab1 containers
+  const tab0 = document.createElement('div');
+  tab0.classList.add('tab0');
+  const tab1 = document.createElement('div');
+  tab1.classList.add('tab1');
+ 
+  // Create tabs-content container
   const tabsContent = document.createElement('div');
   tabsContent.classList.add('tabs-content');
  
@@ -60,15 +67,11 @@ export default function processTabs(main, moveInstrumentation) {
     tabButton.dataset.index = index;
     tabButton.textContent = tabTitle;
  
-    const tabPanel = document.createElement('div');
-    tabPanel.classList.add('tab-panel');
-    moveInstrumentation(section, tabPanel);
- 
-    // Set initial active state for first tab
-    if (index === 0) {
-      tabButton.classList.add('active');
-      tabPanel.classList.add('active');
-    }
+    // Create panel in original tab container
+    const originalPanel = document.createElement('div');
+    originalPanel.classList.add('tab-panel');
+    originalPanel.dataset.tabIndex = index;
+    moveInstrumentation(section, originalPanel);
  
     // Process blocks in the section
     const blocks = section.querySelectorAll('div[class]');
@@ -78,23 +81,18 @@ export default function processTabs(main, moveInstrumentation) {
         if (!className.includes('section-metadata') &&
             !className.startsWith('tabs-') &&
             !className.startsWith('col-')) {
-          // Create a new block element
           const newBlock = document.createElement('div');
           newBlock.classList.add(className, 'block');
           newBlock.dataset.blockName = className;
-         
-          // Copy content and attributes
+          
+          // Copy content and all attributes
           newBlock.innerHTML = block.innerHTML;
           Array.from(block.attributes).forEach(attr => {
-            if (!attr.name.startsWith('class')) {
-              newBlock.setAttribute(attr.name, attr.value);
-            }
+            newBlock.setAttribute(attr.name, attr.value);
           });
-         
-          // Replace original block with new one
+          
           block.replaceWith(newBlock);
-         
-          // If this is in the first tab, load the block immediately
+          
           if (index === 0) {
             loadBlock(newBlock);
           }
@@ -102,15 +100,22 @@ export default function processTabs(main, moveInstrumentation) {
       });
     });
  
-    // Move content to panel
+    // Move content to original panel
     Array.from(section.children).forEach(child => {
       if (!child.classList?.contains('section-metadata')) {
-        tabPanel.appendChild(child);
+        originalPanel.appendChild(child);
       }
     });
  
+    // Add panel to appropriate tab container
+    if (index === 0) {
+      tab0.appendChild(originalPanel);
+      tabButton.classList.add('active');
+    } else {
+      tab1.appendChild(originalPanel);
+    }
+ 
     tabsNav.appendChild(tabButton);
-    tabsContent.appendChild(tabPanel);
   });
  
   // Remove original sections
@@ -118,9 +123,13 @@ export default function processTabs(main, moveInstrumentation) {
  
   // Build structure
   tabsWrapper.appendChild(tabsNav);
+  tabsWrapper.appendChild(tab0);
+  tabsWrapper.appendChild(tab1);
   tabsWrapper.appendChild(tabsContent);
   topContainer.appendChild(tabsWrapper);
   main.appendChild(topContainer);
+ 
+  let contentCloned = false;
  
   // Handle tab switching
   tabsNav.addEventListener('click', async (event) => {
@@ -130,24 +139,33 @@ export default function processTabs(main, moveInstrumentation) {
     const index = parseInt(tabButton.dataset.index, 10);
     if (Number.isNaN(index)) return;
  
-    // Update tabs
+    // Update active tab
     tabsWrapper.querySelectorAll('.tab-title').forEach(btn => {
       btn.classList.remove('active');
     });
     tabButton.classList.add('active');
  
-    // Update panels
-    tabsWrapper.querySelectorAll('.tab-panel').forEach(panel => {
-      panel.classList.remove('active');
-    });
-   
-    const activePanel = tabsContent.children[index];
-    if (activePanel) {
-      activePanel.classList.add('active');
-     
-      // Load blocks in the newly active panel if not already loaded
-      const blocks = activePanel.querySelectorAll('[data-block-name]');
+    // Clone content to tabs-content if not already done
+    if (!contentCloned) {
+      const sourcePanel = index === 0 ? 
+        tab0.querySelector('.tab-panel') :
+        tab1.querySelector('.tab-panel');
+      
+      const clonedPanel = sourcePanel.cloneNode(true);
+      clonedPanel.classList.add('active');
+      tabsContent.appendChild(clonedPanel);
+      
+      // Load blocks in cloned panel
+      const blocks = clonedPanel.querySelectorAll('[data-block-name]');
       await Promise.all(Array.from(blocks).map(block => loadBlock(block)));
+      
+      contentCloned = true;
+    } else {
+      // Toggle visibility of panels
+      tabsContent.querySelectorAll('.tab-panel').forEach(panel => {
+        const panelIndex = parseInt(panel.dataset.tabIndex, 10);
+        panel.classList.toggle('active', panelIndex === index);
+      });
     }
   });
 }
