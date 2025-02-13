@@ -34,7 +34,7 @@ export default function decorate(block) {
       'feature-item',
     );
     featureItem
-      .querySelector('[data-richtext-prop="feature-title"]')
+      .querySelector('[data-aue-prop="feature-title"]')
       .classList.add('statistic-item');
     featureItem
       .querySelector('[data-aue-prop="feature-heading"]')
@@ -68,7 +68,7 @@ export default function decorate(block) {
 
     // adding class  statistics-description to description
     const descriptionChildren = statisticBlockDescription.querySelectorAll(
-      '[data-richtext-prop="description"]',
+      '[data-aue-prop="description"]',
     );
     if (descriptionChildren?.length > 1) {
       for (let i = 1; i < descriptionChildren.length; i += 1) {
