@@ -27,9 +27,8 @@ export default function decorate(block) {
   const titleElement = block.querySelector('[data-aue-prop="title"]');
   if (titleElement) {
     const header = document.createElement('header');
-    header.setAttribute('data-aue-label', 'Feature');
-    header.setAttribute('data-aue-model', 'featureItem');
     moveInstrumentation(titleElement, header);
+    
     const titleText = titleElement.textContent;
     const titleHtml = Heading({ level: 3, text: titleText, className: 'about-us-left-title' });
     const parsedHtml = stringToHTML(titleHtml);
@@ -162,6 +161,7 @@ export default function decorate(block) {
           const textContainer = document.createElement('div');
           const statisticDiv = document.createElement('div');
           statisticDiv.className = 'statistic';
+          moveInstrumentation(textElement, statisticDiv);
 
           const textContent = textElement.querySelectorAll('p');
           textContent.forEach((text) => {
