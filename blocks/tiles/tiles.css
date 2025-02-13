@@ -12,6 +12,7 @@
 .tiles.block > div {
   background-color: #fff;
   color: #000 !important;
+  margin-bottom: 36px;
 }
 
 .row.tiles-container > div:nth-child(n+3) {
@@ -32,6 +33,8 @@
   display: flex;
   flex-direction: column;
   justify-content: end;
+  background-size: cover;
+  width: 100%;
 }
 
 /* Image Tiles */
@@ -61,42 +64,25 @@
   font-weight: 600;
   font-size: 1rem;
   align-self: flex-end;
-  margin: 15px 0 auto;
+  margin: 20px 0 auto;
   transition: transform 0.2s ease-out;
 }
 
-.factsheet-button::after {
-  content: '↓';
-  width: 16px;
-  height: 16px;
-  margin-left: 12px;
-  font-size: 14px;
-  line-height: 1;
+.factsheet-button-arrow {
+  padding: 0px 0px 0px 13px;
+  margin-bottom: 2px;
 }
-
-.factsheet-button:hover::after {
-  transform: translateX(0.25rem);
-  text-decoration: underline!important;
-
-  /* border-bottom: 2px solid #B29152; */
-  line-height: 100%;
-} 
-
-/* .factsheet-button:hover::after {
-  transform: translateX(0.25rem);
-  border-bottom: 2px solid #B29152;
-  line-height: 100%;
-}  */
 
 .row.tiles-container>div [data-aue-prop="heading"] {
     font-size: 40px;
     font-weight: 500;
     line-height: 45px;
     max-width: 400px;
+    margin-bottom: 15px;
 }
 
 .row.tiles-container > div [data-aue-prop="description"] {
-  font-size: 19px;
+  font-size: 16px;
   font-weight: 400;
   line-height: 24px;
   color: #666
@@ -111,24 +97,29 @@
 }
 
 .row.tiles-container > .image-tile [data-aue-prop="description"] {
-  font-size: 19px;
+  font-size: 16px;
   font-weight: 400;
   line-height: 24px;
   color: #EEE;
-  margin-bottom: 2rem;
+  margin-bottom: 3rem;
 }
 
 .row.tiles-container > .image-tile [data-aue-prop="description"] p {
   margin: 0 !important;
 }
 
+.row.tiles-container > div:nth-child(3) .learn-button {
+  right: 2.75rem;
+}
+
 .learn-button {
   position: absolute;
   bottom: 1.5rem;
-  right: 2.75rem;
+  right: 1.25rem;
   text-decoration: underline !important;
   font-weight: 600;
   color: #FFF !important;
+  font-size: 16px;
 }
 
 @media screen and (width < 992px) and (width >= 768px) {
@@ -138,28 +129,28 @@
 
   .row.tiles-container > div [data-aue-prop="heading"] {
     font-size: 30px;
-    max-width: 200px;
-    line-height: 30px;
+    max-width: 250px;
+    line-height: 40px;
     font-weight: 500;
   }
 
   .row.tiles-container > .image-tile [data-aue-prop="heading"] {
-    font-size: 19px;
+    font-size: 15px;
     line-height: 19px;
     font-weight: 700;
   }
 
   .row.tiles-container > div [data-aue-prop="description"] {
-    font-size: 17px;
+    font-size: 15px;
     font-weight: 400;
     line-height: 22px;
   }
   
   .row.tiles-container > .image-tile [data-aue-prop="description"] {
-    font-size: 16px;
+    font-size: 15px;
     font-weight: 400;
     line-height: 24px;
-    margin-bottom: 1rem;
+    margin-bottom: 2.5rem;
   }
 
   .row.tiles-container > div:nth-child(odd) {
@@ -175,8 +166,12 @@
   }
 
   .learn-button {
-    bottom: 1rem;
-    right: 2.5rem;
+    bottom: 1.5rem;
+    right: 2rem !important;
+  }
+
+  .tiles.block > div {
+    margin-bottom: 24px;
   }
 }
 
@@ -199,37 +194,43 @@
   }
 
   .factsheet-button {
-    margin: 10px 0 15px !important;
+    margin: 15px 0 !important;
   }
 
   .row.tiles-container > div [data-aue-prop="heading"] {
     font-size: 30px;
-    max-width: 200px;
-    line-height: 30px;
+    max-width: 250px;
+    line-height: 40px;
     font-weight: 500;
+    margin-bottom: 10px;
   }
 
   .row.tiles-container > .image-tile [data-aue-prop="heading"] {
-    font-size: 19px;
+    font-size: 17px;
     line-height: 30px;
     font-weight: 700;
+    max-width: 100%;
   }
 
   .row.tiles-container > div [data-aue-prop="description"] {
-    font-size: 17px;
+    font-size: 16px;
     font-weight: 400;
     line-height: 22px;
   }
   
   .row.tiles-container > .image-tile [data-aue-prop="description"] {
-    font-size: 18px;
+    font-size: 17px;
     font-weight: 400;
     line-height: 24px;
-    margin-bottom: 1rem;
+    margin-bottom: 2rem;
   }
 
   .learn-button {
     bottom: 1rem;
-    right: 1.5rem;
+    right: 1.25rem !important;
+  }
+
+  .tiles.block > div {
+    margin-bottom: 24px;
   }
 }

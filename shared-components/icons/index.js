@@ -6,13 +6,13 @@ export const icons = {
   leftarrow: `<svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 14 14" fill="none">
   <path d="M5.87788 11.76L0.0400391 6.00002L5.87788 0.240021L7.24004 1.58402L2.76436 6.00002L7.24004 10.416L5.87788 11.76Z" fill="#B29152"/>
 </svg>`,
- rightarrow:`<svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 14 14" fill="none">
+  rightarrow: `<svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 14 14" fill="none">
   <path d="M4.64263 1.24001L10.4805 7.00001L4.64263 12.76L3.28047 11.416L7.75614 7.00001L3.28047 2.58401L4.64263 1.24001Z" fill="#B29152"/>
 </svg>`,
   leftarrowdisabled: `<svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 14 14" fill="none">
   <path d="M5.87788 11.76L0.0400391 6.00002L5.87788 0.240021L7.24004 1.58402L2.76436 6.00002L7.24004 10.416L5.87788 11.76Z" fill="#9E9E9E"/>
 </svg>`,
- rightarrowdisabled:`<svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 14 14" fill="none">
+  rightarrowdisabled: `<svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 14 14" fill="none">
   <path d="M4.64263 1.24001L10.4805 7.00001L4.64263 12.76L3.28047 11.416L7.75614 7.00001L3.28047 2.58401L4.64263 1.24001Z" fill="#9E9E9E"/>
 </svg>`,
   ellipse: `<svg xmlns="http://www.w3.org/2000/svg" width="6" height="6" viewBox="0 0 6 6" fill="none">
@@ -48,6 +48,10 @@ export const icons = {
     </clipPath>
   </defs>
 </svg>`,
+  downArraowWithLine: `<svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+<path d="M0 14.3158H16V16H0V14.3158ZM8.88889 9.408L14.2853 4.29474L15.5422 5.48547L8 12.6316L0.457778 5.48632L1.71467 4.29474L7.11111 9.40884V0H8.88889V9.408Z" fill="#B29152"/>
+</svg>
+`,
   // Add other icons here as needed
 };
 

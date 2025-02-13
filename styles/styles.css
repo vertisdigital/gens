@@ -56,8 +56,8 @@ Usage Example:
 
  
   /* fonts */
-  --body-font-family: 'dmSans-regular', sans-serif;
-  --heading-font-family: 'dmSans-regular', sans-serif;
+  --body-font-family: 'roboto-regular', sans-serif;
+  --heading-font-family: 'roboto-regular', sans-serif;
 
    /* body sizes */
    --body-font-size-m: 16px;
@@ -331,6 +331,10 @@ main .section.highlight {
   width: 100%;
   margin-right: auto;
   margin-left: auto;
+}
+
+.animated-cta:hover .animation-element {
+  transform: translateX(0.25rem);
 }
  
 @media (width >= 320px) {
