@@ -111,13 +111,9 @@ export default function decorate(block) {
         linkContainer.appendChild(linkTextDiv);
       }
     }
-  }
-
-    // Add to container
     aboutUsLeftContent.appendChild(linkContainer);
-    aboutUsStats.appendChild(aboutUsLeftContent);
-
-
+  }
+  
     // About-Us right container
     const aboutUsRightContent = document.createElement('div');
     aboutUsRightContent.classList.add('col-xl-6', 'col-md-3', 'col-sm-4', 'about-us-right');
