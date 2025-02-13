@@ -67,7 +67,7 @@ export default function decorate(block) {
   if (linkFields.length) {
     const linksContainer = document.createElement('div');
     linksContainer.className = 'links-container';
-    //moveInstrumentation(linkFields[0].parentElement, linksContainer);
+    moveInstrumentation(linkFields[0].parentElement, linksContainer);
 
     linkFields.forEach(linkField => {
       // Create container for each link
