@@ -110,10 +110,10 @@ export default function decorate(block) {
         linkTextDiv.appendChild(linkTextP);
         linkContainer.appendChild(linkTextDiv);
       }
-
-      // Add to container
-      aboutUsLeftContent.appendChild(linkContainer);
     }
+
+    // Add to container
+    aboutUsLeftContent.appendChild(linkContainer);
 
     // About-Us right container
     const aboutUsRightContent = document.createElement('div');
@@ -188,7 +188,6 @@ export default function decorate(block) {
         headingContainer.appendChild(featureHeadingP);
         featureContainer.appendChild(headingContainer);
       }
-
       aboutUsRightContent.appendChild(featureContainer);
     });
 
