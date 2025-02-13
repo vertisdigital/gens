@@ -60,7 +60,7 @@ export default function processTabs(main, moveInstrumentation) {
  
     const tabPanel = document.createElement('div');
     tabPanel.classList.add('tab-panel');
-    moveInstrumentation(section, tabPanel);
+      //moveInstrumentation(section, tabPanel);
  
     // Set initial active state for first tab
     if (index === 0) {
