@@ -51,13 +51,13 @@ export default function processTabs(main, moveInstrumentation) {
   // Create tab0 and tab1 containers with data blocks
   const tab0Block = document.createElement('div');
   tab0Block.classList.add('tab0-block', 'block');
-  tab0Block.dataset.blockName = 'tab0';
-  tab0Block.dataset.aueModel = 'tab0';
+  tab0Block.dataset.blockName = 'tabs';
+  tab0Block.dataset.aueModel = 'tabs';
 
   const tab1Block = document.createElement('div');
   tab1Block.classList.add('tab1-block', 'block');
-  tab1Block.dataset.blockName = 'tab1';
-  tab1Block.dataset.aueModel = 'tab1';
+  tab1Block.dataset.blockName = 'tabs';
+  tab1Block.dataset.aueModel = 'tabs';
 
   const tab0 = document.createElement('div');
   tab0.classList.add('tab0');
@@ -84,6 +84,7 @@ export default function processTabs(main, moveInstrumentation) {
     const originalPanel = document.createElement('div');
     originalPanel.classList.add('tab-panel');
     originalPanel.dataset.tabIndex = index;
+    originalPanel.dataset.blockName = 'tabs';
     moveInstrumentation(section, originalPanel);
  
     // Process blocks in the section
