@@ -120,6 +120,7 @@
 
   .projectcards .projectcards-header {
     margin-bottom: 34px;
+    padding: 0;
   }
   
   .projectcards .projectcards-title {
@@ -149,11 +150,17 @@
   }
 
   .projectcards .project-card [data-aue-prop="image"]{
-    height: 361px;
+    height: 206px;
     margin-bottom: 10px;
   }
 
  
+}
+
+@media (width <= 834px) {
+  .projectcards .project-card [data-aue-prop="image"]{
+    height: 361px;
+  }
 }
 
 @media (width <= 768px) {
@@ -196,7 +203,7 @@
     }
     
     .projectcards .project-card [data-aue-prop="image"]{
-      height: 206px;
+      /* height: 206px; */
       margin-bottom: 8px;
     }
 
@@ -220,3 +227,9 @@
    
   
 } 
+
+@media (width <= 640px) {
+  .projectcards .project-card [data-aue-prop="image"]{
+    height: 162px;
+  }
+}
