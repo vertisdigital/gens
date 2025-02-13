@@ -706,6 +706,13 @@ header .header{
 .header-inner-wrapper .header-nav .primary-nav .nav-item.active .primary-menu-links a{
   color: var(--primary-gold);
 }
+.header.fixed-header .header-inner-wrapper .header-nav .primary-nav .nav-item .primary-menu-links a:hover{
+  color: var(--primary-gold)!important;
+}
+.header.fixed-header .header-inner-wrapper .header-nav .primary-nav .nav-item.active .primary-menu-links a{
+  color: var(--primary-gold)!important;
+}
+
 
 
 
