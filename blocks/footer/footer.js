@@ -175,6 +175,7 @@ export default async function decorate(block) {
 
         // Move all links while preserving their attributes
         const links = linkSection.querySelectorAll('[data-aue-model="linkField"]');
+        if(links.length > 0){
         links.forEach((link) => {
           const linkContainer = document.createElement('div');
           linkContainer.className = link.className;
@@ -183,7 +184,7 @@ export default async function decorate(block) {
           // Get the button container and link
           const buttonContainer = link.querySelector('a');
           const anchor = buttonContainer;
-          const anchorTarget = link.querySelector('[data-aue-prop="linkTarget"]');
+          const anchorTarget = link.querySelector('[data-aue-prop="linkTarget"]') || "_self";
 
           if (anchor && anchorTarget) {
             // Create new link with title as text
@@ -200,9 +201,11 @@ export default async function decorate(block) {
 
             linkContainer.appendChild(newButtonContainer);
           }
-
+          if(linkContainer.children.length > 0){
           nav.appendChild(linkContainer);
+          }
         });
+        }
 
         navColumns[index].appendChild(nav);
       }

@@ -278,7 +278,7 @@ function initializeHeader(header) {
     if (originalLinks) {
       // Create empty secondary nav structure
       const secondaryNav = document.createElement('div');
-      secondaryNav.className = 'secondary-nav container';
+      secondaryNav.className = 'secondary-nav';
 
       // Create back button (mobile/tablet)
       const backBtn = document.createElement('button');
