@@ -34,65 +34,59 @@ export default function decorate(block) {
       'feature-item',
     );
     featureItem
-      .querySelector('[data-aue-prop="feature-title"]')
-      .classList.add('statistic');
+      .querySelector('[data-richtext-prop="feature-title"]')
+      .classList.add('statistic-item');
     featureItem
       .querySelector('[data-aue-prop="feature-heading"]')
       .classList.add('text-container');
   });
 
+  block.appendChild(featureContainer);
+  
   // processing the statistics description block
-  const statisticBlock = block.querySelector(
+  const statisticBlockDescription = block.querySelector(
     '[data-aue-model="statisticsDescription"]',
   );
-
-  // insert the feature container as first element
-  // block.insertBefore(featureContainer, statisticBlock);
-  block.appendChild(featureContainer);
-  if (statisticBlock) {
+  
+  if (statisticBlockDescription) {
+    statisticBlockDescription.classList.add('statistics-description-wrapper');
     // replacing the title with  h2
-    const titleElement = statisticBlock.querySelector(
+    const titleElement = statisticBlockDescription.querySelector(
       '[data-aue-prop="title"]',
     );
     if (titleElement) {
       const titleText = titleElement.textContent;
-      const header = document.createElement('header');
-      moveInstrumentation(titleElement, header);
       const titleHtml = Heading({
         level: 3,
         text: titleText,
         className: 'statistics-title',
       });
       const parsedHtml = stringToHTML(titleHtml);
-      header.append(parsedHtml);
-      titleElement.outerHTML = header.outerHTML;
+      moveInstrumentation(titleElement, parsedHtml);
+      titleElement.outerHTML = parsedHtml.outerHTML;
     }
 
     // adding class  statistics-description to description
-    const descriptionElement = statisticBlock.querySelector(
-      '[data-aue-prop="description"]',
+    const descriptionChildren = statisticBlockDescription.querySelectorAll(
+      '[data-richtext-prop="description"]',
     );
-    if (descriptionElement) {
-      descriptionElement.classList.add('statistics-description');
-    }
-
-    const descriptionChildren = statisticBlock.querySelector(
-      '[data-aue-prop="description"]',
-    )?.children;
-
     if (descriptionChildren?.length > 1) {
       for (let i = 1; i < descriptionChildren.length; i += 1) {
         descriptionChildren[i].classList.add('hide');
       }
 
-      const readMoreContent = statisticBlock.querySelector(
+      const readMoreContent = statisticBlockDescription.querySelector(
         '[data-aue-prop="readMoreLabel"]',
       );
       const readMoreElement = document.createElement('button');
       const readLessElement = document.createElement('button');
 
       readMoreElement.setAttribute('data-aue-prop', 'readMoreLabel');
-      readMoreElement.textContent = statisticBlock.readMoreContent?.textContent ?? 'Read More';
+      readMoreElement.textContent = statisticBlockDescription.readMoreContent?.textContent ?? 'Read More';
+     
+      // removing the readMoreContent
+      readMoreContent.remove();
+
       readMoreElement.onclick = (e) => {
         e.preventDefault();
         for (let i = 1; i < descriptionChildren.length; i += 1) {
@@ -101,15 +95,16 @@ export default function decorate(block) {
         readMoreElement.classList.add('hide');
         readLessElement.classList.remove('hide');
       };
-      statisticBlock.appendChild(readMoreElement);
-      readMoreContent.remove();
+      statisticBlockDescription.appendChild(readMoreElement);
 
-      const readLessContent = statisticBlock.querySelector(
+      const readLessContent = statisticBlockDescription.querySelector(
         '[data-aue-prop="readLessLabel"]',
       );
-      readLessElement.setAttribute('href', '#');
       readLessElement.setAttribute('data-aue-prop', 'readLessLabel');
       readLessElement.textContent = readLessContent?.textContentt ?? 'Read Less';
+      // removing the readLessContent
+      readLessContent.remove();
+
       readLessElement.classList.add('hide');
       readLessElement.onclick = (e) => {
         e.preventDefault();
@@ -119,11 +114,10 @@ export default function decorate(block) {
         readMoreElement.classList.remove('hide');
         readLessElement.classList.add('hide');
       };
-      statisticBlock.appendChild(readLessElement);
-      readLessContent.remove();
+      statisticBlockDescription.appendChild(readLessElement);
+    }
 
-      block.appendChild(statisticBlock);
+      block.appendChild(statisticBlockDescription);
       block.classList.add('container-xl','container-lg', 'container-md', 'container-sm');
     }
   }
-}

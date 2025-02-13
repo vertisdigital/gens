@@ -1,45 +1,46 @@
-.statistic-container .statistics-row{
+.statistics  .statistics-row{
   padding-bottom: 50px;
   border: 1px solid var(--text-color);
 }
-.statistic-container .statistics-description-wrapper{
+.statistics  .statistics-description-wrapper{
   padding: 50px 0;
 }
-.statistic-container .statistics-description-wrapper h3{
+.statistics  .statistics-description-wrapper h3{
   font-size: 40px;
   font-weight: 500;
   line-height: 50px; 
   color: var(--text-color); 
 }
-.statistics-description-wrapper .statistics-description{
+.statistics-description-wrapper {
   font-size: 16px;
   font-weight: 400;
   line-height: 24px;
   color: var(--body-text-color);
 }
-.statistics-description-wrapper .statistics-description .hide{
+.statistics-description-wrapper .hide{
   display: none;
 }
 .statistics-description-wrapper button{
-  display: inline-block;
+  display: block;
   font-size: 16px;
   font-weight: 700;
   line-height: 24px;
   text-decoration-line: underline;
   color:var(--primary-gold);
   margin-left: auto;
+  background: none;
 }
 .statistics-description-wrapper button.hide{
   display: none;
 }
-.statistic-container .feature-title p{
+.statistics  .statistic-item {
   font-size: 80px;
   font-weight: 400;
   line-height: 80px; 
   color: var(--primary-gold);
 }
 
-.statistic-container .text-container{
+.statistics  .text-container{
   font-size: 16px;
   font-weight: 400;
   line-height: 24px; 
@@ -48,7 +49,7 @@
 
 @media(width<=992px){
 
-  .statistic-container .feature-title p{
+  .statistics  .statistic-item{
     font-size: 64px;
     line-height: 64px; 
   }
@@ -56,7 +57,7 @@
 }
 
 @media(width<768px){
-  .statistic-container .feature-title p{
+  .statistics  .statistic-item{
     font-size: 48px;
     line-height: 48px; 
   }
