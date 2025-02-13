@@ -63,6 +63,9 @@ export default function decorate(block) {
     subHeading.remove();
   }
 
+  aboutUsStats.appendChild(aboutUsLeftContent);
+
+
   // Find the LinkField and replace it with arrow icon
   const linkField = block.querySelector('[data-aue-model="linkField"]');
   if (linkField) {
