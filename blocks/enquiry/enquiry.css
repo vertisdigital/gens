@@ -2,7 +2,7 @@
   /* Base container styles */
   width: 100%;
   padding: 80px 0;
-  background-color:  var(--whisper-grey);
+  background-color:  var(--whisper-gray);
 }
 
 /* Remove custom grid styles and rely on container classes */
