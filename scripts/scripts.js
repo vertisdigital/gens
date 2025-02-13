@@ -66,7 +66,7 @@ async function loadFonts() {
 function buildAutoBlocks(main) {
   try {
     // Process tabs first but maintain their position
-    processTabs(main, moveInstrumentation);
+    processTabs(main, moveAttributes);
    
     // Debug before processing
     console.log('Before processing - Blocks with "block" class:', main.querySelectorAll('.block').length);
