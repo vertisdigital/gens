@@ -39,6 +39,7 @@ export default function processTabs(main, moveInstrumentation) {
   sections.forEach((section) => {
     const topContainer = document.createElement('div');
     topContainer.classList = 'container-xl container-lg container-md container-sm';
+  moveInstrumentation(main, topContainer);
  
     const tabsWrapper = document.createElement('div');
     tabsWrapper.classList.add('tabs-container', 'block');
