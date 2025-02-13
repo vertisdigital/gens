@@ -15,7 +15,7 @@
     font-weight: 600;
     color: #333;
     text-align: left;
-    margin-top: 0px;
+    margin-top: 0;
   }
   
   .textsection [data-richtext-prop="description"] {
@@ -26,11 +26,11 @@
   }
   
   .textsection [data-aue-prop="description"] p {
-    margin-top: 0px;
+    margin-top: 0;
   }
   
   /* Tablet and up: Two-column layout */
-  @media (min-width: 768px) {
+  @media (width >= 768px) {
     .textsection {
       display: grid;
       grid-template-columns: 1fr 1fr;

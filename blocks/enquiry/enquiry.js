@@ -2,13 +2,11 @@ import Heading from '../../shared-components/Heading.js';
 import { createOptimizedPicture } from '../../scripts/aem.js';
 import { moveInstrumentation } from '../../scripts/scripts.js';
 
-
 export default function decorate(block) {
-
   // Restructure the HTML for better semantics and accessibility
   const wrapper = block.closest('.enquiry-wrapper');
   const enquiryResource = wrapper.querySelector('[data-aue-label="Enquiry"]');
-  
+
   moveInstrumentation(enquiryResource, wrapper);
 
   // Create single container with all responsive classes
@@ -26,15 +24,15 @@ export default function decorate(block) {
   const headingContainer = document.createElement('div');
   const headingText = wrapper.querySelector('[data-aue-prop="heading"]')?.textContent.trim();
   const headingElement = document.createElement('div');
-  
+
   if (headingText) {
     headingElement.innerHTML = Heading({
       text: headingText,
       level: 2,
       className: 'enquiry-heading',
     });
-  // Add authoring attributes to heading
-  const heading = headingElement.firstElementChild || '';
+    // Add authoring attributes to heading
+    const heading = headingElement.firstElementChild || '';
     heading.setAttribute('data-aue-prop', 'heading');
     heading.setAttribute('data-aue-label', 'Heading');
     heading.setAttribute('data-aue-type', 'text');
