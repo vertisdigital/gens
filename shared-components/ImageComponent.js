@@ -43,6 +43,7 @@ export default function ImageComponent({
               srcset="${breakpoints.desktop.src}">
       <img src="${src}" 
            alt="${alt}" 
+           title="${alt}"
            class="${className}"
            ${lazy ? 'loading="lazy"' : ''}
            />

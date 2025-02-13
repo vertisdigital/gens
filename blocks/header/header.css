@@ -281,6 +281,15 @@ header nav .nav-tools {
   grid-area: tools;
 }
 
+header .header{
+  position: relative;
+  background: transparent;
+}
+.header.fixed-header{ 
+  background-color:var(--background-color);
+  transition: all 0.2s ease-in-out;
+}
+
 /* Header Layout */
 .header-inner-wrapper .header {
   position: sticky;
@@ -334,6 +343,7 @@ header nav .nav-tools {
   opacity: 1;
   transform: translateY(0);
   position: absolute;
+  top: 100%;
   left: 0;
   background-color: var(--whisper-gray);
 }
@@ -500,22 +510,7 @@ header nav .nav-tools {
     justify-content: center;
   }
 
-  /* Primary Navigation */
-  .header-nav .primary-nav {
-    position: fixed;
-    top: var(--nav-height);
-    left: -100%;
-    width: 100%;
-    background-color: var(--background-color);
-    flex-direction: column;
-    padding: 32px;
-    transition: left 0.3s ease;
-    overflow-y: auto;
-  }
-
-  .header-inner-wrapper .header-nav .primary-nav.active {
-    left: 0;
-  }
+ 
 
   .header-inner-wrapper .nav-item {
     width: 100%;
@@ -585,12 +580,12 @@ header nav .nav-tools {
   display: none;
 }
 
-.header-inner-wrapper .fixed-header .header-nav .primary-nav .nav-item .primary-menu-links,
-.header-inner-wrapper .fixed-header .header-nav .primary-nav .nav-item .primary-menu-links a{
+.header.fixed-header .header-nav .primary-nav .nav-item .primary-menu-links,
+.header.fixed-header .header-nav .primary-nav .nav-item .primary-menu-links a{
   color: var(--background-color);
  }
 
- .header-inner-wrapper .header-nav .icon-wrapper.icon-search{
+ .header.fixed-header .header-nav .icon-wrapper.icon-search{
   width: 32px;
   height: 32px;
   color: var(--background-color)!important;
@@ -610,19 +605,19 @@ header nav .nav-tools {
   padding: 30px 0;
 }
 
-.header-inner-wrapper.fixed-header{ 
+/* .header-inner-wrapper.fixed-header{ 
   position: fixed;
   top: 0;
   background-color: white;
   transition: all 0.2s ease-in-out;
-}
+} */
 
-.header-inner-wrapper.fixed-header .primary-nav .nav-item .primary-menu-links,
-.header-inner-wrapper.fixed-header .primary-nav .nav-item .primary-menu-links a{
+.header.fixed-header .primary-nav .nav-item .primary-menu-links,
+.header.fixed-header .primary-nav .nav-item .primary-menu-links a{
   color: var(--text-color)!important;
 } 
 
-.header-inner-wrapper.fixed-header .header-nav .icon-wrapper.icon-search{
+.header.fixed-header .header-nav .icon-wrapper.icon-search{
   color: var(--text-color)!important;
 } 
 
@@ -711,6 +706,13 @@ header nav .nav-tools {
 .header-inner-wrapper .header-nav .primary-nav .nav-item.active .primary-menu-links a{
   color: var(--primary-gold);
 }
+.header.fixed-header .header-inner-wrapper .header-nav .primary-nav .nav-item .primary-menu-links:hover{
+  color: var(--primary-gold)!important;
+}
+.header.fixed-header .header-inner-wrapper .header-nav .primary-nav .nav-item.active .primary-menu-links{
+  color: var(--primary-gold)!important;
+}
+
 
 
 
@@ -738,12 +740,21 @@ header nav .nav-tools {
   color:var(--text-color);
   text-decoration-thickness: 1px;
 }
-
 .header-inner-wrapper .secondary-nav .secondary-header .secondary-header-wrapper a:hover{
   color: var(--primary-gold);
-
-  /* border-bottom: 1px solid var(--primary-gold); */
   cursor: pointer;
+}
+
+.header-inner-wrapper .secondary-nav .secondary-header .secondary-header-wrapper a::after{
+  margin-left: 48px;
+  margin-top: 4px;
+  color: var(--primary-gold);
+}
+.header-inner-wrapper .secondary-nav .secondary-header .secondary-header-wrapper a:hover::after {
+  content: '🡢';
+  font-size: 24px;
+  position: absolute;
+  text-decoration: none !important;
 }
 
 /* .secondary-nav .secondary-header .secondary-header-wrapper a:hover::after{
@@ -825,6 +836,8 @@ content: '🡢';
 
 
 @media(width<=992px){
+
+  
 .header-inner-wrapper>div:first-child{
     padding: 24px 0;
   }
@@ -845,19 +858,29 @@ content: '🡢';
     color: var(--background-color);
   }
 
-  .header-inner-wrapper.fixed-header .header-nav .hamburger{
+ .header.fixed-header .header-nav .hamburger{
     color: var(--text-color);
   }
 
-  .header-inner-wrapper.fixed-header .header-nav .hamburger.active{
+  .header.fixed-header .header-nav .hamburger.active{
     color: var(--text-color);
   }
 
   .header-inner-wrapper .header-nav .primary-nav{
+    position: absolute;
+    top: 100%;
+    left: -100%;
+    width: 100%;
+    flex-direction: column;
+    transition: left 0.3s ease;
+    overflow-y: auto;
     padding: 34px 44px;
     background-color: var(--whisper-gray);
   }
 
+  .header-inner-wrapper .header-nav .primary-nav.active {
+    left: 0;
+  }
  
 
   .header-inner-wrapper .header-nav .primary-nav .nav-item{

@@ -278,7 +278,7 @@ function initializeHeader(header) {
     if (originalLinks) {
       // Create empty secondary nav structure
       const secondaryNav = document.createElement('div');
-      secondaryNav.className = 'secondary-nav container';
+      secondaryNav.className = 'secondary-nav';
 
       // Create back button (mobile/tablet)
       const backBtn = document.createElement('button');
@@ -480,7 +480,7 @@ export default async function decorate(block) {
     initializeHeader(header);
 
     // Add optimized scroll handler
-    window.addEventListener('scroll', () => handleScroll(header), { passive: true });
+    window.addEventListener('scroll', () => handleScroll(block), { passive: true });
 
     // Ensure header starts with no fixed class
     header.classList.remove('fixed-header');

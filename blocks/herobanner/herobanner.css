@@ -25,14 +25,14 @@
   max-width: 750px;
   color: var(--background-color);
   text-shadow: 0 2px 4px rgb(0 0 0 / 30%);
-  padding-left: 157px;
+  padding-left: 0;
 }
 
 .hero-heading {
   font-weight: 400;
   color: var(--background-color);
   text-shadow: 0 2px 4px rgb(0 0 0 / 30%);
-  padding-left: 157px;
+  padding-left: 0;
 }
 
 .hero-description {
@@ -44,13 +44,13 @@
   color: var(--light-grey);
   margin: 0;
   text-shadow: 0 1px 2px rgb(0 0 0 / 30%);
-  padding-left: 157px;   
+  padding-left: 0;   
 } 
 
 .hero-arrow-icon {
   cursor: pointer;
   transition: transform 0.3s ease;
-  padding-left: 157px;  
+  padding-left: 0;  
 }
 
 .hero-arrow-icon:hover {
