@@ -21,18 +21,18 @@
 .hero-title {
   font-size: 60px;
   font-weight: 400;
-  margin: 0px 0px 24px 0px;
+  margin: 0 0 24px;
   max-width: 750px;
   color: var(--background-color);
   text-shadow: 0 2px 4px rgb(0 0 0 / 30%);
-  padding-left: 157px;
+  padding-left: 0;
 }
 
 .hero-heading {
   font-weight: 400;
   color: var(--background-color);
   text-shadow: 0 2px 4px rgb(0 0 0 / 30%);
-  padding-left: 157px;
+  padding-left: 0;
 }
 
 .hero-description {
@@ -44,13 +44,13 @@
   color: var(--light-grey);
   margin: 0;
   text-shadow: 0 1px 2px rgb(0 0 0 / 30%);
-  padding-left: 157px;   
+  padding-left: 0;   
 } 
 
 .hero-arrow-icon {
   cursor: pointer;
   transition: transform 0.3s ease;
-  padding-left: 157px;  
+  padding-left: 0;  
 }
 
 .hero-arrow-icon:hover {
@@ -107,6 +107,7 @@
   color: #B29152 !important;
 
 }
+
 .ellipse-disabled {
   color: #DBDBDB !important;
 }
@@ -195,7 +196,7 @@
 }
 
 .arrow-link svg {
-  margin: 0px 5px;  
+  margin: 0 5px;  
 }
 
 .news-thumbnail {
@@ -215,7 +216,7 @@
   }
 
   .arrow-link svg {
-    margin: 0px 3px;  
+    margin: 0 3px;  
   }
 }
 
@@ -311,7 +312,7 @@
   .navigation-arrows svg {
     height: 12px;
     width: 12px;
-    margin: 0px 1px;
+    margin: 0 1px;
   }
 
   .ellipse svg {
@@ -320,6 +321,6 @@
   }
 
   .icon-wrapper {
-    padding-top: 0px;
+    padding-top: 0;
   }
 }
