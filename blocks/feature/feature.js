@@ -113,7 +113,7 @@ export default function decorate(block) {
     }
     aboutUsLeftContent.appendChild(linkContainer);
   }
-  
+
     // About-Us right container
     const aboutUsRightContent = document.createElement('div');
     aboutUsRightContent.classList.add('col-xl-6', 'col-md-3', 'col-sm-4', 'about-us-right');
@@ -193,8 +193,8 @@ export default function decorate(block) {
     }
 
     block.innerHTML = '';
-    aboutUsStats.appendChild(aboutUsRightContent);
     aboutUsStats.appendChild(aboutUsLeftContent);
+    aboutUsStats.appendChild(aboutUsRightContent);
     container.append(aboutUsStats);
     block.appendChild(container);
 }
