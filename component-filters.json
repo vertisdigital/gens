@@ -3,7 +3,13 @@
     "id": "main",
     "components": [
       "section",
-      "tabs" 
+      "tabscontainer" 
+    ]
+  },
+  {
+    "id": "tabscontainer",
+    "components": [
+      "tabs"
     ]
   },
   {
