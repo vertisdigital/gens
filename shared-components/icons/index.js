@@ -61,7 +61,7 @@ export const icons = {
 </svg>`,
 downArraowWithLine: `<svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
 <path d="M0 14.3158H16V16H0V14.3158ZM8.88889 9.408L14.2853 4.29474L15.5422 5.48547L8 12.6316L0.457778 5.48632L1.71467 4.29474L7.11111 9.40884V0H8.88889V9.408Z" fill="#B29152"/>
-</svg>
+</svg>`
   // Add other icons here as needed
 };
 

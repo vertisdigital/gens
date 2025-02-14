@@ -4,14 +4,13 @@
   display: flex;
   justify-content: space-between;
   overflow: hidden;
-  min-height: 430px !important;
   aspect-ratio: 1;
 }
 
 /* Header Tile (First Tile) */
 .tiles.block > div {
-  background-color: #fff;
-  color: #000 !important;
+  background-color: --background-color;
+  color: --text-color;
   margin-bottom: 36px;
 }
 
@@ -20,15 +19,15 @@
 }
 
 .row.tiles-container > div:nth-child(odd) {
-  padding-left: 0 !important;
+  padding-left: 0;
 }
 
 .row.tiles-container > div:nth-child(even) {
-  padding-right: 0 !important;
+  padding-right: 0;
 }
 
 .row.tiles-container > .image-tile > div {
-  background-color: black;
+  background-color: --text-color;
   padding: 17px;
   display: flex;
   flex-direction: column;
@@ -40,7 +39,7 @@
 
 /* Image Tiles */
 .tiles.block > .image-tile {
-  color: #fff;
+  color: --background-color;
   object-fit: cover
 }
 
@@ -60,10 +59,10 @@
 .factsheet-button {
   display: inline-flex;
   align-items: center;
-  color: #B29152 !important;
+  color: --primary-gold !important;
   text-decoration: none;
   font-weight: 600;
-  font-size: 1rem;
+  font-size: 16px;
   align-self: flex-end;
   margin: 20px 0 auto;
   transition: transform 0.2s ease-out;
@@ -86,14 +85,14 @@
   font-size: 16px;
   font-weight: 400;
   line-height: 24px;
-  color: #666
+  color: --body-text-color
 }
 
 .row.tiles-container > .image-tile [data-aue-prop="heading"] {
   font-size: 20px;
   font-weight: 600;
   line-height: 24px;
-  color: #FFF;
+  color: --background-color;
   margin-bottom: 12px
 }
 
@@ -101,33 +100,29 @@
   font-size: 16px;
   font-weight: 400;
   line-height: 24px;
-  color: #EEE;
-  margin-bottom: 3rem;
+  color: --light-grey;
+  margin-bottom: 48px;
 }
 
 .row.tiles-container > .image-tile [data-aue-prop="description"] p {
-  margin: 0 !important;
+  margin: 0;
 }
 
 .learn-button {
   position: absolute;
-  bottom: 1.5rem;
-  right: 1.25rem;
+  bottom: 24px;
+  right: 20px;
   text-decoration: underline !important;
   font-weight: 600;
-  color: #FFF !important;
+  color: --background-color !important;
   font-size: 16px;
 }
 
-.row.tiles-container > div:nth-child(3) .learn-button {
-  right: 2.75rem;
+.odd-learn-button {
+  right: 44px;
 }
 
 @media screen and (width < 992px) and (width >= 768px) {
-  .row.tiles-container {
-    padding: 0 !important;
-  }
-
   .row.tiles-container > div [data-aue-prop="heading"] {
     font-size: 30px;
     max-width: 250px;
@@ -151,7 +146,7 @@
     font-size: 15px;
     font-weight: 400;
     line-height: 24px;
-    margin-bottom: 2.5rem;
+    margin-bottom: 40px;
   }
 
   .tiles.block > div {
@@ -159,11 +154,11 @@
   }
 
   .row.tiles-container > div:nth-child(odd) {
-    padding-left: 12px !important;
+    padding-left: 12px;
   }
   
   .row.tiles-container > div:nth-child(even) {
-    padding-right: 12px !important;
+    padding-right: 12px;
   }
 
   .row.tiles-container > div:nth-child(n+3) {
@@ -171,14 +166,14 @@
   }
 
   .learn-button {
-    bottom: 1.5rem;
-    right: 2rem !important;
+    bottom: 24px;
+    right: 32px;
   }
 }
 
 @media screen and (width < 768px) {
   .row.tiles-container > div {
-    min-height: unset !important;
+    min-height: unset;
     aspect-ratio: unset;
   }
 
@@ -187,19 +182,19 @@
   }
 
   .row.tiles-container > div:nth-child(odd) {
-    padding-right: 0 !important;
+    padding-right: 0;
   }
   
   .row.tiles-container > div:nth-child(even) {
-    padding-left: 0 !important;
+    padding-left: 0;
   }
 
   .row.tiles-container > .image-tile {
-    padding-top: 18px !important;
+    padding-top: 18px;
   }
 
   .factsheet-button {
-    margin: 15px 0 !important;
+    margin: 15px 0;
   }
 
   .row.tiles-container > div [data-aue-prop="heading"] {
@@ -227,11 +222,11 @@
     font-size: 17px;
     font-weight: 400;
     line-height: 24px;
-    margin-bottom: 2rem;
+    margin-bottom: 32px;
   }
 
   .learn-button {
-    bottom: 1rem;
-    right: 1.25rem !important;
+    bottom: 16px;
+    right: 20px;
   }
 }
