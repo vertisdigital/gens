@@ -9,8 +9,8 @@
 
 /* Header Tile (First Tile) */
 .tiles.block > div {
-  background-color: --background-color;
-  color: --text-color;
+  background-color: var(--background-color);
+  color: var(--text-color);
   margin-bottom: 36px;
 }
 
@@ -27,7 +27,7 @@
 }
 
 .row.tiles-container > .image-tile > div {
-  background-color: --text-color;
+  background-color: var(--text-color);
   padding: 17px;
   display: flex;
   flex-direction: column;
@@ -39,7 +39,7 @@
 
 /* Image Tiles */
 .tiles.block > .image-tile {
-  color: --background-color;
+  color: var(--background-color);
   object-fit: cover
 }
 
@@ -59,7 +59,7 @@
 .factsheet-button {
   display: inline-flex;
   align-items: center;
-  color: --primary-gold !important;
+  color: var(--primary-gold) !important;
   text-decoration: none;
   font-weight: 600;
   font-size: 16px;
@@ -85,14 +85,14 @@
   font-size: 16px;
   font-weight: 400;
   line-height: 24px;
-  color: --body-text-color
+  color: var(--body-text-color)
 }
 
 .row.tiles-container > .image-tile [data-aue-prop="heading"] {
   font-size: 20px;
   font-weight: 600;
   line-height: 24px;
-  color: --background-color;
+  color: var(--background-color);
   margin-bottom: 12px
 }
 
@@ -100,7 +100,7 @@
   font-size: 16px;
   font-weight: 400;
   line-height: 24px;
-  color: --light-grey;
+  color: var(--light-grey);
   margin-bottom: 48px;
 }
 
@@ -114,7 +114,7 @@
   right: 20px;
   text-decoration: underline !important;
   font-weight: 600;
-  color: --background-color !important;
+  color: var(--background-color) !important;
   font-size: 16px;
 }
 
