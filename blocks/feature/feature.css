@@ -52,11 +52,15 @@
 
 
 .about-us-left a.button{
-  
-  padding: 10px;
+  display: inline-flex;
+  align-items: center;
+  gap: 16px;
+  text-decoration: underline;
+  color: var(--primary-gold);
+  /* padding: 10px;
   display: inline-flex;
   background: none;
-  margin: 0;
+  margin: 0; */
 }
 
 .about-us-left .button-container a .icon-wrapper.about-us-left-link{

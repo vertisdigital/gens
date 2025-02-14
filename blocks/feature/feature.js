@@ -89,7 +89,7 @@ export default function decorate(block) {
 
       const arrowIcon = linkField.querySelector('[data-aue-prop="linkSvgIcon"]');
       const arrowIconName = arrowIcon.textContent.replace('-', '');
-      arrowIcon.innerHTML = '';
+      arrowIcon.innerText = '';
       if (originalLink && !arrowIcon) {
         linkElement.textContent = originalLink.textContent;
       } else if (arrowIcon && !originalLink) {
