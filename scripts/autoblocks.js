@@ -7,7 +7,6 @@ import { loadCSS } from './aem.js';
 export default function processTabs(main, moveInstrumentation) {
   const mainWrapper = main.querySelector('[data-aue-label="tabscontainer"]');
   const mainContainer = document.createElement('div');
-  moveInstrumentation(mainWrapper, mainContainer);
   const sections = [
     ...main.querySelectorAll('[data-aue-model="tabs"]:not(.section-metadata)'),
   ];
@@ -118,6 +117,8 @@ export default function processTabs(main, moveInstrumentation) {
  
   // Remove original sections
   sections.forEach(section => section.remove());
+  moveInstrumentation(mainWrapper, mainContainer);
+
  
   // Build structure
   tabsWrapper.appendChild(tabsNav);
