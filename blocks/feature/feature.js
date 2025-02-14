@@ -79,10 +79,10 @@ export default function decorate(block) {
     // Handle link text
     const originalLink = linkField.querySelector('[data-aue-prop="linkText"]');
     const originalTarget = linkField.querySelector('[data-aue-prop="linkTarget"]');
-    const originalTargetName = originalTarget.textContent;
-    originalLink.setAttribute('target', originalTargetName);
+    const originalTargetName = originalTarget?.textContent;
 
     if (originalLink) {
+      originalLink.setAttribute('target', originalTargetName);
       const linkElement = document.createElement('a');
       moveInstrumentation(originalLink, linkElement);
       linkElement.className = 'button';
