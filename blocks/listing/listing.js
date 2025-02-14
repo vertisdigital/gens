@@ -46,7 +46,9 @@ export default function decorate(block) {
     // Get all content elements
     const title = item.querySelector('[data-aue-type="text"]');
     const description = item.querySelector('[data-aue-prop="description"]');
-    const arrowIcon = item.querySelector('div:last-child a');
+    const arrowIcon = item.querySelector('a[title="title"]');
+    const arrowTarget = item.querySelector('[data-aue-label="Target"]');
+
 
     // Add content elements to wrapper
     if (title) {
@@ -55,12 +57,13 @@ export default function decorate(block) {
     if (description) {
       contentWrapper.appendChild(description);
     }
-    if (arrowIcon) {
+    if (arrowIcon && arrowTarget) {
       // const picture = document.createElement('picture');
       const newArrowLink = document.createElement('a');
       const arrowLink = arrowIcon.href;
       newArrowLink.href = arrowLink;
-
+      const targetValue = arrowTarget?.textContent?.trim() || "_self";
+      newArrowLink.setAttribute('target', targetValue);
       const arrowSVG = SvgIcon({ name: 'arrow', className: 'arrow-link', size: '24px' });
       const parsedArrowSVG = stringToHtml(arrowSVG);
       newArrowLink.appendChild(parsedArrowSVG);

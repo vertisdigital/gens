@@ -10,6 +10,7 @@
 
 .projectcards .projectcards-header {
   margin-bottom: 42px;
+  padding: 0 18px;
 }
 
 .projectcards .projectcards-title {
@@ -52,11 +53,11 @@
 }
 
 .projectcards .project-card:first-child{
-  padding-left: 0;
+  padding-left: 18px;
 }
 
 .projectcards .project-card:last-child{
-  padding-right: 0;
+  padding-right: 18px;
 }
 
 .projectcards .project-card [data-aue-prop="image"]{
@@ -119,6 +120,7 @@
 
   .projectcards .projectcards-header {
     margin-bottom: 34px;
+    padding: 0;
   }
   
   .projectcards .projectcards-title {
@@ -148,11 +150,17 @@
   }
 
   .projectcards .project-card [data-aue-prop="image"]{
-    height: 361px;
+    height: 206px;
     margin-bottom: 10px;
   }
 
  
+}
+
+@media (width <= 834px) {
+  .projectcards .project-card [data-aue-prop="image"]{
+    height: 361px;
+  }
 }
 
 @media (width <= 768px) {
@@ -195,7 +203,7 @@
     }
     
     .projectcards .project-card [data-aue-prop="image"]{
-      height: 206px;
+      /* height: 206px; */
       margin-bottom: 8px;
     }
 
@@ -219,3 +227,9 @@
    
   
 } 
+
+@media (width <= 640px) {
+  .projectcards .project-card [data-aue-prop="image"]{
+    height: 162px;
+  }
+}

@@ -10,8 +10,9 @@
 
 /* Header Tile (First Tile) */
 .tiles.block > div {
-  background-color: #fff;
-  color: #000 !important;
+  background-color: var(--background-color);
+  color: var(--text-color);
+  margin-bottom: 36px;
 }
 
 .row.tiles-container > div:nth-child(n+3) {
@@ -27,7 +28,7 @@
 }
 
 .row.tiles-container > .image-tile > div {
-  background-color: black;
+  background-color: var(--text-color);
   padding: 17px;
   display: flex;
   flex-direction: column;
@@ -36,7 +37,7 @@
 
 /* Image Tiles */
 .tiles.block > .image-tile {
-  color: #fff;
+  color: var(--background-color);
   object-fit: cover
 }
 
@@ -56,10 +57,10 @@
 .factsheet-button {
   display: inline-flex;
   align-items: center;
-  color: #B29152 !important;
+  color: var(--primary-gold) !important;
   text-decoration: none;
   font-weight: 600;
-  font-size: 1rem;
+  font-size: 16px;
   align-self: flex-end;
   margin: 15px 0 auto;
   transition: transform 0.2s ease-out;
@@ -75,7 +76,7 @@
 }
 
 .factsheet-button:hover::after {
-  transform: translateX(0.25rem);
+  transform: translateX(4px);
   text-decoration: underline!important;
 
   /* border-bottom: 2px solid #B29152; */
@@ -99,14 +100,14 @@
   font-size: 19px;
   font-weight: 400;
   line-height: 24px;
-  color: #666
+  color: var(--body-text-color);
 }
 
 .row.tiles-container > .image-tile [data-aue-prop="heading"] {
   font-size: 20px;
   font-weight: 600;
   line-height: 24px;
-  color: #FFF;
+  color: var(--background-color);
   margin-bottom: 12px
 }
 
@@ -114,8 +115,8 @@
   font-size: 19px;
   font-weight: 400;
   line-height: 24px;
-  color: #EEE;
-  margin-bottom: 2rem;
+  color: var(--light-grey);
+  margin-bottom: 32px;
 }
 
 .row.tiles-container > .image-tile [data-aue-prop="description"] p {
@@ -124,11 +125,16 @@
 
 .learn-button {
   position: absolute;
-  bottom: 1.5rem;
-  right: 2.75rem;
+  bottom: 24px;
+  right: 44px;
   text-decoration: underline !important;
   font-weight: 600;
-  color: #FFF !important;
+  color: var(--background-color) !important;
+  font-size: 16px;
+}
+
+.odd-learn-button {
+  right: 44px;
 }
 
 @media screen and (width < 992px) and (width >= 768px) {
@@ -159,7 +165,7 @@
     font-size: 16px;
     font-weight: 400;
     line-height: 24px;
-    margin-bottom: 1rem;
+    margin-bottom: 16px;
   }
 
   .row.tiles-container > div:nth-child(odd) {
@@ -175,8 +181,8 @@
   }
 
   .learn-button {
-    bottom: 1rem;
-    right: 2.5rem;
+    bottom: 16px;
+    right: 40px;
   }
 }
 
@@ -225,11 +231,27 @@
     font-size: 18px;
     font-weight: 400;
     line-height: 24px;
-    margin-bottom: 1rem;
+    margin-bottom: 16px;
   }
 
   .learn-button {
-    bottom: 1rem;
-    right: 1.5rem;
+    bottom: 16px;
+    right: 24px;
+  }
+}
+
+.tiles-wrapper {
+  padding: 36px 0;
+}
+
+@media (width >= 768px) {
+  .tiles-wrapper {
+    padding: 56px 0;
+  }
+}
+
+@media (width >= 1024px) {
+  .tiles-wrapper {
+    padding: 68px 0;
   }
 }

@@ -121,6 +121,10 @@
           {
             "name": "Highlight",
             "value": "highlight"
+          },
+          {
+            "name": "Statistics",
+            "value": "statistics"
           }
         ]
       }
@@ -1030,6 +1034,63 @@
         "label": "Image",
         "configUrl": "https://main--genting--wppopen.aem.page/tools/assets-selector/config.json",
         "multi": false
+      }
+    ]
+  },
+  {
+    "id": "statistics",
+    "fields": [
+      {
+        "component": "text",
+        "name": "heading",
+        "label": "Heading"
+      }
+    ]
+  },
+  {
+    "id": "statisticsDescription",
+    "fields": [
+      {
+        "component": "text",
+        "name": "title",
+        "label": "Title"
+      },
+      {
+        "component": "richtext",
+        "name": "description",
+        "value": "",
+        "label": "Description",
+        "valueType": "string"
+      },
+      {
+        "component": "text",
+        "name": "readMoreLabel",
+        "label": "Read More Label"
+      },
+      {
+        "component": "text",
+        "name": "readLessLabel",
+        "label": "Read Less Label"
+      }
+    ]
+  },
+  {
+    "id": "indices",
+    "fields": [
+      {
+        "component": "text",
+        "name": "moreIndices",
+        "label": "More Indices"
+      },
+      {
+        "component": "text",
+        "name": "lessIndices",
+        "label": "Less Indices"
+      },
+      {
+        "component": "text",
+        "name": "indexNumber",
+        "label": "Index Number"
       }
     ]
   }

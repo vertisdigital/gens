@@ -113,7 +113,9 @@ function buildAutoBlocks(main) {
  */
 // eslint-disable-next-line import/prefer-default-export
 export function decorateMain(main) {
+  console.log('decorateMain', main);
   // hopefully forward compatible button decoration
+
   decorateButtons(main);
   decorateIcons(main);
   decorateSections(main);
@@ -126,6 +128,7 @@ export function decorateMain(main) {
  * @param {Element} doc The container element
  */
 async function loadEager(doc) {
+  console.log('loadEager', doc);
   document.documentElement.lang = 'en';
   decorateTemplateAndTheme();
   const main = doc.querySelector('main');
@@ -150,6 +153,7 @@ async function loadEager(doc) {
  * @param {Element} doc The container element
  */
 async function loadLazy(doc) {
+  console.log('loadLazy', doc);
   const main = doc.querySelector('main');
   await loadSections(main);
 

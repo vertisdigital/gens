@@ -1,0 +1,72 @@
+.statistics .statistics-row {
+    padding-bottom: 50px;
+    border-bottom: 1px solid var(--text-color);
+}
+.statistics-container .feature-wrapper .about-us-right-content{
+  margin-bottom: 10px;
+  padding-bottom: 10px;
+  border-bottom: 1px solid var(--text-color);
+}
+.statistics-description-wrapper {
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 24px;
+    color: var(--body-text-color);
+    padding: 50px 0;
+    border-bottom: 1px solid var(--text-color);
+    margin-bottom: 50px;
+}
+
+.statistics-description-wrapper .hide {
+    display: none;
+}
+
+.statistics-container button {
+    display: block;
+    font-size: 16px;
+    font-weight: 700;
+    line-height: 24px;
+    text-decoration-line: underline;
+    color: var(--primary-gold);
+    margin-left: auto;
+    background: none;
+}
+
+.statistics-container button.hide {
+    display: none;
+}
+
+.statistics .statistics-description-wrapper h3 {
+    font-size: 40px;
+    font-weight: 500;
+    line-height: 50px;
+    color: var(--text-color);
+}
+
+.statistics .statistic-item {
+    font-size: 80px;
+    font-weight: 400;
+    line-height: 80px;
+    color: var(--primary-gold);
+}
+
+.statistics .text-container {
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 24px;
+    color: var(--body-text-color);
+}
+
+@media (width<=992px) {
+    .statistics .statistic-item {
+        font-size: 64px;
+        line-height: 64px;
+    }
+}
+
+@media (width<768px) {
+    .statistics .statistic-item {
+        font-size: 48px;
+        line-height: 48px;
+    }
+}

@@ -88,8 +88,11 @@ export default async function decorate(block) {
       link.title = linkData.title;
 
       // Get icon name from DOM
-      const iconName = field.querySelector('[data-aue-prop="linkSvgIcon"]').textContent;
+      const icon = field.querySelector('[data-aue-prop="linkSvgIcon"]')
+      const iconName = field.querySelector('[data-aue-prop="linkSvgIcon"]').textContent.trim();
+      const targetElement = field.querySelector('[data-aue-prop="linkTarget"]');
 
+      if(icon && targetElement){
       // Create anchor wrapper first
       const anchor = document.createElement('a');
       anchor.href = link.href;
@@ -114,9 +117,8 @@ export default async function decorate(block) {
       }
 
       // Set target from DOM if it exists
-      const targetElement = field.querySelector('[data-aue-prop="linkTarget"]');
       if (targetElement) {
-        const target = targetElement.textContent;
+        const target = targetElement.textContent.trim();
         anchor.target = target;
 
         // If target is _blank, add rel for security
@@ -132,6 +134,7 @@ export default async function decorate(block) {
 
       linkFieldDiv.appendChild(link);
       socialLinksContainer.appendChild(linkFieldDiv);
+      }
     });
 
     socialWrapper.appendChild(socialLinksContainer);
@@ -172,6 +175,7 @@ export default async function decorate(block) {
 
         // Move all links while preserving their attributes
         const links = linkSection.querySelectorAll('[data-aue-model="linkField"]');
+        if(links.length > 0){
         links.forEach((link) => {
           const linkContainer = document.createElement('div');
           linkContainer.className = link.className;
@@ -180,11 +184,13 @@ export default async function decorate(block) {
           // Get the button container and link
           const buttonContainer = link.querySelector('a');
           const anchor = buttonContainer;
+          const anchorTarget = link.querySelector('[data-aue-prop="linkTarget"]') || "_self";
 
-          if (anchor) {
+          if (anchor && anchorTarget) {
             // Create new link with title as text
             const newLink = document.createElement('a');
             newLink.href = anchor.href;
+            newLink.target = anchorTarget.textContent.trim();
             newLink.className = 'button-link';
             newLink.textContent = anchor.textContent;
             // Create new button container
@@ -195,9 +201,11 @@ export default async function decorate(block) {
 
             linkContainer.appendChild(newButtonContainer);
           }
-
+          if(linkContainer.children.length > 0){
           nav.appendChild(linkContainer);
+          }
         });
+        }
 
         navColumns[index].appendChild(nav);
       }

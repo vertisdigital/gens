@@ -3,6 +3,7 @@
     "id": "main",
     "components": [
       "section",
+      "statisticsSection",
       "tabsposition"  
     ]
   },
@@ -60,7 +61,10 @@
       "tiles",
       "textsection",
       "textmediablock",
-      "projectslist"
+      "projectslist",
+      "statisticsSection",
+      "statistics",
+      "statisticsDescription"
     ]
   },
   {
@@ -101,7 +105,8 @@
     "id": "feature",
     "components": [
       "featureItem",
-      "linkField"
+      "linkField",
+      "indices"
     ]
   },
   {
@@ -176,5 +181,20 @@
   {
     "id": "tabsposition",
     "components": []
+  },
+  {
+    "id": "statisticsSection",
+    "components": [
+      "statistics",
+      "statisticsDescription",
+      "feature"
+    ]
+  },
+  {
+    "id": "statistics",
+    "components": [
+      "statisticsDescription",
+      "featureItem"
+    ]
   }
 ]

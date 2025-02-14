@@ -4,6 +4,11 @@
   display: flex;
   margin: auto;
   margin-bottom: 18px;
+  padding: 36px 0;
+}
+
+.feature-wrapper .about-us-stats:not(:last-child) {
+  padding-bottom: 0;
 }
 
 /* About-us left container start */
@@ -142,6 +147,7 @@ color: var(--body-text-color);
 @media  (width >= 768px) {
   .feature-wrapper .about-us-stats{
     margin-bottom: 0;
+    padding: 56px 0;
   }
 
   .about-us-stats .about-us-left{
@@ -206,6 +212,10 @@ color: var(--body-text-color);
 }
 
 @media  (width >= 1024px) {
+  .feature-wrapper .about-us-stats {
+    padding: 136px 0 68px;
+  }
+
   .about-us-stats .about-us-left{
     padding-right: 18px;
   }

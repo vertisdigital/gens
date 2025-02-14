@@ -88,7 +88,7 @@ export default function processTabs(main, moveInstrumentation) {
  
       // Process blocks in the section
       const blocks = section.querySelectorAll('div[class]');
-      blocks.forEach(block => {
+      blocks.forEach((block,index) => {
         const classes = Array.from(block.classList);
         classes.forEach(className => {
           if (!className.includes('section-metadata') &&

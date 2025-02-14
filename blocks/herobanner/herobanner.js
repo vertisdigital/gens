@@ -9,8 +9,10 @@ export default function decorate(block) {
   if (!heroContainer) {
     heroContainer = document.createElement('div');
     heroContainer.className = 'hero-banner-container';
-    heroContainer.setAttribute('data-aue-resource', 'herobanner');
-    heroContainer.setAttribute('data-aue-type', 'block');
+    // heroContainer.classList.add('hero-banner-container','columns-container', 
+    // 'container-xl', 'container-md', 'container-sm');
+    // heroContainer.setAttribute('data-aue-resource', 'herobanner');
+    // heroContainer.setAttribute('data-aue-type', 'block');
   }
 
   const imageLink = block.querySelector('a[href]');
@@ -47,6 +49,9 @@ export default function decorate(block) {
     imageLink.remove();
   }
 
+  const heroContent = document.createElement('div');
+  heroContent.classList.add('hero-content', 'columns-container', 'container-xl', 'container-md', 'container-sm');
+
   const headingElement = block.querySelector('[data-aue-prop="bannerheading"]');
   if (headingElement) {
     const headingText = headingElement.textContent;
@@ -64,7 +69,7 @@ export default function decorate(block) {
       className: 'hero-heading',
     });
     headingContainer.insertAdjacentHTML('beforeend', headingHtml);
-    heroContainer.appendChild(headingContainer);
+    heroContent.append(headingContainer);
     headingElement.remove();
   }
 
@@ -85,7 +90,7 @@ export default function decorate(block) {
       className: 'hero-title',
     });
     titleContainer.insertAdjacentHTML('beforeend', headingHtml);
-    heroContainer.appendChild(titleContainer);
+    heroContent.append(titleContainer);
     titleElement.remove();
   }
 
@@ -103,7 +108,7 @@ export default function decorate(block) {
     );
     descriptionDiv.setAttribute('data-aue-type', 'text');
     descriptionDiv.textContent = descElement.textContent;
-    heroContainer.appendChild(descriptionDiv);
+    heroContent.appendChild(descriptionDiv);
     descElement.remove();
   }
 
@@ -115,9 +120,11 @@ export default function decorate(block) {
       size: '32',
       color: 'white',
     });
-    heroContainer.insertAdjacentHTML('beforeend', arrowIconHtml);
+    const parsedHtml = stringToHTML(arrowIconHtml);
+    heroContent.appendChild(parsedHtml);
+    // heroContent.insertAdjacentHTML('beforeend', arrowIconHtml);
   }
-
+  heroContainer.appendChild(heroContent);
   const carouselItems = block.querySelectorAll(
     '[data-aue-model="bannercarousel"]',
   );
@@ -428,7 +435,9 @@ export default function decorate(block) {
   carouselContainer.appendChild(carouselWrapper);
   if (carouselItems.length) {
     heroContainer.appendChild(carouselContainer);
-    heroContainer.appendChild(navigations);
+    if (carouselItems.length > 1) {
+      heroContainer.appendChild(navigations);
+    }
   }
 
   const carouselItemsAll = heroContainer.querySelectorAll('.carousel-item');
