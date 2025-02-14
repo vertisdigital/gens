@@ -11,7 +11,8 @@
 /* Header Tile (First Tile) */
 .tiles.block > div {
   background-color: var(--background-color);
-  color: var(--text-color) !important;
+  color: var(--text-color);
+  margin-bottom: 36px;
 }
 
 .row.tiles-container > div:nth-child(n+3) {
@@ -129,6 +130,11 @@
   text-decoration: underline !important;
   font-weight: 600;
   color: var(--background-color) !important;
+  font-size: 16px;
+}
+
+.odd-learn-button {
+  right: 44px;
 }
 
 @media screen and (width < 992px) and (width >= 768px) {
