@@ -1,4 +1,5 @@
 import { createOptimizedPicture } from '../../scripts/aem.js';
+import SvgIcon from '../../shared-components/SvgIcon.js';
 
 /**
  * Decorates the tiles block
@@ -6,7 +7,12 @@ import { createOptimizedPicture } from '../../scripts/aem.js';
  */
 export default function decorate(block) {
   // Add container wrappers for each breakpoint
-  block.classList.add('container-xl', 'container-lg', 'container-md', 'container-sm');
+  block.classList.add(
+    'container-xl',
+    'container-lg',
+    'container-md',
+    'container-sm',
+  );
 
   // Create row wrapper
   const row = document.createElement('div');
@@ -22,7 +28,9 @@ export default function decorate(block) {
 
     if (index > 0) {
       // Handle image tiles (all except first)
-      const imageLink = tile.querySelector('a[href*="/content/dam/"][href$=".png"], a[href*="/content/dam/"][href$=".jpeg"], a[href*="/content/dam/"][href$=".jpg"], a[href*="/content/dam/"][href$=".gif"]');
+      const imageLink = tile.querySelector(
+        'a[href*="/content/dam/"][href$=".png"], a[href*="/content/dam/"][href$=".jpeg"], a[href*="/content/dam/"][href$=".jpg"], a[href*="/content/dam/"][href$=".gif"]',
+      );
       if (imageLink) {
         // Create optimized picture element
         const picture = createOptimizedPicture(imageLink.href, '', false);
@@ -45,7 +53,7 @@ export default function decorate(block) {
           // Create new anchor with CTA text and button link
           const ctaLink = document.createElement('a');
           ctaLink.href = link.href;
-          ctaLink.className = 'learn-button';
+          ctaLink.className = (index % 2 === 1) ? 'odd-learn-button learn-button' : 'learn-button';
           ctaLink.textContent = ctaCaption.textContent;
           // Replace CTA caption with link
           ctaCaption.parentNode.replaceChild(ctaLink, ctaCaption);
@@ -63,15 +71,20 @@ export default function decorate(block) {
     const buttonContainer = firstTile.querySelector('.button-container');
 
     const ctaCaption = firstTile.querySelector('[data-aue-prop="ctaCaption"]');
-
+    const downArraowWithLine = SvgIcon({
+      name: 'downArraowWithLine',
+      className: 'factsheet-button-arrow animation-element',
+      size: '14',
+      color: '',
+    });
     if (buttonContainer && ctaCaption) {
       const link = buttonContainer.querySelector('a');
       if (link) {
         // Create new anchor with CTA text and button link
         const ctaLink = document.createElement('a');
         ctaLink.href = link.href;
-        ctaLink.className = 'factsheet-button';
-        ctaLink.textContent = ctaCaption.textContent;
+        ctaLink.className = 'factsheet-button animated-cta';
+        ctaLink.innerHTML = `${ctaCaption.textContent} ${downArraowWithLine}`;
 
         // Add download icon
         // const downloadIcon = new SvgIcon('download');
