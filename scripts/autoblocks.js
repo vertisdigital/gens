@@ -63,7 +63,7 @@ export default function processTabs(main, moveInstrumentation) {
     tabButton.dataset.index = index;
     tabButton.textContent = tabTitle;
  
-    const tabPanel = document.createElemenckt('div');
+    const tabPanel = document.createElement('div');
     tabPanel.classList.add('tab-panel');
     moveInstrumentation(section, tabPanel);
  
