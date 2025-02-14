@@ -5,6 +5,9 @@ import { loadCSS } from './aem.js';
  * @param {Element} main The container element
  */
 export default function processTabs(main, moveInstrumentation) {
+  const mainWrapper = main.querySelector('[data-aue-label="tabscontainer"]');
+  const mainContainer = document.createElement('div');
+  moveInstrumentation(mainWrapper, mainContainer);
   const sections = [
     ...main.querySelectorAll('[data-aue-model="tabs"]:not(.section-metadata)'),
   ];
@@ -60,7 +63,7 @@ export default function processTabs(main, moveInstrumentation) {
     tabButton.dataset.index = index;
     tabButton.textContent = tabTitle;
  
-    const tabPanel = document.createElement('div');
+    const tabPanel = document.createElemenckt('div');
     tabPanel.classList.add('tab-panel');
     moveInstrumentation(section, tabPanel);
  
@@ -120,6 +123,7 @@ export default function processTabs(main, moveInstrumentation) {
   tabsWrapper.appendChild(tabsNav);
   tabsWrapper.appendChild(tabsContent);
   topContainer.appendChild(tabsWrapper);
+  mainContainer.appendChild(topContainer);
   main.appendChild(topContainer);
  
   // Handle tab switching
