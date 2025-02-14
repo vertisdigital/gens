@@ -75,7 +75,7 @@ export default function processTabs(main, moveInstrumentation) {
 
       // Single instrumentation move per panel
       try {
-        //moveInstrumentation(section, tabPanel);
+        moveInstrumentation(section, tabPanel);
       } catch (err) {
         console.warn(`Failed to move instrumentation for tab ${index}:`, err);
       }
