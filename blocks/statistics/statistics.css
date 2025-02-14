@@ -2,11 +2,13 @@
     padding-bottom: 50px;
     border-bottom: 1px solid var(--text-color);
 }
+
 .statistics-container .feature-wrapper .about-us-right-content{
   margin-bottom: 10px;
   padding-bottom: 10px;
   border-bottom: 1px solid var(--text-color);
 }
+
 .statistics-description-wrapper {
     font-size: 16px;
     font-weight: 400;

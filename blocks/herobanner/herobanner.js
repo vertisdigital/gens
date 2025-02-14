@@ -9,7 +9,7 @@ export default function decorate(block) {
   if (!heroContainer) {
     heroContainer = document.createElement('div');
     heroContainer.className = 'hero-banner-container';
-    // heroContainer.classList.add('hero-banner-container','columns-container', 
+    // heroContainer.classList.add('hero-banner-container','columns-container',
     // 'container-xl', 'container-md', 'container-sm');
     // heroContainer.setAttribute('data-aue-resource', 'herobanner');
     // heroContainer.setAttribute('data-aue-type', 'block');

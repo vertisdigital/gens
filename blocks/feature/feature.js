@@ -28,7 +28,7 @@ export default function decorate(block) {
   if (titleElement) {
     const header = document.createElement('header');
     moveInstrumentation(titleElement, header);
-    
+
     const titleText = titleElement.textContent;
     const titleHtml = Heading({ level: 3, text: titleText, className: 'about-us-left-title' });
     const parsedHtml = stringToHTML(titleHtml);
@@ -67,9 +67,9 @@ export default function decorate(block) {
   if (linkFields.length) {
     const linksContainer = document.createElement('div');
     linksContainer.className = 'links-container';
-    //moveInstrumentation(linkFields[0].parentElement, linksContainer);
+    // moveInstrumentation(linkFields[0].parentElement, linksContainer);
 
-    linkFields.forEach(linkField => {
+    linkFields.forEach((linkField) => {
       // Create container for each link
       const linkContainer = document.createElement('div');
       moveInstrumentation(linkField, linkContainer);
@@ -112,145 +112,145 @@ export default function decorate(block) {
       }
       linksContainer.appendChild(linkContainer);
     });
-    
+
     aboutUsLeftContent.appendChild(linksContainer);
   }
 
-    // About-Us right container
-    const aboutUsRightContent = document.createElement('div');
-    aboutUsRightContent.classList.add('col-xl-6', 'col-md-3', 'col-sm-4', 'about-us-right');
+  // About-Us right container
+  const aboutUsRightContent = document.createElement('div');
+  aboutUsRightContent.classList.add('col-xl-6', 'col-md-3', 'col-sm-4', 'about-us-right');
 
-    // Collect all imageAndDescription elements first
-    const aboutUsDescription = block.querySelectorAll('[data-aue-model="featureItem"]');
-    if (aboutUsDescription) {
-      aboutUsDescription.forEach((description) => {
+  // Collect all imageAndDescription elements first
+  const aboutUsDescription = block.querySelectorAll('[data-aue-model="featureItem"]');
+  if (aboutUsDescription) {
+    aboutUsDescription.forEach((description) => {
       // Create feature item container
-        const featureContainer = document.createElement('div');
-        featureContainer.classList.add('about-us-right-content');
-        moveInstrumentation(description, featureContainer);
+      const featureContainer = document.createElement('div');
+      featureContainer.classList.add('about-us-right-content');
+      moveInstrumentation(description, featureContainer);
 
-        // Handle image feature
-        const imageElement = description.querySelector('[data-aue-prop="feature-icon"]');
-        if (imageElement) {
-          const imageContainer = document.createElement('div');
-          const imageLink = imageElement.getAttribute('src');
-          const imgAltText = description.querySelector('[data-aue-prop="feature-icon-alt"]')?.textContent || '';
+      // Handle image feature
+      const imageElement = description.querySelector('[data-aue-prop="feature-icon"]');
+      if (imageElement) {
+        const imageContainer = document.createElement('div');
+        const imageLink = imageElement.getAttribute('src');
+        const imgAltText = description.querySelector('[data-aue-prop="feature-icon-alt"]')?.textContent || '';
 
-          if (imageLink) {
-            const imageHtml = ImageComponent({
-              src: imageLink,
-              alt: imgAltText,
-              className: 'about-us-right-description-icon',
-              breakpoints: {
-                mobile: { width: 768, src: imageLink },
-                tablet: { width: 1024, src: imageLink },
-                desktop: { width: 1920, src: imageLink },
-              },
-              lazy: true,
-            });
-
-            const parsedImage = stringToHTML(imageHtml);
-            moveInstrumentation(imageElement, parsedImage.querySelector('img'));
-
-            imageContainer.appendChild(parsedImage);
-            featureContainer.appendChild(imageContainer);
-            featureContainer.classList.add('image-container');
-          }
-        }
-
-        // Handle text feature
-        const textElement = description.querySelector('[data-aue-prop="feature-title"]');
-        if (textElement) {
-          const textContainer = document.createElement('div');
-          const statisticDiv = document.createElement('div');
-          statisticDiv.className = 'statistic';
-          moveInstrumentation(textElement, statisticDiv);
-
-          const textContent = textElement.querySelectorAll('p');
-          textContent.forEach((text) => {
-            const span = document.createElement('span');
-            span.textContent = text.textContent;
-            moveInstrumentation(text, span);
-            statisticDiv.appendChild(span);
+        if (imageLink) {
+          const imageHtml = ImageComponent({
+            src: imageLink,
+            alt: imgAltText,
+            className: 'about-us-right-description-icon',
+            breakpoints: {
+              mobile: { width: 768, src: imageLink },
+              tablet: { width: 1024, src: imageLink },
+              desktop: { width: 1920, src: imageLink },
+            },
+            lazy: true,
           });
 
-          textContainer.appendChild(statisticDiv);
-          featureContainer.appendChild(textContainer);
-          featureContainer.classList.add('text-container');
-        }
+          const parsedImage = stringToHTML(imageHtml);
+          moveInstrumentation(imageElement, parsedImage.querySelector('img'));
 
-        // Handle feature heading
-        const featureHeadingElement = description.querySelector('[data-aue-prop="feature-heading"]');
-        if (featureHeadingElement) {
-          const headingContainer = document.createElement('div');
-          const featureHeadingP = document.createElement('p');
-          featureHeadingP.textContent = featureHeadingElement.textContent;
-          Array.from(featureHeadingElement.attributes).forEach((attr) => {
-            featureHeadingP.setAttribute(attr.name, attr.value);
-          });
-          headingContainer.appendChild(featureHeadingP);
-          featureContainer.appendChild(headingContainer);
+          imageContainer.appendChild(parsedImage);
+          featureContainer.appendChild(imageContainer);
+          featureContainer.classList.add('image-container');
         }
-        aboutUsRightContent.appendChild(featureContainer);
-      });
-    }
-    // check if data-aue-model="indices" exists
-    const indices = block.querySelector('[data-aue-model="indices"]');
-    if (indices) {
+      }
+
+      // Handle text feature
+      const textElement = description.querySelector('[data-aue-prop="feature-title"]');
+      if (textElement) {
+        const textContainer = document.createElement('div');
+        const statisticDiv = document.createElement('div');
+        statisticDiv.className = 'statistic';
+        moveInstrumentation(textElement, statisticDiv);
+
+        const textContent = textElement.querySelectorAll('p');
+        textContent.forEach((text) => {
+          const span = document.createElement('span');
+          span.textContent = text.textContent;
+          moveInstrumentation(text, span);
+          statisticDiv.appendChild(span);
+        });
+
+        textContainer.appendChild(statisticDiv);
+        featureContainer.appendChild(textContainer);
+        featureContainer.classList.add('text-container');
+      }
+
+      // Handle feature heading
+      const featureHeadingElement = description.querySelector('[data-aue-prop="feature-heading"]');
+      if (featureHeadingElement) {
+        const headingContainer = document.createElement('div');
+        const featureHeadingP = document.createElement('p');
+        featureHeadingP.textContent = featureHeadingElement.textContent;
+        Array.from(featureHeadingElement.attributes).forEach((attr) => {
+          featureHeadingP.setAttribute(attr.name, attr.value);
+        });
+        headingContainer.appendChild(featureHeadingP);
+        featureContainer.appendChild(headingContainer);
+      }
+      aboutUsRightContent.appendChild(featureContainer);
+    });
+  }
+  // check if data-aue-model="indices" exists
+  const indices = block.querySelector('[data-aue-model="indices"]');
+  if (indices) {
     // get less indices, more indices and indexnumber content elements
-      const lessIndices = indices.querySelector(
-        '[data-aue-prop="lessIndices"]'
-      );
-      const moreIndices = indices.querySelector(
-        '[data-aue-prop="moreIndices"]'
-      );
-      const indexNumber = parseInt(
-        indices.querySelector('[data-aue-prop="indexNumber"]')?.textContent,
-        10
-      );
+    const lessIndices = indices.querySelector(
+      '[data-aue-prop="lessIndices"]',
+    );
+    const moreIndices = indices.querySelector(
+      '[data-aue-prop="moreIndices"]',
+    );
+    const indexNumber = parseInt(
+      indices.querySelector('[data-aue-prop="indexNumber"]')?.textContent,
+      10,
+    );
       // getting all the feature items in aboutUsDescription
-      const convDescription = aboutUsRightContent.querySelectorAll(
-        '[data-aue-model="featureItem"]'
-      );
-      // featureitems are  more than indexNumber indices then hide 
+    const convDescription = aboutUsRightContent.querySelectorAll(
+      '[data-aue-model="featureItem"]',
+    );
+      // featureitems are  more than indexNumber indices then hide
       // the remaing and show link to show more indices link with remaining indices count in text
-      if (indexNumber < convDescription.length) {
+    if (indexNumber < convDescription.length) {
       // hide the remaining indices
+      for (let i = indexNumber; i < convDescription.length; i += 1) {
+        convDescription[i].style.display = 'none';
+      }
+      // show the link to show more indices
+      const showMoreIndicesLink = document.createElement('button');
+      // show the link to show less indices
+      const showLessIndicesLink = document.createElement('button');
+      showMoreIndicesLink.textContent = `${moreIndices?.textContent ?? 'Show More'} (${convDescription.length - indexNumber})`;
+      showMoreIndicesLink.classList.add('show-more-indices');
+      showMoreIndicesLink.addEventListener('click', () => {
+        for (let i = indexNumber; i < convDescription.length; i += 1) {
+          convDescription[i].style.display = 'block';
+        }
+        showMoreIndicesLink.style.display = 'none';
+        showLessIndicesLink.style.display = 'block';
+      });
+
+      showLessIndicesLink.textContent = lessIndices?.textContent ?? 'Show Less';
+      showLessIndicesLink.classList.add('show-less-indices');
+      showLessIndicesLink.style.display = 'none';
+      showLessIndicesLink.addEventListener('click', () => {
         for (let i = indexNumber; i < convDescription.length; i += 1) {
           convDescription[i].style.display = 'none';
         }
-        // show the link to show more indices
-        const showMoreIndicesLink = document.createElement('button');
-        // show the link to show less indices
-        const showLessIndicesLink = document.createElement('button');
-        showMoreIndicesLink.textContent = `${moreIndices?.textContent ?? 'Show More'} (${convDescription.length - indexNumber})`;
-        showMoreIndicesLink.classList.add('show-more-indices');
-        showMoreIndicesLink.addEventListener('click', () => {
-          for (let i = indexNumber; i < convDescription.length; i += 1) {
-            convDescription[i].style.display = 'block';
-          }
-          showMoreIndicesLink.style.display = 'none';
-          showLessIndicesLink.style.display = 'block';
-        });
-       
-        showLessIndicesLink.textContent = lessIndices?.textContent ?? 'Show Less';
-        showLessIndicesLink.classList.add('show-less-indices');
+        showMoreIndicesLink.style.display = 'block';
         showLessIndicesLink.style.display = 'none';
-        showLessIndicesLink.addEventListener('click', () => {
-          for (let i = indexNumber; i < convDescription.length; i += 1) {
-            convDescription[i].style.display = 'none';
-          }
-          showMoreIndicesLink.style.display = 'block';
-          showLessIndicesLink.style.display = 'none';
-        });
+      });
 
-        aboutUsRightContent.appendChild(showMoreIndicesLink);
-        aboutUsRightContent.appendChild(showLessIndicesLink);
-      }
+      aboutUsRightContent.appendChild(showMoreIndicesLink);
+      aboutUsRightContent.appendChild(showLessIndicesLink);
     }
-    block.innerHTML = '';
-    aboutUsStats.appendChild(aboutUsLeftContent);
-    aboutUsStats.appendChild(aboutUsRightContent);
-    container.append(aboutUsStats);
-    block.appendChild(container);
+  }
+  block.innerHTML = '';
+  aboutUsStats.appendChild(aboutUsLeftContent);
+  aboutUsStats.appendChild(aboutUsRightContent);
+  container.append(aboutUsStats);
+  block.appendChild(container);
 }

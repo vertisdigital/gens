@@ -64,9 +64,11 @@
     .coreprinciples .icon-wrapper {
         padding: 36px 10px;
     }
+
     .coreprinciples .row {
         justify-content: left;
     }
+
     .coreprinciples .icon-wrapper picture {
         width: 80px;
         height: 80px;

@@ -760,7 +760,7 @@ main .section.highlight {
 .tab-title{
   position: relative;
   text-align: center;
-  padding: 36px 0 45px 0;
+  padding: 36px 0 45px;
   color: var(--body-text-color);
   font-size: 24px;
   font-weight: 600;
@@ -774,6 +774,7 @@ main .section.highlight {
   color: var(--primary-gold);
   border-bottom: 2px solid var(--primary-gold);
 }
+
 .tab-title.active::after {
   content: "";
   position: absolute;

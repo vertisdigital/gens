@@ -49,7 +49,6 @@ export default function decorate(block) {
     const arrowIcon = item.querySelector('a[title="title"]');
     const arrowTarget = item.querySelector('[data-aue-label="Target"]');
 
-
     // Add content elements to wrapper
     if (title) {
       contentWrapper.appendChild(title);
@@ -62,7 +61,7 @@ export default function decorate(block) {
       const newArrowLink = document.createElement('a');
       const arrowLink = arrowIcon.href;
       newArrowLink.href = arrowLink;
-      const targetValue = arrowTarget?.textContent?.trim() || "_self";
+      const targetValue = arrowTarget?.textContent?.trim() || '_self';
       newArrowLink.setAttribute('target', targetValue);
       const arrowSVG = SvgIcon({ name: 'arrow', className: 'arrow-link', size: '24px' });
       const parsedArrowSVG = stringToHtml(arrowSVG);

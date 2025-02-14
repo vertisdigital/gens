@@ -88,52 +88,52 @@ export default async function decorate(block) {
       link.title = linkData.title;
 
       // Get icon name from DOM
-      const icon = field.querySelector('[data-aue-prop="linkSvgIcon"]')
+      const icon = field.querySelector('[data-aue-prop="linkSvgIcon"]');
       const iconName = field.querySelector('[data-aue-prop="linkSvgIcon"]').textContent.trim();
       const targetElement = field.querySelector('[data-aue-prop="linkTarget"]');
 
-      if(icon && targetElement){
+      if (icon && targetElement) {
       // Create anchor wrapper first
-      const anchor = document.createElement('a');
-      anchor.href = link.href;
-      anchor.title = link.title;
+        const anchor = document.createElement('a');
+        anchor.href = link.href;
+        anchor.title = link.title;
 
-      // Create icon container
-      const iconContainer = document.createElement('span');
-      iconContainer.className = 'social-icon-wrapper';
+        // Create icon container
+        const iconContainer = document.createElement('span');
+        iconContainer.className = 'social-icon-wrapper';
 
-      // Create SVG icon and append to container
-      const svgElement = SVGIcon({
-        name: iconName,
-        size: 18,
-        className: 'social-icon',
-      });
+        // Create SVG icon and append to container
+        const svgElement = SVGIcon({
+          name: iconName,
+          size: 18,
+          className: 'social-icon',
+        });
 
-      // Convert SVG string to DOM element if needed
-      if (typeof svgElement === 'string') {
-        iconContainer.innerHTML = svgElement;
-      } else if (svgElement instanceof Node) {
-        iconContainer.appendChild(svgElement);
-      }
-
-      // Set target from DOM if it exists
-      if (targetElement) {
-        const target = targetElement.textContent.trim();
-        anchor.target = target;
-
-        // If target is _blank, add rel for security
-        if (target === '_blank') {
-          anchor.rel = 'noopener noreferrer';
+        // Convert SVG string to DOM element if needed
+        if (typeof svgElement === 'string') {
+          iconContainer.innerHTML = svgElement;
+        } else if (svgElement instanceof Node) {
+          iconContainer.appendChild(svgElement);
         }
-      }
 
-      // Append icon container to anchor
+        // Set target from DOM if it exists
+        if (targetElement) {
+          const target = targetElement.textContent.trim();
+          anchor.target = target;
 
-      anchor.appendChild(iconContainer);
-      link.appendChild(anchor);
+          // If target is _blank, add rel for security
+          if (target === '_blank') {
+            anchor.rel = 'noopener noreferrer';
+          }
+        }
 
-      linkFieldDiv.appendChild(link);
-      socialLinksContainer.appendChild(linkFieldDiv);
+        // Append icon container to anchor
+
+        anchor.appendChild(iconContainer);
+        link.appendChild(anchor);
+
+        linkFieldDiv.appendChild(link);
+        socialLinksContainer.appendChild(linkFieldDiv);
       }
     });
 
@@ -175,36 +175,36 @@ export default async function decorate(block) {
 
         // Move all links while preserving their attributes
         const links = linkSection.querySelectorAll('[data-aue-model="linkField"]');
-        if(links.length > 0){
-        links.forEach((link) => {
-          const linkContainer = document.createElement('div');
-          linkContainer.className = link.className;
-          linkContainer.setAttribute('data-link-model', 'links');
+        if (links.length > 0) {
+          links.forEach((link) => {
+            const linkContainer = document.createElement('div');
+            linkContainer.className = link.className;
+            linkContainer.setAttribute('data-link-model', 'links');
 
-          // Get the button container and link
-          const buttonContainer = link.querySelector('a');
-          const anchor = buttonContainer;
-          const anchorTarget = link.querySelector('[data-aue-prop="linkTarget"]') || "_self";
+            // Get the button container and link
+            const buttonContainer = link.querySelector('a');
+            const anchor = buttonContainer;
+            const anchorTarget = link.querySelector('[data-aue-prop="linkTarget"]') || '_self';
 
-          if (anchor && anchorTarget) {
+            if (anchor && anchorTarget) {
             // Create new link with title as text
-            const newLink = document.createElement('a');
-            newLink.href = anchor.href;
-            newLink.target = anchorTarget.textContent.trim();
-            newLink.className = 'button-link';
-            newLink.textContent = anchor.textContent;
-            // Create new button container
-            const newButtonContainer = document.createElement('div');
-            newButtonContainer.className = 'button-container';
-            // newButtonContainer.setAttribute('data-aue-prop', 'linkText');
-            newButtonContainer.appendChild(newLink);
+              const newLink = document.createElement('a');
+              newLink.href = anchor.href;
+              newLink.target = anchorTarget.textContent.trim();
+              newLink.className = 'button-link';
+              newLink.textContent = anchor.textContent;
+              // Create new button container
+              const newButtonContainer = document.createElement('div');
+              newButtonContainer.className = 'button-container';
+              // newButtonContainer.setAttribute('data-aue-prop', 'linkText');
+              newButtonContainer.appendChild(newLink);
 
-            linkContainer.appendChild(newButtonContainer);
-          }
-          if(linkContainer.children.length > 0){
-          nav.appendChild(linkContainer);
-          }
-        });
+              linkContainer.appendChild(newButtonContainer);
+            }
+            if (linkContainer.children.length > 0) {
+              nav.appendChild(linkContainer);
+            }
+          });
         }
 
         navColumns[index].appendChild(nav);

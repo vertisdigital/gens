@@ -285,6 +285,7 @@ header .header{
   position: relative;
   background: transparent;
 }
+
 .header.fixed-header{ 
   background-color:var(--background-color);
   transition: all 0.2s ease-in-out;
@@ -706,9 +707,11 @@ header .header{
 .header-inner-wrapper .header-nav .primary-nav .nav-item.active .primary-menu-links a{
   color: var(--primary-gold);
 }
+
 .header.fixed-header .header-inner-wrapper .header-nav .primary-nav .nav-item .primary-menu-links:hover{
   color: var(--primary-gold)!important;
 }
+
 .header.fixed-header .header-inner-wrapper .header-nav .primary-nav .nav-item.active .primary-menu-links{
   color: var(--primary-gold)!important;
 }
@@ -740,6 +743,7 @@ header .header{
   color:var(--text-color);
   text-decoration-thickness: 1px;
 }
+
 .header-inner-wrapper .secondary-nav .secondary-header .secondary-header-wrapper a:hover{
   color: var(--primary-gold);
   cursor: pointer;
@@ -750,6 +754,7 @@ header .header{
   margin-top: 4px;
   color: var(--primary-gold);
 }
+
 .header-inner-wrapper .secondary-nav .secondary-header .secondary-header-wrapper a:hover::after {
   content: '🡢';
   font-size: 24px;
@@ -836,8 +841,6 @@ content: '🡢';
 
 
 @media(width<=992px){
-
-  
 .header-inner-wrapper>div:first-child{
     padding: 24px 0;
   }
