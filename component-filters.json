@@ -2,19 +2,13 @@
   {
     "id": "main",
     "components": [
-      "section",
-      "tabscontainer" 
-    ]
-  },
-  {
-    "id": "tabscontainer",
-    "components": [
-      "tabs"
+      "section"
     ]
   },
   {
     "id": "section",
     "components": [
+      "tabs",
       "text",
       "image",
       "button",
