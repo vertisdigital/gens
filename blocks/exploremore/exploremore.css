@@ -1,6 +1,6 @@
 .exploremore-container{
-  background-color: var(--whispar-gray);
-  padding: 80px 100px;
+  background-color: var(--whisper-gray);
+  padding: 80px 0;
 } 
 
 .exploremore .exploremore-wrapper-container .exploremore-title{
@@ -37,7 +37,7 @@
 }
 
 .exploremore-wrapper-container .exploremore-item .exploremore-caption{
-  font-size: 30px;
+  font-size: 28px;
   font-weight: 400;
   line-height: 50px; 
   letter-spacing: -0.5px;
@@ -56,9 +56,10 @@
 }
 
 @media(width<=992px){
-  .exploremore .exploremore-wrapper-container{
+ 
+  .exploremore-container{
     padding: 40px 0;
-  }
+  } 
 
   .exploremore .exploremore-wrapper-container .exploremore-title{
     font-size: 32px;
@@ -73,7 +74,7 @@
   }
 
   .exploremore-wrapper-container .exploremore-item .exploremore-caption{
-    font-size: 26px;
+    font-size: 24px;
     font-weight: 400;
     line-height: 42px; 
   }
@@ -84,9 +85,10 @@
 }
 
 @media(width<768px){
-  .exploremore .exploremore-wrapper-container{
+ 
+  .exploremore-container{
     padding: 32px 0;
-  }
+  } 
 
   .exploremore .exploremore-wrapper-container .exploremore-title{
     font-size: 28px;
