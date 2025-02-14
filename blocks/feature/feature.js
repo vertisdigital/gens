@@ -67,6 +67,7 @@ export default function decorate(block) {
   if (linkField) {
     const linkContainer = document.createElement('div');
     linkContainer.className = 'links-container';
+    moveInstrumentation(linkField, linkContainer);
 
     // Create container for each link
 
@@ -80,8 +81,7 @@ export default function decorate(block) {
     const originalTarget = linkField.querySelector('[data-aue-prop="linkTarget"]');
     const originalTargetName = originalTarget.textContent;
     originalLink.setAttribute('target', originalTargetName);
-    originalLink.innerHTML = '';
-    originalTarget.innerHTML = '';
+
     if (originalLink) {
       const linkElement = document.createElement('a');
       moveInstrumentation(originalLink, linkElement);
@@ -109,6 +109,8 @@ export default function decorate(block) {
         linkTextDiv.appendChild(linkTextP);
         linkContainer.appendChild(linkTextDiv);
       }
+      originalLink.innerHTML = '';
+      originalTarget.innerHTML = '';
       aboutUsLeftContent.appendChild(linkContainer);
     }
   }

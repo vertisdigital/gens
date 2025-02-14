@@ -59,7 +59,7 @@
   margin: 0;
 }
 
-.about-us-left .button-container a span{
+.about-us-left .button-container a .icon-wrapper.about-us-left-link{
   width: 16px;
   height: 16px;
 }
