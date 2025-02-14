@@ -221,8 +221,11 @@ export default function decorate(block) {
         }
         // show the link to show more indices
         const showMoreIndicesLink = document.createElement('button');
+        moveInstrumentation(moreIndices, showMoreIndicesLink);
         // show the link to show less indices
         const showLessIndicesLink = document.createElement('button');
+        moveInstrumentation(lessIndices, showLessIndicesLink);
+
         showMoreIndicesLink.textContent = `${moreIndices?.textContent ?? 'Show More'} (${convDescription.length - indexNumber})`;
         showMoreIndicesLink.classList.add('show-more-indices');
         showMoreIndicesLink.addEventListener('click', () => {
@@ -243,9 +246,10 @@ export default function decorate(block) {
           showMoreIndicesLink.style.display = 'block';
           showLessIndicesLink.style.display = 'none';
         });
-
-        aboutUsRightContent.appendChild(showMoreIndicesLink);
-        aboutUsRightContent.appendChild(showLessIndicesLink);
+        indices.innerHTML = '';
+        indices.appendChild(showMoreIndicesLink);
+        indices.appendChild(showLessIndicesLink);
+        aboutUsRightContent.appendChild(indices);
       }
     }
     block.innerHTML = '';
