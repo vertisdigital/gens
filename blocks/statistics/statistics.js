@@ -35,10 +35,10 @@ export default function decorate(block) {
     );
     featureItem
       .querySelector('[data-aue-prop="feature-title"]')
-      .classList.add('statistic-item');
+      ?.classList.add('statistic-item');
     featureItem
       .querySelector('[data-aue-prop="feature-heading"]')
-      .classList.add('text-container');
+      ?.classList.add('text-container');
   });
 
   block.appendChild(featureContainer);
