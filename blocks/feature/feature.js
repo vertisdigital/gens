@@ -105,6 +105,7 @@ export default function decorate(block) {
         linkText.innerText = originalLink.textContent;
         linkElement.append(linkText);
         const arrowSVG = SvgIcon({ name: `${arrowIconName}`, className: 'about-us-left-link', size: '16px' });
+        moveInstrumentation(arrowIcon, arrowSVG);
         linkElement.append(stringToHTML(arrowSVG));
         linkTextP.append(linkElement);
         linkTextDiv.appendChild(linkTextP);
