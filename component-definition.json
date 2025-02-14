@@ -91,6 +91,21 @@
           }
         },
         {
+          "title": "TabsPanel",
+          "id": "tabspanel",
+          "plugins": {
+            "xwalk": {
+              "page": {
+                "resourceType": "core/franklin/components/section/v1/section",
+                "template": {
+                  "name": "tabspanel",
+                  "filter": "tabspanel"
+                }
+              }
+            }
+          }
+        },
+        {
           "title": "Tabs",
           "id": "tabs",
           "plugins": {

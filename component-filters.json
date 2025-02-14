@@ -4,13 +4,13 @@
     "components": [
       "section",
       "statisticsSection",
-      "tabsposition"  
+      "tabsposition",
+      "tabspanel"
     ]
   },
   {
     "id": "section",
     "components": [
-      "tabs",
       "text",
       "image",
       "button",
@@ -180,7 +180,11 @@
   },
   {
     "id": "tabsposition",
-    "components": []
+    "components": [null]
+  },
+  {
+    "id": "tabspanel",
+    "components": ["tabs"]
   },
   {
     "id": "statisticsSection",
