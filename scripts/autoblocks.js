@@ -57,13 +57,20 @@ export default function processTabs(main, moveInstrumentation) {
     const tabsContent = document.createElement('div');
     tabsContent.classList.add('tabs-content');
  
+    // Calculate column classes based on number of tabs
+    const numTabs = tabSections.length;
+    const colClass = numTabs === 2 ? 'col-xl-6 col-lg-6 col-md-6 col-sm-6' : 
+                    numTabs === 3 ? 'col-xl-4 col-lg-4 col-md-4 col-sm-4' :
+                    'col-xl-3 col-lg-3 col-md-3 col-sm-3';
+ 
     tabSections.forEach((section, index) => {
       const metadata = section.querySelector('.section-metadata > div :last-child');
       const tabTitle = metadata ? metadata.textContent.trim() : `Tab ${index + 1}`;
  
       // Create tab button
       const tabButton = document.createElement('div');
-      tabButton.classList.add('tab-title', 'col-xl-6', 'col-lg-6', 'col-md-3', 'col-sm-2');
+      tabButton.classList.add('tab-title');
+      tabButton.classList.add(...colClass.split(' '));
       tabButton.dataset.index = index;
       tabButton.textContent = tabTitle;
  
