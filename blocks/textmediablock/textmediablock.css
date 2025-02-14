@@ -2,6 +2,7 @@
   .textmediablock-wrapper{
     padding: 80px 0;
   }
+
 /* Media styles */
 [data-aue-model="media"] {
   width: 100%;
@@ -39,7 +40,6 @@
 
 /* Tablet and up: Grid layout */
 @media (width<=992px) {
-  
  [data-aue-prop="heading"] {
     font-family: var(--heading-font-family);
     font-size: 32px;
@@ -54,7 +54,6 @@
   }
 } 
 @media (width<768px) {
- 
   [data-aue-prop="heading"] {
     font-size: 28px;
     line-height: 34px;

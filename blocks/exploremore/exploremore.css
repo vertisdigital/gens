@@ -56,7 +56,6 @@
 }
 
 @media(width<=992px){
- 
   .exploremore-container{
     padding: 40px 0;
   } 
@@ -85,7 +84,6 @@
 }
 
 @media(width<768px){
- 
   .exploremore-container{
     padding: 32px 0;
   } 

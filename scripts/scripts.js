@@ -2,15 +2,16 @@ import {
   loadHeader,
   loadFooter,
   decorateButtons,
+  decorateBlocks,
   decorateIcons,
   decorateSections,
-  decorateBlocks,
   decorateTemplateAndTheme,
   waitForFirstImage,
   loadSection,
   loadSections,
   loadCSS,
 } from './aem.js';
+import processTabs from './autoblocks.js';
 
 /**
  * Moves all the attributes from a given elmenet to another given element.
@@ -62,29 +63,53 @@ async function loadFonts() {
  * Builds all synthetic blocks in a container element.
  * @param {Element} main The container element
  */
-function buildAutoBlocks() {
+function buildAutoBlocks(main) {
   try {
-    // TODO: add auto block, if needed
+    // Process tabs first but maintain their position
+    processTabs(main, moveInstrumentation);
+
+    // Find blocks inside columns and tabs containers
+    const containerBlocks = main.querySelectorAll(`
+      .columns div[class],
+      [data-aue-model="tabs"] div[class],
+      [data-aue-filter="tabs"] div[class]
+    `);
+
+    containerBlocks.forEach((block) => {
+      const classes = Array.from(block.classList);
+      classes.forEach((className) => {
+        if (!className.startsWith('columns-') && !className.startsWith('tabs-')
+            && className !== 'columns' && className !== 'tabs'
+            && className !== 'section-metadata') {
+          // Add block class and ensure block type is the first class
+          block.classList.remove(className);
+          block.classList.add(className, 'block');
+
+          // Force block decoration for this element
+          if (!block.dataset.blockName) {
+            block.dataset.blockName = className;
+          }
+        }
+      });
+    });
   } catch (error) {
     // eslint-disable-next-line no-console
     console.error('Auto Blocking failed', error);
   }
 }
-
 /**
  * Decorates the main element.
  * @param {Element} main The main element
  */
 // eslint-disable-next-line import/prefer-default-export
 export function decorateMain(main) {
-  console.log('decorateMain', main);
   // hopefully forward compatible button decoration
 
   decorateButtons(main);
   decorateIcons(main);
-  buildAutoBlocks(main);
   decorateSections(main);
-  decorateBlocks(main);
+  decorateBlocks(main); // First decorate all blocks
+  buildAutoBlocks(main); // Then build auto blocks which will preserve block decoration
 }
 
 /**
@@ -92,7 +117,6 @@ export function decorateMain(main) {
  * @param {Element} doc The container element
  */
 async function loadEager(doc) {
-  console.log('loadEager', doc);
   document.documentElement.lang = 'en';
   decorateTemplateAndTheme();
   const main = doc.querySelector('main');
@@ -117,7 +141,6 @@ async function loadEager(doc) {
  * @param {Element} doc The container element
  */
 async function loadLazy(doc) {
-  console.log('loadLazy', doc);
   const main = doc.querySelector('main');
   await loadSections(main);
 
@@ -149,3 +172,6 @@ async function loadPage() {
 }
 
 loadPage();
+
+// Add this in your initialization code
+loadCSS(`${window.hlx.codeBasePath}/blocks/tabs/tabs.css`);

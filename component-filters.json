@@ -3,11 +3,41 @@
     "id": "main",
     "components": [
       "section",
-      "statisticsSection"
+      "statisticsSection",
+      "tabsposition",
+      "tabspanel"
     ]
   },
   {
     "id": "section",
+    "components": [
+      "text",
+      "image",
+      "button",
+      "title",
+      "hero",
+      "herobanner",
+      "cards",
+      "columns",
+      "fragment",
+      "coreprinciples",
+      "feature",
+      "linkField",
+      "socialLinks",
+      "links",
+      "imageLink",
+      "exploremore",
+      "listing",
+      "projectcards",
+      "enquiry",
+      "tiles",
+      "textsection",
+      "textmediablock",
+      "projectslist"
+    ]
+  },
+  {
+    "id": "tabs",
     "components": [
       "text",
       "image",
@@ -147,6 +177,14 @@
     "components": [
       "projectslistitem"
     ]
+  },
+  {
+    "id": "tabsposition",
+    "components": [null]
+  },
+  {
+    "id": "tabspanel",
+    "components": ["tabs"]
   },
   {
     "id": "statisticsSection",

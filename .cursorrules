@@ -96,6 +96,15 @@
     1. Index and carefull go through the folowing Resources. These will provide you the context of an EDS project which we are going to work on:
         1. [AEM EDS Documentation](https://experienceleague.adobe.com/en/docs/experience-manager-cloud-service/content/edge-delivery/wysiwyg-authoring/create-block)
         2. [EDS Code Repository](https://github.com/adobe-rnd/aem-boilerplate-xwalk)
+        3. [Building Application - Markup-Sections](https://experienceleague.adobe.com/en/docs/experience-manager-cloud-service/content/edge-delivery/build/markup-sections-blocks)
+        4. [Block Collection](https://experienceleague.adobe.com/en/docs/experience-manager-cloud-service/content/edge-delivery/build/block-collection)
+        5. [Custom Headers](https://experienceleague.adobe.com/en/docs/experience-manager-cloud-service/content/edge-delivery/build/custom-headers)
+        6. [Best Practices For Developers](https://experienceleague.adobe.com/en/docs/experience-manager-cloud-service/content/edge-delivery/build/dev-collab-and-good-practices)]
+        7. [WYSIWYG Authoring](https://experienceleague.adobe.com/en/docs/experience-manager-cloud-service/content/edge-delivery/wysiwyg-authoring/authoring-overview)
+        8. [Publishing](https://experienceleague.adobe.com/en/docs/experience-manager-cloud-service/content/edge-delivery/wysiwyg-authoring/publishing)
+        9. [Developer Guide For WYSIWYG Authoring](https://experienceleague.adobe.com/en/docs/experience-manager-cloud-service/content/edge-delivery/wysiwyg-authoring/edge-dev-getting-started)
+        10. [Creating Blocks](https://experienceleague.adobe.com/en/docs/experience-manager-cloud-service/content/edge-delivery/wysiwyg-authoring/create-block)
+        11. [Content Modeling](https://experienceleague.adobe.com/en/docs/experience-manager-cloud-service/content/edge-delivery/wysiwyg-authoring/content-modeling)
     3. Now analyze the current codebase,  you should focus on the following:
             1. If the project/codebase is a valid EDS project. You can comapre it with the EDS Code Repository provided in the previous step.
             2. If the project/codebase is not a valid EDS project, you should ask user to have a valid EDS project first and say goodbye.

@@ -10,7 +10,7 @@
  * governing permissions and limitations under the License.
  */
  
- /*
+ /* 
 Breakpoints & Container Widths:
 -------------------------------------------------------------------------------------
 |  Breakpoint  |  Class infix  |  Dimensions   |     Container (max-width)          |
@@ -49,8 +49,10 @@ Usage Example:
   --link-hover-color: #236097;
   --midnight-blue: #0D2C48;
   --primary-gold: #B29152;
+  --antique-gold: #b5904b;
   --bronze-brown: #957842;
   --light-grey: #EEE;
+  --soft-ivory-light: #e3d5b1;
   --soft-ivory: #F5E7C4;
   --whisper-gray: #F7F7F7;
 
@@ -741,4 +743,84 @@ main .section.highlight {
   .offset-xl-9 { margin-left: 75%; }
   .offset-xl-10 { margin-left: 83.33333333%; }
   .offset-xl-11 { margin-left: 91.66666667%; }
+}
+
+/* Tab Container */
+.tabs-container {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  margin: 0 auto;
+}
+
+.tabs-header{
+  margin-bottom: 36px;
+}
+
+.tab-title{
+  position: relative;
+  text-align: center;
+  padding: 36px 0 45px;
+  color: var(--body-text-color);
+  font-size: 24px;
+  font-weight: 600;
+  line-height: 30px;
+  border-bottom: 2px solid  var(--body-text-color);
+  cursor: pointer;
+}
+
+.tab-title.active {
+  background: var(--soft-ivory-light); 
+  color: var(--primary-gold);
+  border-bottom: 2px solid var(--primary-gold);
+}
+
+.tab-title.active::after {
+  content: "";
+  position: absolute;
+  bottom: 0; 
+  left: 50%;
+  transform: translateX(-50%);
+  width: 0;
+  height: 0;
+  border-left: 8px solid transparent;
+  border-right: 8px solid transparent;
+  border-bottom: 6px solid var(--primary-gold); 
+}
+
+.tabs-content-wrapper {
+  padding: 20px;
+}
+
+.tab-panel {
+  display: none;
+}
+
+.tab-panel.active {
+  display: block;
+}
+
+.cards {
+  margin-top: 10px;
+}
+
+.cards img {
+  width: 100%;
+  height: auto;
+  border-radius: 8px;
+}
+
+@media(width<=992px){
+  .tab-title{
+    font-size: 22px;
+    font-weight: 600;
+    line-height: 26px;
+  }
+}
+
+@media(width<768px){
+  .tab-title{
+    font-size: 18px;
+    line-height: 24px;
+  }
 }
