@@ -14,6 +14,7 @@
       "button",
       "title",
       "hero",
+      "herobanner",
       "cards",
       "columns",
       "fragment",
@@ -55,9 +56,19 @@
       "image",
       "button",
       "title",
+      "coreprinciples",
       "imageLink",
       "socialLinks",
-      "links"
+      "links",
+      "exploremore",
+      "listing",
+      "projectcards",
+      "enquiry",
+      "tiles",
+      "textsection",
+      "textmediablock",
+      "linkField",
+      "projectslist"
     ]
   },
   {
@@ -72,6 +83,69 @@
     "id": "featureItem",
     "components": [
       "linkField"
+    ]
+  },
+  {
+    "id": "socialLinks",
+    "components": [
+      "linkField"
+    ]
+  },
+  {
+    "id": "links",
+    "components": [
+      "linkField"
+    ]
+  },
+  {
+    "id": "imageLink",
+    "components": [
+      "linkField"
+    ]
+  },
+  {
+    "id": "listing",
+    "components": [
+      "listitem",
+      "linkField"
+      ]
+  },
+  {
+    "id": "projectcards",
+    "components": [
+      "projectcard"
+    ]
+  },
+  {
+    "id": "herobanner",
+    "components": [
+      "bannercarousel"
+    ]
+
+  },
+  {
+    "id": "tiles",
+    "components": [
+      "tile"
+    ]
+  },
+  {
+    "id": "coreprinciples",
+    "components": [
+      "coreprinciple"
+    ]
+  },
+  {
+    "id": "textmediablock",
+    "components": [
+      "media",
+      "textsection"
+    ]
+  },
+  {
+    "id": "projectslist",
+    "components": [
+      "projectslistitem"
     ]
   },
   {
