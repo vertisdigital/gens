@@ -94,6 +94,7 @@ export default function decorate(block) {
         linkElement.textContent = originalLink.textContent;
       } else if (arrowIcon && !originalLink) {
         const arrowSVG = SvgIcon({ name: `${arrowIconName}`, className: 'about-us-left-link', size: '24px' });
+        moveInstrumentation(arrowIcon, arrowSVG);
         linkElement.append(stringToHTML(arrowSVG));
         // Assemble link structure
         linkTextP.appendChild(linkElement);
