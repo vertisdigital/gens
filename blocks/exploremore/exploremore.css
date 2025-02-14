@@ -1,5 +1,6 @@
 .exploremore-container{
-  background-color: var(--whisper-gray);
+  background-color: var(--whispar-gray);
+  padding: 80px 100px;
 } 
 
 .exploremore .exploremore-wrapper-container .exploremore-title{
@@ -44,7 +45,7 @@
 }
 
 .exploremore-wrapper-container .exploremore-item .exploremore-link-container{
-  padding: 16px;
+  padding: 12px 16px 16px;
   display: flex;
   align-items: center;
   justify-content: center;
