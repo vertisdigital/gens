@@ -56,8 +56,8 @@ Usage Example:
 
  
   /* fonts */
-  --body-font-family: 'roboto-regular', sans-serif;
-  --heading-font-family: 'roboto-regular', sans-serif;
+  --body-font-family: 'DM Sans', sans-serif;
+  --heading-font-family: 'DM Sans', sans-serif;
 
    /* body sizes */
    --body-font-size-m: 16px;
