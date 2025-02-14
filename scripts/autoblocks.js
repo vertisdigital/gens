@@ -5,7 +5,7 @@ import { loadCSS } from './aem.js';
  * @param {Element} main The container element
  */
 export default function processTabs(main, moveInstrumentation) {
-  const mainWrapper = main.querySelector('[data-aue-label="tabscontainer"]');
+  const mainWrapper = main.querySelector('[data-aue-resource*="tabs-test"]');
   if (!mainWrapper) return;
 
   const sections = [
