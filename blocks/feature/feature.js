@@ -161,20 +161,26 @@ export default function decorate(block) {
       }
 
       // Handle text feature
-      const textElement = description.querySelector('[data-aue-prop="feature-title"]');
+      const textElement = description.querySelector('[data-aue-prop="feature-title"],[data-richtext-prop="feature-title"]');
       if (textElement) {
         const textContainer = document.createElement('div');
         const statisticDiv = document.createElement('div');
         statisticDiv.className = 'statistic';
         moveInstrumentation(textElement, statisticDiv);
 
-        const textContent = textElement.querySelectorAll('p');
-        textContent.forEach((text) => {
+        const textContent = textElement.querySelector('p') ? textElement.querySelectorAll('p') : textElement.textContent;
+        if (Array.isArray(textContent)) {
+          textContent.forEach((text) => {
+            const span = document.createElement('span');
+            span.textContent = text.textContent;
+            moveInstrumentation(text, span);
+            statisticDiv.appendChild(span);
+          });
+        } else {
           const span = document.createElement('span');
-          span.textContent = text.textContent;
-          moveInstrumentation(text, span);
+          span.textContent = textContent;
           statisticDiv.appendChild(span);
-        });
+        }
 
         textContainer.appendChild(statisticDiv);
         featureContainer.appendChild(textContainer);
@@ -182,7 +188,7 @@ export default function decorate(block) {
       }
 
       // Handle feature heading
-      const featureHeadingElement = description.querySelector('[data-aue-prop="feature-heading"]');
+      const featureHeadingElement = description.querySelector('[data-aue-prop="feature-heading"], [data-richtext-prop="feature-heading"]');
       if (featureHeadingElement) {
         const headingContainer = document.createElement('div');
         const featureHeadingP = document.createElement('p');

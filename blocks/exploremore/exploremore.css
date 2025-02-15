@@ -26,6 +26,7 @@
    border-top: 1px solid var(--text-color);
    display: flex;
    justify-content: space-between;
+   align-items: center;
 }
 
 .exploremore-wrapper-container .exploremore-item:first-child{
@@ -51,8 +52,13 @@
   justify-content: center;
 }
 
+.exploremore-wrapper-container .exploremore-item .exploremore-link-container a {
+  display: flex;
+}
+
 .exploremore-wrapper-container .exploremore-item .exploremore-link-container a .icon-wrapper{
   color:  var(--primary-gold);
+  padding-top: 0;
 }
 
 @media(width<=992px){

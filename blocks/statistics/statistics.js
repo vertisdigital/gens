@@ -70,17 +70,16 @@ export default function decorate(block) {
     const descriptionChildren = statisticBlockDescription.querySelector(
       '[data-aue-prop="description"]',
     )?.children;
-    if (descriptionChildren?.length > 1) {
-      for (let i = 1; i < descriptionChildren.length; i += 1) {
-        descriptionChildren[i].classList.add('hide');
-      }
-
-      const readMoreContent = statisticBlockDescription.querySelector(
+     const readMoreContent = statisticBlockDescription.querySelector(
         '[data-aue-prop="readMoreLabel"]',
       );
       const readLessContent = statisticBlockDescription.querySelector(
         '[data-aue-prop="readLessLabel"]',
       );
+    if (descriptionChildren?.length > 1) {
+      for (let i = 1; i < descriptionChildren.length; i += 1) {
+        descriptionChildren[i].classList.add('hide');
+      }
       const readMoreElement = document.createElement('button');
       const readLessElement = document.createElement('button');
       moveInstrumentation(readMoreContent, readMoreElement);
@@ -115,6 +114,10 @@ export default function decorate(block) {
         readLessElement.classList.add('hide');
       };
       statisticBlockDescription.appendChild(readLessElement);
+    }else{
+        readMoreContent?.classList.add('hide');
+        readLessContent?.classList.add('hide');
+      
     }
 
     block.appendChild(statisticBlockDescription);

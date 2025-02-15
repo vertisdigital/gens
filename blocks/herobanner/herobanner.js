@@ -118,7 +118,7 @@ export default function decorate(block) {
       name: 'arrow',
       className: 'hero-arrow-icon',
       size: '24',
-      color: 'white',
+      color: '#B29152',
     });
     const parsedHtml = stringToHTML(arrowIconHtml);
     heroContent.appendChild(parsedHtml);
