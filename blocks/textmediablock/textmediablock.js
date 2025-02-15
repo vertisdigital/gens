@@ -2,7 +2,7 @@ function initTextMediaBlock() {
   const blocks = document.querySelectorAll('.textmediablock');
 
   blocks.forEach((block) => {
-    block.className = 'container-xl container-md container-sm';
+    block.className = 'container-xl container-md container-sm textmediablock-container';
 
     // Handle image elements
     const mediaBlock = block.querySelector('[data-aue-model="media"]');

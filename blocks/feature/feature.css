@@ -7,7 +7,7 @@
   padding: 36px 0;
 }
 
-.feature-wrapper .about-us-stats:not(:last-child) {
+.feature-wrapper:not(:last-child) .about-us-stats, .feature-wrapper .about-us-stats:not(:last-child) {
   padding-bottom: 0;
 }
 

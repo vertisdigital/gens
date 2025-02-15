@@ -794,6 +794,9 @@ main .section.highlight {
 
 .tab-panel {
   display: none;
+  .container-xl, .container-lg, .container-md, .container-sm, .container{
+    padding: 0px;
+  }
 }
 
 .tab-panel.active {
