@@ -169,7 +169,7 @@ export default function decorate(block) {
         moveInstrumentation(textElement, statisticDiv);
 
         const textContent = textElement.querySelector('p') ? textElement.querySelectorAll('p') : textElement.textContent;
-        if (textContent.length) {
+        if (Array.isArray(textContent)) {
           textContent.forEach((text) => {
             const span = document.createElement('span');
             span.textContent = text.textContent;
