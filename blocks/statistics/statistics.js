@@ -27,8 +27,8 @@ export default function decorate(block) {
   featureItems.forEach((featureItem) => {
     featureContainer.appendChild(featureItem);
     featureItem.classList.add(
-      'col-xl-3',
-      'col-lg-3',
+      'col-xl-4',
+      'col-lg-4',
       'col-md-3',
       'col-sm-4',
       'feature-item',
