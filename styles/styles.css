@@ -750,9 +750,8 @@ main .section.highlight {
   display: flex;
   flex-direction: column;
   width: 100%;
-  margin: 0 auto;
+  margin: 0 auto; 
 }
-
 .tabs-header{
   margin-bottom: 36px;
 }
@@ -803,6 +802,12 @@ main .section.highlight {
   display: block;
 }
 
+/*Tab section overrides*/
+
+.tabs-container .about-us-stats .about-us-right-content p{
+  font-weight: 400;
+  color: var(--body-text-color);
+}
 .cards {
   margin-top: 10px;
 }

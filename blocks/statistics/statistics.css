@@ -60,14 +60,13 @@
 }
 
 .statistics-wrapper .statistics.block {
-    background: var(--background-color);
     margin-top: -68px;
     position: relative;
 }
 
 .statistics-wrapper .statistics.block::before {
     content: '';
-    background: rebeccapurple;
+    background: var(--background-color);
     position: absolute;
     top: -80px;
     left: 0;
