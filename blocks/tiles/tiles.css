@@ -289,6 +289,10 @@ a:any-link.factsheet-button {
     padding: 68px 0;
   }
 
+  .tile-all-image-variation {
+    padding: 68px 0;
+  }
+
   .row.tiles-container {
     row-gap: 48px;
     margin-left: -24px;

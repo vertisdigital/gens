@@ -59,6 +59,48 @@
     color: var(--body-text-color);
 }
 
+.statistics-wrapper .statistics.block {
+    background: var(--background-color);
+    margin-top: -68px;
+    position: relative;
+}
+
+.statistics-wrapper .statistics.block::before {
+    content: '';
+    background: rebeccapurple;
+    position: absolute;
+    top: -80px;
+    left: 0;
+    right: 0;
+    width: 100%;
+    max-width: 1280px;
+    bottom: 0;
+    margin: 0 auto;
+    z-index: -1;
+}
+
+.statistics-wrapper + .feature-wrapper .about-us-stats {
+    padding-top: 0;
+}
+
+@media (width <= 1280px) {
+    .statistics-wrapper .statistics.block::before {
+        left: 22px;
+        right: 22px;
+        width: auto;
+        max-width: inherit;
+    }
+}
+
+@media (width <= 1024px) {
+    .statistics-wrapper .statistics.block {
+        margin-top: -46px;
+    }
+    .statistics-wrapper .statistics.block::before {
+        top: -22px;
+    }
+}
+
 @media (width<=992px) {
     .statistics .statistic-item {
         font-size: 64px;
@@ -70,5 +112,12 @@
     .statistics .statistic-item {
         font-size: 48px;
         line-height: 48px;
+    }
+    .statistics-wrapper .statistics.block {
+        margin-top: -54px;
+    }
+    .statistics-wrapper .statistics.block::before {
+        left: 10px;
+        right: 10px;
     }
 }
