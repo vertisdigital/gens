@@ -668,7 +668,7 @@ header .header{
 .header-inner-wrapper .header-nav .primary-nav{
   display: flex;
   align-items: center;
-  column-gap: 14px;
+  column-gap: 12px;
   list-style: none;
   margin: 0;
   padding: 0;
