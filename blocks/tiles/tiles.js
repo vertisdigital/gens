@@ -108,7 +108,7 @@ export default function decorate(block) {
 
   if (isFirsTileImage) {
     const allImageVariation = document.createElement('div');
-    allImageVariation.className = 'tile-wrapper ';
+    allImageVariation.className = 'tile-all-image-variation ';
     allImageVariation.appendChild(row);
     block.appendChild(allImageVariation);
   } else {
