@@ -161,7 +161,7 @@ export default function decorate(block) {
       }
 
       // Handle text feature
-      const textElement = description.querySelector('[data-aue-prop="feature-title"]');
+      const textElement = description.querySelector('[data-aue-prop="feature-title"],[data-richtext-prop="feature-title"]');
       if (textElement) {
         const textContainer = document.createElement('div');
         const statisticDiv = document.createElement('div');
@@ -182,7 +182,7 @@ export default function decorate(block) {
       }
 
       // Handle feature heading
-      const featureHeadingElement = description.querySelector('[data-aue-prop="feature-heading"]');
+      const featureHeadingElement = description.querySelector('[data-aue-prop="feature-heading"], [data-richtext-prop="feature-heading"]');
       if (featureHeadingElement) {
         const headingContainer = document.createElement('div');
         const featureHeadingP = document.createElement('p');
