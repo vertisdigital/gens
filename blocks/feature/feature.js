@@ -168,13 +168,19 @@ export default function decorate(block) {
         statisticDiv.className = 'statistic';
         moveInstrumentation(textElement, statisticDiv);
 
-        const textContent = textElement.querySelectorAll('p');
-        textContent.forEach((text) => {
+        const textContent = textElement.querySelector('p') ? textElement.querySelectorAll('p') : textElement.textContent;
+        if (Array.isArray(textContent)) {
+          textContent.forEach((text) => {
+            const span = document.createElement('span');
+            span.textContent = text.textContent;
+            moveInstrumentation(text, span);
+            statisticDiv.appendChild(span);
+          });
+        } else {
           const span = document.createElement('span');
-          span.textContent = text.textContent;
-          moveInstrumentation(text, span);
+          span.textContent = textContent;
           statisticDiv.appendChild(span);
-        });
+        }
 
         textContainer.appendChild(statisticDiv);
         featureContainer.appendChild(textContainer);
