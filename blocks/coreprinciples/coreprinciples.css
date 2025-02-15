@@ -1,11 +1,28 @@
 .coreprinciples {
-    padding: 4rem 0;
+    padding: 136px 0;
+}
+
+.coreprinciples .coreprinciples {
+    padding: 0;
+    position: relative;
+}
+
+.coreprinciples .coreprinciples::after {
+    content: '';
+    width: 100%;
+    height: 1px;
+    max-width: 1120px;
+    background: var(--text-color);
+    margin: 0 auto;
+    transform: translateY(-136px);
 }
 
 .coreprinciples .row {
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
+    margin-left: -18px;
+    margin-right: -18px;
 }
 
 .coreprinciples > div {
@@ -15,7 +32,7 @@
 }
 
 .principles-item {
-    padding: 12px !important;
+    padding: 0 18px;
 }
 
 .principles-item > div {
@@ -67,6 +84,8 @@
 
     .coreprinciples .row {
         justify-content: left;
+        margin-left: -12px;
+        margin-right: -12px;
     }
 
     .coreprinciples .icon-wrapper picture {
@@ -77,10 +96,26 @@
     .coreprinciples h3 {
         font-size: 18px;
     }
+    .principles-item {
+        padding: 0 12px;
+    }
+    .principles-item:not(:last-child) {
+        margin-bottom: 24px;
+    }
+    .coreprinciples {
+        padding: 56px 0;
+    }
+    .coreprinciples .coreprinciples::after {
+        transform: translateY(-56px);
+    }
 }
 @media (width < 768px) {
     .coreprinciples {
-        padding: 2rem 0;
+        padding: 24px 0;
+    }
+
+    .coreprinciples .coreprinciples::after {
+        display: none;
     }
     
     .coreprinciples .icon-wrapper {
@@ -102,5 +137,15 @@
     .coreprinciples [data-richtext-prop="description"] {
         font-size: 14px;
         line-height: 20px;
+    }
+    .coreprinciples .row {
+        margin-left: -9px;
+        margin-right: -9px;
+    }
+    .principles-item {
+        padding: 0 9px;
+    }
+    .principles-item:not(:last-child) {
+        margin-bottom: 18px;
     }
 }
