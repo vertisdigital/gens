@@ -1107,19 +1107,5 @@
         }
       }
     ]
-  },
-  {
-    "id": "titleandtabscontainer",
-    "fields": [
-      {
-        "component": "text",
-        "name": "tabspanelheading",
-        "label": "Tabs Panel Heading",
-        "validation": {
-          "maxLength": 100,
-          "customErrorMsg": "Tabs Panel heading cannot exceed 100 characters"
-        }
-      }
-    ]   
   }
 ]

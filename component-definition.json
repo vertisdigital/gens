@@ -107,22 +107,6 @@
           }
         },
         {
-          "title": "TitleAndTabsContainer",
-          "id": "titleandtabscontainer",
-          "plugins": {
-            "xwalk": {
-              "page": {
-                "resourceType": "core/franklin/components/section/v1/section",
-                "template": {
-                  "name": "titleandtabscontainer",
-                  "model": "titleandtabscontainer",
-                  "filter": "titleandtabscontainer"
-                }
-              }
-            }
-          }
-        } ,
-        {
           "title": "Tabs",
           "id": "tabs",
           "plugins": {
