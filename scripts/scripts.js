@@ -64,12 +64,12 @@ async function loadFonts() {
  * @param {Element} main The container element
  */
 function buildAutoBlocks(main) {
-  try {
+ // try {
     // Process tabs first but maintain their position
-    processTabs(main, moveInstrumentation);
+    //processTabs(main, moveInstrumentation);
 
     // Find blocks inside columns and tabs containers
-    const containerBlocks = main.querySelectorAll(`
+   /* const containerBlocks = main.querySelectorAll(`
       .columns div[class],
       [data-aue-model="tabs"] div[class],
       [data-aue-filter="tabs"] div[class]
@@ -95,7 +95,7 @@ function buildAutoBlocks(main) {
   } catch (error) {
     // eslint-disable-next-line no-console
     console.error('Auto Blocking failed', error);
-  }
+  }*/
 }
 /**
  * Decorates the main element.
