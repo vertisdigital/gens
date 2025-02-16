@@ -64,7 +64,7 @@ async function loadFonts() {
  * @param {Element} main The container element
  */
 function buildAutoBlocks(main) {
-  try {
+ /* try {
     // Process tabs first but maintain their position
     processTabs(main, moveInstrumentation);
 
@@ -95,7 +95,7 @@ function buildAutoBlocks(main) {
   } catch (error) {
     // eslint-disable-next-line no-console
     console.error('Auto Blocking failed', error);
-  }
+  }*/
 }
 /**
  * Decorates the main element.
