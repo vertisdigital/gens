@@ -60,8 +60,8 @@
 .about-us-left .links-container a span{
   width: 16px;
   height: 16px;
-  padding: 16px;
   padding-top: 0;
+  padding-left: 8px;
 }
 
 .about-us-left .about-us-left-link svg{

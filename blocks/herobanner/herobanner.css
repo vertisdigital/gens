@@ -64,7 +64,7 @@
   transform: translateY(4px);
 } */
 
-.icon-wrapper {
+.hero-banner-container .icon-wrapper {
   display: inline-flex;
   align-items: center;
   justify-content: left;
