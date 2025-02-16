@@ -813,7 +813,9 @@ main .section.highlight {
     letter-spacing:  -0.5px;
 }
 /*Tab section overrides*/
-
+.tabpanel {
+  padding-top: 80px;
+}
 .tabs-container .about-us-stats .about-us-right-content p{
   font-weight: 400;
   color: var(--body-text-color);
@@ -836,6 +838,9 @@ main .section.highlight {
 }
 
 @media(width<=992px){
+  .tabpanel {
+    padding-top: 56px;
+  }
   .tab-title{
     font-size: 22px;
     font-weight: 600;
@@ -854,7 +859,10 @@ main .section.highlight {
 }
 
 @media(width<768px){
-  .tab-title{
+  .tabpanel {
+    padding-top: 36px;
+  }
+  .tab-title {
     font-size: 18px;
     line-height: 24px;
   }

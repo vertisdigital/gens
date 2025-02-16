@@ -41,7 +41,7 @@ export default function processTabs(main, moveInstrumentation) {
   }
 
   const topContainer = document.createElement('div');
-  topContainer.classList = 'container-xl container-lg container-md container-sm';
+  topContainer.classList = 'container-xl container-lg container-md container-sm tabpanel';
 
   if (mainWrapper) {
     moveInstrumentation(mainWrapper, topContainer);
