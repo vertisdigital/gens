@@ -10,6 +10,10 @@
   border-bottom: 1px solid var(--text-color);
 }
 
+.statistics .statistics-title {
+    padding-bottom: 40px;
+}
+
 .statistics-description-wrapper {
     font-size: 16px;
     font-weight: 400;
