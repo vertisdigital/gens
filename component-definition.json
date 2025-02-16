@@ -77,20 +77,6 @@
           }
         },
         {
-          "title": "TabsPosition",
-          "id": "tabsposition",
-          "plugins": {
-            "xwalk": {
-              "page": {
-                "resourceType": "core/franklin/components/section/v1/section",
-                "template": {
-                  "name": "tabsposition"
-                }
-              }
-            }
-          }
-        },
-        {
           "title": "TabsPanel",
           "id": "tabspanel",
           "plugins": {
@@ -106,6 +92,20 @@
             }
           }
         },
+        {
+          "title": "TabsPosition",
+          "id": "tabsposition",
+          "plugins": {
+            "xwalk": {
+              "page": {
+                "resourceType": "core/franklin/components/section/v1/section",
+                "template": {
+                  "name": "tabsposition"
+                }
+              }
+            }
+          }
+        },        
         {
           "title": "Tabs",
           "id": "tabs",
