@@ -39,32 +39,9 @@
   {
     "id": "tabs",
     "components": [
-      "text",
-      "image",
-      "button",
-      "title",
-      "hero",
-      "herobanner",
-      "cards",
-      "columns",
-      "fragment",
-      "coreprinciples",
       "feature",
-      "linkField",
-      "socialLinks",
-      "links",
-      "imageLink",
-      "exploremore",
-      "listing",
-      "projectcards",
-      "enquiry",
-      "tiles",
-      "textsection",
       "textmediablock",
-      "projectslist",
-      "statisticsSection",
-      "statistics",
-      "statisticsDescription"
+      "projectslist"
     ]
   },
   {
