@@ -3,8 +3,8 @@ p {
 }
 
 .projectslistitem {
-    padding-top: 25px;
-    padding-bottom: 70px;
+    padding-top: 36px;
+    padding-bottom: 80px;
     border-top: 2px solid black;
     display: flex;
 }
@@ -36,10 +36,18 @@ p {
     margin-bottom: 30px;
 }
 
+@media (width <= 992px) {
+    .projectslistitem {
+        padding-top: 24px;
+        padding-bottom: 40px;
+    }
+}
+
+
 @media (width <= 769px) {
     .projectslistitem {
-        padding-top: 15px;
-        padding-bottom: 30px;
+        padding-top: 18px;
+        padding-bottom: 32px;
     }
 }
 

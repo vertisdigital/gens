@@ -7,7 +7,7 @@ export default function decorate(block) {
   let projectCardsContainer = block.querySelector('.projectcards-container');
   if (!projectCardsContainer) {
     projectCardsContainer = document.createElement('div');
-    projectCardsContainer.className = 'projectcards-container container-xl';
+    projectCardsContainer.className = 'projectcards-container container-xl container-lg container-md container-sm';
     moveInstrumentation(block, projectCardsContainer);
   }
 

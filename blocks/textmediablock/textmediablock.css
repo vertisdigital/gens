@@ -1,4 +1,6 @@
 .textmediablock-container{
+  margin-bottom: 80px;
+
   .textmediablock-wrapper{
     padding: 68px 0;
   }
@@ -62,11 +64,18 @@
     font-weight: 400;
     line-height: 24px;
   }
+
   .textmediablock-wrapper {
     padding: 44px 0;
   }
 } 
 @media (width<768px) {
+  [data-aue-model="textsection"] {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 18px;
+  }
+
   [data-aue-prop="heading"] {
     font-size: 28px;
     line-height: 34px;
@@ -77,9 +86,22 @@
     font-size: 14px;
     line-height: 20px;
   }
+
   .textmediablock-wrapper {
     padding: 24px 0;
   }
 } 
 
+}
+
+
+@media(width<=992px){
+  .textmediablock-container{
+    margin-bottom: 56px;
+  }
+}
+@media(width<=768px){
+  .textmediablock-container{
+    margin-bottom: 36px;
+  }
 }

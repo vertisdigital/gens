@@ -64,7 +64,7 @@
   transform: translateY(4px);
 } */
 
-.icon-wrapper {
+.hero-banner-container .icon-wrapper {
   display: inline-flex;
   align-items: center;
   justify-content: left;
@@ -294,8 +294,7 @@
   .hero-title {
     font-size: 32px;
     margin-bottom: 8px;
-
-    /* padding-left: 10px; */
+    line-height: 44px;
   }
 
   .hero-heading {

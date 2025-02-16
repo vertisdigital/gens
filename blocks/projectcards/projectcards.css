@@ -125,7 +125,7 @@
 
 @media (width<=992px){
   .projectcards{
-    padding: 40px 44px;
+    padding: 40px 0 44px 0;
   }
 
   .projectcards .projectcards-header {
@@ -175,7 +175,7 @@
 
 @media (width <= 768px) {
     .projectcards{
-      padding: 32px 24px;
+      padding: 32px 0 24px 0;
     }
 
     .projectcards .projectcards-header {
