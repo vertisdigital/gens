@@ -687,13 +687,22 @@
         "description": "DescriptiveTextForScreenReaders"
       },
       {
-        "component": "text",
+        "component": "aem-content",
         "name": "title",
-        "label": "ProjectTitle",
+        "label": "Page Path",
         "required": true,
         "validation": {
           "maxLength": 25,
-          "customErrorMsg": "Title cannot exceed 10 characters"
+          "customErrorMsg": "Title cannot exceed 25 characters"
+        }
+      },
+      {
+        "component": "text",
+        "name": "titleText",
+        "label": "Project Title",
+        "validation": {
+          "maxLength": 25,
+          "customErrorMsg": "Location cannot exceed 25 characters"
         }
       },
       {
