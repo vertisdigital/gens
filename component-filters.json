@@ -191,7 +191,8 @@
     "components": [
       "statistics",
       "statisticsDescription",
-      "feature"
+      "feature",
+      "herobanner"
     ]
   },
   {

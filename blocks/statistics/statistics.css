@@ -1,6 +1,7 @@
 .statistics .statistics-row {
     padding-bottom: 50px;
     border-bottom: 1px solid var(--text-color);
+    row-gap: 36px;
 }
 
 .statistics-container .feature-wrapper .about-us-right-content{
@@ -60,14 +61,13 @@
 }
 
 .statistics-wrapper .statistics.block {
-    background: var(--background-color);
     margin-top: -68px;
     position: relative;
 }
 
 .statistics-wrapper .statistics.block::before {
     content: '';
-    background: rebeccapurple;
+    background: var(--background-color);
     position: absolute;
     top: -80px;
     left: 0;
@@ -106,9 +106,15 @@
         font-size: 64px;
         line-height: 64px;
     }
+    .statistics .statistics-row {
+        row-gap: 24px;
+    }
 }
 
 @media (width<768px) {
+    .statistics .statistics-row {
+        row-gap: 18px;
+    }
     .statistics .statistic-item {
         font-size: 48px;
         line-height: 48px;
