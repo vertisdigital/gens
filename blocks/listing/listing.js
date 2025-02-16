@@ -13,12 +13,17 @@ export default function decorate(block) {
     const row = document.createElement('div');
     row.classList.add('row');
 
+    // Get all content elements
+    const title = item.querySelector('[data-aue-type="text"]');
+    const description = item.querySelector('[data-aue-prop="description"]');
+    const link = item.querySelector('.button-container a');
+    const linkTarget = item.querySelector('[data-aue-label="Target"]');
+
     // Process image
     const imgContainer = item.querySelector('div:first-child');
     if (imgContainer) {
       imgContainer.classList.add('col-xl-4', 'col-md-2', 'col-sm-4');
 
-      const link = imgContainer.querySelector('a');
       if (link) {
         const picture = document.createElement('picture');
         const img = document.createElement('img');
@@ -42,12 +47,6 @@ export default function decorate(block) {
     // Create single wrapper for content
     const contentWrapper = document.createElement('div');
     contentWrapper.classList.add('col-xl-8', 'col-md-4', 'col-sm-4', 'content-wrapper');
-
-    // Get all content elements
-    const title = item.querySelector('[data-aue-type="text"]');
-    const description = item.querySelector('[data-aue-prop="description"]');
-    const link = item.querySelector('.button-container a');
-    const linkTarget = item.querySelector('[data-aue-label="Target"]');
 
     // Add content elements to wrapper
     if (title) {
