@@ -242,7 +242,7 @@
   padding-bottom: 40px;
 }
 
-.arrow-link-wrapper {
+.content-wrapper .arrow-link-wrapper {
   position: absolute;
   bottom: 0;
   right: 0;
@@ -251,11 +251,11 @@
   text-decoration: none;
 }
 
-.left-arrow-icon {
+.content-wrapper .left-arrow-icon {
   fill: currentColor;
   transition: transform 0.3s ease;
 }
 
-.arrow-link-wrapper:hover .left-arrow-icon {
+.content-wrapper .arrow-link-wrapper:hover .left-arrow-icon {
   transform: translateX(5px);
 }
