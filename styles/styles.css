@@ -858,7 +858,6 @@ main .section.highlight {
 .tabs-container .about-us-stats .about-us-right-content [data-aue-prop="feature-heading"]{
   color: var(--body-text-color);
   font-size: 16px;
-  font-weight: 700;
   line-height: 24px;
 }
 
