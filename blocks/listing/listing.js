@@ -24,22 +24,27 @@ export default function decorate(block) {
     if (imgContainer) {
       imgContainer.classList.add('col-xl-4', 'col-md-2', 'col-sm-4');
 
-      if (link) {
-        const picture = document.createElement('picture');
+      const imgAnchor = imgContainer.querySelector('a');
+      if (imgAnchor) {
         const img = document.createElement('img');
-        img.src = link.href;
+        // Set initial src to ensure img tag has a value
+        img.src = imgAnchor.href;
         img.alt = '';
-        picture.appendChild(img);
-
+        
         ImageComponent({
           element: img,
-          src: link.href,
+          src: imgAnchor.href,
           alt: '',
           lazy: true,
         });
 
-        link.innerHTML = '';
-        link.appendChild(picture);
+        // Create picture element to properly handle responsive images
+        const picture = document.createElement('picture');
+        picture.appendChild(img);
+
+        // Replace anchor with picture element containing the image
+        imgContainer.innerHTML = '';
+        imgContainer.appendChild(picture);
       }
       row.appendChild(imgContainer);
     }
