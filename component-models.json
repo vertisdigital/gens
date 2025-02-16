@@ -1093,5 +1093,20 @@
         "label": "Index Number"
       }
     ]
+  },
+  {
+    "id": "tabspanel",
+    "fields": [
+      {
+        "component": "text",
+        "name": "panelheading",
+        "label": "Panel Heading",
+        "required": true,
+        "validation": {
+          "maxLength": 100,
+          "customErrorMsg": "Panel heading cannot exceed 100 characters"
+        }
+      }
+    ]
   }
 ]

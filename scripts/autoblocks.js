@@ -1,15 +1,16 @@
 import { loadCSS } from './aem.js';
-
+import Heading from '../shared-components/Heading.js';
+import stringToHTML from '../shared-components/Utility.js';
 /**
  * Process all the tab auto blocks
  * @param {Element} main The container element
  */
 export default function processTabs(main, moveInstrumentation) {
   const mainWrapper = main.querySelector('[data-aue-label="tabspanel"]');
-  const sections = [
+  const tabSections = [
     ...main.querySelectorAll('[data-aue-model="tabs"]:not(.section-metadata)'),
   ];
-  if (sections.length === 0) return;
+  if (tabSections.length === 0) return;
 
   // Function to load block CSS and JS
   async function loadBlock(block) {
@@ -40,8 +41,8 @@ export default function processTabs(main, moveInstrumentation) {
   }
 
   const topContainer = document.createElement('div');
-  topContainer.classList = 'container-xl container-lg container-md container-sm';
-  
+  topContainer.classList = 'container-xl container-lg container-md container-sm tabpanel';
+
   if (mainWrapper) {
     moveInstrumentation(mainWrapper, topContainer);
   }
@@ -56,7 +57,7 @@ export default function processTabs(main, moveInstrumentation) {
   const tabsContent = document.createElement('div');
   tabsContent.classList.add('tabs-content');
 
-  sections.forEach((section, index) => {
+  tabSections.forEach((section, index) => {
     const metadata = section.querySelector('.section-metadata > div :last-child');
     const tabTitle = metadata ? metadata.textContent.trim() : `Tab ${index + 1}`;
 
@@ -119,12 +120,30 @@ export default function processTabs(main, moveInstrumentation) {
   });
 
   // Remove original sections
-  sections.forEach((section) => section.remove());
+  tabSections.forEach((section) => section.remove());
 
   // Build structure
   tabsWrapper.appendChild(tabsNav);
   tabsWrapper.appendChild(tabsContent);
   topContainer.appendChild(tabsWrapper);
+
+  //Processing the tab section headings
+  const tabSectionMetaData = mainWrapper.querySelector('[data-block-name="section-metadata"]');
+  tabSectionMetaData.classList.add('panel-heading');
+  // all meta data
+  tabSectionMetaData.querySelectorAll(':scope > div').forEach((metaData) => {
+    const metaDataBlocks = metaData.querySelectorAll(':scope > div');
+    if (metaDataBlocks[0].textContent.trim() === 'panelheading') {
+      const headingText = metaDataBlocks[1].textContent.trim();
+      const panelHeading = document.createElement('div');
+      const headingHtml = Heading({ level: 2, text: headingText, className: '' });
+      const parsedHtml = stringToHTML(headingHtml);
+      panelHeading.appendChild(parsedHtml);
+      tabSectionMetaData.appendChild(panelHeading);
+    }
+    metaData.remove();
+  });
+  topContainer.insertBefore(tabSectionMetaData, topContainer.firstChild);
 
   const tabsPosition = main.querySelector('[data-aue-label="tabsposition"]');
   main.insertBefore(topContainer, tabsPosition || main.firstChild);
