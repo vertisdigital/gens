@@ -41,13 +41,13 @@ export default function decorate(block) {
 
     // Create single wrapper for content
     const contentWrapper = document.createElement('div');
-    contentWrapper.classList.add('col-xl-8', 'col-md-4', 'col-sm-4');
+    contentWrapper.classList.add('col-xl-8', 'col-md-4', 'col-sm-4', 'content-wrapper');
 
     // Get all content elements
     const title = item.querySelector('[data-aue-type="text"]');
     const description = item.querySelector('[data-aue-prop="description"]');
-    const arrowIcon = item.querySelector('a[title="title"]');
-    const arrowTarget = item.querySelector('[data-aue-label="Target"]');
+    const link = item.querySelector('.button-container a');
+    const linkTarget = item.querySelector('[data-aue-label="Target"]');
 
     // Add content elements to wrapper
     if (title) {
@@ -56,16 +56,20 @@ export default function decorate(block) {
     if (description) {
       contentWrapper.appendChild(description);
     }
-    if (arrowIcon && arrowTarget) {
-      // const picture = document.createElement('picture');
+
+    if (link) {
       const newArrowLink = document.createElement('a');
-      const arrowLink = arrowIcon.href;
+      const arrowLink = link.href;
       newArrowLink.href = arrowLink;
-      const targetValue = arrowTarget?.textContent?.trim() || '_self';
+      newArrowLink.classList.add('arrow-link-wrapper');
+      const targetValue = linkTarget?.textContent?.trim() || '_self';
       newArrowLink.setAttribute('target', targetValue);
-      const arrowSVG = SvgIcon({ name: 'arrow', className: 'arrow-link', size: '24px' });
-      const parsedArrowSVG = stringToHtml(arrowSVG);
-      newArrowLink.appendChild(parsedArrowSVG);
+      
+      // Create left arrow icon
+      const leftArrowSVG = SvgIcon({ name: 'arrow', className: 'left-arrow-icon', size: '24px' });
+      const parsedLeftArrowSVG = stringToHtml(leftArrowSVG);
+      newArrowLink.appendChild(parsedLeftArrowSVG);
+      
       contentWrapper.appendChild(newArrowLink);
     }
 
