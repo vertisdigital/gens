@@ -3,9 +3,9 @@
     "id": "main",
     "components": [
       "section",
-      "statisticsSection",
-      "tabsposition",
-      "tabspanel"
+      "statisticsSection",      
+      "tabspanel",
+      "tabsposition"
     ]
   },
   {
@@ -184,7 +184,7 @@
   },
   {
     "id": "tabspanel",
-    "components": ["title","tabs"]
+    "components": ["titleandtabscontainer","title","tabs"]
   },
   {
     "id": "statisticsSection",
