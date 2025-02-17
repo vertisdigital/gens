@@ -3,6 +3,9 @@
     border-bottom: 1px solid var(--text-color);
     row-gap: 36px;
 }
+.statistics .statistics-row > *:first-child{
+    padding-left: calc(var(--bs-gutter-x) * 0.25);
+}
 
 .statistics-container .feature-wrapper .about-us-right-content{
   margin-bottom: 10px;
@@ -123,11 +126,17 @@
     .statistics .statistics-row {
         row-gap: 24px;
     }
+    .statistics .statistics-row > *:first-child{
+        padding-left: calc(var(--bs-gutter-x) * 0.25);
+    }
 }
 
 @media (width<768px) {
     .statistics .statistics-row {
         row-gap: 18px;
+    }
+    .statistics .statistics-row > *:first-child{
+        padding-left: calc(var(--bs-gutter-x) * 0.5);
     }
     .statistics .statistic-item {
         font-size: 48px;
