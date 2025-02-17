@@ -55,6 +55,7 @@
   color: var(--primary-gold);
   text-decoration: underline;
   cursor: pointer;
+  padding-left: 0;
 }
 
 .about-us-left .links-container a span{
@@ -185,7 +186,7 @@ color: var(--body-text-color);
   }
 
   .about-us-left a.button{
-    padding: 12px;
+    padding: 12px 12px 12px 0;
   }
 
   .about-us-stats .about-us-right-content.text-container{
