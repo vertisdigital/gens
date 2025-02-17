@@ -114,14 +114,17 @@ export default function decorate(block) {
     cardContent.className = 'project-card-content';
 
     // Handle card title
-    const cardTitle = card.querySelector('[data-aue-prop="title"]');
+    const cardTitle = card.querySelector('[data-aue-prop="projectText"]');
     if (cardTitle) {
       const titleDiv = document.createElement('div');
-      moveInstrumentation(cardTitle, titleDiv);
       titleDiv.className = 'project-card-title';
-      titleDiv.textContent = cardTitle.textContent;
+      cardTitle.className =''
+      //setting the link target
+      const linkTarget = card.querySelector('[data-aue-prop="projectTarget"]')?.textContent || '_self';
+      cardTitle.setAttribute('target', linkTarget);
+
+      titleDiv.appendChild(cardTitle);
       cardContent.appendChild(titleDiv);
-      cardTitle.remove();
     }
 
     // Handle card location
