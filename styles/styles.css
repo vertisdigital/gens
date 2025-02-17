@@ -962,6 +962,11 @@ main .section.highlight {
 }
 
 @media(width >= 1024px){
+
+  .tabs-container .about-us-stats .about-us-right-content:nth-child(2) > div:nth-child(2) {
+    width: 53%;
+  }
+  
   .tabs-container .about-us-stats .about-us-right-content{
     display: flex;
     flex-direction: row;
