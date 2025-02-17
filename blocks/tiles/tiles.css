@@ -31,12 +31,13 @@
 
 .row.tiles-container > .image-tile > div {
   background-color: var(--text-color);
-  padding: 17px;
+  padding: 20px;
   display: flex;
   flex-direction: column;
   justify-content: end;
   width: 100%;
   min-height: 314px;
+  position: relative;
 }
 
 /* Image Tiles */
@@ -126,11 +127,11 @@ a:any-link.factsheet-button {
 }
 
 .row.tiles-container > .image-tile [data-aue-prop="description"] {
-  font-size: 19px;
+  font-size: 16px;
   font-weight: 400;
   line-height: 24px;
   color: var(--light-grey);
-  margin-bottom: 32px;
+  margin-bottom: 36px;
 }
 
 .row.tiles-container > .image-tile [data-aue-prop="description"] p {
@@ -160,8 +161,8 @@ a:any-link.factsheet-button {
   }
 
   .row.tiles-container > .image-tile [data-aue-prop="heading"] {
-    font-size: 19px;
-    line-height: 19px;
+    font-size: 18px;
+    line-height: 24px;
     font-weight: 700;
   }
 
@@ -175,7 +176,7 @@ a:any-link.factsheet-button {
     font-size: 16px;
     font-weight: 400;
     line-height: 24px;
-    margin-bottom: 16px;
+    margin-bottom: 34px;
   }
 
   /* .row.tiles-container > div:nth-child(odd) {
@@ -197,6 +198,9 @@ a:any-link.factsheet-button {
 
   .factsheet-button {
     margin: 18px 0 0;
+  }
+  .tiles-container .learn-button {
+    right: 40px;
   }
 }
 
@@ -232,8 +236,8 @@ a:any-link.factsheet-button {
   }
 
   .row.tiles-container > .image-tile [data-aue-prop="heading"] {
-    font-size: 19px;
-    line-height: 30px;
+    font-size: 16px;
+    line-height: 20px;
     font-weight: 700;
   }
 
@@ -244,15 +248,19 @@ a:any-link.factsheet-button {
   }
   
   .row.tiles-container > .image-tile [data-aue-prop="description"] {
-    font-size: 18px;
+    font-size: 14px;
     font-weight: 400;
-    line-height: 24px;
-    margin-bottom: 16px;
+    line-height: 20px;
+    margin-bottom: 28px;
   }
 
   .learn-button {
     bottom: 16px;
     right: 24px;
+  }
+  .tiles-container .learn-button {
+    font-size: 16px;
+    right: 20px;
   }
 }
 
@@ -267,6 +275,12 @@ a:any-link.factsheet-button {
 /* .row.tiles-container > div {
   padding: 0 24px;
 } */
+
+.tiles-container .learn-button {
+  bottom: 20px;
+  right: 20px;
+  font-size: 16px;
+}
 
 @media (width >= 768px) {
   .tiles-wrapper {
