@@ -697,6 +697,36 @@
         }
       },
       {
+        "component": "aem-content",
+        "name": "Project",
+        "label": "Link"
+      },
+      {
+        "component": "text",
+        "name": "projectText",
+        "label": "Text"
+      },
+      {
+        "component": "text",
+        "name": "ProjectTitle",
+        "label": "Title"
+      },
+      {
+        "component": "select",
+        "name": "projectType",
+        "label": "Type",
+        "options": [
+          {
+            "name": "self",
+            "value": "_self"
+          },
+          {
+            "name": "blank",
+            "value": "_blank"
+          }
+        ]
+      },
+      {
         "component": "text",
         "name": "location",
         "label": "Location",
