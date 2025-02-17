@@ -257,7 +257,7 @@ color: var(--body-text-color);
 
   .about-us-stats .about-us-right-content{
     column-gap: 20px;
-    margin-bottom: 36px;
+    /* margin-bottom: 36px; */
   }
 
   .about-us-stats .about-us-right-content.image-container>div:first-child{
@@ -286,5 +286,20 @@ color: var(--body-text-color);
   
   .about-us-stats .about-us-right-content.text-container{
     padding-top: 20px;
+  }
+}
+
+@media (width <= 1023px) {
+  .statistics-container .feature-wrapper .about-us-left {
+    margin-bottom: 24px;
+  }
+  .statistics-container .feature-wrapper .about-us-left, .statistics-container .feature-wrapper .about-us-right {
+    width: 100%;
+    padding: 0;
+  }
+}
+@media (width <= 767px) {
+  .statistics-container .feature-wrapper .about-us-left {
+    margin-bottom: 18px;
   }
 }

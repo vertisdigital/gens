@@ -25,13 +25,14 @@
 }
 
 .hero-title {
-  font-size: 60px;
+  font-size: 56px;
   font-weight: 400;
-  margin: 0 0 24px;
+  margin: 0 0 12px;
   max-width: 750px;
   color: var(--background-color);
   text-shadow: 0 2px 4px rgb(0 0 0 / 30%);
   padding-left: 0;
+  line-height: 66px;
 }
 
 .hero-heading {
@@ -39,12 +40,13 @@
   color: var(--background-color);
   text-shadow: 0 2px 4px rgb(0 0 0 / 30%);
   padding-left: 0;
+  margin-bottom: 12px;
 }
 
 .hero-description {
   font-family: var(--heading-font-family);
-  font-size: 14px;
-  line-height: 1.6;
+  font-size: 16px;
+  line-height: 24px;
   max-width: 638px;
   text-align: left;
   color: var(--light-grey);
@@ -267,6 +269,9 @@
   .arrow-link svg {
     margin: 0 3px;  
   }
+  .hero-heading {
+    margin-bottom: 10px;
+  }
 }
 
 @media (width <= 396px) and ((width > 366px)) {
@@ -306,6 +311,7 @@
 
   .hero-heading {
     padding-left: 10px;
+    margin-bottom: 8px;
   }
 
   .hero-description {

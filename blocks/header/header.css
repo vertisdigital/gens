@@ -628,6 +628,7 @@ header .header{
 
 .header-inner-wrapper .columns-wrapper{
   background:transparent;
+  border-bottom: solid 1px var(--background-color);
 }
 
 .header-inner-wrapper .header-nav{
