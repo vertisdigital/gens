@@ -706,11 +706,11 @@
       },
       {
         "component": "select",
-        "name": "projectType",
-        "label": "Type",
+        "name": "projectTarget",
+        "label": "Target",
         "options": [
           {
-            "name": "self",
+            "name": "Same Tab",
             "value": "_self"
           },
           {
