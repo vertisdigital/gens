@@ -121,8 +121,10 @@ export default function decorate(block) {
       color: '#B29152',
     });
     const parsedHtml = stringToHTML(arrowIconHtml);
-    heroContent.appendChild(parsedHtml);
-    // heroContent.insertAdjacentHTML('beforeend', arrowIconHtml);
+    const anchorWrapper = document.createElement('a');
+    anchorWrapper.href = arrowIconLink.textContent;
+    anchorWrapper.appendChild(parsedHtml);
+    heroContent.appendChild(anchorWrapper);
   }
   heroContainer.appendChild(heroContent);
   const carouselItems = block.querySelectorAll(
