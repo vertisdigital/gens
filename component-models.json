@@ -1128,7 +1128,7 @@
       },
       {
         "component": "aem-content",
-        "name": "reference",
+        "name": "headerlogo_reference",
         "label": "Reference"
       }
     ]
