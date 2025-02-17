@@ -69,7 +69,7 @@
   align-items: center;
   justify-content: left;
   line-height: 0;
-  padding-top: 20px;
+  /* padding-top: 20px; */
 }
 
 /* Ensure proper icon color inheritance */
@@ -103,8 +103,8 @@
   display: flex;
   gap: 3px;
   position: absolute;
-  right: 155px;
-  bottom: 42px;
+  right: 187px;
+  bottom: 36px;
 
 }
 
@@ -141,13 +141,13 @@
 
 /* Left side: Text content (Title, Description, Read More) */
 .carousel-content {
-  flex: 0 0 70%;
+  flex: 0 0 65%;
   text-align: left;
 }
 
 .carousel-image {
-  max-width: 151px;
-  max-height: 118px;
+  width: 151px;
+  height: 118px;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -161,7 +161,7 @@
 .news-title {
 
   font-family: var(--heading-font-family);
-  font-size: 18px;
+  font-size: 14px;
   font-weight: 400;
   line-height: 18px; 
   text-transform: uppercase;
@@ -174,7 +174,8 @@
   font-size: 16px;
   font-weight: 700;
   line-height: 24px; 
-  color: var(--body-text-color); 
+  color: var(--text-color); 
+  margin-bottom: 12px;
 }
 
 .news-link {
@@ -182,6 +183,8 @@
   font-size: 16px;
   font-weight: 600;
   text-decoration: underline !important;
+  margin: 6px 0;
+  display: inline-flex;
 }
 
 .news-link-container {
@@ -232,6 +235,10 @@
 
 .news-link-container img {
   align-content: flex-end;
+}
+
+.hero-banner-container .ellipse {
+  padding-top: 0;
 }
 
 /* Responsive adjustments */
@@ -315,33 +322,37 @@
   .news-title {
     font-size: 12px;
     margin-bottom: 4px;
-    line-height: 44px;
+    line-height: 18px;
   }
 
   .news-description {
     font-size: 14px;
-    line-height: 18px;
+    line-height: 20px;
+    margin-bottom: 8px;
 
   }
 
   .carousel-item {
     gap: 24px;
-    padding: 24px;
+    padding: 18px 24px;
     text-align: center;
+    align-items: flex-start;
   }
 
 
   .carousel-image {
-    width: 100%;
-    margin-bottom: 10px;
+    width: 92px;
+    height: 92px;
+    /* margin-bottom: 10px; */
   }
 
   .carousel-wrapper {
     width: 100% !important;
+    height: 134px;
   }
 
   .carousel-content {
-    flex: 0 0 60%;
+    flex: 1;
   }
 
   .carousel-image img {
@@ -352,7 +363,7 @@
   .navigation-arrows {
     gap:3px;
     padding-right: 5px;
-    bottom: 34px;
+    bottom: 18px;
   }
 
   .left-carousel-arrow {
@@ -377,5 +388,11 @@
 
   .icon-wrapper {
     padding-top: 0;
+  }
+
+  .news-link {
+    font-size: 14px;
+    line-height: 20px;
+    margin: 4px 0;
   }
 }

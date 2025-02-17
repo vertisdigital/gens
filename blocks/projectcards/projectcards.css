@@ -116,13 +116,6 @@
   color: var(--primary-gold);
 }
 
-@media (width<=1199px){
-  .projectcards{
-    padding-left: 44px;
-    padding-right: 44px;
-  }
-}
-
 @media (width<=992px){
   .projectcards{
     padding: 40px 0 44px 0;
