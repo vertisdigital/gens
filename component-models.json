@@ -1108,5 +1108,29 @@
         }
       }
     ]
+  },
+  {
+    "id": "headerlogo",
+    "fields": [
+      {
+        "component": "custom-asset-namespace:custom-asset",
+        "name": "headerlogo_staticimage",
+        "label": "Static Image",
+        "configUrl": "https://main--genting--wppopen.aem.page/tools/assets-selector/config.json",
+        "multi": false
+      },
+      {
+        "component": "custom-asset-namespace:custom-asset",
+        "name": "headerlogo_stickyimage",
+        "label": "Sticky Image",  
+        "configUrl": "https://main--genting--wppopen.aem.page/tools/assets-selector/config.json",
+        "multi": false
+      },
+      {
+        "component": "aem-content",
+        "name": "reference",
+        "label": "Reference"
+      }
+    ]
   }
 ]
