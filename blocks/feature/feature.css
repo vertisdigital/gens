@@ -56,6 +56,7 @@
   text-decoration: underline;
   cursor: pointer;
   padding-left: 0;
+  padding-right: 0;
 }
 
 .about-us-left .links-container a span{
@@ -145,6 +146,8 @@ color: var(--body-text-color);
 
 .about-us-left a.button {
   background: none;
+  padding-left: 0;
+  padding-right: 0;
 }
 
 
@@ -186,7 +189,7 @@ color: var(--body-text-color);
   }
 
   .about-us-left a.button{
-    padding: 12px 12px 12px 0;
+    padding: 12px 0;
   }
 
   .about-us-stats .about-us-right-content.text-container{
