@@ -5,7 +5,7 @@ p {
 .projectslistitem {
     padding-top: 36px;
     padding-bottom: 80px;
-    border-top: 2px solid black;
+    border-top: 1px solid var(--text-color);
     display: flex;
 }
 
@@ -19,7 +19,7 @@ p {
 
 .project-title,
 .project-subtitle {
-    color: black;
+    color: var(--text-color);
 }
 
 .project-title  {

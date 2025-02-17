@@ -886,6 +886,20 @@ main .section.highlight {
   font-size: var(--heading-font-size-l);
   color: var(--text-color);
 }
+.tabs-container .textmediablock-container + .textmediablock-container {
+  padding: 136px 0 0;
+}
+.tabs-container .projectslist {
+  margin-top: 136px;
+}
+@media (width <= 1024px) {
+  .tabs-container .textmediablock-container + .textmediablock-container {
+    padding: 56px 0 0;
+  }
+  .tabs-container .projectslist {
+    margin-top: 56px;
+  }
+}
 @media(width<=992px){
   .tabpanel {
     padding-top: 56px;
@@ -958,7 +972,13 @@ main .section.highlight {
     font-size: 14px;
     line-height: 20px;
   }
-
+  .tabs-container .textmediablock-container + .textmediablock-container {
+    padding: 36px 0 0;
+    margin-bottom: 0;
+  }
+  .tabs-container .projectslist {
+    margin-top: 36px;
+  }
 }
 
 @media(width >= 1024px){

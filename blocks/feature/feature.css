@@ -290,16 +290,16 @@ color: var(--body-text-color);
 }
 
 @media (width <= 1023px) {
-  .herobanner-container.statistics-container.feature-container .feature-wrapper .about-us-left {
+  .statistics-container .feature-wrapper .about-us-left {
     margin-bottom: 24px;
   }
-  .herobanner-container.statistics-container.feature-container .feature-wrapper .about-us-left, .herobanner-container.statistics-container.feature-container .feature-wrapper .about-us-right {
+  .statistics-container .feature-wrapper .about-us-left, .statistics-container .feature-wrapper .about-us-right {
     width: 100%;
     padding: 0;
   }
 }
 @media (width <= 767px) {
-  .herobanner-container.statistics-container.feature-container .feature-wrapper .about-us-left {
+  .statistics-container .feature-wrapper .about-us-left {
     margin-bottom: 18px;
   }
 }
