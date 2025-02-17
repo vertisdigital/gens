@@ -383,7 +383,7 @@
         "valueType": "string"
       },
       {
-        "component": "text",
+        "component": "richtext",
         "name": "feature-heading",
         "label": "Feature Heading"
       }
