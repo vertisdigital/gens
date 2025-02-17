@@ -689,7 +689,10 @@
       {
         "component": "aem-content",
         "name": "Project",
-        "label": "Link"
+        "label": "Link",
+        "validation": {
+          "rootPath": "/content/genting-singapore/index"
+        }
       },
       {
         "component": "text",
