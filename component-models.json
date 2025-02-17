@@ -687,14 +687,37 @@
         "description": "DescriptiveTextForScreenReaders"
       },
       {
-        "component": "text",
-        "name": "title",
-        "label": "ProjectTitle",
-        "required": true,
+        "component": "aem-content",
+        "name": "project",
+        "label": "Link",
         "validation": {
-          "maxLength": 25,
-          "customErrorMsg": "Title cannot exceed 10 characters"
+          "rootPath": "/content/genting-singapore/index"
         }
+      },
+      {
+        "component": "text",
+        "name": "projectText",
+        "label": "Text"
+      },
+      {
+        "component": "text",
+        "name": "projectTitle",
+        "label": "Title"
+      },
+      {
+        "component": "select",
+        "name": "projectTarget",
+        "label": "Target",
+        "options": [
+          {
+            "name": "Same Tab",
+            "value": "_self"
+          },
+          {
+            "name": "New Tab",
+            "value": "_blank"
+          }
+        ]
       },
       {
         "component": "text",

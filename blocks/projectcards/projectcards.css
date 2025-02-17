@@ -115,6 +115,10 @@
 .projectcards .view-all-link:hover {
   color: var(--primary-gold);
 }
+.project-card-title a{
+  color: var(--text-color);
+  text-decoration: none;
+}
 
 @media (width<=992px){
   .projectcards{
