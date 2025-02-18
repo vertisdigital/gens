@@ -1123,13 +1123,24 @@
       {
         "component": "text",
         "name": "title",
-        "label": "Title"
+        "label": "Title",
+        "description": "Title cannot exceed 100 characters",
+        "required": true,
+        "validation": {
+          "maxLength": 100,
+          "customErrorMsg": "Title cannot exceed 100 characters"
+        }
       },
       {
         "component": "richtext",
         "name": "description",
         "value": "",
         "label": "Short Description",
+        "description": "Short description cannot exceed 300 characters",
+        "validation": {
+          "maxLength": 300,
+          "customErrorMsg": "Short description cannot exceed 300 characters"
+        },
         "valueType": "string"
       },
       {
