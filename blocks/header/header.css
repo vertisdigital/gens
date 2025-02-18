@@ -6,6 +6,7 @@
   overflow: hidden;
   height: 100vh;
 }
+
 header.header-wrapper{
   position: fixed;
   z-index: 99;
@@ -885,14 +886,12 @@ content: '🡢';
     top: 100%;
     left: -100%;
     width: 100%;
-    flex-direction: column;
+    flex-flow: column nowrap;
     transition: left 0.3s ease;
-    overflow-y: auto;
     padding: 34px 44px;
     background-color: var(--whisper-gray);
     overflow-y: scroll;
     height: 100vh;
-    flex-wrap: nowrap;
   }
 
   .header-inner-wrapper .header-nav .primary-nav.active {
@@ -965,7 +964,6 @@ content: '🡢';
 }
 
 @media(width<768px){
-
   .header-inner-wrapper>div:first-child{
     padding: 20px 0;
   }

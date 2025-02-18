@@ -118,8 +118,8 @@ export default function decorate(block) {
     if (cardTitle) {
       const titleDiv = document.createElement('div');
       titleDiv.className = 'project-card-title';
-      cardTitle.className =''
-      //setting the link target
+      cardTitle.className = '';
+      // setting the link target
       const linkTarget = card.querySelector('[data-aue-prop="projectTarget"]')?.textContent || '_self';
       cardTitle.setAttribute('target', linkTarget);
 

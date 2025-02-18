@@ -125,7 +125,7 @@ export default function processTabs(main, moveInstrumentation) {
   tabsWrapper.appendChild(tabsContent);
   topContainer.appendChild(tabsWrapper);
 
-  //Processing the tab section headings
+  // Processing the tab section headings
   const tabSectionMetaData = mainWrapper.querySelector('[data-block-name="section-metadata"]');
   tabSectionMetaData.classList.add('panel-heading');
   // all meta data

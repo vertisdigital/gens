@@ -70,6 +70,7 @@
   align-items: center;
   justify-content: left;
   line-height: 0;
+
   /* padding-top: 20px; */
 }
 
@@ -255,6 +256,7 @@
     line-height: 24px;
     margin-bottom: 10px;
   }
+
   .news-title {
     font-size: 14px;
     }
@@ -268,6 +270,7 @@
   .arrow-link svg {
     margin: 0 3px;  
   }
+
   .hero-heading {
     margin-bottom: 10px;
   }
@@ -318,6 +321,7 @@
   .hero-content{
     padding-bottom: 118px;
   }
+
   .hero-title {
     font-size: 32px;
     margin-bottom: 8px;
@@ -364,6 +368,7 @@
   .carousel-image {
     width: 92px;
     height: 92px;
+
     /* margin-bottom: 10px; */
   }
 

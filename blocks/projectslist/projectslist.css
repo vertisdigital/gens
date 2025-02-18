@@ -34,6 +34,8 @@ p {
 .project-long-description  {
     margin-top: 12px;
     margin-bottom: 30px;
+    font-size: 16px;
+    line-height: 24px;
 }
 
 @media (width <= 992px) {
@@ -48,6 +50,13 @@ p {
     .projectslistitem {
         padding-top: 18px;
         padding-bottom: 32px;
+    }
+}
+
+@media (width <= 767px) {
+    .project-long-description  {
+        font-size: 14px;
+        line-height: 20px;
     }
 }
 
