@@ -469,20 +469,20 @@
         "component": "text",
         "name": "linkText",
         "label": "Text",
-        "description": "Text cannot exceed 50 characters",
+        "description": "Maximum allowed characters are 50 to support multiple variations/views, however author to decide the best view.",
         "validation": {
           "maxLength": 50,
-          "customErrorMsg": "Text cannot exceed 50 characters"
+          "customErrorMsg": "Maximum allowed characters are 50 to support multiple variations/views, however author to decide the best view."
         }
       },
       {
         "component": "text",
         "name": "linkTitle",
         "label": "Title",
-        "description": "Title cannot exceed 50 characters",
+        "description": "Maximum allowed characters are 50 to support multiple variations/views, however author to decide the best view.",
         "validation": {
           "maxLength": 50,
-          "customErrorMsg": "Title cannot exceed 50 characters"
+          "customErrorMsg": "Maximum allowed characters are 50 to support multiple variations/views, however author to decide the best view"
         }
       },
       {
