@@ -1155,7 +1155,7 @@
         "validation": {
           "pattern": "^(10|[1-9])$",
           "customErrorMsg": "Index Count must be a number between 1 and 10",
-          "component": "number"
+          "type": "number"
         }
       }
     ]
