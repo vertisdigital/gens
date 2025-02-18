@@ -1150,7 +1150,12 @@
       {
         "component": "text",
         "name": "indexNumber",
-        "label": "Index Count"
+        "label": "Index Count",
+        "description": "Index Count must be between 1 and 10",
+        "validation": {
+          "pattern": "^(10|[1-9])$",
+          "customErrorMsg": "Index Count must be a number between 1 and 10"
+        }
       }
     ]
   },
