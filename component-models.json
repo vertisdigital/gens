@@ -344,19 +344,35 @@
       {
         "component": "text",
         "name": "title",
-        "label": "Title"
+        "label": "Section Name",
+        "description": "Section Name cannot exceed 35 characters",
+        "validation": {
+          "maxLength": 35,
+          "customErrorMsg": "Section Name cannot exceed 35 characters"
+        }
       },
       {
         "component": "text",
         "name": "heading",
-        "label": "Heading"
+        "label": "Title",
+        "description": "Title cannot exceed 100 characters",
+        "required": true,
+        "validation": {
+          "maxLength": 100,
+          "customErrorMsg": "Title cannot exceed 100 characters"
+        }
       },
       {
         "component": "richtext",
         "name": "sub-heading",
         "value": "",
-        "label": "Sub Heading",
-        "valueType": "string"
+        "label": "Description",
+        "description": "Description cannot exceed 500 characters",
+        "valueType": "string",
+        "validation": {
+          "maxLength": 500,
+          "customErrorMsg": "Description cannot exceed 500 characters"
+        }
       }
     ]
   },
@@ -367,25 +383,35 @@
         "component": "reference",
         "valueType": "string",
         "name": "feature-icon",
-        "label": "Feature Icon",
+        "label": "Icon",
         "multi": false
       },
       {
         "component": "text",
         "name": "feature-icon-alt",
-        "label": "Feature Icon Alt Text"
+        "label": "Icon Alt Text"
       },
       {
         "component": "richtext",
         "name": "feature-title",
         "value": "",
-        "label": "Feature Title",
-        "valueType": "string"
+        "label": "Statistics Numbers",
+        "description": "Statistics Numbers cannot exceed 15 characters",
+        "valueType": "string",
+        "validation": {
+          "maxLength": 15,
+          "customErrorMsg": "Statistics Numbers cannot exceed 15 characters"
+        }
       },
       {
         "component": "richtext",
         "name": "feature-heading",
-        "label": "Feature Heading"
+        "label": "Text",
+        "description": "Text should be between 5 and 100 characters",
+        "validation": {
+          "maxLength": 100,
+          "customErrorMsg": "Text should be between 5 and 100 characters"
+        }
       }
     ]
   },
@@ -397,7 +423,7 @@
         "name": "link",
         "label": "Link",
         "validation": {
-          "rootPath": "/content/genting-singapore/index"
+          "rootPath": "/content/genting-singapore"
         }
       },
       {
@@ -442,17 +468,27 @@
       {
         "component": "text",
         "name": "linkText",
-        "label": "Text"
+        "label": "Text",
+        "description": "Maximum allowed characters are 50 to support multiple variations/views, however author to decide the best view.",
+        "validation": {
+          "maxLength": 50,
+          "customErrorMsg": "Maximum allowed characters are 50 to support multiple variations/views, however author to decide the best view."
+        }
       },
       {
         "component": "text",
         "name": "linkTitle",
-        "label": "Title"
+        "label": "Title",
+        "description": "Maximum allowed characters are 50 to support multiple variations/views, however author to decide the best view.",
+        "validation": {
+          "maxLength": 50,
+          "customErrorMsg": "Maximum allowed characters are 50 to support multiple variations/views, however author to decide the best view"
+        }
       },
       {
         "component": "select",
         "name": "linkTarget",
-        "label": "Link Target",
+        "label": "Target",
         "options": [
           {
             "name": "Same Window",
@@ -531,6 +567,7 @@
         "name": "description",
         "value": "",
         "label": "Description",
+        "description": "Description must not exceed 500 characters",
         "valueType": "string",
         "validation": {
           "maxLength": 500,
@@ -940,7 +977,7 @@
       {
         "component": "text",
         "name": "title",
-        "label": "Section Title",
+        "label": "Title",
         "required": true,
         "validation": {
           "maxLength": 100,
@@ -1082,18 +1119,18 @@
         "component": "richtext",
         "name": "description",
         "value": "",
-        "label": "Description",
+        "label": "Short Description",
         "valueType": "string"
       },
       {
         "component": "text",
         "name": "readMoreLabel",
-        "label": "Read More Label"
+        "label": "Read More"
       },
       {
         "component": "text",
         "name": "readLessLabel",
-        "label": "Read Less Label"
+        "label": "Read Less"
       }
     ]
   },
@@ -1103,17 +1140,17 @@
       {
         "component": "text",
         "name": "moreIndices",
-        "label": "More Indices"
+        "label": "More Index"
       },
       {
         "component": "text",
         "name": "lessIndices",
-        "label": "Less Indices"
+        "label": "Less Index"
       },
       {
         "component": "text",
         "name": "indexNumber",
-        "label": "Index Number"
+        "label": "Index Count"
       }
     ]
   },
