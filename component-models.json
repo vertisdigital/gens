@@ -139,7 +139,7 @@
         "label": "Tab Title",
         "validation": {
           "maxLength": 10,
-          "customErrorMsg": "Tab title cannot exceed 10 characters"
+          "customErrorMsg": "Tab Title cannot exceed 10 characters"
         }
       }
     ]
@@ -210,10 +210,9 @@
         "component": "text",
         "name": "bannerheading",
         "label": "Banner Heading",
-        "required": true,
         "validation": {
           "maxLength": 100,
-          "customErrorMsg": "Banner title cannot exceed 100 characters"
+          "customErrorMsg": "Banner Heading cannot exceed 100 characters"
         }
       },
       {
@@ -222,7 +221,7 @@
         "label": "Banner Title",
         "validation": {
           "maxLength": 100,
-          "customErrorMsg": "Banner title cannot exceed 100 characters"
+          "customErrorMsg": "Banner Title cannot exceed 100 characters"
         }
       },      
       {
@@ -231,7 +230,7 @@
         "label": "Banner Description",
         "validation": {
           "maxLength": 300,
-          "customErrorMsg": "Banner description cannot exceed 250 characters"
+          "customErrorMsg": "Banner Description cannot exceed 250 characters"
         }
       },
       {
@@ -258,7 +257,6 @@
         "component": "number",
         "name": "scrollInterval",
         "label": "Scroll Interval",
-        "required": true,
         "value": 5,
         "description": "Interval in seconds",
         "validation": {
@@ -276,7 +274,7 @@
         "label": "News Label",
         "validation": {
           "maxLength": 25,
-          "customErrorMsg": "Title cannot exceed 25 characters"
+          "customErrorMsg": "News Label cannot exceed 25 characters"
         }
       },
       {
@@ -285,7 +283,7 @@
         "label": "Title",
         "validation": {
           "maxLength": 60,
-          "customErrorMsg": "Description cannot exceed 60 characters"        
+          "customErrorMsg": "Title cannot exceed 60 characters"
         }
       },
       {
@@ -360,7 +358,6 @@
         "name": "heading",
         "label": "Title",
         "description": "Title cannot exceed 100 characters",
-        "required": true,
         "validation": {
           "maxLength": 100,
           "customErrorMsg": "Title cannot exceed 100 characters"
@@ -473,17 +470,17 @@
         "component": "text",
         "name": "linkText",
         "label": "Text",
-        "description": "Maximum allowed characters are 50 to support multiple variations/views, however author to decide the best view.",
+        "description": "Maximum allowed characters are 50 to support multiple variations/views, however author to decide the best view",
         "validation": {
           "maxLength": 50,
-          "customErrorMsg": "Maximum allowed characters are 50 to support multiple variations/views, however author to decide the best view."
+          "customErrorMsg": "Maximum allowed characters are 50 to support multiple variations/views, however author to decide the best view"
         }
       },
       {
         "component": "text",
         "name": "linkTitle",
         "label": "Title",
-        "description": "Maximum allowed characters are 50 to support multiple variations/views, however author to decide the best view.",
+        "description": "Maximum allowed characters are 50 to support multiple variations/views, however author to decide the best view",
         "validation": {
           "maxLength": 50,
           "customErrorMsg": "Maximum allowed characters are 50 to support multiple variations/views, however author to decide the best view"
@@ -495,11 +492,11 @@
         "label": "Target",
         "options": [
           {
-            "name": "Same Window",
+            "name": "Same Tab",
             "value": "_self"
           },
           {
-            "name": "New Window",
+            "name": "New Tab",
             "value": "_blank"
           }
         ]
@@ -522,8 +519,7 @@
       {
         "component": "aem-content",
         "name": "link",
-        "label": "Link", 
-        "required":true,
+        "label": "Link",
         "validation": {
           "rootPath": "/content/genting-singapore/index"          
         }
@@ -545,11 +541,11 @@
         "label": "Link Target",
         "options": [
           {
-            "name": "Same Window",
+            "name": "Same Tab",
             "value": "_self"
           },
           {
-            "name": "New Window",
+            "name": "New Tab",
             "value": "_blank"
           }
         ]
@@ -587,10 +583,9 @@
         "component": "text",
         "name": "title",
         "label": "Section Name",
-        "required": true,
         "validation": {
           "maxLength": 50,
-          "customErrorMsg": "Title cannot exceed 50 characters"
+          "customErrorMsg": "Section Name cannot exceed 50 characters"
         }
       },
       {
@@ -610,11 +605,10 @@
       {
         "component": "custom-asset-namespace:custom-asset",
         "name": "image",
-        "label": "BackgroundImage",
+        "label": "Background Image",
         "configUrl": "https://main--genting--wppopen.aem.live/tools/assets-selector/config.json",
         "multi": false,
         "title": "Image",
-        "required": true,
         "validation": {
           "rootPath": "/content/dam/genting-singapore"
         }
@@ -622,18 +616,15 @@
       {
         "component": "text",
         "name": "imageAlt",
-        "label": "ImageAltText",
-        "description": "Image-Alt-Text",
-        "required": true
+        "label": "Image Alt Text"
       },
       {
         "component": "text",
         "name": "title",
         "label": "Report Name",
-        "required": true,
         "validation": {
           "maxLength": 60,
-          "customErrorMsg": "Title cannot exceed 60 characters"
+          "customErrorMsg": "Report Name cannot exceed 60 characters"
         }
       },
       {
@@ -686,17 +677,16 @@
         "label": "Section Name",
         "validation": {
           "maxLength": 100,
-          "customErrorMsg": "Title cannot exceed 100 characters"
+          "customErrorMsg": "Section Name cannot exceed 100 characters"
         }
       },
       {
         "component": "text",
         "name": "heading",
         "label": "Section Title",
-        "required": true,
         "validation": {
           "maxLength": 100,
-          "customErrorMsg": "Heading cannot exceed 100 characters"
+          "customErrorMsg": "Section Title cannot exceed 100 characters"
         }
       },
       {
@@ -707,7 +697,7 @@
         "valueType": "string",
         "validation": {
           "maxLength": 500,
-          "customErrorMsg": "Description cannot exceed 500 characters"
+          "customErrorMsg": "Section Description cannot exceed 500 characters"
         }
       }
     ]
@@ -718,7 +708,7 @@
       {
         "component": "custom-asset-namespace:custom-asset",
         "name": "image",
-        "label": "ProjectImage",
+        "label": "Project Image",
         "configUrl": "https://main--genting--wppopen.aem.live/tools/assets-selector/config.json",
         "multi": false,
         "validation": {
@@ -728,8 +718,7 @@
       {
         "component": "text",
         "name": "imageAlt",
-        "label": "ImageAltText",
-        "description": "DescriptiveTextForScreenReaders"
+        "label": "Image Alt Text"
       },
       {
         "component": "aem-content",
@@ -786,10 +775,9 @@
         "component": "text",
         "name": "heading",
         "label": "Title",
-        "required": true,
         "validation": {
           "maxLength": 100,
-          "customErrorMsg": "Heading cannot exceed 100 characters"
+          "customErrorMsg": "Title cannot exceed 100 characters"
         }
       },
       {
@@ -806,65 +794,60 @@
       {
         "component": "custom-asset-namespace:custom-asset",
         "name": "phoneIcon",
-        "label": "PhoneIcon",
+        "label": "Phone Icon",
         "configUrl": "https://main--genting--wppopen.aem.live/tools/assets-selector/config.json",
         "multi": false
       },
       {
         "component": "text",
         "name": "phoneIconAlt",
-        "label": "PhoneIconAltText",
-        "description": "Alt Text For Phone Icon"
+        "label": "Phone Icon Alt Text"
       },
       {
         "component": "text",
         "name": "phoneNumber",
-        "label": "PhoneNumber",
-        "required": true,
+        "label": "Phone Number",
         "validation": {
           "pattern": "^[+]?[0-9]{10,30}$",
           "minLength": 10,
           "maxLength": 30,
-          "customErrorMsg": "Phone number must be between 10-30 digits and can only contain numbers and '+' symbol"
+          "customErrorMsg": "Phone Number must be between 10-30 digits and can only contain numbers and '+' symbol"
         }
       },
       {
         "component": "custom-asset-namespace:custom-asset",
         "name": "emailIcon",
-        "label": "EmailIcon",
+        "label": "Email Icon",
         "configUrl": "https://main--genting--wppopen.aem.live/tools/assets-selector/config.json",
         "multi": false
       },
       {
         "component": "text",
         "name": "emailIconAlt",
-        "label": "EmailIconAltText",
-        "description": "Alt Text For Email Icon"
+        "label": "Email Icon Alt Text"
       },
       {
         "component": "text",
         "name": "emailAddress",
-        "label": "EmailAddress",
-        "required": true,
+        "label": "Email Address",
         "validation": {
           "pattern": "^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,}$",
           "minLength": 10,
           "maxLength": 30,
-          "customErrorMsg": "Please enter a valid email address between 10-30 characters"
+          "customErrorMsg": "Please enter a valid Email Address between 10-30 characters"
         }
       },
       {
         "component": "custom-asset-namespace:custom-asset",
         "name": "addressIcon",
-        "label": "AddressIcon",
+        "label": "Address Icon",
         "configUrl": "https://main--genting--wppopen.aem.live/tools/assets-selector/config.json",
         "multi": false
       },
       {
         "component": "text",
         "name": "addressIconAlt",
-        "label": "AddressIconAltText",
-        "description": "Alt Text For Address Icon"
+        "label": "Address Icon Alt Text"
       },
       {
         "component": "text",
@@ -880,10 +863,9 @@
         "component": "text",
         "name": "heading",
         "label": "Title",
-        "required": true,
         "validation": {
           "maxLength": 100,
-          "customErrorMsg": "Heading cannot exceed 100 characters"
+          "customErrorMsg": "Title cannot exceed 100 characters"
         }
       },
       {
@@ -922,11 +904,9 @@
         "component": "text",
         "name": "heading",
         "label": "Title",
-        "required": true,
         "validation": {
           "maxLength": 100,
-          "customErrorMsg": "Heading cannot exceed 100 characters",
-          "requiredErrorMsg": "Heading is mandatory"
+          "customErrorMsg": "Title cannot exceed 100 characters"
         }
       },
       {
@@ -988,11 +968,9 @@
         "component": "text",
         "name": "title",
         "label": "Title",
-        "required": true,
         "validation": {
           "maxLength": 100,
-          "customErrorMsg": "Title cannot exceed 100 characters",
-          "requiredErrorMsg": "Title is mandatory"
+          "customErrorMsg": "Title cannot exceed 100 characters"
         }
       },
       {
@@ -1001,16 +979,16 @@
         "label": "First CTA Caption",
         "validation": {
           "maxLength": 50,
-          "customErrorMsg": "Investors caption cannot exceed 50 characters"
+          "customErrorMsg": "First CTA Caption cannot exceed 50 characters"
         }
       },
       {
         "component": "aem-content",
         "name": "firstCta",
-        "label": "cta link",
+        "label": "CTA Link",
         "linkTarget": "_blank",
         "validation": {
-          "requiredErrorMsg": "First CTA link is mandatory",
+          "requiredErrorMsg": "CTA Link is mandatory",
           "rootPath": "/content/genting-singapore/index"
         }
       },
@@ -1020,14 +998,14 @@
         "label": "Second CTA Caption",
         "validation": {
           "maxLength": 50,
-          "customErrorMsg": "Second CTA caption cannot exceed 50 characters"
+          "customErrorMsg": "Second CTA Caption cannot exceed 50 characters"
         }
 
       },
       {
         "component": "aem-content",
         "name": "secondCta",
-        "label": "cta link",
+        "label": "CTA Link",
         "linkTarget": "_blank",
         "validation": {
           "rootPath": "/content/genting-singapore/index"
@@ -1047,7 +1025,7 @@
       {
         "component": "reference",
         "name": "video",
-        "label": "video"
+        "label": "Video"
       },
       {
         "component": "text",
@@ -1064,7 +1042,6 @@
         "component": "text",
         "name": "title",
         "label": "Title",
-        "required": true,
         "validation": {
           "maxLength": 100,
           "customErrorMsg": "Title cannot exceed 100 characters"
@@ -1073,10 +1050,10 @@
       {
         "component": "text",
         "name": "subtitle",
-        "label": "Subtitle",
+        "label": "Sub Title",
         "validation": {
           "maxLength": 100,
-          "customErrorMsg": "Subtitle cannot exceed 100 characters"
+          "customErrorMsg": "Sub Title cannot exceed 100 characters"
         }
       },
       {
@@ -1086,7 +1063,7 @@
         "valueType": "string",
         "validation": {
           "maxLength": 250,
-          "customErrorMsg": "Long description cannot exceed 250 characters"
+          "customErrorMsg": "Long Description cannot exceed 250 characters"
         }
       },
       {
@@ -1095,7 +1072,7 @@
         "label": "Short Description",
         "validation": {
           "maxLength": 100,
-          "customErrorMsg": "Short description cannot exceed 100 characters"
+          "customErrorMsg": "Short Description cannot exceed 100 characters"
         }
       },
       {
@@ -1125,7 +1102,6 @@
         "name": "title",
         "label": "Title",
         "description": "Title cannot exceed 100 characters",
-        "required": true,
         "validation": {
           "maxLength": 100,
           "customErrorMsg": "Title cannot exceed 100 characters"
@@ -1136,10 +1112,10 @@
         "name": "description",
         "value": "",
         "label": "Short Description",
-        "description": "Short description cannot exceed 300 characters",
+        "description": "Short Description cannot exceed 300 characters",
         "validation": {
           "maxLength": 300,
-          "customErrorMsg": "Short description cannot exceed 300 characters"
+          "customErrorMsg": "Short Description cannot exceed 300 characters"
         },
         "valueType": "string"
       },
@@ -1188,7 +1164,6 @@
         "component": "text",
         "name": "panelheading",
         "label": "Panel Heading",
-        "required": true,
         "validation": {
           "maxLength": 80,
           "customErrorMsg": "Panel heading cannot exceed 80 characters"
