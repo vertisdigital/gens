@@ -846,6 +846,12 @@ content: '🡢';
   text-decoration: underline;
 } */
 
+@media(width<=1439px){
+  .header-inner-wrapper .header-nav .primary-nav {
+    column-gap: 9px;
+  }
+}
+
 @media(width<=1200px){
   .header-inner-wrapper .header-nav .primary-nav .nav-item{
     font-size: 5px;

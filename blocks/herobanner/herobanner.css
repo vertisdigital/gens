@@ -160,6 +160,10 @@
   height: 100%;   
 }
 
+.carousel-image img {
+  height: 118px;
+}
+
 .news-title {
 
   font-family: var(--heading-font-family);
