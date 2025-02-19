@@ -160,6 +160,10 @@
   height: 100%;   
 }
 
+.news-link-container img {
+  align-content: flex-end;
+}
+
 .hero-banner-container .carousel-image img {
   height: 118px;
 }
@@ -237,10 +241,6 @@
 .news-thumbnail {
   width: 151px;
   height: 118px;
-}
-
-.news-link-container img {
-  align-content: flex-end;
 }
 
 .hero-banner-container .ellipse {

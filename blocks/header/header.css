@@ -850,6 +850,7 @@ content: '🡢';
   .header-inner-wrapper .header-nav .primary-nav {
     column-gap: 0;
   }
+
   .header-inner-wrapper .header-nav .primary-nav .nav-item {
     padding-left: 8px;
     padding-right: 8px;
