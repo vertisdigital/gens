@@ -261,7 +261,7 @@ button {
   max-width: 100%;
   margin: 12px 0;
   border: 2px solid transparent;
-  border-radius: 2.4em;
+  /* border-radius: 2.4em; */
   padding: 0.5em 1.2em;
   font-family: var(--body-font-family);
   font-style: normal;
@@ -1008,5 +1008,38 @@ main .section.highlight {
   .tabs-container .about-us-stats .about-us-right-content .statistic span:first-child{
     font-size: 40px;
     line-height: 40px;
+  }
+}
+
+main {
+  position: relative;
+}
+main::before {
+  content: '';
+  background: url(../icons/genting-page-mobile-bg.jpg) repeat-y;
+  background-position: center top;
+  position: absolute;
+  top: 0;
+  right: 0;
+  left: 0;
+  bottom: 0;
+  z-index: -1;
+}
+@media (width >= 768px) {
+  main::before {
+    background: url(../icons/genting-page-tablet-bg.jpg) repeat-y;
+    background-position: center top;
+  }
+}
+@media (width >= 1024px) {
+  main::before {
+    background: url(../icons/genting-page-desktop-bg-1440.jpg) repeat-y;
+    background-position: center top;
+  }
+}
+@media (width >= 1441px) {
+  main::before {
+    background: url(../icons/genting-page-desktop-bg-1920.jpg) repeat-y;
+    background-position: center top;
   }
 }
