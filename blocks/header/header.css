@@ -846,9 +846,9 @@ content: '🡢';
   text-decoration: underline;
 } */
 
-@media(width<=1439px){
+@media(width<=1260px){
   .header-inner-wrapper .header-nav .primary-nav {
-    column-gap: 0;
+    column-gap: 2px;
   }
 
   .header-inner-wrapper .header-nav .primary-nav .nav-item {

@@ -126,8 +126,10 @@
 }
 
 .left-carousel-arrow {
-  margin-top: 2px;
+  margin-top: 0;
   margin-right: -2px;
+  display: flex;
+  align-items: center;
 }
 
 /* Carousel item container */

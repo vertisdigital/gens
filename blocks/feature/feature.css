@@ -331,4 +331,8 @@ color: var(--body-text-color);
   .statistics-container .feature-wrapper .about-us-left {
     margin-bottom: 18px;
   }
+
+  .about-us-left .links-container a {
+    font-size: 14px;
+  }
 }

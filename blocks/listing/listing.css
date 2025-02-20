@@ -198,19 +198,34 @@
 
 .listing-wrapper .listing [data-aue-prop="title"] {
   /* font-family: dmSans-bold; */
-  font-size: 28px;
-  font-weight: 500;
+  font-size: 16px;
+  font-weight: 600;
+  line-height: 20px;
   letter-spacing: -0.5px;
   color: var(--text-color);
-  margin-bottom: 18px;
+  margin-bottom: 10px;
 }
 
 .listing-wrapper .listing [data-aue-prop="heading"] {
-  /* font-family: dmSans-medium; */
   font-size: 28px;
   font-weight: 500;
+  line-height: 34px;
   color: var(--text-color);
   margin-bottom: 18px;
+  letter-spacing: -0.5px;
+}
+
+.listing-wrapper .listing [data-aue-model="listitem"] [data-aue-prop="title"] {
+  font-size: 16px;
+  line-height: 20px;
+  font-weight: 600;
+  margin-bottom: 8px;
+}
+.listing-wrapper .listing [data-aue-model="listitem"] [data-aue-prop="description"] {
+  font-size: 14px;
+  line-height: 20px;
+  font-weight: 400;
+  color: var(--text-color);
 }
 
 @media (width >= 768px) {
@@ -218,14 +233,23 @@
     padding: 40px 0 20px;
   }
 
+  .listing-wrapper .listing [data-aue-prop="title"] {
+    font-size: 32px;
+    line-height: 24px;
+  }
   .listing-wrapper .listing [data-aue-prop="heading"] {
     font-size: 32px;
+    line-height: 42px;
     margin-bottom: 24px;
   }
-
-  .listing-wrapper .listing [data-aue-prop="title"] {
-    font-size: 42px;
-    margin-bottom: 24px;
+  .listing-wrapper .listing [data-aue-model="listitem"] [data-aue-prop="title"] {
+    font-size: 18px;
+    line-height: 24px;
+    margin-bottom: 10px;
+  }
+  .listing-wrapper .listing [data-aue-model="listitem"] [data-aue-prop="description"] {
+    font-size: 16px;
+    line-height: 24px;
   }
 }
 
@@ -235,13 +259,17 @@
   }
 
   .listing-wrapper .listing [data-aue-prop="title"] {
-    font-size: 50px;
-    margin-bottom: 36px;
+    font-size: 20px;
   }
 
   .listing-wrapper .listing [data-aue-prop="heading"] {
-    font-size: 40px;
+    font-size: 50px;
+    line-height: normal;
     margin-bottom: 36px;
+  }
+  .listing-wrapper .listing [data-aue-model="listitem"] [data-aue-prop="title"] {
+    font-size: 20px;
+    margin-bottom: 12px;
   }
 }
 
