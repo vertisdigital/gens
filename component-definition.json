@@ -84,7 +84,7 @@
               "page": {
                 "resourceType": "core/franklin/components/section/v1/section",
                 "template": {
-                  "name": "tabspanel",
+                  "name": "Tabs Panel",
                   "model": "tabspanel",
                   "filter": "tabspanel"
                 }
@@ -100,7 +100,7 @@
               "page": {
                 "resourceType": "core/franklin/components/section/v1/section",
                 "template": {
-                  "name": "tabsposition"
+                  "name": "Tabs Position"
                 }
               }
             }
@@ -114,7 +114,7 @@
               "page": {
                 "resourceType": "core/franklin/components/section/v1/section",
                 "template": {
-                  "name": "tabs",
+                  "name": "Tabs",
                   "model": "tabs",
                   "filter": "tabs"
                 }
@@ -346,14 +346,14 @@
           }
         },
         {
-          "title": "ProjectCards",
+          "title": "Project Cards",
           "id": "projectcards",
           "plugins": {
             "xwalk": {
               "page": {
                 "resourceType": "core/franklin/components/block/v1/block",
                 "template": {
-                  "name": "ProjectCards",
+                  "name": "Project Cards",
                   "model": "projectcards",
                   "filter": "projectcards"
                 }
@@ -362,14 +362,14 @@
           }
         },
         {
-          "title": "ProjectCard",
+          "title": "Project Card",
           "id": "projectcard",
           "plugins": {
             "xwalk": {
               "page": {
                 "resourceType": "core/franklin/components/block/v1/block/item",
                 "template": {
-                  "name": "ProjectCard",
+                  "name": "Project Card",
                   "model": "projectcard"
                 }
               }
@@ -431,7 +431,7 @@
               "page": {
                 "resourceType": "core/franklin/components/block/v1/block",
                 "template": {
-                  "name": "textsection",
+                  "name": "Text Section",
                   "model": "textsection",
                   "filter": "textsection"
                 }
@@ -447,7 +447,7 @@
               "page": {
                 "resourceType": "core/franklin/components/block/v1/block",
                 "template": {
-                  "name": "coreprinciples",
+                  "name": "Core Principles",
                   "filter": "coreprinciples"
                 }
               }
@@ -462,7 +462,7 @@
               "page": {
                 "resourceType": "core/franklin/components/block/v1/block/item",
                 "template": {
-                  "name": "coreprinciple",
+                  "name": "Core Principle",
                   "model": "coreprinciple"
                 }
               }
@@ -477,7 +477,7 @@
               "page": {
                 "resourceType": "core/franklin/components/block/v1/block",
                 "template": {
-                  "name": "exploremore",
+                  "name": "Exlore More",
                   "model": "exploremore",
                   "filter": "exploremore"
                 }
@@ -493,7 +493,7 @@
               "page": {
                 "resourceType": "core/franklin/components/block/v1/block",
                 "template": {
-                  "name": "TextMediaBlock",
+                  "name": "Text Media Block",
                   "model": "textmediablock",
                   "filter": "textmediablock"
                 }
@@ -524,7 +524,7 @@
               "page": {
                 "resourceType": "core/franklin/components/block/v1/block",
                 "template": {
-                  "name": "projectslist",
+                  "name": "Projects List",
                   "model": "projectslist",
                   "filter": "projectslist"
                 }
@@ -540,7 +540,7 @@
               "page": {
                 "resourceType": "core/franklin/components/block/v1/block/item",
                 "template": {
-                  "name": "projectslistitem",
+                  "name": "Projects List Item",
                   "model": "projectslistitem"
                 }
               }
