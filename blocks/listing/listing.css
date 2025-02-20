@@ -212,7 +212,7 @@
   line-height: 34px;
   color: var(--text-color);
   margin-bottom: 18px;
-  letter-spacing: -0.5px;
+  letter-spacing: -0.5px; 
 }
 
 .listing-wrapper .listing [data-aue-model="listitem"] [data-aue-prop="title"] {
@@ -263,7 +263,7 @@
   }
 
   .listing-wrapper .listing [data-aue-prop="heading"] {
-    font-size: 50px;
+    font-size: 40px;
     line-height: normal;
     margin-bottom: 36px;
   }
