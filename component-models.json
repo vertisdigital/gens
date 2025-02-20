@@ -785,7 +785,7 @@
         "label": "PhoneNumber",
         "required": true,
         "validation": {
-          "pattern": "^[+]?[0-9]{10,30}$",
+          "regExp": "^[+]?[0-9]{10,30}$",
           "minLength": 10,
           "maxLength": 30,
           "customErrorMsg": "Phone number must be between 10-30 digits and can only contain numbers and '+' symbol"
@@ -810,7 +810,7 @@
         "label": "EmailAddress",
         "required": true,
         "validation": {
-          "pattern": "^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,}$",
+          "regExp": "^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,}$",
           "minLength": 10,
           "maxLength": 30,
           "customErrorMsg": "Please enter a valid email address between 10-30 characters"
