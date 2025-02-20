@@ -238,6 +238,8 @@
 
 .arrow-link svg {
   margin: 0 5px;  
+  width: 14px;
+  height: 14px;
 }
 
 .news-thumbnail {
@@ -399,14 +401,14 @@
   }
 
   .left-carousel-arrow {
-    margin-top: 0;
+    margin-top: 1px;
     padding-top: 1px;
   }
 
   .navigation-arrows svg {
     height: 12px;
     width: 12px;
-    margin: 0 1px;
+    margin: 0 1px; 
   }
 
   .ellipse{
