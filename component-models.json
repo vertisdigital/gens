@@ -1010,6 +1010,25 @@
         "validation": {
           "rootPath": "/content/genting-singapore/index"
         }
+      },
+      {
+        "component": "text",
+        "name": "thirdCtaCaption",
+        "label": "Third CTA Caption",
+        "validation": {
+          "maxLength": 50,
+          "customErrorMsg": "Third CTA Caption cannot exceed 50 characters"
+        }
+
+      },
+      {
+        "component": "aem-content",
+        "name": "thirdCta",
+        "label": "CTA Link",
+        "linkTarget": "_blank",
+        "validation": {
+          "rootPath": "/content/genting-singapore/index"
+        }
       }
     ]
   },
