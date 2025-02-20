@@ -1,7 +1,3 @@
-.listing-wrapper {
-  background: #fff;
-}
-
 .listing {
   /* List styles */
   ul {
@@ -196,7 +192,7 @@
 }
 
 .listing-wrapper {
-  background: var(--whisper-gray);
+/*   background: var(--whisper-gray); */
   padding: 32px 0;
 }
 
