@@ -20,9 +20,9 @@ export default function decorate(block) {
   const titleElement = exploreMoreContainer.querySelector('[data-aue-prop="title"]');
   const firstCtaElement = exploreMoreContainer.querySelector('[data-aue-prop="firstCtaCaption"]');
   const secondCtaElement = exploreMoreContainer.querySelector('[data-aue-prop="secondCtaCaption"]');
-  
+
   const allLinks = exploreMoreContainer.querySelectorAll('a');
-  const firstCtaHrefElement = allLinks?.[0]
+  const firstCtaHrefElement = allLinks?.[0];
   const secondCtaHrefElement = allLinks?.[1];
 
   // Extract text content and attributes

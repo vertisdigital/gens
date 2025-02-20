@@ -3,6 +3,7 @@
     border-bottom: 1px solid var(--text-color);
     row-gap: 36px;
 }
+
 .statistics .statistics-row > *:first-child{
     padding-left: calc(var(--bs-gutter-x) * 0.25);
 }
@@ -72,12 +73,9 @@
     content: '';
     background: var(--background-color);
     position: absolute;
-    top: -80px;
-    left: 0;
-    right: 0;
+    inset: -80px 0 0;
     width: 100%;
     max-width: 1280px;
-    bottom: 0;
     margin: 0 auto;
     z-index: -1;
 }
@@ -85,6 +83,7 @@
 .statistics-wrapper + .feature-wrapper .about-us-stats {
     padding-top: 0;
 }
+
 .statistics .statistics-title {
     color: var(--text-color);
     margin-bottom: 64px;
@@ -108,9 +107,11 @@
     .statistics-wrapper .statistics.block {
         margin-top: -46px;
     }
+
     .statistics-wrapper .statistics.block::before {
         top: -22px;
     }
+
     .statistics-title{
         margin-bottom: 24px;
         font-size: 32px;
@@ -123,9 +124,11 @@
         font-size: 64px;
         line-height: 64px;
     }
+
     .statistics .statistics-row {
         row-gap: 24px;
     }
+
     .statistics .statistics-row > *:first-child{
         padding-left: calc(var(--bs-gutter-x) * 0.25);
     }
@@ -135,22 +138,28 @@
     .statistics .statistics-row {
         row-gap: 18px;
     }
+
     .statistics .statistics-row > *:first-child{
         padding-left: calc(var(--bs-gutter-x) * 0.5);
     }
+
     .statistics .statistic-item {
         font-size: 48px;
         line-height: 48px;
     }
+
     .statistics-wrapper .statistics.block {
         margin-top: -54px;
     }
+
     .statistics-wrapper .statistics.block::before {
         left: 10px;
         right: 10px;
     }
+
     .statistics-title{
         margin-bottom: 24px;
+
         /* Headings/H2 */
         font-size: 28px;
         line-height: 34px; /* 121.429% */

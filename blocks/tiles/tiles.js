@@ -69,7 +69,7 @@ export default function decorate(block) {
 
     if (!isFirsTileImage) {
       const buttonContainer = firstTile.querySelector('.button-container');
-  
+
       const ctaCaption = firstTile.querySelector('[data-aue-prop="ctaCaption"]');
       const downArraowWithLine = SvgIcon({
         name: 'downArraowWithLine',
@@ -85,15 +85,15 @@ export default function decorate(block) {
           ctaLink.href = link.href;
           ctaLink.className = 'factsheet-button animated-cta';
           ctaLink.innerHTML = `${ctaCaption.textContent} ${downArraowWithLine}`;
-  
+
           // Add download icon
           // const downloadIcon = new SvgIcon('download');
           // ctaLink.insertBefore(downloadIcon, ctaLink.firstChild);
-  
+
           // Add arrow icon
           // const arrowIcon = new SvgIcon('arrow-right');
           // ctaLink.appendChild(arrowIcon);
-  
+
           // Replace CTA caption with link
           ctaCaption.parentNode.replaceChild(ctaLink, ctaCaption);
         }
@@ -104,7 +104,6 @@ export default function decorate(block) {
   });
 
   block.textContent = '';
-
 
   if (isFirsTileImage) {
     const allImageVariation = document.createElement('div');

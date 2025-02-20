@@ -261,7 +261,8 @@ button {
   max-width: 100%;
   margin: 12px 0;
   border: 2px solid transparent;
-  border-radius: 2.4em;
+
+  /* border-radius: 2.4em; */
   padding: 0.5em 1.2em;
   font-family: var(--body-font-family);
   font-style: normal;
@@ -336,9 +337,9 @@ main .section.highlight {
   margin-left: auto;
 }
 
-.animated-cta:hover .animation-element {
+/* .animated-cta:hover .animation-element {
   transform: translateX(0.25rem);
-}
+} */
  
 @media (width >= 320px) {
   .container-sm, .container {
@@ -809,9 +810,11 @@ main .section.highlight {
 .tab-panel.active {
   display: block;
 }
+
 .panel-heading{
   margin-bottom: 30px;
 }
+
 .panel-heading h2{
     font-family: var(--heading-font-family);
     font-size: 40px;
@@ -820,10 +823,12 @@ main .section.highlight {
     color: var(--text-color);
     letter-spacing:  -0.5px;
 }
-/*Tab section overrides*/
+
+/* Tab section overrides */
 .tabpanel {
   padding-top: 80px;
 }
+
 .tabs-container .about-us-stats .about-us-right-content p{
   font-weight: 400;
   color: var(--body-text-color);
@@ -834,6 +839,7 @@ main .section.highlight {
   border-top: 1px solid var(--text-color);
   align-items: flex-start;
   padding-top: 16px;
+
   /* margin-bottom: 36px; */
   gap: 16px;
 }
@@ -886,9 +892,11 @@ main .section.highlight {
   font-size: var(--heading-font-size-l);
   color: var(--text-color);
 }
+
 .tabs-container .textmediablock-container + .textmediablock-container {
   padding: 136px 0 0;
 }
+
 .tabs-container .projectslist {
   margin-top: 136px;
 }
@@ -896,6 +904,7 @@ main .section.highlight {
   .tabs-container .textmediablock-container + .textmediablock-container {
     padding: 56px 0 0;
   }
+
   .tabs-container .projectslist {
     margin-top: 56px;
   }
@@ -904,6 +913,7 @@ main .section.highlight {
   .tabpanel {
     padding-top: 56px;
   }
+
   .tab-title{
     font-size: 22px;
     font-weight: 600;
@@ -942,6 +952,7 @@ main .section.highlight {
   .tabpanel {
     padding-top: 36px;
   }
+
   .tab-title {
     font-size: 18px;
     line-height: 24px;
@@ -952,6 +963,7 @@ main .section.highlight {
     padding-top: 12px;
     margin-bottom: 40px;
   }
+
   .panel-heading h2{
     font-size: 28px;
     line-height: 34px;
@@ -972,17 +984,18 @@ main .section.highlight {
     font-size: 14px;
     line-height: 20px;
   }
+
   .tabs-container .textmediablock-container + .textmediablock-container {
     padding: 36px 0 0;
     margin-bottom: 0;
   }
+
   .tabs-container .projectslist {
     margin-top: 36px;
   }
 }
 
 @media(width >= 1024px){
-
   .tabs-container .about-us-stats .about-us-right-content:nth-child(2) > div:nth-child(2) {
     width: 53%;
   }
@@ -996,5 +1009,37 @@ main .section.highlight {
   .tabs-container .about-us-stats .about-us-right-content .statistic span:first-child{
     font-size: 40px;
     line-height: 40px;
+  }
+}
+
+main {
+  position: relative;
+}
+
+main::before {
+  content: '';
+  background: url("../icons/genting-page-mobile-bg.jpg") repeat-y;
+  background-position: center top;
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+}
+@media (width >= 768px) {
+  main::before {
+    background: url("../icons/genting-page-tablet-bg.jpg") repeat-y;
+    background-position: center top;
+  }
+}
+@media (width >= 1024px) {
+  main::before {
+    background: url("../icons/genting-page-desktop-bg-1440.jpg") repeat-y;
+    background-position: center top;
+  }
+}
+@media (width >= 1441px) {
+  main::before {
+    background: url("../icons/genting-page-desktop-bg-1920.jpg") repeat-y;
+    background-position: center top;
+    background-size: 100%;
   }
 }

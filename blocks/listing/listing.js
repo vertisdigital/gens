@@ -30,7 +30,7 @@ export default function decorate(block) {
         // Set initial src to ensure img tag has a value
         img.src = imgAnchor.href;
         img.alt = '';
-        
+
         ImageComponent({
           element: img,
           src: imgAnchor.href,
@@ -68,12 +68,12 @@ export default function decorate(block) {
       newArrowLink.classList.add('arrow-link-wrapper');
       const targetValue = linkTarget?.textContent?.trim() || '_self';
       newArrowLink.setAttribute('target', targetValue);
-      
+
       // Create left arrow icon
       const leftArrowSVG = SvgIcon({ name: 'arrow', className: 'left-arrow-icon', size: '24px' });
       const parsedLeftArrowSVG = stringToHtml(leftArrowSVG);
       newArrowLink.appendChild(parsedLeftArrowSVG);
-      
+
       contentWrapper.appendChild(newArrowLink);
     }
 
