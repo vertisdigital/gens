@@ -362,15 +362,14 @@ export default function decorate(block) {
     carouselItemContent.appendChild(newsLinkDiv);
 
     // Add the image to the carousel
-    const firstDiv = item.querySelector('div');
-    if (firstDiv) {
-      const pTag = firstDiv.querySelector('p');
-      if (pTag) {
-        const aTag = pTag.querySelector('a');
+    const isImageExists = item.querySelectorAll('div')[2]
+    if (isImageExists) {
+      //const pTag = firstDiv.querySelector('p');
+        const aTag = isImageExists.querySelector('a');
         if (aTag) {
           // const imgUrl = aTag.getAttribute('href');
-          const imgUrl = 'https://cdn.builder.io/api/v1/image/assets/TEMP/3818aa4f34615b927264d6d8cab07f1e20d364cf0b7277c747dd56359fc99bce?placeholderIfAbsent=true&apiKey=16b1633103d8450ead7bc93647340540';
-          const imgAlt = aTag.getAttribute('title') || 'Thumbnail';
+          const imgUrl = aTag?.getAttribute('href');
+          const imgAlt = aTag?.getAttribute('title');
 
           const imgHtml = ImageComponent({
             src: imgUrl,
@@ -400,7 +399,6 @@ export default function decorate(block) {
           aTag.remove();
         }
       }
-    }
     carouselWrapper.appendChild(carouselItem);
   });
 
