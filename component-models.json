@@ -1015,7 +1015,7 @@
         "component": "text",
         "name": "thirdCtaCaption",
         "label": "Third CTA Caption",
-        "validation": {
+        "validation": { 
           "maxLength": 50,
           "customErrorMsg": "Third CTA Caption cannot exceed 50 characters"
         }
