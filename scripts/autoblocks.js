@@ -82,6 +82,12 @@ function assembleTabStructure({ tabElements, tabsContainer, tabNav, tabWrapper }
  * @param {number} activeIndex Index to activate
  */
 function updateTabStates(tabs, panels, activeIndex) {
+  console.log('Updating tab states:', {
+    activeIndex,
+    totalTabs: tabs.length,
+    totalPanels: panels.length
+  });
+
   // Update tabs
   tabs.forEach(tab => tab.classList.remove('active'));
   tabs[activeIndex].classList.add('active');
@@ -89,6 +95,11 @@ function updateTabStates(tabs, panels, activeIndex) {
   // Update panels
   panels.forEach(panel => panel.classList.remove('active'));
   panels[activeIndex].classList.add('active');
+
+  console.log('States updated:', {
+    activeTab: tabs[activeIndex].textContent,
+    activePanel: panels[activeIndex].getAttribute('data-tabtitle')
+  });
 }
 
 /**
@@ -98,8 +109,18 @@ function updateTabStates(tabs, panels, activeIndex) {
 function addTabFunctionality({ tabs, panels }) {
   if (!tabs || !panels) return;
   
+  console.log('Adding click handlers to tabs:', {
+    numTabs: tabs.length,
+    numPanels: panels.length
+  });
+  
   tabs.forEach((tab, index) => {
-    tab.addEventListener('click', () => {
+    tab.addEventListener('click', (e) => {
+      console.log('Tab clicked:', {
+        index,
+        text: tab.textContent,
+        event: e
+      });
       updateTabStates(tabs, panels, index);
     });
   });
@@ -111,12 +132,20 @@ function addTabFunctionality({ tabs, panels }) {
  */
 function processTabs(main) {
   try {
+    console.log('Processing tabs for:', main);
+    
     // Create basic structure
     const structure = createTabStructure(main);
-    if (!structure) return;
+    if (!structure) {
+      console.log('No tab elements found');
+      return;
+    }
+
+    console.log('Tab structure created:', structure);
 
     // Assemble the structure
     const elements = assembleTabStructure(structure);
+    console.log('Tab elements assembled:', elements);
 
     // Remove original sections
     structure.tabElements.forEach(section => section.remove());

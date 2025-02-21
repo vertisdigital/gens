@@ -817,11 +817,11 @@ main .section.highlight {
 }
 
 .tab-wrapper .tab {
-  display: none;
+  display: none !important; /* Force hiding inactive tabs */
 }
 
 .tab-wrapper .tab.active {
-  display: block;
+  display: block !important; /* Force showing active tab */
 }
 
 /* Responsive Design */
