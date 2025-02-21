@@ -808,7 +808,7 @@
         "name": "phoneNumber",
         "label": "Phone Number",
         "validation": {
-          "pattern": "^[+]?[0-9]{10,30}$",
+          "regExp": "^[+]?[0-9]{10,30}$",
           "minLength": 10,
           "maxLength": 30,
           "customErrorMsg": "Phone Number must be between 10-30 digits and can only contain numbers and '+' symbol"
@@ -831,7 +831,7 @@
         "name": "emailAddress",
         "label": "Email Address",
         "validation": {
-          "pattern": "^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,}$",
+          "regExp": "^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,}$",
           "minLength": 10,
           "maxLength": 30,
           "customErrorMsg": "Please enter a valid Email Address between 10-30 characters"
@@ -1021,11 +1021,6 @@
         "name": "image",
         "label": "Image",
         "configUrl": "https://textmediasection--genting--wppopen.aem.live/tools/assets-selector/config.json"
-      },
-      {
-        "component": "reference",
-        "name": "video",
-        "label": "Video"
       },
       {
         "component": "text",

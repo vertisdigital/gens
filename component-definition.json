@@ -84,7 +84,7 @@
               "page": {
                 "resourceType": "core/franklin/components/section/v1/section",
                 "template": {
-                  "name": "tabspanel",
+                  "name": "TabsPanel",
                   "model": "tabspanel",
                   "filter": "tabspanel"
                 }
@@ -100,7 +100,7 @@
               "page": {
                 "resourceType": "core/franklin/components/section/v1/section",
                 "template": {
-                  "name": "tabsposition"
+                  "name": "TabsPosition"
                 }
               }
             }
@@ -114,7 +114,7 @@
               "page": {
                 "resourceType": "core/franklin/components/section/v1/section",
                 "template": {
-                  "name": "tabs",
+                  "name": "Tabs",
                   "model": "tabs",
                   "filter": "tabs"
                 }
@@ -196,7 +196,7 @@
               "page": {
                 "resourceType": "core/franklin/components/block/v1/block",
                 "template": {
-                  "name": "herobanner",
+                  "name": "HeroBanner",
                   "model": "herobanner",
                   "filter": "herobanner"
                 }
@@ -205,14 +205,14 @@
           }
         },
         {
-          "title": "Banner Carousel",
+          "title": "BannerCarousel",
           "id": "bannercarousel",
           "plugins": {
             "xwalk": {
               "page": {
                 "resourceType": "core/franklin/components/block/v1/block/item",
                 "template": {
-                  "name": "bannercarousel",
+                  "name": "BannerCarousel",
                   "model": "bannercarousel"
                 }
               }
@@ -244,21 +244,22 @@
                 "template": {
                   "name": "Feature",
                   "model": "feature",
-                  "filter": "feature"
+                  "filter": "feature",
+                  "id": "feature"
                 }
               }
             }
           }
         },
         {
-          "title": "Feature Item",
+          "title": "FeatureItem",
           "id": "featureItem",
           "plugins": {
             "xwalk": {
               "page": {
                 "resourceType": "core/franklin/components/block/v1/block/item",
                 "template": {
-                  "name": "Feature Item",
+                  "name": "FeatureItem",
                   "model": "featureItem"
                 }
               }
@@ -266,14 +267,14 @@
           }
         },
         {
-          "title": "Image Link",
+          "title": "ImageLink",
           "id": "imageLink",
           "plugins": {
             "xwalk": {
               "page": {
                 "resourceType": "core/franklin/components/block/v1/block",
                 "template": {
-                  "name": "Image Link",
+                  "name": "ImageLink",
                   "model": "imageLink",
                   "filter": "imageLink"
                 }
@@ -282,14 +283,14 @@
           }
         },
         {
-          "title": "Link Field",
+          "title": "LinkField",
           "id": "linkField",
           "plugins": {
             "xwalk": {
               "page": {
                 "resourceType": "core/franklin/components/block/v1/block/item",
                 "template": {
-                  "name": "Link Field",
+                  "name": "LinkField",
                   "model": "linkField",
                   "filter": "linkField"
                 }
@@ -298,14 +299,14 @@
           }
         },
         {
-          "title": "Social Links",
+          "title": "SocialLinks",
           "id": "socialLinks",
           "plugins": {
             "xwalk": {
               "page": {
                 "resourceType": "core/franklin/components/block/v1/block",
                 "template": {
-                  "name": "Social Links",
+                  "name": "SocialLinks",
                   "model": "socialLinks",
                   "filter": "socialLinks"
                 }
@@ -346,14 +347,14 @@
           }
         },
         {
-          "title": "List Item",
+          "title": "ListItem",
           "id": "listitem",
           "plugins": {
             "xwalk": {
               "page": {
                 "resourceType": "core/franklin/components/block/v1/block/item",
                 "template": {
-                  "name": "List Item",
+                  "name": "ListItem",
                   "model": "listitem"
                 }
               }
@@ -439,14 +440,14 @@
           }
         },
         {
-          "title": "Text Section",
+          "title": "TextSection",
           "id": "textsection",
           "plugins": {
             "xwalk": {
               "page": {
                 "resourceType": "core/franklin/components/block/v1/block",
                 "template": {
-                  "name": "textsection",
+                  "name": "TextSection",
                   "model": "textsection",
                   "filter": "textsection"
                 }
@@ -455,29 +456,29 @@
           }
         },
         {
-          "title": "Core Principles",
+          "title": "CorePrinciples",
           "id": "coreprinciples",
           "plugins": {
             "xwalk": {
               "page": {
                 "resourceType": "core/franklin/components/block/v1/block",
                 "template": {
-                  "name": "coreprinciples",
-                  "filter": "coreprinciples"
+                  "name": "CorePrinciples",
+                  "filter": "coreprinciples" 
                 }
               }
             }
           }
         },
         {
-          "title": "Core Principle",
+          "title": "CorePrinciple",
           "id": "coreprinciple",
           "plugins": {
             "xwalk": {
               "page": {
                 "resourceType": "core/franklin/components/block/v1/block/item",
                 "template": {
-                  "name": "coreprinciple",
+                  "name": "CorePrinciple",
                   "model": "coreprinciple"
                 }
               }
@@ -485,14 +486,14 @@
           }
         },
         {
-          "title": "Explore More",
+          "title": "ExploreMore",
           "id": "exploremore",
           "plugins": {
             "xwalk": {
               "page": {
                 "resourceType": "core/franklin/components/block/v1/block",
                 "template": {
-                  "name": "exploremore",
+                  "name": "ExploreMore",
                   "model": "exploremore",
                   "filter": "exploremore"
                 }
@@ -501,7 +502,7 @@
           }
         },
         {
-          "title": "Text Media Block",
+          "title": "TextMediaBlock",
           "id": "textmediablock",
           "plugins": {
             "xwalk": {
@@ -524,7 +525,7 @@
               "page": {
                 "resourceType": "core/franklin/components/block/v1/block",
                 "template": {
-                  "name": "media",
+                  "name": "Media",
                   "model": "media"
                 }
               }
@@ -532,14 +533,14 @@
           }
         },
         {
-          "title": "Projects List",
+          "title": "ProjectsList",
           "id": "projectslist",
           "plugins": {
             "xwalk": {
               "page": {
                 "resourceType": "core/franklin/components/block/v1/block",
                 "template": {
-                  "name": "projectslist",
+                  "name": "ProjectsList",
                   "model": "projectslist",
                   "filter": "projectslist"
                 }
@@ -548,14 +549,14 @@
           }
         },
         {
-          "title": "Projects List Item",
+          "title": "ProjectsListItem",
           "id": "projectslistitem",
           "plugins": {
             "xwalk": {
               "page": {
                 "resourceType": "core/franklin/components/block/v1/block/item",
                 "template": {
-                  "name": "projectslistitem",
+                  "name": "ProjectsListItem",
                   "model": "projectslistitem"
                 }
               }
@@ -563,14 +564,14 @@
           }
         },
         {
-          "title": "Statistics Section",
+          "title": "StatisticsSection",
           "id": "statisticsSection",
           "plugins": {
             "xwalk": {
               "page": {
                 "resourceType": "core/franklin/components/section/v1/section",
                 "template": {
-                  "name": "Statistics Section",
+                  "name": "StatisticsSection",
                   "model": "statisticsSection",
                   "filter": "statisticsSection"
                 }
@@ -595,14 +596,14 @@
           }
         },
         {
-          "title": "Statistics Description",
+          "title": "StatisticsDescription",
           "id": "statisticsDescription",
           "plugins": {
             "xwalk": {
               "page": {
                 "resourceType": "core/franklin/components/block/v1/block/item",
                 "template": {
-                  "name": "Statistics Description",
+                  "name": "StatisticsDescription",
                   "model": "statisticsDescription",
                   "filter": "statisticsDescription"
                 }
