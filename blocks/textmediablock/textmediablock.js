@@ -5,7 +5,7 @@ function initTextMediaBlock() {
     block.className = 'container-xl container-md container-sm textmediablock-container';
 
     // Handle image elements
-    const mediaBlock = block.querySelector('[data-aue-model="media"]');
+    const mediaBlock = block;
     if (mediaBlock) {
       const linkElement = mediaBlock.querySelector('a');
       if (linkElement) {
@@ -14,7 +14,7 @@ function initTextMediaBlock() {
         img.src = imageUrl;
 
         // Set alt text from heading
-        const heading = block.querySelector('[data-aue-prop="heading"]');
+        const heading = block.querySelector('[data-aue-prop="heading"], .section-inner-2-1-2-1-1');
         img.alt = heading ? heading.textContent : 'Feature image';
 
         // Add loading optimization

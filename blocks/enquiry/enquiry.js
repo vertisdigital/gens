@@ -4,10 +4,10 @@ import { moveInstrumentation } from '../../scripts/scripts.js';
 
 export default function decorate(block) {
   // Restructure the HTML for better semantics and accessibility
-  const wrapper = block.closest('.enquiry-wrapper');
-  const enquiryResource = wrapper.querySelector('[data-aue-label="Enquiry"]');
+  const wrapper = block.closest('.enquiry-wrapper') || block;
+  // const enquiryResource = wrapper.querySelector('[data-aue-label="Enquiry"]');
 
-  moveInstrumentation(enquiryResource, wrapper);
+  // moveInstrumentation(enquiryResource, wrapper);
 
   // Create single container with all responsive classes
   const container = document.createElement('div');
@@ -22,7 +22,7 @@ export default function decorate(block) {
 
   // Create heading container with proper attributes
   const headingContainer = document.createElement('div');
-  const headingText = wrapper.querySelector('[data-aue-prop="heading"]')?.textContent.trim();
+  const headingText = wrapper.querySelector('[data-aue-prop="heading"], .section-inner-1-7-1-1-1')?.textContent.trim();
   const headingElement = document.createElement('div');
 
   if (headingText) {
@@ -46,7 +46,7 @@ export default function decorate(block) {
   rightCol.className = 'col-xl-6 col-md-3 container-sm-4';
 
   // Add description with authoring attributes
-  const description = wrapper.querySelector('[data-aue-prop="description"]');
+  const description = wrapper.querySelector('[data-aue-prop="description"], .section-inner-1-7-2-1-1');
   if (description) {
     const descriptionWrapper = document.createElement('div');
     descriptionWrapper.className = 'enquiry-description';
@@ -111,9 +111,9 @@ export default function decorate(block) {
   };
 
   // Add contact items with proper attributes
-  const phone = wrapper.querySelector('[data-aue-prop="phoneNumber"]')?.textContent.trim();
-  const email = wrapper.querySelector('[data-aue-prop="emailAddress"]')?.textContent.trim();
-  const address = wrapper.querySelector('[data-aue-prop="address"]')?.textContent.trim();
+  const phone = wrapper.querySelector('[data-aue-prop="phoneNumber"], .section-inner-1-7-4-1-1')?.textContent.trim();
+  const email = wrapper.querySelector('[data-aue-prop="emailAddress"], .section-inner-1-7-6-1-1')?.textContent.trim();
+  const address = wrapper.querySelector('[data-aue-prop="address"], .section-inner-1-7-8-1-1')?.textContent.trim();
 
   if (phone) {
     contactItems.appendChild(createContactItem(phone, 'tel', 'phoneNumber', 'PhoneNumber'));

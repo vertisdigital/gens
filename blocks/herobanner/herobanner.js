@@ -73,7 +73,7 @@ export default function decorate(block) {
     headingElement.remove();
   }
 
-  const titleElement = block.querySelector('[data-aue-prop="bannertitle"]');
+  const titleElement = block.querySelector('[data-aue-prop="bannertitle"], .section-inner-1-1-3-1-1');
   if (titleElement) {
     const titleText = titleElement.textContent;
     const titleContainer = document.createElement('div');
@@ -95,7 +95,7 @@ export default function decorate(block) {
   }
 
   const descElement = block.querySelector(
-    '[data-aue-prop="bannerdescription"]',
+    '[data-aue-prop="bannerdescription"], .section-inner-1-1-4-1-1',
   );
   if (descElement) {
     const descriptionDiv = document.createElement('div');
@@ -112,7 +112,7 @@ export default function decorate(block) {
     descElement.remove();
   }
 
-  const arrowIconLink = block.querySelector('[data-aue-prop="ctabuttonText"]');
+  const arrowIconLink = block.querySelector('[data-aue-prop="ctabuttonText"], .section-element-1-1-5-1');
   if (arrowIconLink) {
     const arrowIconHtml = SvgIcon({
       name: 'arrow',
@@ -127,9 +127,7 @@ export default function decorate(block) {
     heroContent.appendChild(anchorWrapper);
   }
   heroContainer.appendChild(heroContent);
-  const carouselItems = block.querySelectorAll(
-    '[data-aue-model="bannercarousel"]',
-  );
+  const carouselItems = block.querySelectorAll('[data-aue-model="bannercarousel"], [data-aue-model="tile"]');
   const carouselContainer = document.createElement('div');
   carouselContainer.className = 'hero-banner-carousal';
   carouselContainer.setAttribute('data-aue-model', 'bannercarousel');
@@ -169,7 +167,7 @@ export default function decorate(block) {
   });
 
   const scrollIntervalDiv = block.querySelector(
-    '[data-aue-prop="scrollInterval"]',
+    '[data-aue-prop="scrollInterval"], .section-inner-1-1-6-1-1',
   );
 
   let scrollInterval = 3000;
@@ -257,7 +255,7 @@ export default function decorate(block) {
     carouselItem.appendChild(newsLatterImage);
 
     // Extract and append the title
-    const carouselTitleElement = item.querySelector('[data-aue-prop="title"]');
+    const carouselTitleElement = item.querySelector('[data-aue-prop="title"],[data-aue-prop="heading"]');
     if (carouselTitleElement) {
       const titleText = carouselTitleElement.textContent;
       const titleHtml = `<p class="news-title">${titleText}</p>`;
@@ -275,7 +273,7 @@ export default function decorate(block) {
 
     // Extract and append the description
     const descriptionElement = item.querySelector(
-      '[data-aue-prop="description"]',
+      '[data-aue-prop="description"], [data-aue-prop="title"]',
     );
     if (descriptionElement) {
       const descriptionText = descriptionElement.textContent;
@@ -293,15 +291,18 @@ export default function decorate(block) {
     }
 
     // Extract and append the "Read More" label
-    const readMoreLabelElement = item.querySelector(
+    var readMoreLabelElement = item.querySelector(
       '[data-aue-prop="readmorelabel"]',
-    );
+    ) || item.querySelectorAll(
+      'div'
+    )[2].querySelector('p');
+    
     if (readMoreLabelElement) {
       const readMoreLabelText = readMoreLabelElement.textContent;
-      const buttonContainer = readMoreLabelElement.parentElement.nextElementSibling.querySelector('.button-container a');
-      const href = buttonContainer ? buttonContainer.getAttribute('href') : '';
+      // const buttonContainer = readMoreLabelElement.parentElement.nextElementSibling.querySelector('.button-container a');
+      // const href = buttonContainer ? buttonContainer.getAttribute('href') : '';
       const currentUrl = window.location.href;
-      const newUrl = currentUrl.replace(window.location.pathname, href);
+      const newUrl = currentUrl.replace(window.location.pathname, "#");
       const readMoreLabelHtml = `<a class="news-link" href="${newUrl}" target="_blank">${readMoreLabelText}</a>`;
       const readMoreContainer = document.createElement('div');
       readMoreContainer.setAttribute('data-aue-model', 'readmorelabel');
@@ -362,14 +363,15 @@ export default function decorate(block) {
     carouselItemContent.appendChild(newsLinkDiv);
 
     // Add the image to the carousel
-    const isImageExists = item.querySelectorAll('div')[2]
-    if (isImageExists) {
-      //const pTag = firstDiv.querySelector('p');
-        const aTag = isImageExists.querySelector('a');
+    const firstDiv = item.querySelector('div');
+    if (firstDiv) {
+      const pTag = firstDiv.querySelector('p');
+      if (pTag) {
+        const aTag = pTag.querySelector('a');
         if (aTag) {
           // const imgUrl = aTag.getAttribute('href');
-          const imgUrl = aTag?.getAttribute('href');
-          const imgAlt = aTag?.getAttribute('title');
+          const imgUrl = 'https://cdn.builder.io/api/v1/image/assets/TEMP/3818aa4f34615b927264d6d8cab07f1e20d364cf0b7277c747dd56359fc99bce?placeholderIfAbsent=true&apiKey=16b1633103d8450ead7bc93647340540';
+          const imgAlt = aTag.getAttribute('title') || 'Thumbnail';
 
           const imgHtml = ImageComponent({
             src: imgUrl,
@@ -399,6 +401,7 @@ export default function decorate(block) {
           aTag.remove();
         }
       }
+    }
     carouselWrapper.appendChild(carouselItem);
   });
 

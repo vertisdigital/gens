@@ -6,19 +6,32 @@
   }
 
 /* Media styles */
-[data-aue-model="media"]:not(:last-child) {
+/* [data-aue-model="media"]:not(:last-child) {
+  width: 100%;
+  margin-bottom: 36px;
+} */
+ .section-nested-2-1-1 {
   width: 100%;
   margin-bottom: 36px;
 }
 
-[data-aue-model="media"] img {
+/* [data-aue-model="media"] img {
+  width: 100%;
+  height: auto;
+  object-fit: cover;
+} */
+.section-nested-2-1-1  img {
   width: 100%;
   height: auto;
   object-fit: cover;
 }
-
 /* Text section styles */
-[data-aue-model="textsection"] {
+/* [data-aue-model="textsection"] {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 36px;
+} */
+.section-nested-2-1-2{
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 36px;
@@ -26,9 +39,17 @@
 
 [data-aue-model="textsection"]:not(:last-child) {
   margin-bottom: 36px;
-}
+} 
 
-[data-aue-prop="heading"] {
+/* [data-aue-prop="heading"] {
+  font-family: var(--heading-font-family);
+  font-size: 40px;
+  font-weight: 500;
+  line-height: 50px;
+  color: var(--text-color);
+} */
+
+[data-aue-prop="title"] {
   font-family: var(--heading-font-family);
   font-size: 40px;
   font-weight: 500;
@@ -36,13 +57,18 @@
   color: var(--text-color);
 }
 
-[data-aue-prop="description"] {
+/* [data-aue-prop="description"] {
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 24px;
+  color: var(--text-color);
+} */
+.section-element-2-1-2-2{
   font-size: 16px;
   font-weight: 400;
   line-height: 24px;
   color: var(--text-color);
 }
-
 [data-richtext-prop="description"] {
   font-family: var(--body-font-family);
   font-size: 40px;
@@ -52,7 +78,13 @@
 
 /* Tablet and up: Grid layout */
 @media (width<=992px) {
- [data-aue-prop="heading"] {
+ /* [data-aue-prop="heading"] {
+    font-family: var(--heading-font-family);
+    font-size: 32px;
+    line-height: 42px;
+  } */
+
+   [data-aue-prop="title"] {
     font-family: var(--heading-font-family);
     font-size: 32px;
     line-height: 42px;
@@ -70,13 +102,23 @@
   }
 } 
 @media (width<768px) {
-  [data-aue-model="textsection"] {
+  /* [data-aue-model="textsection"] {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 18px;
+  } */
+  .section-nested-2-1-2{
     display: grid;
     grid-template-columns: 1fr;
     gap: 18px;
   }
 
-  [data-aue-prop="heading"] {
+  /* [data-aue-prop="heading"] {
+    font-size: 28px;
+    line-height: 34px;
+    margin-bottom: 18px;
+  } */
+   [data-aue-prop="title"] {
     font-size: 28px;
     line-height: 34px;
     margin-bottom: 18px;

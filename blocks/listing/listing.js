@@ -7,7 +7,7 @@ export default function decorate(block) {
   block.classList.add('container-xl', 'container-md', 'container-sm');
 
   // Process list items
-  const listItems = block.querySelectorAll('[data-aue-model="listitem"]');
+  const listItems = block.querySelectorAll('[data-aue-model="listitem"], [data-aue-model="tile"]');
   listItems.forEach((item) => {
     // Create row from styles.css
     const row = document.createElement('div');

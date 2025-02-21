@@ -114,12 +114,12 @@ export default function decorate(block) {
     cardContent.className = 'project-card-content';
 
     // Handle card title
-    const cardTitle = card.querySelector('[data-aue-prop="projectText"]');
+    const cardTitle = card.querySelector('[data-aue-prop="projectText"]') || card.querySelectorAll('div')[1];
     if (cardTitle) {
       const titleDiv = document.createElement('div');
       titleDiv.className = 'project-card-title';
-      cardTitle.className = '';
-      // setting the link target
+      cardTitle.className ='';
+      //setting the link target
       const linkTarget = card.querySelector('[data-aue-prop="projectTarget"]')?.textContent || '_self';
       cardTitle.setAttribute('target', linkTarget);
 
@@ -128,7 +128,7 @@ export default function decorate(block) {
     }
 
     // Handle card location
-    const locationElement = card.querySelector('[data-aue-prop="location"]');
+    const locationElement = card.querySelector('[data-aue-prop="location"]') || card.querySelectorAll('div')[2];
     if (locationElement) {
       const locationDiv = document.createElement('div');
       locationDiv.setAttribute('data-aue-prop', 'location');
