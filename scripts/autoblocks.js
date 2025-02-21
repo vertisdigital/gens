@@ -38,13 +38,17 @@ function createTabElement(section, index) {
   const tabTitle = document.createElement('div');
   tabTitle.textContent = titleText;
   tabTitle.className = 'tab-title';
+  tabTitle.setAttribute('role', 'tab');
   tabTitle.setAttribute('data-tab-index', index);
+  tabTitle.setAttribute('tabindex', '0');
   if (index === 0) tabTitle.classList.add('active');
   
   const tabPanel = section.cloneNode(true);
   tabPanel.classList.add('tab', 'block');
   tabPanel.setAttribute('data-block-name', 'tab');
   tabPanel.setAttribute('data-block-status', 'loaded');
+  tabPanel.setAttribute('role', 'tabpanel');
+  tabPanel.setAttribute('data-tab-index', index);
   tabPanel.classList.toggle('active', index === 0);
 
   return { tabTitle, tabPanel };
@@ -106,33 +110,45 @@ function updateTabStates(tabs, panels, activeIndex) {
  * Adds click functionality to tabs
  * @param {Object} elements References to tab elements
  */
-function addTabFunctionality({ tabs, panels }) {
-  if (!tabs || !panels) return;
+function addTabFunctionality({ tabs, panels, container }) {
+  if (!tabs || !panels || !container) return;
   
   console.log('Adding click handlers to tabs:', {
     numTabs: tabs.length,
     numPanels: panels.length
   });
 
-  // Add click handler to each tab
-  tabs.forEach((tab, index) => {
-    tab.onclick = function(e) {
-      e.preventDefault();
-      e.stopPropagation();
-      
-      console.log('Tab clicked:', {
-        index,
-        text: this.textContent
-      });
+  // Use event delegation on container
+  container.addEventListener('click', (e) => {
+    const clickedTab = e.target.closest('.tab-title');
+    if (!clickedTab) return;
+    
+    const index = parseInt(clickedTab.getAttribute('data-tab-index'), 10);
+    if (isNaN(index)) return;
+    
+    console.log('Tab clicked:', {
+      index,
+      text: clickedTab.textContent
+    });
 
-      // Update tabs
-      tabs.forEach(t => t.classList.remove('active'));
-      this.classList.add('active');
-      
-      // Update panels
-      panels.forEach(p => p.classList.remove('active'));
-      panels[index].classList.add('active');
-    };
+    // Update tabs
+    tabs.forEach(t => t.classList.remove('active'));
+    clickedTab.classList.add('active');
+    
+    // Update panels
+    panels.forEach(p => p.classList.remove('active'));
+    panels[index].classList.add('active');
+  });
+
+  // Add keyboard support
+  container.addEventListener('keydown', (e) => {
+    if (e.key !== 'Enter' && e.key !== ' ') return;
+    
+    const focusedTab = e.target.closest('.tab-title');
+    if (!focusedTab) return;
+    
+    e.preventDefault();
+    focusedTab.click();
   });
 }
 
