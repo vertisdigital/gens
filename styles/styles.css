@@ -842,3 +842,25 @@ main .section.highlight {
 .tab-link {
   display: none;
 }
+
+/* Make selectors more specific */
+.tabs-container .tab-title {
+  padding: 0.75rem 1.5rem;
+  color: var(--link-color);
+  position: relative;
+  font-size: 1rem;
+  font-weight: 400;
+  cursor: pointer !important;
+  min-width: 120px;
+  text-align: center;
+  border-bottom: 1px solid transparent;
+  user-select: none;
+  display: inline-block; /* Add this to ensure proper display */
+}
+
+.tabs-container .tab-nav {
+  display: flex;
+  gap: 2rem;
+  margin-bottom: 1.5rem;
+  border-bottom: 1px solid #ddd; /* Add visual separator */
+}

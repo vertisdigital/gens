@@ -29,18 +29,31 @@ function handleTabStyles(main) {
         tabTitle.className = 'tab-title';
         tabTitle.setAttribute('data-tab-index', index);
         
-        // Add click handler to each tab title
-        tabTitle.addEventListener('click', function() {
-          console.log('Tab clicked directly:', this.textContent);
+        // Add click handler with debugging
+        tabTitle.onclick = function() {
+          console.log('Tab clicked:', {
+            text: this.textContent,
+            index: this.getAttribute('data-tab-index')
+          });
           
           // Remove active class from all tabs and panels
-          tabNav.querySelectorAll('.tab-title').forEach(tab => tab.classList.remove('active'));
-          tabWrapper.querySelectorAll('.tab').forEach(panel => panel.classList.remove('active'));
+          const allTabs = tabNav.querySelectorAll('.tab-title');
+          const allPanels = tabWrapper.querySelectorAll('.tab');
+          
+          console.log('Found elements:', {
+            tabs: allTabs.length,
+            panels: allPanels.length
+          });
+          
+          allTabs.forEach(tab => tab.classList.remove('active'));
+          allPanels.forEach(panel => panel.classList.remove('active'));
           
           // Add active class to clicked tab and corresponding panel
           this.classList.add('active');
-          tabWrapper.children[index].classList.add('active');
-        });
+          allPanels[index].classList.add('active');
+          
+          console.log('Tab switch complete');
+        };
         
         if (index === 0) tabTitle.classList.add('active');
         
@@ -59,7 +72,13 @@ function handleTabStyles(main) {
       tabElements.forEach(section => section.remove());
       main.prepend(tabsContainer);
       
-      console.log('Tab setup complete with handlers attached');
+      // Verify structure and handlers
+      console.log('Final structure:', {
+        container: tabsContainer,
+        tabs: tabNav.querySelectorAll('.tab-title'),
+        panels: tabWrapper.querySelectorAll('.tab'),
+        handlers: tabNav.querySelectorAll('.tab-title').length
+      });
     }
   } catch (error) {
     console.error('Error in handleTabStyles:', error);
