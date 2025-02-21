@@ -113,8 +113,8 @@ function handleTabStyles(main) {
       tabElements.forEach((tab, index) => {
         console.log(`Processing tab ${index}:`, tab);
         
-        // Get the parent div that contains both textmediablock and section-metadata
-        const parentDiv = tab.closest('div');
+        // Get the outermost parent div that contains both textmediablock and section-metadata
+        const parentDiv = tab.parentElement;
         console.log(`Found parent div ${index}:`, parentDiv);
         
         if (parentDiv) {
@@ -125,14 +125,15 @@ function handleTabStyles(main) {
           tab.classList.remove('tab');
           
           // Move the entire parent div to tabs container
-          tabsContainer.appendChild(parentDiv);
-          console.log(`Moved parent div ${index} to tabs container`);
+          tabsContainer.appendChild(parentDiv.cloneNode(true));
+          console.log(`Cloned parent div ${index} to tabs container`);
         }
       });
 
-      console.log('Final tabs container before prepend:', tabsContainer.innerHTML);
-      main.prepend(tabsContainer);
-      console.log('Main element after prepend:', main.innerHTML);
+      // Replace the original content with tabs container
+      main.innerHTML = '';
+      main.appendChild(tabsContainer);
+      console.log('Main element after replacement:', main.innerHTML);
     } else {
       console.log('No tab elements found');
     }
