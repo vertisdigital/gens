@@ -750,32 +750,37 @@ main .section.highlight {
 /* Tabs Container */
 .tab-container {
   width: 100%;
-  padding: 0 1rem;
+  padding: 0;
 }
 
 /* Tab Navigation */
 .tab-nav {
   display: flex;
-  gap: 2rem;
+  gap: 3rem;
   border-bottom: 1px solid #ddd;
   margin-bottom: 2rem;
+  padding: 0;
 }
 
-.tab-link {
+/* Override default link styles */
+.tab-link:any-link {
   padding: 0.5rem 0;
   color: #666;
   text-decoration: none;
   position: relative;
   font-size: 1.125rem;
   cursor: pointer;
+  transition: color 0.3s ease;
 }
 
 .tab-link:hover {
   color: #000;
+  text-decoration: none;
 }
 
 .tab-link.active {
   color: #000;
+  font-weight: 500;
 }
 
 .tab-link.active::after {
@@ -790,7 +795,7 @@ main .section.highlight {
 
 /* Tab Content */
 .tab-wrapper {
-  padding: 1rem 0;
+  padding: 2rem 0;
 }
 
 .tab-wrapper .tab {
@@ -808,7 +813,7 @@ main .section.highlight {
     gap: 1rem;
   }
 
-  .tab-link {
+  .tab-link:any-link {
     display: block;
     text-align: center;
   }
