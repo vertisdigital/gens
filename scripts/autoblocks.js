@@ -7,8 +7,7 @@ function handleTabStyles(main) {
     const tabElements = main.querySelectorAll('div[data-tabtitle]');
     console.log('Found tab elements:', {
       count: tabElements.length,
-      elements: tabElements,
-      mainHTML: main.innerHTML
+      elements: tabElements
     });
     
     if (tabElements.length > 0) {
@@ -22,14 +21,9 @@ function handleTabStyles(main) {
       const tabWrapper = document.createElement('div');
       tabWrapper.className = 'tab-wrapper';
       
-      // Create all tabs first, then add event listeners
-      const tabs = [];
-      
-      console.log('Starting tab creation loop');
-      console.log('Tab elements:', tabElements.innerHTML);
       tabElements.forEach((section, index) => {
         const tabTitle = section.getAttribute('data-tabtitle');
-        console.log(`Creating tab ${index}:`, { tabTitle, section });
+        console.log(`Creating tab ${index}:`, { tabTitle });
         
         const tabLink = document.createElement('a');
         tabLink.textContent = tabTitle;
@@ -38,27 +32,25 @@ function handleTabStyles(main) {
         tabLink.setAttribute('data-tab-index', index);
         if (index === 0) tabLink.classList.add('active');
         
-        // Add click handler immediately after creating the link
-        tabLink.addEventListener('click', (e) => {
+        // Modified click handler
+        tabLink.onclick = function(e) {  // Using function instead of arrow for proper 'this' binding
           e.preventDefault();
+          e.stopPropagation();  // Stop event bubbling
           
-          // Debug click event
-          const clickedIndex = index;
-          const clickedTitle = tabTitle;
-          console.log(`Tab clicked: ${clickedTitle} (index: ${clickedIndex})`);
+          console.log(`Tab clicked: ${tabTitle} (index: ${index})`);
           
-          // Remove active class from all tabs
-          tabNav.querySelectorAll('.tab-link').forEach(link => {
-            link.classList.remove('active');
-          });
-          tabLink.classList.add('active');
+          // Get all tabs and content
+          const allLinks = tabNav.getElementsByClassName('tab-link');
+          const allTabs = tabWrapper.getElementsByClassName('tab');
           
-          // Show/hide content
-          tabWrapper.querySelectorAll('.tab').forEach(tab => {
-            tab.classList.remove('active');
-          });
-          tabWrapper.children[index].classList.add('active');
-        });
+          // Remove active class from all
+          Array.from(allLinks).forEach(link => link.classList.remove('active'));
+          Array.from(allTabs).forEach(tab => tab.classList.remove('active'));
+          
+          // Add active class to clicked tab and content
+          this.classList.add('active');
+          allTabs[index].classList.add('active');
+        };
         
         tabNav.appendChild(tabLink);
         
