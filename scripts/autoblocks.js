@@ -5,66 +5,81 @@
 function handleTabStyles(main) {
   try {
     const tabElements = main.querySelectorAll('div[data-tabtitle]');
-    console.log('Found tab elements:', {
-      count: tabElements.length,
-      elements: tabElements
-    });
+    console.log('Found tab elements:', { count: tabElements.length });
     
     if (tabElements.length > 0) {
+      // Create main container
       const tabsContainer = document.createElement('div');
       tabsContainer.className = 'tabs-container section tab-container';
       tabsContainer.setAttribute('data-section-status', 'loaded');
+      tabsContainer.dataset.blockName = 'tabs';
       
+      // Create tab navigation
       const tabNav = document.createElement('div');
-      tabNav.className = 'tab-nav';
+      tabNav.className = 'tabs-header row';
       
+      // Create content wrapper
       const tabWrapper = document.createElement('div');
-      tabWrapper.className = 'tab-wrapper';
+      tabWrapper.className = 'tabs-content';
       
+      // Process each tab section
       tabElements.forEach((section, index) => {
         const tabTitle = section.getAttribute('data-tabtitle');
-        console.log(`Creating tab ${index}:`, { tabTitle });
         
-        const tabLink = document.createElement('a');
-        tabLink.textContent = tabTitle;
-        tabLink.href = '#';
-        tabLink.className = 'tab-link';
-        tabLink.setAttribute('data-tab-index', index);
-        if (index === 0) tabLink.classList.add('active');
+        // Create tab button
+        const tabButton = document.createElement('div');
+        tabButton.className = 'tab-title';
+        tabButton.dataset.index = index;
+        tabButton.textContent = tabTitle;
         
-        // Modified click handler
-        tabLink.onclick = function(e) {  // Using function instead of arrow for proper 'this' binding
-          e.preventDefault();
-          e.stopPropagation();  // Stop event bubbling
-          
-          console.log(`Tab clicked: ${tabTitle} (index: ${index})`);
-          
-          // Get all tabs and content
-          const allLinks = tabNav.getElementsByClassName('tab-link');
-          const allTabs = tabWrapper.getElementsByClassName('tab');
-          
-          // Remove active class from all
-          Array.from(allLinks).forEach(link => link.classList.remove('active'));
-          Array.from(allTabs).forEach(tab => tab.classList.remove('active'));
-          
-          // Add active class to clicked tab and content
-          this.classList.add('active');
-          allTabs[index].classList.add('active');
-        };
+        // Create tab panel
+        const tabPanel = document.createElement('div');
+        tabPanel.className = 'tab-panel';
         
-        tabNav.appendChild(tabLink);
+        // Set initial active state
+        if (index === 0) {
+          tabButton.classList.add('active');
+          tabPanel.classList.add('active');
+        }
         
+        // Clone and move content
         const clonedSection = section.cloneNode(true);
-        clonedSection.classList.add('tab', 'block');
-        clonedSection.setAttribute('data-block-name', 'tab');
-        clonedSection.setAttribute('data-block-status', 'loaded');
-        clonedSection.classList.toggle('active', index === 0);
-        tabWrapper.appendChild(clonedSection);
+        tabPanel.appendChild(clonedSection);
+        
+        tabNav.appendChild(tabButton);
+        tabWrapper.appendChild(tabPanel);
       });
 
+      // Add click handler to tab navigation
+      tabNav.addEventListener('click', (event) => {
+        const tabButton = event.target.closest('.tab-title');
+        if (!tabButton) return;
+        
+        const index = parseInt(tabButton.dataset.index, 10);
+        if (Number.isNaN(index)) return;
+        
+        // Update tabs
+        tabsContainer.querySelectorAll('.tab-title').forEach(btn => {
+          btn.classList.remove('active');
+        });
+        tabButton.classList.add('active');
+        
+        // Update panels
+        tabsContainer.querySelectorAll('.tab-panel').forEach(panel => {
+          panel.classList.remove('active');
+        });
+        
+        const activePanel = tabWrapper.children[index];
+        if (activePanel) {
+          activePanel.classList.add('active');
+        }
+      });
+
+      // Build final structure
       tabsContainer.appendChild(tabNav);
       tabsContainer.appendChild(tabWrapper);
       
+      // Replace original content
       tabElements.forEach(section => section.remove());
       main.prepend(tabsContainer);
     }
