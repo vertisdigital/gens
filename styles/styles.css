@@ -756,29 +756,28 @@ main .section.highlight {
 /* Tab Navigation */
 .tab-nav {
   display: flex;
-  gap: 1.5rem;
+  gap: 2rem;
   border-bottom: 1px solid #ddd;
   margin-bottom: 2rem;
-  padding: 0;
 }
 
 .tab-link {
-  padding: 0.75rem 0;
-  color: #666;
+  padding: 0.5rem 0;
+  color: #757575;
   text-decoration: none;
   position: relative;
-  font-size: 1rem;
+  font-size: 1.125rem;
+  font-weight: 400;
   cursor: pointer;
 }
 
 .tab-link:hover {
   color: #000;
-  text-decoration: none;
 }
 
 .tab-link.active {
   color: #000;
-  font-weight: 500;
+  font-weight: 600;
 }
 
 .tab-link.active::after {
@@ -811,7 +810,7 @@ main .section.highlight {
     gap: 1rem;
   }
 
-  .tab-link:any-link {
+  .tab-link {
     display: block;
     text-align: center;
   }
