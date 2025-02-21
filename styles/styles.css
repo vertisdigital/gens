@@ -747,166 +747,13 @@ main .section.highlight {
   .offset-xl-11 { margin-left: 91.66666667%; }
 }
 
-/* Tabs Container */
-.tab-container {
-  width: 100%;
-  padding: 0;
-}
-
-/* Tab Navigation */
-.tab-nav {
-  display: flex;
-  gap: 2rem;
-  margin-bottom: 1.5rem;
-}
-
-/* Update tab styles to use tab-title instead of tab-link */
-.tab-title {
-  padding: 0.75rem 1.5rem;
-  color: var(--link-color);
-  position: relative;
-  font-size: 1rem;
-  font-weight: 400;
-  cursor: pointer !important;
-  min-width: 120px;
-  text-align: center;
-  border-bottom: 1px solid transparent;
-  user-select: none;
-}
-
-.tab-title:hover {
-  color: var(--link-hover-color);
-}
-
-.tab-title.active {
-  color: var(--primary-gold);
-  font-weight: 500;
-  background-color: var(--soft-ivory-light);
-  border-radius: 4px 4px 0 0;
-  border-bottom: 1px solid var(--primary-gold);
-}
-
-/* Arrow for active tab */
-.tab-title.active::before {
-  content: '';
-  position: absolute;
-  bottom: 0;
-  left: 50%;
-  transform: translateX(-50%);
-  width: 0;
-  height: 0;
-  border-left: 8px solid transparent;
-  border-right: 8px solid transparent;
-  border-bottom: 8px solid var(--primary-gold);
-  z-index: 1;
-}
-
-.tab-title.active::after {
-  content: '';
-  position: absolute;
-  bottom: -1px;
-  left: 0;
-  width: 100%;
-  height: 2px;
-  background-color: var(--primary-gold);
-}
-
-/* Tab Content */
-.tab-wrapper {
-  padding: 1.5rem 0;
-}
-
-.tab-wrapper .tab {
-  display: none !important; /* Force hiding inactive tabs */
-}
-
-.tab-wrapper .tab.active {
-  display: block !important; /* Force showing active tab */
-}
-
-/* Responsive Design */
-@media (max-width: 768px) {
-  .tab-nav {
-    flex-direction: column;
-    gap: 0.5rem;
-  }
-
-  .tab-title {
-    display: block;
-    text-align: center;
-    padding: 0.5rem 1.5rem;
-  }
-}
-
-/* Remove old tab-link styles */
+/* First, remove all duplicate styles */
+.tab-title,
 .tab-link {
   display: none;
 }
 
-/* Make selectors more specific */
-.tabs-container .tab-title {
-  padding: 0.75rem 1.5rem;
-  color: var(--link-color);
-  position: relative;
-  font-size: 1rem;
-  font-weight: 400;
-  cursor: pointer !important;
-  min-width: 120px;
-  text-align: center;
-  border-bottom: 1px solid transparent;
-  user-select: none;
-  display: inline-block; /* Add this to ensure proper display */
-}
-
-.tabs-container .tab-nav {
-  display: flex;
-  gap: 2rem;
-  margin-bottom: 1.5rem;
-  border-bottom: 1px solid #ddd; /* Add visual separator */
-}
-
-/* Make tab styles more specific and ensure cursor works */
-.tabs-container .tab-nav .tab-title {
-  padding: 0.75rem 1.5rem;
-  color: var(--link-color);
-  position: relative;
-  font-size: 1rem;
-  font-weight: 400;
-  cursor: pointer !important; /* Force cursor style */
-  min-width: 120px;
-  text-align: center;
-  border-bottom: 1px solid transparent;
-  user-select: none;
-  display: inline-block;
-}
-
-/* Remove duplicate/less specific styles */
-.tab-title {
-  display: none; /* Hide less specific version */
-}
-
-/* Update hover state */
-.tabs-container .tab-nav .tab-title:hover {
-  color: var(--link-hover-color);
-  cursor: pointer !important;
-}
-
-/* Update active state */
-.tabs-container .tab-nav .tab-title.active {
-  color: var(--primary-gold);
-  font-weight: 500;
-  background-color: var(--soft-ivory-light);
-  border-radius: 4px 4px 0 0;
-  border-bottom: 1px solid var(--primary-gold);
-  cursor: pointer !important;
-}
-
-/* Remove all duplicate styles first */
-.tab-title {
-  display: none;
-}
-
-/* Base tab styles */
+/* Base tab styles with high specificity */
 .tabs-container .tab-nav .tab-title {
   padding: 0.75rem 1.5rem;
   color: var(--link-color);
@@ -918,7 +765,7 @@ main .section.highlight {
   border-bottom: 1px solid transparent;
   user-select: none;
   display: inline-block;
-  cursor: pointer;
+  cursor: pointer !important; /* Add !important to override any other cursor styles */
 }
 
 /* Tab hover state */
@@ -935,7 +782,7 @@ main .section.highlight {
   border-bottom: 1px solid var(--primary-gold);
 }
 
-/* Active tab indicator */
+/* Active tab indicators */
 .tabs-container .tab-nav .tab-title.active::before {
   content: '';
   position: absolute;
