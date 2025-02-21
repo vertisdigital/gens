@@ -97,7 +97,43 @@ function buildAutoBlocks(main) {
     // eslint-disable-next-line no-console
     console.error('Auto Blocking failed', error);
   }*/
+
+  // Handle tab styles
+  handleTabStyles();
 }
+
+function handleTabStyles() {
+  try {
+    const main = document.querySelector('main');
+    const tabElements = main.querySelectorAll('.section-metadata.tab');
+    
+    if (tabElements.length > 0) {
+      // Create tabs container
+      const tabsContainer = document.createElement('div');
+      tabsContainer.className = 'tabs-container';
+      
+      tabElements.forEach(tab => {
+        // Remove tab class from section-metadata
+        tab.classList.remove('tab');
+        
+        // Add tab class to parent and move to container
+        const parentDiv = tab.parentElement;
+        if (parentDiv) {
+          parentDiv.classList.add('tab');
+          tabsContainer.appendChild(parentDiv);
+          console.log('Successfully processed tab element');
+        }
+      });
+
+      // Insert tabs container as first child of main
+      main.insertBefore(tabsContainer, main.firstChild);
+      console.log('Successfully created tabs container');
+    }
+  } catch (error) {
+    console.error('Error in handleTabStyles:', error);
+  }
+}
+
 /**
  * Decorates the main element.
  * @param {Element} main The main element
