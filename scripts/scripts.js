@@ -99,7 +99,7 @@ function buildAutoBlocks(main) {
   }*/
 
   // Handle tab styles
- // handleTabStyles();
+  handleTabStyles();
 }
 
 function handleTabStyles() {
