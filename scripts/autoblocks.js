@@ -114,16 +114,59 @@ function addTabFunctionality({ tabs, panels }) {
     numPanels: panels.length
   });
   
+  // Add click handler to each tab
   tabs.forEach((tab, index) => {
-    tab.addEventListener('click', (e) => {
+    // Remove any existing click handlers
+    tab.replaceWith(tab.cloneNode(true));
+    const newTab = tabs[index] = tab.cloneNode(true);
+    
+    // Add onclick handler instead of addEventListener
+    newTab.onclick = function(e) {
+      e.preventDefault();
+      e.stopPropagation();
+      
       console.log('Tab clicked:', {
         index,
-        text: tab.textContent,
+        text: this.textContent,
         event: e
       });
-      updateTabStates(tabs, panels, index);
-    });
+
+      // Update tabs
+      tabs.forEach(t => t.classList.remove('active'));
+      this.classList.add('active');
+      
+      // Update panels
+      panels.forEach(p => p.classList.remove('active'));
+      panels[index].classList.add('active');
+      
+      return false;
+    };
+    
+    // Replace old tab with new one
+    tab.parentNode.replaceChild(newTab, tab);
   });
+  
+  // Also add click handler to tab nav container as backup
+  const tabNav = tabs[0].parentElement;
+  tabNav.onclick = function(e) {
+    const clickedTab = e.target.closest('.tab-title');
+    if (!clickedTab) return;
+    
+    const index = Array.from(tabs).indexOf(clickedTab);
+    if (index === -1) return;
+    
+    console.log('Tab clicked via container:', {
+      index,
+      text: clickedTab.textContent
+    });
+    
+    // Update states
+    tabs.forEach(t => t.classList.remove('active'));
+    panels.forEach(p => p.classList.remove('active'));
+    
+    clickedTab.classList.add('active');
+    panels[index].classList.add('active');
+  };
 }
 
 /**
