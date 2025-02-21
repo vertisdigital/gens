@@ -143,35 +143,39 @@ function addTabFunctionality({ tabs, panels, container }) {
 function processTabs(main) {
   try {
     console.log('[Tab System] Processing tabs for:', main);
-
-    // Create basic structure
+    
+    // Step 1: Create basic structure
     const structure = createTabStructure(main);
     if (!structure) {
-      console.log('[Tab System] No tab elements found. Aborting process.');
+      console.log('[Tab System] No tab elements found.');
       return;
     }
 
     console.log('[Tab System] Tab structure created successfully.');
 
-    // Assemble the structure
+    // Step 2: Assemble structure
     const elements = assembleTabStructure(structure);
     console.log('[Tab System] Tab elements assembled:', elements);
 
-    // Add to DOM first
+    // Step 3: Add to DOM FIRST
     main.prepend(elements.container);
     console.log('[Tab System] Tab structure added to the DOM.');
 
-    // Remove original sections
+    // Step 4: Remove original sections
     structure.tabElements.forEach(section => section.remove());
     console.log('[Tab System] Removed original sections.');
 
-    // Add functionality after DOM insertion
-    addTabFunctionality(elements);
-    console.log('[Tab System] Tab setup complete. Ready for interaction.');
+    // Step 5: Attach event listeners AFTER ensuring tabs exist in the DOM
+    setTimeout(() => {
+      addTabFunctionality(elements);
+      console.log('[Tab System] Event handlers attached successfully.');
+    }, 100); // Small delay to ensure tabs exist
 
+    console.log('[Tab System] Tab setup complete. Ready for interaction.');
   } catch (error) {
     console.error('[Tab System] Error processing tabs:', error);
   }
 }
+
 
 export default processTabs;
