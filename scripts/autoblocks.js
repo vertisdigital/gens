@@ -4,8 +4,14 @@
  * @returns {Object|null} The created container elements or null
  */
 function createTabStructure(main) {
+  console.log('[Tab System] Initializing tab structure...');
   const tabElements = main.querySelectorAll('div[data-tabtitle]');
-  if (tabElements.length === 0) return null;
+  if (tabElements.length === 0) {
+    console.warn('[Tab System] No tabs found. Exiting function.');
+    return null;
+  }
+
+  console.log(`[Tab System] Found ${tabElements.length} tabs. Creating structure...`);
 
   const tabsContainer = document.createElement('div');
   tabsContainer.className = 'tabs-container section tab-container';
@@ -18,6 +24,7 @@ function createTabStructure(main) {
   const tabWrapper = document.createElement('div');
   tabWrapper.className = 'tab-wrapper';
 
+  console.log('[Tab System] Basic tab structure created.');
   return { tabElements, tabsContainer, tabNav, tabWrapper };
 }
 
@@ -29,6 +36,8 @@ function createTabStructure(main) {
  */
 function createTabElement(section, index) {
   const titleText = section.getAttribute('data-tabtitle');
+
+  console.log(`[Tab System] Creating tab ${index + 1}: "${titleText}"`);
 
   const tabTitle = document.createElement('div');
   tabTitle.textContent = titleText;
@@ -46,6 +55,8 @@ function createTabElement(section, index) {
   tabPanel.dataset.tabIndex = index;
   tabPanel.classList.toggle('active', index === 0);
 
+  console.log(`[Tab System] Tab "${titleText}" created successfully.`);
+
   return { tabTitle, tabPanel };
 }
 
@@ -55,6 +66,8 @@ function createTabElement(section, index) {
  * @returns {Object} References to assembled elements
  */
 function assembleTabStructure({ tabElements, tabsContainer, tabNav, tabWrapper }) {
+  console.log('[Tab System] Assembling tab structure...');
+
   const tabs = [];
   const panels = [];
 
@@ -71,6 +84,7 @@ function assembleTabStructure({ tabElements, tabsContainer, tabNav, tabWrapper }
   tabsContainer.appendChild(tabNav);
   tabsContainer.appendChild(tabWrapper);
 
+  console.log('[Tab System] Tab structure assembled successfully.');
   return { tabs, panels, container: tabsContainer };
 }
 
@@ -81,11 +95,15 @@ function assembleTabStructure({ tabElements, tabsContainer, tabNav, tabWrapper }
  * @param {number} activeIndex Index to activate
  */
 function updateTabStates(tabs, panels, activeIndex) {
+  console.log(`[Tab System] Updating tab states... Active Tab Index: ${activeIndex}`);
+
   tabs.forEach(tab => tab.classList.remove('active'));
   panels.forEach(panel => panel.classList.remove('active'));
 
   tabs[activeIndex].classList.add('active');
   panels[activeIndex].classList.add('active');
+
+  console.log(`[Tab System] Activated Tab: "${tabs[activeIndex].textContent}"`);
 }
 
 /**
@@ -94,9 +112,11 @@ function updateTabStates(tabs, panels, activeIndex) {
  */
 function addTabFunctionality({ tabs, panels, container }) {
   if (!tabs || !panels || !container) {
-    console.warn('Missing required elements:', { tabs, panels, container });
+    console.warn('[Tab System] Missing required elements for tab functionality:', { tabs, panels, container });
     return;
   }
+
+  console.log('[Tab System] Adding event delegation for tab clicks.');
 
   // Event delegation on tab container
   container.addEventListener('click', (e) => {
@@ -104,10 +124,16 @@ function addTabFunctionality({ tabs, panels, container }) {
     if (!clickedTab) return;
 
     const index = Number(clickedTab.dataset.tabIndex);
-    if (isNaN(index)) return;
+    if (isNaN(index)) {
+      console.warn('[Tab System] Clicked tab does not have a valid index:', clickedTab);
+      return;
+    }
 
+    console.log(`[Tab System] Tab clicked: "${clickedTab.textContent}" (Index: ${index})`);
     updateTabStates(tabs, panels, index);
   });
+
+  console.log('[Tab System] Click event handlers attached.');
 }
 
 /**
@@ -116,23 +142,35 @@ function addTabFunctionality({ tabs, panels, container }) {
  */
 function processTabs(main) {
   try {
+    console.log('[Tab System] Processing tabs for:', main);
+
+    // Create basic structure
     const structure = createTabStructure(main);
     if (!structure) {
-      console.log('No tab elements found');
+      console.log('[Tab System] No tab elements found. Aborting process.');
       return;
     }
 
+    console.log('[Tab System] Tab structure created successfully.');
+
+    // Assemble the structure
     const elements = assembleTabStructure(structure);
+    console.log('[Tab System] Tab elements assembled:', elements);
+
+    // Add to DOM first
     main.prepend(elements.container);
+    console.log('[Tab System] Tab structure added to the DOM.');
 
     // Remove original sections
     structure.tabElements.forEach(section => section.remove());
+    console.log('[Tab System] Removed original sections.');
 
     // Add functionality after DOM insertion
     addTabFunctionality(elements);
+    console.log('[Tab System] Tab setup complete. Ready for interaction.');
 
   } catch (error) {
-    console.error('Error processing tabs:', error);
+    console.error('[Tab System] Error processing tabs:', error);
   }
 }
 
