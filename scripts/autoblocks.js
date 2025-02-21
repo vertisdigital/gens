@@ -61,7 +61,6 @@ function handleTabStyles(main) {
       const tabWrapper = document.createElement('div');
       tabWrapper.className = 'tab-wrapper';
       
-      // Create all tabs first
       tabElements.forEach((section, index) => {
         const tabTitle = section.getAttribute('data-tabtitle');
         
@@ -102,7 +101,8 @@ function handleTabStyles(main) {
       main.prepend(tabsContainer);
     }
   } catch (error) {
-    console.error('Error in handleTabStyles:', error);
+    // Use error boundary instead of console
+    throw new Error(`Error in handleTabStyles: ${error.message}`);
   }
 }
 
