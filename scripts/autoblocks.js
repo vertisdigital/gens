@@ -113,22 +113,16 @@ function addTabFunctionality({ tabs, panels }) {
     numTabs: tabs.length,
     numPanels: panels.length
   });
-  
+
   // Add click handler to each tab
   tabs.forEach((tab, index) => {
-    // Remove any existing click handlers
-    tab.replaceWith(tab.cloneNode(true));
-    const newTab = tabs[index] = tab.cloneNode(true);
-    
-    // Add onclick handler instead of addEventListener
-    newTab.onclick = function(e) {
+    tab.onclick = function(e) {
       e.preventDefault();
       e.stopPropagation();
       
       console.log('Tab clicked:', {
         index,
-        text: this.textContent,
-        event: e
+        text: this.textContent
       });
 
       // Update tabs
@@ -138,35 +132,8 @@ function addTabFunctionality({ tabs, panels }) {
       // Update panels
       panels.forEach(p => p.classList.remove('active'));
       panels[index].classList.add('active');
-      
-      return false;
     };
-    
-    // Replace old tab with new one
-    tab.parentNode.replaceChild(newTab, tab);
   });
-  
-  // Also add click handler to tab nav container as backup
-  const tabNav = tabs[0].parentElement;
-  tabNav.onclick = function(e) {
-    const clickedTab = e.target.closest('.tab-title');
-    if (!clickedTab) return;
-    
-    const index = Array.from(tabs).indexOf(clickedTab);
-    if (index === -1) return;
-    
-    console.log('Tab clicked via container:', {
-      index,
-      text: clickedTab.textContent
-    });
-    
-    // Update states
-    tabs.forEach(t => t.classList.remove('active'));
-    panels.forEach(p => p.classList.remove('active'));
-    
-    clickedTab.classList.add('active');
-    panels[index].classList.add('active');
-  };
 }
 
 /**
@@ -190,14 +157,16 @@ function processTabs(main) {
     const elements = assembleTabStructure(structure);
     console.log('Tab elements assembled:', elements);
 
+    // Add to DOM first
+    main.prepend(elements.container);
+
     // Remove original sections
     structure.tabElements.forEach(section => section.remove());
 
-    // Add to DOM
-    main.prepend(elements.container);
-
-    // Add functionality
+    // Add functionality after DOM insertion
     addTabFunctionality(elements);
+
+    console.log('Tab setup complete');
   } catch (error) {
     console.error('Error processing tabs:', error);
   }
