@@ -1,86 +1,134 @@
 /**
- * Process all the tab auto blocks
+ * Creates the basic tab structure
+ * @param {Element} main The container element
+ * @returns {Object|null} The created container elements or null
+ */
+function createTabStructure(main) {
+  const tabElements = main.querySelectorAll('div[data-tabtitle]');
+  if (tabElements.length === 0) return null;
+
+  const tabsContainer = document.createElement('div');
+  tabsContainer.className = 'tabs-container section tab-container';
+  tabsContainer.setAttribute('data-section-status', 'loaded');
+  
+  const tabNav = document.createElement('div');
+  tabNav.className = 'tab-nav';
+  tabNav.style.display = 'flex';
+  
+  const tabWrapper = document.createElement('div');
+  tabWrapper.className = 'tab-wrapper';
+
+  return {
+    tabElements,
+    tabsContainer,
+    tabNav,
+    tabWrapper
+  };
+}
+
+/**
+ * Creates individual tab elements
+ * @param {Element} section The section to create tab from
+ * @param {number} index Tab index
+ * @returns {Object} Created tab elements
+ */
+function createTabElement(section, index) {
+  const titleText = section.getAttribute('data-tabtitle');
+  
+  const tabTitle = document.createElement('div');
+  tabTitle.textContent = titleText;
+  tabTitle.className = 'tab-title';
+  tabTitle.setAttribute('data-tab-index', index);
+  if (index === 0) tabTitle.classList.add('active');
+  
+  const tabPanel = section.cloneNode(true);
+  tabPanel.classList.add('tab', 'block');
+  tabPanel.setAttribute('data-block-name', 'tab');
+  tabPanel.setAttribute('data-block-status', 'loaded');
+  tabPanel.classList.toggle('active', index === 0);
+
+  return { tabTitle, tabPanel };
+}
+
+/**
+ * Assembles the tab structure
+ * @param {Object} elements The tab elements to assemble
+ * @returns {Object} References to assembled elements
+ */
+function assembleTabStructure({ tabElements, tabsContainer, tabNav, tabWrapper }) {
+  const tabs = [];
+  const panels = [];
+
+  tabElements.forEach((section, index) => {
+    const { tabTitle, tabPanel } = createTabElement(section, index);
+    
+    tabs.push(tabTitle);
+    panels.push(tabPanel);
+    
+    tabNav.appendChild(tabTitle);
+    tabWrapper.appendChild(tabPanel);
+  });
+
+  tabsContainer.appendChild(tabNav);
+  tabsContainer.appendChild(tabWrapper);
+
+  return { tabs, panels, container: tabsContainer };
+}
+
+/**
+ * Updates tab states
+ * @param {Array} tabs Tab elements
+ * @param {Array} panels Panel elements
+ * @param {number} activeIndex Index to activate
+ */
+function updateTabStates(tabs, panels, activeIndex) {
+  // Update tabs
+  tabs.forEach(tab => tab.classList.remove('active'));
+  tabs[activeIndex].classList.add('active');
+  
+  // Update panels
+  panels.forEach(panel => panel.classList.remove('active'));
+  panels[activeIndex].classList.add('active');
+}
+
+/**
+ * Adds click functionality to tabs
+ * @param {Object} elements References to tab elements
+ */
+function addTabFunctionality({ tabs, panels }) {
+  if (!tabs || !panels) return;
+  
+  tabs.forEach((tab, index) => {
+    tab.addEventListener('click', () => {
+      updateTabStates(tabs, panels, index);
+    });
+  });
+}
+
+/**
+ * Main function to process tabs
  * @param {Element} main The container element
  */
-function handleTabStyles(main) {
+function processTabs(main) {
   try {
-    const tabElements = main.querySelectorAll('div[data-tabtitle]');
-    console.log('Found tab elements:', tabElements.length);
-    
-    if (tabElements.length > 0) {
-      const tabsContainer = document.createElement('div');
-      tabsContainer.className = 'tabs-container section tab-container';
-      tabsContainer.setAttribute('data-section-status', 'loaded');
-      
-      const tabNav = document.createElement('div');
-      tabNav.className = 'tab-nav';
-      tabNav.style.display = 'flex';
-      
-      const tabWrapper = document.createElement('div');
-      tabWrapper.className = 'tab-wrapper';
-      
-      // Store references to all tabs and panels
-      const tabs = [];
-      const panels = [];
-      
-      // Process each tab section
-      tabElements.forEach((section, index) => {
-        const titleText = section.getAttribute('data-tabtitle');
-        console.log('Creating tab:', { index, title: titleText });
-        
-        const tabTitle = document.createElement('div');
-        tabTitle.textContent = titleText;
-        tabTitle.className = 'tab-title';
-        tabTitle.setAttribute('data-tab-index', index);
-        if (index === 0) tabTitle.classList.add('active');
-        
-        const clonedSection = section.cloneNode(true);
-        clonedSection.classList.add('tab', 'block');
-        clonedSection.setAttribute('data-block-name', 'tab');
-        clonedSection.setAttribute('data-block-status', 'loaded');
-        clonedSection.classList.toggle('active', index === 0);
-        
-        // Store references
-        tabs.push(tabTitle);
-        panels.push(clonedSection);
-        
-        tabNav.appendChild(tabTitle);
-        tabWrapper.appendChild(clonedSection);
-      });
+    // Create basic structure
+    const structure = createTabStructure(main);
+    if (!structure) return;
 
-      // Build structure
-      tabsContainer.appendChild(tabNav);
-      tabsContainer.appendChild(tabWrapper);
-      tabElements.forEach(section => section.remove());
-      main.prepend(tabsContainer);
+    // Assemble the structure
+    const elements = assembleTabStructure(structure);
 
-      // Add click handlers after DOM is built
-      tabs.forEach((tab, index) => {
-        tab.addEventListener('click', () => {
-          console.log('Tab clicked:', tab.textContent);
-          
-          // Update tabs
-          tabs.forEach(t => t.classList.remove('active'));
-          tab.classList.add('active');
-          
-          // Update panels
-          panels.forEach(p => p.classList.remove('active'));
-          panels[index].classList.add('active');
-        });
-      });
-      
-      console.log('Setup complete:', {
-        tabs: tabs.length,
-        panels: panels.length,
-        activeTab: tabs.find(t => t.classList.contains('active'))?.textContent
-      });
-    }
+    // Remove original sections
+    structure.tabElements.forEach(section => section.remove());
+
+    // Add to DOM
+    main.prepend(elements.container);
+
+    // Add functionality
+    addTabFunctionality(elements);
   } catch (error) {
-    console.error('Error in handleTabStyles:', error);
-    throw new Error(`Error in handleTabStyles: ${error.message}`);
+    console.error('Error processing tabs:', error);
   }
 }
 
-export default function processTabs(main) {
-  handleTabStyles(main);
-}
+export default processTabs;
