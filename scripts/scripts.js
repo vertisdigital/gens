@@ -66,7 +66,10 @@ async function loadFonts() {
 function buildAutoBlocks(main) {
   console.log('Building auto blocks');
   /*try {
-    // Process tabs first but maintain their position
+    // Handle tab styles first
+    handleTabStyles();
+    
+    // Process tabs and maintain their position
     processTabs(main, moveInstrumentation);
 
     // Find blocks inside columns and tabs containers
@@ -107,8 +110,8 @@ function handleTabStyles() {
     const main = document.querySelector('main');
     console.log('Main element found:', main.innerHTML);
 
-    // Look for sections with data-tabtitle
-    const tabElements = main.querySelectorAll('.section[data-tabtitle]');
+    // Look for section-metadata with tab class
+    const tabElements = main.querySelectorAll('.section-metadata.tab');
     console.log('Found tab elements:', tabElements.length, tabElements);
     
     if (tabElements.length > 0) {
@@ -120,10 +123,21 @@ function handleTabStyles() {
       tabElements.forEach((tab, index) => {
         console.log(`Processing tab ${index}:`, tab);
         
-        // Add tab class and move to container
-        tab.classList.add('tab');
-        tabsContainer.appendChild(tab);
-        console.log(`Moved tab ${index} to tabs container`);
+        // Get the parent div that contains both textmediablock and section-metadata
+        const parentDiv = tab.closest('div > div');
+        console.log(`Found parent div ${index}:`, parentDiv);
+        
+        if (parentDiv) {
+          // Remove tab class from section-metadata
+          tab.classList.remove('tab');
+          
+          // Add tab class to the top-level parent
+          parentDiv.classList.add('tab');
+          
+          // Move the entire parent div to tabs container
+          tabsContainer.appendChild(parentDiv);
+          console.log(`Moved parent div ${index} to tabs container`);
+        }
       });
 
       console.log('Final tabs container before prepend:', tabsContainer.innerHTML);
