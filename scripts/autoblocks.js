@@ -20,9 +20,6 @@ function handleTabStyles(main) {
       const tabWrapper = document.createElement('div');
       tabWrapper.className = 'tab-wrapper';  // Keep original class for styling
       
-      // Store tab references for easier access
-      const tabs = [];
-      
       // Process each tab section
       tabElements.forEach((section, index) => {
         const tabTitle = section.getAttribute('data-tabtitle');
@@ -42,29 +39,29 @@ function handleTabStyles(main) {
         clonedSection.setAttribute('data-block-status', 'loaded');
         clonedSection.classList.toggle('active', index === 0);
         
-        // Store references
-        tabs.push({
-          link: tabLink,
-          content: clonedSection
-        });
-        
         tabNav.appendChild(tabLink);
         tabWrapper.appendChild(clonedSection);
+      });
+
+      // Add single click handler to tab navigation
+      tabNav.addEventListener('click', (e) => {
+        const clickedTab = e.target.closest('.tab-link');
+        if (!clickedTab) return;
         
-        // Add click handler directly to each tab
-        tabLink.addEventListener('click', (e) => {
-          e.preventDefault();
-          
-          // Deactivate all tabs
-          tabs.forEach(tab => {
-            tab.link.classList.remove('active');
-            tab.content.classList.remove('active');
-          });
-          
-          // Activate clicked tab
-          tabLink.classList.add('active');
-          clonedSection.classList.add('active');
-        });
+        e.preventDefault();
+        
+        // Get all tabs and content
+        const allTabs = tabNav.querySelectorAll('.tab-link');
+        const allContent = tabWrapper.querySelectorAll('.tab');
+        
+        // Remove active class from all tabs and content
+        allTabs.forEach(tab => tab.classList.remove('active'));
+        allContent.forEach(content => content.classList.remove('active'));
+        
+        // Add active class to clicked tab and corresponding content
+        const tabIndex = clickedTab.getAttribute('data-tab-index');
+        clickedTab.classList.add('active');
+        allContent[tabIndex].classList.add('active');
       });
 
       // Build final structure
