@@ -160,7 +160,7 @@ export default function decorate(block) {
       if (featureHeadingElement) {
         const headingContainer = document.createElement('div');
         const featureHeadingP = document.createElement('p');
-        featureHeadingP.textContent = featureHeadingElement.textContent;
+        featureHeadingP.innerHTML = featureHeadingElement.innerHTML;
         Array.from(featureHeadingElement.attributes).forEach((attr) => {
           featureHeadingP.setAttribute(attr.name, attr.value);
         });

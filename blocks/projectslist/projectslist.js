@@ -2,7 +2,6 @@ import { createOptimizedPicture } from '../../scripts/aem.js';
 import { moveInstrumentation } from '../../scripts/scripts.js';
 
 export default function decorate(block) {
-
   // Restructure the HTML for better semantics and accessibility
   const wrapper = block.closest('.projectslist-wrapper') || block;
 

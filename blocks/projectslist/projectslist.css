@@ -5,7 +5,7 @@ p {
 .projectslistitem {
     padding-top: 36px;
     padding-bottom: 80px;
-    border-top: 2px solid black;
+    border-top: 1px solid var(--text-color);
     display: flex;
 }
 
@@ -19,7 +19,7 @@ p {
 
 .project-title,
 .project-subtitle {
-    color: black;
+    color: var(--text-color);
 }
 
 .project-title  {
@@ -34,6 +34,8 @@ p {
 .project-long-description  {
     margin-top: 12px;
     margin-bottom: 30px;
+    font-size: 16px;
+    line-height: 24px;
 }
 
 @media (width <= 992px) {
@@ -48,6 +50,13 @@ p {
     .projectslistitem {
         padding-top: 18px;
         padding-bottom: 32px;
+    }
+}
+
+@media (width <= 767px) {
+    .project-long-description  {
+        font-size: 14px;
+        line-height: 20px;
     }
 }
 

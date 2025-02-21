@@ -1,7 +1,7 @@
 .hero-banner-container {
   position: relative;
   width: 100%;
-  height: 802px;
+  height: 805px;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -11,7 +11,6 @@
 
 .hero-banner-container img {
   width: 100%;
-  height: 100%;
   object-fit: cover;
 }
 
@@ -25,13 +24,14 @@
 }
 
 .hero-title {
-  font-size: 60px;
+  font-size: 56px;
   font-weight: 400;
-  margin: 0 0 24px;
+  margin: 0 0 12px;
   max-width: 750px;
   color: var(--background-color);
   text-shadow: 0 2px 4px rgb(0 0 0 / 30%);
   padding-left: 0;
+  line-height: 66px;
 }
 
 .hero-heading {
@@ -39,12 +39,13 @@
   color: var(--background-color);
   text-shadow: 0 2px 4px rgb(0 0 0 / 30%);
   padding-left: 0;
+  margin-bottom: 12px;
 }
 
 .hero-description {
   font-family: var(--heading-font-family);
-  font-size: 14px;
-  line-height: 1.6;
+  font-size: 16px;
+  line-height: 24px;
   max-width: 638px;
   text-align: left;
   color: var(--light-grey);
@@ -69,6 +70,7 @@
   align-items: center;
   justify-content: left;
   line-height: 0;
+
   /* padding-top: 20px; */
 }
 
@@ -124,8 +126,10 @@
 }
 
 .left-carousel-arrow {
-  margin-top: 2px;
+  margin-top: 0;
   margin-right: -2px;
+  display: flex;
+  align-items: center;
 }
 
 /* Carousel item container */
@@ -156,6 +160,14 @@
 .carousel-image picture{
   width: 100%;
   height: 100%;   
+}
+
+.news-link-container img {
+  align-content: flex-end;
+}
+
+.hero-banner-container .carousel-image img {
+  height: 118px;
 }
 
 .news-title {
@@ -226,15 +238,13 @@
 
 .arrow-link svg {
   margin: 0 5px;  
+  width: 14px;
+  height: 14px;
 }
 
 .news-thumbnail {
   width: 151px;
   height: 118px;
-}
-
-.news-link-container img {
-  align-content: flex-end;
 }
 
 .hero-banner-container .ellipse {
@@ -254,6 +264,7 @@
     line-height: 24px;
     margin-bottom: 10px;
   }
+
   .news-title {
     font-size: 14px;
     }
@@ -266,6 +277,10 @@
 
   .arrow-link svg {
     margin: 0 3px;  
+  }
+
+  .hero-heading {
+    margin-bottom: 10px;
   }
 }
 
@@ -287,6 +302,18 @@
   }
 }
 
+@media (width >= 993px) {
+  .hero-banner-container img {
+    height: 1048px;
+  }
+}
+
+@media (width <= 991px) {
+  .hero-banner-container img {
+    height: 946px;
+  }
+}
+
 /* Ensure responsive layout */
 @media (width <= 767px) {
   .hero-banner-container {
@@ -295,9 +322,14 @@
     min-height: 450px;
   }
 
+  .hero-banner-container img {
+    height: 879px;
+  }
+
   .hero-content{
     padding-bottom: 118px;
   }
+
   .hero-title {
     font-size: 32px;
     margin-bottom: 8px;
@@ -306,6 +338,7 @@
 
   .hero-heading {
     padding-left: 10px;
+    margin-bottom: 8px;
   }
 
   .hero-description {
@@ -343,6 +376,7 @@
   .carousel-image {
     width: 92px;
     height: 92px;
+
     /* margin-bottom: 10px; */
   }
 
@@ -355,7 +389,7 @@
     flex: 1;
   }
 
-  .carousel-image img {
+  .hero-banner-container .carousel-image img {
     height: 92px;
     flex: 1 0 0;
   }
@@ -367,14 +401,14 @@
   }
 
   .left-carousel-arrow {
-    margin-top: 0;
+    margin-top: 1px;
     padding-top: 1px;
   }
 
   .navigation-arrows svg {
     height: 12px;
     width: 12px;
-    margin: 0 1px;
+    margin: 0 1px; 
   }
 
   .ellipse{

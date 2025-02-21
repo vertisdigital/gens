@@ -252,9 +252,9 @@ function initializeHeader(header) {
     setTimeout(() => {
       if (hamburger.classList.contains('active')) {
         hamburger.replaceChildren(closeIcon);
-        document.body.classList.add("no-scroll");
+        document.body.classList.add('no-scroll');
       } else {
-        document.body.classList.remove("no-scroll");
+        document.body.classList.remove('no-scroll');
         hamburger.replaceChildren(hamburgerIcon);
 
         // Close secondary navigation if it's open

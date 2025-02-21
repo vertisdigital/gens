@@ -10,6 +10,7 @@
 
 .projectcards .projectcards-header {
   margin-bottom: 42px;
+
   /* padding: 0 18px; */
 }
 
@@ -116,9 +117,14 @@
   color: var(--primary-gold);
 }
 
+.project-card-title a{
+  color: var(--text-color);
+  text-decoration: none;
+}
+
 @media (width<=992px){
   .projectcards{
-    padding: 40px 0 44px 0;
+    padding: 40px 0 44px;
   }
 
   .projectcards .projectcards-header {
@@ -168,7 +174,7 @@
 
 @media (width <= 768px) {
     .projectcards{
-      padding: 32px 0 24px 0;
+      padding: 32px 0 24px;
     }
 
     .projectcards .projectcards-header {
