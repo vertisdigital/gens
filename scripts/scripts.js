@@ -65,7 +65,7 @@ async function loadFonts() {
  */
 function buildAutoBlocks(main) {
   console.log('Building auto blocks');
-  try {
+ /* try {
     // Process tabs and maintain their position
     processTabs(main, moveInstrumentation);
 
@@ -93,7 +93,7 @@ function buildAutoBlocks(main) {
     });
   } catch (error) {
     console.error('Auto Blocking failed', error);
-  }
+  }*/
 }
 
 function handleTabStyles(main) {
