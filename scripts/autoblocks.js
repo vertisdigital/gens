@@ -2,47 +2,6 @@
  * Process all the tab auto blocks
  * @param {Element} main The container element
  */
-function initTabHandlers(container) {
-  if (!container) return;
-  
-  const tabLinks = container.querySelectorAll('.tab-link');
-  const tabs = container.querySelectorAll('.tab');
-  
-  tabLinks.forEach((link, index) => {
-    link.onclick = (e) => {
-      e.preventDefault();
-      console.log('Tab clicked:', link.textContent);
-      
-      // Update active states
-      tabLinks.forEach(l => l.classList.remove('active'));
-      link.classList.add('active');
-      
-      // Show/hide content
-      tabs.forEach((tab, i) => {
-        tab.classList.toggle('active', i === index);
-      });
-    };
-  });
-}
-
-// Create observer to watch for tab container being added
-const observer = new MutationObserver((mutations) => {
-  mutations.forEach((mutation) => {
-    mutation.addedNodes.forEach((node) => {
-      if (node.classList?.contains('tab-container')) {
-        console.log('Tab container added, initializing handlers');
-        initTabHandlers(node);
-      }
-    });
-  });
-});
-
-// Start observing
-observer.observe(document.body, {
-  childList: true,
-  subtree: true
-});
-
 function handleTabStyles(main) {
   try {
     const tabElements = main.querySelectorAll('div[data-tabtitle]');
@@ -58,6 +17,9 @@ function handleTabStyles(main) {
       const tabWrapper = document.createElement('div');
       tabWrapper.className = 'tab-wrapper';
       
+      // Create all tabs first, then add event listeners
+      const tabs = [];
+      
       tabElements.forEach((section, index) => {
         const tabTitle = section.getAttribute('data-tabtitle');
         
@@ -66,20 +28,6 @@ function handleTabStyles(main) {
         tabLink.href = '#';
         tabLink.className = 'tab-link';
         tabLink.setAttribute('data-tab-index', index);
-        
-        // Add click handler directly
-        tabLink.onclick = (e) => {
-          e.preventDefault();
-          
-          // Update active states
-          tabNav.querySelectorAll('.tab-link').forEach(link => link.classList.remove('active'));
-          tabLink.classList.add('active');
-          
-          // Show/hide content
-          tabWrapper.querySelectorAll('.tab').forEach(tab => tab.classList.remove('active'));
-          tabWrapper.children[index].classList.add('active');
-        };
-        
         if (index === 0) tabLink.classList.add('active');
         tabNav.appendChild(tabLink);
         
@@ -89,6 +37,25 @@ function handleTabStyles(main) {
         clonedSection.setAttribute('data-block-status', 'loaded');
         clonedSection.classList.toggle('active', index === 0);
         tabWrapper.appendChild(clonedSection);
+        
+        tabs.push({ link: tabLink, content: clonedSection });
+      });
+
+      // Add event listeners after DOM is built
+      tabs.forEach((tab, index) => {
+        tab.link.addEventListener('click', (e) => {
+          e.preventDefault();
+          
+          // Remove active class from all tabs
+          tabs.forEach(t => {
+            t.link.classList.remove('active');
+            t.content.classList.remove('active');
+          });
+          
+          // Add active class to clicked tab
+          tab.link.classList.add('active');
+          tab.content.classList.add('active');
+        });
       });
 
       tabsContainer.appendChild(tabNav);
