@@ -116,17 +116,18 @@ function handleTabStyles() {
         // Remove tab class from section-metadata
         tab.classList.remove('tab');
         
-        // Add tab class to parent and move to container
+        // Add tab class to parent and clone to container
         const parentDiv = tab.parentElement;
         if (parentDiv) {
-          parentDiv.classList.add('tab');
-          tabsContainer.appendChild(parentDiv);
+          const clonedDiv = parentDiv.cloneNode(true);
+          clonedDiv.classList.add('tab');
+          tabsContainer.appendChild(clonedDiv);
           console.log('Successfully processed tab element');
         }
       });
 
-      // Insert tabs container as first child of main
-      main.insertBefore(tabsContainer, main.firstChild);
+      // Insert tabs container at the beginning of main
+      main.prepend(tabsContainer);
       console.log('Successfully created tabs container');
     }
   } catch (error) {
