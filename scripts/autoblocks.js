@@ -5,6 +5,29 @@ import stringToHTML from '../shared-components/Utility.js';
  * Process all the tab auto blocks
  * @param {Element} main The container element
  */
+// Add global click handler once
+document.addEventListener('click', function(e) {
+  const tabLink = e.target.closest('.tab-link');
+  if (!tabLink) return;
+  
+  e.preventDefault();
+  console.log('Tab clicked:', tabLink.textContent);
+  
+  const container = tabLink.closest('.tab-container');
+  if (!container) return;
+  
+  const index = parseInt(tabLink.getAttribute('data-tab-index'), 10);
+  
+  // Update active states
+  container.querySelectorAll('.tab-link').forEach(link => link.classList.remove('active'));
+  tabLink.classList.add('active');
+  
+  // Show/hide content
+  container.querySelectorAll('.tab').forEach((tab, i) => {
+    tab.classList.toggle('active', i === index);
+  });
+});
+
 function handleTabStyles(main) {
   try {
     console.log('Starting handleTabStyles');
@@ -58,29 +81,6 @@ function handleTabStyles(main) {
       // Replace only the tab sections
       tabElements.forEach(section => section.remove());
       main.prepend(tabsContainer);
-      
-      // Add global click handler
-      document.addEventListener('click', function(e) {
-        const tabLink = e.target.closest('.tab-link');
-        if (!tabLink) return;
-        
-        e.preventDefault();
-        console.log('Tab clicked:', tabLink.textContent);
-        
-        const container = tabLink.closest('.tab-container');
-        if (!container) return;
-        
-        const index = parseInt(tabLink.getAttribute('data-tab-index'), 10);
-        
-        // Update active states
-        container.querySelectorAll('.tab-link').forEach(link => link.classList.remove('active'));
-        tabLink.classList.add('active');
-        
-        // Show/hide content
-        container.querySelectorAll('.tab').forEach((tab, i) => {
-          tab.classList.toggle('active', i === index);
-        });
-      });
       
       console.log('Tab structure complete');
     }
