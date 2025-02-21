@@ -134,9 +134,11 @@
     "id": "tabs",
     "fields": [
       {
-        "component": "hidden",
+        "component": "text",
         "name": "data-gens-style",
-        "value": "tabs"
+        "label": "Data Attributes",
+        "value": "tabs",
+        "hidden": true
       },
       {
         "component": "text",
