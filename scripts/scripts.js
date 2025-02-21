@@ -97,7 +97,48 @@ function buildAutoBlocks(main) {
 }
 
 function handleTabStyles(main) {
-  
+  try {
+    // Look for sections with data-tabtitle
+    const tabElements = main.querySelectorAll('div[data-tabtitle]');
+    console.log('Found tab elements:', tabElements.length, tabElements);
+    
+    if (tabElements.length > 0) {
+      // Create tabs container
+      const tabsContainer = document.createElement('div');
+      tabsContainer.className = 'tabs-container section tab-container';
+      tabsContainer.setAttribute('data-section-status', 'loaded');
+      
+      // Create empty div (required structure)
+      const emptyDiv = document.createElement('div');
+      tabsContainer.appendChild(emptyDiv);
+      
+      // Create tab wrapper
+      const tabWrapper = document.createElement('div');
+      tabWrapper.className = 'tab-wrapper';
+      tabsContainer.appendChild(tabWrapper);
+      
+      // Move each tab section into the wrapper
+      tabElements.forEach(section => {
+        // Clone the section with all its content
+        const clonedSection = section.cloneNode(true);
+        
+        // Add tab classes
+        clonedSection.classList.add('tab', 'block');
+        clonedSection.setAttribute('data-block-name', 'tab');
+        clonedSection.setAttribute('data-block-status', 'loaded');
+        
+        // Add to wrapper
+        tabWrapper.appendChild(clonedSection);
+      });
+
+      // Replace main content
+      main.innerHTML = '';
+      main.appendChild(tabsContainer);
+      console.log('Successfully created tabs structure');
+    }
+  } catch (error) {
+    console.error('Error in handleTabStyles:', error);
+  }
 }
 
 /**
