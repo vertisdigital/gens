@@ -34,6 +34,11 @@ function handleTabStyles(main) {
         tabLink.addEventListener('click', (e) => {
           e.preventDefault();
           
+          // Debug click event
+          const clickedIndex = index;
+          const clickedTitle = tabTitle;
+          console.log(`Tab clicked: ${clickedTitle} (index: ${clickedIndex})`);
+          
           // Remove active class from all tabs
           tabNav.querySelectorAll('.tab-link').forEach(link => {
             link.classList.remove('active');
