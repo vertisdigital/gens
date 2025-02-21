@@ -5,67 +5,62 @@
 function handleTabStyles(main) {
   try {
     const tabElements = main.querySelectorAll('div[data-tabtitle]');
-    console.log('Found tab elements:', { count: tabElements.length });
     
     if (tabElements.length > 0) {
       // Create main container
       const tabsContainer = document.createElement('div');
       tabsContainer.className = 'tabs-container section tab-container';
       tabsContainer.setAttribute('data-section-status', 'loaded');
-      tabsContainer.dataset.blockName = 'tabs';
       
       // Create tab navigation
       const tabNav = document.createElement('div');
-      tabNav.className = 'tabs-header row';
+      tabNav.className = 'tab-nav';  // Keep original class for styling
       
       // Create content wrapper
       const tabWrapper = document.createElement('div');
-      tabWrapper.className = 'tabs-content';
+      tabWrapper.className = 'tab-wrapper';  // Keep original class for styling
       
       // Process each tab section
       tabElements.forEach((section, index) => {
         const tabTitle = section.getAttribute('data-tabtitle');
         
-        // Create tab button
-        const tabButton = document.createElement('div');
-        tabButton.className = 'tab-title';
-        tabButton.dataset.index = index;
-        tabButton.textContent = tabTitle;
+        // Create tab link (not div)
+        const tabLink = document.createElement('a');
+        tabLink.textContent = tabTitle;
+        tabLink.href = '#';
+        tabLink.className = 'tab-link';  // Keep original class for styling
+        tabLink.setAttribute('data-tab-index', index);
+        if (index === 0) tabLink.classList.add('active');
         
-        // Create tab panel
-        const tabPanel = document.createElement('div');
-        tabPanel.className = 'tab-panel';
-        
-        // Set initial active state
-        if (index === 0) {
-          tabButton.classList.add('active');
-          tabPanel.classList.add('active');
-        }
-        
-        // Clone and move content
+        // Create tab content
         const clonedSection = section.cloneNode(true);
-        tabPanel.appendChild(clonedSection);
+        clonedSection.classList.add('tab', 'block');
+        clonedSection.setAttribute('data-block-name', 'tab');
+        clonedSection.setAttribute('data-block-status', 'loaded');
+        clonedSection.classList.toggle('active', index === 0);
         
-        tabNav.appendChild(tabButton);
-        tabWrapper.appendChild(tabPanel);
+        tabNav.appendChild(tabLink);
+        tabWrapper.appendChild(clonedSection);
       });
 
       // Add click handler to tab navigation
       tabNav.addEventListener('click', (event) => {
-        const tabButton = event.target.closest('.tab-title');
-        if (!tabButton) return;
+        const tabLink = event.target.closest('.tab-link');
+        if (!tabLink) return;
         
-        const index = parseInt(tabButton.dataset.index, 10);
+        event.preventDefault();
+        
+        const index = parseInt(tabLink.getAttribute('data-tab-index'), 10);
         if (Number.isNaN(index)) return;
         
         // Update tabs
-        tabsContainer.querySelectorAll('.tab-title').forEach(btn => {
-          btn.classList.remove('active');
+        tabNav.querySelectorAll('.tab-link').forEach(link => {
+          link.classList.remove('active');
         });
-        tabButton.classList.add('active');
+        tabLink.classList.add('active');
         
         // Update panels
-        tabsContainer.querySelectorAll('.tab-panel').forEach(panel => {
+        tabWrapper.querySelectorAll('.tab').forEach(panel => {
           panel.classList.remove('active');
         });
         
