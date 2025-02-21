@@ -65,7 +65,10 @@ async function loadFonts() {
  */
 function buildAutoBlocks(main) {
   console.log('Building auto blocks');
- /* try {
+  try {
+    // Handle tab styles first
+    handleTabStyles(main);
+    
     // Process tabs and maintain their position
     processTabs(main, moveInstrumentation);
 
@@ -93,14 +96,21 @@ function buildAutoBlocks(main) {
     });
   } catch (error) {
     console.error('Auto Blocking failed', error);
-  }*/
+  }
 }
 
 function handleTabStyles(main) {
   try {
-    // Look for sections with data-tabtitle
+    console.log('Starting handleTabStyles');
+    console.log('Current main HTML:', main.innerHTML);
+
+    // Look for sections with data-tabtitle attribute
     const tabElements = main.querySelectorAll('div[data-tabtitle]');
-    console.log('Found tab elements:', tabElements.length, tabElements);
+    console.log('Looking for div[data-tabtitle]:', tabElements);
+    
+    // Also try other selectors to see what's available
+    const sections = main.querySelectorAll('.section');
+    console.log('Available sections:', sections);
     
     if (tabElements.length > 0) {
       // Create tabs container
@@ -122,10 +132,16 @@ function handleTabStyles(main) {
         // Clone the section with all its content
         const clonedSection = section.cloneNode(true);
         
-        // Add tab classes
+        // Add tab classes and attributes
         clonedSection.classList.add('tab', 'block');
         clonedSection.setAttribute('data-block-name', 'tab');
         clonedSection.setAttribute('data-block-status', 'loaded');
+        
+        // Keep the original data-tabtitle
+        const tabTitle = section.getAttribute('data-tabtitle');
+        if (tabTitle) {
+          clonedSection.setAttribute('data-tabtitle', tabTitle);
+        }
         
         // Add to wrapper
         tabWrapper.appendChild(clonedSection);
@@ -135,6 +151,8 @@ function handleTabStyles(main) {
       main.innerHTML = '';
       main.appendChild(tabsContainer);
       console.log('Successfully created tabs structure');
+    } else {
+      console.log('No tab elements found. Current DOM structure:', main.innerHTML);
     }
   } catch (error) {
     console.error('Error in handleTabStyles:', error);
@@ -147,10 +165,6 @@ function handleTabStyles(main) {
  */
 // eslint-disable-next-line import/prefer-default-export
 export function decorateMain(main) {
-  // Run handleTabStyles before any decoration
-  handleTabStyles(main);
-  
-  // Then run other decorators
   decorateButtons(main);
   decorateIcons(main);
   decorateSections(main);
