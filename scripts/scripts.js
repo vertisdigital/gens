@@ -105,7 +105,7 @@ function buildAutoBlocks(main) {
 function handleTabStyles() {
   try {
     const main = document.querySelector('main');
-    console.log('Main element found:', main);
+    console.log('Main element found:', main.innerHTML);
 
     // Look for sections with data-tabtitle
     const tabElements = main.querySelectorAll('.section[data-tabtitle]');
