@@ -120,7 +120,15 @@ function addTabFunctionality({ tabs, panels, container }) {
 
   // Add direct click handlers to each tab
   tabs.forEach((tab, index) => {
-    tab.addEventListener('click', function() {
+    // Remove any existing handlers first
+    const newTab = tab.cloneNode(true);
+    tab.parentNode.replaceChild(newTab, tab);
+    
+    // Add click handler
+    newTab.onclick = function(e) {
+      e.preventDefault();
+      e.stopPropagation();
+      
       console.log('Tab clicked:', {
         index,
         text: this.textContent,
@@ -140,7 +148,12 @@ function addTabFunctionality({ tabs, panels, container }) {
         activeTab: this.textContent,
         activePanel: panels[index].getAttribute('data-tabtitle')
       });
-    });
+
+      return false; // Prevent any default behavior
+    };
+
+    // Update tabs array with new element
+    tabs[index] = newTab;
   });
 
   // Add keyboard support
