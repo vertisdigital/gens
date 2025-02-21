@@ -107,6 +107,7 @@ function handleTabStyles() {
     const main = document.querySelector('main');
     console.log('Main element found:', main);
 
+    // Look for section-metadata with tab class
     const tabElements = main.querySelectorAll('.section-metadata.tab');
     console.log('Found tab elements:', tabElements.length, tabElements);
     
@@ -123,19 +124,13 @@ function handleTabStyles() {
         tab.classList.remove('tab');
         console.log(`Removed tab class from section-metadata ${index}:`, tab.classList);
         
-        // Add tab class to parent and clone to container
+        // Add tab class to parent and move to container
         const parentDiv = tab.parentElement;
-        console.log(`Parent div ${index}:`, parentDiv);
-        
         if (parentDiv) {
-          const clonedDiv = parentDiv.cloneNode(true);
-          console.log(`Cloned div ${index}:`, clonedDiv);
-          
-          clonedDiv.classList.add('tab');
-          console.log(`Added tab class to cloned div ${index}:`, clonedDiv.classList);
-          
-          tabsContainer.appendChild(clonedDiv);
-          console.log(`Added cloned div ${index} to tabs container. Container now:`, tabsContainer.innerHTML);
+          parentDiv.classList.add('tab');
+          // Move the entire parent div to tabs container
+          tabsContainer.appendChild(parentDiv);
+          console.log(`Moved parent div ${index} to tabs container`);
         }
       });
 
@@ -147,7 +142,6 @@ function handleTabStyles() {
     }
   } catch (error) {
     console.error('Error in handleTabStyles:', error);
-    // Log the full error stack
     console.error('Error stack:', error.stack);
   }
 }
