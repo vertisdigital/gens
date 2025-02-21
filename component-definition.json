@@ -510,21 +510,7 @@
                 "template": {
                   "name": "TextMediaBlock",
                   "model": "textmediablock",
-                  "filter": "textmediablock",
-                  "options": [
-                    {
-                      "name": "wide",
-                      "value": "wide"
-                    },
-                    {
-                      "name": "dark",
-                      "value": "dark"
-                    },
-                    {
-                      "name": "narrow spacing",
-                      "value": "narrow-spacing"
-                    }
-                  ]
+                  "filter": "textmediablock"
                 }
               }
             }

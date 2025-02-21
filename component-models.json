@@ -141,7 +141,7 @@
         "valueType": "string",
         "options": [
           {
-            "name": "Tab",
+            "name": "tab",
             "value": "tab"
           }
         ]
