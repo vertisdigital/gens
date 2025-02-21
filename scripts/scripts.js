@@ -65,9 +65,9 @@ async function loadFonts() {
  */
 function buildAutoBlocks(main) {
   console.log('Building auto blocks');
-  /*try {
+  try {
     // Handle tab styles first
-    handleTabStyles();
+    handleTabStyles(main);
     
     // Process tabs and maintain their position
     processTabs(main, moveInstrumentation);
@@ -99,10 +99,7 @@ function buildAutoBlocks(main) {
   } catch (error) {
     // eslint-disable-next-line no-console
     console.error('Auto Blocking failed', error);
-  }*/
-
-  // Handle tab styles
-  handleTabStyles(main);
+  }
 }
 
 function handleTabStyles(main) {
@@ -157,10 +154,6 @@ function handleTabStyles(main) {
  */
 // eslint-disable-next-line import/prefer-default-export
 export function decorateMain(main) {
-  // Run handleTabStyles first
-  handleTabStyles(main);
-
-  // Then run other decorators
   decorateButtons(main);
   decorateIcons(main);
   decorateSections(main);
