@@ -134,11 +134,17 @@
     "id": "tabs",
     "fields": [
       {
-        "component": "text",
-        "name": "data-gens-style",
-        "label": "Data Attributes",
-        "value": "tabs",
-        "hidden": true
+        "component": "select",
+        "name": "style",
+        "value": "",
+        "label": "Style",
+        "valueType": "string",
+        "options": [
+          {
+            "name": "Tab",
+            "value": "tab"
+          }
+        ]
       },
       {
         "component": "text",
