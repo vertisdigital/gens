@@ -30,10 +30,11 @@ function handleTabStyles(main) {
         tabLink.className = 'tab-link';
         tabLink.setAttribute('data-tab-index', index);
         
-        // Add click handler to each tab link
-        tabLink.onclick = function(e) {
-          console.log('Tab clicked:', this.textContent);
+        // Try different event binding approaches
+        tabLink.addEventListener('click', function(e) {
+          console.log('Click event fired');
           e.preventDefault();
+          e.stopPropagation();
           
           // Get all tabs and content
           const allTabs = tabNav.querySelectorAll('.tab-link');
@@ -46,9 +47,12 @@ function handleTabStyles(main) {
           // Add active class to clicked tab and content
           this.classList.add('active');
           allContent[index].classList.add('active');
-          
-          console.log('Tab switch complete');
-        };
+        }, true); // Use capture phase
+        
+        // Also try mousedown event
+        tabLink.addEventListener('mousedown', function(e) {
+          console.log('Mousedown event fired');
+        });
         
         if (index === 0) tabLink.classList.add('active');
         
@@ -62,6 +66,11 @@ function handleTabStyles(main) {
         tabWrapper.appendChild(clonedSection);
       });
 
+      // Also try click handler on container
+      tabNav.addEventListener('click', function(e) {
+        console.log('Tab nav container clicked', e.target);
+      }, true);
+
       // Build final structure
       tabsContainer.appendChild(tabNav);
       tabsContainer.appendChild(tabWrapper);
@@ -69,8 +78,12 @@ function handleTabStyles(main) {
       tabElements.forEach(section => section.remove());
       main.prepend(tabsContainer);
       
-      console.log('Tab setup complete, click handlers attached to:', 
-        tabNav.querySelectorAll('.tab-link').length, 'tabs');
+      console.log('Tab setup complete, testing click on first tab');
+      // Test click programmatically
+      const firstTab = tabNav.querySelector('.tab-link');
+      if (firstTab) {
+        firstTab.click();
+      }
     }
   } catch (error) {
     throw new Error(`Error in handleTabStyles: ${error.message}`);
