@@ -760,10 +760,10 @@ main .section.highlight {
   margin-bottom: 1.5rem;
 }
 
-.tab-link {
+/* Update tab styles to use tab-title instead of tab-link */
+.tab-title {
   padding: 0.75rem 1.5rem;
   color: var(--link-color);
-  text-decoration: none;
   position: relative;
   font-size: 1rem;
   font-weight: 400;
@@ -773,22 +773,20 @@ main .section.highlight {
   border-bottom: 1px solid transparent;
 }
 
-.tab-link:hover {
+.tab-title:hover {
   color: var(--link-hover-color);
-  text-decoration: none;
 }
 
-.tab-link.active {
+.tab-title.active {
   color: var(--primary-gold);
   font-weight: 500;
-  text-decoration: none;
   background-color: var(--soft-ivory-light);
   border-radius: 4px 4px 0 0;
   border-bottom: 1px solid var(--primary-gold);
 }
 
 /* Arrow for active tab */
-.tab-link.active::before {
+.tab-title.active::before {
   content: '';
   position: absolute;
   bottom: 0;
@@ -802,7 +800,7 @@ main .section.highlight {
   z-index: 1;
 }
 
-.tab-link.active::after {
+.tab-title.active::after {
   content: '';
   position: absolute;
   bottom: -1px;
@@ -832,13 +830,14 @@ main .section.highlight {
     gap: 0.5rem;
   }
 
-  .tab-link {
+  .tab-title {
     display: block;
     text-align: center;
     padding: 0.5rem 1.5rem;
   }
 }
 
+/* Remove old tab-link styles */
 .tab-link {
-  cursor: pointer;
+  display: none;
 }

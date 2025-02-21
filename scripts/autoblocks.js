@@ -24,12 +24,11 @@ function handleTabStyles(main) {
         const tabTitle = section.getAttribute('data-tabtitle');
         console.log('Creating tab:', { index, title: tabTitle });
         
-        const tabLink = document.createElement('a');
-        tabLink.textContent = tabTitle;
-        tabLink.href = '#';
-        tabLink.className = 'tab-link';
-        tabLink.setAttribute('data-tab-index', index);
-        if (index === 0) tabLink.classList.add('active');
+        const tabTitle = document.createElement('div');
+        tabTitle.textContent = tabTitle;
+        tabTitle.className = 'tab-title';
+        tabTitle.setAttribute('data-tab-index', index);
+        if (index === 0) tabTitle.classList.add('active');
         
         const clonedSection = section.cloneNode(true);
         clonedSection.classList.add('tab', 'block');
@@ -37,7 +36,7 @@ function handleTabStyles(main) {
         clonedSection.setAttribute('data-block-status', 'loaded');
         clonedSection.classList.toggle('active', index === 0);
         
-        tabNav.appendChild(tabLink);
+        tabNav.appendChild(tabTitle);
         tabWrapper.appendChild(clonedSection);
       });
 
@@ -49,16 +48,15 @@ function handleTabStyles(main) {
 
       // Add click handler after DOM is in place
       const handleTabClick = (e) => {
-        const clickedTab = e.target.closest('.tab-link');
+        const clickedTab = e.target.closest('.tab-title');
         if (!clickedTab) return;
         
-        e.preventDefault();
         console.log('Tab clicked:', clickedTab.textContent);
 
         const index = parseInt(clickedTab.getAttribute('data-tab-index'), 10);
         
         // Update tabs
-        const allTabs = tabNav.querySelectorAll('.tab-link');
+        const allTabs = tabNav.querySelectorAll('.tab-title');
         allTabs.forEach(tab => tab.classList.remove('active'));
         clickedTab.classList.add('active');
 
@@ -74,7 +72,7 @@ function handleTabStyles(main) {
       // Log final structure
       console.log('Tab structure:', {
         container: tabsContainer.outerHTML,
-        tabs: tabNav.querySelectorAll('.tab-link').length,
+        tabs: tabNav.querySelectorAll('.tab-title').length,
         panels: tabWrapper.querySelectorAll('.tab').length
       });
     }
