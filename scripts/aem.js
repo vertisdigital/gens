@@ -373,7 +373,7 @@ function wrapTextNodes(block) {
       // move the instrumentation from the cell to the new paragraph, also keep the class
       // in case the content is a buttton and the cell the button-container
       .filter(({ nodeName }) => nodeName === 'class'
-        || nodeName.startsWith('data-aue')
+        || nodeName.startsWith('data-gen')
         || nodeName.startsWith('data-richtext'))
       .forEach(({ nodeName, nodeValue }) => {
         wrapper.setAttribute(nodeName, nodeValue);
@@ -478,13 +478,27 @@ function decorateSections(main) {
     // Add section index class
     section.classList.add(`section-${sectionIndex + 1}`);
    
+    // Track components with same name
+    const componentNameCounts = {};
+    
     [...section.children].forEach((child, childIndex) => {
       const childClass = child.className;
-      child.classList.add(`${childClass}-row`);
+      
+      // Track component name occurrences
+      if (!componentNameCounts[childClass]) {
+        componentNameCounts[childClass] = 1;
+      } else {
+        componentNameCounts[childClass]++;
+      }
+      
+      // Use the first occurrence index for identical components
+      const componentIndex = componentNameCounts[childClass];
+      
+      child.className = `${childClass} ${childClass}-row`;
      
       // Add index classes to nested elements
       [...child.children].forEach((nestedElement, nestedIndex) => {
-        nestedElement.classList.add(`${childClass}-nested-${sectionIndex + 1}-${nestedIndex + 1}`);
+        nestedElement.className = `${childClass}-nested-${componentIndex}-${nestedIndex + 1}`;
        
         // Decorate AEM structure if present
         if(window.location.href.indexOf('author') === -1) {
@@ -493,17 +507,17 @@ function decorateSections(main) {
        
         // Continue with existing nested element processing
         [...nestedElement.children].forEach((deepElement, deepIndex) => {
-          deepElement.classList.add(`${childClass}-element-${sectionIndex + 1}-${nestedIndex + 1}-${deepIndex + 1}`);
+          deepElement.className = `${childClass}-element-${componentIndex}-${nestedIndex + 1}-${deepIndex + 1}`;
          
           // Add classes to innermost elements (like links, spans, etc.)
           if (deepElement.children.length > 0) {
             [...deepElement.children].forEach((innerElement, innerIndex) => {
-              innerElement.classList.add(`${childClass}-inner-${sectionIndex + 1}-${nestedIndex + 1}-${deepIndex + 1}-${innerIndex + 1}`);
+              innerElement.className = `${childClass}-inner-${componentIndex}-${nestedIndex + 1}-${deepIndex + 1}-${innerIndex + 1}`;
             });
           }
         });
       });
- 
+
       // Create and process wrappers
       if ((child.tagName === 'DIV' && child.className) || !defaultContent) {
         const wrapper = document.createElement('div');
@@ -514,17 +528,17 @@ function decorateSections(main) {
       }
       wrappers[wrappers.length - 1].append(child);
     });
-   
-    // Add wrappers to section with index classes
+
+    // Add wrappers to section
     wrappers.forEach((wrapper, wrapperIndex) => {
       wrapper.classList.add(`section-wrapper-${sectionIndex + 1}-${wrapperIndex + 1}`);
       section.append(wrapper);
     });
-   
+
     section.classList.add('section');
     section.dataset.sectionStatus = 'initialized';
     section.style.display = 'none';
- 
+
     // Process section metadata
     const sectionMeta = section.querySelector('div.section-metadata');
     if (sectionMeta) {
@@ -786,9 +800,9 @@ function decorateAEMStructure(element, sectionIndex, childIndex) {
         div.textContent = '';
         div.appendChild(p);
       }
-      p.setAttribute('data-aue-prop', 'phoneNumber');
-      p.setAttribute('data-aue-label', 'Phone Number');
-      p.setAttribute('data-aue-type', 'text');
+      p.setAttribute('data-gen-prop', 'phoneNumber');
+      p.setAttribute('data-gen-label', 'Phone Number');
+      p.setAttribute('data-gen-type', 'text');
     } else if (isEmail) {
       // Handle email address
       let p = div.querySelector('p');
@@ -798,9 +812,9 @@ function decorateAEMStructure(element, sectionIndex, childIndex) {
         div.textContent = '';
         div.appendChild(p);
       }
-      p.setAttribute('data-aue-prop', 'emailAddress');
-      p.setAttribute('data-aue-label', 'Email Address');
-      p.setAttribute('data-aue-type', 'text');
+      p.setAttribute('data-gen-prop', 'emailAddress');
+      p.setAttribute('data-gen-label', 'Email Address');
+      p.setAttribute('data-gen-type', 'text');
     }
   });
  
@@ -822,16 +836,15 @@ function decorateAEMStructure(element, sectionIndex, childIndex) {
   // Add AEM attributes based on structure type
  if (hasProjectCardStructure && !hasLinkButton) {
     // Add ProjectCard attributes to container
-    element.setAttribute('data-aue-type', 'component');
-    element.setAttribute('data-aue-model', 'projectcard');
-    element.setAttribute('data-aue-label', 'ProjectCard');
+    element.setAttribute('data-gen-model', 'projectcard');
+    element.setAttribute('data-gen-label', 'ProjectCard');
  
     // Handle first div (optional picture container)
     const [pictureDiv] = divElements;
     if (pictureDiv && pictureDiv.querySelector('picture')) {
-      pictureDiv.setAttribute('data-aue-prop', 'projectImage');
-      pictureDiv.setAttribute('data-aue-label', 'Image');
-      pictureDiv.setAttribute('data-aue-type', 'media');
+      pictureDiv.setAttribute('data-gen-prop', 'projectImage');
+      pictureDiv.setAttribute('data-gen-label', 'Image');
+      pictureDiv.setAttribute('data-gen-type', 'media');
     }
  
     // Handle button container (second div)
@@ -839,41 +852,40 @@ function decorateAEMStructure(element, sectionIndex, childIndex) {
     if (buttonDiv) {
       const button = buttonDiv.querySelector('a.button');
       if (button) {
-        button.setAttribute('data-aue-prop', 'projectText');
-        button.setAttribute('data-aue-label', 'Text');
-        button.setAttribute('data-aue-type', 'text');
+        button.setAttribute('data-gen-prop', 'projectText');
+        button.setAttribute('data-gen-label', 'Text');
+        button.setAttribute('data-gen-type', 'text');
       }
     }
  
     // Handle target div (third div)
     const [,, targetDiv] = divElements;
     if (targetDiv) {
-      targetDiv.setAttribute('data-aue-prop', 'projectTarget');
-      targetDiv.setAttribute('data-aue-label', 'Target');
-      targetDiv.setAttribute('data-aue-type', 'text');
+      targetDiv.setAttribute('data-gen-prop', 'projectTarget');
+      targetDiv.setAttribute('data-gen-label', 'Target');
+      targetDiv.setAttribute('data-gen-type', 'text');
     }
  
     // Handle location div (fourth div)
     const [,,, locationDiv] = divElements;
     if (locationDiv) {
-      locationDiv.setAttribute('data-aue-prop', 'location');
-      locationDiv.setAttribute('data-aue-label', 'Location');
-      locationDiv.setAttribute('data-aue-type', 'text');
+      locationDiv.setAttribute('data-gen-prop', 'location');
+      locationDiv.setAttribute('data-gen-label', 'Location');
+      locationDiv.setAttribute('data-gen-type', 'text');
     }
  
   }  else if (hasTileStructure && !divElements[0].querySelector('a')) {
     // Add tile attributes to container
-    element.setAttribute('data-aue-type', 'component');
-    element.setAttribute('data-aue-model', 'tile');
-    element.setAttribute('data-aue-label', 'Tile');
+    element.setAttribute('data-gen-model', 'tile');
+    element.setAttribute('data-gen-label', 'Tile');
    
     // Add heading attributes to first div
     const headingDiv = divElements[0];
     if (headingDiv) {
       const headingP = document.createElement('p');
-      headingP.setAttribute('data-aue-prop', 'heading');
-      headingP.setAttribute('data-aue-label', 'Title');
-      headingP.setAttribute('data-aue-type', 'text');
+      headingP.setAttribute('data-gen-prop', 'heading');
+      headingP.setAttribute('data-gen-label', 'Title');
+      headingP.setAttribute('data-gen-type', 'text');
       headingP.textContent = headingDiv.textContent;
       headingDiv.textContent = '';
       headingDiv.appendChild(headingP);
@@ -882,9 +894,9 @@ function decorateAEMStructure(element, sectionIndex, childIndex) {
     // Add description attributes to second div
     const descriptionDiv = divElements[1];
     if (descriptionDiv) {
-      descriptionDiv.setAttribute('data-aue-prop', 'title');
-      descriptionDiv.setAttribute('data-aue-label', 'Report Name');
-      descriptionDiv.setAttribute('data-aue-filter', 'text');
+      descriptionDiv.setAttribute('data-gen-prop', 'title');
+      descriptionDiv.setAttribute('data-gen-label', 'Report Name');
+      descriptionDiv.setAttribute('data-gen-filter', 'text');
      
       // Wrap description text in p if not already
       if (!descriptionDiv.querySelector('p')) {
@@ -899,9 +911,9 @@ function decorateAEMStructure(element, sectionIndex, childIndex) {
     const ctaDiv = divElements[4];
     if (ctaDiv) {
       const ctaP = document.createElement('p');
-      ctaP.setAttribute('data-aue-prop', 'ctaCaption');
-      ctaP.setAttribute('data-aue-label', 'CTA Caption');
-      ctaP.setAttribute('data-aue-type', 'text');
+      ctaP.setAttribute('data-gen-prop', 'ctaCaption');
+      ctaP.setAttribute('data-gen-label', 'CTA Caption');
+      ctaP.setAttribute('data-gen-type', 'text');
       ctaP.textContent = ctaDiv.textContent;
       ctaDiv.textContent = '';
       ctaDiv.appendChild(ctaP);
@@ -909,9 +921,9 @@ function decorateAEMStructure(element, sectionIndex, childIndex) {
   }
    else if (hasTileStructure && divElements[0].querySelector('a')) {
     // Add listitem attributes to container
-    element.setAttribute('data-aue-type', 'component');
-    element.setAttribute('data-aue-model', 'listitem');
-    element.setAttribute('data-aue-label', 'List Item');
+    element.setAttribute('data-gen-type', 'component');
+    element.setAttribute('data-gen-model', 'listitem');
+    element.setAttribute('data-gen-label', 'List Item');
    
     // Handle image link div (first div)
     const imageDiv = divElements[0];
@@ -940,9 +952,9 @@ function decorateAEMStructure(element, sectionIndex, childIndex) {
         titleDiv.textContent = '';
         titleDiv.appendChild(p);
       }
-      p.setAttribute('data-aue-prop', 'title');
-      p.setAttribute('data-aue-label', 'Report Name');
-      p.setAttribute('data-aue-type', 'text');
+      p.setAttribute('data-gen-prop', 'title');
+      p.setAttribute('data-gen-label', 'Report Name');
+      p.setAttribute('data-gen-type', 'text');
     }
  
     // Handle description div (third div)
@@ -955,9 +967,9 @@ function decorateAEMStructure(element, sectionIndex, childIndex) {
         descriptionDiv.textContent = '';
         descriptionDiv.appendChild(p);
       }
-      p.setAttribute('data-aue-prop', 'description');
-      p.setAttribute('data-aue-label', 'Description');
-      p.setAttribute('data-aue-type', 'text');
+      p.setAttribute('data-gen-prop', 'description');
+      p.setAttribute('data-gen-label', 'Description');
+      p.setAttribute('data-gen-type', 'text');
     }
  
     // Handle CTA button div (fourth div)
@@ -987,23 +999,23 @@ function decorateAEMStructure(element, sectionIndex, childIndex) {
         targetDiv.textContent = '';
         targetDiv.appendChild(p);
       }
-      p.setAttribute('data-aue-prop', 'ctaTarget');
-      p.setAttribute('data-aue-label', 'Target');
-      p.setAttribute('data-aue-type', 'text');
+      p.setAttribute('data-gen-prop', 'ctaTarget');
+      p.setAttribute('data-gen-label', 'Target');
+      p.setAttribute('data-gen-type', 'text');
     }
   }
  else if (hasFeatureStructure) {
     // Add feature item attributes to container
-    element.setAttribute('data-aue-type', 'component');
-    element.setAttribute('data-aue-model', 'featureItem');
-    element.setAttribute('data-aue-label', 'Feature Item');
+    element.setAttribute('data-gen-type', 'component');
+    element.setAttribute('data-gen-model', 'featureItem');
+    element.setAttribute('data-gen-label', 'Feature Item');
    
     // Add attributes to picture container (first div)
     const [iconDiv] = divElements;
     if (iconDiv && iconDiv.querySelector('picture')) {
-      iconDiv.setAttribute('data-aue-prop', 'feature-icon');
-      iconDiv.setAttribute('data-aue-label', 'Icon');
-      iconDiv.setAttribute('data-aue-type', 'media');
+      iconDiv.setAttribute('data-gen-prop', 'feature-icon');
+      iconDiv.setAttribute('data-gen-label', 'Icon');
+      iconDiv.setAttribute('data-gen-type', 'media');
     }
    
     // Add attributes to text container (third div)
@@ -1018,10 +1030,10 @@ function decorateAEMStructure(element, sectionIndex, childIndex) {
         titleDiv.textContent = '';
         titleDiv.appendChild(p);
       }
-      p.setAttribute('data-aue-prop', 'feature-title');
-      p.setAttribute('data-aue-label', 'Text');
-      p.setAttribute('data-aue-filter', 'text');
-      p.setAttribute('data-aue-type', 'richtext');
+      p.setAttribute('data-gen-prop', 'feature-title');
+      p.setAttribute('data-gen-label', 'Text');
+      p.setAttribute('data-gen-filter', 'text');
+      p.setAttribute('data-gen-type', 'richtext');
     }
  
     // Handle heading div (fourth div)
@@ -1036,17 +1048,17 @@ function decorateAEMStructure(element, sectionIndex, childIndex) {
     }
   } else if (hasLinkStructure) {
     // Add link field attributes to container
-    element.setAttribute('data-aue-type', 'component');
-    element.setAttribute('data-aue-model', 'linkField');
-    element.setAttribute('data-aue-filter', 'linkField');
-    element.setAttribute('data-aue-label', 'Link Field');
+    element.setAttribute('data-gen-type', 'component');
+    element.setAttribute('data-gen-model', 'linkField');
+    element.setAttribute('data-gen-filter', 'linkField');
+    element.setAttribute('data-gen-label', 'Link Field');
    
     // Add attributes to link button
     const linkContainer = element.querySelector('div > a.button');
     if (linkContainer) {
-      linkContainer.setAttribute('data-aue-prop', 'linkText');
-      linkContainer.setAttribute('data-aue-label', 'Text');
-      linkContainer.setAttribute('data-aue-type', 'text');
+      linkContainer.setAttribute('data-gen-prop', 'linkText');
+      linkContainer.setAttribute('data-gen-label', 'Text');
+      linkContainer.setAttribute('data-gen-type', 'text');
     }
    
     // Add attributes to first div after button
@@ -1054,18 +1066,18 @@ function decorateAEMStructure(element, sectionIndex, childIndex) {
     if (firstDiv) {
       const hasLongText = firstDiv.textContent.trim().length > 100;
       if (!hasLongText) {
-        firstDiv.setAttribute('data-aue-prop', 'linkSvgIcon');
-        firstDiv.setAttribute('data-aue-label', 'Link SVG Icon');
-        firstDiv.setAttribute('data-aue-type', 'text');
+        firstDiv.setAttribute('data-gen-prop', 'linkSvgIcon');
+        firstDiv.setAttribute('data-gen-label', 'Link SVG Icon');
+        firstDiv.setAttribute('data-gen-type', 'text');
       }
     }
    
     // Add attributes to second div after button
     const [, , secondDiv] = divElements;
     if (secondDiv) {
-      secondDiv.setAttribute('data-aue-prop', 'linkTarget');
-      secondDiv.setAttribute('data-aue-label', 'Target');
-      secondDiv.setAttribute('data-aue-type', 'text');
+      secondDiv.setAttribute('data-gen-prop', 'linkTarget');
+      secondDiv.setAttribute('data-gen-label', 'Target');
+      secondDiv.setAttribute('data-gen-type', 'text');
     }
   } else {
     // Handle single div text content
@@ -1074,15 +1086,15 @@ function decorateAEMStructure(element, sectionIndex, childIndex) {
       const hasLongText = textDiv.textContent.trim().length > 100;
      
       // Add text field attributes to container
-      element.setAttribute('data-aue-type', 'component');
-      element.setAttribute('data-aue-model', hasLongText ? 'richTextField' : 'textField');
-      element.setAttribute('data-aue-label', hasLongText ? 'Rich Text Field' : 'Text Field');
+      element.setAttribute('data-gen-type', 'component');
+      element.setAttribute('data-gen-model', hasLongText ? 'richTextField' : 'textField');
+      element.setAttribute('data-gen-label', hasLongText ? 'Rich Text Field' : 'Text Field');
      
       if (hasLongText) {
-        textDiv.setAttribute('data-aue-prop', 'description');
-        textDiv.setAttribute('data-aue-label', 'Description');
-        textDiv.setAttribute('data-aue-filter', 'text');
-        textDiv.setAttribute('data-aue-type', 'richtext');
+        textDiv.setAttribute('data-gen-prop', 'description');
+        textDiv.setAttribute('data-gen-label', 'Description');
+        textDiv.setAttribute('data-gen-filter', 'text');
+        textDiv.setAttribute('data-gen-type', 'richtext');
        
         // If text is not already in a paragraph, wrap it
         if (!textDiv.querySelector('p')) {
@@ -1095,9 +1107,9 @@ function decorateAEMStructure(element, sectionIndex, childIndex) {
       } else {
         const textContent = textDiv.textContent;
         const p = document.createElement('p');
-        p.setAttribute('data-aue-prop', 'title');
-        p.setAttribute('data-aue-label', 'Section Name');
-        p.setAttribute('data-aue-type', 'text');
+        p.setAttribute('data-gen-prop', 'title');
+        p.setAttribute('data-gen-label', 'Section Name');
+        p.setAttribute('data-gen-type', 'text');
         p.textContent = textContent;
        
         textDiv.textContent = '';
