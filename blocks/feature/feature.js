@@ -156,7 +156,7 @@ export default function decorate(block) {
       }
 
       // Handle feature heading
-      const featureHeadingElement = featureChildren[3];;
+      const featureHeadingElement = featureChildren[3];
       if (featureHeadingElement) {
         const headingContainer = document.createElement('div');
         const featureHeadingP = document.createElement('p');
@@ -171,12 +171,12 @@ export default function decorate(block) {
     });
   }
   // check if data-aue-model="indices" exists
-  const indices = block.querySelector('[data-aue-model="indices"]');
+  const indices = blockchildren[blockchildren.length - 1];
   if (indices) {
     // get less indices, more indices and indexnumber content elements
-    const lessIndices = indices.querySelector('[data-aue-prop="lessIndices"]');
-    const moreIndices = indices.querySelector('[data-aue-prop="moreIndices"]');
-    const indexElement = indices.querySelector('[data-aue-prop="indexNumber"]');
+    const lessIndices = indices.children[1];
+    const moreIndices = indices.children[0];
+    const indexElement = indices.children[2];
     const indexNumber = parseInt(
       indexElement?.textContent,
       10,
@@ -190,22 +190,23 @@ export default function decorate(block) {
     moveInstrumentation(lessIndices, showLessIndicesLink);
 
     // getting all the feature items in aboutUsDescription
-    const convDescription = aboutUsRightContent.querySelectorAll(
-      '[data-aue-model="featureItem"]',
-    );
+    const convDescription = aboutUsRightContent.children;
       // featureitems are  more than indexNumber indices then hide
       // the remaing and show link to show more indices link with remaining indices count in text
     if (indexNumber < convDescription.length) {
       // hide the remaining indices
-      for (let i = indexNumber; i < convDescription.length; i += 1) {
-        convDescription[i].style.display = 'none';
+      for (let i = 0; i < convDescription.length; i += 1) {
+        convDescription[i].children[0].remove();
+        if(i >= indexNumber) {
+          convDescription[i].style.display = 'none';
+        }
       }
 
       showMoreIndicesLink.textContent = `${moreIndices?.textContent ?? 'Show More'
       } (${convDescription.length - indexNumber})`;
       showMoreIndicesLink.classList.add('show-more-indices');
       showMoreIndicesLink.addEventListener('click', () => {
-        for (let i = indexNumber; i < convDescription.length; i += 1) {
+        for (let i = indexNumber; i < convDescription.length - 1; i += 1) {
           convDescription[i].style.display = 'block';
         }
         showMoreIndicesLink.style.display = 'none';
@@ -216,7 +217,7 @@ export default function decorate(block) {
       showLessIndicesLink.classList.add('show-less-indices');
       showLessIndicesLink.style.display = 'none';
       showLessIndicesLink.addEventListener('click', () => {
-        for (let i = indexNumber; i < convDescription.length; i += 1) {
+        for (let i = indexNumber; i < convDescription.length - 1; i += 1) {
           convDescription[i].style.display = 'none';
         }
         showMoreIndicesLink.style.display = 'block';
