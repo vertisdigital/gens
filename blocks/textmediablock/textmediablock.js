@@ -5,7 +5,7 @@ function initTextMediaBlock() {
     block.className = 'container-xl container-md container-sm textmediablock-container';
 
     // Handle image elements
-    const mediaBlock = block;
+    const mediaBlock = block.children[0];
     if (mediaBlock) {
       const linkElement = mediaBlock.querySelector('a');
       if (linkElement) {
@@ -24,6 +24,11 @@ function initTextMediaBlock() {
         linkElement.parentElement.replaceChild(img, linkElement);
       }
     }
+    block.children[1].classList.add('textblock');
+    //heading sesction
+    block.children[1].children[0].classList.add('heading');
+    //text sesction
+    block.children[1].children[1].classList.add('textsection');
   });
 }
 
