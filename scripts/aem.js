@@ -502,7 +502,7 @@ function getOrCreateParagraph(container, options = {}) {
 
 function decorateAEMStructure(element) {
   // Check for feature item structure
-  const hasPicture = element.querySelector('div > picture') || element.children[0].tagName === 'DIV';
+  const hasPicture = element.querySelector('div > picture') || element.children[0]?.tagName === 'DIV';
   const divElements = [...element.children].filter((el) => el.tagName === 'DIV');
 
   // Check for contact information in divs
