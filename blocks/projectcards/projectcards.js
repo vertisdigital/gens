@@ -17,21 +17,20 @@ export default function decorate(block) {
 
   // Handle title
   const titleElements = block.querySelectorAll(
-    '[data-aue-prop="title"], [data-gen-prop="title"]'
+    '[data-aue-prop="title"], [data-gen-prop="title"]',
   );
   const titleField = titleElements[0];
   if (titleField) {
-    const titleDiv = document.createElement("div");
+    const titleDiv = document.createElement('div');
     moveInstrumentation(titleField, titleDiv);
-    titleDiv.className = "projectcards-title";
+    titleDiv.className = 'projectcards-title';
     titleDiv.textContent = titleField.textContent;
     headerContainer.appendChild(titleDiv);
     titleField.remove();
   }
 
   // Handle main heading
-  const headingElement =
-    block.querySelector('[data-aue-prop="heading"]') || titleElements[1];
+  const headingElement = block.querySelector('[data-aue-prop="heading"]') || titleElements[1];
   if (headingElement) {
     const headingHtml = Heading({
       text: headingElement.textContent,
@@ -54,7 +53,7 @@ export default function decorate(block) {
 
   // Handle description
   const descElement = block.querySelector(
-    '[data-aue-prop="description"], [data-gen-prop="description"]'
+    '[data-aue-prop="description"], [data-gen-prop="description"]',
   );
   if (descElement) {
     const descriptionDiv = document.createElement('div');
@@ -121,17 +120,16 @@ export default function decorate(block) {
 
     // Handle card title
     const cardTitle = card.querySelector(
-      '[data-aue-prop="projectText"], .button-container .button'
+      '[data-aue-prop="projectText"], .button-container .button',
     );
     if (cardTitle) {
       const titleDiv = document.createElement('div');
       titleDiv.className = 'project-card-title';
-      cardTitle.className = "";
+      cardTitle.className = '';
       // setting the link target
-      const linkTarget =
-        card.querySelector(
-          '[data-aue-prop="projectTarget"], [data-gen-prop="feature-title"]'
-        )?.textContent || "_self";
+      const linkTarget = card.querySelector(
+        '[data-aue-prop="projectTarget"], [data-gen-prop="feature-title"]',
+      )?.textContent || '_self';
       cardTitle.setAttribute('target', linkTarget);
 
       titleDiv.appendChild(cardTitle);
@@ -140,7 +138,7 @@ export default function decorate(block) {
 
     // Handle card location
     const locationElement = card.querySelector(
-      '[data-aue-prop="location"], div:last-child'
+      '[data-aue-prop="location"], div:last-child',
     );
     if (locationElement) {
       const locationDiv = document.createElement('div');
