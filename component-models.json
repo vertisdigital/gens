@@ -125,6 +125,18 @@
           {
             "name": "Statistics",
             "value": "statistics"
+          },
+          {
+            "name": "Footer Social",
+            "value": "footer-social"
+          },
+          {
+            "name": "Footer Navigation",
+            "value": "footer-navigation"
+          },
+          {
+            "name": "Footer Copyrights",
+            "value": "footer-copyrights"
           }
         ]
       }
