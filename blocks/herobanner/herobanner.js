@@ -299,7 +299,8 @@ export default function decorate(block) {
     
     if (readMoreLabelElement) {
       const readMoreLabelText = readMoreLabelElement.textContent;
-      // const buttonContainer = readMoreLabelElement.parentElement.nextElementSibling.querySelector('.button-container a');
+      // const buttonContainer = readMoreLabelElement.
+      // parentElement.nextElementSibling.querySelector('.button-container a');
       // const href = buttonContainer ? buttonContainer.getAttribute('href') : '';
       const currentUrl = window.location.href;
       const newUrl = currentUrl.replace(window.location.pathname, "#");

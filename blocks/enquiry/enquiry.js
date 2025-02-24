@@ -1,6 +1,6 @@
 import Heading from '../../shared-components/Heading.js';
 import { createOptimizedPicture } from '../../scripts/aem.js';
-import { moveInstrumentation } from '../../scripts/scripts.js';
+// import { moveInstrumentation } from '../../scripts/scripts.js';
 
 export default function decorate(block) {
   // Restructure the HTML for better semantics and accessibility
