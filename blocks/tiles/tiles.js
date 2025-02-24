@@ -50,7 +50,7 @@ export default function decorate(block) {
 
       // Handle CTA link
       const buttonContainer = tile.querySelector('.button-container');
-      const ctaCaption = tile.querySelector('[data-aue-prop="ctaCaption"]');
+      const ctaCaption = tile.querySelector('[data-aue-prop="ctaCaption"], [data-gen-prop="ctaCaption"]');
       if (buttonContainer && ctaCaption) {
         const link = buttonContainer.querySelector('a');
         if (link) {
@@ -70,7 +70,7 @@ export default function decorate(block) {
     if (!isFirsTileImage) {
       const buttonContainer = firstTile.querySelector('.button-container');
 
-      const ctaCaption = firstTile.querySelector('[data-aue-prop="ctaCaption"]');
+      const ctaCaption = firstTile.querySelector('[data-aue-prop="ctaCaption"], [data-gen-prop="ctaCaption"]');
       const downArraowWithLine = SvgIcon({
         name: 'downArraowWithLine',
         className: 'factsheet-button-arrow animation-element',
