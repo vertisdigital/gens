@@ -74,7 +74,7 @@ export default async function decorate(block) {
     socialLinksContainer.className = 'social-links';
 
     // Get the social links from the DOM - targeting the sociallinks block
-    const socialLinksBlock = document.querySelector('.sociallinks.block');
+    const socialLinksBlock = container.querySelector('.sociallinks.block');
     const socialLinkDivs = Array.from(socialLinksBlock.children);
 
     socialLinkDivs.forEach((socialLinkDiv) => {
