@@ -16,18 +16,21 @@ export default function decorate(block) {
   headerContainer.className = 'projectcards-header';
 
   // Handle title
-  const titleElement = block.querySelector('[data-aue-prop="title"]');
-  if (titleElement) {
+  const titleElements = block.querySelectorAll(
+    '[data-aue-prop="title"], [data-gen-prop="title"]',
+  );
+  const titleField = titleElements[0];
+  if (titleField) {
     const titleDiv = document.createElement('div');
-    moveInstrumentation(titleElement, titleDiv);
+    moveInstrumentation(titleField, titleDiv);
     titleDiv.className = 'projectcards-title';
-    titleDiv.textContent = titleElement.textContent;
+    titleDiv.textContent = titleField.textContent;
     headerContainer.appendChild(titleDiv);
-    titleElement.remove();
+    titleField.remove();
   }
 
   // Handle main heading
-  const headingElement = block.querySelector('[data-aue-prop="heading"]');
+  const headingElement = block.querySelector('[data-aue-prop="heading"]') || titleElements[1];
   if (headingElement) {
     const headingHtml = Heading({
       text: headingElement.textContent,
@@ -49,7 +52,9 @@ export default function decorate(block) {
   }
 
   // Handle description
-  const descElement = block.querySelector('[data-aue-prop="description"]');
+  const descElement = block.querySelector(
+    '[data-aue-prop="description"], [data-gen-prop="description"]',
+  );
   if (descElement) {
     const descriptionDiv = document.createElement('div');
     moveInstrumentation(descElement, descriptionDiv);
@@ -66,7 +71,7 @@ export default function decorate(block) {
   cardsGridContainer.className = 'projectcards-grid row';
 
   // Handle project cards
-  const projectCards = block.querySelectorAll('[data-aue-model="projectcard"]');
+  const projectCards = block.querySelectorAll('[data-aue-model="projectcard"],[data-gen-model="featureItem"]');
   projectCards.forEach((card) => {
     const cardElement = document.createElement('div');
     cardElement.className = 'project-card col-xl-3 col-lg-3 col-md-3 col-sm-2';
@@ -114,13 +119,17 @@ export default function decorate(block) {
     cardContent.className = 'project-card-content';
 
     // Handle card title
-    const cardTitle = card.querySelector('[data-aue-prop="projectText"]') || card.querySelectorAll('div')[1];
+    const cardTitle = card.querySelector(
+      '[data-aue-prop="projectText"], .button-container .button',
+    );
     if (cardTitle) {
       const titleDiv = document.createElement('div');
       titleDiv.className = 'project-card-title';
-      cardTitle.className ='';
-      //setting the link target
-      const linkTarget = card.querySelector('[data-aue-prop="projectTarget"]')?.textContent || '_self';
+      cardTitle.className = '';
+      // setting the link target
+      const linkTarget = card.querySelector(
+        '[data-aue-prop="projectTarget"], [data-gen-prop="feature-title"]',
+      )?.textContent || '_self';
       cardTitle.setAttribute('target', linkTarget);
 
       titleDiv.appendChild(cardTitle);
@@ -128,7 +137,9 @@ export default function decorate(block) {
     }
 
     // Handle card location
-    const locationElement = card.querySelector('[data-aue-prop="location"]') || card.querySelectorAll('div')[2];
+    const locationElement = card.querySelector(
+      '[data-aue-prop="location"], div:last-child',
+    );
     if (locationElement) {
       const locationDiv = document.createElement('div');
       locationDiv.setAttribute('data-aue-prop', 'location');
