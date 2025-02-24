@@ -17,9 +17,9 @@ export default function decorate(block) {
   };
 
   // Extract elements
-  const titleElement = exploreMoreContainer.querySelector('[data-aue-prop="title"]');
-  const firstCtaElement = exploreMoreContainer.querySelector('[data-aue-prop="firstCtaCaption"], .section-inner-3-1-2-1-1');
-  const secondCtaElement = exploreMoreContainer.querySelector('[data-aue-prop="secondCtaCaption"], .section-inner-3-1-4-1-1');
+  const titleElement = exploreMoreContainer.querySelector('[data-aue-prop="title"], [data-gen-prop="title"]');
+  const firstCtaElement = exploreMoreContainer.querySelector('[data-aue-prop="firstCtaCaption"], .exploremore-inner-1-2-1-1');
+  const secondCtaElement = exploreMoreContainer.querySelector('[data-aue-prop="secondCtaCaption"], .exploremore-inner-1-4-1-1');
 
   const allLinks = exploreMoreContainer.querySelectorAll('a');
   const firstCtaHrefElement = allLinks?.[0];

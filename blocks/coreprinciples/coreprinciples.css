@@ -73,17 +73,17 @@
     color: var(--text-color);
 }
 
-.coreprinciples [data-aue-prop="description"] {
+.coreprinciples [data-aue-prop="description"], .coreprinciples .coreprinciples-element-1-1-4 {
     font-size: 16px;
     line-height: 24px;
     color: var(--body-text-color);
 }
 
-.coreprinciples [data-richtext-prop="description"] {
+.coreprinciples [data-richtext-prop="description"], .coreprinciples .coreprinciples-element-1-1-4 {
     font-size: 16px;
     font-weight: 400;
     line-height: 24px;
-    color: rgb(75 85 99);
+    color: var(--body-text-color);
 }
 @media (width <= 1199px) {
     .coreprinciples .coreprinciples::after {
@@ -151,12 +151,12 @@
         margin-bottom: 8px;
     }
 
-    .coreprinciples [data-aue-prop="description"] {
+    .coreprinciples [data-aue-prop="description"], .coreprinciples .coreprinciples-element-1-1-4 {
         font-size: 14px;
         line-height: 20px;
     }
 
-    .coreprinciples [data-richtext-prop="description"] {
+    .coreprinciples [data-richtext-prop="description"], .coreprinciples .coreprinciples-element-1-1-4 {
         font-size: 14px;
         line-height: 20px;
     }
