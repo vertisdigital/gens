@@ -22,9 +22,9 @@ export default function decorate(block) {
   // About-Us left container
   const aboutUsLeftContent = document.createElement('div');
   aboutUsLeftContent.classList.add('col-xl-6', 'col-md-3', 'col-sm-4', 'about-us-left');
-
+  let blockchildren = block.children;
   // Find the title and replace it with a heading
-  const titleElement = block.querySelector('[data-aue-prop="title"]');
+  const titleElement = blockchildren[0].children[0];
   if (titleElement) {
     const header = document.createElement('header');
     moveInstrumentation(titleElement, header);
@@ -38,7 +38,7 @@ export default function decorate(block) {
   }
 
   // Find the heading and replace it with a heading
-  const headingElement = block.querySelector('[data-aue-prop="heading"],.section-inner-1-2-2-1-1');
+  const headingElement = blockchildren[1].children[0];
   if (headingElement) {
     const headingText = headingElement.textContent;
     const headingHtml = Heading({ level: 2, text: headingText, className: 'about-us-left-heading' });
@@ -50,7 +50,7 @@ export default function decorate(block) {
 
   // Find the sub-heading and replace it with a sub-heading
 
-  const subHeading = block.querySelector('[data-aue-prop="sub-heading"],[data-aue-prop="description"]');
+  const subHeading = blockchildren[2].children[0];
   if (subHeading) {
     const subHeadingElement = document.createElement('p');
     subHeadingElement.className = 'about-us-left-sub-heading';
@@ -62,15 +62,15 @@ export default function decorate(block) {
   }
 
   // Find all LinkFields and replace with arrow icons
-  const linkField = block.querySelector('[data-aue-model="linkField"]');
+  const linkField = block.querySelector('[data-aue-model="linkField"],[data-gen-model="linkField"]');
   if (linkField) {
     const linkContainer = document.createElement('div');
     linkContainer.className = 'links-container';
     moveInstrumentation(linkField, linkContainer);
     // Handle link text
-    const originalLink = linkField.querySelector('[data-aue-prop="linkText"]');
-    const originalTarget = linkField.querySelector('[data-aue-prop="linkTarget"]');
-    const arrowIcon = linkField.querySelector('[data-aue-prop="linkSvgIcon"]');
+    const originalLink = linkField.querySelector('[data-aue-prop="linkText"],[data-gen-prop="linkText"]');
+    const originalTarget = linkField.querySelector('[data-aue-prop="linkTarget"],[data-gen-prop="linkTarget"]');
+    const arrowIcon = linkField.querySelector('[data-aue-prop="linkSvgIcon"],[data-gen-prop="linkSvgIcon"]');
 
     if (originalLink && originalTarget) {
       originalLink.setAttribute('target', originalTarget?.textContent.trim());
@@ -91,20 +91,20 @@ export default function decorate(block) {
   aboutUsRightContent.classList.add('col-xl-6', 'col-md-3', 'col-sm-4', 'about-us-right');
 
   // Collect all imageAndDescription elements first
-  const aboutUsDescription = block.querySelectorAll('[data-aue-model="featureItem"]');
-  if (aboutUsDescription) {
-    aboutUsDescription.forEach((description) => {
+  const featureItems = block.querySelectorAll('[data-aue-model="featureItem"],[data-gen-model="featureItem"]');
+  if (featureItems) {
+    featureItems.forEach((feature) => {
       // Create feature item container
       const featureContainer = document.createElement('div');
       featureContainer.classList.add('about-us-right-content');
-      moveInstrumentation(description, featureContainer);
-
+      moveInstrumentation(feature, featureContainer);
+      let featureChildren = feature.children;
       // Handle image feature
-      const imageElement = description.querySelector('img[data-aue-prop="feature-icon"], [data-aue-prop="feature-icon"] img');
+      const imageElement = featureChildren[0].querySelector("img");
       if (imageElement) {
         const imageContainer = document.createElement('div');
         const imageLink = imageElement.getAttribute('src');
-        const imgAltText = description.querySelector('[data-aue-prop="feature-icon-alt"]')?.textContent || '';
+        const imgAltText = feature.querySelector('[data-aue-prop="feature-icon-alt"]')?.textContent || '';
 
         if (imageLink) {
           const imageHtml = ImageComponent({
@@ -129,7 +129,7 @@ export default function decorate(block) {
       }
 
       // Handle text feature
-      const textElement = description.querySelector('[data-aue-prop="feature-title"],[data-richtext-prop="feature-title"]');
+      const textElement = featureChildren[2];
       if (textElement) {
         const textContainer = document.createElement('div');
         const statisticDiv = document.createElement('div');
@@ -156,7 +156,7 @@ export default function decorate(block) {
       }
 
       // Handle feature heading
-      const featureHeadingElement = description.querySelector('[data-aue-prop="feature-heading"], [data-richtext-prop="feature-heading"], div:last-child');
+      const featureHeadingElement = featureChildren[3];;
       if (featureHeadingElement) {
         const headingContainer = document.createElement('div');
         const featureHeadingP = document.createElement('p');
