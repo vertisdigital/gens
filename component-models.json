@@ -1190,7 +1190,7 @@
     "fields": [
       {
         "component": "custom-asset-namespace:custom-asset",
-        "name": "image",
+        "name": "awardimage",
         "label": "Award Image",
         "configUrl": "https://main--genting--wppopen.aem.live/tools/assets-selector/config.json",
         "multi": false,
@@ -1200,7 +1200,7 @@
       },
       {
         "component": "text",
-        "name": "year",
+        "name": "awardyear",
         "label": "Award Year",
         "validation": {
           "maxLength": 4,
@@ -1210,7 +1210,7 @@
       },
       {
         "component": "text",
-        "name": "title",
+        "name": "awardheading",
         "label": "Award Title", 
         "validation": {
           "maxLength": 100,
@@ -1219,7 +1219,7 @@
       },
       {
         "component": "text",
-        "name": "description",
+        "name": "awarddescription",
         "label": "Award Description",
         "validation": {
           "maxLength": 250,
