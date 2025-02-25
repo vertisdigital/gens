@@ -1175,32 +1175,5 @@
         }
       }
     ]
-  },
-  {
-    "id": "headerlogo",
-    "fields": [
-      {
-        "component": "custom-asset-namespace:custom-asset",
-        "name": "staticlogo",
-        "label": "Static Logo",
-        "configUrl": "https://main--genting--wppopen.aem.page/tools/assets-selector/config.json",
-        "multi": false
-      },
-      {
-        "component": "custom-asset-namespace:custom-asset",
-        "name": "stickylogo",
-        "label": "Sticky Logo",  
-        "configUrl": "https://main--genting--wppopen.aem.page/tools/assets-selector/config.json",
-        "multi": false
-      },
-      {
-        "component": "aem-content",
-        "name": "reference",
-        "label": "Reference",
-        "validation": {
-          "rootPath": "/content/genting-singapore/index"
-        }
-      }
-    ]
   }
 ]
