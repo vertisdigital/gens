@@ -7,17 +7,20 @@ export default function decorate(block) {
   block.classList.add('container-xl', 'container-md', 'container-sm');
 
   // Process list items
-  const listItems = block.querySelectorAll('[data-aue-model="listitem"], [data-aue-model="tile"]');
+  const listItems = block.querySelectorAll('[data-aue-model="listitem"], [data-gen-model="listitem"]');
   listItems.forEach((item) => {
     // Create row from styles.css
     const row = document.createElement('div');
     row.classList.add('row');
 
     // Get all content elements
-    const title = item.querySelector('[data-aue-type="text"]');
-    const description = item.querySelector('[data-aue-prop="description"]');
+    const allDivElements = item.querySelectorAll('div');
+    // const title = item.querySelector('[data-aue-type="text"], [data-gen-type="text"]');
+    const title = allDivElements[1].querySelector('p');
+    const description = allDivElements[2].querySelector('p');
     const link = item.querySelector('.button-container a');
-    const linkTarget = item.querySelector('[data-aue-label="Target"]');
+    // const linkTarget = item.querySelector('[data-aue-label="Target"]');
+    const linkTarget = allDivElements[4].querySelector('p');
 
     // Process image
     const imgContainer = item.querySelector('div:first-child');
@@ -90,7 +93,7 @@ export default function decorate(block) {
   });
 
   // Process CTA section
-  const ctaContainer = block.querySelector('[data-aue-model="linkField"]');
-  const ctaText = ctaContainer.querySelector('[data-aue-prop="linkTarget"]');
+  const ctaContainer = block.querySelector('[data-aue-model="linkField"], [data-gen-model="linkField"]');
+  const ctaText = ctaContainer.querySelector('[data-aue-prop="linkTarget"], [data-gen-prop="linkTarget"]');
   ctaText.innerHTML = '';
 }

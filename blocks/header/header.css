@@ -1023,3 +1023,128 @@ content: '🡢';
 .display-none {
   display: none;
 }
+
+/* Update selectors for the new structure */
+
+/* Primary Navigation Links */
+.header-inner-wrapper .nav-item .links {
+  display: flex;
+  flex-direction: column;
+}
+
+.header-inner-wrapper .nav-item .links > div:first-child {
+  /* Title styling */
+  font-size: 16px;
+  font-weight: 600;
+  line-height: 18px;
+  text-transform: uppercase;
+  color: var(--text-color);
+  cursor: pointer;
+}
+
+/* Hide empty divs and target div */
+.header-inner-wrapper .nav-item .links > div:nth-child(2),
+.header-inner-wrapper .nav-item .links > div:nth-child(3) {
+  display: none;
+}
+
+/* Overview link styling */
+.header-inner-wrapper .nav-item .links > div:nth-child(4) a {
+  font-size: 40px;
+  font-weight: 500;
+  line-height: 50px;
+  letter-spacing: -0.5px;
+  color: var(--text-color);
+  text-decoration: underline;
+  text-decoration-thickness: 1px;
+}
+
+.header-inner-wrapper .nav-item .links > div:nth-child(4) a:hover {
+  color: var(--primary-gold);
+}
+
+/* Navigation links (RWS, etc.) */
+.header-inner-wrapper .nav-item .links > div:nth-child(n+5) {
+  margin-bottom: 36px;
+}
+
+.header-inner-wrapper .nav-item .links > div:nth-child(n+5) a {
+  font-size: 24px;
+  font-weight: 400;
+  line-height: 30px;
+  color: var(--text-color);
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+
+.header-inner-wrapper .nav-item .links > div:nth-child(n+5) a:hover {
+  color: var(--primary-gold);
+}
+
+/* Active state for menu items */
+.header-inner-wrapper .nav-item.active .links > div:first-child {
+  color: var(--primary-gold);
+}
+
+/* Secondary Navigation Updates */
+.header-inner-wrapper .secondary-nav .secondary-header-links .nav-links {
+  display: flex;
+  flex-wrap: wrap;
+  margin: 0 -18px;
+}
+
+.header-inner-wrapper .secondary-nav .secondary-header-links .nav-links > div {
+  padding: 0 18px;
+  flex: 0 0 33.333%;
+  margin-bottom: 36px;
+}
+
+/* Mobile Styles */
+@media (width <= 992px) {
+  .header-inner-wrapper .nav-item .links > div:first-child {
+    padding: 24px 0;
+    border-bottom: 1px solid var(--text-color);
+  }
+
+  .header-inner-wrapper .nav-item .links > div:first-child::after {
+    content: '\203A';
+    float: right;
+    font-size: 24px;
+    margin-top: -4px;
+  }
+
+  .header-inner-wrapper .secondary-nav .secondary-header-links .nav-links {
+    flex-direction: column;
+  }
+
+  .header-inner-wrapper .secondary-nav .secondary-header-links .nav-links > div {
+    flex: 0 0 100%;
+  }
+
+  .header-inner-wrapper .nav-item .links > div:nth-child(4) a {
+    font-size: 32px;
+    line-height: 42px;
+    margin-bottom: 36px;
+  }
+}
+
+@media (width <= 768px) {
+  .header-inner-wrapper .nav-item .links > div:nth-child(4) a {
+    font-size: 28px;
+    line-height: 34px;
+    margin-bottom: 28px;
+  }
+
+  .header-inner-wrapper .nav-item .links > div:nth-child(n+5) {
+    margin-bottom: 30px;
+  }
+}
+
+/* Fixed header state */
+.header.fixed-header .nav-item .links > div:first-child {
+  color: var(--text-color);
+}
+
+.header.fixed-header .nav-item.active .links > div:first-child {
+  color: var(--primary-gold);
+}
