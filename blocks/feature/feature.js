@@ -225,10 +225,11 @@ export default function decorate(block) {
         showMoreIndicesLink.style.display = 'block';
         showLessIndicesLink.style.display = 'none';
       });
+      indices.innerHTML = '';
       indices.appendChild(showMoreIndicesLink);
       indices.appendChild(showLessIndicesLink);
     }
-    indices.innerHTML = '';
+    
     indices.appendChild(indexElement);
     aboutUsRightContent.appendChild(indices);
   }
