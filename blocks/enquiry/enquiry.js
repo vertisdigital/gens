@@ -115,7 +115,7 @@ export default function decorate(block) {
   const phone = wrapper.querySelector('[data-aue-prop="phoneNumber"], .enquiry-inner-1-4-1-1')?.textContent.trim();
   const email = wrapper.querySelector('[data-aue-prop="emailAddress"], .enquiry-inner-1-6-1-1')?.textContent.trim();
   const address = wrapper.querySelector('[data-aue-prop="address"], .enquiry-inner-1-8-1-1')?.textContent.trim();
-  const imageLink = wrapper.querySelectorAll('a[href*="/content/dam/"][href$=".png"], a[href*="delivery-"]');
+  const imageLink = wrapper.querySelectorAll('a[href*="/content/dam/"][href$=".svg"], a[href*="delivery-"]');
 
   if (phone) {
     contactItems.appendChild(createContactItem(phone, 'tel', 'phoneNumber', 'PhoneNumber', imageLink[0].getAttribute("href")));
