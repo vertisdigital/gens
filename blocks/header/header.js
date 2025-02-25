@@ -1,5 +1,5 @@
 import { getMetadata } from '../../scripts/aem.js';
-import { loadFragmentCustom } from '../fragment/fragment.js';
+import { loadFragment } from '../fragment/fragment.js';
 import SvgIcon from '../../shared-components/SvgIcon.js';
 import stringToHtml from '../../shared-components/Utility.js';
 
@@ -175,20 +175,36 @@ function createHeaderStructure(block) {
   primaryNav.className = 'primary-nav row';
 
   // Extract and create navigation items
-  const navItems = Array.from(block.querySelectorAll('[data-aue-model="links"]')).map((navSection) => createNavItem({
-    title: navSection.querySelector('[data-aue-prop="title"]')?.textContent,
-    overviewLinkText: navSection.querySelector('[data-aue-prop="linkText"]')?.textContent,
-    overviewLinkHref: navSection.querySelector('[data-aue-prop="linkText"]')?.getAttribute('href'),
-    overviewLinkTarget: navSection.querySelector('[data-aue-prop="linkTarget"]')?.textContent,
-    caption: navSection.querySelector('[title="Overview"]'),
-    captionTarget: '_self',
-    links: Array.from(navSection.querySelectorAll('[data-aue-model="linkField"]')).map((link) => ({
-      text: link.querySelector('[data-aue-prop="linkText"]')?.textContent,
-      href: link.querySelector('a')?.getAttribute('href'),
-      target: link.querySelector('[data-aue-prop="linkTarget"]')?.textContent,
-      resourcePath: link.getAttribute('data-aue-resource'),
-    })),
-  }));
+  const navItems = Array.from(block.querySelectorAll('.links')).map((navSection) => {
+    const sections = [...navSection.children];
+    
+    // Extract title from first section
+    const title = sections[0]?.querySelector('div')?.textContent;
+    
+    // Extract overview link from the fourth section (index 3)
+    const overviewSection = sections[3];
+    const overviewLink = overviewSection?.querySelector('a');
+    
+    // Create nav item object
+    return createNavItem({
+      title,
+      overviewLinkText: overviewLink?.textContent || '',
+      overviewLinkHref: overviewLink?.getAttribute('href') || '',
+      overviewLinkTarget: sections[2]?.querySelector('div')?.textContent || '_self',
+      caption: overviewLink,
+      captionTarget: '_self',
+      // Map remaining sections as links (starting from index 4)
+      links: sections.slice(4).map((linkSection) => {
+        const link = linkSection.querySelector('a');
+        return {
+          text: link?.getAttribute('title') || link?.textContent,
+          href: link?.getAttribute('href') || '',
+          target: linkSection.querySelector('div:last-child')?.textContent || '_self',
+          resourcePath: linkSection.getAttribute('data-aue-resource')
+        };
+      })
+    });
+  });
 
   navItems.forEach((item) => {
     const li = document.createElement('li');
@@ -471,7 +487,7 @@ function handleScroll(header) {
 export default async function decorate(block) {
   const navMeta = getMetadata('nav');
   const navPath = navMeta ? new URL(navMeta, window.location).pathname : '/nav';
-  const fragment = await loadFragmentCustom(navPath);
+  const fragment = await loadFragment(navPath);
 
   if (fragment && true) {
     const header = createHeaderStructure(fragment);
