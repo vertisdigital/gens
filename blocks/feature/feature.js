@@ -100,7 +100,7 @@ export default function decorate(block) {
       moveInstrumentation(feature, featureContainer);
       const featureChildren = feature.children;
       // Handle image feature
-      const imageElement = featureChildren[0].querySelector('[data-aue-prop="feature-title"], img, a');
+      const imageElement = featureChildren[0].querySelector('[data-aue-prop="feature-icon"], img, a');
       if (imageElement) {
         const imageContainer = document.createElement('div');
         const imageLink = imageElement.getAttribute('src') ?? imageElement.getAttribute('href');
