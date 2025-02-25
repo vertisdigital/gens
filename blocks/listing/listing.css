@@ -24,7 +24,7 @@
   }
 
   /* Header styles */
-  [data-aue-prop="title"][data-aue-label="Title"], [data-gen-prop="title"][data-gen-label="Title"] {
+  [data-aue-prop="title"], [data-gen-prop="title"] {
     color: var(--text-color);
     font-size: var(--heading-font-size-s);
     line-height: 24px;
@@ -33,7 +33,7 @@
     font-weight: 600;
   }
 
-  [data-aue-prop="heading"][data-aue-label="Heading"], [data-gen-prop="heading"][data-gen-label="Heading"] {
+  [data-aue-prop="heading"], [data-gen-prop="heading"] {
     color: var(--text-color);
     font-size: 40px;
     font-weight: 500;
@@ -105,12 +105,12 @@
   /* Tablet Design */
   @media (width < 992px){
   /* Header styles */
-  [data-aue-prop="title"][data-aue-label="Title"], [data-gen-prop="title"][data-aue-label="Title"] {
+  [data-aue-prop="title"], [data-gen-prop="title"] {
     font-size: 16px;
     font-weight: 700;
   }
 
-  [data-aue-prop="heading"][data-aue-label="Heading"], [data-gen-prop="heading"][data-gen-label="Heading"] {
+  [data-aue-prop="heading"], [data-gen-prop="heading"]{
     font-size: 32px;
     margin-bottom: 24px;
     line-height: 42px;
@@ -146,7 +146,7 @@
 
   /* Mobile Design */
   @media (width < 768px) {
-    [data-aue-prop="heading"][data-aue-label="Heading"], [data-gen-prop="heading"][data-gen-label="Heading"] {
+    [data-aue-prop="heading"], [data-gen-prop="heading"] {
       font-size: 28px;
       line-height: 34px;
       margin-bottom: 18px;

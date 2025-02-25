@@ -14,10 +14,14 @@ export default function decorate(block) {
     row.classList.add('row');
 
     // Get all content elements
-    const title = item.querySelector('[data-aue-type="text"], [data-gen-type="text"]');
-    const description = item.querySelector('[data-aue-prop="description"], [data-gen-prop="description"]');
+    const allDivElements = item.querySelectorAll('div');
+    // const title = item.querySelector('[data-aue-type="text"], [data-gen-type="text"]');
+    const title = allDivElements[1].querySelector('p');
+    // const description = item.querySelector('[data-aue-prop="description"], [data-gen-prop="description"]');
+    const description = allDivElements[2].querySelector('p');
     const link = item.querySelector('.button-container a');
-    const linkTarget = item.querySelector('[data-aue-label="Target"]');
+    // const linkTarget = item.querySelector('[data-aue-label="Target"]');
+    const linkTarget = allDivElements[4].querySelector('p');
 
     // Process image
     const imgContainer = item.querySelector('div:first-child');
