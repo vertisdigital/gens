@@ -106,6 +106,9 @@ a:any-link.factsheet-button {
   border-bottom: 2px solid #B29152;
   line-height: 100%;
 }  */
+.row.tiles-container>div:first-child [data-gen-model="tile"]> div:nth-child(2) p {
+  color: var(--body-text-color)
+}
 
 .row.tiles-container [data-gen-model="tile"]>div:first-child p{
     font-size: 40px;
@@ -116,12 +119,7 @@ a:any-link.factsheet-button {
     margin-bottom: 12px;
 }
 
-.row.tiles-container [data-gen-model="tile"]>div:nth-child(2) p{
-  font-size: 16px;
-  font-weight: 400;
-  line-height: 24px;
-  color: var(--light-grey);
-}
+
 
 .row.tiles-container > .image-tile [data-aue-prop="heading"], .row.tiles-container > .image-tile [data-gen-model="tile"]>div:first-child p {
   font-size: 20px;
