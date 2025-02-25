@@ -91,7 +91,7 @@ export default function decorate(block) {
   aboutUsRightContent.classList.add('col-xl-6', 'col-md-3', 'col-sm-4', 'about-us-right');
 
   // Collect all imageAndDescription elements first
-  const featureItems = block.querySelectorAll('[data-aue-model="featureItem"],[data-gen-model="featureItem"]');
+  const featureItems = [].slice.call(block.children,4);
   if (featureItems) {
     featureItems.forEach((feature) => {
       // Create feature item container
@@ -172,7 +172,7 @@ export default function decorate(block) {
   }
   // check if data-aue-model="indices" exists
   const indices = blockchildren[blockchildren.length - 1];
-  if (indices) {
+  if (indices && indices.children.length === 3 ) {
     // get less indices, more indices and indexnumber content elements
     const lessIndices = indices.children[1];
     const moreIndices = indices.children[0];
