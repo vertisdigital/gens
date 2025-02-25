@@ -149,7 +149,7 @@ function createHeaderStructure(block) {
   // Create logo section
   const logoWrapper = document.createElement('a');
   logoWrapper.className = 'logo-wrapper';
-  logoWrapper.href = 'https://author-p144202-e1512622.adobeaemcloud.com/content/genting-singapore/index.html';
+  logoWrapper.href = block.querySelector('.links .button')?.href || '/';
 
   // Get both logo images from fragment
   const images = block.querySelectorAll('picture');
