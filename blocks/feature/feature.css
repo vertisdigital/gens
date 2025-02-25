@@ -39,14 +39,7 @@
   color: var(--text-color);
   margin: 0;
   margin-bottom: 8px;
-  line-height: 28px;
-
-}
-
-.about-us-left h2.about-us-left-heading[data-aue-label="Title"] {
-  font-size: 16px;
-  line-height: 20px;
-  font-weight: 600;
+  line-height: 34px;
 }
 
 .about-us-left .about-us-left-sub-heading{
@@ -194,11 +187,6 @@ color: var(--body-text-color);
     line-height: 42px;
   }
 
-  .about-us-left h2.about-us-left-heading[data-aue-label="Title"] {
-    font-size: 18px;
-    line-height: 24px;
-  }
-
   .about-us-left .about-us-left-sub-heading{
     font-size: 16px;
     line-height: 24px;
@@ -264,13 +252,9 @@ color: var(--body-text-color);
     margin-bottom: 20px;
   }
 
-  .about-us-left h2.about-us-left-heading{
-    font-size: 40px;
+  .about-us-left h2.about-us-left-heading {
     line-height: 50px;
-  }
-
-  .about-us-left h2.about-us-left-heading[data-aue-label="Title"] {
-    font-size: 20px;
+    font-size: 30px;
   }
 
   .about-us-left .about-us-left-sub-heading{

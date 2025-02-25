@@ -4,10 +4,12 @@ import { moveInstrumentation } from '../../scripts/scripts.js';
 
 export default function decorate(block) {
   // Restructure the HTML for better semantics and accessibility
-  const wrapper = block.closest('.enquiry-wrapper');
+  const wrapper = block.closest('.enquiry-wrapper') || block;
   const enquiryResource = wrapper.querySelector('[data-aue-label="Enquiry"]');
 
-  moveInstrumentation(enquiryResource, wrapper);
+  if(enquiryResource){
+    moveInstrumentation(enquiryResource, wrapper);
+  }
 
   // Create single container with all responsive classes
   const container = document.createElement('div');
@@ -22,7 +24,7 @@ export default function decorate(block) {
 
   // Create heading container with proper attributes
   const headingContainer = document.createElement('div');
-  const headingText = wrapper.querySelector('[data-aue-prop="heading"]')?.textContent.trim();
+  const headingText = wrapper.querySelector('[data-aue-prop="heading"], .enquiry-inner-1-1-1-1')?.textContent.trim();
   const headingElement = document.createElement('div');
 
   if (headingText) {
@@ -46,7 +48,7 @@ export default function decorate(block) {
   rightCol.className = 'col-xl-6 col-md-3 container-sm-4';
 
   // Add description with authoring attributes
-  const description = wrapper.querySelector('[data-aue-prop="description"]');
+  const description = wrapper.querySelector('[data-aue-prop="description"], [data-gen-prop="description"]');
   if (description) {
     const descriptionWrapper = document.createElement('div');
     descriptionWrapper.className = 'enquiry-description';
@@ -64,7 +66,7 @@ export default function decorate(block) {
   contactItems.setAttribute('role', 'list');
 
   // Helper function to create accessible contact items with authoring support
-  const createContactItem = (text, linkType, prop, label) => {
+  const createContactItem = (text, linkType, prop, label, imageLink) => {
     const item = document.createElement('div');
     item.className = 'contact-item';
     item.setAttribute('role', 'listitem');
@@ -74,12 +76,11 @@ export default function decorate(block) {
     iconWrapper.className = 'contact-icon';
     iconWrapper.setAttribute('aria-hidden', 'true');
 
-    const imageLink = wrapper.querySelector('a[href*="/content/dam/"][href$=".png"], a[href*="/content/dam/"][href$=".jpeg"], a[href*="/content/dam/"][href$=".jpg"], a[href*="/content/dam/"][href$=".gif"], a[href*="/content/dam/"][href$=".svg"]');
     if (imageLink) {
       // Create optimized picture element
-      const picture = createOptimizedPicture(imageLink.href, '', false);
+      const picture = createOptimizedPicture(imageLink, '', false);
       // Remove original link
-      imageLink.remove();
+      // imageLink.remove();
       if (picture) {
         iconWrapper.appendChild(picture);
       }
@@ -111,18 +112,19 @@ export default function decorate(block) {
   };
 
   // Add contact items with proper attributes
-  const phone = wrapper.querySelector('[data-aue-prop="phoneNumber"]')?.textContent.trim();
-  const email = wrapper.querySelector('[data-aue-prop="emailAddress"]')?.textContent.trim();
-  const address = wrapper.querySelector('[data-aue-prop="address"]')?.textContent.trim();
+  const phone = wrapper.querySelector('[data-aue-prop="phoneNumber"], .enquiry-inner-1-4-1-1')?.textContent.trim();
+  const email = wrapper.querySelector('[data-aue-prop="emailAddress"], .enquiry-inner-1-6-1-1')?.textContent.trim();
+  const address = wrapper.querySelector('[data-aue-prop="address"], .enquiry-inner-1-8-1-1')?.textContent.trim();
+  const imageLink = wrapper.querySelectorAll('a[href*="/content/dam/"][href$=".svg"], a[href*="delivery-"]');
 
   if (phone) {
-    contactItems.appendChild(createContactItem(phone, 'tel', 'phoneNumber', 'PhoneNumber'));
+    contactItems.appendChild(createContactItem(phone, 'tel', 'phoneNumber', 'PhoneNumber', imageLink[0].getAttribute("href")));
   }
   if (email) {
-    contactItems.appendChild(createContactItem(email, 'mailto', 'emailAddress', 'EmailAddress'));
+    contactItems.appendChild(createContactItem(email, 'mailto', 'emailAddress', 'EmailAddress', imageLink[1].getAttribute("href")));
   }
   if (address) {
-    contactItems.appendChild(createContactItem(address, null, 'address', 'Address'));
+    contactItems.appendChild(createContactItem(address, null, 'address', 'Address', imageLink[2].getAttribute("href")));
   }
 
   rightCol.appendChild(contactItems);

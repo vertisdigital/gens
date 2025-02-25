@@ -9,9 +9,12 @@
 }
 
 .statistics-container .feature-wrapper .about-us-right-content{
-  margin-bottom: 10px;
-  padding-bottom: 10px;
+  margin-bottom: 10px !important;
+  padding-bottom: 10px !important;
   border-bottom: 1px solid var(--text-color);
+  border-top: none !important;
+  padding-top: 0 !important;
+  margin-top: 0 !important;
 }
 
 .statistics-description-wrapper {
