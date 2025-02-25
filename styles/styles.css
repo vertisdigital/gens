@@ -132,7 +132,6 @@ Usage Example:
 }
 
 body {
-  display: none;
   margin: 0;
   background-color: var(--background-color);
   color: var(--body-text-color);
@@ -1009,37 +1008,5 @@ main .section.highlight {
   .tabs-container .about-us-stats .about-us-right-content .statistic span:first-child{
     font-size: 40px;
     line-height: 40px;
-  }
-}
-
-main {
-  position: relative;
-}
-
-main::before {
-  content: '';
-  background: url("../icons/genting-page-mobile-bg.jpg") repeat-y;
-  background-position: center top;
-  position: absolute;
-  inset: 0;
-  z-index: -1;
-}
-@media (width >= 768px) {
-  main::before {
-    background: url("../icons/genting-page-tablet-bg.jpg") repeat-y;
-    background-position: center top;
-  }
-}
-@media (width >= 1024px) {
-  main::before {
-    background: url("../icons/genting-page-desktop-bg-1440.jpg") repeat-y;
-    background-position: center top;
-  }
-}
-@media (width >= 1441px) {
-  main::before {
-    background: url("../icons/genting-page-desktop-bg-1920.jpg") repeat-y;
-    background-position: center top;
-    background-size: 100%;
   }
 }

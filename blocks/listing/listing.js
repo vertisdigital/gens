@@ -34,20 +34,19 @@ export default function decorate(block) {
         img.src = imgAnchor.href;
         img.alt = '';
 
-        ImageComponent({
+        const imageComp = ImageComponent({
           element: img,
           src: imgAnchor.href,
           alt: '',
           lazy: true,
         });
 
-        // Create picture element to properly handle responsive images
-        const picture = document.createElement('picture');
-        picture.appendChild(img);
-
-        // Replace anchor with picture element containing the image
+        // Convert imageComp to DOM element using stringToHtml utility
+        const imageElement = stringToHtml(imageComp);
+        
+        // Append the image element
         imgContainer.innerHTML = '';
-        imgContainer.appendChild(picture);
+        imgContainer.appendChild(imageElement);
       }
       row.appendChild(imgContainer);
     }
