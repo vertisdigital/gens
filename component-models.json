@@ -1227,5 +1227,19 @@
         }
       }
     ]
-  }  
+  } ,
+  {
+    "id": "awardstile",
+    "fields": [
+      {
+        "component": "text",
+        "name": "title",
+        "label": "Title", 
+        "validation": {
+          "maxLength": 100,
+          "customErrorMsg": "Title cannot exceed 100 characters"
+        }
+      }
+    ]
+  }
 ]
