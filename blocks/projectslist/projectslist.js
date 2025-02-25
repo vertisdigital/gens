@@ -1,9 +1,10 @@
-import { createOptimizedPicture } from '../../scripts/aem.js';
 import { moveInstrumentation } from '../../scripts/scripts.js';
+import ImageComponent from '../../shared-components/ImageComponent.js';
+import stringToHtml from '../../shared-components/Utility.js';
 
 export default function decorate(block) {
   // Restructure the HTML for better semantics and accessibility
-  const wrapper = block.closest('.projectslist-wrapper') || block;
+  const wrapper = block.closest('.projectslist') || block;
 
   // Create single container with all responsive classes
   const container = document.createElement('div');
@@ -11,7 +12,7 @@ export default function decorate(block) {
   moveInstrumentation(wrapper, container);
 
   const projectsContainer = wrapper.querySelector(
-    '[data-aue-model="projectslist"], [data-gen-model="projectslist"]'
+    '[data-aue-model="projectslist"], [data-gen-model="projectslist"]',
   ) || wrapper;
 
   Array.from(projectsContainer.children).forEach((project) => {
@@ -67,18 +68,38 @@ export default function decorate(block) {
     const rightCol = document.createElement('div');
     rightCol.className = 'col-xl-6 col-md-3 container-sm-4 right-col';
 
-    const imageLink = project.querySelector(
-      'a[href*="/content/dam/"][href$=".png"], a[href*="/content/dam/"][href$=".jpeg"], a[href*="/content/dam/"][href$=".jpg"], a[href*="/content/dam/"][href$=".gif"], a[href*="/content/dam/"][href$=".svg"]',
-    );
+    const imageLink = project.querySelector('a[href*="delivery-"]', 'a[href*="/content/dam/"][href$=".png"], a[href*="/content/dam/"][href$=".jpeg"], a[href*="/content/dam/"][href$=".jpg"], a[href*="/content/dam/"][href$=".gif"], a[href*="/content/dam/"][href$=".svg"]');
+
     if (imageLink) {
       const imageUrl = imageLink.getAttribute('href');
-      const picture = createOptimizedPicture(imageUrl, '', false);
+      const picture = ImageComponent({
+        src: imageUrl,
+        alt: '',
+        className: 'proejctlisting-image',
+        breakpoints: {
+          mobile: {
+            width: 768,
+            src: `${imageUrl}`,
+          },
+          tablet: {
+            width: 1024,
+            src: `${imageUrl}`,
+          },
+          desktop: {
+            width: 1920,
+            src: `${imageUrl}`,
+          },
+        },
+        lazy: true,
+      });
       // Remove original link
       imageLink.remove();
+
       if (picture) {
         const imageContainer = document.createElement('div');
         imageContainer.className = 'project-image';
-        imageContainer.appendChild(picture);
+        const imageElement = stringToHtml(picture);
+        imageContainer.appendChild(imageElement);
         rightCol.appendChild(imageContainer);
       }
     }
