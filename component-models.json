@@ -3,10 +3,15 @@
     "id": "image",
     "fields": [
       {
-        "component": "reference",
+        "component": "custom-asset-namespace:custom-asset",
+        "valueType": "string",
         "name": "image",
-        "label": "Image",
-        "multi": false
+        "label": "image",
+        "configUrl": "https://main--genting--wppopen.aem.live/tools/assets-selector/config.json",
+        "multi": false,
+        "validation": {
+          "rootPath": "/content/dam/genting-singapore"
+        }
       },
       {
         "component": "text",
