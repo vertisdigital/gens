@@ -1,36 +1,3 @@
-export default function decorate(block) {
-  block.className = 'container-xl container-md container-sm textmediablock-container';
-
-  // Determine block variation by checking first child
-  const firstChild = block.children[0];
-  const hasImageFirst = firstChild.querySelector('a') !== null;
-
-  if (hasImageFirst) {
-    // Variation 1: Image first, then text
-    handleImageElement(firstChild);
-    
-    // Add classes to text section
-    const textSection = block.children[1];
-    if (textSection) {
-      textSection.classList.add('textblock');
-      textSection.children[0]?.classList.add('heading');
-      textSection.children[1]?.classList.add('textsection');
-    }
-  } else {
-    // Variation 2: Text first, then image
-    const textSection = firstChild;
-    const imageSection = block.children[1];
-    
-    textSection.classList.add('textblock');
-    textSection.children[0]?.classList.add('heading');
-    textSection.children[1]?.classList.add('textsection');
-    
-    if (imageSection) {
-      handleImageElement(imageSection);
-    }
-  }
-}
-
 function handleImageElement(mediaBlock) {
   const linkElement = mediaBlock.querySelector('a');
   if (linkElement) {
@@ -48,5 +15,37 @@ function handleImageElement(mediaBlock) {
 
     // Replace link with image
     linkElement.parentElement.replaceChild(img, linkElement);
+  }
+}
+export default function decorate(block) {
+  block.className = 'container-xl container-md container-sm textmediablock-container';
+
+  // Determine block variation by checking first child
+  const firstChild = block.children[0];
+  const hasImageFirst = firstChild.querySelector('a') !== null;
+
+  if (hasImageFirst) {
+    // Variation 1: Image first, then text
+    handleImageElement(firstChild);
+
+    // Add classes to text section
+    const textSection = block.children[1];
+    if (textSection) {
+      textSection.classList.add('textblock');
+      textSection.children[0]?.classList.add('heading');
+      textSection.children[1]?.classList.add('textsection');
+    }
+  } else {
+    // Variation 2: Text first, then image
+    const textSection = firstChild;
+    const imageSection = block.children[1];
+
+    textSection.classList.add('textblock');
+    textSection.children[0]?.classList.add('heading');
+    textSection.children[1]?.classList.add('textsection');
+
+    if (imageSection) {
+      handleImageElement(imageSection);
+    }
   }
 }

@@ -100,10 +100,10 @@ export default function decorate(block) {
       moveInstrumentation(feature, featureContainer);
       const featureChildren = feature.children;
       // Handle image feature
-      const imageElement = featureChildren[0].querySelector('img');
+      const imageElement = featureChildren[0].querySelector('[data-aue-prop="feature-icon"], img, a');
       if (imageElement) {
         const imageContainer = document.createElement('div');
-        const imageLink = imageElement.getAttribute('src');
+        const imageLink = imageElement.getAttribute('src') ?? imageElement.getAttribute('href');
         const imgAltText = feature.querySelector('[data-aue-prop="feature-icon-alt"]')?.textContent || '';
 
         if (imageLink) {
@@ -129,7 +129,7 @@ export default function decorate(block) {
       }
 
       // Handle text feature
-      const textElement = featureChildren[2];
+      const textElement = featureChildren[2].querySelector('[data-aue-prop="feature-title"]')??featureChildren[2];
       if (textElement) {
         const textContainer = document.createElement('div');
         const statisticDiv = document.createElement('div');
@@ -193,7 +193,8 @@ export default function decorate(block) {
     const convDescription = aboutUsRightContent.children;
     // removing the first child of all the feature items for the indices variant
     for (let i = 0; i < convDescription.length; i += 1) {
-      convDescription[i].children[0]?.remove();
+      if(convDescription[i].children[0].textContent?.trim() === '' && !convDescription[i].children[0].querySelector('picture, img') )
+        convDescription[i].children[0]?.remove();
     }
     // featureitems are  more than indexNumber indices then hide
     // the remaing and show link to show more indices link with remaining indices count in text
@@ -224,11 +225,11 @@ export default function decorate(block) {
         showMoreIndicesLink.style.display = 'block';
         showLessIndicesLink.style.display = 'none';
       });
+      indices.appendChild(showMoreIndicesLink);
+      indices.appendChild(showLessIndicesLink);
     }
     indices.innerHTML = '';
     indices.appendChild(indexElement);
-    indices.appendChild(showMoreIndicesLink);
-    indices.appendChild(showLessIndicesLink);
     aboutUsRightContent.appendChild(indices);
   }
   block.innerHTML = '';
