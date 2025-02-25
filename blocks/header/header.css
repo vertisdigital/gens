@@ -864,11 +864,6 @@ content: '🡢';
 }
 
 @media(width<=992px){
-.header-inner-wrapper>div:first-child{
-    padding: 24px 0;
-  }
-
-
 .header-inner-wrapper .header-nav .logo-wrapper{
   max-width: 140px;
  max-height: 42px;
