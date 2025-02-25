@@ -14,22 +14,26 @@ function createTabStructure(main) {
 
   console.log(`[Tab System] Found ${tabElements.length} tabs. Creating structure...`);
 
+  // Use the classes from the old JS
   const tabsContainer = document.createElement('div');
-  tabsContainer.className = 'tabs-container section tab-container';
-  tabsContainer.setAttribute('data-section-status', 'loaded');
+  tabsContainer.className = 'container-xl container-lg container-md container-sm tabpanel';
+  
+  const tabsWrapper = document.createElement('div');
+  tabsWrapper.className = 'tabs-container block';
+  tabsWrapper.dataset.blockName = 'tabs';
   
   const tabNav = document.createElement('div');
-  tabNav.className = 'tab-nav';
-  tabNav.style.display = 'flex';
+  tabNav.className = 'tabs-header row';
   
   const tabWrapper = document.createElement('div');
-  tabWrapper.className = 'tab-wrapper';
+  tabWrapper.className = 'tabs-content';
 
   console.log('[Tab System] Basic tab structure created.');
 
   return {
     tabElements,
     tabsContainer,
+    tabsWrapper,
     tabNav,
     tabWrapper
   };
@@ -46,21 +50,24 @@ function createTabElement(section, index) {
 
   console.log(`[Tab System] Creating tab ${index + 1}: "${titleText}"`);
 
+  // Use the classes from the old JS
   const tabTitle = document.createElement('div');
   tabTitle.textContent = titleText;
-  tabTitle.className = 'tab-title';
-  tabTitle.setAttribute('role', 'tab');
-  tabTitle.setAttribute('data-tab-index', index);
+  tabTitle.className = 'tab-title col-xl-6 col-lg-6 col-md-3 col-sm-2';
+  tabTitle.setAttribute('data-index', index);
   tabTitle.setAttribute('tabindex', '0');
   if (index === 0) tabTitle.classList.add('active');
   
-  const tabPanel = section.cloneNode(true);
-  tabPanel.classList.add('tab', 'block');
-  tabPanel.setAttribute('data-block-name', 'tab');
-  tabPanel.setAttribute('data-block-status', 'loaded');
-  tabPanel.setAttribute('role', 'tabpanel');
-  tabPanel.setAttribute('data-tab-index', index);
-  tabPanel.classList.toggle('active', index === 0);
+  const tabPanel = document.createElement('div');
+  tabPanel.className = 'tab-panel';
+  tabPanel.setAttribute('data-index', index);
+  if (index === 0) tabPanel.classList.add('active');
+  
+  // Clone the content of the section into the tab panel
+  Array.from(section.children).forEach(child => {
+    const clone = child.cloneNode(true);
+    tabPanel.appendChild(clone);
+  });
 
   console.log(`[Tab System] Tab "${titleText}" created successfully.`);
 
@@ -72,7 +79,7 @@ function createTabElement(section, index) {
  * @param {Object} elements The tab elements to assemble
  * @returns {Object} References to assembled elements
  */
-function assembleTabStructure({ tabElements, tabsContainer, tabNav, tabWrapper }) {
+function assembleTabStructure({ tabElements, tabsContainer, tabsWrapper, tabNav, tabWrapper }) {
   console.log('[Tab System] Assembling tab structure...');
 
   const tabs = [];
@@ -88,12 +95,13 @@ function assembleTabStructure({ tabElements, tabsContainer, tabNav, tabWrapper }
     tabWrapper.appendChild(tabPanel);
   });
 
-  tabsContainer.appendChild(tabNav);
-  tabsContainer.appendChild(tabWrapper);
+  tabsWrapper.appendChild(tabNav);
+  tabsWrapper.appendChild(tabWrapper);
+  tabsContainer.appendChild(tabsWrapper);
 
   console.log('[Tab System] Tab structure assembled successfully.');
 
-  return { tabs, panels, container: tabsContainer };
+  return { tabs, panels, container: tabsContainer, wrapper: tabsWrapper };
 }
 
 /**
@@ -120,7 +128,7 @@ function updateTabStates(tabs, panels, activeIndex) {
  * Adds click functionality to tabs using event delegation
  * @param {Object} elements References to tab elements
  */
-function addTabFunctionality({ tabs, panels, container }) {
+function addTabFunctionality({ tabs, panels, container, wrapper }) {
   if (!tabs || !panels || !container) {
     console.warn('[Tab System] Missing required elements:', { tabs, panels, container });
     return;
@@ -128,22 +136,37 @@ function addTabFunctionality({ tabs, panels, container }) {
   
   console.log('[Tab System] Adding event delegation for tab clicks.');
 
-  const tabNav = container.querySelector('.tab-nav');
+  const tabNav = container.querySelector('.tabs-header');
 
   if (!tabNav) {
-    console.warn("⚠️ .tab-nav not found when adding event listener!");
+    console.warn("⚠️ .tabs-header not found when adding event listener!");
     return;
   }
 
-  console.log("✅ Found .tab-nav. Attaching click event...");
+  console.log("✅ Found .tabs-header. Attaching click event...");
 
-  tabNav.addEventListener('click', (e) => {
-    console.log("✅ Tab Click Detected:", e.target);
-    const clickedTab = e.target.closest('.tab-title');
-    if (!clickedTab) return;
+  tabNav.addEventListener('click', (event) => {
+    const tabButton = event.target.closest('.tab-title');
+    if (!tabButton) return;
 
-    const index = Number(clickedTab.getAttribute('data-tab-index'));
-    updateTabStates([...tabNav.children], [...container.querySelector('.tab-wrapper').children], index);
+    const index = parseInt(tabButton.getAttribute('data-index'), 10);
+    if (Number.isNaN(index)) return;
+    
+    // Update tabs
+    wrapper.querySelectorAll('.tab-title').forEach((btn) => {
+      btn.classList.remove('active');
+    });
+    tabButton.classList.add('active');
+    
+    // Update panels
+    wrapper.querySelectorAll('.tab-panel').forEach((panel) => {
+      panel.classList.remove('active');
+    });
+    
+    const activePanel = container.querySelector(`.tabs-content`).children[index];
+    if (activePanel) {
+      activePanel.classList.add('active');
+    }
   });
 
   console.log('[Tab System] Click event handlers attached.');
@@ -177,13 +200,8 @@ function processTabs(main) {
     firstTabElement.parentNode.insertBefore(elements.container, firstTabElement);
     console.log('[Tab System] Tab structure inserted at correct position.');
 
-    // Ensure tab-nav exists before adding event listeners
-    if (!document.querySelector('.tab-nav')) {
-      console.warn("⚠️ .tab-nav is still missing after DOM update. Retrying...");
-      setTimeout(() => addTabFunctionality(elements), 100);
-    } else {
-      addTabFunctionality(elements);
-    }
+    // Add event functionality
+    addTabFunctionality(elements);
 
     // Remove original sections
     structure.tabElements.forEach(section => section.remove());
