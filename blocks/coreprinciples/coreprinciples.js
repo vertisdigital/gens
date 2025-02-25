@@ -14,7 +14,7 @@ export default function decorate(block) {
   row.className = 'row';
 
   // Convert each item to use proper semantic structure
-  const items = [...coreBlock.querySelectorAll('[data-aue-model="coreprinciple"],[data-aue-model="featureItem"]')];
+  const items = [...coreBlock.querySelectorAll('[data-aue-model="coreprinciple"], [data-gen-model="featureItem"]')];
 
   items.forEach((item) => {
     // Add responsive column classes as per requirements
@@ -60,10 +60,13 @@ export default function decorate(block) {
     }
 
     // Convert title to h3 with preserved authoring attributes
-    const title = item.querySelector('[data-aue-prop="title"],[ data-aue-prop="feature-title"]');
+    const allDivElements = item.querySelectorAll('div');
+    // const title = item.querySelector('[data-aue-prop="title"], [data-gen-prop="feature-title"]');
+    const title = allDivElements[2];
     if (title !== null) {
       const h3 = document.createElement('h3');
       h3.textContent = title.textContent;
+      h3.className = 'coreprinciples-card-title';
 
       // Preserve title data-aue attributes
       const titleAttributes = [...title.attributes].filter((attr) => attr.name.startsWith('data-aue-'));
@@ -74,7 +77,7 @@ export default function decorate(block) {
     }
 
     // Preserve description data-aue attributes
-    const description = item.querySelector('[data-richtext-prop="description"], .section-inner-2-2-1-4-1');
+    const description = allDivElements[3];
     if (description) {
       const descAttributes = [...description.attributes].filter((attr) => attr.name.startsWith('data-aue-') || attr.name.startsWith('data-richtext-'));
       descAttributes.forEach((attr) => {

@@ -64,7 +64,7 @@
     fill: rgb(196 163 98);
 }
 
-.coreprinciples h3 {
+.coreprinciples .coreprinciples-card-title {
     font-size: 20px;
     font-weight: 600;
     line-height: 24px;
@@ -73,17 +73,17 @@
     color: var(--text-color);
 }
 
-.coreprinciples [data-aue-prop="description"] {
+.coreprinciples [data-aue-prop="description"], .coreprinciples div:last-child p {
     font-size: 16px;
     line-height: 24px;
     color: var(--body-text-color);
 }
 
-.coreprinciples [data-richtext-prop="description"] {
+.coreprinciples [data-richtext-prop="description"], .coreprinciples div:last-child p {
     font-size: 16px;
     font-weight: 400;
     line-height: 24px;
-    color: rgb(75 85 99);
+    color: var(--body-text-color);
 }
 @media (width <= 1199px) {
     .coreprinciples .coreprinciples::after {
@@ -106,7 +106,7 @@
         height: 80px;
     }
 
-    .coreprinciples h3 {
+    .coreprinciples .coreprinciples-card-title {
         font-size: 18px;
     }
 
@@ -145,18 +145,18 @@
         height: 64px;
     }
 
-    .coreprinciples h3 {
+    .coreprinciples .coreprinciples-card-title {
         font-size: 16px;
         line-height: 20px;
         margin-bottom: 8px;
     }
 
-    .coreprinciples [data-aue-prop="description"] {
+    .coreprinciples [data-aue-prop="description"], .coreprinciples div:last-child p {
         font-size: 14px;
         line-height: 20px;
     }
 
-    .coreprinciples [data-richtext-prop="description"] {
+    .coreprinciples [data-richtext-prop="description"], .coreprinciples div:last-child p {
         font-size: 14px;
         line-height: 20px;
     }
