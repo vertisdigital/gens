@@ -43,7 +43,7 @@ export default function decorate(block) {
   // processing the statistics description block
   const statisticBlockDescription = blockChilden[blockChilden.length - 1];
 
-  if (statisticBlockDescription) {
+  if (statisticBlockDescription && statisticBlockDescription.textContent.trim() !== '') {
     statisticBlockDescription.classList.add('statistics-description-wrapper');
     const descChildren = statisticBlockDescription.children;
     // replacing the title with  h2

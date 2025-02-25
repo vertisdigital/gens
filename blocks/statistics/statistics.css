@@ -12,7 +12,7 @@
   margin-bottom: 10px !important;
   padding-bottom: 10px !important;
   border-bottom: 1px solid var(--text-color);
-  border-top: none;
+  border-top: none !important;
   padding-top: 0 !important;
   margin-top: 0 !important;
 }
