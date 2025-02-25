@@ -22,7 +22,7 @@ export default function decorate(block) {
   // About-Us left container
   const aboutUsLeftContent = document.createElement('div');
   aboutUsLeftContent.classList.add('col-xl-6', 'col-md-3', 'col-sm-4', 'about-us-left');
-  let blockchildren = block.children;
+  const blockchildren = block.children;
   // Find the title and replace it with a heading
   const titleElement = blockchildren[0].children[0];
   if (titleElement) {
@@ -98,9 +98,9 @@ export default function decorate(block) {
       const featureContainer = document.createElement('div');
       featureContainer.classList.add('about-us-right-content');
       moveInstrumentation(feature, featureContainer);
-      let featureChildren = feature.children;
+      const featureChildren = feature.children;
       // Handle image feature
-      const imageElement = featureChildren[0].querySelector("img");
+      const imageElement = featureChildren[0].querySelector('img');
       if (imageElement) {
         const imageContainer = document.createElement('div');
         const imageLink = imageElement.getAttribute('src');
@@ -192,15 +192,15 @@ export default function decorate(block) {
     // getting all the feature items in aboutUsDescription
     const convDescription = aboutUsRightContent.children;
     // removing the first child of all the feature items for the indices variant
-    for (const description of convDescription) {
-      description.children[0]?.remove();
+    for (let i = 0; i < convDescription.length; i += 1) {
+      convDescription[i].children[0]?.remove();
     }
-      // featureitems are  more than indexNumber indices then hide
-      // the remaing and show link to show more indices link with remaining indices count in text
+    // featureitems are  more than indexNumber indices then hide
+    // the remaing and show link to show more indices link with remaining indices count in text
     if (indexNumber < convDescription.length) {
       // hide the remaining indices
       for (let i = indexNumber; i < convDescription.length; i += 1) {
-          convDescription[i].style.display = 'none';
+        convDescription[i].style.display = 'none';
       }
 
       showMoreIndicesLink.textContent = `${moreIndices?.textContent ?? 'Show More'
