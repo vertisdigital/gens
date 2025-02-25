@@ -20,7 +20,7 @@ export default function decorate(block) {
   // Move existing tiles into grid columns
   const tiles = Array.from(block.children);
   const firstTile = tiles[0];
-  const isFirsTileImage = firstTile && firstTile.querySelector('a[href*="/content/dam/"][href$=".png"], a[href*="/content/dam/"][href$=".jpeg"], a[href*="/content/dam/"][href$=".jpg"], a[href*="/content/dam/"][href$=".gif"]');
+  const isFirsTileImage = firstTile && firstTile.querySelector('a[href*="delivery-"], a[href*="/content/dam/"][href$=".png"],a[href*="/content/dam/"][href$=".jpeg"], a[href*="/content/dam/"][href$=".jpg"], a[href*="/content/dam/"][href$=".gif"]');
 
   tiles.forEach((tile, index) => {
     // Handle first tile's download button
