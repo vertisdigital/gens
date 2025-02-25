@@ -152,9 +152,9 @@ function createHeaderStructure(block) {
   logoWrapper.href = 'https://author-p144202-e1512622.adobeaemcloud.com/content/genting-singapore/index.html';
 
   // Get both logo images from fragment
-  const images = block.querySelectorAll('[data-aue-model="image"]');
-  const defaultLogo = images[0]?.querySelector('picture');
-  const scrollLogo = images[1]?.querySelector('picture');
+  const images = block.querySelectorAll('picture');
+  const defaultLogo = images[0]?.querySelector('img').getAttribute('src');
+  const scrollLogo = images[1]?..querySelector('img').getAttribute('src');
 
   // Add both logos with appropriate classes
   if (defaultLogo) {
