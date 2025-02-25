@@ -1233,7 +1233,7 @@
     "fields": [
       {
         "component": "text",
-        "name": "title",
+        "name": "textTitle",
         "label": "Title", 
         "validation": {
           "maxLength": 100,
