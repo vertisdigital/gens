@@ -67,7 +67,7 @@ function buildAutoBlocks(main) {
   console.log('Building auto blocks');
   try {
     // Process tabs
-    processTabs(main, moveInstrumentation);
+    processTabs(main);
   } catch (error) {
     console.error('Auto Blocking failed', error);
   }
