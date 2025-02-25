@@ -221,6 +221,7 @@
   font-weight: 600;
   margin-bottom: 8px;
 }
+
 .listing-wrapper .listing [data-aue-model="listitem"] [data-aue-prop="description"], .listing-wrapper .listing [data-gen-model="listitem"] [data-gen-prop="description"] {
   font-size: 14px;
   line-height: 20px;
@@ -237,16 +238,19 @@
     font-size: 32px;
     line-height: 24px;
   }
+
   .listing-wrapper .listing [data-aue-prop="heading"], .listing-wrapper .listing [data-gen-prop="heading"] {
     font-size: 32px;
     line-height: 42px;
     margin-bottom: 24px;
   }
+
   .listing-wrapper .listing [data-aue-model="listitem"] [data-aue-prop="title"], .listing-wrapper .listing [data-gen-model="listitem"] [data-gen-prop="title"] {
     font-size: 18px;
     line-height: 24px;
     margin-bottom: 10px;
   }
+
   .listing-wrapper .listing [data-aue-model="listitem"] [data-aue-prop="description"], .listing-wrapper .listing [data-gen-model="listitem"] [data-gen-prop="description"] {
     font-size: 16px;
     line-height: 24px;
@@ -267,6 +271,7 @@
     line-height: normal;
     margin-bottom: 36px;
   }
+
   .listing-wrapper .listing [data-aue-model="listitem"] [data-aue-prop="title"], .listing-wrapper .listing [data-gen-model="listitem"] [data-gen-prop="title"] {
     font-size: 20px;
     margin-bottom: 12px;

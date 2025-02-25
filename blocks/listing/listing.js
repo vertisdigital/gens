@@ -7,7 +7,7 @@ export default function decorate(block) {
   block.classList.add('container-xl', 'container-md', 'container-sm');
 
   // Process list items
-  const listItems = block.querySelectorAll('[data-aue-model="listitem"], [data-aue-model="tile"], [data-gen-model="listitem"]');
+  const listItems = block.querySelectorAll('[data-aue-model="listitem"], [data-gen-model="listitem"]');
   listItems.forEach((item) => {
     // Create row from styles.css
     const row = document.createElement('div');
@@ -17,7 +17,6 @@ export default function decorate(block) {
     const allDivElements = item.querySelectorAll('div');
     // const title = item.querySelector('[data-aue-type="text"], [data-gen-type="text"]');
     const title = allDivElements[1].querySelector('p');
-    // const description = item.querySelector('[data-aue-prop="description"], [data-gen-prop="description"]');
     const description = allDivElements[2].querySelector('p');
     const link = item.querySelector('.button-container a');
     // const linkTarget = item.querySelector('[data-aue-label="Target"]');

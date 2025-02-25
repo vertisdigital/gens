@@ -77,7 +77,6 @@ export default function decorate(block) {
     }
 
     // Preserve description data-aue attributes
-    // const description = item.querySelector('[data-richtext-prop="description"], .coreprinciples-element-1-1-4');
     const description = allDivElements[3];
     if (description) {
       const descAttributes = [...description.attributes].filter((attr) => attr.name.startsWith('data-aue-') || attr.name.startsWith('data-richtext-'));
