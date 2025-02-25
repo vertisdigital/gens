@@ -75,37 +75,7 @@
               }
             }
           }
-        },
-        {
-          "title": "TabsPanel",
-          "id": "tabspanel",
-          "plugins": {
-            "xwalk": {
-              "page": {
-                "resourceType": "core/franklin/components/section/v1/section",
-                "template": {
-                  "name": "tabspanel",
-                  "model": "tabspanel",
-                  "filter": "tabspanel"
-                }
-              }
-            }
-          }
-        },
-        {
-          "title": "TabsPosition",
-          "id": "tabsposition",
-          "plugins": {
-            "xwalk": {
-              "page": {
-                "resourceType": "core/franklin/components/section/v1/section",
-                "template": {
-                  "name": "tabsposition"
-                }
-              }
-            }
-          }
-        },        
+        },       
         {
           "title": "Tabs",
           "id": "tabs",
