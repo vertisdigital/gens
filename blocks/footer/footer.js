@@ -43,9 +43,10 @@ export default async function decorate(block) {
     logoWrapper.className = 'footer-logo';
 
     const logo = document.createElement('img');
-    const logoImg = container.querySelector('.imagelink img');
+    const socialImgContainer = container.querySelector('.imagelink')?.querySelectorAll('p');
+    const logoImg = socialImgContainer[0]?.querySelector('a');
     if (logoImg) {
-      logo.src = logoImg.src;
+      logo.src = logoImg.href;
       logo.alt = logoImg.alt || 'Genting Singapore';
     }
     logoWrapper.appendChild(logo);
@@ -53,7 +54,7 @@ export default async function decorate(block) {
     // Add description
     const description = document.createElement('p');
     description.className = 'footer-description';
-    description.textContent = container.querySelector('.imagelink p')?.textContent;
+    description.textContent = socialImgContainer[1]?.textContent;
 
     // Create main wrapper
     const socialWrapper = document.createElement('div');
