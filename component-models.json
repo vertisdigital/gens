@@ -466,7 +466,7 @@
         "options": [
           {
             "name": "Select",
-            "value": "select"
+            "value": ""
           },
           {
             "name": "Right Arrow",
