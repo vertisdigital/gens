@@ -11,7 +11,7 @@ export default function decorate(block) {
   moveInstrumentation(wrapper, container);
 
   const projectsContainer = wrapper.querySelector(
-    '[data-aue-model="projectslist"]',
+    '[data-aue-model="projectslist"], [data-gen-model="projectslist"]'
   ) || wrapper;
 
   Array.from(projectsContainer.children).forEach((project) => {
@@ -23,7 +23,9 @@ export default function decorate(block) {
     const leftCol = document.createElement('div');
     leftCol.className = 'col-xl-6 col-md-3 container-sm-4 left-col';
 
-    const titleText = project.querySelector('[data-aue-prop="title"]');
+    const allDivElements = project.querySelectorAll('div');
+
+    const titleText = allDivElements[0];
     if (titleText) {
       const title = document.createElement('p');
       title.className = 'project-title';
@@ -32,7 +34,7 @@ export default function decorate(block) {
       leftCol.appendChild(title);
     }
 
-    const subtitleText = project.querySelector('[data-aue-prop="subtitle"]');
+    const subtitleText = allDivElements[1];
     if (subtitleText) {
       const subtitle = document.createElement('p');
       subtitle.className = 'project-subtitle';
@@ -41,9 +43,7 @@ export default function decorate(block) {
       leftCol.appendChild(subtitle);
     }
 
-    const longDescriptionText = project.querySelector(
-      '[data-aue-prop="longdescription"]',
-    );
+    const longDescriptionText = allDivElements[2];
     if (longDescriptionText) {
       const longDescription = document.createElement('p');
       longDescription.className = 'project-long-description';
