@@ -36,8 +36,6 @@ export default function decorate(block) {
         'a[href*="/content/dam/"][href$=".png"], a[href*="delivery-"]',
       );
       if (imageLink) {
-        // Create optimized picture element
-        const picture = createOptimizedPicture(imageLink.href, '', false);
         // Set as background
         tile.style.backgroundImage = `url(${imageLink})`;
         tile.style.backgroundPosition = 'center';
