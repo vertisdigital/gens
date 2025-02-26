@@ -21,7 +21,7 @@ export default function decorate(block) {
 
   // About-Us left container
   const aboutUsLeftContent = document.createElement('div');
-  aboutUsLeftContent.classList.add('col-xl-6', 'col-md-3', 'col-sm-4', 'about-us-left');
+  aboutUsLeftContent.classList.add('col-xl-6', 'col-lg-6', 'col-md-6', 'col-sm-4', 'about-us-left');
   const blockchildren = block.children;
   // Find the title and replace it with a heading
   const titleElement = blockchildren[0].children[0];
@@ -52,13 +52,8 @@ export default function decorate(block) {
 
   const subHeading = blockchildren[2].children[0];
   if (subHeading) {
-    const subHeadingElement = document.createElement('p');
-    subHeadingElement.className = 'about-us-left-sub-heading';
-    moveInstrumentation(subHeading, subHeadingElement);
-    const subHeadingText = subHeading.querySelector('p')?.textContent;
-    subHeadingElement.textContent = subHeadingText;
-    aboutUsLeftContent.appendChild(subHeadingElement);
-    subHeading.remove();
+    subHeading.classList.add('about-us-left-sub-heading')
+    aboutUsLeftContent.appendChild(subHeading);
   }
 
   // Find all LinkFields and replace with arrow icons
@@ -74,6 +69,8 @@ export default function decorate(block) {
 
     if (originalLink && originalTarget) {
       originalLink.setAttribute('target', originalTarget?.textContent.trim());
+      // fix for text with / i.e. default content from AEM when link used
+      if(originalLink.textContent.startsWith("/")) originalLink.textContent =''
       originalTarget.textContent = '';
       if (arrowIcon) {
         const arrowIconName = arrowIcon?.textContent.replace('-', '');
@@ -88,17 +85,19 @@ export default function decorate(block) {
 
   // About-Us right container
   const aboutUsRightContent = document.createElement('div');
-  aboutUsRightContent.classList.add('col-xl-6', 'col-md-3', 'col-sm-4', 'about-us-right');
+  aboutUsRightContent.classList.add('col-xl-6', 'col-lg-6', 'col-md-6', 'col-sm-4', 'about-us-right');
 
   // Collect all imageAndDescription elements first
   const featureItems = [].slice.call(block.children,4);
   if (featureItems) {
     featureItems.forEach((feature) => {
+      const featureChildren = feature.children;
+      // checking and validating the feature item structure, as we need to get 4 children
+      if(featureChildren.length !== 4) return;
       // Create feature item container
       const featureContainer = document.createElement('div');
       featureContainer.classList.add('about-us-right-content');
       moveInstrumentation(feature, featureContainer);
-      const featureChildren = feature.children;
       // Handle image feature
       const imageElement = featureChildren[0].querySelector('[data-aue-prop="feature-icon"], img, a');
       if (imageElement) {
@@ -136,17 +135,17 @@ export default function decorate(block) {
         statisticDiv.className = 'statistic';
         moveInstrumentation(textElement, statisticDiv);
 
-        const textContent = textElement.querySelector('p') ? textElement.querySelectorAll('p') : textElement.textContent;
+        const textContent = textElement.querySelector('p') ? textElement.querySelectorAll('p') : textElement.innerHTML;
         if (typeof textContent === 'object') {
           textContent.forEach((text) => {
-            const span = document.createElement('span');
-            span.textContent = text.textContent;
-            moveInstrumentation(text, span);
-            statisticDiv.appendChild(span);
+            //const span = document.createElement('div');
+            //span.innerHTML = text.innerHTML;
+            //moveInstrumentation(text, span);
+            statisticDiv.appendChild(text);
           });
         } else {
-          const span = document.createElement('span');
-          span.textContent = textContent;
+          const span = document.createElement('p');
+          span.innerHTML = textContent;
           statisticDiv.appendChild(span);
         }
 
