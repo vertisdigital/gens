@@ -251,6 +251,10 @@
   padding-top: 0;
 }
 
+.left-carousel-arrow, .right-carousel-arrow {
+  margin-top: 2px;
+}
+
 /* Responsive adjustments */
 @media (width <= 991px) {
   .hero-title {
@@ -281,6 +285,10 @@
 
   .hero-heading {
     margin-bottom: 10px;
+  }
+
+  .navigation-arrows {
+    right: 168px;
   }
 }
 
@@ -398,6 +406,7 @@
     gap:3px;
     padding-right: 5px;
     bottom: 18px;
+    right: 130px;
   }
 
   .left-carousel-arrow {
@@ -428,5 +437,9 @@
     font-size: 14px;
     line-height: 20px;
     margin: 4px 0;
+  }
+
+  .left-carousel-arrow, .right-carousel-arrow {
+    margin-top: -2px;
   }
 }
