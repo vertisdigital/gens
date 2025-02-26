@@ -1203,7 +1203,8 @@
         "name": "awardimageText",
         "label": "Award Image Text",
         "valueType": "string",
-        "value": "Award Image Text"        
+        "value": "Award Image Text",
+        "hidden": true
       },
       {
         "component": "text",
