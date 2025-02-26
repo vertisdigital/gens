@@ -34,19 +34,41 @@ export default function decorate(block) {
         img.src = imgAnchor.href;
         img.alt = '';
 
-        const imageComp = ImageComponent({
-          element: img,
+        // ImageComponent({
+        //   element: img,
+        //   src: imgAnchor.href,
+        //   alt: '',
+        //   lazy: true,
+        // });
+
+        const imageHtml = ImageComponent({
           src: imgAnchor.href,
-          alt: '',
+          alt: "",
+          className: 'listing-image',
+          breakpoints: {
+            mobile: {
+              width: 768,
+              src: `${imgAnchor.href}`,
+            },
+            tablet: {
+              width: 1024,
+              src: `${imgAnchor.href}`,
+            },
+            desktop: {
+              width: 1920,
+              src: `${imgAnchor.href}`,
+            },
+          },
           lazy: true,
         });
 
-        // Convert imageComp to DOM element using stringToHtml utility
-        const imageElement = stringToHtml(imageComp);
-        
-        // Append the image element
+        // Create picture element to properly handle responsive images
+        // const picture = document.createElement('picture');
+        // picture.appendChild(img);
+
+        // Replace anchor with picture element containing the image
         imgContainer.innerHTML = '';
-        imgContainer.appendChild(imageElement);
+        imgContainer.append(stringToHtml(imageHtml));
       }
       row.appendChild(imgContainer);
     }
