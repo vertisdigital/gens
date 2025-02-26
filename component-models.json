@@ -1173,7 +1173,8 @@
         "component": "text",
         "name": "url",
         "label": "IFrame URL",
-        "description": "URL of the content to embed in IFrame"
+        "description": "URL of the content to embed in IFrame",
+        "valueType": "string"
       }
     ]
   }
