@@ -1,4 +1,20 @@
-function decorate(block) {
+export default function decorate(block) {
   block.className = 'iframe-container';
-  console.log(block);
+  
+  const link = block.querySelector('a');
+  if (!link?.href) {
+    console.warn('Iframe block is missing a URL');
+    return;
+  }
+
+  const iframe = document.createElement('iframe');
+  iframe.src = link.href;
+  iframe.title = link.textContent.trim() || 'Embedded content';
+  iframe.setAttribute('loading', 'lazy');
+  iframe.setAttribute('width', '100%');
+  iframe.setAttribute('height', '100%');
+  iframe.setAttribute('frameborder', '0');
+  iframe.setAttribute('allowfullscreen', '');
+
+  link.replaceWith(iframe);
 }
