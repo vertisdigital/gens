@@ -1200,6 +1200,13 @@
       },
       {
         "component": "text",
+        "name": "awardimageText",
+        "label": "Award Image Text",
+        "valueType": "string",
+        "value": "Award Image Text"        
+      },
+      {
+        "component": "text",
         "name": "awardyear",
         "label": "Award Year",
         "validation": {
