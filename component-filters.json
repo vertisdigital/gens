@@ -42,7 +42,8 @@
     "components": [
       "feature",
       "textmediablock",
-      "projectslist"
+      "projectslist",
+      "awardsgallery"
     ]
   },
   {
