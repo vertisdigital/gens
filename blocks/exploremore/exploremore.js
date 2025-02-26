@@ -17,7 +17,7 @@ export default function decorate(block) {
   };
 
   // Extract elements
-  const allDivElements = block.querySelectorAll('div');
+  const allDivElements = block.children;
   const titleElement = allDivElements[0];
   const firstCtaElement = allDivElements[1].querySelector('p');
   const secondCtaElement = allDivElements[3].querySelector('p');
