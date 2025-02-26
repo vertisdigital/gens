@@ -53,6 +53,7 @@
     line-height: 24px;
     color: var(--soft-ivory);
     margin-bottom: 30px;
+    overflow-wrap: anywhere;
 }
 
 .footer .social-icons .social-links{

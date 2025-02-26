@@ -504,7 +504,7 @@ function decorateAEMStructure(element) {
   // Check for feature item structure
   const hasPicture = element.querySelector('div > picture') || element.children[0]?.tagName === 'DIV';
   const divElements = [...element.children].filter((el) => el.tagName === 'DIV');
-
+  const isProjectCard = element.classList[0].indexOf('projectslist') === 0;
   // Check for contact information in divs
   divElements.forEach((div) => {
     const text = div.textContent.trim();
@@ -580,38 +580,10 @@ function decorateAEMStructure(element) {
       locationDiv.setAttribute('data-gen-label', 'Location');
       locationDiv.setAttribute('data-gen-type', 'text');
     }
-  } else if (hasTileStructure && !divElements[0].querySelector('a')) {
+  } else if (hasTileStructure && !divElements[0].querySelector('a') && !isProjectCard) {
     // Add tile attributes to container
     element.setAttribute('data-gen-model', 'tile');
     element.setAttribute('data-gen-label', 'Tile');
-
-    // // Add heading attributes to first div
-    // const headingDiv = divElements[0];
-    // if (headingDiv) {
-    //   const headingP = document.createElement('p');
-    //   headingP.setAttribute('data-gen-prop', 'heading');
-    //   headingP.setAttribute('data-gen-label', 'Title');
-    //   headingP.setAttribute('data-gen-type', 'text');
-    //   headingP.textContent = headingDiv.textContent;
-    //   headingDiv.textContent = '';
-    //   headingDiv.appendChild(headingP);
-    // }
-
-    // // Add description attributes to second div
-    // const descriptionDiv = divElements[1];
-    // if (descriptionDiv) {
-    //   descriptionDiv.setAttribute('data-gen-prop', 'title');
-    //   descriptionDiv.setAttribute('data-gen-label', 'Report Name');
-    //   descriptionDiv.setAttribute('data-gen-filter', 'text');
-
-    //   // Wrap description text in p if not already
-    //   if (!descriptionDiv.querySelector('p')) {
-    //     const descP = document.createElement('p');
-    //     descP.textContent = descriptionDiv.textContent;
-    //     descriptionDiv.textContent = '';
-    //     descriptionDiv.appendChild(descP);
-    //   }
-    // }
 
     // Add CTA caption attributes to fifth div
     const ctaDiv = divElements[4];
@@ -621,7 +593,7 @@ function decorateAEMStructure(element) {
       p.setAttribute('data-gen-label', 'CTA Caption');
       p.setAttribute('data-gen-type', 'text');
     }
-  } else if (hasTileStructure && divElements[0].querySelector('a')) {
+  } else if (hasTileStructure && divElements[0].querySelector('a') && !isProjectCard) {
     // Add listitem attributes to container
     element.setAttribute('data-gen-model', 'listitem');
 
@@ -679,7 +651,7 @@ function decorateAEMStructure(element) {
       p.setAttribute('data-gen-label', 'Target');
       p.setAttribute('data-gen-type', 'text');
     }
-  } else if (hasFeatureStructure) {
+  } else if (hasFeatureStructure && !isProjectCard) {
     // Add feature item attributes to container
     element.setAttribute('data-gen-model', 'featureItem');
 
@@ -700,17 +672,6 @@ function decorateAEMStructure(element) {
       titleDiv.setAttribute('data-gen-label', 'Text');
       titleDiv.setAttribute('data-gen-type', 'richtext');
     }
-
-    // Handle heading div (fourth div)
-    // if (headingDiv) {
-    //   let p = headingDiv.querySelector('p');
-    //   if (!p) {
-    //     p = document.createElement('p');
-    //     p.textContent = headingDiv.textContent;
-    //     headingDiv.textContent = '';
-    //     headingDiv.appendChild(p);
-    //   }
-    // }
   } else if (hasLinkStructure) {
     // Add link field attributes to container
     element.setAttribute('data-gen-model', 'linkField');
@@ -779,9 +740,6 @@ function decorateSections(main) {
     const wrappers = [];
     let defaultContent = false;
 
-    // Add section index class
-    section.classList.add(`section-${sectionIndex + 1}`);
-
     // Track components with same name
     const componentNameCounts = {};
 
@@ -808,24 +766,11 @@ function decorateSections(main) {
         if (window.location.href.indexOf('author') === -1) {
           decorateAEMStructure(nestedElement, sectionIndex, childIndex);
         }
-
-        // Continue with existing nested element processing
-        [...nestedElement.children].forEach((deepElement, deepIndex) => {
-          deepElement.className = `${childClass}-element-${componentIndex}-${nestedIndex + 1}-${deepIndex + 1}`;
-
-          // Add classes to innermost elements (like links, spans, etc.)
-          if (deepElement.children.length > 0) {
-            [...deepElement.children].forEach((innerElement, innerIndex) => {
-              innerElement.className = `${childClass}-inner-${componentIndex}-${nestedIndex + 1}-${deepIndex + 1}-${innerIndex + 1}`;
-            });
-          }
-        });
       });
 
       // Create and process wrappers
       if ((child.tagName === 'DIV' && child.className) || !defaultContent) {
         const wrapper = document.createElement('div');
-        wrapper.classList.add(`wrapper-${childIndex + 1}`);
         wrappers.push(wrapper);
         defaultContent = child.tagName !== 'DIV' || !child.className;
         if (defaultContent) wrapper.classList.add('default-content-wrapper');
@@ -834,8 +779,7 @@ function decorateSections(main) {
     });
 
     // Add wrappers to section
-    wrappers.forEach((wrapper, wrapperIndex) => {
-      wrapper.classList.add(`section-wrapper-${sectionIndex + 1}-${wrapperIndex + 1}`);
+    wrappers.forEach((wrapper) => {
       section.append(wrapper);
     });
 

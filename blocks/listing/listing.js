@@ -7,17 +7,20 @@ export default function decorate(block) {
   block.classList.add('container-xl', 'container-md', 'container-sm');
 
   // Process list items
-  const listItems = block.querySelectorAll('[data-aue-model="listitem"], [data-aue-model="tile"], [data-gen-model="listitem"]');
+  const listItems = block.querySelectorAll('[data-aue-model="listitem"], [data-gen-model="listitem"]');
   listItems.forEach((item) => {
     // Create row from styles.css
     const row = document.createElement('div');
     row.classList.add('row');
 
     // Get all content elements
-    const title = item.querySelector('[data-aue-type="text"], [data-gen-type="text"]');
-    const description = item.querySelector('[data-aue-prop="description"], [data-gen-prop="description"]');
+    const allDivElements = item.querySelectorAll('div');
+    // const title = item.querySelector('[data-aue-type="text"], [data-gen-type="text"]');
+    const title = allDivElements[1].querySelector('p');
+    const description = allDivElements[2].querySelector('p');
     const link = item.querySelector('.button-container a');
-    const linkTarget = item.querySelector('[data-aue-label="Target"]');
+    // const linkTarget = item.querySelector('[data-aue-label="Target"]');
+    const linkTarget = allDivElements[4].querySelector('p');
 
     // Process image
     const imgContainer = item.querySelector('div:first-child');
@@ -31,20 +34,41 @@ export default function decorate(block) {
         img.src = imgAnchor.href;
         img.alt = '';
 
-        ImageComponent({
-          element: img,
+        // ImageComponent({
+        //   element: img,
+        //   src: imgAnchor.href,
+        //   alt: '',
+        //   lazy: true,
+        // });
+
+        const imageHtml = ImageComponent({
           src: imgAnchor.href,
-          alt: '',
+          alt: "",
+          className: 'listing-image',
+          breakpoints: {
+            mobile: {
+              width: 768,
+              src: `${imgAnchor.href}`,
+            },
+            tablet: {
+              width: 1024,
+              src: `${imgAnchor.href}`,
+            },
+            desktop: {
+              width: 1920,
+              src: `${imgAnchor.href}`,
+            },
+          },
           lazy: true,
         });
 
         // Create picture element to properly handle responsive images
-        const picture = document.createElement('picture');
-        picture.appendChild(img);
+        // const picture = document.createElement('picture');
+        // picture.appendChild(img);
 
         // Replace anchor with picture element containing the image
         imgContainer.innerHTML = '';
-        imgContainer.appendChild(picture);
+        imgContainer.append(stringToHtml(imageHtml));
       }
       row.appendChild(imgContainer);
     }

@@ -21,7 +21,7 @@ export default function decorate(block) {
 
   // About-Us left container
   const aboutUsLeftContent = document.createElement('div');
-  aboutUsLeftContent.classList.add('col-xl-6', 'col-md-3', 'col-sm-4', 'about-us-left');
+  aboutUsLeftContent.classList.add('col-xl-6', 'col-lg-6', 'col-md-6', 'col-sm-4', 'about-us-left');
   const blockchildren = block.children;
   // Find the title and replace it with a heading
   const titleElement = blockchildren[0].children[0];
@@ -52,13 +52,8 @@ export default function decorate(block) {
 
   const subHeading = blockchildren[2].children[0];
   if (subHeading) {
-    const subHeadingElement = document.createElement('p');
-    subHeadingElement.className = 'about-us-left-sub-heading';
-    moveInstrumentation(subHeading, subHeadingElement);
-    const subHeadingText = subHeading.querySelector('p')?.textContent;
-    subHeadingElement.textContent = subHeadingText;
-    aboutUsLeftContent.appendChild(subHeadingElement);
-    subHeading.remove();
+    subHeading.classList.add('about-us-left-sub-heading')
+    aboutUsLeftContent.appendChild(subHeading);
   }
 
   // Find all LinkFields and replace with arrow icons
@@ -74,6 +69,8 @@ export default function decorate(block) {
 
     if (originalLink && originalTarget) {
       originalLink.setAttribute('target', originalTarget?.textContent.trim());
+      // fix for text with / i.e. default content from AEM when link used
+      if(originalLink.textContent.startsWith("/")) originalLink.textContent =''
       originalTarget.textContent = '';
       if (arrowIcon) {
         const arrowIconName = arrowIcon?.textContent.replace('-', '');
@@ -88,22 +85,24 @@ export default function decorate(block) {
 
   // About-Us right container
   const aboutUsRightContent = document.createElement('div');
-  aboutUsRightContent.classList.add('col-xl-6', 'col-md-3', 'col-sm-4', 'about-us-right');
+  aboutUsRightContent.classList.add('col-xl-6', 'col-lg-6', 'col-md-6', 'col-sm-4', 'about-us-right');
 
   // Collect all imageAndDescription elements first
-  const featureItems = block.querySelectorAll('[data-aue-model="featureItem"],[data-gen-model="featureItem"]');
+  const featureItems = [].slice.call(block.children,4);
   if (featureItems) {
     featureItems.forEach((feature) => {
+      const featureChildren = feature.children;
+      // checking and validating the feature item structure, as we need to get 4 children
+      if(featureChildren.length !== 4) return;
       // Create feature item container
       const featureContainer = document.createElement('div');
       featureContainer.classList.add('about-us-right-content');
       moveInstrumentation(feature, featureContainer);
-      const featureChildren = feature.children;
       // Handle image feature
-      const imageElement = featureChildren[0].querySelector('img');
+      const imageElement = featureChildren[0].querySelector('[data-aue-prop="feature-icon"], img, a');
       if (imageElement) {
         const imageContainer = document.createElement('div');
-        const imageLink = imageElement.getAttribute('src');
+        const imageLink = imageElement.getAttribute('src') ?? imageElement.getAttribute('href');
         const imgAltText = feature.querySelector('[data-aue-prop="feature-icon-alt"]')?.textContent || '';
 
         if (imageLink) {
@@ -129,24 +128,24 @@ export default function decorate(block) {
       }
 
       // Handle text feature
-      const textElement = featureChildren[2];
+      const textElement = featureChildren[2].querySelector('[data-aue-prop="feature-title"]')??featureChildren[2];
       if (textElement) {
         const textContainer = document.createElement('div');
         const statisticDiv = document.createElement('div');
         statisticDiv.className = 'statistic';
         moveInstrumentation(textElement, statisticDiv);
 
-        const textContent = textElement.querySelector('p') ? textElement.querySelectorAll('p') : textElement.textContent;
+        const textContent = textElement.querySelector('p') ? textElement.querySelectorAll('p') : textElement.innerHTML;
         if (typeof textContent === 'object') {
           textContent.forEach((text) => {
-            const span = document.createElement('span');
-            span.textContent = text.textContent;
-            moveInstrumentation(text, span);
-            statisticDiv.appendChild(span);
+            //const span = document.createElement('div');
+            //span.innerHTML = text.innerHTML;
+            //moveInstrumentation(text, span);
+            statisticDiv.appendChild(text);
           });
         } else {
-          const span = document.createElement('span');
-          span.textContent = textContent;
+          const span = document.createElement('p');
+          span.innerHTML = textContent;
           statisticDiv.appendChild(span);
         }
 
@@ -172,7 +171,7 @@ export default function decorate(block) {
   }
   // check if data-aue-model="indices" exists
   const indices = blockchildren[blockchildren.length - 1];
-  if (indices) {
+  if (indices && indices.children.length === 3 ) {
     // get less indices, more indices and indexnumber content elements
     const lessIndices = indices.children[1];
     const moreIndices = indices.children[0];
@@ -193,7 +192,8 @@ export default function decorate(block) {
     const convDescription = aboutUsRightContent.children;
     // removing the first child of all the feature items for the indices variant
     for (let i = 0; i < convDescription.length; i += 1) {
-      convDescription[i].children[0]?.remove();
+      if(convDescription[i].children[0].textContent?.trim() === '' && !convDescription[i].children[0].querySelector('picture, img') )
+        convDescription[i].children[0]?.remove();
     }
     // featureitems are  more than indexNumber indices then hide
     // the remaing and show link to show more indices link with remaining indices count in text
@@ -224,11 +224,12 @@ export default function decorate(block) {
         showMoreIndicesLink.style.display = 'block';
         showLessIndicesLink.style.display = 'none';
       });
+      indices.innerHTML = '';
+      indices.appendChild(showMoreIndicesLink);
+      indices.appendChild(showLessIndicesLink);
     }
-    indices.innerHTML = '';
+    
     indices.appendChild(indexElement);
-    indices.appendChild(showMoreIndicesLink);
-    indices.appendChild(showLessIndicesLink);
     aboutUsRightContent.appendChild(indices);
   }
   block.innerHTML = '';
