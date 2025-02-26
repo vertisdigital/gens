@@ -110,7 +110,7 @@ a:any-link.factsheet-button {
   color: var(--body-text-color)
 }
 
-.row.tiles-container [data-gen-model="tile"]>div:first-child p{
+.row.tiles-container > .no-image-tile [data-aue-prop="heading"]{
     font-size: 40px;
     font-weight: 500;
     line-height: 50px;
@@ -232,7 +232,7 @@ a:any-link.factsheet-button {
     font-size: 14px;
   }
 
-  .row.tiles-container [data-gen-model="tile"]>div:first-child p {
+  .row.tiles-container > .no-image-tile [data-aue-prop="heading"] {
     font-size: 28px;
 
     /* max-width: 200px; */

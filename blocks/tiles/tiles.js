@@ -46,27 +46,31 @@ export default function decorate(block) {
       }
 
       // Handle CTA link
-      const buttonContainer = tile.querySelector('.button-container');
+      const AllChildrens = tile.children;
+      const buttonContainer = AllChildrens[3].querySelector('a');
+
       const ctaCaption = tile.querySelector('[data-aue-prop="ctaCaption"], [data-gen-prop="ctaCaption"]');
-      if (buttonContainer && ctaCaption) {
-        const link = buttonContainer.querySelector('a');
-        if (link) {
-          // Create new anchor with CTA text and button link
-          const ctaLink = document.createElement('a');
-          ctaLink.href = link.href;
-          ctaLink.className = (index % 2 === 1) ? 'odd-learn-button learn-button' : 'learn-button';
-          ctaLink.textContent = ctaCaption.textContent;
-          // Replace CTA caption with link
-          ctaCaption.parentNode.replaceChild(ctaLink, ctaCaption);
-        }
-        // Remove button container
+      if (buttonContainer && buttonContainer.textContent.trim() !== '' && ctaCaption !== null) {
+        const ctaLink = document.createElement('a');
+        ctaLink.href = buttonContainer.href;
+        ctaLink.className = (index % 2 === 1) ? 'odd-learn-button learn-button' : 'learn-button';
+        ctaLink.textContent = ctaCaption.textContent;
+        // Replace CTA caption with link
+        ctaCaption.parentNode.replaceChild(ctaLink, ctaCaption);
+      }
+
+      if (buttonContainer) {
         buttonContainer.remove();
+      }
+      if (ctaCaption) {
+        ctaCaption.remove();
       }
     }
 
     if (!isFirsTileImage) {
-      const buttonContainer = firstTile.querySelector('.button-container');
-
+      // const buttonContainer = firstTile.querySelector('.button-container');
+      const AllChildrenDivs = firstTile.children;
+      const buttonContainer = AllChildrenDivs[3].querySelector('a');
       const ctaCaption = firstTile.querySelector('[data-aue-prop="ctaCaption"], [data-gen-prop="ctaCaption"]');
       const downArraowWithLine = SvgIcon({
         name: 'downArraowWithLine',
@@ -74,28 +78,20 @@ export default function decorate(block) {
         size: '14',
         color: '',
       });
-      if (buttonContainer && ctaCaption) {
-        const link = buttonContainer.querySelector('a');
-        if (link) {
-          // Create new anchor with CTA text and button link
-          const ctaLink = document.createElement('a');
-          ctaLink.href = link.href;
-          ctaLink.className = 'factsheet-button animated-cta';
-          ctaLink.innerHTML = `${ctaCaption.textContent} ${downArraowWithLine}`;
 
-          // Add download icon
-          // const downloadIcon = new SvgIcon('download');
-          // ctaLink.insertBefore(downloadIcon, ctaLink.firstChild);
-
-          // Add arrow icon
-          // const arrowIcon = new SvgIcon('arrow-right');
-          // ctaLink.appendChild(arrowIcon);
-
-          // Replace CTA caption with link
-          ctaCaption.parentNode.replaceChild(ctaLink, ctaCaption);
-        }
-        // Remove button container
+      if (buttonContainer && buttonContainer.textContent.trim() !== '' && ctaCaption !== null) {
+        const ctaLink = document.createElement('a');
+        ctaLink.href = buttonContainer.href;
+        ctaLink.className = 'factsheet-button animated-cta';
+        ctaLink.innerHTML = `${ctaCaption.textContent} ${downArraowWithLine}`;
+        // Replace CTA caption with link
+        ctaCaption.parentNode.replaceChild(ctaLink, ctaCaption);
+      }
+      if (buttonContainer) {
         buttonContainer.remove();
+      }
+      if (ctaCaption) {
+        ctaCaption.remove();
       }
     }
   });
