@@ -745,7 +745,7 @@
         "configUrl": "https://main--genting--wppopen.aem.live/tools/assets-selector/config.json",
         "multi": false,
         "validation": {
-          "rootPath": "/content/dam/genting-singapore/index"
+          "rootPath": "/content/dam/genting-singapore"
         }
       },
       {
