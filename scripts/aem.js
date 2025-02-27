@@ -504,7 +504,7 @@ function decorateAEMStructure(element) {
   // Check for feature item structure
   const hasPicture = element.querySelector('div > picture') || element.children[0]?.tagName === 'DIV';
   const divElements = [...element.children].filter((el) => el.tagName === 'DIV');
-  const isProjectCard = element.classList[0].indexOf('projectslist') === 0
+  const isProjectCard = element.classList[0].indexOf('projectslist') === 0;
   // Check for contact information in divs
   divElements.forEach((div) => {
     const text = div.textContent.trim();
@@ -672,8 +672,6 @@ function decorateAEMStructure(element) {
       titleDiv.setAttribute('data-gen-label', 'Text');
       titleDiv.setAttribute('data-gen-type', 'richtext');
     }
-
-
   } else if (hasLinkStructure) {
     // Add link field attributes to container
     element.setAttribute('data-gen-model', 'linkField');
@@ -742,9 +740,6 @@ function decorateSections(main) {
     const wrappers = [];
     let defaultContent = false;
 
-    // Add section index class
-    section.classList.add(`section-${sectionIndex + 1}`);
-
     // Track components with same name
     const componentNameCounts = {};
 
@@ -771,24 +766,11 @@ function decorateSections(main) {
         if (window.location.href.indexOf('author') === -1) {
           decorateAEMStructure(nestedElement, sectionIndex, childIndex);
         }
-
-        // Continue with existing nested element processing
-        [...nestedElement.children].forEach((deepElement, deepIndex) => {
-          deepElement.className = `${childClass}-element-${componentIndex}-${nestedIndex + 1}-${deepIndex + 1}`;
-
-          // Add classes to innermost elements (like links, spans, etc.)
-          if (deepElement.children.length > 0) {
-            [...deepElement.children].forEach((innerElement, innerIndex) => {
-              innerElement.className = `${childClass}-inner-${componentIndex}-${nestedIndex + 1}-${deepIndex + 1}-${innerIndex + 1}`;
-            });
-          }
-        });
       });
 
       // Create and process wrappers
       if ((child.tagName === 'DIV' && child.className) || !defaultContent) {
         const wrapper = document.createElement('div');
-        wrapper.classList.add(`wrapper-${childIndex + 1}`);
         wrappers.push(wrapper);
         defaultContent = child.tagName !== 'DIV' || !child.className;
         if (defaultContent) wrapper.classList.add('default-content-wrapper');
@@ -797,8 +779,7 @@ function decorateSections(main) {
     });
 
     // Add wrappers to section
-    wrappers.forEach((wrapper, wrapperIndex) => {
-      wrapper.classList.add(`section-wrapper-${sectionIndex + 1}-${wrapperIndex + 1}`);
+    wrappers.forEach((wrapper) => {
       section.append(wrapper);
     });
 

@@ -70,7 +70,7 @@ export default function decorate(block) {
     if (originalLink && originalTarget) {
       originalLink.setAttribute('target', originalTarget?.textContent.trim());
       // fix for text with / i.e. default content from AEM when link used
-      if(originalLink.textContent.startsWith("/")) originalLink.textContent =''
+      if(originalLink.textContent.startsWith("/") || originalLink.textContent.startsWith("#")) originalLink.textContent =''
       originalTarget.textContent = '';
       if (arrowIcon) {
         const arrowIconName = arrowIcon?.textContent.replace('-', '');

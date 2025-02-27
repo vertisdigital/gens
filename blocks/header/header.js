@@ -516,4 +516,21 @@ export default async function decorate(block) {
     header.classList.remove('fixed-header');
     isHeaderFixed = false;
   }
+  window.addEventListener('click', (event) => {
+    const excludedSelectors = [
+      '.header-inner-wrapper .columns-wrapper',
+      '.secondary-nav',
+      '.secondary-header-links',
+    ];
+    const isExcluded = excludedSelectors.some((selector) => {
+      const element = document.querySelector(selector);
+      return element && element.contains(event.target);
+    });
+    if (isExcluded) {
+      return;
+    }
+    document.querySelectorAll('.nav-item, .secondary-nav').forEach((el) => {
+      el.classList.remove('active');
+    });
+  });
 }
