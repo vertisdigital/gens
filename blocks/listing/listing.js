@@ -1,6 +1,7 @@
 import ImageComponent from '../../shared-components/ImageComponent.js';
 import stringToHtml from '../../shared-components/Utility.js';
 import SvgIcon from '../../shared-components/SvgIcon.js';
+import { moveInstrumentation } from '../../scripts/scripts.js';
 
 export default function decorate(block) {
   // Add container classes from styles.css
@@ -15,12 +16,29 @@ export default function decorate(block) {
 
     // Get all content elements
     const allDivElements = item.querySelectorAll('div');
-    // const title = item.querySelector('[data-aue-type="text"], [data-gen-type="text"]');
-    const title = allDivElements[1].querySelector('p');
-    const description = allDivElements[2].querySelector('p');
+    
+    // Handle title with moveInstrumentation
+    const titleContainer = allDivElements[1];
+    const title = titleContainer.querySelector('p');
+    if (title) {
+      moveInstrumentation(titleContainer, title);
+    }
+
+    // Handle description with moveInstrumentation
+    const descContainer = allDivElements[2];
+    const description = descContainer.querySelector('p');
+    if (description) {
+      moveInstrumentation(descContainer, description);
+    }
+
     const link = item.querySelector('.button-container a');
-    // const linkTarget = item.querySelector('[data-aue-label="Target"]');
-    const linkTarget = allDivElements[4].querySelector('p');
+    
+    // Handle link target with moveInstrumentation
+    const linkTargetContainer = allDivElements[4];
+    const linkTarget = linkTargetContainer.querySelector('p');
+    if (linkTarget) {
+      moveInstrumentation(linkTargetContainer, linkTarget);
+    }
 
     // Process image
     const imgContainer = item.querySelector('div:first-child');
@@ -33,13 +51,6 @@ export default function decorate(block) {
         // Set initial src to ensure img tag has a value
         img.src = imgAnchor.href;
         img.alt = '';
-
-        // ImageComponent({
-        //   element: img,
-        //   src: imgAnchor.href,
-        //   alt: '',
-        //   lazy: true,
-        // });
 
         const imageHtml = ImageComponent({
           src: imgAnchor.href,
@@ -61,10 +72,6 @@ export default function decorate(block) {
           },
           lazy: true,
         });
-
-        // Create picture element to properly handle responsive images
-        // const picture = document.createElement('picture');
-        // picture.appendChild(img);
 
         // Replace anchor with picture element containing the image
         imgContainer.innerHTML = '';
