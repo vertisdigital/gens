@@ -1,4 +1,3 @@
-import { createOptimizedPicture } from '../../scripts/aem.js';
 import SvgIcon from '../../shared-components/SvgIcon.js';
 
 /**
@@ -21,7 +20,7 @@ export default function decorate(block) {
   // Move existing tiles into grid columns
   const tiles = Array.from(block.children);
   const firstTile = tiles[0];
-  const isFirsTileImage = firstTile && firstTile.querySelector('a[href*="/content/dam/"][href$=".png"], a[href*="/content/dam/"][href$=".jpeg"], a[href*="/content/dam/"][href$=".jpg"], a[href*="/content/dam/"][href$=".gif"]');
+  const isFirsTileImage = firstTile && firstTile.querySelector('a[href*="delivery-"], a[href*="/content/dam/"][href$=".png"],a[href*="/content/dam/"][href$=".jpeg"], a[href*="/content/dam/"][href$=".jpg"], a[href*="/content/dam/"][href$=".gif"]');
 
   tiles.forEach((tile, index) => {
     // Handle first tile's download button
@@ -33,13 +32,11 @@ export default function decorate(block) {
     if (isFirsTileImage || index > 0) {
       // Handle image tiles (all except first)
       const imageLink = tile.querySelector(
-        'a[href*="/content/dam/"][href$=".png"], a[href*="/content/dam/"][href$=".jpeg"], a[href*="/content/dam/"][href$=".jpg"], a[href*="/content/dam/"][href$=".gif"]',
+        'a[href*="/content/dam/"][href$=".png"], a[href*="delivery-"]',
       );
       if (imageLink) {
-        // Create optimized picture element
-        const picture = createOptimizedPicture(imageLink.href, '', false);
         // Set as background
-        tile.style.backgroundImage = `url(${picture.querySelector('img').src})`;
+        tile.style.backgroundImage = `url(${imageLink})`;
         tile.style.backgroundPosition = 'center';
         tile.style.backgroundSize = 'cover';
         tile.style.backgroundRepeat = 'no-repeat';
@@ -49,56 +46,52 @@ export default function decorate(block) {
       }
 
       // Handle CTA link
-      const buttonContainer = tile.querySelector('.button-container');
-      const ctaCaption = tile.querySelector('[data-aue-prop="ctaCaption"]');
-      if (buttonContainer && ctaCaption) {
-        const link = buttonContainer.querySelector('a');
-        if (link) {
-          // Create new anchor with CTA text and button link
-          const ctaLink = document.createElement('a');
-          ctaLink.href = link.href;
-          ctaLink.className = (index % 2 === 1) ? 'odd-learn-button learn-button' : 'learn-button';
-          ctaLink.textContent = ctaCaption.textContent;
-          // Replace CTA caption with link
-          ctaCaption.parentNode.replaceChild(ctaLink, ctaCaption);
-        }
-        // Remove button container
+      const AllChildrens = tile.children;
+      const buttonContainer = AllChildrens[3].querySelector('a');
+
+      const ctaCaption = tile.querySelector('[data-aue-prop="ctaCaption"], [data-gen-prop="ctaCaption"]');
+      if (buttonContainer && buttonContainer.textContent.trim() !== '' && ctaCaption !== null) {
+        const ctaLink = document.createElement('a');
+        ctaLink.href = buttonContainer.href;
+        ctaLink.className = (index % 2 === 1) ? 'odd-learn-button learn-button' : 'learn-button';
+        ctaLink.textContent = ctaCaption.textContent;
+        ctaCaption.parentNode.replaceChild(ctaLink, ctaCaption);
+      }
+
+      if (buttonContainer) {
         buttonContainer.remove();
+      }
+      if (ctaCaption) {
+        ctaCaption.remove();
       }
     }
 
-    if (!isFirsTileImage) {
-      const buttonContainer = firstTile.querySelector('.button-container');
-
-      const ctaCaption = firstTile.querySelector('[data-aue-prop="ctaCaption"]');
+    if (!isFirsTileImage && index === 0) {
+      // const buttonContainer = firstTile.querySelector('.button-container');
+      col.classList.add('no-image-tile');
+      const AllChildrenDivs = firstTile.children;
+      const buttonContainer = AllChildrenDivs[3].querySelector('a');
+      const ctaCaption = firstTile.querySelector('[data-aue-prop="ctaCaption"], [data-gen-prop="ctaCaption"]');
       const downArraowWithLine = SvgIcon({
         name: 'downArraowWithLine',
         className: 'factsheet-button-arrow animation-element',
         size: '14',
         color: '',
       });
-      if (buttonContainer && ctaCaption) {
-        const link = buttonContainer.querySelector('a');
-        if (link) {
-          // Create new anchor with CTA text and button link
-          const ctaLink = document.createElement('a');
-          ctaLink.href = link.href;
-          ctaLink.className = 'factsheet-button animated-cta';
-          ctaLink.innerHTML = `${ctaCaption.textContent} ${downArraowWithLine}`;
 
-          // Add download icon
-          // const downloadIcon = new SvgIcon('download');
-          // ctaLink.insertBefore(downloadIcon, ctaLink.firstChild);
-
-          // Add arrow icon
-          // const arrowIcon = new SvgIcon('arrow-right');
-          // ctaLink.appendChild(arrowIcon);
-
-          // Replace CTA caption with link
-          ctaCaption.parentNode.replaceChild(ctaLink, ctaCaption);
-        }
-        // Remove button container
+      if (buttonContainer && buttonContainer.textContent.trim() !== '' && ctaCaption !== null) {
+        const ctaLink = document.createElement('a');
+        ctaLink.href = buttonContainer.href;
+        ctaLink.className = 'factsheet-button animated-cta';
+        ctaLink.innerHTML = `${ctaCaption.textContent} ${downArraowWithLine}`;
+        // Replace CTA caption with link
+        ctaCaption.parentNode.replaceChild(ctaLink, ctaCaption);
+      }
+      if (buttonContainer) {
         buttonContainer.remove();
+      }
+      if (ctaCaption) {
+        ctaCaption.remove();
       }
     }
   });
