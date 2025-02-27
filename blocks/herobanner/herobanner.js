@@ -212,6 +212,8 @@ export default function decorate(block) {
       if (currentIndex === carouselItems.length - 1) {
         rightIcon.innerHTML = '';
         rightIcon.appendChild(stringToHTML(rightArrowDisabled));
+        leftIcon.innerHTML = '';
+        leftIcon.appendChild(stringToHTML(leftArrow));
       } else if (currentIndex === 0) {
         leftIcon.innerHTML = '';
         leftIcon.appendChild(stringToHTML(leftArrowDisabled));

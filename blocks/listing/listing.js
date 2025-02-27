@@ -123,5 +123,7 @@ export default function decorate(block) {
   // Process CTA section
   const ctaContainer = block.querySelector('[data-aue-model="linkField"], [data-gen-model="linkField"]');
   const ctaText = ctaContainer.querySelector('[data-aue-prop="linkTarget"], [data-gen-prop="linkTarget"]');
+  const ctaIcon = ctaContainer.querySelector(':nth-child(2)');
   ctaText.innerHTML = '';
+  ctaIcon.innerHTML = '';
 }
