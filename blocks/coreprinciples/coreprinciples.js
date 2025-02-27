@@ -1,3 +1,6 @@
+import ImageComponent from '../../shared-components/ImageComponent.js';
+import stringToHtml from '../../shared-components/Utility.js';
+
 export default function decorate(block) {
   // Get the inner block that has the coreprinciples class
   const coreBlock = block;
@@ -43,20 +46,48 @@ export default function decorate(block) {
     const altText = item.querySelector('[data-aue-prop="altTextImg"]');
 
     // Create and add image using ImageComponent
+    // if (iconUrl) {
+    //   const img = document.createElement('img');
+    //   img.src = iconUrl;
+    //   img.loading = 'lazy';
+    //   img.width = 64;
+    //   img.height = 64;
+
+    //   if (altText) {
+    //     img.alt = altText?.textContent;
+    //   }
+
+    //   const picture = document.createElement('picture');
+    //   picture.appendChild(img);
+    //   iconWrapper.appendChild(picture);
+    // }
+
     if (iconUrl) {
-      const img = document.createElement('img');
-      img.src = iconUrl;
-      img.loading = 'lazy';
-      img.width = 64;
-      img.height = 64;
+      const picture = ImageComponent({
+        src: iconUrl,
+        alt: '',
+        className: 'enquiry-image',
+        breakpoints: {
+          mobile: {
+            width: 768,
+            src: `${iconUrl}`,
+          },
+          tablet: {
+            width: 1024,
+            src: `${iconUrl}`,
+          },
+          desktop: {
+            width: 1920,
+            src: `${iconUrl}`,
+          },
+        },
+        lazy: true,
+      });
 
-      if (altText) {
-        img.alt = altText?.textContent;
+      if (picture) {
+        const imageElement = stringToHtml(picture);
+        iconWrapper.append(imageElement);
       }
-
-      const picture = document.createElement('picture');
-      picture.appendChild(img);
-      iconWrapper.appendChild(picture);
     }
 
     // Convert title to h3 with preserved authoring attributes
