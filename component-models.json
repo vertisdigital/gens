@@ -1186,8 +1186,8 @@
     "fields": [
       {
         "component": "text",
-        "name": "sectionTitle",
-        "label": "Section Title",
+        "name": "tabsectiontitle",
+        "label": "Tab Section Title",
         "valueType": "string",
         "validation": {
           "maxLength": 80,
