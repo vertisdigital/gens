@@ -925,6 +925,8 @@
         "label": "File Path",
         "name": "filepath",
         "valueType": "string",
+        "configUrl": "https://int--genting--wppopen.aem.live/tools/assets-selector/config.json",
+        "multi": false,
         "condition": { "===": [{"var" : "reveal"}, true] }
       },
       {
