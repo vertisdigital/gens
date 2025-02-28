@@ -33,7 +33,7 @@ export default function decorate(block) {
     if (textSection) {
       textSection.classList.add('textblock');
       textSection.children[0]?.classList.add('heading');
-      textSection.children[1]?.classList.add('textsection');
+      textSection.children[1]?.classList.add('text-section');
     }
   } else {
     // Variation 2: Text first, then image
@@ -42,7 +42,7 @@ export default function decorate(block) {
 
     textSection.classList.add('textblock');
     textSection.children[0]?.classList.add('heading');
-    textSection.children[1]?.classList.add('textsection');
+    textSection.children[1]?.classList.add('text-section');
 
     if (imageSection) {
       handleImageElement(imageSection);
