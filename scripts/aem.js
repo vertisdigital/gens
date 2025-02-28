@@ -709,7 +709,7 @@ function decorateAEMStructure(element) {
  * Decorates all sections in a container element.
  * @param {Element} main The container element
  */
-function decorateSections(main) {
+function decorateSections(main, isExecute = true) {
   main.querySelectorAll(':scope > div:not([data-section-status])').forEach((section, sectionIndex) => {
     const wrappers = [];
     let defaultContent = false;
@@ -737,7 +737,7 @@ function decorateSections(main) {
         nestedElement.className = `${childClass}-nested-${componentIndex}-${nestedIndex + 1}`;
 
         // Decorate AEM structure if present
-        if (window.location.href.indexOf('author') === -1) {
+        if (window.location.href.indexOf('author') === -1 && isExecute) {
           decorateAEMStructure(nestedElement, sectionIndex, childIndex);
         }
       });
