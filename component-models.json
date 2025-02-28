@@ -915,9 +915,11 @@
         "multi": false
       },
       {
-        "component": "aem-content",
+        "component": "custom-asset-namespace:custom-asset",
         "name": "cta",
-        "label": "CTA"
+        "label": "CTA",
+        "configUrl": "https://int--genting--wppopen.aem.live/tools/assets-selector/config.json",
+        "multi": false
       },
       {
         "component": "text",
