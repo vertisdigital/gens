@@ -923,7 +923,7 @@
       },
       {
         "component": "text",
-        "name": "ctaText",
+        "name": "ctaCaption",
         "label": "CTA Caption"
       }
     ]
