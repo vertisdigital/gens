@@ -1,11 +1,12 @@
 import ImageComponent from '../../shared-components/ImageComponent.js';
-import stringToHtml from '../../shared-components/Utility.js';
 import SvgIcon from '../../shared-components/SvgIcon.js';
+import stringToHtml from '../../shared-components/Utility.js';
+import { moveInstrumentation } from '../../scripts/scripts.js';
 
 export default function decorate(block) {
   // Add container classes from styles.css
   block.classList.add('container-xl', 'container-md', 'container-sm');
-  const allChildItems = block.children;
+
   // Process list items
   const listItems = block.querySelectorAll('[data-aue-model="listitem"], [data-gen-model="listitem"]');
   listItems.forEach((item) => {
@@ -51,37 +52,26 @@ export default function decorate(block) {
         img.src = imgAnchor.href;
         img.alt = '';
 
-        // ImageComponent({
-        //   element: img,
-        //   src: imgAnchor.href,
-        //   alt: '',
-        //   lazy: true,
-        // });
-
-         const imageHtml = ImageComponent({
-        src: imgAnchor.href,
-        alt: "",
-        className: 'listing-image',
-        breakpoints: {
-          mobile: {
-            width: 768,
-            src: `${imgAnchor.href}`,
+        const imageHtml = ImageComponent({
+          src: imgAnchor.href,
+          alt: '',
+          className: 'listing-image',
+          breakpoints: {
+            mobile: {
+              width: 768,
+              src: `${imgAnchor.href}`,
+            },
+            tablet: {
+              width: 1024,
+              src: `${imgAnchor.href}`,
+            },
+            desktop: {
+              width: 1920,
+              src: `${imgAnchor.href}`,
+            },
           },
-          tablet: {
-            width: 1024,
-            src: `${imgAnchor.href}`,
-          },
-          desktop: {
-            width: 1920,
-            src: `${imgAnchor.href}`,
-          },
-        },
-        lazy: true,
-      });
-
-        // Create picture element to properly handle responsive images
-        // const picture = document.createElement('picture');
-        // picture.appendChild(img);
+          lazy: true,
+        });
 
         // Replace anchor with picture element containing the image
         imgContainer.innerHTML = '';
@@ -146,10 +136,10 @@ export default function decorate(block) {
       // Add arrow icon if icon type is specified
       if (iconType) {
         const iconName = iconType.replace('-', '');
-        const arrowSVG = SvgIcon({ 
-          name: iconName, 
-          className: 'about-us-left-link', 
-          size: '24px' 
+        const arrowSVG = SvgIcon({
+          name: iconName,
+          className: 'about-us-left-link',
+          size: '24px',
         });
         divElements[1].textContent = '';
         divElements[2].textContent = '';
@@ -160,6 +150,4 @@ export default function decorate(block) {
       block.appendChild(linkField);
     }
   }
-}
-
 }
