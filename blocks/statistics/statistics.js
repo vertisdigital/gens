@@ -110,4 +110,10 @@ export default function decorate(block) {
     block.appendChild(statisticBlockDescription);
   }
   block.classList.add('container-xl', 'container-lg', 'container-md', 'container-sm');
+
+  block.querySelectorAll('.statistics-title').forEach(statsTitle => {
+    if (!statsTitle.textContent.trim()) {
+      statsTitle.style.display = 'none';
+    }
+  });
 }
