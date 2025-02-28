@@ -142,10 +142,6 @@
           {
             "name": "Footer Copyrights",
             "value": "footer-copyrights"
-          },
-          {
-            "name": "Statistics Feature",
-            "value": "statistics-feature"
           }
         ]
       }
@@ -1115,6 +1111,21 @@
   {
     "id": "statistics",
     "fields": [
+      {
+        "component": "multiselect",
+        "name": "style",
+        "label": "Style",
+        "options": [
+          {
+            "name": "Statistics Feature",
+            "value": "statistics-feature"
+          },
+          {
+            "name": "Statistics Description",
+            "value": "statistics-description"
+          }
+        ]
+      },
       {
         "component": "text",
         "name": "heading",
