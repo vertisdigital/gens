@@ -469,6 +469,10 @@
             "value": ""
           },
           {
+            "name": "Arrow",
+            "value": "arrow"
+          },
+          {
             "name": "Right Arrow",
             "value": "right-arrow"
           },

@@ -42,7 +42,7 @@ function createNavItem(itemData) {
   const detailedcaption = document.createElement('a');
 
   // Check if this is the Contact menu item
-  if (itemData.title === 'Contact' && itemData.links?.length === 1) {
+  if (itemData.title === 'CONTACT' && itemData.links?.length === 1) {
     // For Contact, create a direct link using the first link in the array
     const contactLink = document.createElement('a');
     contactLink.textContent = itemData.links[0].text;
@@ -110,6 +110,7 @@ function createNavItem(itemData) {
         a.className = 'button';
         a.title = link.text;
         a.textContent = link.text;
+        a.target = link.target;
         linkContainer.appendChild(a);
         li.appendChild(linkContainer);
         linksUl.appendChild(li);
@@ -194,7 +195,7 @@ function createHeaderStructure(block) {
       caption: overviewLink,
       captionTarget: '_self',
       // Map remaining sections as links (starting from index 4)
-      links: sections.slice(4).map((linkSection) => {
+      links: sections.slice(3).map((linkSection) => {
         const link = linkSection.querySelector('a');
         return {
           text: link?.getAttribute('title') || link?.textContent,
