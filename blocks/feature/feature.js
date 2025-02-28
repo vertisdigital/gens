@@ -227,6 +227,8 @@ export default function decorate(block) {
       indices.innerHTML = '';
       indices.appendChild(showMoreIndicesLink);
       indices.appendChild(showLessIndicesLink);
+    }else {
+      indices.style.display = 'none';
     }
     
     indices.appendChild(indexElement);
