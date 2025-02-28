@@ -3,8 +3,9 @@ import Heading from '../../shared-components/Heading.js';
 import stringToHTML from '../../shared-components/Utility.js';
 
 export default function decorate(block) {
-// processing the sesction title
-  const heading = block.querySelector('[data-aue-prop="heading"]');
+  const blockChilden = [].slice.call(block.children);
+  // processing the sesction title
+  const heading = blockChilden[0];
   if (heading) {
     const titleText = heading.textContent;
     const titleHtml = Heading({
@@ -19,7 +20,7 @@ export default function decorate(block) {
   }
 
   // finding the feature items
-  const featureItems = block.querySelectorAll('[data-aue-model="featureItem"]');
+  const featureItems =  blockChilden.slice(1,block.children.length - 1);
 
   const featureContainer = document.createElement('div');
   featureContainer.className = 'row statistics-row';
@@ -33,27 +34,20 @@ export default function decorate(block) {
       'col-sm-4',
       'feature-item',
     );
-    featureItem
-      .querySelector('[data-aue-prop="feature-title"]')
-      ?.classList.add('statistic-item');
-    featureItem
-      .querySelector('[data-aue-prop="feature-heading"]')
-      ?.classList.add('text-container');
+    featureItem.children[2]?.classList.add('statistic-item');
+    featureItem.children[3]?.classList.add('text-container');
   });
 
   block.appendChild(featureContainer);
 
   // processing the statistics description block
-  const statisticBlockDescription = block.querySelector(
-    '[data-aue-model="statisticsDescription"]',
-  );
+  const statisticBlockDescription = blockChilden[blockChilden.length - 1];
 
-  if (statisticBlockDescription) {
+  if (statisticBlockDescription && statisticBlockDescription.textContent.trim() !== '') {
     statisticBlockDescription.classList.add('statistics-description-wrapper');
+    const descChildren = statisticBlockDescription.children;
     // replacing the title with  h2
-    const titleElement = statisticBlockDescription.querySelector(
-      '[data-aue-prop="title"]',
-    );
+    const titleElement = descChildren[0];
     if (titleElement) {
       const titleText = titleElement.textContent;
       const titleHtml = Heading({
@@ -67,15 +61,9 @@ export default function decorate(block) {
     }
 
     // adding class  statistics-description to description
-    const descriptionChildren = statisticBlockDescription.querySelector(
-      '[data-aue-prop="description"]',
-    )?.children;
-    const readMoreContent = statisticBlockDescription.querySelector(
-      '[data-aue-prop="readMoreLabel"]',
-    );
-    const readLessContent = statisticBlockDescription.querySelector(
-      '[data-aue-prop="readLessLabel"]',
-    );
+    const descriptionChildren = descChildren[1]?.querySelectorAll("p");
+    const readMoreContent = descChildren[2];
+    const readLessContent = descChildren[3];
     if (descriptionChildren?.length > 1) {
       for (let i = 1; i < descriptionChildren.length; i += 1) {
         descriptionChildren[i].classList.add('hide');
@@ -85,7 +73,7 @@ export default function decorate(block) {
       moveInstrumentation(readMoreContent, readMoreElement);
       moveInstrumentation(readLessContent, readLessElement);
 
-      readMoreElement.textContent = statisticBlockDescription.readMoreContent?.textContent ?? 'Read More';
+      readMoreElement.textContent = readMoreContent?.textContent ?? 'Read More';
 
       // removing the readMoreContent
       readMoreContent.remove();
@@ -100,7 +88,7 @@ export default function decorate(block) {
       };
       statisticBlockDescription.appendChild(readMoreElement);
 
-      readLessElement.textContent = readLessContent?.textContentt ?? 'Read Less';
+      readLessElement.textContent = readLessContent?.textContent ?? 'Read Less';
       // removing the readLessContent
       readLessContent.remove();
 
