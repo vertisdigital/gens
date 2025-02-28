@@ -57,15 +57,14 @@ function createNavItem(itemData) {
   // }
 
   // Normal menu item handling
-  if(itemData.title == 'CONTACT'){
-  const contactLinkElement = document.createElement('a');
+  if (itemData.title === 'CONTACT') {
+    const contactLinkElement = document.createElement('a');
     contactLinkElement.href = itemData.overviewLinkHref;
     contactLinkElement.target = itemData.overviewLinkTarget;
     contactLinkElement.innerText = itemData.title;
     titleContent.append(contactLinkElement);
-  }
-  else{
-  titleContent.textContent = itemData.title;
+  } else {
+    titleContent.textContent = itemData.title;
   }
 
   if (itemData.caption) {
@@ -187,18 +186,18 @@ function createHeaderStructure(block) {
   // Extract and create navigation items
   const navItems = Array.from(block.querySelectorAll('.links')).slice(1).map((navSection) => {
     const sections = [...navSection.children];
-    
+
     // Extract title from first section
     const title = sections[0]?.querySelector('div')?.textContent;
-    
+
     // Extract overview link from the fourth section (index 3)
-    
+
     // const overviewSection = sections[3];
     const overviewLink = sections[3]?.querySelector('a');
-    const overviewLinkHref = (title !== 'CONTACT' 
-    ? overviewLink?.getAttribute('href') 
-    : sections[1]?.querySelector('a')?.getAttribute('href'));
-    
+    const overviewLinkHref = (title !== 'CONTACT'
+      ? overviewLink?.getAttribute('href')
+      : sections[1]?.querySelector('a')?.getAttribute('href'));
+
     // Create nav item object
     return createNavItem({
       title,
@@ -214,9 +213,9 @@ function createHeaderStructure(block) {
           text: link?.getAttribute('title') || link?.textContent,
           href: link?.getAttribute('href') || '',
           target: linkSection.querySelector('div:last-child')?.textContent || '_self',
-          resourcePath: linkSection.getAttribute('data-aue-resource')
+          resourcePath: linkSection.getAttribute('data-aue-resource'),
         };
-      })
+      }),
     });
   });
 
