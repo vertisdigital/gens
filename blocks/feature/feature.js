@@ -67,11 +67,11 @@ export default function decorate(block) {
     const originalTarget = linkField.querySelector('[data-aue-prop="linkTarget"],[data-gen-prop="linkTarget"]');
     const arrowIcon = linkField.querySelector('[data-aue-prop="linkSvgIcon"],[data-gen-prop="linkSvgIcon"]');
 
-    if (originalLink && originalTarget) {
-      originalLink.setAttribute('target', originalTarget?.textContent.trim());
+    if (originalLink) {
+      originalLink.setAttribute('target', originalTarget?.textContent.trim()??'_self');
       // fix for text with / i.e. default content from AEM when link used
       if(originalLink.textContent.startsWith("/") || originalLink.textContent.startsWith("#")) originalLink.textContent =''
-      originalTarget.textContent = '';
+      if(originalTarget) originalTarget.textContent = '';
       if (arrowIcon) {
         const arrowIconName = arrowIcon?.textContent.replace('-', '');
         arrowIcon.textContent = '';
@@ -227,6 +227,8 @@ export default function decorate(block) {
       indices.innerHTML = '';
       indices.appendChild(showMoreIndicesLink);
       indices.appendChild(showLessIndicesLink);
+    }else {
+      indices.style.display = 'none';
     }
     
     indices.appendChild(indexElement);
