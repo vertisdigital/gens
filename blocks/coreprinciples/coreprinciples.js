@@ -43,8 +43,8 @@ export default function decorate(block) {
     }
 
     // Alt image text
-    const altText = item.querySelector('[data-aue-prop="altTextImg"]');
-
+    const altText = item.children[1];
+   
     // Create and add image using ImageComponent
     // if (iconUrl) {
     //   const img = document.createElement('img');
@@ -65,7 +65,7 @@ export default function decorate(block) {
     if (iconUrl) {
       const picture = ImageComponent({
         src: iconUrl,
-        alt: '',
+        alt: altText?.textContent.trim(),
         className: 'enquiry-image',
         breakpoints: {
           mobile: {

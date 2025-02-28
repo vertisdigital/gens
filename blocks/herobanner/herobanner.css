@@ -317,6 +317,9 @@
 }
 
 @media (width <= 991px) {
+  .hero-arrow-icon {
+    padding: 12px;
+  }
   .hero-banner-container img {
     height: 830px;
   }
@@ -332,6 +335,9 @@
 
   .hero-banner-container img {
     height: 769px;
+  }
+  .hero-arrow-icon {
+    padding: 10px;
   }
 
   .hero-content{
