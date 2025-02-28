@@ -505,6 +505,7 @@ function decorateAEMStructure(element) {
   const hasPicture = element.querySelector('div > picture') || element.children[0]?.tagName === 'DIV';
   const divElements = [...element.children].filter((el) => el.tagName === 'DIV');
   const isProjectCard = element.classList[0].indexOf('projectslist') === 0;
+  const isListing = element.classList[0].indexOf('listing') === 0;
   // Check for contact information in divs
   divElements.forEach((div) => {
     const text = div.textContent.trim();
@@ -679,9 +680,10 @@ function decorateAEMStructure(element) {
     element.setAttribute('data-gen-label', 'Link Field');
 
     // Add attributes to link button
-    const linkContainer = element.querySelector('div > a.button');
-    if (linkContainer) {
-      linkContainer.setAttribute('data-gen-prop', 'linkText');
+    if (!isListing) {
+      const linkContainer = element.querySelector('div > a.button');
+      if (linkContainer) {
+        linkContainer.setAttribute('data-gen-prop', 'linkText');
       linkContainer.setAttribute('data-gen-label', 'Text');
       linkContainer.setAttribute('data-gen-type', 'text');
     }
@@ -703,6 +705,7 @@ function decorateAEMStructure(element) {
       secondDiv.setAttribute('data-gen-prop', 'linkTarget');
       secondDiv.setAttribute('data-gen-label', 'Target');
       secondDiv.setAttribute('data-gen-type', 'text');
+      }
     }
   } else {
     // Handle single div text content
