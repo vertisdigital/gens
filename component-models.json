@@ -456,6 +456,7 @@
         "name": "link",
         "label": "Link",
         "multi": false,
+        "maxItems": 1,
         "validation": {
           "rootPath": "/content/genting-singapore"
         }
