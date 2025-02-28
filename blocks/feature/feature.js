@@ -21,7 +21,7 @@ export default function decorate(block) {
 
   // About-Us left container
   const aboutUsLeftContent = document.createElement('div');
-  aboutUsLeftContent.classList.add('col-xl-6', 'col-lg-6', 'col-md-6', 'col-sm-4', 'about-us-left');
+  aboutUsLeftContent.classList.add('col-xl-6', 'col-lg-6', 'col-md-3', 'col-sm-4', 'about-us-left');
   const blockchildren = block.children;
   // Find the title and replace it with a heading
   const titleElement = blockchildren[0].children[0];
@@ -85,7 +85,7 @@ export default function decorate(block) {
 
   // About-Us right container
   const aboutUsRightContent = document.createElement('div');
-  aboutUsRightContent.classList.add('col-xl-6', 'col-lg-6', 'col-md-6', 'col-sm-4', 'about-us-right');
+  aboutUsRightContent.classList.add('col-xl-6', 'col-lg-6', 'col-md-3', 'col-sm-4', 'about-us-right');
 
   // Collect all imageAndDescription elements first
   const featureItems = [].slice.call(block.children,4);
