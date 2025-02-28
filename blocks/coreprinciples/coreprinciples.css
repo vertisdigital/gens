@@ -24,6 +24,7 @@
     margin-left: -18px;
     margin-right: -18px;
     width: 100%; 
+    row-gap: 36px;
 }
 
 .coreprinciples > div {
@@ -99,6 +100,7 @@
         justify-content: left;
         margin-left: -12px;
         margin-right: -12px;
+        row-gap: 24px;
     }
 
     .coreprinciples .icon-wrapper picture {
@@ -112,10 +114,6 @@
 
     .principles-item, .principles-item:first-child, .principles-item:last-child {
         padding: 0 12px;
-    }
-
-    .principles-item:not(:last-child) {
-        margin-bottom: 24px;
     }
 
     .coreprinciples {
@@ -164,13 +162,10 @@
     .coreprinciples .row {
         margin-left: -9px;
         margin-right: -9px;
+        row-gap: 18px;
     }
 
     .principles-item, .principles-item:first-child, .principles-item:last-child {
         padding: 0 9px;
-    }
-
-    .principles-item:not(:last-child) {
-        margin-bottom: 18px;
     }
 }
