@@ -1180,5 +1180,15 @@
         }
       }
     ]
+  },
+  {
+    "id": "tabsectiontitle",
+    "fields": [
+      {
+        "component": "text",
+        "name": "sectionTitle",
+        "label": "Section Title"
+      }
+    ]
   }
 ]
