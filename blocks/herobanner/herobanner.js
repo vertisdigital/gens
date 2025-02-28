@@ -78,7 +78,7 @@ export default function decorate(block) {
     const titleText = titleElement.textContent;
     const titleContainer = document.createElement('div');
     titleContainer.setAttribute('data-aue-model', 'bannertitle');
-    titleContainer.setAttribute('data-aue-label', 'Banner Title');
+    titleContainer.setAttribute('data-aue-label', 'BannerTitle');
     titleContainer.setAttribute(
       'data-aue-prop',
       titleElement.getAttribute('data-aue-prop'),
