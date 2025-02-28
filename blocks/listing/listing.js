@@ -1,6 +1,6 @@
 import ImageComponent from '../../shared-components/ImageComponent.js';
-import stringToHtml from '../../shared-components/Utility.js';
 import SvgIcon from '../../shared-components/SvgIcon.js';
+import stringToHtml from '../../shared-components/Utility.js';
 import { moveInstrumentation } from '../../scripts/scripts.js';
 
 export default function decorate(block) {
@@ -54,7 +54,7 @@ export default function decorate(block) {
 
         const imageHtml = ImageComponent({
           src: imgAnchor.href,
-          alt: "",
+          alt: '',
           className: 'listing-image',
           breakpoints: {
             mobile: {
@@ -123,7 +123,32 @@ export default function decorate(block) {
   // Process CTA section
   const ctaContainer = block.querySelector('[data-aue-model="linkField"], [data-gen-model="linkField"]');
   const ctaText = ctaContainer.querySelector('[data-aue-prop="linkTarget"], [data-gen-prop="linkTarget"]');
-  const ctaIcon = ctaContainer.querySelector(':nth-child(2)');
   ctaText.innerHTML = '';
-  ctaIcon.innerHTML = '';
+
+  // Find all LinkFields and replace with arrow icons
+  const linkField = block.querySelector('[data-aue-model="linkField"],[data-gen-model="linkField"]');
+  if (linkField) {
+    const linkContainer = document.createElement('div');
+    linkContainer.className = 'links-container';
+    moveInstrumentation(linkField, linkContainer);
+    // Handle link text
+    const originalLink = linkField.querySelector('[data-aue-prop="linkText"],[data-gen-prop="linkText"]');
+    const originalTarget = linkField.querySelector('[data-aue-prop="linkTarget"],[data-gen-prop="linkTarget"]');
+    const arrowIcon = linkField.querySelector('[data-aue-prop="linkSvgIcon"],[data-gen-prop="linkSvgIcon"]');
+
+    if (originalLink && originalTarget) {
+      originalLink.setAttribute('target', originalTarget?.textContent.trim());
+      // fix for text with / i.e. default content from AEM when link used
+      if (originalLink.textContent.startsWith('/') || originalLink.textContent.startsWith('#')) originalLink.textContent = '';
+      originalTarget.textContent = '';
+      if (arrowIcon) {
+        const arrowIconName = arrowIcon?.textContent.replace('-', '');
+        arrowIcon.textContent = '';
+        const arrowSVG = SvgIcon({ name: `${arrowIconName}`, className: 'about-us-left-link', size: '24px' });
+        originalLink.append(stringToHtml(arrowSVG));
+      }
+      linkContainer.appendChild(originalLink);
+      block.appendChild(linkContainer);
+    }
+  }
 }
