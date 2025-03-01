@@ -15,65 +15,66 @@
   font-size: 64px;
   font-weight: 500;
   line-height: 1;
-  color: var(--primary-gold);
+  color: #c89b3c; /* Updated Color */
 }
 
 /* Main Description */
 .historymilestones > div:nth-child(2) > div {
   font-size: 18px;
   line-height: 1.5;
-  color: var(--body-text-color);
-  max-width: 800px;
+  color: #5d5d5d; /* Updated Color */
+  max-width: 600px; /* Reduced max-width to enforce wrapping */
 }
 
 /* Milestone Items - Grid Container */
 .historymilestones > div:nth-child(n+3) {
   display: grid;
-  grid-template-columns: 300px 1fr; /* Year/Description | Milestone Items */
+  grid-template-columns: 300px 1fr;
   gap: 20px;
   margin-bottom: 40px;
   padding-bottom: 40px;
   position: relative;
-  align-items: start; /* Vertically align items */
+  align-items: start; /* Align block and block item top */
 }
 
 /* Image */
 .historymilestones > div:nth-child(n+3) picture {
-  width: 349px !important; /* Enforce width */
-  height: 206px !important; /* Enforce height */
+  width: 349px !important;
+  height: 206px !important;
   display: block;
-  grid-column: 1; /* Place image in the first column */
-  overflow: hidden; /* Prevent content overflow */
+  grid-column: 1;
+  overflow: hidden;
 }
 
 .historymilestones > div:nth-child(n+3) picture img {
-  width: 349px !important; /* Enforce width */
-  height: 206px !important; /* Enforce height */
+  width: 349px !important;
+  height: 206px !important;
   display: block;
-  object-fit: cover; /* Maintain aspect ratio and fill the container */
+  object-fit: cover;
 }
 
 /* Date and Description Container */
 .historymilestones > div:nth-child(n+3) > div {
-  grid-column: 2; /* Place date/description in the second column */
-  display: flex; /* Use flexbox for date/description */
-  flex-direction: column; /* Stack date and description vertically */
+  grid-column: 2;
+  display: flex;
+  flex-direction: column;
 }
 
 /* Date */
-.historymilestones > div:nth-child(n+3) > div > div:first-of-type { /* First <p> inside milestone item div */
+.historymilestones > div:nth-child(n+3) > div > div:first-of-type {
   font-size: 16px;
   font-weight: 500;
-  color: #666666;
+  color: #777777; /* Updated Color */
   margin-bottom: 8px;
   text-transform: uppercase;
 }
 
 /* Description */
-.historymilestones > div:nth-child(n+3) > div > div:nth-of-type(2) { /* Second <p> inside milestone item div */
+.historymilestones > div:nth-child(n+3) > div > div:nth-of-type(2) {
   font-size: 16px;
   line-height: 1.5;
-  color: var(--body-text-color);
+  color: #000000; /* Updated Color */
+  font-weight: bold; /* Make description bold */
   max-width: 600px;
 }
 
@@ -84,8 +85,8 @@
   left: 0;
   bottom: 0;
   width: 100%;
-  height: 0.5px;
-  background: rgba(158, 158, 158, 0.3);
+  height: 1px; /* Make the line more visible */
+  background: #d9d9d9; /* Updated Color */
 }
 
 @media (width < 768px) {
@@ -94,11 +95,11 @@
   }
 
   .historymilestones > div:nth-child(n+3) {
-    grid-template-columns: 1fr; /* Stack on small screens */
+    grid-template-columns: 1fr;
   }
 
   .historymilestones > div:nth-child(n+3) picture,
   .historymilestones > div:nth-child(n+3) > div {
-    grid-column: 1;  /* Everything in one column */
+    grid-column: 1;
   }
 }
