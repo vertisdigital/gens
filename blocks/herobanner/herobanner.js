@@ -109,7 +109,7 @@ export default function decorate(block) {
     });
     const parsedHtml = stringToHTML(arrowIconHtml);
     // const anchorWrapper = document.createElement('a');
-    arrowIconLink.querySelector('a').append(parsedHtml);
+    arrowIconLink.querySelector('a')?.append(parsedHtml);
     heroContent.appendChild(arrowIconLink);
   }
   heroContainer.appendChild(heroContent);
