@@ -204,7 +204,7 @@ export default function decorate(block) {
     }
     // featureitems are  more than indexNumber indices then hide
     // the remaing and show link to show more indices link with remaining indices count in text
-    if (!Number.isNaN(indexNumber) &&  indexNumber === 0 && indexNumber < convDescription.length) {
+    if (!Number.isNaN(indexNumber) &&  indexNumber > 0 && indexNumber < convDescription.length) {
       // hide the remaining indices
       for (let i = indexNumber; i < convDescription.length; i += 1) {
         convDescription[i].style.display = 'none';
@@ -215,7 +215,7 @@ export default function decorate(block) {
       showMoreIndicesLink.classList.add('show-more-indices');
       showMoreIndicesLink.addEventListener('click', () => {
         for (let i = indexNumber; i < convDescription.length - 1; i += 1) {
-          convDescription[i].style.display = 'block';
+          convDescription[i].style.display = 'flex';
         }
         showMoreIndicesLink.style.display = 'none';
         showLessIndicesLink.style.display = 'block';
