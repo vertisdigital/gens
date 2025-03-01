@@ -3,63 +3,77 @@
   padding: 40px 0;
 }
 
-/* Year section - first div */
+/* Year and Main Description Container */
+.historymilestones > div:first-child,
+.historymilestones > div:nth-child(2) {
+  margin-bottom: 20px;
+}
+
+/* Year */
 .historymilestones > div:first-child > div {
   font-family: var(--heading-font-family);
   font-size: 64px;
   font-weight: 500;
   line-height: 1;
   color: var(--primary-gold);
-  margin-bottom: 16px;
 }
 
-/* Description section - second div */
+/* Main Description */
 .historymilestones > div:nth-child(2) > div {
   font-size: 18px;
   line-height: 1.5;
   color: var(--body-text-color);
-  margin-bottom: 40px;
   max-width: 800px;
 }
 
-/* Milestone items - third div onwards */
+/* Milestone Items - Grid Container */
 .historymilestones > div:nth-child(n+3) {
-  display: flex;
-  flex-direction: column;
+  display: grid;
+  grid-template-columns: 200px 1fr; /* Year/Description | Milestone Items */
+  gap: 20px;
   margin-bottom: 40px;
-  position: relative;
   padding-bottom: 40px;
-}
-
-/* Image container */
-.historymilestones > div:nth-child(n+3) > div:first-child {
-  margin-bottom: 24px;
-  /* No longer force it to the top */
-}
-
-/* Date - second div inside milestone item */
-.historymilestones > div:nth-child(n+3) > div:nth-child(2) {
-  font-size: 16px;
-  font-weight: 500;
-  color: #666666;
-  margin-bottom: 16px;
-  text-transform: uppercase;
-}
-
-/* Description - third div inside milestone item */
-.historymilestones > div:nth-child(n+3) > div:nth-child(3) {
-  font-size: 16px;
-  line-height: 1.5;
-  color: var(--body-text-color);
-  max-width: 800px;
+  position: relative;
 }
 
 /* Image */
-.historymilestones > div:nth-child(n+3) img {
+.historymilestones > div:nth-child(n+3) picture {
+  width: 100%;
+  display: block;
+  grid-column: 1; /* Place image in the first column */
+}
+
+.historymilestones > div:nth-child(n+3) picture img {
   width: 100%;
   height: auto;
   display: block;
   border-radius: 4px;
+  max-height: 150px;  /* Limit image height */
+  object-fit: cover;
+}
+
+/* Date and Description Container */
+.historymilestones > div:nth-child(n+3) > div {
+  grid-column: 2; /* Place date/description in the second column */
+  display: flex; /* Use flexbox for date/description */
+  flex-direction: column; /* Stack date and description vertically */
+}
+
+/* Date */
+.historymilestones > div:nth-child(n+3) > div > div:first-of-type { /* First <p> inside milestone item div */
+  font-size: 16px;
+  font-weight: 500;
+  color: #666666;
+  margin-bottom: 8px;
+  text-transform: uppercase;
+}
+
+/* Description */
+.historymilestones > div:nth-child(n+3) > div > div:nth-of-type(2) { /* Second <p> inside milestone item div */
+  font-size: 16px;
+  line-height: 1.5;
+  color: var(--body-text-color);
+  max-width: 600px;
 }
 
 /* Horizontal line */
@@ -75,18 +89,15 @@
 
 @media (width < 768px) {
   .historymilestones > div:first-child > div {
-      font-size: 48px;
+    font-size: 48px;
   }
 
   .historymilestones > div:nth-child(n+3) {
-      grid-template-columns: 1fr;
-      gap: 24px;
-      padding-bottom: 32px;
+    grid-template-columns: 1fr; /* Stack on small screens */
   }
 
-  .historymilestones > div:nth-child(n+3) > div:first-child {
-      grid-column: 1;
-      grid-row: auto;
-      order: -1;
+  .historymilestones > div:nth-child(n+3) picture,
+  .historymilestones > div:nth-child(n+3) > div {
+    grid-column: 1;  /* Everything in one column */
   }
 }
