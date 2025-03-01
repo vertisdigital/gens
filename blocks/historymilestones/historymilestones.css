@@ -1,3 +1,5 @@
+/* historymilestones.css */
+
 .historymilestones {
   position: relative;
   padding: 40px 0;
@@ -12,7 +14,7 @@
 /* Milestone items container */
 .historymilestones > div:nth-child(n+3) {
   display: grid;
-  grid-template-columns: 200px 1fr;
+  grid-template-columns: 200px 1fr; /* Year and Content Area */
   gap: 40px;
   margin-bottom: 40px;
   position: relative;
@@ -33,6 +35,7 @@
   font-weight: 500;
   line-height: 1;
   color: var(--primary-gold);
+  margin-bottom: 0; /* Remove default margin */
 }
 
 /* Date */
@@ -51,11 +54,11 @@
   color: var(--body-text-color);
 }
 
-/* Image container */
+/* Image container - Changed grid position */
 .historymilestones > div:nth-child(n+3) > div:first-child {
-  grid-column: 2;
-  grid-row: 1;
-  margin-bottom: 16px;
+  grid-column: 1; /* Place the image on the left (year column) */
+  grid-row: 1 / span 3; /* Make the image span all rows */
+  margin-bottom: 0;
 }
 
 /* Image */
@@ -63,6 +66,8 @@
   width: 100%;
   height: auto;
   display: block;
+  object-fit: cover; /* Added to maintain aspect ratio and fill container */
+  max-height: 200px; /* Limiting image height */
 }
 
 /* Horizontal line */
@@ -81,13 +86,28 @@
   padding: 0;
 }
 
+/* Empty div for spacing */
+.historymilestones > div:nth-child(n+3) > div.empty-div {
+  grid-column: 2;
+  grid-row: 1;
+  height: 0; /* Ensure it doesn't take up space */
+  margin-bottom: 0; /* Remove any default margins */
+  padding: 0;
+}
+
 @media (width < 768px) {
   .historymilestones > div:nth-child(n+3) {
-    grid-template-columns: 120px 1fr;
+    grid-template-columns: 1fr; /* Stack on small screens */
     gap: 24px;
   }
 
   .historymilestones > div:first-child > div {
     font-size: 48px;
   }
-} 
+
+  .historymilestones > div:nth-child(n+3) > div:first-child {
+    grid-column: 1;
+    grid-row: auto;
+    margin-bottom: 16px;
+  }
+}
