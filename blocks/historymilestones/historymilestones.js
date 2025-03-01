@@ -33,12 +33,12 @@ export default function decorate(block) {
         ]);
 
         // Function to fix the image source URLs
-        const fixImageSrc = (img, width) => {
+        const fixImageSrc = (img, width, height) => {
             if (img) {
                 let src = img.getAttribute('src');
                 if (src) {
-                    // Replace the URL with the correct format
-                    let newSrc = `${deliveryUrl}/adobe/assets/${assetPath.split('/')[3]}/as/img.png?width=${width}`;
+                    // Construct the new URL with width and height parameters
+                    let newSrc = `${deliveryUrl}/adobe/assets/${assetPath.split('/')[3]}/as/img.png?width=${width}&height=${height}`;
                     img.setAttribute('src', newSrc);
                 }
             }
@@ -49,17 +49,17 @@ export default function decorate(block) {
         sources.forEach(source => {
             let srcset = source.getAttribute('srcset');
             if (srcset) {
-                const media = source.getAttribute('media');
-                const width = media && media.includes('min-width: 768px') ? '800' : '400';
-                // Replace the URL with the correct format
-                let newSrcset = `${deliveryUrl}/adobe/assets/${assetPath.split('/')[3]}/as/img.png?width=${width}`;
+                // For srcset, we'll just use the 349 width and 206 height
+                const width = '349';
+                const height = '206';
+                let newSrcset = `${deliveryUrl}/adobe/assets/${assetPath.split('/')[3]}/as/img.png?width=${width}&height=${height}`;
                 source.setAttribute('srcset', newSrcset);
             }
         });
 
         // Update image path for the img tag
         const img = picture.querySelector('img');
-        fixImageSrc(img, 400);
+        fixImageSrc(img, '349', '206');
 
         link.parentNode.replaceChild(picture, link);
     });
