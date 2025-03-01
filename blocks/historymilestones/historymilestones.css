@@ -3,6 +3,17 @@
   padding: 40px 0;
 }
 
+/* Milestone Items - Grid Container */
+.historymilestones > div:nth-child(n+3) {
+  display: grid;
+  grid-template-columns: 300px 1fr;
+  gap: 20px;
+  margin-bottom: 40px;
+  padding-bottom: 40px;
+  position: relative;
+  align-items: start; /* Align block and block item top */
+}
+
 /* Year and Main Description Container */
 .historymilestones > div:first-child,
 .historymilestones > div:nth-child(2) {
@@ -24,17 +35,6 @@
   line-height: 1.5;
   color: #5d5d5d; /* Updated Color */
   max-width: 600px; /* Reduced max-width to enforce wrapping */
-}
-
-/* Milestone Items - Grid Container */
-.historymilestones > div:nth-child(n+3) {
-  display: grid;
-  grid-template-columns: 300px 1fr;
-  gap: 20px;
-  margin-bottom: 40px;
-  padding-bottom: 40px;
-  position: relative;
-  align-items: start; /* Align block and block item top */
 }
 
 /* Image */
