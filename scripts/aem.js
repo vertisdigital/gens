@@ -506,27 +506,7 @@ function decorateAEMStructure(element) {
   const divElements = [...element.children].filter((el) => el.tagName === 'DIV');
   const isProjectCard = element.classList[0].indexOf('projectslist') === 0;
 
-  // Check for contact information in divs
-  divElements.forEach((div) => {
-    const text = div.textContent.trim();
-
-    // Phone number pattern: +XX-XXXXXXXXXX or similar formats
-    const isPhone = /^[+]?[(]?[0-9]{3}[)]?[-\s.]?[0-9]{3}[-\s.]?[0-9]{4,6}$/im.test(text);
-
-    // Email pattern
-    const isEmail = /^[^\s@]+@[^\s@]+\.[^\s@]+$/im.test(text);
-
-    if (isPhone) {
-      const p = getOrCreateParagraph(div);
-      p.setAttribute('data-gen-prop', 'phoneNumber');
-      p.setAttribute('data-gen-type', 'text');
-    } else if (isEmail) {
-      const p = getOrCreateParagraph(div);
-      p.setAttribute('data-gen-prop', 'emailAddress');
-      p.setAttribute('data-gen-type', 'text');
-    }
-  });
-
+  
   const hasFeatureStructure = divElements.length >= 4 // At least 4 divs
       && hasPicture;
 
@@ -580,19 +560,6 @@ function decorateAEMStructure(element) {
       locationDiv.setAttribute('data-gen-prop', 'location');
       locationDiv.setAttribute('data-gen-label', 'Location');
       locationDiv.setAttribute('data-gen-type', 'text');
-    }
-  } else if (hasTileStructure && !divElements[0].querySelector('a') && !isProjectCard) {
-    // Add tile attributes to container
-    element.setAttribute('data-gen-model', 'tile');
-    element.setAttribute('data-gen-label', 'Tile');
-
-    // Add CTA caption attributes to fifth div
-    const ctaDiv = divElements[4];
-    if (ctaDiv) {
-      const p = getOrCreateParagraph(ctaDiv);
-      p.setAttribute('data-gen-prop', 'ctaCaption');
-      p.setAttribute('data-gen-label', 'CTA Caption');
-      p.setAttribute('data-gen-type', 'text');
     }
   } else if (hasTileStructure && divElements[0].querySelector('a') && !isProjectCard) {
     // Add listitem attributes to container

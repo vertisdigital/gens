@@ -46,10 +46,10 @@ export default function decorate(block) {
       }
 
       // Handle CTA link
-      const AllChildrens = tile.children;
-      const buttonContainer = AllChildrens[3].querySelector('a');
+      const childrens = tile.children;
+      const buttonContainer = childrens[3].querySelector('a');
 
-      const ctaCaption = tile.querySelector('[data-aue-prop="ctaCaption"], [data-gen-prop="ctaCaption"]');
+      const ctaCaption = childrens[4];
       if (buttonContainer && buttonContainer.textContent.trim() !== '' && ctaCaption !== null) {
         const ctaLink = document.createElement('a');
         ctaLink.href = buttonContainer.href;
@@ -67,11 +67,10 @@ export default function decorate(block) {
     }
 
     if (!isFirsTileImage && index === 0) {
-      // const buttonContainer = firstTile.querySelector('.button-container');
       col.classList.add('no-image-tile');
-      const AllChildrenDivs = firstTile.children;
-      const buttonContainer = AllChildrenDivs[3].querySelector('a');
-      const ctaCaption = firstTile.querySelector('[data-aue-prop="ctaCaption"], [data-gen-prop="ctaCaption"]');
+      const childrens = firstTile.children;
+      const buttonContainer = childrens[3].querySelector('a');
+      const ctaCaption = childrens[4];
       const downArraowWithLine = SvgIcon({
         name: 'downArraowWithLine',
         className: 'factsheet-button-arrow animation-element',
