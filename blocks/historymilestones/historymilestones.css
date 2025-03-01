@@ -19,21 +19,22 @@
   margin-bottom: 0;
 }
 
-/* Milestone items container (direct child divs inside description block) */
+/* Milestone items container */
 .historymilestones > div:nth-child(even) > div {
   display: grid;
-  grid-template-columns: 200px 1fr; /* Image and Content Area */
+  grid-template-columns: 1fr 200px; /* Content Area and Image */
   gap: 20px;
-  margin-bottom: 20px; /* Reduced margin */
+  margin-bottom: 20px;
   position: relative;
-  align-items: start; /* Align items to the top */
+  align-items: start;
 }
 
 /* Image container */
 .historymilestones > div:nth-child(even) > div > picture {
-  grid-column: 1;
-  grid-row: 1; /* Keep image on row 1 */
-  max-width: 180px; /* slightly reduced width */
+  grid-column: 2; /* Move image to second column */
+  grid-row: 1;
+  max-width: 180px;
+  justify-self: end; /* Align to right */
 }
 
 /* Image */
@@ -42,13 +43,13 @@
   height: auto;
   display: block;
   object-fit: cover;
-  max-height: 150px;  /* Limit image height */
 }
 
-/* Content Area (holds date and description) */
+/* Content Area */
 .historymilestones > div:nth-child(even) > div > div {
-  grid-column: 2;
-  grid-row: 1; /* Keep content on row 1 */
+  grid-column: 1; /* Content in first column */
+  grid-row: 1;
+  padding-right: 20px;
 }
 
 /* Date */
@@ -56,7 +57,7 @@
   font-size: 16px;
   font-weight: 500;
   color: #666666;
-  margin-bottom: 8px; /* Reduced margin */
+  margin-bottom: 8px;
   text-transform: uppercase;
 }
 
@@ -72,19 +73,19 @@
   content: '';
   position: absolute;
   left: 0;
-  bottom: -10px; /* Adjusted position */
+  bottom: -10px;
   width: 100%;
-  height: 1px;
-  background: #9E9E9E;
+  height: 0.5px; /* Thinner line */
+  background: rgba(158, 158, 158, 0.5); /* More subtle color */
 }
 
-/* Initial Description styling (for 1984 block) */
+/* Initial Description styling */
 .historymilestones > div:nth-child(even) > div:first-of-type {
   font-size: 18px;
   line-height: 1.5;
   color: var(--body-text-color);
   grid-column: 1 / span 2;
-  margin-bottom: 10px; /* Added margin */
+  margin-bottom: 20px;
 }
 
 /* Tab specific styles */
@@ -102,16 +103,18 @@
     font-size: 48px;
   }
 
-  /* Mobile - Stack image above content */
-  .historymilestones > div:nth-child(even) > div > picture {
-    grid-column: 1;
-    grid-row: 1;
-    max-width: 100%; /* Full width on mobile */
-  }
-
+  /* Mobile - Stack content above image */
   .historymilestones > div:nth-child(even) > div > div {
     grid-column: 1;
+    grid-row: 1;
+    padding-right: 0;
+  }
+
+  .historymilestones > div:nth-child(even) > div > picture {
+    grid-column: 1;
     grid-row: 2;
+    max-width: 100%;
+    justify-self: start;
   }
 
   .historymilestones > div:nth-child(even) > div:first-of-type {
