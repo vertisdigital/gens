@@ -46,29 +46,25 @@
     background-size: contain;
 }
 
-/* Icon images */
-.sustainabilitygovernance > div:nth-child(n+2) > div:first-child {
-    background-image: url('../icons/default-icon.svg');
+/* Icon images - using the first div's text content to determine which icon to show */
+.sustainabilitygovernance > div:nth-child(n+2) > div:first-child:has(div:contains('board-of-directors')) {
+    background-image: url('https://sustainability-governance-structure--genting--wppopen.aem.page/icons/board-of-directors.svg');
 }
 
-.sustainabilitygovernance > div:nth-child(n+2) > div[class*="board-of-directors"] {
-    background-image: url('../icons/board-of-directors.svg');
+.sustainabilitygovernance > div:nth-child(n+2) > div:first-child:has(div:contains('ceo')) {
+    background-image: url('https://sustainability-governance-structure--genting--wppopen.aem.page/icons/ceo.svg');
 }
 
-.sustainabilitygovernance > div:nth-child(n+2) > div[class*="ceo"] {
-    background-image: url('../icons/ceo.svg');
+.sustainabilitygovernance > div:nth-child(n+2) > div:first-child:has(div:contains('sustainability-steering-committee')) {
+    background-image: url('https://sustainability-governance-structure--genting--wppopen.aem.page/icons/sustainability-steering-committee.svg');
 }
 
-.sustainabilitygovernance > div:nth-child(n+2) > div[class*="sustainability-steering-committee"] {
-    background-image: url('../icons/sustainability-steering-committee.svg');
+.sustainabilitygovernance > div:nth-child(n+2) > div:first-child:has(div:contains('sustainability-working-groups')) {
+    background-image: url('https://sustainability-governance-structure--genting--wppopen.aem.page/icons/sustainability-working-groups.svg');
 }
 
-.sustainabilitygovernance > div:nth-child(n+2) > div[class*="sustainability-working-groups"] {
-    background-image: url('../icons/sustainability-working-groups.svg');
-}
-
-.sustainabilitygovernance > div:nth-child(n+2) > div[class*="sustainability-department"] {
-    background-image: url('../icons/sustainability-department.svg');
+.sustainabilitygovernance > div:nth-child(n+2) > div:first-child:has(div:contains('sustainability-department')) {
+    background-image: url('https://sustainability-governance-structure--genting--wppopen.aem.page/icons/sustainability-department.svg');
 }
 
 /* Title */

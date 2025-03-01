@@ -10,4 +10,14 @@ export default function decorate(block) {
             }
         }
     });
+
+    // Handle icons
+    const iconDivs = block.querySelectorAll('div:nth-child(n+2) > div:first-child');
+    iconDivs.forEach(iconDiv => {
+        const iconType = iconDiv.textContent.trim();
+        iconDiv.style.backgroundImage = `url('https://sustainability-governance-structure--genting--wppopen.aem.page/icons/${iconType}.svg')`;
+        // Hide the text content since we're using it as a background image
+        iconDiv.style.color = 'transparent';
+        iconDiv.style.fontSize = '0';
+    });
 } 
