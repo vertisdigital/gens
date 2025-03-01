@@ -49,7 +49,7 @@ export default function decorate(block) {
     }
   }
 
-  block.querySelectorAll('.text-section').forEach(textSection => {
+  block.querySelectorAll('.text-section').forEach((textSection) => {
     if (!textSection.textContent.trim()) {
       textSection.style.display = 'none';
     }
