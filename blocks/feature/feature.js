@@ -197,7 +197,7 @@ export default function decorate(block) {
     }
     // featureitems are  more than indexNumber indices then hide
     // the remaing and show link to show more indices link with remaining indices count in text
-    if (indexNumber < convDescription.length) {
+    if (!Number.isNaN(indexNumber) &&  indexNumber === 0 && indexNumber < convDescription.length) {
       // hide the remaining indices
       for (let i = indexNumber; i < convDescription.length; i += 1) {
         convDescription[i].style.display = 'none';
