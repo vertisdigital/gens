@@ -42,22 +42,30 @@ function createNavItem(itemData) {
   const detailedcaption = document.createElement('a');
 
   // Check if this is the Contact menu item
-  if (itemData.title === 'CONTACT' && itemData.links?.length === 1) {
-    // For Contact, create a direct link using the first link in the array
-    const contactLink = document.createElement('a');
-    contactLink.textContent = itemData.links[0].text;
-    contactLink.href = itemData.links[0].href;
-    contactLink.setAttribute('target', itemData.links[0].target || '_self');
-    titleContent.appendChild(contactLink);
+  // if (itemData.title === 'Contact' && itemData.links?.length === 1) {
+  //   // For Contact, create a direct link using the first link in the array
+  //   const contactLink = document.createElement('a');
+  //   contactLink.textContent = itemData.links[0].text;
+  //   contactLink.href = itemData.links[0].href;
+  //   contactLink.setAttribute('target', itemData.links[0].target || '_self');
+  //   titleContent.appendChild(contactLink);
 
-    // Skip creating submenu elements
-    titleDiv.appendChild(titleContent);
-    navItem.appendChild(titleDiv);
-    return navItem;
-  }
+  //   // Skip creating submenu elements
+  //   titleDiv.appendChild(titleContent);
+  //   navItem.appendChild(titleDiv);
+  //   return navItem;
+  // }
 
   // Normal menu item handling
-  titleContent.textContent = itemData.title;
+  if (itemData.title === 'CONTACT') {
+    const contactLinkElement = document.createElement('a');
+    contactLinkElement.href = itemData.overviewLinkHref;
+    contactLinkElement.target = itemData.overviewLinkTarget;
+    contactLinkElement.innerText = itemData.title;
+    titleContent.append(contactLinkElement);
+  } else {
+    titleContent.textContent = itemData.title;
+  }
 
   if (itemData.caption) {
     detailedcaption.textContent = typeof itemData.caption === 'string'
@@ -178,19 +186,23 @@ function createHeaderStructure(block) {
   // Extract and create navigation items
   const navItems = Array.from(block.querySelectorAll('.links')).slice(1).map((navSection) => {
     const sections = [...navSection.children];
-    
+
     // Extract title from first section
     const title = sections[0]?.querySelector('div')?.textContent;
-    
+
     // Extract overview link from the fourth section (index 3)
-    const overviewSection = sections[3];
-    const overviewLink = overviewSection?.querySelector('a');
-    
+
+    // const overviewSection = sections[3];
+    const overviewLink = sections[3]?.querySelector('a');
+    const overviewLinkHref = (title !== 'CONTACT'
+      ? overviewLink?.getAttribute('href')
+      : sections[1]?.querySelector('a')?.getAttribute('href'));
+
     // Create nav item object
     return createNavItem({
       title,
       overviewLinkText: overviewLink?.textContent || '',
-      overviewLinkHref: overviewLink?.getAttribute('href') || '',
+      overviewLinkHref,
       overviewLinkTarget: sections[2]?.querySelector('div')?.textContent || '_self',
       caption: overviewLink,
       captionTarget: '_self',
@@ -201,9 +213,9 @@ function createHeaderStructure(block) {
           text: link?.getAttribute('title') || link?.textContent,
           href: link?.getAttribute('href') || '',
           target: linkSection.querySelector('div:last-child')?.textContent || '_self',
-          resourcePath: linkSection.getAttribute('data-aue-resource')
+          resourcePath: linkSection.getAttribute('data-aue-resource'),
         };
-      })
+      }),
     });
   });
 

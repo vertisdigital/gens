@@ -1,3 +1,5 @@
+/* eslint-disable no-console */
+
 import {
   loadHeader,
   loadFooter,
@@ -78,10 +80,10 @@ function buildAutoBlocks(main) {
  * @param {Element} main The main element
  */
 // eslint-disable-next-line import/prefer-default-export
-export function decorateMain(main) {
+export function decorateMain(main, isExecute) {
   decorateButtons(main);
   decorateIcons(main);
-  decorateSections(main);
+  decorateSections(main, isExecute);
   decorateBlocks(main);
   buildAutoBlocks(main);
 }

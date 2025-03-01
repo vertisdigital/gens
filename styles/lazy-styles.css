@@ -82,9 +82,6 @@
 }
 
 /* Tab section overrides */
-.tabpanel {
-    padding-top: 80px;
-}
 
 .tabs-container .about-us-stats .about-us-right-content p {
     font-weight: 400;
@@ -168,10 +165,6 @@
 }
 
 @media(width<=992px) {
-    .tabpanel {
-        padding-top: 56px;
-    }
-
     .tab-title {
         font-size: 22px;
         font-weight: 600;
@@ -206,10 +199,6 @@
 }
 
 @media(width<768px) {
-    .tabpanel {
-        padding-top: 36px;
-    }
-
     .tab-title {
         font-size: 18px;
         line-height: 24px;

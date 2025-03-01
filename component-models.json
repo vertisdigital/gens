@@ -168,8 +168,8 @@
         "name": "tabtitle",
         "label": "Tab Title",
         "validation": {
-          "maxLength": 10,
-          "customErrorMsg": "Tab Title cannot exceed 10 characters"
+          "maxLength": 50,
+          "customErrorMsg": "Tab Title cannot exceed 50 characters"
         }
       }
     ]
@@ -467,6 +467,10 @@
           {
             "name": "Select",
             "value": ""
+          },
+          {
+            "name": "Arrow",
+            "value": "arrow"
           },
           {
             "name": "Right Arrow",
@@ -1192,6 +1196,21 @@
           "pattern": "^(10|[1-9])$",
           "customErrorMsg": "Index Count must be a number between 1 and 10",
           "type": "number"
+        }
+      }
+    ]
+  },
+  {
+    "id": "tabsectiontitle",
+    "fields": [
+      {
+        "component": "text",
+        "name": "tabsectiontitle",
+        "label": "Tab Section Title",
+        "valueType": "string",
+        "validation": {
+          "maxLength": 80,
+          "customErrorMsg": "Section Title cannot exceed 80 characters"
         }
       }
     ]

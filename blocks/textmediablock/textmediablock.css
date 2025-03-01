@@ -1,6 +1,6 @@
 .textmediablock-container{
   .textmediablock-wrapper{
-    padding: 68px 0;
+    margin: 68px 0;
   }
 
   [data-block-name="textmediablock"]>div:first-child{
@@ -35,7 +35,7 @@
   color: var(--text-color);
 }
 
-.textsection p{
+.text-section p{
   font-size: 16px;
   font-weight: 400;
   line-height: 24px;
@@ -70,7 +70,7 @@
 } 
 @media (width<768px) {
   .textmediablock-wrapper {
-    padding: 24px 0;
+    margin: 24px 0;
   }
 
   [data-block-name="textmediablock"]>div:first-child{

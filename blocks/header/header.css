@@ -391,8 +391,12 @@ header .header{
 }
 
 .header-inner-wrapper .back-btn::before {
-  content: '←';
+  content: '\2039';
   margin-right: 8px;
+  font-size: 26px;
+  font-weight: 400;
+  line-height: 14px;
+  margin-top: -2px;
 }
 
 /* Show close button on desktop */
@@ -563,8 +567,7 @@ header .header{
 
   .header-inner-wrapper .secondary-header .back-btn::before {
     content: '\2039';
-    font-size: 24px;
-    margin-top: -4px;
+    margin-top: -3px;
     margin-right: 8px;
   }
 
@@ -710,6 +713,7 @@ header .header{
   display: flex;
   color: var(--background-color);
   cursor: pointer;
+  align-items: center;
 }
 
 .header-inner-wrapper .header-nav .primary-nav .nav-item .primary-menu-links:hover,
@@ -752,29 +756,32 @@ header .header{
 .header-inner-wrapper .secondary-nav .secondary-header .secondary-header-wrapper a{
   font-size: 40px;
   font-weight: 500;
-  line-height: 50px;
+  line-height: 34px;
   letter-spacing: -0.5px;
   color:var(--text-color);
-  text-decoration: underline;
-  text-decoration-thickness: 1px;
+  text-decoration: none;
+  border-bottom: solid 2px var(--text-color);
 }
 
 .header-inner-wrapper .secondary-nav .secondary-header .secondary-header-wrapper a:hover{
   color: var(--primary-gold);
   cursor: pointer;
+  border-color: var(--primary-gold);
 }
 
 .header-inner-wrapper .secondary-nav .secondary-header .secondary-header-wrapper a::after{
   margin-left: 48px;
-  margin-top: 4px;
   color: var(--primary-gold);
+  margin-top: 11px;
 }
 
 .header-inner-wrapper .secondary-nav .secondary-header .secondary-header-wrapper a:hover::after {
-  content: '🡢';
-  font-size: 24px;
+  content: '';
   position: absolute;
   text-decoration: none !important;
+  background: url(../../icons/right-arrow.svg) no-repeat center;
+  width: 18px;
+  height: 18px;
 }
 
 /* .secondary-nav .secondary-header .secondary-header-wrapper a:hover::after{
@@ -838,13 +845,18 @@ content: '🡢';
 
 .header-inner-wrapper .secondary-nav .secondary-header-links .nav-links li .button-container::after{
   margin-left: auto;
-  margin-top: 5px;
+  /* margin-top: 5px; */
 }
 
-.header-inner-wrapper .secondary-nav .secondary-header-links .nav-links li .button-container:hover a,
-.header-inner-wrapper .secondary-nav .secondary-header-links .nav-links li .button-container:hover::after {
-  content: '🡢';
+.header-inner-wrapper .secondary-nav .secondary-header-links .nav-links li .button-container:hover a {
   color: var(--primary-gold);
+}
+
+.header-inner-wrapper .secondary-nav .secondary-header-links .nav-links li .button-container:hover::after {
+  content: '';
+  background: url(../../icons/right-arrow.svg) no-repeat center;
+  width: 18px;
+  height: 18px;
 }
 
 
@@ -937,6 +949,7 @@ content: '🡢';
     font-size: 24px;
     margin-top: -4px;
     padding-right: 10px;
+    font-weight: 400;
   }
 
   .header-inner-wrapper .header-nav .primary-nav>div:last-child .nav-item .primary-menu-links::after,
@@ -959,6 +972,16 @@ content: '🡢';
     align-items: flex-start;
   }
 
+  .header-inner-wrapper .secondary-nav .secondary-header .secondary-header-wrapper a {
+    font-size: 32px;
+    line-height: 28px;
+    margin-bottom: 36px;
+  }
+
+  .header-inner-wrapper .secondary-nav .secondary-header .secondary-header-wrapper a::after {
+    margin-top: 6px;
+  }
+
   .header-inner-wrapper .secondary-nav .secondary-header .secondary-header-wrapper .back-btn{
     font-size: 16px;
     font-weight: 700;
@@ -969,12 +992,6 @@ content: '🡢';
     text-decoration: none;
     color: var(--primary-gold);
 
-  }
-
-  .header-inner-wrapper .secondary-header .secondary-header-wrapper a{
-    font-size: 32px;
-    line-height: 42px;
-    margin-bottom: 36px;
   }
 
   .header-inner-wrapper .secondary-nav .secondary-header-links .nav-links{
@@ -1009,13 +1026,18 @@ content: '🡢';
 
 .header-inner-wrapper .secondary-nav .secondary-header .secondary-header-wrapper a {
   font-size: 28px;
-  line-height: 34px;
+  line-height: 26px;
   margin-bottom: 28px;
+}
+
+.header-inner-wrapper .secondary-nav .secondary-header .secondary-header-wrapper a::after {
+  margin-top: 4px;
 }
 
 .header-inner-wrapper .secondary-nav .secondary-header .secondary-header-wrapper .back-btn {
   padding-left: 0;
   padding-bottom: 0;
+  font-size: 14px;
 }
 
 .header-inner-wrapper .secondary-nav .secondary-header-links .nav-links li .button-container{

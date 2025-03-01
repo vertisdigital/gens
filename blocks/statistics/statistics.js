@@ -118,4 +118,10 @@ export default function decorate(block) {
   }
   block.classList.add('container-xl', 'container-lg', 'container-md', 'container-sm');
   blockChilden[0]?.remove();
+
+  block.querySelectorAll('.statistics-title').forEach(statsTitle => {
+    if (!statsTitle.textContent.trim()) {
+      statsTitle.style.display = 'none';
+    }
+  });
 }
