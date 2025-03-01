@@ -658,15 +658,6 @@ function decorateAEMStructure(element) {
         textDiv.setAttribute('data-gen-label', 'Description');
         textDiv.setAttribute('data-gen-filter', 'text');
         textDiv.setAttribute('data-gen-type', 'richtext');
-      } else {
-        const { textContent } = textDiv;
-        const p = document.createElement('p');
-        p.setAttribute('data-gen-prop', 'title');
-        p.setAttribute('data-gen-type', 'text');
-        p.textContent = textContent;
-
-        textDiv.textContent = '';
-        textDiv.appendChild(p);
       }
     }
   }
