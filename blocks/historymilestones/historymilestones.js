@@ -6,9 +6,9 @@ export default function decorate(block) {
     cleanupElements.forEach(element => {
         // Remove data-gen attributes
         const attrs = element.attributes;
-        for (let i = attrs.length - 1; i >= 0; i--) {
+        for (let i = attrs.length - 1; i >= 0; i -= 1) {
             const attr = attrs[i];
-            if (attr.name.startsWith('data-gen') || attr.name === 'class' && attr.value.includes('historymilestones-nested')) {
+            if ((attr.name.startsWith('data-gen')) || (attr.name === 'class' && attr.value.includes('historymilestones-nested'))) {
                 element.removeAttribute(attr.name);
             }
         }
