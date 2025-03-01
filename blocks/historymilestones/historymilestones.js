@@ -1,5 +1,3 @@
-// historymilestones.js
-
 import { createOptimizedPicture } from '../../scripts/aem.js';
 
 export default function decorate(block) {
@@ -8,50 +6,31 @@ export default function decorate(block) {
     block.classList.add('container-xl', 'container-lg', 'container-md', 'container-sm');
   }
 
-  // Process milestone items
-  const milestoneContainers = block.querySelectorAll('div:nth-child(n+3)'); // Select each container
+  // Process each year block separately.
+  const yearBlocks = block.querySelectorAll('div:nth-child(odd)'); // Selects 1st, 3rd, 5th etc divs (years)
 
-  milestoneContainers.forEach(container => {
-    const milestoneItems = container.querySelectorAll('div'); // Select milestone items within container
+  yearBlocks.forEach(yearBlock => {
+    const descriptionBlock = yearBlock.nextElementSibling; // Gets the description block (even divs)
+    if (!descriptionBlock) return; // If no description block, skip
 
-    milestoneItems.forEach((item) => {
-      // Rearrange the divs to match expected structure: Image, Date, Description
-      const imageDiv = item.querySelector('div:first-child');
-      const dateDiv = item.querySelector('div:nth-child(2)');
-      const descriptionDiv = item.querySelector('div:nth-child(3)');
+    const milestoneItems = Array.from(descriptionBlock.querySelectorAll(':scope > div')); // Direct children divs
 
-      // Clear existing content
-      item.innerHTML = '';
+    milestoneItems.forEach(item => {
+      const imageLink = item.querySelector('a');
 
-      // Append elements in the desired order
-      item.append(imageDiv);
-      item.append(dateDiv);
-      item.append(descriptionDiv);
-
-      // Handle image
-      const imgLink = imageDiv.querySelector('a');
-      if (imgLink) {
-        const picture = createOptimizedPicture(imgLink.href, '', false, [
+      // Create picture element for the image and replace link
+      if (imageLink) {
+        const picture = createOptimizedPicture(imageLink.href, '', false, [
           { media: '(min-width: 768px)', width: '400' },
           { width: '320' },
         ]);
-        imageDiv.innerHTML = ''; // Clear the link
-        imageDiv.appendChild(picture); // Add the optimized picture
 
-        //Add class for image container
-        imageDiv.classList.add('image-container');
-      }
-
-      // Check if date is empty
-      if (dateDiv && dateDiv.textContent.trim() === "") {
-        dateDiv.remove();
-        // Create and append empty div for spacing if there is no date
-        const emptyDiv = document.createElement('div');
-        emptyDiv.classList.add('empty-div');
-        item.insertBefore(emptyDiv, descriptionDiv); // Insert it before the description
+        // Replace the link with the optimized picture
+        imageLink.parentNode.replaceChild(picture, imageLink);
       }
     });
   });
+
 
   // Add accessibility attributes
   block.setAttribute('role', 'region');

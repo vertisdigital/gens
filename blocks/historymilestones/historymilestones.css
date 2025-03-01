@@ -1,35 +1,35 @@
-/* historymilestones.css */
-
 .historymilestones {
   position: relative;
   padding: 40px 0;
 }
 
 /* Common container for year and description */
-.historymilestones > div:first-child,
-.historymilestones > div:nth-child(2) {
+.historymilestones > div:nth-child(odd), /* Selects odd divs (years) */
+.historymilestones > div:nth-child(even) { /* Selects even divs (descriptions) */
   margin-bottom: 24px;
 }
 
-/* Milestone items container */
-.historymilestones > div:nth-child(n+3) {
+/* Milestone items container (direct child divs inside description block) */
+.historymilestones > div:nth-child(even) > div {
   display: grid;
-  grid-template-columns: 200px 1fr; /* Year and Content Area */
+  grid-template-columns: 200px 1fr; /* Image and Content Area */
   gap: 40px;
   margin-bottom: 40px;
   position: relative;
 }
 
 /* Description styling */
-.historymilestones > div:nth-child(2) > div {
+.historymilestones > div:nth-child(even) > div:first-of-type {
   font-size: 18px;
   line-height: 1.5;
   color: var(--body-text-color);
   max-width: 600px;
+  grid-column: 1 / span 2; /* span both columns */
+  margin-bottom: 0;
 }
 
 /* Year styling */
-.historymilestones > div:first-child > div {
+.historymilestones > div:nth-child(odd) > div {
   font-family: var(--heading-font-family);
   font-size: 64px;
   font-weight: 500;
@@ -39,7 +39,7 @@
 }
 
 /* Date */
-.historymilestones > div:nth-child(n+3) > div:nth-child(2) {
+.historymilestones > div:nth-child(even) > div > div:nth-child(2) {
   font-size: 16px;
   font-weight: 500;
   color: #666666;
@@ -48,21 +48,22 @@
 }
 
 /* Description */
-.historymilestones > div:nth-child(n+3) > div:nth-child(3) {
+.historymilestones > div:nth-child(even) > div > div:nth-child(3) {
   font-size: 16px;
   line-height: 1.5;
   color: var(--body-text-color);
 }
 
-/* Image container - Changed grid position */
-.historymilestones > div:nth-child(n+3) > div:first-child {
-  grid-column: 1; /* Place the image on the left (year column) */
-  grid-row: 1 / span 3; /* Make the image span all rows */
+/* Image container */
+.historymilestones > div:nth-child(even) > div > picture {
+  grid-column: 1;
+  grid-row: 1 / span 2;
   margin-bottom: 0;
+  max-width: 200px;
 }
 
 /* Image */
-.historymilestones > div:nth-child(n+3) img {
+.historymilestones > div:nth-child(even) > div > picture img {
   width: 100%;
   height: auto;
   display: block;
@@ -71,7 +72,7 @@
 }
 
 /* Horizontal line */
-.historymilestones > div:nth-child(n+3)::after {
+.historymilestones > div:nth-child(even) > div::after {
   content: '';
   position: absolute;
   left: 0;
@@ -86,26 +87,17 @@
   padding: 0;
 }
 
-/* Empty div for spacing */
-.historymilestones > div:nth-child(n+3) > div.empty-div {
-  grid-column: 2;
-  grid-row: 1;
-  height: 0; /* Ensure it doesn't take up space */
-  margin-bottom: 0; /* Remove any default margins */
-  padding: 0;
-}
-
 @media (width < 768px) {
-  .historymilestones > div:nth-child(n+3) {
+  .historymilestones > div:nth-child(even) > div {
     grid-template-columns: 1fr; /* Stack on small screens */
     gap: 24px;
   }
 
-  .historymilestones > div:first-child > div {
+  .historymilestones > div:nth-child(odd) > div {
     font-size: 48px;
   }
 
-  .historymilestones > div:nth-child(n+3) > div:first-child {
+  .historymilestones > div:nth-child(even) > div > picture {
     grid-column: 1;
     grid-row: auto;
     margin-bottom: 16px;
