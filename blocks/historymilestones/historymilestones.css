@@ -1,0 +1,85 @@
+.historymilestones {
+  position: relative;
+  padding: 40px 0;
+}
+
+/* Timeline vertical line */
+.historymilestones::before {
+  content: '';
+  position: absolute;
+  left: 120px;
+  top: 0;
+  bottom: 0;
+  width: 1px;
+  background: var(--text-color);
+}
+
+/* Year styling */
+.historymilestones > div:first-child {
+  margin-bottom: 16px;
+}
+
+.historymilestones > div:first-child > div {
+  font-size: 48px;
+  font-weight: 500;
+  line-height: 1.2;
+  color: var(--text-color);
+}
+
+/* Description styling */
+.historymilestones > div:nth-child(2) {
+  margin-bottom: 32px;
+  padding-right: 40%;
+}
+
+.historymilestones > div:nth-child(2) > div {
+  font-size: 16px;
+  line-height: 1.5;
+  color: var(--body-text-color);
+}
+
+/* Milestone items */
+.historymilestones > div:nth-child(n+3) {
+  display: grid;
+  grid-template-columns: 120px 1fr;
+  gap: 40px;
+  margin-bottom: 32px;
+}
+
+/* Date */
+.historymilestones > div:nth-child(n+3) > div:nth-child(2) {
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--text-color);
+  margin-bottom: 8px;
+}
+
+/* Description */
+.historymilestones > div:nth-child(n+3) > div:nth-child(3) {
+  font-size: 16px;
+  line-height: 1.5;
+  color: var(--body-text-color);
+}
+
+/* Image */
+.historymilestones > div:nth-child(n+3) img {
+  width: 100%;
+  height: auto;
+  margin-bottom: 16px;
+  border-radius: 4px;
+}
+
+@media (width < 768px) {
+  .historymilestones::before {
+    left: 80px;
+  }
+
+  .historymilestones > div:nth-child(2) {
+    padding-right: 20px;
+  }
+
+  .historymilestones > div:nth-child(n+3) {
+    grid-template-columns: 80px 1fr;
+    gap: 24px;
+  }
+} 
