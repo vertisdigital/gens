@@ -656,8 +656,16 @@ function decorateAEMStructure(element) {
       if (hasLongText) {
         textDiv.setAttribute('data-gen-prop', 'description');
         textDiv.setAttribute('data-gen-label', 'Description');
-        textDiv.setAttribute('data-gen-filter', 'text');
         textDiv.setAttribute('data-gen-type', 'richtext');
+      } else {
+        const { innerHTML } = textDiv;
+        const p = document.createElement('p');
+        p.setAttribute('data-gen-prop', 'title');
+        p.setAttribute('data-gen-type', 'text');
+        p.innerHTML = innerHTML;
+
+        textDiv.textContent = '';
+        textDiv.appendChild(p);
       }
     }
   }
