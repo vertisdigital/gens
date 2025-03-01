@@ -54,6 +54,20 @@
   padding-left: 0;   
 } 
 
+.hero-banner-container .button-container {
+  display: flex;
+}
+
+.hero-banner-container .button-container a {
+  background: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  align-items: center;
+  border: none;
+  color: var(--primary-gold);
+}
+
 .hero-arrow-icon {
   cursor: pointer;
   transition: transform 0.3s ease;
@@ -433,10 +447,6 @@
   .ellipse svg {
     height: 6px;
     width: 6px;
-  }
-
-  .icon-wrapper {
-    padding-top: 0;
   }
 
   .news-link {

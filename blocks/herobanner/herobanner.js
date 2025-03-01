@@ -99,7 +99,7 @@ export default function decorate(block) {
     descElement.remove();
   }
 
-  const arrowIconLink = block.querySelector('[data-aue-prop="ctabuttonText"],.herobanner-nested-1-5 p');
+  const arrowIconLink = block.children[4];
   if (arrowIconLink) {
     const arrowIconHtml = SvgIcon({
       name: 'arrow',
@@ -108,10 +108,9 @@ export default function decorate(block) {
       color: '#B29152',
     });
     const parsedHtml = stringToHTML(arrowIconHtml);
-    const anchorWrapper = document.createElement('a');
-    anchorWrapper.href = arrowIconLink?.getAttribute('href');
-    anchorWrapper.appendChild(parsedHtml);
-    heroContent.appendChild(anchorWrapper);
+    // const anchorWrapper = document.createElement('a');
+    arrowIconLink.querySelector('a').append(parsedHtml);
+    heroContent.appendChild(arrowIconLink);
   }
   heroContainer.appendChild(heroContent);
   const carouselItems = block.querySelectorAll(

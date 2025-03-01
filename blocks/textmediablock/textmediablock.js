@@ -48,4 +48,10 @@ export default function decorate(block) {
       handleImageElement(imageSection);
     }
   }
+
+  block.querySelectorAll('.text-section').forEach((textSection) => {
+    if (!textSection.textContent.trim()) {
+      textSection.style.display = 'none';
+    }
+  });
 }

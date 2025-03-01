@@ -23,32 +23,32 @@ export default function decorate(block) {
   }
 
   if (isStatFeatures) {
-      // finding the feature items
-      const featureItems =  blockChilden.slice(2);
-    
-      const featureContainer = document.createElement('div');
-      featureContainer.className = 'row statistics-row';
-    
-      featureItems.forEach((featureItem) => {
-        featureContainer.appendChild(featureItem);
-        featureItem.classList.add(
-          'col-xl-4',
-          'col-lg-4',
-          'col-md-3',
-          'col-sm-4',
-          'feature-item',
-        );
-        featureItem.children[2]?.classList.add('statistic-item');
-        featureItem.children[3]?.classList.add('text-container');
-      });
-    
-      block.appendChild(featureContainer);
+    // finding the feature items
+    const featureItems = blockChilden.slice(2);
+
+    const featureContainer = document.createElement('div');
+    featureContainer.className = 'row statistics-row';
+
+    featureItems.forEach((featureItem) => {
+      featureContainer.appendChild(featureItem);
+      featureItem.classList.add(
+        'col-xl-4',
+        'col-lg-4',
+        'col-md-3',
+        'col-sm-4',
+        'feature-item',
+      );
+      featureItem.children[2]?.classList.add('statistic-item');
+      featureItem.children[3]?.classList.add('text-container');
+    });
+
+    block.appendChild(featureContainer);
   }
 
   if (isStatisDesc) {
     // processing the statistics description block
     const statisticBlockDescription = blockChilden[2];
-  
+
     if (statisticBlockDescription && statisticBlockDescription.textContent.trim() !== '') {
       statisticBlockDescription.classList.add('statistics-description-wrapper');
       const descChildren = statisticBlockDescription.children;
@@ -65,9 +65,9 @@ export default function decorate(block) {
         moveInstrumentation(titleElement, parsedHtml);
         titleElement.outerHTML = parsedHtml.outerHTML;
       }
-  
+
       // adding class  statistics-description to description
-      const descriptionChildren = descChildren[1]?.querySelectorAll("p");
+      const descriptionChildren = descChildren[1]?.querySelectorAll('p');
       const readMoreContent = descChildren[2];
       const readLessContent = descChildren[3];
       if (descriptionChildren?.length > 1) {
@@ -78,12 +78,12 @@ export default function decorate(block) {
         const readLessElement = document.createElement('button');
         moveInstrumentation(readMoreContent, readMoreElement);
         moveInstrumentation(readLessContent, readLessElement);
-  
+
         readMoreElement.textContent = readMoreContent?.textContent ?? 'Read More';
-  
+
         // removing the readMoreContent
         readMoreContent.remove();
-  
+
         readMoreElement.onclick = (e) => {
           e.preventDefault();
           for (let i = 1; i < descriptionChildren.length; i += 1) {
@@ -93,11 +93,11 @@ export default function decorate(block) {
           readLessElement.classList.remove('hide');
         };
         statisticBlockDescription.appendChild(readMoreElement);
-  
+
         readLessElement.textContent = readLessContent?.textContent ?? 'Read Less';
         // removing the readLessContent
         readLessContent.remove();
-  
+
         readLessElement.classList.add('hide');
         readLessElement.onclick = (e) => {
           e.preventDefault();
@@ -112,14 +112,14 @@ export default function decorate(block) {
         readMoreContent?.classList.add('hide');
         readLessContent?.classList.add('hide');
       }
-  
+
       block.appendChild(statisticBlockDescription);
     }
   }
   block.classList.add('container-xl', 'container-lg', 'container-md', 'container-sm');
   blockChilden[0]?.remove();
 
-  block.querySelectorAll('.statistics-title').forEach(statsTitle => {
+  block.querySelectorAll('.statistics-title').forEach((statsTitle) => {
     if (!statsTitle.textContent.trim()) {
       statsTitle.style.display = 'none';
     }

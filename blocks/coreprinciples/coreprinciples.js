@@ -44,7 +44,7 @@ export default function decorate(block) {
 
     // Alt image text
     const altText = item.children[1];
-   
+
     // Create and add image using ImageComponent
     // if (iconUrl) {
     //   const img = document.createElement('img');

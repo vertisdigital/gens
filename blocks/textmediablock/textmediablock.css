@@ -22,8 +22,7 @@
 /* Text section styles */
 
 .textblock{
-  display: grid;
-  grid-template-columns: 1fr 1fr;
+  display: flex;
   gap: 36px;
 }
 
@@ -33,6 +32,11 @@
   font-weight: 500;
   line-height: 50px;
   color: var(--text-color);
+  flex: 1;
+}
+
+.textblock .heading {
+  flex: 0 0 calc(50% - 18px);
 }
 
 .text-section p{
