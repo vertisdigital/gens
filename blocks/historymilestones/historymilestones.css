@@ -39,18 +39,18 @@
 
 /* Image */
 .historymilestones > div:nth-child(n+3) picture {
-  width: 100%;
+  width: 349px !important; /* Enforce width */
+  height: 206px !important; /* Enforce height */
   display: block;
   grid-column: 1; /* Place image in the first column */
+  overflow: hidden; /* Prevent content overflow */
 }
 
 .historymilestones > div:nth-child(n+3) picture img {
-  width: 100%;
-  height: auto;
+  width: 349px !important; /* Enforce width */
+  height: 206px !important; /* Enforce height */
   display: block;
-  border-radius: 4px;
-  max-height: 200px; /* Increase max-height */
-  object-fit: cover;
+  object-fit: cover; /* Maintain aspect ratio and fill the container */
 }
 
 /* Date and Description Container */
