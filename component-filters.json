@@ -33,7 +33,8 @@
       "textsection",
       "textmediablock",
       "projectslist",
-      "tabsectiontitle"
+      "tabsectiontitle",
+      "sustainabilitygovernance"
     ]
   },
   {
@@ -169,6 +170,12 @@
     "components": [
       "statisticsDescription",
       "featureItem"
+    ]
+  },
+  {
+    "id": "sustainabilitygovernance",
+    "components": [
+      "governancetile"
     ]
   }
 ]

@@ -1233,5 +1233,56 @@
         }
       }
     ]
+  },
+  {
+    "id": "sustainabilitygovernance",
+    "fields": [
+      {
+        "component": "text",
+        "name": "title",
+        "label": "Section Title",
+        "validation": {
+          "maxLength": 35,
+          "required": true,
+          "customErrorMsg": "Section title is required and cannot exceed 35 characters"
+        }
+      }
+    ]
+  },
+  {
+    "id": "governancetile",
+    "fields": [
+      {
+        "component": "custom-asset-namespace:custom-asset",
+        "name": "icon",
+        "label": "Icon",
+        "configUrl": "https://int--genting--wppopen.aem.live/tools/assets-selector/config.json",
+        "multi": false,
+        "validation": {
+          "required": true,
+          "customErrorMsg": "Icon is required"
+        }
+      },
+      {
+        "component": "text",
+        "name": "title",
+        "label": "Title",
+        "validation": {
+          "maxLength": 100,
+          "required": true,
+          "customErrorMsg": "Title is required and cannot exceed 100 characters"
+        }
+      },
+      {
+        "component": "richtext",
+        "name": "description",
+        "label": "Description",
+        "validation": {
+          "maxLength": 2000,
+          "required": true,
+          "customErrorMsg": "Description is required and cannot exceed 2000 characters"
+        }
+      }
+    ]
   }
 ]
