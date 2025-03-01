@@ -17,29 +17,40 @@ export default function decorate(block) {
   // Process images
   const imageLinks = block.querySelectorAll('a[href*="delivery-"], a[href*="/adobe/assets/"]');
   imageLinks.forEach(link => {
-    // Get the full delivery URL
+    // Get the base delivery URL and asset URN
     const fullUrl = link.href;
     const assetPath = fullUrl.match(/\/adobe\/assets\/.*$/)[0];
     const deliveryUrl = fullUrl.replace(assetPath, '');
-
+    
+    // Create picture element with optimized sources
     const picture = createOptimizedPicture(link.href, '', false, [
-      { media: '(min-width: 768px)', width: '400', format: 'webp' },
-      { width: '320', format: 'webp' },
+      { media: '(min-width: 768px)', width: '400' },
+      { width: '320' }
     ]);
 
-    // Update image paths to use full delivery URL
+    // Update image paths with correct delivery URL format
     const sources = picture.querySelectorAll('source');
     sources.forEach(source => {
       const srcset = source.getAttribute('srcset');
       if (srcset) {
-        source.setAttribute('srcset', srcset.replace('/adobe/assets/', deliveryUrl + '/adobe/assets/'));
+        // Format: {deliveryUrl}/adobe/assets/{urn}/as/img.png?width={width}
+        const newSrcset = srcset.replace(
+          /\/adobe\/assets\/(.*?)(?:\?|$)/g,
+          (match, urn) => `${deliveryUrl}/adobe/assets/${urn}/as/img.png?width=`
+        );
+        source.setAttribute('srcset', newSrcset);
       }
     });
 
     const img = picture.querySelector('img');
     if (img) {
       const src = img.getAttribute('src');
-      img.setAttribute('src', src.replace('/adobe/assets/', deliveryUrl + '/adobe/assets/'));
+      // Format: {deliveryUrl}/adobe/assets/{urn}/as/img.png?width={width}
+      const newSrc = src.replace(
+        /\/adobe\/assets\/(.*?)(?:\?|$)/g,
+        (match, urn) => `${deliveryUrl}/adobe/assets/${urn}/as/img.png?width=`
+      );
+      img.setAttribute('src', newSrc);
     }
 
     link.parentNode.replaceChild(picture, link);
