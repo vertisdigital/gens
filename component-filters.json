@@ -169,5 +169,11 @@
       "statisticsDescription",
       "featureItem"
     ]
+  },
+  {
+    "id": "historymilestones",
+    "components": [
+      "milestoneitem"
+    ]
   }
 ]
