@@ -20,7 +20,7 @@ export default function decorate(block) {
   // Move existing tiles into grid columns
   const tiles = Array.from(block.children);
   const firstTile = tiles[0];
-  const isFirsTileImage = tiles[0] && tiles[0].children[2].textContent === 'true';
+  const isFirsTileImage = tiles[0] && tiles[0].children[3].textContent === 'false';
 
   tiles.forEach((tile, index) => {
     // Handle first tile's download button
@@ -30,6 +30,7 @@ export default function decorate(block) {
     row.appendChild(col);
 
     if (isFirsTileImage || index > 0) {
+      firstTile.children[3].textContent = '';
       // Handle image tiles (all except first)
       const imageLink = tile.querySelector(
         'a[href*="/content/dam/"][href$=".png"], a[href*="delivery-"]',
@@ -69,7 +70,7 @@ export default function decorate(block) {
     if (!isFirsTileImage && index === 0) {
       col.classList.add('no-image-tile');
       const childrens = firstTile.children;
-      const buttonContainer = childrens[3].textContent === 'true' ? childrens[4].querySelector('a') : childrens[5].querySelector('a');
+      const buttonContainer = childrens[3].textContent === 'true' ? childrens[4].querySelector('a') : childrens[3].querySelector('a');
       const ctaCaption = childrens[6];
       const downArraowWithLine = SvgIcon({
         name: 'downArraowWithLine',
