@@ -20,7 +20,7 @@ export default function decorate(block) {
   // Move existing tiles into grid columns
   const tiles = Array.from(block.children);
   const firstTile = tiles[0];
-  const isFirsTileImage = firstTile && firstTile.querySelector('a[href*="delivery-"], a[href*="/content/dam/"][href$=".png"],a[href*="/content/dam/"][href$=".jpeg"], a[href*="/content/dam/"][href$=".jpg"], a[href*="/content/dam/"][href$=".gif"]');
+  const isFirsTileImage = tiles[0] && tiles[0].children[2].textContent === 'true';
 
   tiles.forEach((tile, index) => {
     // Handle first tile's download button
@@ -47,9 +47,9 @@ export default function decorate(block) {
 
       // Handle CTA link
       const childrens = tile.children;
-      const buttonContainer = childrens[3].querySelector('a');
+      const buttonContainer = childrens[5].querySelector('a');
 
-      const ctaCaption = childrens[4];
+      const ctaCaption = childrens[6];
       if (buttonContainer && buttonContainer.textContent.trim() !== '' && ctaCaption !== null) {
         const ctaLink = document.createElement('a');
         ctaLink.href = buttonContainer.href;
@@ -69,14 +69,16 @@ export default function decorate(block) {
     if (!isFirsTileImage && index === 0) {
       col.classList.add('no-image-tile');
       const childrens = firstTile.children;
-      const buttonContainer = childrens[3].querySelector('a');
-      const ctaCaption = childrens[4];
+      const buttonContainer = childrens[3].textContent === 'true' ? childrens[4].querySelector('a') : childrens[5].querySelector('a');
+      const ctaCaption = childrens[6];
       const downArraowWithLine = SvgIcon({
         name: 'downArraowWithLine',
         className: 'factsheet-button-arrow animation-element',
         size: '14',
         color: '',
       });
+
+      childrens[3].textContent = '';
 
       if (buttonContainer && buttonContainer.textContent.trim() !== '' && ctaCaption !== null) {
         const ctaLink = document.createElement('a');
