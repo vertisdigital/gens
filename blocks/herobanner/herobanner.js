@@ -114,7 +114,7 @@ export default function decorate(block) {
   }
   heroContainer.appendChild(heroContent);
   const carouselItems = block.querySelectorAll(
-    '[data-aue-model="bannercarousel"],[data-gen-model="tile"]',
+    '[data-aue-model="bannercarousel"],[data-gen-model="tile"], [data-gen-model="featureItem"]',
   );
   const carouselContainer = document.createElement('div');
   carouselContainer.className = 'hero-banner-carousal';
