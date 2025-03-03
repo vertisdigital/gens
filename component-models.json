@@ -1275,7 +1275,11 @@
           {
             "component": "text",
             "name": "emailLabel",
-            "label": "Email Label"
+            "label": "Email Label",
+            "validation": {
+              "maxLength": 50,
+              "customErrorMsg": "Email Label cannot exceed 50 characters"
+            }
           },
           {
             "component": "custom-asset-namespace:custom-asset",
@@ -1311,7 +1315,11 @@
           {
             "component": "text",
             "name": "emailLabel2",
-            "label": "Email Label"
+            "label": "Email Label",
+            "validation": {
+              "maxLength": 50,
+              "customErrorMsg": "Email Label cannot exceed 50 characters"
+            }
           },
           {
             "component": "custom-asset-namespace:custom-asset",
@@ -1346,12 +1354,20 @@
       {
         "component": "text",
         "name": "subtitle",
-        "label": "Sub Title"
+        "label": "Sub Title",
+        "validation": {
+          "maxLength": 100,
+          "customErrorMsg": "Sub Title cannot exceed 100 characters"
+        }
       }, 
       {
         "component": "text",
         "name": "subdescription",
-        "label": "Sub Description"
+        "label": "Sub Description",
+        "validation": {
+          "maxLength": 300,
+          "customErrorMsg": "Sub Description cannot exceed 300 characters"
+        }
       },
       {
         "component": "aem-content",
