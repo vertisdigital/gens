@@ -81,8 +81,9 @@
     margin-top: -68px;
     position: relative;
 }
+
 .statistics-wrapper .statistics.block.statistics-variation{
-    margin-top: 0px;
+    margin-top: 0;
     position: static;
 }
 
@@ -96,6 +97,7 @@
     margin: 0 auto;
     z-index: -1;
 }
+
 .statistics-wrapper .statistics.block.statistics-variation::before{
     position: static;
 }
@@ -113,6 +115,7 @@
     line-height: 50px; /* 121.429% */
     letter-spacing: -0.5px;
 }
+
 .statistics.block.statistics-variation .statistics-title {
     margin-bottom: 12px;
 }
@@ -130,9 +133,17 @@
     .statistics-wrapper .statistics.block {
         margin-top: -46px;
     }
+
     .statistics-wrapper .statistics.block.statistics-variation{
         margin-top: 0;
     }
+
+    .statistics-title{
+        margin-bottom: 24px;
+        font-size: 32px;
+        line-height: 42px; /* 121.429% */
+    }
+
     .statistics.block.statistics-variation .statistics-title {
         margin-bottom: 10px;
     }
@@ -141,16 +152,13 @@
     .statistics-wrapper .statistics.block::before {
         top: -22px;
     }
+
     .statistics-wrapper .statistics.block.statistics-variation::before {
         top: 0;
     }
 
 
-    .statistics-title{
-        margin-bottom: 24px;
-        font-size: 32px;
-        line-height: 42px; /* 121.429% */
-    }
+  
 }
 
 @media (width<=992px) {
@@ -164,6 +172,7 @@
         margin-left: -12px;
         margin-right: -12px;
     }
+
     .statistics .statistics-row .feature-item {
         padding-left: 12px;
         padding-right: 12px;
@@ -176,6 +185,7 @@
         margin-left: 0;
         margin-right: 0;
     }
+
     .statistics .statistics-row .feature-item {
         padding-left: 0;
         padding-right: 0;
@@ -189,6 +199,7 @@
     .statistics-wrapper .statistics.block {
         margin-top: -54px;
     }
+
     .statistics-wrapper .statistics.block.statistics-variation {
         margin-top: 0;
     }
@@ -205,6 +216,7 @@
         font-size: 28px;
         line-height: 34px; /* 121.429% */
     }
+
     .statistics.block.statistics-variation .statistics-title {
         margin-bottom: 8px;
     }

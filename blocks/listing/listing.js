@@ -4,12 +4,14 @@ import stringToHtml from '../../shared-components/Utility.js';
 import { moveInstrumentation } from '../../scripts/scripts.js';
 
 export default function decorate(block) {
-
   const pageUrl = window.location.href;
   const isAboutUsPage = pageUrl.includes('aboutus');
   // Add container classes from styles.css
   block.classList.add('container-xl', 'container-md', 'container-sm');
-  isAboutUsPage && block.classList.add('listing-variation');
+  // Add container classes from styles.css
+  if (isAboutUsPage) {
+    block.classList.add('listing-variation');
+  }
 
   // Process list items
   const listItems = block.querySelectorAll('[data-aue-model="listitem"], [data-gen-model="listitem"]');
@@ -76,7 +78,6 @@ export default function decorate(block) {
           },
           lazy: true,
         });
-
 
         // Replace anchor with picture element containing the image
         imgContainer.innerHTML = '';
