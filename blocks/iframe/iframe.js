@@ -1,5 +1,4 @@
 export default function decorate(block) {
-  block.className = 'iframe-container';
   
   const link = block.querySelector('a');
   if (!link?.href) {
