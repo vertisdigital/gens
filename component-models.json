@@ -827,7 +827,7 @@
         "component": "container",
         "label": "Email Details",
         "name": "emailDetails",
-        "collapsible": true,
+        "collapsible": false,
         "multi": true,
         "fields": [
           {
