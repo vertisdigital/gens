@@ -805,47 +805,35 @@
     "id": "enquiry",
     "fields": [
       {
-        "component": "text",
-        "name": "heading",
-        "label": "Title",
-        "validation": {
-          "maxLength": 100,
-          "customErrorMsg": "Title cannot exceed 100 characters"
-        }
-      },
-      {
-        "component": "text",
-        "name": "description",
-        "value": "",
-        "label": "Description",
-        "valueType": "string",
-        "validation": {
-          "maxLength": 300,
-          "customErrorMsg": "Description cannot exceed 300 characters"
-        }
-      },
-      {
-        "component": "custom-asset-namespace:custom-asset",
-        "name": "phoneIcon",
-        "label": "Phone Icon",
-        "configUrl": "https://int--genting--wppopen.aem.live/tools/assets-selector/config.json",
-        "multi": false
-      },
-      {
-        "component": "text",
-        "name": "phoneIconAlt",
-        "label": "Phone Icon Alt Text"
-      },
-      {
-        "component": "text",
-        "name": "phoneNumber",
-        "label": "Phone Number",
-        "validation": {
-          "regExp": "^[+]?[0-9]{10,30}$",
-          "minLength": 10,
-          "maxLength": 30,
-          "customErrorMsg": "Phone Number must be between 10-30 digits and can only contain numbers and '+' symbol"
-        }
+        "component": "container",
+        "label": "Phone Details",
+        "name": "phoneDetails",
+        "collapsible": true,
+        "fields": [
+          {
+            "component": "custom-asset-namespace:custom-asset",
+            "name": "phoneIcon",
+            "label": "Phone Icon",
+            "configUrl": "https://int--genting--wppopen.aem.live/tools/assets-selector/config.json",
+            "multi": false
+          },
+          {
+            "component": "text",
+            "name": "phoneIconAlt",
+            "label": "Phone Icon Alt Text"
+          },
+          {
+            "component": "text",
+            "name": "phoneNumber",
+            "label": "Phone Number",
+            "validation": {
+              "regExp": "^[+]?[0-9]{10,30}$",
+              "minLength": 10,
+              "maxLength": 30,
+              "customErrorMsg": "Phone Number must be between 10-30 digits and can only contain numbers and '+' symbol"
+            }
+          }
+        ]
       },
       {
         "component": "container",
@@ -879,22 +867,30 @@
         ]
       },
       {
-        "component": "custom-asset-namespace:custom-asset",
-        "name": "addressIcon",
-        "label": "Address Icon",
-        "configUrl": "https://int--genting--wppopen.aem.live/tools/assets-selector/config.json",
-        "multi": false
-      },
-      {
-        "component": "text",
-        "name": "addressIconAlt",
-        "label": "Address Icon Alt Text"
-      },
-      {
-        "component": "text",
-        "name": "address",
-        "label": "Address"
-      }     
+        "component": "container",
+        "label": "Address Details",
+        "name": "addressDetails",
+        "collapsible": true,
+        "fields": [
+          {
+            "component": "custom-asset-namespace:custom-asset",
+            "name": "addressIcon",
+            "label": "Address Icon",
+            "configUrl": "https://int--genting--wppopen.aem.live/tools/assets-selector/config.json",
+            "multi": false
+          },
+          {
+            "component": "text",
+            "name": "addressIconAlt",
+            "label": "Address Icon Alt Text"
+          },
+          {
+            "component": "text",
+            "name": "address",
+            "label": "Address"
+          }
+        ]
+      }
     ]
   },
   {
