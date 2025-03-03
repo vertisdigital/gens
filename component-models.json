@@ -805,13 +805,8 @@
     "id": "enquiry",
     "fields": [
       {
-        "component": "tab",
-        "label": "Section",
-        "name": "sectionTab"
-      },
-      {
         "component": "text",
-        "name": "title",
+        "name": "heading",
         "label": "Title",
         "validation": {
           "maxLength": 100,
@@ -821,94 +816,13 @@
       {
         "component": "text",
         "name": "description",
+        "value": "",
         "label": "Description",
         "valueType": "string",
         "validation": {
           "maxLength": 300,
           "customErrorMsg": "Description cannot exceed 300 characters"
         }
-      },
-      {
-        "component": "tab",
-        "label": "Email Details",
-        "name": "emailDetailsTab"
-      },
-      {
-        "component": "container",
-        "label": "Email 1",
-        "name": "email1",
-        "collapsible": true,
-        "fields": [
-          {
-            "component": "text",
-            "name": "emailLabel",
-            "label": "Email Label"
-          },
-          {
-            "component": "custom-asset-namespace:custom-asset",
-            "name": "emailIcon",
-            "label": "Email Icon",
-            "configUrl": "https://int--genting--wppopen.aem.live/tools/assets-selector/config.json",
-            "multi": false
-          },
-          {
-            "component": "text",
-            "name": "emailIconAlt",
-            "label": "Email Icon Alt Text"
-          },
-          {
-            "component": "text",
-            "name": "emailAddress",
-            "label": "Email Address",
-            "validation": {
-              "regExp": "^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,}$",
-              "minLength": 10,
-              "maxLength": 30,
-              "customErrorMsg": "Please enter a valid Email Address between 10-30 characters"
-            }
-          }
-        ]
-      },
-      {
-        "component": "container",
-        "label": "Email 2",
-        "name": "email2",
-        "collapsible": true,
-        "fields": [
-          {
-            "component": "text",
-            "name": "emailLabel",
-            "label": "Email Label"
-          },
-          {
-            "component": "custom-asset-namespace:custom-asset",
-            "name": "emailIcon",
-            "label": "Email Icon",
-            "configUrl": "https://int--genting--wppopen.aem.live/tools/assets-selector/config.json",
-            "multi": false
-          },
-          {
-            "component": "text",
-            "name": "emailIconAlt",
-            "label": "Email Icon Alt Text"
-          },
-          {
-            "component": "text",
-            "name": "emailAddress",
-            "label": "Email Address",
-            "validation": {
-              "regExp": "^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,}$",
-              "minLength": 10,
-              "maxLength": 30,
-              "customErrorMsg": "Please enter a valid Email Address between 10-30 characters"
-            }
-          }
-        ]
-      },
-      {
-        "component": "tab",
-        "label": "Phone Details",
-        "name": "phoneDetailsTab"
       },
       {
         "component": "custom-asset-namespace:custom-asset",
@@ -934,9 +848,27 @@
         }
       },
       {
-        "component": "tab",
-        "label": "Address Details",
-        "name": "addressDetailsTab"
+        "component": "custom-asset-namespace:custom-asset",
+        "name": "emailIcon",
+        "label": "Email Icon",
+        "configUrl": "https://int--genting--wppopen.aem.live/tools/assets-selector/config.json",
+        "multi": false
+      },
+      {
+        "component": "text",
+        "name": "emailIconAlt",
+        "label": "Email Icon Alt Text"
+      },
+      {
+        "component": "text",
+        "name": "emailAddress",
+        "label": "Email Address",
+        "validation": {
+          "regExp": "^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,}$",
+          "minLength": 10,
+          "maxLength": 30,
+          "customErrorMsg": "Please enter a valid Email Address between 10-30 characters"
+        }
       },
       {
         "component": "custom-asset-namespace:custom-asset",
