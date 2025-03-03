@@ -11,38 +11,35 @@
 }
 
 .corporatepolicies > div {
-  display: grid;
-  grid-template-columns: 1fr 2fr;
-  gap: 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
   padding-bottom: 20px;
-  border-bottom: 2px solid #ccc;
+  border-bottom: 1px solid #e0e0e0;
 }
 
 .corporatepolicies > div > div:first-child {
   font-size: 20px;
   font-weight: bold;
   color: #333;
+  flex: 1;
 }
 
 .corporatepolicies > div > div:nth-child(2) {
   font-size: 16px;
   color: #666;
-  display: flex;
-  flex-direction: column;
+  flex: 2;
+  margin-left: 20px;
 }
 
-.corporatepolicies > div > div:nth-child(2) .cta {
+.corporatepolicies > div > div:nth-child(3) {
   font-size: 16px;
   font-weight: bold;
-  color: #B29152;
-  margin-top: 10px;
+  color: #007bff;
+  margin-left: 20px;
 }
 
-.corporatepolicies > div > div:nth-child(4) {
-  display: none;
-}
-
-.corporatepolicies > div > div:nth-child(3) .cta-button {
+.corporatepolicies > div > div:nth-child(4) .cta-button {
   display: inline-block;
   padding: 8px 12px;
   background-color: #007bff;
@@ -52,12 +49,18 @@
   transition: background-color 0.3s;
 }
 
-.corporatepolicies > div > div:nth-child(3) .cta-button:hover {
+.corporatepolicies > div > div:nth-child(4) .cta-button:hover {
   background-color: #0056b3;
 }
 
 @media (max-width: 768px) {
   .corporatepolicies > div {
-    grid-template-columns: 1fr;
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .corporatepolicies > div > div:nth-child(2),
+  .corporatepolicies > div > div:nth-child(3) {
+    margin-left: 0;
   }
 } 
