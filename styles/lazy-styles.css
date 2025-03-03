@@ -1,1 +1,279 @@
 /* add global styles that can be loaded post LCP here */
+
+/* Tab Container */
+.tabs-container {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    margin: 0 auto;
+    margin-bottom: 24px;
+}
+
+.tabs-container .about-us-stats {
+    margin-bottom: 80px;
+}
+
+.tabs-header {
+    margin-bottom: 36px;
+}
+
+.tab-title {
+    position: relative;
+    text-align: center;
+    padding: 45px 0 33px;
+    color: var(--body-text-color);
+    font-size: 24px;
+    font-weight: 600;
+    line-height: 30px;
+    border-bottom: 2px solid var(--body-text-color);
+    cursor: pointer;
+}
+
+.tab-title.active {
+    background: var(--soft-ivory-blue);
+    color: var(--primary-gold);
+    border-bottom: 2px solid var(--primary-gold);
+}
+
+.tab-title.active::after {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 0;
+    height: 0;
+    border-left: 8px solid transparent;
+    border-right: 8px solid transparent;
+    border-bottom: 6px solid var(--primary-gold);
+}
+
+.tabs-content-wrapper {
+    padding: 20px;
+}
+
+.tab-panel {
+    display: none;
+
+    .container-xl,
+    .container-lg,
+    .container-md,
+    .container-sm,
+    .container {
+        padding: 0;
+    }
+}
+
+.tab-panel.active {
+    display: block;
+}
+
+.panel-heading {
+    margin-bottom: 30px;
+}
+
+.panel-heading h2 {
+    font-family: var(--heading-font-family);
+    font-size: 40px;
+    font-weight: 500;
+    line-height: 50px;
+    color: var(--text-color);
+    letter-spacing: -0.5px;
+}
+
+/* Tab section overrides */
+
+.tabs-container .about-us-stats .about-us-right-content p {
+    font-weight: 400;
+    color: var(--body-text-color);
+}
+
+.tabs-container .about-us-stats .about-us-right-content {
+    border-top: 1px solid var(--text-color);
+    align-items: flex-start;
+    padding-top: 16px;
+
+    /* margin-bottom: 36px; */
+    gap: 0;
+}
+
+.tabs-container .about-us-stats .about-us-left-title {
+    color: var(--text-color);
+    font-size: 28px;
+    font-weight: 400;
+    line-height: 40px;
+}
+
+.tabs-container .about-us-stats .about-us-right-content:first-child {
+    border-top: none;
+}
+
+.tabs-container .about-us-stats .about-us-right-content .statistic {
+    color: var(--primary-gold);
+    font-size: 40px;
+    font-weight: 500;
+    line-height: 50px;
+}
+
+.tabs-container .about-us-stats .about-us-right-content [data-aue-prop="feature-heading"] {
+    color: var(--body-text-color);
+    font-size: 16px;
+    line-height: 24px;
+}
+
+.tabs-container .statistics .statistic-item {
+    font-size: 40px;
+}
+
+.cards {
+    margin-top: 10px;
+}
+
+.cards img {
+    width: 100%;
+    height: auto;
+    border-radius: 8px;
+}
+
+/* TabsPanel Section Styles */
+.section.tabspanel {
+    padding: var(--section-padding);
+}
+
+.section.tabspanel [data-aue-prop="panelheading"] {
+    margin-bottom: 2rem;
+    font-size: var(--heading-font-size-l);
+    color: var(--text-color);
+}
+
+.tabs-container .textmediablock-container+.textmediablock-container {
+    padding: 136px 0 0;
+}
+
+.tabs-container .projectslist {
+    margin-top: 0;
+}
+
+@media (width <=1024px) {
+    .tabs-container .textmediablock-container+.textmediablock-container {
+        padding: 56px 0 0;
+    }
+
+    .tabs-container .projectslist {
+        margin-top: 56px;
+    }
+}
+
+@media(width<=992px) {
+    .tab-title {
+        font-size: 22px;
+        font-weight: 600;
+        line-height: 26px;
+    }
+
+    .tabs-container .about-us-stats .about-us-right-content {
+        margin-bottom: 16px;
+        padding-top: 16px;
+    }
+
+    .tabs-container .about-us-stats .about-us-left-title {
+        font-size: 24px;
+    }
+
+    .tabs-container .about-us-stats .about-us-right-content .statistic {
+        font-size: 32px;
+        line-height: 42px;
+
+    }
+
+    .tabs-container .about-us-stats .about-us-right-content [data-aue-prop="feature-heading"] {
+        font-size: 16px;
+        line-height: 20px;
+    }
+
+
+    .panel-heading h2 {
+        font-size: 32px;
+        line-height: 42px;
+    }
+}
+
+@media(width<768px) {
+    .tab-title {
+        font-size: 18px;
+        line-height: 24px;
+    }
+
+    .tabs-container .about-us-stats .about-us-right-content {
+        padding-top: 12px;
+        margin-bottom: 40px;
+    }
+
+    .panel-heading h2 {
+        font-size: 28px;
+        line-height: 34px;
+    }
+
+
+    .tabs-container .about-us-stats .about-us-left-title {
+        font-size: 22px;
+    }
+
+    .tabs-container .about-us-stats .about-us-right-content .statistic {
+        font-size: 28px;
+        line-height: 34px;
+
+    }
+
+    .tabs-container .about-us-stats .about-us-right-content [data-aue-prop="feature-heading"] {
+        font-size: 14px;
+        line-height: 20px;
+    }
+
+    .tabs-container .textmediablock-container+.textmediablock-container {
+        padding: 36px 0 0;
+        margin-bottom: 0;
+    }
+
+    .tabs-container .projectslist {
+        margin-top: 36px;
+    }
+}
+
+@media(width >=1024px) {
+    .tabs-container .about-us-stats .about-us-right-content:nth-child(2)>div:nth-child(2) {
+        width: 53%;
+    }
+
+    .tabs-container .about-us-stats .about-us-right-content {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+    }
+
+    .tabs-container .about-us-stats .about-us-right-content .statistic span:first-child {
+        font-size: 40px;
+        line-height: 40px;
+    }
+
+    .tabs-container .about-us-stats .about-us-right-content .statistic span:first-child:not(:empty) {
+        margin-right: 16px;
+    }
+
+    .tabs-container .about-us-stats .about-us-right-content .statistic p:first-child {
+        font-size: 40px;
+        line-height: 40px;
+    }
+
+    .tabs-container .about-us-stats .about-us-right-content .statistic p:first-child:not(:empty) {
+        margin-right: 16px;
+    }
+
+    .tabs-container .about-us-stats .about-us-right-content:first-child {
+        padding-top: 0;
+    }
+
+    .tabs-container .about-us-stats {
+        padding-bottom: 0 !important;
+    }
+}

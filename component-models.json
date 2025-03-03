@@ -3,10 +3,15 @@
     "id": "image",
     "fields": [
       {
-        "component": "reference",
+        "component": "custom-asset-namespace:custom-asset",
+        "valueType": "string",
         "name": "image",
-        "label": "Image",
-        "multi": false
+        "label": "image",
+        "configUrl": "https://int--genting--wppopen.aem.live/tools/assets-selector/config.json",
+        "multi": false,
+        "validation": {
+          "rootPath": "/content/dam/genting-singapore"
+        }
       },
       {
         "component": "text",
@@ -125,6 +130,18 @@
           {
             "name": "Statistics",
             "value": "statistics"
+          },
+          {
+            "name": "Footer Social",
+            "value": "footer-social"
+          },
+          {
+            "name": "Footer Navigation",
+            "value": "footer-navigation"
+          },
+          {
+            "name": "Footer Copyrights",
+            "value": "footer-copyrights"
           }
         ]
       }
@@ -134,12 +151,25 @@
     "id": "tabs",
     "fields": [
       {
+        "component": "multiselect",
+        "name": "classes",
+        "value": "",
+        "label": "Style Classes",
+        "valueType": "string",
+        "options": [
+          {
+            "name": "Tab",
+            "value": "tab"
+          }
+        ]
+      },
+      {
         "component": "text",
         "name": "tabtitle",
         "label": "Tab Title",
         "validation": {
-          "maxLength": 10,
-          "customErrorMsg": "Tab Title cannot exceed 10 characters"
+          "maxLength": 50,
+          "customErrorMsg": "Tab Title cannot exceed 50 characters"
         }
       }
     ]
@@ -148,10 +178,11 @@
     "id": "card",
     "fields": [
       {
-        "component": "reference",
+        "component": "custom-asset-namespace:custom-asset",
         "valueType": "string",
         "name": "image",
         "label": "Image",
+        "configUrl": "https://int--genting--wppopen.aem.live/tools/assets-selector/config.json",
         "multi": false
       },
       {
@@ -200,7 +231,7 @@
         "valueType": "string",
         "name": "bannerimage",
         "label": "Banner Image",
-        "configUrl": "https://main--genting--wppopen.aem.live/tools/assets-selector/config.json",
+        "configUrl": "https://int--genting--wppopen.aem.live/tools/assets-selector/config.json",
         "multi": false,
         "validation": {
           "rootPath": "/content/dam/genting-singapore"
@@ -240,7 +271,7 @@
         "label": "CTA Link",
         "multi": false,
         "validation": {
-          "rootPath": "/content/genting-singapore/index"
+          "rootPath": "/content/genting-singapore"
         }
       },
       {
@@ -290,7 +321,7 @@
         "component": "custom-asset-namespace:custom-asset",
         "name": "image",
         "label": "Carousel Image",
-        "configUrl": "https://main--genting--wppopen.aem.live/tools/assets-selector/config.json",
+        "configUrl": "https://int--genting--wppopen.aem.live/tools/assets-selector/config.json",
         "valueType": "string",
         "validation": {
           "rootPath": "/content/dam/genting-singapore"
@@ -309,7 +340,7 @@
         "label": "CTA Link",
         "multi": false,
         "validation": {
-          "rootPath": "/content/genting-singapore/index"
+          "rootPath": "/content/genting-singapore"
         }
       }
     ]
@@ -381,10 +412,11 @@
     "id": "featureItem",
     "fields": [
       {
-        "component": "reference",
+        "component": "custom-asset-namespace:custom-asset",
         "valueType": "string",
         "name": "feature-icon",
         "label": "Icon",
+        "configUrl": "https://int--genting--wppopen.aem.live/tools/assets-selector/config.json",
         "multi": false
       },
       {
@@ -434,7 +466,11 @@
         "options": [
           {
             "name": "Select",
-            "value": "select"
+            "value": ""
+          },
+          {
+            "name": "Arrow",
+            "value": "arrow"
           },
           {
             "name": "Right Arrow",
@@ -443,10 +479,6 @@
           {
             "name": "Download Arrow",
             "value": "download-arrow"
-          },
-          {
-            "name": "Top Right Arrow",
-            "value": "top-right-arrow"
           },
           {
             "name": "Twitter",
@@ -521,7 +553,7 @@
         "name": "link",
         "label": "Link",
         "validation": {
-          "rootPath": "/content/genting-singapore/index"          
+          "rootPath": "/content/genting-singapore"
         }
       },
       {
@@ -556,10 +588,11 @@
     "id": "imageLink",
     "fields": [
       {
-        "component": "reference",
+        "component": "custom-asset-namespace:custom-asset",
         "valueType": "string",
         "name": "linkImage",
         "label": "Link Image",
+        "configUrl": "https://int--genting--wppopen.aem.live/tools/assets-selector/config.json",
         "multi": false
       },
       {
@@ -606,7 +639,7 @@
         "component": "custom-asset-namespace:custom-asset",
         "name": "image",
         "label": "Background Image",
-        "configUrl": "https://main--genting--wppopen.aem.live/tools/assets-selector/config.json",
+        "configUrl": "https://int--genting--wppopen.aem.live/tools/assets-selector/config.json",
         "multi": false,
         "title": "Image",
         "validation": {
@@ -643,7 +676,7 @@
         "name": "cta",
         "label": "CTA",
         "validation": {
-          "rootPath": "/content/genting-singapore/index"
+          "rootPath": "/content/genting-singapore"
         }
       },
       {
@@ -709,10 +742,10 @@
         "component": "custom-asset-namespace:custom-asset",
         "name": "image",
         "label": "Project Image",
-        "configUrl": "https://main--genting--wppopen.aem.live/tools/assets-selector/config.json",
+        "configUrl": "https://int--genting--wppopen.aem.live/tools/assets-selector/config.json",
         "multi": false,
         "validation": {
-          "rootPath": "/content/dam/genting-singapore/index"
+          "rootPath": "/content/dam/genting-singapore"
         }
       },
       {
@@ -725,7 +758,7 @@
         "name": "project",
         "label": "Link",
         "validation": {
-          "rootPath": "/content/genting-singapore/index"
+          "rootPath": "/content/genting-singapore"
         }
       },
       {
@@ -795,7 +828,7 @@
         "component": "custom-asset-namespace:custom-asset",
         "name": "phoneIcon",
         "label": "Phone Icon",
-        "configUrl": "https://main--genting--wppopen.aem.live/tools/assets-selector/config.json",
+        "configUrl": "https://int--genting--wppopen.aem.live/tools/assets-selector/config.json",
         "multi": false
       },
       {
@@ -818,7 +851,7 @@
         "component": "custom-asset-namespace:custom-asset",
         "name": "emailIcon",
         "label": "Email Icon",
-        "configUrl": "https://main--genting--wppopen.aem.live/tools/assets-selector/config.json",
+        "configUrl": "https://int--genting--wppopen.aem.live/tools/assets-selector/config.json",
         "multi": false
       },
       {
@@ -841,7 +874,7 @@
         "component": "custom-asset-namespace:custom-asset",
         "name": "addressIcon",
         "label": "Address Icon",
-        "configUrl": "https://main--genting--wppopen.aem.live/tools/assets-selector/config.json",
+        "configUrl": "https://int--genting--wppopen.aem.live/tools/assets-selector/config.json",
         "multi": false
       },
       {
@@ -882,13 +915,32 @@
         "component": "custom-asset-namespace:custom-asset",
         "name": "image",
         "label": "Image",
-        "configUrl": "https://main--genting--wppopen.aem.live/tools/assets-selector/config.json",
+        "configUrl": "https://int--genting--wppopen.aem.live/tools/assets-selector/config.json",
         "multi": false
+      },
+      {
+        "component": "boolean",
+        "label": "File Download?",
+        "name": "reveal",
+        "valueType": "boolean"
+      },
+      {
+        "component": "custom-asset-namespace:custom-asset",
+        "label": "File Path",
+        "name": "filepath",
+        "valueType": "string",
+        "configUrl": "https://int--genting--wppopen.aem.live/tools/assets-selector/config.json",
+        "multi": false,
+        "condition": { "===": [{"var" : "reveal"}, true] }
       },
       {
         "component": "aem-content",
         "name": "cta",
-        "label": "CTA"
+        "label": "CTA",
+        "condition": { "===": [{"var" : "reveal"}, false] },
+        "validation": {
+          "rootPath": "/content/genting-singapore/index"
+        }
       },
       {
         "component": "text",
@@ -929,7 +981,7 @@
         "component": "custom-asset-namespace:custom-asset",
         "name": "image",
         "label": "Image",
-        "configUrl": "https://main--genting--wppopen.aem.live/tools/assets-selector/config.json",
+        "configUrl": "https://int--genting--wppopen.aem.live/tools/assets-selector/config.json",
         "multi": false
       },
       {
@@ -989,7 +1041,7 @@
         "linkTarget": "_blank",
         "validation": {
           "requiredErrorMsg": "CTA Link is mandatory",
-          "rootPath": "/content/genting-singapore/index"
+          "rootPath": "/content/genting-singapore"
         }
       },
       {
@@ -1008,7 +1060,7 @@
         "label": "CTA Link",
         "linkTarget": "_blank",
         "validation": {
-          "rootPath": "/content/genting-singapore/index"
+          "rootPath": "/content/genting-singapore"
         }
       }
     ]
@@ -1074,7 +1126,7 @@
         "component": "custom-asset-namespace:custom-asset",
         "name": "image",
         "label": "Image",
-        "configUrl": "https://main--genting--wppopen.aem.live/tools/assets-selector/config.json",
+        "configUrl": "https://int--genting--wppopen.aem.live/tools/assets-selector/config.json",
         "multi": false
       }
     ]
@@ -1082,6 +1134,21 @@
   {
     "id": "statistics",
     "fields": [
+      {
+        "component": "multiselect",
+        "name": "style",
+        "label": "Style",
+        "options": [
+          {
+            "name": "Statistics Feature",
+            "value": "statistics-feature"
+          },
+          {
+            "name": "Statistics Description",
+            "value": "statistics-description"
+          }
+        ]
+      },
       {
         "component": "text",
         "name": "heading",
@@ -1153,15 +1220,16 @@
     ]
   },
   {
-    "id": "tabspanel",
+    "id": "tabsectiontitle",
     "fields": [
       {
         "component": "text",
-        "name": "panelheading",
-        "label": "Panel Heading",
+        "name": "tabsectiontitle",
+        "label": "Tab Section Title",
+        "valueType": "string",
         "validation": {
           "maxLength": 80,
-          "customErrorMsg": "Panel heading cannot exceed 80 characters"
+          "customErrorMsg": "Section Title cannot exceed 80 characters"
         }
       }
     ]

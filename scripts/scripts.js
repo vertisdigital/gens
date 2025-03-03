@@ -1,3 +1,5 @@
+/* eslint-disable no-console */
+
 import {
   loadHeader,
   loadFooter,
@@ -64,52 +66,26 @@ async function loadFonts() {
  * @param {Element} main The container element
  */
 function buildAutoBlocks(main) {
+  console.log('Building auto blocks');
   try {
-    // Process tabs first but maintain their position
-    processTabs(main, moveInstrumentation);
-
-    // Find blocks inside columns and tabs containers
-    const containerBlocks = main.querySelectorAll(`
-      .columns div[class],
-      [data-aue-model="tabs"] div[class],
-      [data-aue-filter="tabs"] div[class]
-    `);
-
-    containerBlocks.forEach((block) => {
-      const classes = Array.from(block.classList);
-      classes.forEach((className) => {
-        if (!className.startsWith('columns-') && !className.startsWith('tabs-')
-            && className !== 'columns' && className !== 'tabs'
-            && className !== 'section-metadata') {
-          // Add block class and ensure block type is the first class
-          block.classList.remove(className);
-          block.classList.add(className, 'block');
-
-          // Force block decoration for this element
-          if (!block.dataset.blockName) {
-            block.dataset.blockName = className;
-          }
-        }
-      });
-    });
+    // Process tabs
+    processTabs(main);
   } catch (error) {
-    // eslint-disable-next-line no-console
     console.error('Auto Blocking failed', error);
   }
 }
+
 /**
  * Decorates the main element.
  * @param {Element} main The main element
  */
 // eslint-disable-next-line import/prefer-default-export
-export function decorateMain(main) {
-  // hopefully forward compatible button decoration
-
+export function decorateMain(main, isExecute) {
   decorateButtons(main);
   decorateIcons(main);
-  decorateSections(main);
-  decorateBlocks(main); // First decorate all blocks
-  buildAutoBlocks(main); // Then build auto blocks which will preserve block decoration
+  decorateSections(main, isExecute);
+  decorateBlocks(main);
+  buildAutoBlocks(main);
 }
 
 /**
@@ -172,6 +148,3 @@ async function loadPage() {
 }
 
 loadPage();
-
-// Add this in your initialization code
-loadCSS(`${window.hlx.codeBasePath}/blocks/tabs/tabs.css`);

@@ -1,3 +1,6 @@
+import ImageComponent from '../../shared-components/ImageComponent.js';
+import stringToHtml from '../../shared-components/Utility.js';
+
 export default function decorate(block) {
   // Get the inner block that has the coreprinciples class
   const coreBlock = block;
@@ -14,7 +17,7 @@ export default function decorate(block) {
   row.className = 'row';
 
   // Convert each item to use proper semantic structure
-  const items = [...coreBlock.querySelectorAll('[data-aue-model="coreprinciple"]')];
+  const items = [...coreBlock.querySelectorAll('[data-aue-model="coreprinciple"], [data-gen-model="featureItem"]')];
 
   items.forEach((item) => {
     // Add responsive column classes as per requirements
@@ -40,30 +43,61 @@ export default function decorate(block) {
     }
 
     // Alt image text
-    const altText = item.querySelector('[data-aue-prop="altTextImg"]');
+    const altText = item.children[1];
 
     // Create and add image using ImageComponent
+    // if (iconUrl) {
+    //   const img = document.createElement('img');
+    //   img.src = iconUrl;
+    //   img.loading = 'lazy';
+    //   img.width = 64;
+    //   img.height = 64;
+
+    //   if (altText) {
+    //     img.alt = altText?.textContent;
+    //   }
+
+    //   const picture = document.createElement('picture');
+    //   picture.appendChild(img);
+    //   iconWrapper.appendChild(picture);
+    // }
+
     if (iconUrl) {
-      const img = document.createElement('img');
-      img.src = iconUrl;
-      img.loading = 'lazy';
-      img.width = 64;
-      img.height = 64;
+      const picture = ImageComponent({
+        src: iconUrl,
+        alt: altText?.textContent.trim(),
+        className: 'enquiry-image',
+        breakpoints: {
+          mobile: {
+            width: 768,
+            src: `${iconUrl}`,
+          },
+          tablet: {
+            width: 1024,
+            src: `${iconUrl}`,
+          },
+          desktop: {
+            width: 1920,
+            src: `${iconUrl}`,
+          },
+        },
+        lazy: true,
+      });
 
-      if (altText) {
-        img.alt = altText?.textContent;
+      if (picture) {
+        const imageElement = stringToHtml(picture);
+        iconWrapper.append(imageElement);
       }
-
-      const picture = document.createElement('picture');
-      picture.appendChild(img);
-      iconWrapper.appendChild(picture);
     }
 
     // Convert title to h3 with preserved authoring attributes
-    const title = item.querySelector('[data-aue-prop="title"]');
+    const allDivElements = item.querySelectorAll('div');
+    // const title = item.querySelector('[data-aue-prop="title"], [data-gen-prop="feature-title"]');
+    const title = allDivElements[2];
     if (title !== null) {
       const h3 = document.createElement('h3');
       h3.textContent = title.textContent;
+      h3.className = 'coreprinciples-card-title';
 
       // Preserve title data-aue attributes
       const titleAttributes = [...title.attributes].filter((attr) => attr.name.startsWith('data-aue-'));
@@ -74,7 +108,7 @@ export default function decorate(block) {
     }
 
     // Preserve description data-aue attributes
-    const description = item.querySelector('[data-richtext-prop="description"]');
+    const description = allDivElements[3];
     if (description) {
       const descAttributes = [...description.attributes].filter((attr) => attr.name.startsWith('data-aue-') || attr.name.startsWith('data-richtext-'));
       descAttributes.forEach((attr) => {

@@ -1,23 +1,44 @@
 import ImageComponent from '../../shared-components/ImageComponent.js';
-import stringToHtml from '../../shared-components/Utility.js';
 import SvgIcon from '../../shared-components/SvgIcon.js';
+import stringToHtml from '../../shared-components/Utility.js';
+import { moveInstrumentation } from '../../scripts/scripts.js';
 
 export default function decorate(block) {
   // Add container classes from styles.css
   block.classList.add('container-xl', 'container-md', 'container-sm');
 
   // Process list items
-  const listItems = block.querySelectorAll('[data-aue-model="listitem"]');
+  const listItems = block.querySelectorAll('[data-aue-model="listitem"], [data-gen-model="listitem"]');
   listItems.forEach((item) => {
     // Create row from styles.css
     const row = document.createElement('div');
     row.classList.add('row');
 
     // Get all content elements
-    const title = item.querySelector('[data-aue-type="text"]');
-    const description = item.querySelector('[data-aue-prop="description"]');
+    const allDivElements = item.querySelectorAll('div');
+
+    // Handle title with moveInstrumentation
+    const titleContainer = allDivElements[1];
+    const title = titleContainer.querySelector('p');
+    if (title) {
+      moveInstrumentation(titleContainer, title);
+    }
+
+    // Handle description with moveInstrumentation
+    const descContainer = allDivElements[2];
+    const description = descContainer.querySelector('p');
+    if (description) {
+      moveInstrumentation(descContainer, description);
+    }
+
     const link = item.querySelector('.button-container a');
-    const linkTarget = item.querySelector('[data-aue-label="Target"]');
+
+    // Handle link target with moveInstrumentation
+    const linkTargetContainer = allDivElements[4];
+    const linkTarget = linkTargetContainer.querySelector('p');
+    if (linkTarget) {
+      moveInstrumentation(linkTargetContainer, linkTarget);
+    }
 
     // Process image
     const imgContainer = item.querySelector('div:first-child');
@@ -31,20 +52,30 @@ export default function decorate(block) {
         img.src = imgAnchor.href;
         img.alt = '';
 
-        ImageComponent({
-          element: img,
+        const imageHtml = ImageComponent({
           src: imgAnchor.href,
           alt: '',
+          className: 'listing-image',
+          breakpoints: {
+            mobile: {
+              width: 768,
+              src: `${imgAnchor.href}`,
+            },
+            tablet: {
+              width: 1024,
+              src: `${imgAnchor.href}`,
+            },
+            desktop: {
+              width: 1920,
+              src: `${imgAnchor.href}`,
+            },
+          },
           lazy: true,
         });
 
-        // Create picture element to properly handle responsive images
-        const picture = document.createElement('picture');
-        picture.appendChild(img);
-
         // Replace anchor with picture element containing the image
         imgContainer.innerHTML = '';
-        imgContainer.appendChild(picture);
+        imgContainer.append(stringToHtml(imageHtml));
       }
       row.appendChild(imgContainer);
     }
@@ -90,7 +121,33 @@ export default function decorate(block) {
   });
 
   // Process CTA section
-  const ctaContainer = block.querySelector('[data-aue-model="linkField"]');
-  const ctaText = ctaContainer.querySelector('[data-aue-prop="linkTarget"]');
-  ctaText.innerHTML = '';
+  const linkField = block.querySelector('[data-aue-model="linkField"],[data-gen-model="linkField"]');
+  if (linkField) {
+    // Get elements using index-based approach
+    const divElements = linkField.children;
+    const linkWrapper = divElements[0]?.querySelector('.button-container a');
+    const iconType = divElements[1]?.querySelector('p')?.textContent?.trim();
+    const targetValue = divElements[2]?.querySelector('p')?.textContent?.trim() || '_self';
+
+    if (linkWrapper) {
+      // Set target attribute
+      linkWrapper.setAttribute('target', targetValue);
+
+      // Add arrow icon if icon type is specified
+      if (iconType) {
+        const iconName = iconType.replace('-', '');
+        const arrowSVG = SvgIcon({
+          name: iconName,
+          className: 'about-us-left-link',
+          size: '24px',
+        });
+        divElements[1].textContent = '';
+        divElements[2].textContent = '';
+        linkWrapper.append(stringToHtml(arrowSVG));
+      }
+      linkField.textContent = '';
+      linkField.appendChild(linkWrapper);
+      block.appendChild(linkField);
+    }
+  }
 }

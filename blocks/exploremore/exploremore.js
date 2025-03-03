@@ -17,9 +17,10 @@ export default function decorate(block) {
   };
 
   // Extract elements
-  const titleElement = exploreMoreContainer.querySelector('[data-aue-prop="title"]');
-  const firstCtaElement = exploreMoreContainer.querySelector('[data-aue-prop="firstCtaCaption"]');
-  const secondCtaElement = exploreMoreContainer.querySelector('[data-aue-prop="secondCtaCaption"]');
+  const allDivElements = block.children;
+  const titleElement = allDivElements[0];
+  const firstCtaElement = allDivElements[1].querySelector('p');
+  const secondCtaElement = allDivElements[3].querySelector('p');
 
   const allLinks = exploreMoreContainer.querySelectorAll('a');
   const firstCtaHrefElement = allLinks?.[0];

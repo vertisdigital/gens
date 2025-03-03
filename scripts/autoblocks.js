@@ -1,173 +1,171 @@
-import { loadCSS } from './aem.js';
-import Heading from '../shared-components/Heading.js';
-import stringToHTML from '../shared-components/Utility.js';
+/* eslint-disable no-console */
+
 /**
- * Process all the tab auto blocks
+ * Creates the basic tab structure
  * @param {Element} main The container element
+ * @returns {Object|null} The created container elements or null
  */
-export default function processTabs(main, moveInstrumentation) {
-  const mainWrapper = main.querySelector('[data-aue-label="tabspanel"]');
-  const tabSections = [
-    ...main.querySelectorAll('[data-aue-model="tabs"]:not(.section-metadata)'),
-  ];
-  if (tabSections.length === 0) return;
-
-  // Function to load block CSS and JS
-  async function loadBlock(block) {
-    const { blockName } = block.dataset;
-    if (!blockName) return;
-
-    try {
-      // Load block CSS
-      const cssPath = `${window.hlx.codeBasePath}/blocks/${blockName}/${blockName}.css`;
-      await loadCSS(cssPath);
-
-      // Load block JS
-      const jsPath = `${window.hlx.codeBasePath}/blocks/${blockName}/${blockName}.js`;
-      try {
-        const module = await import(jsPath);
-        if (module.default) {
-          module.default(block);
-        }
-      } catch (error) {
-        // JS file might not exist, which is ok
-        // eslint-disable-next-line no-console
-        console.debug(`No JS module for block ${blockName}`);
-      }
-    } catch (error) {
-      // eslint-disable-next-line no-console
-      console.error(`Error loading block ${blockName}:`, error);
-    }
+function createTabStructure(main) {
+  
+  const tabElements = main.querySelectorAll('div[data-tabtitle]');
+  if (tabElements.length === 0) {
+    console.warn('[Tab System] No tab elements found.');
+    return null;
   }
 
-  const topContainer = document.createElement('div');
-  topContainer.classList = 'container-xl container-lg container-md container-sm tabpanel';
+  const tabsContainer = document.createElement('div');
+  tabsContainer.className = 'tabs-container section tab-container container-xl container-lg container-md container-sm tabpanel';
+  tabsContainer.setAttribute('data-section-status', 'loaded');
 
-  if (mainWrapper) {
-    moveInstrumentation(mainWrapper, topContainer);
+  const tabNav = document.createElement('div');
+  tabNav.className = 'tab-nav tabs-header row';
+  tabNav.style.display = 'flex';
+
+  const tabWrapper = document.createElement('div');
+  tabWrapper.className = 'tab-wrapper tabs-content';
+
+  return {
+    tabElements,
+    tabsContainer,
+    tabNav,
+    tabWrapper,
+  };
+}
+
+/**
+ * Creates individual tab elements
+ * @param {Element} section The section to create tab from
+ * @param {number} index Tab index
+ * @returns {Object} Created tab elements
+ */
+function createTabElement(section, index) {
+  const titleText = section.getAttribute('data-tabtitle');
+
+  const tabTitle = document.createElement('div');
+  tabTitle.textContent = titleText;
+  tabTitle.className = 'tab-title col-xl-6 col-lg-6 col-md-3 col-sm-2';
+  tabTitle.setAttribute('role', 'tab');
+  tabTitle.setAttribute('data-tab-index', index);
+  tabTitle.setAttribute('tabindex', '0');
+  if (index === 0) tabTitle.classList.add('active');
+
+  const tabPanel = section.cloneNode(true);
+  tabPanel.classList.add('tab', 'block', 'tab-panel');
+  tabPanel.setAttribute('data-block-name', 'tab');
+  tabPanel.setAttribute('data-block-status', 'loaded');
+  tabPanel.setAttribute('role', 'tabpanel');
+  tabPanel.setAttribute('data-tab-index', index);
+  tabPanel.classList.toggle('active', index === 0);
+
+  return { tabTitle, tabPanel };
+}
+
+/**
+ * Assembles the tab structure
+ * @param {Object} elements The tab elements to assemble
+ * @returns {Object} References to assembled elements
+ */
+function assembleTabStructure({
+  tabElements, tabsContainer, tabNav, tabWrapper,
+}) {
+
+  const tabs = [];
+  const panels = [];
+
+  tabElements.forEach((section, index) => {
+    const { tabTitle, tabPanel } = createTabElement(section, index);
+
+    tabs.push(tabTitle);
+    panels.push(tabPanel);
+
+    tabNav.appendChild(tabTitle);
+    tabWrapper.appendChild(tabPanel);
+  });
+
+  tabsContainer.appendChild(tabNav);
+  tabsContainer.appendChild(tabWrapper);
+
+  return { tabs, panels, container: tabsContainer };
+}
+
+/**
+ * Updates tab states
+ * @param {Array} tabs Tab elements
+ * @param {Array} panels Panel elements
+ * @param {number} activeIndex Index to activate
+ */
+function updateTabStates(tabs, panels, activeIndex) {
+
+  // Update tabs
+  tabs.forEach((tab) => tab.classList.remove('active'));
+  tabs[activeIndex].classList.add('active');
+
+  // Update panels
+  panels.forEach((panel) => panel.classList.remove('active'));
+  panels[activeIndex].classList.add('active');
+}
+
+/**
+ * Adds click functionality to tabs using event delegation
+ * @param {Object} elements References to tab elements
+ */
+function addTabFunctionality({ tabs, panels, container }) {
+  if (!tabs || !panels || !container) {
+    console.warn('[Tab System] Missing required elements:', { tabs, panels, container });
+    return;
   }
 
-  const tabsWrapper = document.createElement('div');
-  tabsWrapper.classList.add('tabs-container', 'block');
-  tabsWrapper.dataset.blockName = 'tabs';
+  const tabNav = container.querySelector('.tab-nav');
 
-  const tabsNav = document.createElement('div');
-  tabsNav.classList.add('tabs-header', 'row');
+  if (!tabNav) {
+    console.warn('⚠️ .tab-nav not found when adding event listener!');
+    return;
+  }
 
-  const tabsContent = document.createElement('div');
-  tabsContent.classList.add('tabs-content');
+  tabNav.addEventListener('click', (e) => {
+    const clickedTab = e.target.closest('.tab-title');
+    if (!clickedTab) return;
 
-  tabSections.forEach((section, index) => {
-    const metadata = section.querySelector('.section-metadata > div :last-child');
-    const tabTitle = metadata ? metadata.textContent.trim() : `Tab ${index + 1}`;
-
-    const tabButton = document.createElement('div');
-    tabButton.classList.add('tab-title', 'col-xl-6', 'col-lg-6', 'col-md-3', 'col-sm-2');
-    tabButton.dataset.index = index;
-    tabButton.textContent = tabTitle;
-
-    const tabPanel = document.createElement('div');
-    tabPanel.classList.add('tab-panel');
-    moveInstrumentation(section, tabPanel);
-
-    // Set initial active state for first tab
-    if (index === 0) {
-      tabButton.classList.add('active');
-      tabPanel.classList.add('active');
-    }
-
-    // Process blocks in the section
-    const blocks = section.querySelectorAll('div[class]');
-    blocks.forEach((block) => {
-      const classes = Array.from(block.classList);
-      classes.forEach((className) => {
-        if (!className.includes('section-metadata')
-            && !className.startsWith('tabs-')
-            && !className.startsWith('col-')) {
-          // Create a new block element
-          const newBlock = document.createElement('div');
-          newBlock.classList.add(className, 'block');
-          newBlock.dataset.blockName = className;
-
-          // Copy content and attributes
-          newBlock.innerHTML = block.innerHTML;
-          Array.from(block.attributes).forEach((attr) => {
-            if (!attr.name.startsWith('class')) {
-              newBlock.setAttribute(attr.name, attr.value);
-            }
-          });
-
-          // Replace original block with new one
-          block.replaceWith(newBlock);
-
-          // Load all blocks immediately instead of just the first tab
-          loadBlock(newBlock);
-        }
-      });
-    });
-
-    // Move content to panel
-    Array.from(section.children).forEach((child) => {
-      if (!child.classList?.contains('section-metadata')) {
-        tabPanel.appendChild(child);
-      }
-    });
-
-    tabsNav.appendChild(tabButton);
-    tabsContent.appendChild(tabPanel);
-  });
-
-  // Remove original sections
-  tabSections.forEach((section) => section.remove());
-
-  // Build structure
-  tabsWrapper.appendChild(tabsNav);
-  tabsWrapper.appendChild(tabsContent);
-  topContainer.appendChild(tabsWrapper);
-
-  // Processing the tab section headings
-  const tabSectionMetaData = mainWrapper.querySelector('[data-block-name="section-metadata"]');
-  tabSectionMetaData.classList.add('panel-heading');
-  // all meta data
-  tabSectionMetaData.querySelectorAll(':scope > div').forEach((metaData) => {
-    const metaDataBlocks = metaData.querySelectorAll(':scope > div');
-    if (metaDataBlocks[0].textContent.trim() === 'panelheading') {
-      const headingText = metaDataBlocks[1].textContent.trim();
-      const panelHeading = document.createElement('div');
-      const headingHtml = Heading({ level: 2, text: headingText, className: '' });
-      const parsedHtml = stringToHTML(headingHtml);
-      panelHeading.appendChild(parsedHtml);
-      tabSectionMetaData.appendChild(panelHeading);
-    }
-    metaData.remove();
-  });
-  topContainer.insertBefore(tabSectionMetaData, topContainer.firstChild);
-
-  const tabsPosition = main.querySelector('[data-aue-label="tabsposition"]');
-  main.insertBefore(topContainer, tabsPosition || main.firstChild);
-
-  // Simplified tab switching handler - just toggle visibility
-  tabsNav.addEventListener('click', (event) => {
-    const tabButton = event.target.closest('.tab-title');
-    if (!tabButton) return;
-
-    const index = parseInt(tabButton.dataset.index, 10);
-    if (Number.isNaN(index)) return;
-
-    // Update tabs
-    tabsWrapper.querySelectorAll('.tab-title').forEach((btn) => {
-      btn.classList.remove('active');
-    });
-    tabButton.classList.add('active');
-
-    // Update panels
-    tabsWrapper.querySelectorAll('.tab-panel').forEach((panel) => {
-      panel.classList.remove('active');
-    });
-
-    const activePanel = tabsContent.children[index];
-    if (activePanel) {
-      activePanel.classList.add('active');
-    }
+    const index = Number(clickedTab.getAttribute('data-tab-index'));
+    updateTabStates([...tabNav.children], [...container.querySelector('.tab-wrapper').children], index);
   });
 }
+
+/**
+ * Main function to process tabs
+ * @param {Element} main The container element
+ */
+function processTabs(main) {
+  try {
+
+    // Create basic structure
+    const structure = createTabStructure(main);
+    if (!structure) {
+      return;
+    }
+
+    // Assemble the structure
+    const elements = assembleTabStructure(structure);
+
+    // Find the first tab element's position
+    const firstTabElement = structure.tabElements[0];
+
+    // Insert the tab container before the first tab element
+    firstTabElement.parentNode.insertBefore(elements.container, firstTabElement);
+
+    // Ensure tab-nav exists before adding event listeners
+    if (!document.querySelector('.tab-nav')) {
+      console.warn('⚠️ .tab-nav is still missing after DOM update. Retrying...');
+      setTimeout(() => addTabFunctionality(elements), 100);
+    } else {
+      addTabFunctionality(elements);
+    }
+
+    // Remove original sections
+    structure.tabElements.forEach((section) => section.remove());
+  } catch (error) {
+    console.error('[Tab System] Error processing tabs:', error);
+  }
+}
+
+export default processTabs;

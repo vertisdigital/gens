@@ -1,5 +1,5 @@
 import { getMetadata } from '../../scripts/aem.js';
-import { loadFragmentCustom } from '../fragment/fragment.js';
+import { loadFragment } from '../fragment/fragment.js';
 import SvgIcon from '../../shared-components/SvgIcon.js';
 import stringToHtml from '../../shared-components/Utility.js';
 
@@ -42,22 +42,30 @@ function createNavItem(itemData) {
   const detailedcaption = document.createElement('a');
 
   // Check if this is the Contact menu item
-  if (itemData.title === 'Contact' && itemData.links?.length === 1) {
-    // For Contact, create a direct link using the first link in the array
-    const contactLink = document.createElement('a');
-    contactLink.textContent = itemData.links[0].text;
-    contactLink.href = itemData.links[0].href;
-    contactLink.setAttribute('target', itemData.links[0].target || '_self');
-    titleContent.appendChild(contactLink);
+  // if (itemData.title === 'Contact' && itemData.links?.length === 1) {
+  //   // For Contact, create a direct link using the first link in the array
+  //   const contactLink = document.createElement('a');
+  //   contactLink.textContent = itemData.links[0].text;
+  //   contactLink.href = itemData.links[0].href;
+  //   contactLink.setAttribute('target', itemData.links[0].target || '_self');
+  //   titleContent.appendChild(contactLink);
 
-    // Skip creating submenu elements
-    titleDiv.appendChild(titleContent);
-    navItem.appendChild(titleDiv);
-    return navItem;
-  }
+  //   // Skip creating submenu elements
+  //   titleDiv.appendChild(titleContent);
+  //   navItem.appendChild(titleDiv);
+  //   return navItem;
+  // }
 
   // Normal menu item handling
-  titleContent.textContent = itemData.title;
+  if (itemData.title === 'CONTACT') {
+    const contactLinkElement = document.createElement('a');
+    contactLinkElement.href = itemData.overviewLinkHref;
+    contactLinkElement.target = itemData.overviewLinkTarget;
+    contactLinkElement.innerText = itemData.title;
+    titleContent.append(contactLinkElement);
+  } else {
+    titleContent.textContent = itemData.title;
+  }
 
   if (itemData.caption) {
     detailedcaption.textContent = typeof itemData.caption === 'string'
@@ -110,6 +118,7 @@ function createNavItem(itemData) {
         a.className = 'button';
         a.title = link.text;
         a.textContent = link.text;
+        a.target = link.target;
         linkContainer.appendChild(a);
         li.appendChild(linkContainer);
         linksUl.appendChild(li);
@@ -149,12 +158,12 @@ function createHeaderStructure(block) {
   // Create logo section
   const logoWrapper = document.createElement('a');
   logoWrapper.className = 'logo-wrapper';
-  logoWrapper.href = 'https://author-p144202-e1512622.adobeaemcloud.com/content/genting-singapore/index.html';
+  logoWrapper.href = block.querySelector('.links .button')?.href || '/';
 
   // Get both logo images from fragment
-  const images = block.querySelectorAll('[data-aue-model="image"]');
-  const defaultLogo = images[0]?.querySelector('picture');
-  const scrollLogo = images[1]?.querySelector('picture');
+  const images = block.querySelectorAll('picture');
+  const defaultLogo = images[0];
+  const scrollLogo = images[1];
 
   // Add both logos with appropriate classes
   if (defaultLogo) {
@@ -175,20 +184,40 @@ function createHeaderStructure(block) {
   primaryNav.className = 'primary-nav row';
 
   // Extract and create navigation items
-  const navItems = Array.from(block.querySelectorAll('[data-aue-model="links"]')).map((navSection) => createNavItem({
-    title: navSection.querySelector('[data-aue-prop="title"]')?.textContent,
-    overviewLinkText: navSection.querySelector('[data-aue-prop="linkText"]')?.textContent,
-    overviewLinkHref: navSection.querySelector('[data-aue-prop="linkText"]')?.getAttribute('href'),
-    overviewLinkTarget: navSection.querySelector('[data-aue-prop="linkTarget"]')?.textContent,
-    caption: navSection.querySelector('[title="Overview"]'),
-    captionTarget: '_self',
-    links: Array.from(navSection.querySelectorAll('[data-aue-model="linkField"]')).map((link) => ({
-      text: link.querySelector('[data-aue-prop="linkText"]')?.textContent,
-      href: link.querySelector('a')?.getAttribute('href'),
-      target: link.querySelector('[data-aue-prop="linkTarget"]')?.textContent,
-      resourcePath: link.getAttribute('data-aue-resource'),
-    })),
-  }));
+  const navItems = Array.from(block.querySelectorAll('.links')).slice(1).map((navSection) => {
+    const sections = [...navSection.children];
+
+    // Extract title from first section
+    const title = sections[0]?.querySelector('div')?.textContent;
+
+    // Extract overview link from the fourth section (index 3)
+
+    // const overviewSection = sections[3];
+    const overviewLink = sections[3]?.querySelector('a');
+    const overviewLinkHref = (title !== 'CONTACT'
+      ? overviewLink?.getAttribute('href')
+      : sections[1]?.querySelector('a')?.getAttribute('href'));
+
+    // Create nav item object
+    return createNavItem({
+      title,
+      overviewLinkText: overviewLink?.textContent || '',
+      overviewLinkHref,
+      overviewLinkTarget: sections[2]?.querySelector('div')?.textContent || '_self',
+      caption: overviewLink,
+      captionTarget: '_self',
+      // Map remaining sections as links (starting from index 4)
+      links: sections.slice(3).map((linkSection) => {
+        const link = linkSection.querySelector('a');
+        return {
+          text: link?.getAttribute('title') || link?.textContent,
+          href: link?.getAttribute('href') || '',
+          target: linkSection.querySelector('div:last-child')?.textContent || '_self',
+          resourcePath: linkSection.getAttribute('data-aue-resource'),
+        };
+      }),
+    });
+  });
 
   navItems.forEach((item) => {
     const li = document.createElement('li');
@@ -471,7 +500,7 @@ function handleScroll(header) {
 export default async function decorate(block) {
   const navMeta = getMetadata('nav');
   const navPath = navMeta ? new URL(navMeta, window.location).pathname : '/nav';
-  const fragment = await loadFragmentCustom(navPath);
+  const fragment = await loadFragment(navPath);
 
   if (fragment && true) {
     const header = createHeaderStructure(fragment);
@@ -500,4 +529,21 @@ export default async function decorate(block) {
     header.classList.remove('fixed-header');
     isHeaderFixed = false;
   }
+  window.addEventListener('click', (event) => {
+    const excludedSelectors = [
+      '.header-inner-wrapper .columns-wrapper',
+      '.secondary-nav',
+      '.secondary-header-links',
+    ];
+    const isExcluded = excludedSelectors.some((selector) => {
+      const element = document.querySelector(selector);
+      return element && element.contains(event.target);
+    });
+    if (isExcluded) {
+      return;
+    }
+    document.querySelectorAll('.nav-item, .secondary-nav').forEach((el) => {
+      el.classList.remove('active');
+    });
+  });
 }

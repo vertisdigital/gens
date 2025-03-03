@@ -3,9 +3,8 @@
     "id": "main",
     "components": [
       "section",
-      "statisticsSection",      
-      "tabspanel",
-      "tabsposition"
+      "statisticsSection", 
+      "tabs"
     ]
   },
   {
@@ -155,14 +154,6 @@
     "components": [
       "projectslistitem"
     ]
-  },
-  {
-    "id": "tabsposition",
-    "components": [null]
-  },
-  {
-    "id": "tabspanel",
-    "components": ["tabs"]
   },
   {
     "id": "statisticsSection",
