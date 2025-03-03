@@ -2,6 +2,7 @@ import ImageComponent from '../../shared-components/ImageComponent.js';
 import Heading from '../../shared-components/Heading.js';
 import SvgIcon from '../../shared-components/SvgIcon.js';
 import stringToHTML from '../../shared-components/Utility.js';
+import { moveInstrumentation } from '../../scripts/scripts.js';
 
 export default function decorate(block) {
   let heroContainer = block.querySelector('.hero-banner-container');
@@ -42,6 +43,7 @@ export default function decorate(block) {
     });
 
     const imageContainer = document.createElement('div');
+    // Copy data attributes from parent element if they exist
     imageContainer.setAttribute('data-aue-model', 'bannerimage');
     imageContainer.setAttribute('data-aue-label', 'Banner Image');
     imageContainer.insertAdjacentHTML('beforeend', imageHtml);
@@ -56,13 +58,8 @@ export default function decorate(block) {
   if (headingElement) {
     const headingText = headingElement.textContent;
     const headingContainer = document.createElement('div');
-    headingContainer.setAttribute('data-aue-model', 'bannerheading');
-    headingContainer.setAttribute('data-aue-label', 'Banner Heading');
-    headingContainer.setAttribute(
-      'data-aue-prop',
-      headingElement.getAttribute('data-aue-prop'),
-    );
-    headingContainer.setAttribute('data-aue-type', 'text');
+    // Copy data attributes from source element
+    moveInstrumentation(headingContainer, headingElement);
     const headingHtml = Heading({
       level: 5,
       text: headingText,
@@ -77,13 +74,8 @@ export default function decorate(block) {
   if (titleElement) {
     const titleText = titleElement.textContent;
     const titleContainer = document.createElement('div');
-    titleContainer.setAttribute('data-aue-model', 'bannertitle');
-    titleContainer.setAttribute('data-aue-label', 'Banner Title');
-    titleContainer.setAttribute(
-      'data-aue-prop',
-      titleElement.getAttribute('data-aue-prop'),
-    );
-    titleContainer.setAttribute('data-aue-type', 'text');
+    // Copy data attributes from source element
+    moveInstrumentation(titleElement, titleContainer);
     const headingHtml = Heading({
       level: 2,
       text: titleText,
@@ -100,20 +92,15 @@ export default function decorate(block) {
   if (descElement) {
     const descriptionDiv = document.createElement('div');
     descriptionDiv.className = 'hero-description';
-    descriptionDiv.setAttribute('data-aue-model', 'bannerdescription');
-    descriptionDiv.setAttribute('data-aue-label', 'Banner Description');
-    descriptionDiv.setAttribute(
-      'data-aue-prop',
-      descElement.getAttribute('data-aue-prop'),
-    );
-    descriptionDiv.setAttribute('data-aue-type', 'text');
+    // Copy data attributes from source element
+    moveInstrumentation(descElement, descriptionDiv);
     descriptionDiv.textContent = descElement.textContent;
     heroContent.appendChild(descriptionDiv);
     descElement.remove();
   }
 
-  const arrowIconLink = block.querySelector('[data-aue-prop="ctabuttonText"],.herobanner-nested-1-5 p');
-  if (arrowIconLink) {
+  const arrowIconLink = block.children[4];
+  if (arrowIconLink && arrowIconLink.querySelector('a')!=null) {
     const arrowIconHtml = SvgIcon({
       name: 'arrow',
       className: 'hero-arrow-icon',
@@ -121,20 +108,17 @@ export default function decorate(block) {
       color: '#B29152',
     });
     const parsedHtml = stringToHTML(arrowIconHtml);
-    const anchorWrapper = document.createElement('a');
-    anchorWrapper.href = arrowIconLink?.getAttribute('href');
-    anchorWrapper.appendChild(parsedHtml);
-    heroContent.appendChild(anchorWrapper);
+    arrowIconLink.querySelector('a').textContent = '';
+    arrowIconLink.querySelector('a')?.append(parsedHtml);
+    heroContent.appendChild(arrowIconLink);
   }
   heroContainer.appendChild(heroContent);
   const carouselItems = block.querySelectorAll(
-    '[data-aue-model="bannercarousel"],[data-gen-model="tile"]',
+    '[data-aue-model="bannercarousel"],[data-gen-model="featureItem"]',
   );
+  
   const carouselContainer = document.createElement('div');
   carouselContainer.className = 'hero-banner-carousal';
-  carouselContainer.setAttribute('data-aue-model', 'bannercarousel');
-  carouselContainer.setAttribute('data-aue-label', 'Banner Carousel');
-
   const carouselWrapper = document.createElement('div');
   carouselWrapper.className = 'carousel-wrapper';
   carouselWrapper.setAttribute('data-aue-type', 'container');
@@ -237,85 +221,62 @@ export default function decorate(block) {
   carouselItems.forEach((item) => {
     const carouselItem = document.createElement('div');
     carouselItem.classList.add('carousel-item');
-    carouselItem.setAttribute('data-aue-model', 'bannercarousel');
-    carouselItem.setAttribute(
-      'data-aue-resource',
-      item.getAttribute('data-aue-resource'),
-    );
-    carouselItem.setAttribute('data-aue-label', 'Banner Carousel');
-    carouselItem.setAttribute('data-aue-type', 'component');
+    // Copy data attributes from source carousel item
+    moveInstrumentation(item, carouselItem);
 
     const carouselItemContent = document.createElement('div');
     carouselItemContent.classList.add('carousel-content');
-    carouselItemContent.setAttribute('data-aue-type', 'content');
-    const newsLatterImage = document.createElement('div');
-    newsLatterImage.classList.add('carousel-image');
+    moveInstrumentation(item, carouselContainer);
+    const newsLetterImage = document.createElement('div');
+    newsLetterImage.classList.add('carousel-image');
     const newsLinkDiv = document.createElement('div');
     newsLinkDiv.classList.add('news-link-container');
     const newsLinkArrowDiv = document.createElement('div');
     newsLinkArrowDiv.classList.add('news-link-arrow-container');
 
     carouselItem.appendChild(carouselItemContent);
-    carouselItem.appendChild(newsLatterImage);
+    carouselItem.appendChild(newsLetterImage);
 
     // Extract and append the title
     const itemDivs = item.querySelectorAll('div');
-    
+
     const carouselTitleElement = itemDivs[0].querySelector('p');
     if (carouselTitleElement) {
       const titleText = carouselTitleElement.textContent;
       const titleHtml = `<p class="news-title">${titleText}</p>`;
       const titleContainer = document.createElement('div');
-      titleContainer.setAttribute('data-aue-label', 'Title');
-      titleContainer.setAttribute(
-        'data-aue-prop',
-        carouselTitleElement.getAttribute('data-aue-prop'),
-      );
-      titleContainer.setAttribute('data-aue-type', 'text');
+      moveInstrumentation(itemDivs[0], titleContainer);
       titleContainer.insertAdjacentHTML('beforeend', titleHtml);
       carouselItemContent.appendChild(titleContainer);
       carouselTitleElement.remove();
     }
 
     // Extract and append the description
-    const descriptionElement =itemDivs[1].querySelector('p');;
+    const descriptionElement = itemDivs[1].querySelector('p');
     if (descriptionElement) {
       const descriptionText = descriptionElement.textContent;
       const descriptionHtml = `<p class="news-description">${descriptionText}</p>`;
       const descContainer = document.createElement('div');
-      descContainer.setAttribute('data-aue-label', 'Description');
-      descContainer.setAttribute(
-        'data-aue-prop',
-        descriptionElement.getAttribute('data-aue-prop'),
-      );
-      descContainer.setAttribute('data-aue-type', 'text');
+      moveInstrumentation(itemDivs[1], descContainer);
       descContainer.insertAdjacentHTML('beforeend', descriptionHtml);
       carouselItemContent.appendChild(descContainer);
       descriptionElement.remove();
     }
 
     // Extract and append the "Read More" label
-    const readMoreLabelElement =itemDivs[3].querySelector('p');
-    if (readMoreLabelElement) {
+    const readMoreLabelElement = itemDivs[3].querySelector('p');
+  
+   if (readMoreLabelElement) {
       const readMoreLabelText = readMoreLabelElement.textContent;
-      const buttonContainer = readMoreLabelElement.parentElement.nextElementSibling.querySelector('a');
-      const href = buttonContainer ? buttonContainer.getAttribute('href') : '';
-      const currentUrl = window.location.href;
-      const newUrl = currentUrl.replace(window.location.pathname, href);
-      const readMoreLabelHtml = `<a class="news-link" href="${newUrl}" target="_blank">${readMoreLabelText}</a>`;
+      const buttonContainer = itemDivs[4]?.querySelector('a');
+      const href = buttonContainer?.getAttribute('href') ?? '/' ;
+      const readMoreLabelHtml = `<a class="news-link" href="${href}">${readMoreLabelText}</a>`;
       const readMoreContainer = document.createElement('div');
-      readMoreContainer.setAttribute('data-aue-model', 'readmorelabel');
-      readMoreContainer.setAttribute('data-aue-label', 'Read More Label');
-      readMoreContainer.setAttribute(
-        'data-aue-prop',
-        readMoreLabelElement.getAttribute('data-aue-prop'),
-      );
-      readMoreContainer.setAttribute('data-aue-type', 'text');
+      moveInstrumentation(itemDivs[3], readMoreContainer);
       readMoreContainer.insertAdjacentHTML('beforeend', readMoreLabelHtml);
       newsLinkDiv.appendChild(readMoreContainer);
       readMoreLabelElement.remove();
     }
-
     // Extract the two SVG icons and append them using ImageComponent
     const firstIconLink = block.querySelector(
       'a[href="material-symbols_chevron-left%20(1).svg"]',
@@ -392,10 +353,8 @@ export default function decorate(block) {
           lazy: false,
         });
 
-        newsLatterImage.insertAdjacentHTML('beforeend', imgHtml);
-        newsLatterImage.setAttribute('data-aue-type', 'image');
-        newsLatterImage.setAttribute('data-aue-prop', 'image');
-        newsLatterImage.setAttribute('data-aue-label', 'News Image');
+        newsLetterImage.insertAdjacentHTML('beforeend', imgHtml);
+        moveInstrumentation(itemDivs[2], newsLetterImage);
         aTag.remove();
       }
     }

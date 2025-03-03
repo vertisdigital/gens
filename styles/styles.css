@@ -962,3 +962,35 @@ main .section.highlight {
     margin-left: 91.66666667%;
   }
 }
+
+main {
+  position: relative;
+}
+
+main::before {
+  content: '';
+  background: url("../icons/genting-page-mobile-bg.jpg") repeat-y;
+  background-position: center top;
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+}
+@media (width >= 768px) {
+  main::before {
+    background: url("../icons/genting-page-tablet-bg.jpg") repeat-y;
+    background-position: center top;
+  }
+}
+@media (width >= 1024px) {
+  main::before {
+    background: url("../icons/genting-page-desktop-bg-1440.jpg") repeat-y;
+    background-position: center top;
+  }
+}
+@media (width >= 1441px) {
+  main::before {
+    background: url("../icons/genting-page-desktop-bg-1920.jpg") repeat-y;
+    background-position: center top;
+    background-size: 100%;
+  }
+}

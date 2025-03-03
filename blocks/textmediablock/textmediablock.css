@@ -1,6 +1,6 @@
 .textmediablock-container{
   .textmediablock-wrapper{
-    padding: 68px 0;
+    margin: 68px 0;
   }
 
   [data-block-name="textmediablock"]>div:first-child{
@@ -22,8 +22,7 @@
 /* Text section styles */
 
 .textblock{
-  display: grid;
-  grid-template-columns: 1fr 1fr;
+  display: flex;
   gap: 36px;
 }
 
@@ -33,9 +32,14 @@
   font-weight: 500;
   line-height: 50px;
   color: var(--text-color);
+  flex: 1;
 }
 
-.textsection p{
+.textblock .text-section {
+  flex: 0 0 calc(50% - 18px);
+}
+
+.text-section p{
   font-size: 16px;
   font-weight: 400;
   line-height: 24px;
@@ -70,7 +74,7 @@
 } 
 @media (width<768px) {
   .textmediablock-wrapper {
-    padding: 24px 0;
+    margin: 24px 0;
   }
 
   [data-block-name="textmediablock"]>div:first-child{

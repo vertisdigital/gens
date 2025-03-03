@@ -1,3 +1,5 @@
+/* eslint-disable no-console */
+
 /**
  * Creates the basic tab structure
  * @param {Element} main The container element

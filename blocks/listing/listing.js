@@ -1,6 +1,6 @@
 import ImageComponent from '../../shared-components/ImageComponent.js';
-import stringToHtml from '../../shared-components/Utility.js';
 import SvgIcon from '../../shared-components/SvgIcon.js';
+import stringToHtml from '../../shared-components/Utility.js';
 import { moveInstrumentation } from '../../scripts/scripts.js';
 
 export default function decorate(block) {
@@ -16,7 +16,7 @@ export default function decorate(block) {
 
     // Get all content elements
     const allDivElements = item.querySelectorAll('div');
-    
+
     // Handle title with moveInstrumentation
     const titleContainer = allDivElements[1];
     const title = titleContainer.querySelector('p');
@@ -32,7 +32,7 @@ export default function decorate(block) {
     }
 
     const link = item.querySelector('.button-container a');
-    
+
     // Handle link target with moveInstrumentation
     const linkTargetContainer = allDivElements[4];
     const linkTarget = linkTargetContainer.querySelector('p');
@@ -54,7 +54,7 @@ export default function decorate(block) {
 
         const imageHtml = ImageComponent({
           src: imgAnchor.href,
-          alt: "",
+          alt: '',
           className: 'listing-image',
           breakpoints: {
             mobile: {
@@ -121,9 +121,33 @@ export default function decorate(block) {
   });
 
   // Process CTA section
-  const ctaContainer = block.querySelector('[data-aue-model="linkField"], [data-gen-model="linkField"]');
-  const ctaText = ctaContainer.querySelector('[data-aue-prop="linkTarget"], [data-gen-prop="linkTarget"]');
-  const ctaIcon = ctaContainer.querySelector(':nth-child(2)');
-  ctaText.innerHTML = '';
-  ctaIcon.innerHTML = '';
+  const linkField = block.querySelector('[data-aue-model="linkField"],[data-gen-model="linkField"]');
+  if (linkField) {
+    // Get elements using index-based approach
+    const divElements = linkField.children;
+    const linkWrapper = divElements[0]?.querySelector('.button-container a');
+    const iconType = divElements[1]?.querySelector('p')?.textContent?.trim();
+    const targetValue = divElements[2]?.querySelector('p')?.textContent?.trim() || '_self';
+
+    if (linkWrapper) {
+      // Set target attribute
+      linkWrapper.setAttribute('target', targetValue);
+
+      // Add arrow icon if icon type is specified
+      if (iconType) {
+        const iconName = iconType.replace('-', '');
+        const arrowSVG = SvgIcon({
+          name: iconName,
+          className: 'about-us-left-link',
+          size: '24px',
+        });
+        divElements[1].textContent = '';
+        divElements[2].textContent = '';
+        linkWrapper.append(stringToHtml(arrowSVG));
+      }
+      linkField.textContent = '';
+      linkField.appendChild(linkWrapper);
+      block.appendChild(linkField);
+    }
+  }
 }

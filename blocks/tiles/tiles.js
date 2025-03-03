@@ -20,7 +20,7 @@ export default function decorate(block) {
   // Move existing tiles into grid columns
   const tiles = Array.from(block.children);
   const firstTile = tiles[0];
-  const isFirsTileImage = firstTile && firstTile.querySelector('a[href*="delivery-"], a[href*="/content/dam/"][href$=".png"],a[href*="/content/dam/"][href$=".jpeg"], a[href*="/content/dam/"][href$=".jpg"], a[href*="/content/dam/"][href$=".gif"]');
+  const isFirsTileImage = tiles[0] && tiles[0].children[3].textContent === 'false';
 
   tiles.forEach((tile, index) => {
     // Handle first tile's download button
@@ -30,6 +30,7 @@ export default function decorate(block) {
     row.appendChild(col);
 
     if (isFirsTileImage || index > 0) {
+      firstTile.children[3].textContent = '';
       // Handle image tiles (all except first)
       const imageLink = tile.querySelector(
         'a[href*="/content/dam/"][href$=".png"], a[href*="delivery-"]',
@@ -46,10 +47,10 @@ export default function decorate(block) {
       }
 
       // Handle CTA link
-      const AllChildrens = tile.children;
-      const buttonContainer = AllChildrens[3].querySelector('a');
+      const childrens = tile.children;
+      const buttonContainer = childrens[5].querySelector('a');
 
-      const ctaCaption = tile.querySelector('[data-aue-prop="ctaCaption"], [data-gen-prop="ctaCaption"]');
+      const ctaCaption = childrens[6];
       if (buttonContainer && buttonContainer.textContent.trim() !== '' && ctaCaption !== null) {
         const ctaLink = document.createElement('a');
         ctaLink.href = buttonContainer.href;
@@ -67,17 +68,18 @@ export default function decorate(block) {
     }
 
     if (!isFirsTileImage && index === 0) {
-      // const buttonContainer = firstTile.querySelector('.button-container');
       col.classList.add('no-image-tile');
-      const AllChildrenDivs = firstTile.children;
-      const buttonContainer = AllChildrenDivs[3].querySelector('a');
-      const ctaCaption = firstTile.querySelector('[data-aue-prop="ctaCaption"], [data-gen-prop="ctaCaption"]');
+      const childrens = firstTile.children;
+      const buttonContainer = childrens[3].textContent === 'true' ? childrens[4].querySelector('a') : childrens[3].querySelector('a');
+      const ctaCaption = childrens[6];
       const downArraowWithLine = SvgIcon({
         name: 'downArraowWithLine',
         className: 'factsheet-button-arrow animation-element',
         size: '14',
         color: '',
       });
+
+      childrens[3].textContent = '';
 
       if (buttonContainer && buttonContainer.textContent.trim() !== '' && ctaCaption !== null) {
         const ctaLink = document.createElement('a');

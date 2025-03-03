@@ -505,27 +505,8 @@ function decorateAEMStructure(element) {
   const hasPicture = element.querySelector('div > picture') || element.children[0]?.tagName === 'DIV';
   const divElements = [...element.children].filter((el) => el.tagName === 'DIV');
   const isProjectCard = element.classList[0].indexOf('projectslist') === 0;
-  // Check for contact information in divs
-  divElements.forEach((div) => {
-    const text = div.textContent.trim();
 
-    // Phone number pattern: +XX-XXXXXXXXXX or similar formats
-    const isPhone = /^[+]?[(]?[0-9]{3}[)]?[-\s.]?[0-9]{3}[-\s.]?[0-9]{4,6}$/im.test(text);
-
-    // Email pattern
-    const isEmail = /^[^\s@]+@[^\s@]+\.[^\s@]+$/im.test(text);
-
-    if (isPhone) {
-      const p = getOrCreateParagraph(div);
-      p.setAttribute('data-gen-prop', 'phoneNumber');
-      p.setAttribute('data-gen-type', 'text');
-    } else if (isEmail) {
-      const p = getOrCreateParagraph(div);
-      p.setAttribute('data-gen-prop', 'emailAddress');
-      p.setAttribute('data-gen-type', 'text');
-    }
-  });
-
+  
   const hasFeatureStructure = divElements.length >= 4 // At least 4 divs
       && hasPicture;
 
@@ -579,19 +560,6 @@ function decorateAEMStructure(element) {
       locationDiv.setAttribute('data-gen-prop', 'location');
       locationDiv.setAttribute('data-gen-label', 'Location');
       locationDiv.setAttribute('data-gen-type', 'text');
-    }
-  } else if (hasTileStructure && !divElements[0].querySelector('a') && !isProjectCard) {
-    // Add tile attributes to container
-    element.setAttribute('data-gen-model', 'tile');
-    element.setAttribute('data-gen-label', 'Tile');
-
-    // Add CTA caption attributes to fifth div
-    const ctaDiv = divElements[4];
-    if (ctaDiv) {
-      const p = getOrCreateParagraph(ctaDiv);
-      p.setAttribute('data-gen-prop', 'ctaCaption');
-      p.setAttribute('data-gen-label', 'CTA Caption');
-      p.setAttribute('data-gen-type', 'text');
     }
   } else if (hasTileStructure && divElements[0].querySelector('a') && !isProjectCard) {
     // Add listitem attributes to container
@@ -677,33 +645,6 @@ function decorateAEMStructure(element) {
     element.setAttribute('data-gen-model', 'linkField');
     element.setAttribute('data-gen-filter', 'linkField');
     element.setAttribute('data-gen-label', 'Link Field');
-
-    // Add attributes to link button
-    const linkContainer = element.querySelector('div > a.button');
-    if (linkContainer) {
-      linkContainer.setAttribute('data-gen-prop', 'linkText');
-      linkContainer.setAttribute('data-gen-label', 'Text');
-      linkContainer.setAttribute('data-gen-type', 'text');
-    }
-
-    // Add attributes to first div after button
-    const [, firstDiv] = divElements;
-    if (firstDiv) {
-      const hasLongText = firstDiv.textContent.trim().length > 100;
-      if (!hasLongText) {
-        firstDiv.setAttribute('data-gen-prop', 'linkSvgIcon');
-        firstDiv.setAttribute('data-gen-label', 'Link SVG Icon');
-        firstDiv.setAttribute('data-gen-type', 'text');
-      }
-    }
-
-    // Add attributes to second div after button
-    const [, , secondDiv] = divElements;
-    if (secondDiv) {
-      secondDiv.setAttribute('data-gen-prop', 'linkTarget');
-      secondDiv.setAttribute('data-gen-label', 'Target');
-      secondDiv.setAttribute('data-gen-type', 'text');
-    }
   } else {
     // Handle single div text content
     const textDiv = divElements[0];
@@ -715,14 +656,13 @@ function decorateAEMStructure(element) {
       if (hasLongText) {
         textDiv.setAttribute('data-gen-prop', 'description');
         textDiv.setAttribute('data-gen-label', 'Description');
-        textDiv.setAttribute('data-gen-filter', 'text');
         textDiv.setAttribute('data-gen-type', 'richtext');
       } else {
-        const { textContent } = textDiv;
+        const { innerHTML } = textDiv;
         const p = document.createElement('p');
         p.setAttribute('data-gen-prop', 'title');
         p.setAttribute('data-gen-type', 'text');
-        p.textContent = textContent;
+        p.innerHTML = innerHTML;
 
         textDiv.textContent = '';
         textDiv.appendChild(p);
@@ -735,7 +675,7 @@ function decorateAEMStructure(element) {
  * Decorates all sections in a container element.
  * @param {Element} main The container element
  */
-function decorateSections(main) {
+function decorateSections(main, isExecute = true) {
   main.querySelectorAll(':scope > div:not([data-section-status])').forEach((section, sectionIndex) => {
     const wrappers = [];
     let defaultContent = false;
@@ -763,7 +703,7 @@ function decorateSections(main) {
         nestedElement.className = `${childClass}-nested-${componentIndex}-${nestedIndex + 1}`;
 
         // Decorate AEM structure if present
-        if (window.location.href.indexOf('author') === -1) {
+        if (window.location.href.indexOf('author') === -1 && isExecute) {
           decorateAEMStructure(nestedElement, sectionIndex, childIndex);
         }
       });

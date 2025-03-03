@@ -21,7 +21,7 @@ export default function decorate(block) {
 
   // About-Us left container
   const aboutUsLeftContent = document.createElement('div');
-  aboutUsLeftContent.classList.add('col-xl-6', 'col-lg-6', 'col-md-6', 'col-sm-4', 'about-us-left');
+  aboutUsLeftContent.classList.add('col-xl-6', 'col-lg-6', 'col-md-3', 'col-sm-4', 'about-us-left');
   const blockchildren = block.children;
   // Find the title and replace it with a heading
   const titleElement = blockchildren[0].children[0];
@@ -62,30 +62,37 @@ export default function decorate(block) {
     const linkContainer = document.createElement('div');
     linkContainer.className = 'links-container';
     moveInstrumentation(linkField, linkContainer);
-    // Handle link text
-    const originalLink = linkField.querySelector('[data-aue-prop="linkText"],[data-gen-prop="linkText"]');
-    const originalTarget = linkField.querySelector('[data-aue-prop="linkTarget"],[data-gen-prop="linkTarget"]');
-    const arrowIcon = linkField.querySelector('[data-aue-prop="linkSvgIcon"],[data-gen-prop="linkSvgIcon"]');
 
-    if (originalLink && originalTarget) {
-      originalLink.setAttribute('target', originalTarget?.textContent.trim());
-      // fix for text with / i.e. default content from AEM when link used
-      if(originalLink.textContent.startsWith("/") || originalLink.textContent.startsWith("#")) originalLink.textContent =''
-      originalTarget.textContent = '';
-      if (arrowIcon) {
-        const arrowIconName = arrowIcon?.textContent.replace('-', '');
-        arrowIcon.textContent = '';
-        const arrowSVG = SvgIcon({ name: `${arrowIconName}`, className: 'about-us-left-link', size: '24px' });
-        originalLink.append(stringToHTML(arrowSVG));
+    // Get all three divs containing link info
+    const linkDivs = linkField.children;
+    if (linkDivs.length === 3) {
+      const linkText = linkDivs[0];
+      const iconName = linkDivs[1].textContent.trim().replace('-', '');
+      const target = linkDivs[2].textContent.trim();
+
+      // Create link element
+      const link = document.createElement('a');
+      // Get href from the link element if it exists, otherwise use the text content
+      const linkHref = linkText.querySelector('a');
+      link.href = linkHref;
+      link.textContent = linkText.textContent.trim();
+      link.setAttribute('target', target);
+
+      // Add arrow icon if specified
+      if (iconName) {
+        const arrowSVG = SvgIcon({ name: iconName, className: 'about-us-left-link', size: '24px' });
+        link.append(stringToHTML(arrowSVG));
       }
-      linkContainer.appendChild(originalLink);
+
+      moveInstrumentation(linkDivs[0], link);
+      linkContainer.appendChild(link);
     }
     aboutUsLeftContent.appendChild(linkContainer);
   }
 
   // About-Us right container
   const aboutUsRightContent = document.createElement('div');
-  aboutUsRightContent.classList.add('col-xl-6', 'col-lg-6', 'col-md-6', 'col-sm-4', 'about-us-right');
+  aboutUsRightContent.classList.add('col-xl-6', 'col-lg-6', 'col-md-3', 'col-sm-4', 'about-us-right');
 
   // Collect all imageAndDescription elements first
   const featureItems = [].slice.call(block.children,4);
@@ -197,7 +204,7 @@ export default function decorate(block) {
     }
     // featureitems are  more than indexNumber indices then hide
     // the remaing and show link to show more indices link with remaining indices count in text
-    if (indexNumber < convDescription.length) {
+    if (!Number.isNaN(indexNumber) &&  indexNumber > 0 && indexNumber < convDescription.length) {
       // hide the remaining indices
       for (let i = indexNumber; i < convDescription.length; i += 1) {
         convDescription[i].style.display = 'none';
@@ -208,7 +215,7 @@ export default function decorate(block) {
       showMoreIndicesLink.classList.add('show-more-indices');
       showMoreIndicesLink.addEventListener('click', () => {
         for (let i = indexNumber; i < convDescription.length - 1; i += 1) {
-          convDescription[i].style.display = 'block';
+          convDescription[i].style.display = 'flex';
         }
         showMoreIndicesLink.style.display = 'none';
         showLessIndicesLink.style.display = 'block';
@@ -227,6 +234,8 @@ export default function decorate(block) {
       indices.innerHTML = '';
       indices.appendChild(showMoreIndicesLink);
       indices.appendChild(showLessIndicesLink);
+    }else {
+      indices.style.display = 'none';
     }
     
     indices.appendChild(indexElement);

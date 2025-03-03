@@ -168,8 +168,8 @@
         "name": "tabtitle",
         "label": "Tab Title",
         "validation": {
-          "maxLength": 30,
-          "customErrorMsg": "Tab Title cannot exceed 30 characters"
+          "maxLength": 50,
+          "customErrorMsg": "Tab Title cannot exceed 50 characters"
         }
       }
     ]
@@ -271,7 +271,7 @@
         "label": "CTA Link",
         "multi": false,
         "validation": {
-          "rootPath": "/content/genting-singapore/index"
+          "rootPath": "/content/genting-singapore"
         }
       },
       {
@@ -340,7 +340,7 @@
         "label": "CTA Link",
         "multi": false,
         "validation": {
-          "rootPath": "/content/genting-singapore/index"
+          "rootPath": "/content/genting-singapore"
         }
       }
     ]
@@ -469,6 +469,10 @@
             "value": ""
           },
           {
+            "name": "Arrow",
+            "value": "arrow"
+          },
+          {
             "name": "Right Arrow",
             "value": "right-arrow"
           },
@@ -549,7 +553,7 @@
         "name": "link",
         "label": "Link",
         "validation": {
-          "rootPath": "/content/genting-singapore/index"          
+          "rootPath": "/content/genting-singapore"
         }
       },
       {
@@ -672,7 +676,7 @@
         "name": "cta",
         "label": "CTA",
         "validation": {
-          "rootPath": "/content/genting-singapore/index"
+          "rootPath": "/content/genting-singapore"
         }
       },
       {
@@ -754,7 +758,7 @@
         "name": "project",
         "label": "Link",
         "validation": {
-          "rootPath": "/content/genting-singapore/index"
+          "rootPath": "/content/genting-singapore"
         }
       },
       {
@@ -915,9 +919,28 @@
         "multi": false
       },
       {
+        "component": "boolean",
+        "label": "File Download?",
+        "name": "reveal",
+        "valueType": "boolean"
+      },
+      {
+        "component": "custom-asset-namespace:custom-asset",
+        "label": "File Path",
+        "name": "filepath",
+        "valueType": "string",
+        "configUrl": "https://int--genting--wppopen.aem.live/tools/assets-selector/config.json",
+        "multi": false,
+        "condition": { "===": [{"var" : "reveal"}, true] }
+      },
+      {
         "component": "aem-content",
         "name": "cta",
-        "label": "CTA"
+        "label": "CTA",
+        "condition": { "===": [{"var" : "reveal"}, false] },
+        "validation": {
+          "rootPath": "/content/genting-singapore/index"
+        }
       },
       {
         "component": "text",
@@ -1018,7 +1041,7 @@
         "linkTarget": "_blank",
         "validation": {
           "requiredErrorMsg": "CTA Link is mandatory",
-          "rootPath": "/content/genting-singapore/index"
+          "rootPath": "/content/genting-singapore"
         }
       },
       {
@@ -1037,7 +1060,7 @@
         "label": "CTA Link",
         "linkTarget": "_blank",
         "validation": {
-          "rootPath": "/content/genting-singapore/index"
+          "rootPath": "/content/genting-singapore"
         }
       }
     ]
@@ -1112,6 +1135,21 @@
     "id": "statistics",
     "fields": [
       {
+        "component": "multiselect",
+        "name": "style",
+        "label": "Style",
+        "options": [
+          {
+            "name": "Statistics Feature",
+            "value": "statistics-feature"
+          },
+          {
+            "name": "Statistics Description",
+            "value": "statistics-description"
+          }
+        ]
+      },
+      {
         "component": "text",
         "name": "heading",
         "label": "Heading"
@@ -1182,6 +1220,21 @@
     ]
   },
   {
+    "id": "tabsectiontitle",
+    "fields": [
+      {
+        "component": "text",
+        "name": "tabsectiontitle",
+        "label": "Tab Section Title",
+        "valueType": "string",
+        "validation": {
+          "maxLength": 80,
+          "customErrorMsg": "Section Title cannot exceed 80 characters"
+        }
+      }
+    ]
+  },
+  {
     "id": "awardstile",
     "fields": [
       {
@@ -1226,20 +1279,6 @@
         "validation": {
           "maxLength": 200,
           "customErrorMsg": "Description cannot exceed 250 characters"
-        }
-      }
-    ]
-  } ,
-  {
-    "id": "test",
-    "fields": [
-      {
-        "component": "text",
-        "name": "textHeading",
-        "label": "Title", 
-        "validation": {
-          "maxLength": 100,
-          "customErrorMsg": "Title cannot exceed 100 characters"
         }
       }
     ]

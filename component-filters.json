@@ -3,7 +3,7 @@
     "id": "main",
     "components": [
       "section",
-      "statisticsSection",
+      "statisticsSection", 
       "tabs"
     ]
   },
@@ -33,8 +33,8 @@
       "textsection",
       "textmediablock",
       "projectslist",
-      "awardsgallery",
-      "test"
+      "tabsectiontitle",
+      "awardsgallery"
     ]
   },
   {
