@@ -42,6 +42,7 @@
       "feature",
       "textmediablock",
       "projectslist",
+      "historymilestonespanel",
       "historymilestones"
     ]
   },
@@ -170,6 +171,12 @@
     "components": [
       "statisticsDescription",
       "featureItem"
+    ]
+  },
+  {
+    "id": "historymilestonespanel",
+    "components": [
+      "historymilestones"
     ]
   },
   {

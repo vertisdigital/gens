@@ -613,6 +613,22 @@
           }
         },
         {
+          "title": "HistoryMilestonesPanel",
+          "id": "historymilestonespanel",
+          "plugins": {
+            "xwalk": {
+              "page": {
+                "resourceType": "core/franklin/components/section/v1/section",
+                "template": {
+                  "name": "HistoryMilestonesPanel",
+                  "model": "historymilestonespanel",
+                  "filter": "historymilestonespanel"
+                }
+              }
+            }
+          }
+        },
+        {
           "title": "HistoryMilestones",
           "id": "historymilestones",
           "plugins": {
