@@ -613,7 +613,7 @@
           }
         },
         {
-          "title": "IFrame",
+          "title": "iframe",
           "id": "iframe",
           "plugins": {
             "xwalk": {
