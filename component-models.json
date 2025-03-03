@@ -1270,7 +1270,7 @@
         "name": "ctaLink",
         "label": "CTA Link",
         "validation": {
-          "rootPath": "/content/dam/genting-singapore"
+          "rootPath": "/content/genting-singapore"
         }
       }
     ]
