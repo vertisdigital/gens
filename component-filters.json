@@ -33,7 +33,8 @@
       "textsection",
       "textmediablock",
       "projectslist",
-      "tabsectiontitle"
+      "tabsectiontitle",
+      "awardsgallery"
     ]
   },
   {
@@ -41,7 +42,8 @@
     "components": [
       "feature",
       "textmediablock",
-      "projectslist"
+      "projectslist",
+      "awardsgallery"
     ]
   },
   {
@@ -169,6 +171,12 @@
     "components": [
       "statisticsDescription",
       "featureItem"
+    ]
+  },
+  {
+    "id": "awardsgallery",
+    "components": [
+      "awardstile"
     ]
   }
 ]
