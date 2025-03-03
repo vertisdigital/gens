@@ -833,6 +833,7 @@
             "component": "container",
             "label": "Email 1",
             "name": "email1",
+            "collapsible": true,
             "fields": [
               {
                 "component": "text",
@@ -868,6 +869,7 @@
             "component": "container",
             "label": "Email 2",
             "name": "email2",
+            "collapsible": true,
             "fields": [
               {
                 "component": "text",
