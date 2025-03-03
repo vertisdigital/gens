@@ -8,7 +8,7 @@ export default function decorate(block) {
   const pageUrl = window.location.href;
   const isAboutUsPage = pageUrl.includes('aboutus');
   // Add container classes from styles.css
-  block.classList.add('container-xl', 'container-md', 'container-sm', 'listing-variation');
+  block.classList.add('container-xl', 'container-md', 'container-sm');
   isAboutUsPage && block.classList.add('listing-variation');
 
   // Process list items
