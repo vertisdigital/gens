@@ -1340,53 +1340,46 @@
       },
       {
         "component": "tab",
-        "label": "Phone Details",
-        "name": "phoneDetailsTab"
-      },
-      {
-        "component": "custom-asset-namespace:custom-asset",
-        "name": "phoneIcon",
-        "label": "Phone Icon",
-        "configUrl": "https://int--genting--wppopen.aem.live/tools/assets-selector/config.json",
-        "multi": false
+        "label": "CTA Section",
+        "name": "ctaSectionTab"
       },
       {
         "component": "text",
-        "name": "phoneIconAlt",
-        "label": "Phone Icon Alt Text"
-      },
+        "name": "subtitle",
+        "label": "Sub Title"
+      }, 
       {
         "component": "text",
-        "name": "phoneNumber",
-        "label": "Phone Number",
+        "name": "subdescription",
+        "label": "Sub Description"
+      },
+      {
+        "component": "aem-content",
+        "name": "cta",
+        "label": "CTA",
         "validation": {
-          "regExp": "^[+]?[0-9]{10,30}$",
-          "minLength": 10,
-          "maxLength": 30,
-          "customErrorMsg": "Phone Number must be between 10-30 digits and can only contain numbers and '+' symbol"
+          "rootPath": "/content/genting-singapore"
         }
       },
       {
-        "component": "tab",
-        "label": "Address Details",
-        "name": "addressDetailsTab"
-      },
-      {
-        "component": "custom-asset-namespace:custom-asset",
-        "name": "addressIcon",
-        "label": "Address Icon",
-        "configUrl": "https://int--genting--wppopen.aem.live/tools/assets-selector/config.json",
-        "multi": false
-      },
-      {
         "component": "text",
-        "name": "addressIconAlt",
-        "label": "Address Icon Alt Text"
+        "name": "ctaTitle",
+        "label": "Title"
       },
       {
-        "component": "text",
-        "name": "address",
-        "label": "Address"
+        "component": "select",
+        "name": "ctaTarget",
+        "label": "Target",
+        "options": [
+          {
+            "name": "Same Tab",
+            "value": "_self"
+          },
+          {
+            "name": "New Tab",
+            "value": "_blank"
+          }
+        ]
       }
     ]
   }
