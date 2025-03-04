@@ -4,8 +4,15 @@ import stringToHtml from '../../shared-components/Utility.js';
 import { moveInstrumentation } from '../../scripts/scripts.js';
 
 export default function decorate(block) {
-  // Add container classes from styles.css
-  block.classList.add('container-xl', 'container-md', 'container-sm');
+
+  const pageUrl = window.location.href;
+  const isAboutUsPage = pageUrl.includes('aboutus');
+   // Add container classes from styles.css
+   block.classList.add('container-xl', 'container-md', 'container-sm');
+   // Add container classes from styles.css
+   if (isAboutUsPage) {
+     block.classList.add('listing-variation');
+   }
 
   // Process list items
   const listItems = block.querySelectorAll('[data-aue-model="listitem"], [data-gen-model="listitem"]');
@@ -47,31 +54,38 @@ export default function decorate(block) {
 
       const imgAnchor = imgContainer.querySelector('a');
       if (imgAnchor) {
-        const img = document.createElement('img');
+        // const img = document.createElement('img');
         // Set initial src to ensure img tag has a value
-        img.src = imgAnchor.href;
-        img.alt = '';
+        const imageUrl = imgAnchor.href;
+        const imageAlt = '';
 
         const imageHtml = ImageComponent({
-          src: imgAnchor.href,
-          alt: '',
-          className: 'listing-image',
-          breakpoints: {
-            mobile: {
-              width: 768,
-              src: `${imgAnchor.href}`,
+            src: imageUrl,
+            alt: imageAlt,
+            className: 'listing-image',
+            asImageName: 'listing.webp',
+            breakpoints: {
+              mobile: {
+                width: 768,
+                src: `${imageUrl}`,
+                imgWidth: 400,
+                imgHeight: 250,
+              },
+              tablet: {
+                width: 993,
+                src: `${imageUrl}`,
+                imgWidth: 400,
+                imgHeight: 250,
+              },
+              desktop: {
+                width: 1920,
+                src: `${imageUrl}`,
+                imgWidth: 400,  
+                imgHeight: 250,
+              },
             },
-            tablet: {
-              width: 1024,
-              src: `${imgAnchor.href}`,
-            },
-            desktop: {
-              width: 1920,
-              src: `${imgAnchor.href}`,
-            },
-          },
-          lazy: true,
-        });
+            lazy: true,
+          });
 
         // Replace anchor with picture element containing the image
         imgContainer.innerHTML = '';

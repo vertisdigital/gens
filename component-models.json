@@ -1235,6 +1235,55 @@
     ]
   },
   {
+    "id": "awardstile",
+    "fields": [
+      {
+        "component": "custom-asset-namespace:custom-asset",
+        "name": "awardimage",
+        "label": "Award Image",
+        "configUrl": "https://main--genting--wppopen.aem.live/tools/assets-selector/config.json",
+        "multi": false,
+        "validation": {
+          "rootPath": "/content/dam/genting-singapore"
+        }
+      },
+      {
+        "component": "text",
+        "name": "awardimageAlt",
+        "label": "Award Image AltText",
+        "valueType": "string"
+      },
+      {
+        "component": "text",
+        "name": "awardyear",
+        "label": "Award Year",
+        "validation": {
+          "maxLength": 4,
+          "regExp": "^\\d{4}$",
+          "customErrorMsg": "Please enter a valid year (e.g., 2024)"
+        }
+      },
+      {
+        "component": "text",
+        "name": "awardheading",
+        "label": "Award Title", 
+        "validation": {
+          "maxLength": 100,
+          "customErrorMsg": "Title cannot exceed 100 characters"
+        }
+      },
+      {
+        "component": "text",
+        "name": "awarddescription",
+        "label": "Award Description",
+        "validation": {
+          "maxLength": 200,
+          "customErrorMsg": "Description cannot exceed 250 characters"
+        }
+      }
+    ]
+  },
+  {
     "id": "historymilestones",
     "fields": [
       {
