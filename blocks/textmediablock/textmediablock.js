@@ -1,20 +1,46 @@
+import ImageComponent from '../../shared-components/ImageComponent.js';
+import stringToHtml from '../../shared-components/Utility.js';
+
+
 function handleImageElement(mediaBlock) {
   const linkElement = mediaBlock.querySelector('a');
-  if (linkElement) {
-    const imageUrl = linkElement.href;
-    const img = document.createElement('img');
-    img.src = imageUrl;
-
-    // Set alt text from heading
-    const heading = mediaBlock.parentElement.querySelector('[data-aue-prop="heading"], .section-inner-2-1-2-1-1');
-    img.alt = heading ? heading.textContent : 'Feature image';
-
-    // Add loading optimization
-    img.setAttribute('loading', 'lazy');
+  if(linkElement){
     mediaBlock.classList.add('mediablock');
+      const imageUrl = linkElement.getAttribute('href');
+      const picture = ImageComponent({
+        src: imageUrl,
+        alt: '',
+        className: 'mediablock-image',
+        asImageName: 'hero.webp',
+        breakpoints: {
+          mobile: {
+            width: 768,
+            src: `${imageUrl}`,
+            imgWidth: 768,
+            imgHeight: 200,
+          },
+          tablet: {
+            width: 1024,
+            src: `${imageUrl}`,
+            imgWidth: 1024,
+            imgHeight: 400,
+          },
+          desktop: {
+            width: 1920,
+            src: `${imageUrl}`,
+            imgWidth: 1600,
+            imgHeight: 630,
+          },
+        },
+        lazy: true,
+      });
+      // Remove original link
+      // imageLink.remove();
 
-    // Replace link with image
-    linkElement.parentElement.replaceChild(img, linkElement);
+      if (picture) {
+        const imageElement = stringToHtml(picture);
+        linkElement.parentElement.replaceChild(imageElement, linkElement);
+      }
   }
 }
 export default function decorate(block) {
