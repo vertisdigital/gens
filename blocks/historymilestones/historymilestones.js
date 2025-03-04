@@ -12,6 +12,7 @@ function getImageHTMl(image) {
       src: imageUrl,
       alt: imageAlt,
       className: 'history-milestone-image',
+      asImageName: 'historymilestone.webp',
       breakpoints: {
         mobile: {
           width: 768,
