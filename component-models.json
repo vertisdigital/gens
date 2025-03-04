@@ -1297,6 +1297,12 @@
           "maxLength": 30,
           "customErrorMsg": "Load More cannot exceed 30 characters"
         }
+      },
+      {
+        "component": "number",
+        "name": "loadMoreItems",
+        "label": "Load More Items",
+        "valueType": "number"
       }
     ]
   }
