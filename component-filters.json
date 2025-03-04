@@ -172,5 +172,12 @@
       "statisticsDescription",
       "featureItem"
     ]
+  },
+  {
+    "id": "contactus",
+    "components": [
+      "enquiry",
+      "enquirycta"
+    ]
   }
 ]
