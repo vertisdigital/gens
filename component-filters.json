@@ -4,8 +4,7 @@
     "components": [
       "section",
       "statisticsSection", 
-      "tabs",
-      "contactussection"
+      "tabs"
     ]
   },
   {
@@ -30,6 +29,7 @@
       "listing",
       "projectcards",
       "enquiry",
+      "contactus",
       "tiles",
       "textsection",
       "textmediablock",
@@ -72,6 +72,7 @@
       "listing",
       "projectcards",
       "enquiry",
+      "contactus",
       "tiles",
       "textsection",
       "textmediablock",
@@ -173,7 +174,7 @@
     ]
   },
   {
-    "id": "contactussection",
+    "id": "contactus",
     "components": [
       "enquiry",
       "enquirycta"
