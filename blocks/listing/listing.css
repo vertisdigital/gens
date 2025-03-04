@@ -244,8 +244,11 @@
 }
 
 .listing-wrapper {
-/*   background: var(--whisper-gray); */
   padding: 32px 0;
+}
+
+.listing-variation{
+  background: var(--whisper-gray);
 }
 
 .listing-wrapper .listing [data-aue-prop="title"], .listing-wrapper .listing [data-gen-prop="title"] {
