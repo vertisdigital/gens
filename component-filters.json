@@ -43,7 +43,9 @@
       "feature",
       "textmediablock",
       "projectslist",
-      "awardsgallery"
+      "awardsgallery",
+      "historymilestones",
+      "loadmore"
     ]
   },
   {
@@ -177,6 +179,12 @@
     "id": "awardsgallery",
     "components": [
       "awardstile"
+    ]
+  },
+  {
+    "id": "historymilestones",
+    "components": [
+      "milestoneitem"
     ]
   }
 ]

@@ -1282,5 +1282,77 @@
         }
       }
     ]
+  },
+  {
+    "id": "historymilestones",
+    "fields": [
+      {
+        "component": "text",
+        "name": "year",
+        "label": "Year",
+        "validation": {
+          "maxLength": 4,
+          "pattern": "^[0-9]{4}$",
+          "customErrorMsg": "Please enter a valid year (e.g., 2024)"
+        }
+      },
+      {
+        "component": "text", 
+        "name": "description",
+        "label": "Description",
+        "validation": {
+          "maxLength": 500,
+          "customErrorMsg": "Description cannot exceed 500 characters"
+        }
+      }
+    ]
+  },
+  {
+    "id": "milestoneitem",
+    "fields": [
+      {
+        "component": "custom-asset-namespace:custom-asset",
+        "name": "image",
+        "label": "Image",
+        "configUrl": "https://int--genting--wppopen.aem.live/tools/assets-selector/config.json",
+        "multi": false
+      },
+      {
+        "component": "text",
+        "name": "date",
+        "label": "Date",
+        "valueType": "date"
+      },
+      {
+        "component": "text",
+        "name": "title",
+        "label": "Title",
+        "validation": {
+          "maxLength": 500,
+          "customErrorMsg": "Description cannot exceed 500 characters"
+        }
+      }
+    ]
+  },
+  {
+    "id": "loadmore",
+    "fields": [
+      {
+        "component": "text",
+        "name": "loadMoreLabel",
+        "label": "Load More",
+        "valueType": "string",
+        "validation": {
+          "maxLength": 30,
+          "customErrorMsg": "Load More cannot exceed 30 characters"
+        }
+      },
+      {
+        "component": "number",
+        "name": "loadMoreItems",
+        "label": "Load More Items",
+        "valueType": "number"
+      }
+    ]
   }
 ]
