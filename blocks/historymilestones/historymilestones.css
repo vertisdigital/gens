@@ -32,7 +32,7 @@
 }
 .historymilestones-wrapper:not(:last-child) .historymilestones-milestones::after {
     content: "";
-    background: #9e9e9e;
+    background: var(--neutral-color);
     position: absolute;
     left: 0;
     right: 0;
@@ -112,7 +112,7 @@
         line-height: 24px; /* 120% */
     }
 }
-@media (width > 1024px) {
+@media (width > 993px) {
     .historymilestones-wrapper:not(:last-child) {
         margin-bottom: 68px;
         padding-bottom: 68px;

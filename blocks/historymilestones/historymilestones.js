@@ -18,7 +18,7 @@ function getImageHTMl(image) {
           src: `${imageUrl}`,
         },
         tablet: {
-          width: 1024,
+          width: 993,
           src: `${imageUrl}`,
         },
         desktop: {
@@ -60,7 +60,5 @@ export default function decorate(block) {
     .join('')}
         </div>
     </div>`;
-
-  console.log(content);
   block.innerHTML = content;
 }
