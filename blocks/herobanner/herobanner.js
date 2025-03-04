@@ -4,12 +4,20 @@ import SvgIcon from '../../shared-components/SvgIcon.js';
 import stringToHTML from '../../shared-components/Utility.js';
 import { moveInstrumentation } from '../../scripts/scripts.js';
 
+function hasSubURL(url) {
+  const { pathname } = new URL(url) || {};
+  return pathname !== '/';
+}
+
 export default function decorate(block) {
   let heroContainer = block.querySelector('.hero-banner-container');
 
   if (!heroContainer) {
     heroContainer = document.createElement('div');
     heroContainer.className = 'hero-banner-container';
+    if (!hasSubURL(window.location.href)) {
+      heroContainer.classList.add('hero-home-page');
+    }
     // heroContainer.classList.add('hero-banner-container','columns-container',
     // 'container-xl', 'container-md', 'container-sm');
     // heroContainer.setAttribute('data-aue-resource', 'herobanner');
@@ -100,7 +108,7 @@ export default function decorate(block) {
   }
 
   const arrowIconLink = block.children[4];
-  if (arrowIconLink && arrowIconLink.querySelector('a')!=null) {
+  if (arrowIconLink && arrowIconLink.querySelector('a') != null) {
     const arrowIconHtml = SvgIcon({
       name: 'arrow',
       className: 'hero-arrow-icon',
@@ -116,7 +124,7 @@ export default function decorate(block) {
   const carouselItems = block.querySelectorAll(
     '[data-aue-model="bannercarousel"],[data-gen-model="featureItem"]',
   );
-  
+
   const carouselContainer = document.createElement('div');
   carouselContainer.className = 'hero-banner-carousal';
   const carouselWrapper = document.createElement('div');
@@ -265,11 +273,11 @@ export default function decorate(block) {
 
     // Extract and append the "Read More" label
     const readMoreLabelElement = itemDivs[3].querySelector('p');
-  
-   if (readMoreLabelElement) {
+
+    if (readMoreLabelElement) {
       const readMoreLabelText = readMoreLabelElement.textContent;
       const buttonContainer = itemDivs[4]?.querySelector('a');
-      const href = buttonContainer?.getAttribute('href') ?? '/' ;
+      const href = buttonContainer?.getAttribute('href') ?? '/';
       const readMoreLabelHtml = `<a class="news-link" href="${href}">${readMoreLabelText}</a>`;
       const readMoreContainer = document.createElement('div');
       moveInstrumentation(itemDivs[3], readMoreContainer);
