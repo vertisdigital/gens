@@ -620,7 +620,8 @@
               "page": {
                 "resourceType": "core/franklin/components/block/v1/block",
                 "template": {
-                  "name": "BoardOfDirectors"
+                  "name": "boardofdirectors",
+                  "filter": "boardofdirectors"
                 }
               }
             }
