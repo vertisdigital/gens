@@ -1,66 +1,67 @@
-import { createOptimizedPicture } from '../../scripts/aem.js';
+import ImageComponent from "../../shared-components/ImageComponent.js";
 
 export default function decorate(block) {
-    // Remove data-gen attributes and historymilestones-nested classes
-    const cleanupElements = block.querySelectorAll('[class*="historymilestones-nested"], [data-gen-prop], [data-gen-type], [data-gen-model], [data-gen-label]');
-    cleanupElements.forEach(element => {
-        // Remove data-gen attributes
-        const attrs = element.attributes;
-        for (let i = attrs.length - 1; i >= 0; i -= 1) {
-            const attr = attrs[i];
-            if ((attr.name.startsWith('data-gen')) || (attr.name === 'class' && attr.value.includes('historymilestones-nested'))) {
-                element.removeAttribute(attr.name);
-            }
-        }
+  // first element is year, second element is year description and the rest are milestones
+  const [year, yearText, ...milestones] = block.children;
+
+  // Handle card image
+
+  let content = `<div class= "historymilestones-container" >
+        <div class="historymilestones-year">
+            <div>${year.outerHTML}</div>
+            <div>${yearText.outerHTML}</div>
+        </div>
+        <div class="historymilestones-milestones">
+              ${milestones
+                .map((milestone) => {
+                  const [image, date, description] = milestone.children;
+                  milestone.innerHTML = `<div class="historymilestones-milestone">
+                      <div class="historymilestones-image">${getImageHTMl(image)}</div>
+                      <div class="historymilestones-date">${date.outerHTML}</div>
+                      <div class="historymilestones-description">${description.outerHTML}</div>
+                  </div>`;
+                  return milestone.outerHTML
+                })
+                .join("")}
+        </div>
+    </div>`;
+
+  console.log(content);
+  block.innerHTML = content;
+}
+function getImageHTMl(image) {
+  const imageLink = image.querySelector("a[href]");
+  if (imageLink) {
+    const imageContainer = document.createElement("div");
+    imageContainer.setAttribute("data-aue-prop", "image");
+    imageContainer.setAttribute("data-aue-label", "Image");
+    imageContainer.setAttribute("data-aue-type", "image");
+
+    const imageUrl = imageLink.getAttribute("href");
+    const imageAlt = imageLink.title || "History Image";
+
+    const imageHtml = ImageComponent({
+      src: imageUrl,
+      alt: imageAlt,
+      className: "project-card-image",
+      breakpoints: {
+        mobile: {
+          width: 768,
+          src: `${imageUrl}`,
+        },
+        tablet: {
+          width: 1024,
+          src: `${imageUrl}`,
+        },
+        desktop: {
+          width: 1920,
+          src: `${imageUrl}`,
+        },
+      },
+      lazy: true,
     });
 
-    // Process images
-    const imageLinks = block.querySelectorAll('a[href*="delivery-"], a[href*="/adobe/assets/"]');
-    imageLinks.forEach(link => {
-        // Get the base delivery URL and asset URN
-        const fullUrl = link.href;
-
-        // Extract asset path with regex
-        const assetPathMatch = fullUrl.match(/\/adobe\/assets\/.*$/);
-        if (!assetPathMatch) return;
-        const assetPath = assetPathMatch[0];
-        const deliveryUrl = fullUrl.replace(assetPath, '');
-
-        // Create picture element with optimized sources
-        const picture = createOptimizedPicture(fullUrl, '', false, [
-            { media: '(min-width: 768px)', width: '800' },
-            { width: '400' }
-        ]);
-
-        // Function to fix the image source URLs
-        const fixImageSrc = (img, width, height) => {
-            if (img) {
-                let src = img.getAttribute('src');
-                if (src) {
-                    // Construct the new URL with width and height parameters
-                    let newSrc = `${deliveryUrl}/adobe/assets/${assetPath.split('/')[3]}/as/img.png?width=${width}&height=${height}`;
-                    img.setAttribute('src', newSrc);
-                }
-            }
-        };
-
-        // Update image paths with correct delivery URL format for sources
-        const sources = picture.querySelectorAll('source');
-        sources.forEach(source => {
-            let srcset = source.getAttribute('srcset');
-            if (srcset) {
-                // For srcset, we'll just use the 349 width and 206 height
-                const width = '349';
-                const height = '206';
-                let newSrcset = `${deliveryUrl}/adobe/assets/${assetPath.split('/')[3]}/as/img.png?width=${width}&height=${height}`;
-                source.setAttribute('srcset', newSrcset);
-            }
-        });
-
-        // Update image path for the img tag
-        const img = picture.querySelector('img');
-        fixImageSrc(img, '349', '206');
-
-        link.parentNode.replaceChild(picture, link);
-    });
+    imageContainer.insertAdjacentHTML("beforeend", imageHtml);
+    return imageContainer.outerHTML;
+  }
 }
