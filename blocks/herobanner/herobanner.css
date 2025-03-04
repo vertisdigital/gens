@@ -297,6 +297,9 @@
   .navigation-arrows {
     right: 168px;
   }
+  .statistics-container .hero-content {
+    padding-bottom: 118px;
+  }
 }
 
 @media (width <= 396px) and ((width > 366px)) {
