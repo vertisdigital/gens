@@ -1,3 +1,7 @@
+import ImageComponent from '../../shared-components/ImageComponent.js';
+import stringToHtml from '../../shared-components/Utility.js';
+
+
 function handleImageElement(mediaBlock) {
   const linkElement = mediaBlock.querySelector('a');
   if(linkElement){
@@ -13,19 +17,19 @@ function handleImageElement(mediaBlock) {
             width: 768,
             src: `${imageUrl}`,
             imgWidth: 768,
-            imgHeight: 170,
+            imgHeight: 200,
           },
           tablet: {
             width: 1024,
             src: `${imageUrl}`,
             imgWidth: 1024,
-            imgHeight: 450,
+            imgHeight: 400,
           },
           desktop: {
             width: 1920,
             src: `${imageUrl}`,
             imgWidth: 1600,
-            imgHeight: 650,
+            imgHeight: 630,
           },
         },
         lazy: true,

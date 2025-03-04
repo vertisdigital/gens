@@ -37,7 +37,7 @@ export default function decorate(block) {
       );
       if (imageLink) {
         // Set as background
-        tile.style.backgroundImage = `url(${imageLink}/as/hero.webp?width=1600)`;
+        tile.style.backgroundImage = `url(${imageLink}/as/hero.webp?width=600&height=500)`;
         tile.style.backgroundPosition = 'center';
         tile.style.backgroundSize = 'cover';
         tile.style.backgroundRepeat = 'no-repeat';
