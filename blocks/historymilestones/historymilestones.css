@@ -100,29 +100,15 @@
         padding: 0px 12px;
     }
     .historymilestones-year > div:first-child {
-        color: var(--primary-gold);
-        font-size: 40px;
-        font-style: normal;
-        font-weight: 500;
-        line-height: 50px;
-        letter-spacing: -0.5px;
-    }
-    .historymilestones-year > div:last-child {
-        color: var(--body-text-color);
-        font-size: 14px;
-        font-weight: 400;
-        line-height: 22px;
+        font-size: 32px;
+        line-height: 42px;
     }
     .historymilestones-date {
-        color: var(--body-text-color);
         font-size: 16px;
-        font-weight: 400;
         line-height: 24px; /* 150% */
     }
     .historymilestones-description {
-        color: var(--text-color);
-        font-size: 20px;
-        font-weight: 600;
+        font-size: 18px;
         line-height: 24px; /* 120% */
     }
 }
@@ -142,6 +128,10 @@
         flex:0 0 33.3333%;
         padding-right:18px;
     }
+    .historymilestones-year > div:first-child {
+        font-size: 40px;
+        line-height: 50px;
+    }
     .historymilestones-milestones{
         padding-left:18px;
         margin-left: -18px;
@@ -155,5 +145,13 @@
     }
     .historymilestones-milestone {
         padding: 0px 18px;
+    }
+    .historymilestones-date {
+        font-size: 16px;
+        line-height: 24px; /* 150% */
+    }
+    .historymilestones-description {
+        font-size: 20px;
+        line-height: 24px; /* 120% */
     }
 }
