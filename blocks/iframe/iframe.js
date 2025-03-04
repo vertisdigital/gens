@@ -16,7 +16,7 @@ export default function decorate(block) {
   iframe.setAttribute('allowfullscreen', '');
   
   // Add sandbox attributes for security while allowing necessary features
-  iframe.setAttribute('sandbox', 'allow-scripts allow-same-origin allow-forms allow-popups');
+  //iframe.setAttribute('sandbox', 'allow-scripts allow-same-origin allow-forms allow-popups');
   
   // Add error handling
   iframe.onerror = () => {
