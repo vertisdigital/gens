@@ -4,10 +4,6 @@ import SvgIcon from '../../shared-components/SvgIcon.js';
 import stringToHTML from '../../shared-components/Utility.js';
 import { moveInstrumentation } from '../../scripts/scripts.js';
 
-function hasSubURL(url) {
-  const { pathname } = new URL(url) || {};
-  return pathname !== '/';
-}
 
 export default function decorate(block) {
   let heroContainer = block.querySelector('.hero-banner-container');
@@ -15,9 +11,6 @@ export default function decorate(block) {
   if (!heroContainer) {
     heroContainer = document.createElement('div');
     heroContainer.className = 'hero-banner-container';
-    if (!hasSubURL(window.location.href)) {
-      heroContainer.classList.add('hero-home-page');
-    }
     // heroContainer.classList.add('hero-banner-container','columns-container',
     // 'container-xl', 'container-md', 'container-sm');
     // heroContainer.setAttribute('data-aue-resource', 'herobanner');
@@ -124,6 +117,10 @@ export default function decorate(block) {
   const carouselItems = block.querySelectorAll(
     '[data-aue-model="bannercarousel"],[data-gen-model="featureItem"]',
   );
+
+  if (carouselItems?.length) {
+    heroContainer.classList.add('hero-carousal-variation');
+  }
 
   const carouselContainer = document.createElement('div');
   carouselContainer.className = 'hero-banner-carousal';
