@@ -994,3 +994,7 @@ main::before {
     background-size: 100%;
   }
 }
+
+.grey-background{
+  background-color: var(--light-grey);
+}

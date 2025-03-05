@@ -55,6 +55,9 @@
 
 /* Tablet and up: Grid layout */
 @media (width<=992px) {
+  .textmediablock-wrapper{
+      margin: 44px 0;
+  }
   [data-block-name="textmediablock"]>div:first-child{
   margin-bottom: 24px
   }
