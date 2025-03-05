@@ -704,6 +704,23 @@
   {
     "id": "projectcards",
     "fields": [
+        {
+          "component": "select",
+          "name": "classes",
+          "value": "",
+          "label": "Style Classes",
+          "valueType": "string",
+          "options": [
+              {
+                  "name": "ProjectCards",
+                  "value": "projectcards"
+              },
+              {
+                  "name": "Certifications",
+                  "value": "certifications"
+              }
+          ]
+      },
       {
         "component": "text",
         "name": "title",
