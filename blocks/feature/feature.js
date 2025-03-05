@@ -77,9 +77,11 @@ export default function decorate(block) {
       link.href = linkHref;
 
       // fix for text with / i.e. default content from AEM when link used
-      if(linkHref && (linkHref.textContent.startsWith("/") || linkHref.textContent.startsWith("#")))
-         linkHref.textContent =''
-
+      if(linkHref){
+        if((linkHref.textContent.startsWith("/") || linkHref.textContent.startsWith("#")))
+          linkHref.textContent =''
+        link.title = linkHref.title;
+      }
       link.textContent = linkText.textContent.trim();
       link.setAttribute('target', target);
 
