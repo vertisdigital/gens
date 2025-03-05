@@ -810,7 +810,7 @@
       {
         "component": "richtext",
         "name": "location",
-        "label": "Location / Description",
+        "label": "Location Description",
         "valueType": "string",
         "validation": {
           "maxLength": 500,
