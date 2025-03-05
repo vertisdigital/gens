@@ -968,6 +968,11 @@ content: '🡢';
     margin-left: auto;
 
   }
+  .header-inner-wrapper .header-nav .primary-nav>div:last-child .nav-item .primary-menu-links::after,
+  .header-inner-wrapper .header-nav .primary-nav>div:last-child .nav-item .primary-menu-links a::after{
+    display: none;
+  }
+  
   .header-inner-wrapper .header-nav .primary-nav .nav-item .primary-menu-links,
   .header-inner-wrapper .header-nav .primary-nav .nav-item .primary-menu-links a{
     color: var(--text-color);
