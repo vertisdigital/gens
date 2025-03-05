@@ -1255,7 +1255,7 @@
       },
       {
         "component": "text",
-        "name": "name",
+        "name": "directorName",
         "label": "Name",
         "valueType": "string",
         "value": "",
