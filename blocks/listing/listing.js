@@ -10,7 +10,7 @@ export default function decorate(block) {
   block.classList.add('container-xl', 'container-md', 'container-sm');
   // Add container classes from styles.css
   if (isAboutUsPage) {
-    block.classList.add('listing-variation');
+    block.closest('.listing-wrapper').classList.add('listing-variation');
   }
 
   // Process list items
