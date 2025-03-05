@@ -808,25 +808,14 @@
         ]
       },
       {
-        "component": "text",
-        "name": "location",
-        "label": "Location",
-        "validation": {
-          "maxLength": 15,
-          "customErrorMsg": "Location cannot exceed 15 characters"
-        },
-        "condition": {"===": [{"var": "parent.classes"},""]}
-      },
-      {
         "component": "richtext",
-        "name": "description",
-        "label": "Description",
+        "name": "location",
+        "label": "Location / Description",
         "valueType": "string",
         "validation": {
           "maxLength": 500,
-          "customErrorMsg": "Description cannot exceed 500 characters"
-        },
-        "condition": {"===": [{"var": "parent.classes"},"certifications"]}
+          "customErrorMsg": "Location / Description cannot exceed 500 characters"
+        }
       }
     ]
   },
