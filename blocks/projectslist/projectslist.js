@@ -72,26 +72,33 @@ export default function decorate(block) {
 
     if (imageLink) {
       const imageUrl = imageLink.getAttribute('href');
-      const picture = ImageComponent({
-        src: imageUrl,
-        alt: '',
-        className: 'proejctlisting-image',
-        breakpoints: {
-          mobile: {
-            width: 768,
-            src: `${imageUrl}`,
-          },
-          tablet: {
-            width: 1024,
-            src: `${imageUrl}`,
-          },
-          desktop: {
-            width: 1920,
-            src: `${imageUrl}`,
-          },
-        },
-        lazy: true,
-      });
+       const picture = ImageComponent({
+              src: imageUrl,
+              alt: '',
+              className: 'proejctlisting-image',
+              asImageName: 'projectlisting.webp',
+              breakpoints: {
+                mobile: {
+                  width: 768,
+                  src: `${imageUrl}`,
+                  imgWidth: 400,
+                  imgHeight: 250,
+                },
+                tablet: {
+                  width: 993,
+                  src: `${imageUrl}`,
+                  imgWidth: 400,
+                  imgHeight: 250,
+                },
+                desktop: {
+                  width: 1920,
+                  src: `${imageUrl}`,
+                  imgWidth: 400,  
+                  imgHeight: 250,
+                },
+              },
+              lazy: true,
+            });
       // Remove original link
       imageLink.remove();
 
