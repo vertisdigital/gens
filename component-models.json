@@ -254,7 +254,7 @@
           "maxLength": 100,
           "customErrorMsg": "Banner Title cannot exceed 100 characters"
         }
-      },      
+      },
       {
         "component": "text",
         "name": "bannerdescription",
@@ -298,7 +298,7 @@
   },
   {
     "id": "bannercarousel",
-    "fields": [     
+    "fields": [
       {
         "component": "text",
         "name": "title",
@@ -561,7 +561,6 @@
         "name": "linkText",
         "label": "Text"
       },
-
       {
         "component": "text",
         "name": "linkTitle",
@@ -1016,7 +1015,7 @@
           "maxLength": 100,
           "customErrorMsg": "Sub Title cannot exceed 100 characters"
         }
-      }, 
+      },
       {
         "component": "text",
         "name": "subdescription",
@@ -1098,13 +1097,27 @@
         "valueType": "string",
         "configUrl": "https://int--genting--wppopen.aem.live/tools/assets-selector/config.json",
         "multi": false,
-        "condition": { "===": [{"var" : "reveal"}, true] }
+        "condition": {
+          "===": [
+            {
+              "var": "reveal"
+            },
+            true
+          ]
+        }
       },
       {
         "component": "aem-content",
         "name": "cta",
         "label": "CTA",
-        "condition": { "===": [{"var" : "reveal"}, false] },
+        "condition": {
+          "===": [
+            {
+              "var": "reveal"
+            },
+            false
+          ]
+        },
         "validation": {
           "rootPath": "/content/genting-singapore/index"
         }
@@ -1177,7 +1190,6 @@
           "customErrorMsg": "Description cannot exceed 200 characters"
         }
       }
-
     ]
   },
   {
@@ -1219,7 +1231,6 @@
           "maxLength": 50,
           "customErrorMsg": "Second CTA Caption cannot exceed 50 characters"
         }
-
       },
       {
         "component": "aem-content",
@@ -1398,6 +1409,28 @@
           "maxLength": 80,
           "customErrorMsg": "Section Title cannot exceed 80 characters"
         }
+      }
+    ]
+  },
+  {
+    "id": "contactus",
+    "fields": [
+      {
+        "component": "select",
+        "name": "classes",
+        "value": "",
+        "label": "Style options",
+        "valueType": "string",
+        "options": [
+          {
+            "name": "Default",
+            "value": ""
+          },
+          {
+            "name": "Enquiry Variation",
+            "value": "enquiry-variation"
+          }
+        ]
       }
     ]
   }
