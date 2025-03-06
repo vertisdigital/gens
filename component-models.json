@@ -1454,5 +1454,46 @@
         }
       }
     ]
+  },
+  {
+    "id": "policytile",
+    "fields": [
+      {
+        "component": "text",
+        "name": "title",
+        "label": "Policy Title",
+        "validation": {
+          "maxLength": 100,
+          "required": true,
+          "customErrorMsg": "Policy title is required and cannot exceed 100 characters"
+        }
+      },
+      {
+        "component": "text",
+        "name": "description",
+        "label": "Policy Description",
+        "validation": {
+          "maxLength": 500,
+          "customErrorMsg": "Description cannot exceed 500 characters"
+        }
+      },
+      {
+        "component": "text",
+        "name": "ctaLabel",
+        "label": "CTA Label",
+        "validation": {
+          "maxLength": 15,
+          "customErrorMsg": "CTA text cannot exceed 15 characters"
+        }
+      },
+      {
+        "component": "aem-content",
+        "name": "ctaLink",
+        "label": "CTA Link",
+        "validation": {
+          "rootPath": "/content/genting-singapore"
+        }
+      }
+    ]
   }
 ]
