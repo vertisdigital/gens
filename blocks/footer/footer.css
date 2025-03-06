@@ -243,6 +243,10 @@
         font-weight: 700;
         line-height: 24px;
     }
+    .footer .footer-description, .footer nav a, .footer .mt-4 .copywrite, .footer .footer-bottom-links .button-container a {
+        font-size: 14px;
+        line-height: 20px;
+    }  
 
     .footer .left-section .button-container a{
         font-size: 14px;
@@ -267,10 +271,6 @@
         text-align: start;
 
     }
-    .footer .footer-description, .footer nav a, .footer .mt-4 .copywrite, .footer .footer-bottom-links .button-container a {
-        font-size: 14px;
-        line-height: 20px;
-    }   
 }
 
 .footer [data-aue-prop="linkTarget"] {
