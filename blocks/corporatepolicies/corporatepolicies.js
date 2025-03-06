@@ -15,7 +15,7 @@ export default function decorate(block) {
   });
 
   block.innerHTML = `
-  <div class="container-xl container-lg container-md container-sm container-xs corporate-policies-list">
+  <div class="container corporate-policies-list">
       ${allChildElements
         .map((child) => {
           child.classList.add("row", "corporate-policies-list-item");
