@@ -297,9 +297,6 @@
   .navigation-arrows {
     right: 168px;
   }
-  .statistics-container .hero-content {
-    padding-bottom: 118px;
-  }
 }
 
 @media (width <= 396px) and ((width > 366px)) {
@@ -443,5 +440,9 @@
 
   .left-carousel-arrow, .right-carousel-arrow {
     margin-top: -2px;
+  }
+
+  .hero-carousal-variation .hero-content {
+    padding-bottom: 118px;
   }
 }

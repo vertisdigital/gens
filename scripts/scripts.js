@@ -13,7 +13,15 @@ import {
   loadSections,
   loadCSS,
 } from './aem.js';
-import processTabs from './autoblocks.js';
+
+// Replace the direct import with a dynamic one
+// import processTabs from './autoblocks.js';
+let processTabs;
+import('./autoblocks.js').then((module) => {
+  processTabs = module.default;
+}).catch(error => {
+  console.error('Error loading processTabs:', error);
+});
 
 /**
  * Moves all the attributes from a given elmenet to another given element.
@@ -68,8 +76,14 @@ async function loadFonts() {
 function buildAutoBlocks(main) {
   console.log('Building auto blocks');
   try {
-    // Process tabs
-    processTabs(main);
+    // Add delay before processing tabs
+    setTimeout(() => {
+      if (processTabs) {
+        processTabs(main);
+      } else {
+        console.warn('processTabs not yet loaded');
+      }
+    }, 1000);
   } catch (error) {
     console.error('Auto Blocking failed', error);
   }

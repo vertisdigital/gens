@@ -271,3 +271,7 @@
         padding-bottom: 0 !important;
     }
 }
+
+.tabs-content>div>div:first-child{
+    margin-top: 0;
+}
