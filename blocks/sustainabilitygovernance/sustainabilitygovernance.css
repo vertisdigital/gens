@@ -40,6 +40,7 @@
     position: absolute;
     top: calc(100% + 24px);
     left: calc(50% - 4px);
+    background-size: 100%;
 }
 .governance-card:last-child::before,
 .governance-card:last-child::after {
