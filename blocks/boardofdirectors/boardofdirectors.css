@@ -1,0 +1,70 @@
+.boardofdirectors {
+    margin-bottom: 2rem;
+}
+
+.director-card {
+    cursor: pointer;
+    transition: transform 0.3s ease;
+    background: #fff;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    margin-bottom: 1rem;
+}
+
+.director-card:hover {
+    transform: translateY(-5px);
+}
+
+.director-card.active {
+    border: 2px solid #007bff;
+}
+
+.director-card img {
+    width: 100%;
+    height: auto;
+    aspect-ratio: 1;
+    object-fit: cover;
+}
+
+.director-info {
+    padding: 15px;
+    text-align: center;
+}
+
+.director-info h3 {
+    margin: 0 0 5px;
+    font-size: 1.2rem;
+    color: #333;
+}
+
+.director-info p {
+    margin: 0;
+    color: #666;
+    font-size: 1rem;
+}
+
+.director-content {
+    margin-top: 20px;
+    padding: 20px;
+    background: #f8f9fa;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .director-card {
+        margin-bottom: 1.5rem;
+    }
+}
+
+@media (max-width: 576px) {
+    .director-info h3 {
+        font-size: 1.1rem;
+    }
+
+    .director-info p {
+        font-size: 0.9rem;
+    }
+} 
