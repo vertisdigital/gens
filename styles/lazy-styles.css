@@ -151,9 +151,20 @@
 .tabs-container .projectslist {
     margin-top: 0;
 }
-
+.tabs-container .about-us-stats .about-us-right-content .statistic p:first-child {
+    font-size: 28px;
+    line-height: 28px;
+}
+ 
+.tabs-content>div>div:first-child{
+    margin-top: 0;
+}
+.tabs-container .about-us-stats .about-us-right-content:nth-child(2)>div:nth-child(2) {
+    flex: 1;
+    margin-left: 15px;
+}
+ 
 @media (width <=1024px) {
-
     .tabs-container .projectslist {
         margin-top: 56px;
     }
@@ -200,6 +211,7 @@
     .tabs-header {
         margin-bottom: 18px;
     }
+
     .tab-title {
         font-size: 18px;
         line-height: 24px;
@@ -239,12 +251,13 @@
         margin-top: 36px;
     }
 }
-
-@media(width >=1024px) {
-    .tabs-container .about-us-stats .about-us-right-content:nth-child(2)>div:nth-child(2) {
-        width: 53%;
+@media (width >= 768px) {
+    .tabs-container .about-us-stats .about-us-right-content .statistic p:first-child {
+        font-size: 32px;
+        line-height: 32px;
     }
-
+}
+@media(width >=1024px) {
     .tabs-container .about-us-stats .about-us-right-content {
         display: flex;
         flex-direction: row;
@@ -276,8 +289,4 @@
     .tabs-container .about-us-stats {
         padding-bottom: 0 !important;
     }
-}
-
-.tabs-content>div>div:first-child{
-    margin-top: 0;
 }
