@@ -254,7 +254,7 @@
           "maxLength": 100,
           "customErrorMsg": "Banner Title cannot exceed 100 characters"
         }
-      },      
+      },
       {
         "component": "text",
         "name": "bannerdescription",
@@ -298,7 +298,7 @@
   },
   {
     "id": "bannercarousel",
-    "fields": [     
+    "fields": [
       {
         "component": "text",
         "name": "title",
@@ -561,7 +561,6 @@
         "name": "linkText",
         "label": "Text"
       },
-
       {
         "component": "text",
         "name": "linkTitle",
@@ -705,6 +704,23 @@
     "id": "projectcards",
     "fields": [
       {
+        "component": "select",
+        "name": "classes",
+        "value": "",
+        "label": "Style Classes",
+        "valueType": "string",
+        "options": [
+          {
+            "name": "Default",
+            "value": ""
+          },
+          {
+            "name": "Certifications",
+            "value": "certifications"
+          }
+        ]
+      },
+      {
         "component": "text",
         "name": "title",
         "label": "Section Name",
@@ -791,12 +807,13 @@
         ]
       },
       {
-        "component": "text",
+        "component": "richtext",
         "name": "location",
-        "label": "Location",
+        "label": "Location/Description",
+        "valueType": "string",
         "validation": {
-          "maxLength": 15,
-          "customErrorMsg": "Location cannot exceed 15 characters"
+          "maxLength": 500,
+          "customErrorMsg": "Location / Description cannot exceed 500 characters"
         }
       }
     ]
@@ -931,13 +948,27 @@
         "valueType": "string",
         "configUrl": "https://int--genting--wppopen.aem.live/tools/assets-selector/config.json",
         "multi": false,
-        "condition": { "===": [{"var" : "reveal"}, true] }
+        "condition": {
+          "===": [
+            {
+              "var": "reveal"
+            },
+            true
+          ]
+        }
       },
       {
         "component": "aem-content",
         "name": "cta",
         "label": "CTA",
-        "condition": { "===": [{"var" : "reveal"}, false] },
+        "condition": {
+          "===": [
+            {
+              "var": "reveal"
+            },
+            false
+          ]
+        },
         "validation": {
           "rootPath": "/content/genting-singapore/index"
         }
@@ -1010,7 +1041,6 @@
           "customErrorMsg": "Description cannot exceed 200 characters"
         }
       }
-
     ]
   },
   {
@@ -1052,7 +1082,6 @@
           "maxLength": 50,
           "customErrorMsg": "Second CTA Caption cannot exceed 50 characters"
         }
-
       },
       {
         "component": "aem-content",
@@ -1231,6 +1260,127 @@
           "maxLength": 80,
           "customErrorMsg": "Section Title cannot exceed 80 characters"
         }
+      }
+    ]
+  },
+  {
+    "id": "awardstile",
+    "fields": [
+      {
+        "component": "custom-asset-namespace:custom-asset",
+        "name": "awardimage",
+        "label": "Award Image",
+        "configUrl": "https://main--genting--wppopen.aem.live/tools/assets-selector/config.json",
+        "multi": false,
+        "validation": {
+          "rootPath": "/content/dam/genting-singapore"
+        }
+      },
+      {
+        "component": "text",
+        "name": "awardimageAlt",
+        "label": "Award Image AltText",
+        "valueType": "string"
+      },
+      {
+        "component": "text",
+        "name": "awardyear",
+        "label": "Award Year",
+        "validation": {
+          "maxLength": 4,
+          "regExp": "^\\d{4}$",
+          "customErrorMsg": "Please enter a valid year (e.g., 2024)"
+        }
+      },
+      {
+        "component": "text",
+        "name": "awardheading",
+        "label": "Award Title", 
+        "validation": {
+          "maxLength": 100,
+          "customErrorMsg": "Title cannot exceed 100 characters"
+        }
+      },
+      {
+        "component": "text",
+        "name": "awarddescription",
+        "label": "Award Description",
+        "validation": {
+          "maxLength": 200,
+          "customErrorMsg": "Description cannot exceed 250 characters"
+        }
+      }
+    ]
+  },
+  {
+    "id": "historymilestones",
+    "fields": [
+      {
+        "component": "text",
+        "name": "year",
+        "label": "Year",
+        "validation": {
+          "maxLength": 4,
+          "pattern": "^[0-9]{4}$",
+          "customErrorMsg": "Please enter a valid year (e.g., 2024)"
+        }
+      },
+      {
+        "component": "text", 
+        "name": "description",
+        "label": "Description",
+        "validation": {
+          "maxLength": 500,
+          "customErrorMsg": "Description cannot exceed 500 characters"
+        }
+      }
+    ]
+  },
+  {
+    "id": "milestoneitem",
+    "fields": [
+      {
+        "component": "custom-asset-namespace:custom-asset",
+        "name": "image",
+        "label": "Image",
+        "configUrl": "https://int--genting--wppopen.aem.live/tools/assets-selector/config.json",
+        "multi": false
+      },
+      {
+        "component": "text",
+        "name": "date",
+        "label": "Date",
+        "valueType": "date"
+      },
+      {
+        "component": "text",
+        "name": "title",
+        "label": "Title",
+        "validation": {
+          "maxLength": 500,
+          "customErrorMsg": "Description cannot exceed 500 characters"
+        }
+      }
+    ]
+  },
+  {
+    "id": "loadmore",
+    "fields": [
+      {
+        "component": "text",
+        "name": "loadMoreLabel",
+        "label": "Load More",
+        "valueType": "string",
+        "validation": {
+          "maxLength": 30,
+          "customErrorMsg": "Load More cannot exceed 30 characters"
+        }
+      },
+      {
+        "component": "number",
+        "name": "loadMoreItems",
+        "label": "Load More Items",
+        "valueType": "number"
       }
     ]
   },

@@ -92,18 +92,25 @@ export default function decorate(block) {
         src: imageUrl,
         alt: imageAlt,
         className: 'project-card-image',
+        asImageName: 'projectcards.webp',
         breakpoints: {
           mobile: {
             width: 768,
             src: `${imageUrl}`,
+            imgWidth: 170,
+            imgHeight: 170,
           },
           tablet: {
-            width: 1024,
+            width: 993,
             src: `${imageUrl}`,
+            imgWidth: 370,
+            imgHeight: 370,
           },
           desktop: {
             width: 1920,
             src: `${imageUrl}`,
+            imgWidth: 260,
+            imgHeight: 260,
           },
         },
         lazy: true,

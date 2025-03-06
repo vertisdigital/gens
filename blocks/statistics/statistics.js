@@ -3,6 +3,12 @@ import Heading from '../../shared-components/Heading.js';
 import stringToHTML from '../../shared-components/Utility.js';
 
 export default function decorate(block) {
+  const pageUrl = window.location.href;
+  const isAboutUsPage = pageUrl.includes('aboutus');
+  // Add container classes from styles.css
+  if (isAboutUsPage) {
+    block.classList.add('statistics-variation');
+  }
   const blockChilden = [].slice.call(block.children);
   const isStatisDesc = blockChilden[0].textContent.trim() === 'statistics-description';
   const isStatFeatures = blockChilden[0].textContent.trim() === 'statistics-feature';
