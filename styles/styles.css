@@ -979,12 +979,14 @@ main::before {
   main::before {
     background: url("../icons/genting-page-tablet-bg.jpg") repeat-y;
     background-position: center top;
+    background-size: 100%;
   }
 }
 @media (width >= 1024px) {
   main::before {
     background: url("../icons/genting-page-desktop-bg-1440.jpg") repeat-y;
     background-position: center top;
+    background-size: 100%;
   }
 }
 @media (width >= 1441px) {
