@@ -21,7 +21,7 @@
 }
 
 .awardsgallery .award-year {
-    color: var(--whisper-gray);
+    color: var(--primary-gold);
     font-size: 16px;
     font-weight: 600;
 }
