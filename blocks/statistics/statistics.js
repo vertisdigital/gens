@@ -122,7 +122,7 @@ export default function decorate(block) {
       block.appendChild(statisticBlockDescription);
     }
   }
-  block.classList.add('container-xl', 'container-lg', 'container-md', 'container-sm');
+  block.classList.add('container');
   blockChilden[0]?.remove();
 
   block.querySelectorAll('.statistics-title').forEach((statsTitle) => {

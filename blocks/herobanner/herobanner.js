@@ -49,7 +49,7 @@ export default function decorate(block) {
   }
 
   const heroContent = document.createElement('div');
-  heroContent.classList.add('hero-content', 'columns-container', 'container-xl', 'container-md', 'container-sm');
+  heroContent.classList.add('hero-content', 'columns-container', 'container');
 
   const headingElement = block.querySelector('[data-aue-prop="bannerheading"], .herobanner-nested-1-2 p');
   if (headingElement) {

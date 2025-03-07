@@ -18,7 +18,7 @@ function handleImageElement(mediaBlock) {
   }
 }
 export default function decorate(block) {
-  block.className = 'container-xl container-md container-sm textmediablock-container';
+  block.className = 'container textmediablock-container';
 
   // Determine block variation by checking first child
   const firstChild = block.children[0];

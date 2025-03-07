@@ -8,7 +8,7 @@ export default function decorate(block) {
 
   // Create single container with all responsive classes
   const container = document.createElement('div');
-  container.className = 'container-xl container-md container-sm';
+  container.className = 'container';
   moveInstrumentation(wrapper, container);
 
   const projectsContainer = wrapper.querySelector(
@@ -22,7 +22,7 @@ export default function decorate(block) {
 
     // Create left column (heading) - 40% on desktop and tablet
     const leftCol = document.createElement('div');
-    leftCol.className = 'col-xl-6 col-md-3 container-sm-4 left-col';
+    leftCol.className = 'col-xl-6 col-md-3 col-sm-4 left-col';
 
     const allDivElements = project.querySelectorAll('div');
 
@@ -66,7 +66,7 @@ export default function decorate(block) {
 
     // Create right column (description and contacts) - 60% on desktop and tablet
     const rightCol = document.createElement('div');
-    rightCol.className = 'col-xl-6 col-md-3 container-sm-4 right-col';
+    rightCol.className = 'col-xl-6 col-md-3 col-sm-4 right-col';
 
     const imageLink = project.querySelector('a[href*="delivery-"]', 'a[href*="/content/dam/"][href$=".png"], a[href*="/content/dam/"][href$=".jpeg"], a[href*="/content/dam/"][href$=".jpg"], a[href*="/content/dam/"][href$=".gif"], a[href*="/content/dam/"][href$=".svg"]');
 
