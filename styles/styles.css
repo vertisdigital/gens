@@ -971,6 +971,7 @@ main::before {
   content: '';
   background: url("../icons/genting-page-mobile-bg.jpg") repeat-y;
   background-position: center top;
+  background-size: 100%;
   position: absolute;
   inset: 0;
   z-index: -1;
