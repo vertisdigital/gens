@@ -24,10 +24,10 @@ export default function decorate(block) {
       // If there are more than 1 children, move the second last child's content to the last child
       if (children.length > 1) {
         const lastSecond = children[children.length - 2].textContent.trim();
-        children[children.length - 1].querySelector('a').innerHTML = '';
+        children[children.length - 1].querySelector('a').textContent = '';
         children[children.length - 1].querySelector('a').innerHTML = `<span>${lastSecond}</span>${downloadIcon}`;
         // Clear second last child's content
-        children[children.length - 2].innerHTML = '';
+        children[children.length - 2].textContent = '';
       }
 
       const firstChild = children.length > 0 ? children[0].outerHTML : '';
