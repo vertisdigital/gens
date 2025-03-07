@@ -10,7 +10,8 @@
 }
 
 .tabs-container .about-us-stats {
-    margin-bottom: 80px;
+    /* margin-bottom: 80px; */
+    margin-bottom: 0;
     padding-top: 0;
 }
 
@@ -97,6 +98,10 @@
     /* margin-bottom: 36px; */
     gap: 0;
 }
+.tabs-container .about-us-stats .about-us-right-content:last-child{
+    margin-bottom: 0;
+    padding-bottom: 0;
+}
 
 .tabs-container .about-us-stats .about-us-left-title {
     color: var(--text-color);
@@ -163,6 +168,10 @@
     flex: 1;
     margin-left: 15px;
 }
+
+.tabs-container .textmediablock-wrapper {
+    margin-top:48px
+}
  
 @media (width <=1024px) {
     .tabs-container .projectslist {
@@ -183,6 +192,10 @@
     .tabs-container .about-us-stats .about-us-right-content {
         margin-bottom: 16px;
         padding-top: 16px;
+    }
+    .tabs-container .about-us-stats .about-us-right-content:last-child {
+        margin-bottom: 0;
+        padding-bottom: 0;
     }
 
     .tabs-container .about-us-stats .about-us-left-title {
@@ -205,6 +218,10 @@
         font-size: 32px;
         line-height: 42px;
     }
+
+    .tabs-container .textmediablock-wrapper {
+        margin-top:24px
+    }
 }
 
 @media(width<768px) {
@@ -217,10 +234,21 @@
         line-height: 24px;
     }
 
+    .tabs-container .about-us-stats {
+        margin-bottom: 0px;
+        padding-bottom: 0;
+    }
+    
+
     .tabs-container .about-us-stats .about-us-right-content {
         padding-top: 12px;
         margin-bottom: 40px;
     }
+    .tabs-container .about-us-stats .about-us-right-content:last-child{
+        margin-bottom: 0;
+        padding-bottom: 0;
+    }
+
 
     .panel-heading h2 {
         font-size: 28px;
@@ -249,6 +277,10 @@
 
     .tabs-container .projectslist {
         margin-top: 36px;
+    }
+
+    .tabs-container .textmediablock-wrapper {
+        margin-top:18px
     }
 }
 @media (width >= 768px) {
