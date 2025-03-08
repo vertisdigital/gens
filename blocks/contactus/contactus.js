@@ -199,17 +199,29 @@ export default function decorate(block) {
   rightCol2.append(enquirySecondChild[1].cloneNode(true));
 
   const viewJobCTAName = enquirySecondChild[4].cloneNode(true).textContent.trim().replace(/-/g, "");
-  const northEastArrow = SvgIcon({
-    name: viewJobCTAName,
-    className: 'contactus-bottom-cta',
-    size: 24,
-    color: 'currentColor',
-  });
-  enquirySecondChild[2].cloneNode(true).querySelector('a').append(stringToHtml(northEastArrow));
-  // enquirySecondChild[4].cloneNode(true).innerHTML = '';
+ const northEastArrow = SvgIcon({
+  name: viewJobCTAName,
+  className: 'contactus-bottom-cta',
+  size: 12,
+  color: 'currentColor',
+});
+
+// Ensure enquirySecondChild[2] exists
+const targetElement = enquirySecondChild[2];
+
+if (targetElement) {
+  const anchorElement = targetElement.querySelector('a');
+  if (anchorElement) {
+    // Convert the SVG string to an actual element (if necessary)
+    const svgElement = typeof northEastArrow === 'string' ? stringToHtml(northEastArrow) : northEastArrow;
+
+    // Append the icon
+    anchorElement.appendChild(svgElement);
+  } 
+} 
+
 
   enquirySecondChild[2].querySelector('a').target = enquirySecondChild[3].cloneNode(true).textContent.trim();
-  // enquirySecondChild[3].cloneNode(true).innerHTML = '';
   
   rightCol2.append(enquirySecondChild[2]);
   row2.append(rightCol2);
