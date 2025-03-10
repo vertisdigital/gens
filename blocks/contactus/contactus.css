@@ -24,8 +24,9 @@
   padding-left: 18px;
   
 }
+
 .contactus .contactus-top{
-  padding-bottom: 0px;
+  padding-bottom: 0;
 }
 
 .contactus.contactus-variation .contactus-top{
@@ -129,16 +130,17 @@
 }
 
 /* Contactus bottom section */
+
 .contactus .contactus-bottom{
   display: none;
-}
-.contactus.contactus-variation .contactus-bottom{
-  display: flex;
-}
-.contactus .contactus-bottom{
   padding-top: 56px;
   border-top: 2px solid var(--body-text-color);
 }
+
+.contactus.contactus-variation .contactus-bottom{
+  display: flex;
+}
+
 
 .contactus .contactus-bottom>div:first-child{
   font-size: 28px;
@@ -146,8 +148,10 @@
   line-height: 40px;
   color: var(--text-color);
 }
+
 .contactus .contactus-bottom>div:last-child{
   display: flex;
+
   /* gap:16px; */
   align-items: flex-start;
 }
@@ -164,6 +168,7 @@
   align-items:center;
   gap:10px;
 }
+
 .contactus .contactus-bottom>div:last-child a span{
   line-height:0;
 }
@@ -174,6 +179,7 @@
   .contactus .contactus-top{
     padding-bottom: 40px;
   }
+
   .contactus .enquiry-heading {
     font-size: 32px;
     line-height: 42px; 
@@ -218,6 +224,7 @@
   .contactus .contactus-bottom{
     padding-top: 40px;
   }
+
   .contactus.contactus-variation .contactus-bottom>div:first-child{
     font-size: 28px;
     font-weight: 400;
@@ -237,9 +244,11 @@
   .contactus .row>div{
     padding: 0;
   }
+
   .contactus .contactus-top{
     padding-bottom: 28px;
   }
+
   .contactus .row>div:first-child{
     padding-right: 0;
   
@@ -319,6 +328,7 @@
     line-height: 20px;
   
   }
+
   .contactus .contactus-bottom{
     padding-top: 28px;
   }
@@ -344,6 +354,7 @@
   .contactus {
     padding: 80px 0;
   }
+
   .contactus .contactus-bottom>div:last-child a{
     margin-left:90px;
   }
