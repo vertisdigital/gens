@@ -783,7 +783,7 @@ main .section.highlight {
   .container-md,
   .container-sm,
   .container {
-    max-width: 1440px;
+    max-width: 1920px;
     padding-right: 160px;
     padding-left: 160px;
   }
