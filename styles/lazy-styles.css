@@ -15,6 +15,10 @@
 }
 
 .tabs-header {
+    display: flex;
+    flex-wrap: nowrap;
+    width: 100%;
+    overflow-x: auto;
     margin-bottom: 36px;
 }
 
@@ -28,6 +32,8 @@
     line-height: 30px;
     border-bottom: 2px solid var(--body-text-color);
     cursor: pointer;
+    flex: 1 1;
+    min-width: 248px;
 }
 
 .tab-title.active {
