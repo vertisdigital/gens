@@ -34,7 +34,10 @@
       "textsection",
       "textmediablock",
       "projectslist",
-      "tabsectiontitle"
+      "tabsectiontitle",
+      "awardsgallery",
+      "sustainabilitygovernance",
+      "corporatepolicies"
     ]
   },
   {
@@ -42,7 +45,10 @@
     "components": [
       "feature",
       "textmediablock",
-      "projectslist"
+      "projectslist",
+      "awardsgallery",
+      "historymilestones",
+      "loadmore"
     ]
   },
   {
@@ -171,6 +177,30 @@
     "components": [
       "statisticsDescription",
       "featureItem"
+    ]
+  },
+  {
+    "id": "awardsgallery",
+    "components": [
+      "awardstile"
+    ]
+  },
+  {
+    "id": "historymilestones",
+    "components": [
+      "milestoneitem"
+    ]
+  },
+  {
+    "id": "sustainabilitygovernance",
+    "components": [
+      "governancetile"
+    ]
+  },
+  {
+    "id": "corporatepolicies",
+    "components": [
+      "policytile"
     ]
   },
   {

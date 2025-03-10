@@ -14,7 +14,7 @@ export default function decorate(block) {
   const container = document.createElement('div');
   // moveInstrumentation(featureResource, container);
 
-  container.classList.add('container-xl', 'container-lg', 'container-md', 'container-sm');
+  container.classList.add('container');
 
   const aboutUsStats = document.createElement('div');
   aboutUsStats.classList.add('row', 'about-us-stats');
@@ -75,6 +75,13 @@ export default function decorate(block) {
       // Get href from the link element if it exists, otherwise use the text content
       const linkHref = linkText.querySelector('a');
       link.href = linkHref;
+
+      // fix for text with / i.e. default content from AEM when link used
+      if(linkHref){
+        if((linkHref.textContent.startsWith("/") || linkHref.textContent.startsWith("#")))
+          linkHref.textContent =''
+        link.title = linkHref.title;
+      }
       link.textContent = linkText.textContent.trim();
       link.setAttribute('target', target);
 

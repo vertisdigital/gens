@@ -242,3 +242,80 @@
     height: 162px;
   }
 }
+
+/* CERTIFICATIONS VARIATION  */
+.certifications .projectcards-header {
+  margin-bottom: 25px;
+}
+
+.certifications .project-card [data-aue-prop="image"] {
+  margin-bottom: 12px;
+  height: 122px;
+  text-align: center;
+  background: var(--background-color);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.certifications .project-card [data-aue-prop="image"] img,
+.certifications .project-card [data-aue-prop="image"] picture{
+  height: auto;
+  width: auto;
+  display: block;
+  object-fit: contain;
+  max-width: 106px;
+  max-height: 106px;
+}
+
+.certifications .project-card-title {
+  text-decoration: none;
+  margin-bottom: 12px;
+}
+
+.certifications .project-card-location {
+  color: var(--body-text-color);
+}
+
+@media (width>=768px) {
+  .certifications .projectcards-heading {
+    font-size: 32px;
+    line-height: 42px;
+    margin-bottom: 30px
+  }
+
+  .certifications .project-card [data-aue-prop="image"] {
+    margin-bottom: 20px;
+    height: 230px;
+  }
+
+  .certifications .project-card-title {
+    font-size: 16px;
+    line-height: 14px
+  }
+
+  .certifications .project-card-location {
+    font-size: 16px;
+  }
+}
+
+@media (width>=993px) {
+  .certifications .projectcards-heading {
+    font-size: 40px;
+    line-height: 50px;
+    margin-bottom: 40px
+  }
+
+  .certifications .project-card [data-aue-prop="image"] {
+    margin-bottom: 25px;
+    height: 161px;
+  }
+
+  .certifications .project-card-title {
+    line-height: 24px
+  }
+
+  .certifications .project-card-location {
+    font-size: 16px;
+  }
+}

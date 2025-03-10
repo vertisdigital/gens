@@ -244,8 +244,11 @@
 }
 
 .listing-wrapper {
-/*   background: var(--whisper-gray); */
   padding: 32px 0;
+}
+
+.listing-variation{
+  background: var(--whisper-gray);
 }
 
 .listing-wrapper .listing [data-aue-prop="title"], .listing-wrapper .listing [data-gen-prop="title"] {
@@ -354,3 +357,7 @@
 /* .content-wrapper .arrow-link-wrapper:hover .left-arrow-icon {
   transform: translateX(5px);
 } */
+
+.listing-wrapper:has(.listing-variation){
+  background-color: var(--whisper-gray);
+}

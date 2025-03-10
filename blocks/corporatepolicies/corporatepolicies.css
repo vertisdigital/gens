@@ -1,0 +1,77 @@
+.corporate-policies-list > div:last-child {
+    border-bottom: none;
+}
+.corporate-policies-list-item {
+    padding: 68px 0;
+    border-bottom: 2px solid var(--border-color, #e5e5e5);
+}
+
+.corporate-policies-list-item .left-col {
+    font-size: 40px;
+    font-weight: 500;
+    line-height: 50px;
+    color: var(--text-color);
+}
+
+.corporate-policies-list-item .right-col > div:first-child {
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 24px;
+    color: var(--gray-text-color, #666666);
+    margin-bottom: 24px;
+}
+
+.corporate-policies-list-item .right-col > div:last-child a {
+    background: none;
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    text-decoration: underline;
+    text-decoration-thickness: 1px;
+    font-size: 16px;
+    font-weight: 700;
+    line-height: 24px;
+    color: var(--gold-color, #b29152);
+    padding: 0;
+    margin: 0;
+}
+.corporate-policies-list-item .right-col > div:last-child a > span:last-child {
+    line-height: 0;
+}
+
+@media (width <= 992px) {
+    .corporate-policies-list-item {
+        padding: 48px 0px;
+    }
+    .corporate-policies-list-item .left-col {
+        font-size: 32px;
+        line-height: 42px;
+    }
+    .corporate-policies-list-item .right-col > div:first-child {
+        margin-bottom: 10px;
+    }
+}
+
+@media (width < 768px) {
+    .corporate-policies-list-item {
+        padding: 36px 0px;
+    }
+    .corporate-policies-list-item .left-col {
+        font-size: 28px;
+        line-height: 34px;
+        margin-bottom: 16px;
+    }
+
+    .corporate-policies-list-item .right-col {
+        padding: 0;
+    }
+    .corporate-policies-list-item .right-col > div:first-child {
+        font-size: 14px;
+        line-height: 20px;
+        margin-bottom: 8px;
+    }
+    .corporate-policies-list-item .right-col > div:last-child a {
+        font-size: 16px;
+        line-height: 20px;
+    }
+}
