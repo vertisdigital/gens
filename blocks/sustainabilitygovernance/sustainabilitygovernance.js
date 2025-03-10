@@ -23,12 +23,12 @@ export default function decorate(block) {
         img.src = `../../icons/${cardTitle.textContent.trim()}.svg`;
         img.alt = cardTitle.textContent.trim();
 
-        // Move instrumentation
         
-
         // Create the card structure
         const cardWrapper = document.createElement("div");
         cardWrapper.classList.add("governance-card");
+        // Move instrumentation
+        moveInstrumentation(cardItem, cardWrapper);
 
         const imgWrapper = document.createElement("div");
         imgWrapper.classList.add("governance-img");
