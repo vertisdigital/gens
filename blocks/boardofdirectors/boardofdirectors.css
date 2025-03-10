@@ -24,9 +24,11 @@
 .boardofdirectors .director-card:hover {
     transform: translateY(-5px);
 }
-.boardofdirectors .director-card .toggle-off, .boardofdirectors .director-card.active .toggle-on {
+
+.boardofdirectors .director-card .toggle-off {
     display: none;
 }
+
 .boardofdirectors .director-card .toggle-on, 
 .boardofdirectors .director-card .toggle-off {
     background: none;
@@ -34,6 +36,10 @@
     font-size: 30px;
     color: var(--primary-gold);
     line-height: 16px;
+}
+
+.boardofdirectors .director-card.active .toggle-on {
+    display: none;
 }
 
 .boardofdirectors .director-card.active .toggle-off {
@@ -96,6 +102,7 @@
 .boardofdirectors .segment-wrapper .wrapper div:first-child {
     padding-left: 0;
 }
+
 .boardofdirectors .segment-wrapper .wrapper div:last-child {
     padding-right: 0;
 }
