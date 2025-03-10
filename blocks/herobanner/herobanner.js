@@ -17,23 +17,29 @@ export default function decorate(block) {
   if (imageLink) {
     const imageUrl = imageLink.getAttribute('href');
     const imageAlt = imageLink.getAttribute('title') || 'Hero Image';
-
     const imageHtml = ImageComponent({
       src: imageUrl,
       alt: imageAlt,
       className: 'hero-image',
+      asImageName: 'hero.webp',
       breakpoints: {
         mobile: {
           width: 768,
+          imgWidth: 500,
           src: `${imageUrl}`,
+          cropRatio:'45p,20p,35p,80p'
         },
         tablet: {
-          width: 1024,
+          width: 993,
+          imgWidth: 800,
           src: `${imageUrl}`,
+          cropRatio:''
         },
         desktop: {
           width: 1920,
           src: `${imageUrl}`,
+          imgWidth: 1600,
+          cropRatio:''
         },
       },
       lazy: false,
@@ -332,28 +338,32 @@ export default function decorate(block) {
         // const imgUrl = aTag.getAttribute('href');
         const imgUrl = aTag?.getAttribute('href');
         const imgAlt = aTag?.getAttribute('title');
-
         const imgHtml = ImageComponent({
           src: imgUrl,
           alt: imgAlt,
           className: 'news-thumbnail',
+          asImageName: 'hero.webp',
           breakpoints: {
             mobile: {
               width: 768,
               src: `${imgUrl}`,
+              imgWidth: 100,
             },
             tablet: {
-              width: 1024,
+              width: 993,
               src: `${imgUrl}`,
+              imgWidth: 160,
             },
             desktop: {
               width: 1920,
               src: `${imgUrl}`,
+              imgWidth: 160,
             },
           },
           lazy: false,
         });
 
+    
         newsLetterImage.insertAdjacentHTML('beforeend', imgHtml);
         moveInstrumentation(itemDivs[2], newsLetterImage);
         aTag.remove();
@@ -402,6 +412,7 @@ export default function decorate(block) {
 
   const carouselItemsAll = heroContainer.querySelectorAll('.carousel-item');
 
+  // Check if we're not in author instance before setting up auto-scroll
   const isAuthorInstance = document.getElementById('OverlayBlockingElement');
   if (carouselItemsAll.length > 0 && !isAuthorInstance) {
     setInterval(() => {
