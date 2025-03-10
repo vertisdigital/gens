@@ -15,11 +15,13 @@ export default function decorate(block) {
   // get second child of the block
   const enquirySecondChild = enquiryChildren[1].children;
 
-
+  
   // Create single container with all responsive classes
   const container = document.createElement('div');
   container.className = 'container';
 
+  // clear the block and append container to it
+  
   const row = document.createElement('div');
   row.className = 'row contactus-top';
 
@@ -29,7 +31,7 @@ export default function decorate(block) {
 
   // Create heading container with proper attributes
   const headingContainer = document.createElement('div');
-  const headingText = enquiryFirstChild[0].querySelector('p');
+  const headingText = enquiryFirstChild[0];
   const headingElement = document.createElement('div');
 
   if (headingText) {
@@ -50,12 +52,12 @@ export default function decorate(block) {
   rightCol.className = 'col-xl-6 col-md-3 container-sm-4';
 
   // Add description with authoring attributes
-  const description = enquiryFirstChild[1].querySelector('p');
+  const description = enquiryFirstChild[1];
   if (description) {
     const descriptionWrapper = document.createElement('div');
     descriptionWrapper.className = 'enquiry-description';
     moveInstrumentation(description, descriptionWrapper);
-    descriptionWrapper.innerHTML = description.innerHTML;
+    descriptionWrapper.innerHTML = description.textContent;
     rightCol.append(descriptionWrapper);
   }
 
@@ -173,7 +175,10 @@ export default function decorate(block) {
   // Assemble the structure
   row.append(leftCol);
   row.append(rightCol);
-  container.append(row);
+  enquiryChildren[0].innerHTML = '';
+  enquiryChildren[0].append(row);
+  container.append(enquiryChildren[0]);
+  // container.append(row);
 
 
   // second row
@@ -190,7 +195,7 @@ export default function decorate(block) {
 
   rightCol2.append(enquirySecondChild[1].cloneNode(true));
   const viewJobCTAName = enquirySecondChild[4]?.cloneNode(true)?.textContent?.trim().replace(/-/g, "").toLowerCase() || "";
- const northEastArrow = SvgIcon({
+  const northEastArrow = SvgIcon({
   name: viewJobCTAName,
   className: 'contactus-bottom-cta',
   size: 12,
@@ -214,10 +219,12 @@ if (targetElement) {
 
   enquirySecondChild[2].querySelector('a').target = enquirySecondChild[3].cloneNode(true).textContent.trim();
   
-  rightCol2.append(enquirySecondChild[2]);
+  rightCol2.append(enquirySecondChild[2].cloneNode(true));
   row2.append(rightCol2);
 
-  container.append(row2);
+  enquiryChildren[0].innerHTML = '';
+  enquiryChildren[0].append(row2);
+  container.append(enquiryChildren[0]);
 
   // Replace original content
   wrapper.innerHTML = '';
