@@ -6,12 +6,7 @@ import SvgIcon from '../../shared-components/SvgIcon.js';
  */
 export default function decorate(block) {
   // Add container wrappers for each breakpoint
-  block.classList.add(
-    'container-xl',
-    'container-lg',
-    'container-md',
-    'container-sm',
-  );
+  block.classList.add('container');
 
   // Create row wrapper
   const row = document.createElement('div');
@@ -37,7 +32,7 @@ export default function decorate(block) {
       );
       if (imageLink) {
         // Set as background
-        tile.style.backgroundImage = `url(${imageLink})`;
+        tile.style.backgroundImage = `url(${imageLink}/as/tiles.webp?width=600&height=500)`;
         tile.style.backgroundPosition = 'center';
         tile.style.backgroundSize = 'cover';
         tile.style.backgroundRepeat = 'no-repeat';

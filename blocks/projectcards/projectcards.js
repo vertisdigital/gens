@@ -7,7 +7,7 @@ export default function decorate(block) {
   let projectCardsContainer = block.querySelector('.projectcards-container');
   if (!projectCardsContainer) {
     projectCardsContainer = document.createElement('div');
-    projectCardsContainer.className = 'projectcards-container container-xl container-lg container-md container-sm';
+    projectCardsContainer.className = 'projectcards-container container';
     moveInstrumentation(block, projectCardsContainer);
   }
 
@@ -92,18 +92,25 @@ export default function decorate(block) {
         src: imageUrl,
         alt: imageAlt,
         className: 'project-card-image',
+        asImageName: 'projectcards.webp',
         breakpoints: {
           mobile: {
             width: 768,
             src: `${imageUrl}`,
+            imgWidth: 170,
+            imgHeight: 170,
           },
           tablet: {
-            width: 1024,
+            width: 993,
             src: `${imageUrl}`,
+            imgWidth: 370,
+            imgHeight: 370,
           },
           desktop: {
             width: 1920,
             src: `${imageUrl}`,
+            imgWidth: 260,
+            imgHeight: 260,
           },
         },
         lazy: true,

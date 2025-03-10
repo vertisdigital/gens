@@ -138,7 +138,7 @@ function createNavItem(itemData) {
 function createHeaderStructure(block) {
   // Create main section container
   const section = document.createElement('div');
-  section.className = 'header-inner-wrapper section columns-container container-xl container-md container-sm';
+  section.className = 'header-inner-wrapper section columns-container container';
 
   // Create columns wrapper
   const columnsWrapper = document.createElement('div');
@@ -331,7 +331,7 @@ function initializeHeader(header) {
 
       // Wrapper for secondaryHeader and linksContainer
       const secondaryNavWrapper = document.createElement('div');
-      secondaryNavWrapper.className = 'container-xl container-lg container-md container-sm';
+      secondaryNavWrapper.className = 'container';
 
       // Create empty structure for links
       const secondaryHeader = document.createElement('div');

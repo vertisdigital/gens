@@ -1,0 +1,34 @@
+.loadmore {
+    text-align: end;
+    display: flex;
+    justify-content: flex-end;
+    padding: 18px;
+}
+.loadmore .loadmore-button {
+    font-size: 14px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 20px;
+    text-align: right;
+    color: var(--primary-gold);
+    cursor: pointer;
+    text-decoration: underline;
+    background: none;
+    padding: 0;
+    display: flex;
+    align-items: center;
+}
+@media (width >= 768px) {
+    .loadmore {
+        padding: 24px;
+    }
+    .loadmore .loadmore-button {
+        font-size: 16px;
+        line-height: 24px;
+    }
+}
+@media (width > 993px) {
+    .loadmore {
+        padding: 36px;
+    }
+}

@@ -4,39 +4,42 @@ import SvgIcon from '../../shared-components/SvgIcon.js';
 import stringToHTML from '../../shared-components/Utility.js';
 import { moveInstrumentation } from '../../scripts/scripts.js';
 
+
 export default function decorate(block) {
   let heroContainer = block.querySelector('.hero-banner-container');
 
   if (!heroContainer) {
     heroContainer = document.createElement('div');
     heroContainer.className = 'hero-banner-container';
-    // heroContainer.classList.add('hero-banner-container','columns-container',
-    // 'container-xl', 'container-md', 'container-sm');
-    // heroContainer.setAttribute('data-aue-resource', 'herobanner');
-    // heroContainer.setAttribute('data-aue-type', 'block');
   }
 
   const imageLink = block.querySelector('.herobanner-nested-1-1 a[href]');
   if (imageLink) {
     const imageUrl = imageLink.getAttribute('href');
     const imageAlt = imageLink.getAttribute('title') || 'Hero Image';
-
     const imageHtml = ImageComponent({
       src: imageUrl,
       alt: imageAlt,
       className: 'hero-image',
+      asImageName: 'hero.webp',
       breakpoints: {
         mobile: {
           width: 768,
+          imgWidth: 800,
+          imgHeight: 560,
           src: `${imageUrl}`,
         },
         tablet: {
-          width: 1024,
+          width: 993,
+          imgWidth: 1200,
+          imgHeight: 750,
           src: `${imageUrl}`,
         },
         desktop: {
           width: 1920,
           src: `${imageUrl}`,
+          imgWidth: 1920,
+          imgHeight: 830,
         },
       },
       lazy: false,
@@ -52,7 +55,7 @@ export default function decorate(block) {
   }
 
   const heroContent = document.createElement('div');
-  heroContent.classList.add('hero-content', 'columns-container', 'container-xl', 'container-md', 'container-sm');
+  heroContent.classList.add('hero-content', 'columns-container', 'container');
 
   const headingElement = block.querySelector('[data-aue-prop="bannerheading"], .herobanner-nested-1-2 p');
   if (headingElement) {
@@ -100,7 +103,7 @@ export default function decorate(block) {
   }
 
   const arrowIconLink = block.children[4];
-  if (arrowIconLink && arrowIconLink.querySelector('a')!=null) {
+  if (arrowIconLink && arrowIconLink.querySelector('a') != null) {
     const arrowIconHtml = SvgIcon({
       name: 'arrow',
       className: 'hero-arrow-icon',
@@ -116,7 +119,11 @@ export default function decorate(block) {
   const carouselItems = block.querySelectorAll(
     '[data-aue-model="bannercarousel"],[data-gen-model="featureItem"]',
   );
-  
+
+  if (carouselItems?.length) {
+    heroContainer.classList.add('hero-carousal-variation');
+  }
+
   const carouselContainer = document.createElement('div');
   carouselContainer.className = 'hero-banner-carousal';
   const carouselWrapper = document.createElement('div');
@@ -265,11 +272,11 @@ export default function decorate(block) {
 
     // Extract and append the "Read More" label
     const readMoreLabelElement = itemDivs[3].querySelector('p');
-  
-   if (readMoreLabelElement) {
+
+    if (readMoreLabelElement) {
       const readMoreLabelText = readMoreLabelElement.textContent;
       const buttonContainer = itemDivs[4]?.querySelector('a');
-      const href = buttonContainer?.getAttribute('href') ?? '/' ;
+      const href = buttonContainer?.getAttribute('href') ?? '/';
       const readMoreLabelHtml = `<a class="news-link" href="${href}">${readMoreLabelText}</a>`;
       const readMoreContainer = document.createElement('div');
       moveInstrumentation(itemDivs[3], readMoreContainer);
@@ -331,28 +338,35 @@ export default function decorate(block) {
         // const imgUrl = aTag.getAttribute('href');
         const imgUrl = aTag?.getAttribute('href');
         const imgAlt = aTag?.getAttribute('title');
-
         const imgHtml = ImageComponent({
           src: imgUrl,
           alt: imgAlt,
           className: 'news-thumbnail',
+          asImageName: 'hero.webp',
           breakpoints: {
             mobile: {
               width: 768,
               src: `${imgUrl}`,
+              imgWidth: 100,
+              imgHeight: 100,
             },
             tablet: {
-              width: 1024,
+              width: 993,
               src: `${imgUrl}`,
+              imgWidth: 160,
+              imgHeight: 130,
             },
             desktop: {
               width: 1920,
               src: `${imgUrl}`,
+              imgWidth: 160,
+              imgHeight: 130,
             },
           },
           lazy: false,
         });
 
+    
         newsLetterImage.insertAdjacentHTML('beforeend', imgHtml);
         moveInstrumentation(itemDivs[2], newsLetterImage);
         aTag.remove();
@@ -401,7 +415,9 @@ export default function decorate(block) {
 
   const carouselItemsAll = heroContainer.querySelectorAll('.carousel-item');
 
-  if (carouselItemsAll.length > 0) {
+  // Check if we're not in author instance before setting up auto-scroll
+  const isAuthorInstance = document.getElementById('OverlayBlockingElement');
+  if (carouselItemsAll.length > 0 && !isAuthorInstance) {
     setInterval(() => {
       moveCarousel(true, false);
     }, scrollInterval);

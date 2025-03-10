@@ -43,7 +43,7 @@ function createTabElement(section, index) {
 
   const tabTitle = document.createElement('div');
   tabTitle.textContent = titleText;
-  tabTitle.className = 'tab-title col-xl-6 col-lg-6 col-md-3 col-sm-2';
+  tabTitle.className = 'tab-title';
   tabTitle.setAttribute('role', 'tab');
   tabTitle.setAttribute('data-tab-index', index);
   tabTitle.setAttribute('tabindex', '0');

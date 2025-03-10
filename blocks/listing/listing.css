@@ -357,3 +357,7 @@
 /* .content-wrapper .arrow-link-wrapper:hover .left-arrow-icon {
   transform: translateX(5px);
 } */
+
+.listing-wrapper:has(.listing-variation){
+  background-color: var(--whisper-gray);
+}

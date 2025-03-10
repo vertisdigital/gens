@@ -15,14 +15,14 @@ export default function decorate(block) {
 
   // Create single container with all responsive classes
   const container = document.createElement('div');
-  container.className = 'container-xl container-md container-sm';
+  container.className = 'container';
 
   const row = document.createElement('div');
   row.className = 'row';
 
   // Create left column (heading) - 40% on desktop and tablet
   const leftCol = document.createElement('div');
-  leftCol.className = 'col-xl-6 col-md-3 container-sm-4';
+  leftCol.className = 'col-xl-6 col-md-3 col-sm-4';
 
   // Create heading container with proper attributes
   const headingContainer = document.createElement('div');
@@ -47,7 +47,7 @@ export default function decorate(block) {
 
   // Create right column (description and contacts) - 60% on desktop and tablet
   const rightCol = document.createElement('div');
-  rightCol.className = 'col-xl-6 col-md-3 container-sm-4';
+  rightCol.className = 'col-xl-6 col-md-3 col-sm-4';
 
   // Add description with authoring attributes
   const description = allDivElements[1].querySelector('p');
