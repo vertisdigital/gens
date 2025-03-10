@@ -255,7 +255,6 @@
           "customErrorMsg": "Banner Title cannot exceed 100 characters"
         }
       },
-      },
       {
         "component": "text",
         "name": "bannerdescription",
@@ -1151,27 +1150,11 @@
             true
           ]
         }
-        "condition": {
-          "===": [
-            {
-              "var": "reveal"
-            },
-            true
-          ]
-        }
       },
       {
         "component": "aem-content",
         "name": "cta",
         "label": "CTA",
-        "condition": {
-          "===": [
-            {
-              "var": "reveal"
-            },
-            false
-          ]
-        },
         "condition": {
           "===": [
             {
