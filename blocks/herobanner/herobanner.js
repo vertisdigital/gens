@@ -26,14 +26,17 @@ export default function decorate(block) {
         mobile: {
           width: 767,
           src: `${imageUrl}`,
+          smartCrop : 'Small'
         },
         tablet: {
           width: 991,
           src: `${imageUrl}`,
+          smartCrop : 'Medium'
         },
         desktop: {
           width: 1920,
           src: `${imageUrl}`,
+          smartCrop : 'Desktop'
         },
       },
       lazy: false,

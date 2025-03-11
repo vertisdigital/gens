@@ -15,9 +15,9 @@ export default function ImageComponent({
   className = '',
   asImageName = '',
   breakpoints = {
-    mobile: { width: 768, src: '', imgWidth: '', cropRatio:''},
-    tablet: { width: 992, src: '', imgWidth: '', cropRatio:'' },
-    desktop: { width: 1920, src: '', imgWidth: '', cropRatio:'' },
+    mobile: { width: 768, src: '', smartCrop: ''},
+    tablet: { width: 992, src: '', smartCrop: '' },
+    desktop: { width: 1920, src: '', smartCrop: '' },
   },
   lazy = true,
 }) {
@@ -38,11 +38,11 @@ export default function ImageComponent({
   return `
     <picture>
       <source media="(max-width: ${breakpoints.mobile.width}px)" 
-              srcset="${breakpoints.mobile.src}/as/${asImageName ? asImageName : 'img.webp'}?smartcrop=Small">
+              srcset="${breakpoints.mobile.src}/as/${asImageName ? asImageName : 'img.webp'}${smartCrop ? `?smartcrop=${smartCrop}` : ''}">
       <source media="(max-width: ${breakpoints.tablet.width}px)" 
-              srcset="${breakpoints.tablet.src}/as/${asImageName ? asImageName : 'img.webp'}?smartcrop=Medium">
+              srcset="${breakpoints.tablet.src}/as/${asImageName ? asImageName : 'img.webp'}${smartCrop ? `?smartcrop=${smartCrop}` : ''}">
       <source media="(min-width: ${breakpoints.desktop.width + 1}px)" 
-              srcset="${breakpoints.desktop.src}/as/${asImageName ? asImageName : 'img.webp'}?smartcrop=Desktop">             
+              srcset="${breakpoints.desktop.src}/as/${asImageName ? asImageName : 'img.webp'}${smartCrop ? `?smartcrop=${smartCrop}` : ''}">             
       <img src="${src}" 
            alt="${alt}" 
            title="${alt}"
