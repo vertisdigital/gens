@@ -1,3 +1,6 @@
+import ImageComponent from "../../shared-components/ImageComponent.js";
+import stringToHTML from "../../shared-components/Utility.js";
+
 const getGroups = (updatedChildren) => {
   let groups = [];
 
@@ -73,23 +76,40 @@ export default function decorate(block) {
     card.className = 'director-card';
 
     // Create image element
-    const img = document.createElement('img');
-    img.src = director.imageUrl;
-    img.alt = director.name;
-    img.loading = 'lazy';
+   const imgURL = director.imageUrl;;
+    const picture = ImageComponent({
+      src: imgURL,
+      alt: director.name,
+      className: 'director-card',
+      breakpoints: {
+        mobile: {
+          width: 768,
+          src: `${imgURL}`,
+        },
+        tablet: {
+          width: 1024,
+          src: `${imgURL}`,
+        },
+        desktop: {
+          width: 1920,
+          src: `${imgURL}`,
+        },
+      },
+      lazy: true,
+    });
 
+   
     // Create info container
     const info = document.createElement('div');
     info.className = 'director-info';
     info.innerHTML = `
               <h3>${director.name}</h3>
               <div class="description-wrapper">
-              <p>${director.title}</p>
-              <div class="toggle-button">
-                  <button class="toggle-on">+</button>
-                  <button class="toggle-off">-</button>
-              </div>
-              
+                <p>${director.title}</p>
+                <div class="toggle-button">
+                    <button class="toggle-on">+</button>
+                    <button class="toggle-off">-</button>
+                </div>
               </div>
           `;
 
@@ -100,7 +120,10 @@ export default function decorate(block) {
     content.style.display = 'none';
 
     // Assemble the card
-    card.appendChild(img);
+    if (picture) {
+      const imageElement = stringToHTML(picture);
+      card.appendChild(imageElement);
+    }
     card.appendChild(info);
     containerDiv.appendChild(card);
     containerDiv.appendChild(content);
@@ -112,7 +135,7 @@ export default function decorate(block) {
   // Restructure the block to use container classes
   function restructureBlock() {
     const container = document.createElement('div');
-    container.className = 'container-xl';
+    container.className = 'container';
 
     const row = document.createElement('div');
     row.className = '';
