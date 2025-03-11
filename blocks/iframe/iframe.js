@@ -10,91 +10,74 @@ function setElementHeight(element, height) {
 }
 
 function updateIframeHeight(iframeWrapper, endpoint) {
-  const isMobile = window.innerWidth < 500;
+  const isMobile = window.innerWidth < 767;
   const isTablet = window.innerWidth >= 600 && window.innerWidth <= 1024;
-  switch (endpoint) {
-    case 'home':
-      if (isMobile) {
-        setElementHeight(iframeWrapper, '1850px');
-      } else {
-        setElementHeight(iframeWrapper, '1220px');
-      }
-      break;
-    case 'annual-reports':
-      if (isMobile) {
-        setElementHeight(iframeWrapper, '15600px');
-      } else if (isTablet) {
-        setElementHeight(iframeWrapper, '4640px');
-      } else {
-        setElementHeight(iframeWrapper, '5690px');
-      }
-      break;
-    case 'sustainability-reports':
-      if (isMobile) {
-        setElementHeight(iframeWrapper, '6680px');
-      } else if (isTablet) {
-        if (isLandscape()) {
-          setElementHeight(iframeWrapper, '2620px');
-        } else {
-          setElementHeight(iframeWrapper, '2260px');
-        }
-      } else {
-        setElementHeight(iframeWrapper, '2620px');
-      }
-      break;
-    case 'newsroom':
-      if (isMobile) {
-        setElementHeight(iframeWrapper, '1940px');
-      } else if (isTablet) {
-        if (isLandscape()) {
-          setElementHeight(iframeWrapper, '1500px');
-        } else {
-          setElementHeight(iframeWrapper, '1600px');
-        }
-      } else {
-        setElementHeight(iframeWrapper, '1450px');
-      }
-      break;
-    case 'agm-egm':
-      if (isMobile) {
-        setElementHeight(iframeWrapper, '950px');
-      } else {
-        setElementHeight(iframeWrapper, '790px');
-      }
-      break;
-    case 'analysts-coverage':
-      if (isMobile) {
-        setElementHeight(iframeWrapper, '1300px');
-      } else if (isTablet) {
-        setElementHeight(iframeWrapper, '1110px');
-      } else {
-        setElementHeight(iframeWrapper, '1060px');
-      }
-      break;
-    case 'email_alerts':
-      if (isMobile) {
-        setElementHeight(iframeWrapper, '770px');
-      } else if (isTablet) {
-        setElementHeight(iframeWrapper, '660px');
-      } else {
-        setElementHeight(iframeWrapper, '600px');
-      }
-      break;
-    default:
-      if (isMobile) {
-        setElementHeight(iframeWrapper, '1850px');
-      } else {
-        setElementHeight(iframeWrapper, '1220px');
-      }
+  const deviceType = isMobile ? 'mobile' : isTablet ? 'tablet' : 'desktop';
+  const endpointHeightConfig = {
+    'home': {
+      mobile: '1850px',
+      desktop: '1220px'
+    },
+    'annual-reports': {
+      mobile: '15600px',
+      tablet: '4640px',
+      desktop: '5690px'
+    },
+    'sustainability-reports': {
+      mobile: '6680px',
+      tablet: {
+        landscape: '2620px',
+        portrait: '2260px'
+      },
+      desktop: '2620px'
+    },
+    'newsroom': {
+      mobile: '1940px',
+      tablet: {
+        landscape: '1500px',
+        portrait: '1600px'
+      },
+      desktop: '1450px'
+    },
+    'agm-egm': {
+      mobile: '950px',
+      desktop: '790px'
+    },
+    'analysts-coverage': {
+      mobile: '1300px',
+      tablet: '1110px',
+      desktop: '1060px'
+    },
+    'email_alerts': {
+      mobile: '770px',
+      tablet: '660px',
+      desktop: '600px'
+    },
+    'default': {
+      mobile: '1850px',
+      desktop: '1220px'
+    }
+  };
+  
+  let height = endpointHeightConfig[endpoint];
+  if (typeof height === 'object') {
+    if (deviceType === 'tablet') {
+      height= isLandscape()?height[deviceType].landscape : height[deviceType].portrait || height[deviceType];
+    }else{
+      height= height[deviceType] || height.desktop;
+    }
   }
+
+  if (height) {
+    setElementHeight(iframeWrapper, height);
+  }else{
+    setElementHeight(iframeWrapper, endpointHeightConfig.default);
+  }
+
 }
 
 export default function decorate(block) {
   const link = block.querySelector('a');
-  if (!link?.href) {
-    console.warn('Iframe block is missing a URL');
-    return;
-  }
 
   const iframe = document.createElement('iframe');
   const url = link.href;
@@ -118,12 +101,12 @@ export default function decorate(block) {
 
   const iframeWrapper = document.querySelector('.iframe-wrapper');
 
-  const endpoint = url.match('https://gentingsingapore.listedcompany.com/([^/]+).rev')[1];
+  const endpoint = new window.URL(url).pathname.replace('/','').replace('.rev','');
 
   updateIframeHeight(iframeWrapper, endpoint);
   window.addEventListener('resize', () => {
     updateIframeHeight(iframeWrapper, endpoint);
   });
 
-  link.replaceWith(iframe);
+  block.appendChild(iframe);
 }
