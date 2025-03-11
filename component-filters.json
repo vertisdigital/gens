@@ -29,6 +29,7 @@
       "listing",
       "projectcards",
       "enquiry",
+      "contactus",
       "tiles",
       "textsection",
       "textmediablock",
@@ -77,6 +78,7 @@
       "listing",
       "projectcards",
       "enquiry",
+      "contactus",
       "tiles",
       "textsection",
       "textmediablock",
@@ -199,6 +201,13 @@
     "id": "corporatepolicies",
     "components": [
       "policytile"
+    ]
+  },
+  {
+    "id": "contactus",
+    "components": [
+      "enquiry",
+      "enquirycta"
     ]
   }
 ]

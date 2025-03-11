@@ -65,6 +65,9 @@ downArraowWithLine: `<svg width="16" height="16" viewBox="0 0 16 16" fill="none"
 downloadarrow: `<svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
 <path d="M0 14.3158H16V16H0V14.3158ZM8.88889 9.408L14.2853 4.29474L15.5422 5.48547L8 12.6316L0.457778 5.48632L1.71467 4.29474L7.11111 9.40884V0H8.88889V9.408Z" fill="#B29152"/>
 </svg>`,
+northeastarrow: `<svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 14 14" fill="none">
+  <path d="M0.989746 11.5963L9.59524 2.99086L1.68978 2.99086L1.69685 0.989746L13.0106 0.989748V12.3035H11.0165L11.0094 4.40507L2.40396 13.0106L0.989746 11.5963Z" fill="white"/>
+</svg>`,
   // Add other icons here as needed
 };
 

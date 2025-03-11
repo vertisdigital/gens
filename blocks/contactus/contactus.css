@@ -1,0 +1,350 @@
+
+.enquiry {
+  margin: 0 auto;
+}
+
+.contactus .row>div{
+  padding: 0;
+}
+
+.contactus .row>div:first-child{
+  padding-right: 18px;
+
+}
+
+.contactus .row>div:last-child{
+  padding-left: 18px;
+  
+}
+
+.contactus .contactus-bottom>div:first-child{
+  font-size: 28px;
+  font-weight: 400;
+  line-height: 40px;
+  color: var(--text-color);
+}
+
+.contactus .contactus-bottom>div:last-child{
+  display: flex;
+  align-items: flex-start;
+}
+
+.contactus.block {
+  width: 100%;
+  background-color:  var(--whisper-gray);
+}
+
+.contactus.block .container>div:first-child{
+  padding:0
+}
+
+.contactus.block .container>div:last-child{
+  padding:0
+}
+
+
+.contactus .contactus-top{
+  padding-bottom: 0;
+}
+
+.contactus.contactus-variation .contactus-top{
+  padding-bottom: 50px;
+}
+
+
+.contactus .enquiry-heading {
+  font-size: 40px;
+  font-weight: 500;
+  line-height: 50px; 
+  letter-spacing: -0.5px;
+  margin: 0;
+  color: var(--text-color); 
+}
+
+.contactus .enquiry-description{
+  margin-bottom: 36px;
+}
+
+.contactus .enquiry-description p{
+  font-family: var(--heading-font-family);
+  font-size:16px;
+  font-weight: 400;
+  line-height: 24px;
+  color: var(--text-color); 
+  margin: 0;
+}
+
+.contactus .contact-items {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.contactus .contact-items .contact-label{
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 18px;
+  margin-bottom: 12px;
+  color: var(--body-text-color);
+}
+
+.contactus .contact-items .contact-item {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+.contactus .contact-items .contact-icon{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  flex-shrink: 0;
+  color: var(--primary-gold);
+}
+
+
+.contactus .contact-items .contact-icon picture{
+  width: 100%;
+  height: 100%;
+}
+
+.contactus .contact-items .contact-icon picture img{
+    width: 100%;
+    height: 100%;
+    object-fit: none;
+}
+
+.contactus .contact-items .contact-text { 
+  font-family: var(--heading-font-family);
+    font-size: 16px;
+    font-weight: 700;
+    line-height: 24px;
+    margin: 0;
+    color: var(--text-color);
+    text-decoration: none;
+}
+
+.contactus .contact-items .contact-text a{
+    color: var(--text-color);
+    text-decoration: none;
+   
+}
+
+.contactus .contact-items .contact-link {
+  font-family: var(--heading-font-family);
+  font-size: 16px;
+  font-weight: 700;
+  line-height: 24px;
+  color: var(--text-color);
+
+}
+
+
+.contactus .contactus-bottom{
+  display: none;
+  padding-top: 56px;
+  border-top: 2px solid var(--body-text-color);
+}
+
+.contactus.contactus-variation .contactus-bottom{
+  display: flex;
+}
+
+
+
+
+.contactus .contactus-bottom>div:last-child a{
+  background-color: var(--primary-gold);
+  color: var(--background-color);
+  padding: 14px 30px;
+  font-size: 16px;
+  font-weight: 700;
+  line-height: 24px;
+  text-decoration: none;
+  display:flex;
+  align-items:center;
+  gap:10px;
+}
+
+.contactus .contactus-bottom>div:last-child a span{
+  line-height:0;
+}
+
+
+/* Tablet Layout  */
+ @media (width >= 768px) and (width < 1024px) {
+  .contactus .contactus-top{
+    padding-bottom: 40px;
+  }
+
+  .contactus .enquiry-heading {
+    font-size: 32px;
+    line-height: 42px; 
+    margin: 0;
+  }
+  
+  .contactus .enquiry-description{
+    margin-bottom: 24px;
+  }
+  
+  .contactus .enquiry-description p{
+    font-size: 16px;
+    line-height: 24px;
+  }
+  
+  .contactus .contact-items {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+  }
+
+  .contactus .contact-items .contact-item {
+    gap: 16px;
+  }
+  
+
+  .contactus .contact-items .contact-text { 
+    font-family: var(--heading-font-family);
+      font-size: 16px;
+      line-height: 24px;
+  }
+
+  .contactus .contact-items .contact-link {
+    font-size: 16px;
+    line-height: 24px;
+  
+  }
+
+  .contactus .contactus-bottom{
+    padding-top: 40px;
+  }
+
+  .contactus.contactus-variation .contactus-bottom>div:first-child{
+    font-size: 28px;
+    font-weight: 400;
+    line-height: 40px;
+    color: var(--text-color);
+  }
+
+  .contactus.contactus-variation .contactus-bottom>div:last-child{
+    flex-direction: column;
+    row-gap: 18px;
+  }
+}
+
+/* Mobile Layout  */
+@media (width < 768px) {
+  .contactus.block{
+    padding: 32px 0;
+  }
+
+  .contactus .row>div{
+    padding: 0;
+  }
+
+  .contactus .contactus-top{
+    padding-bottom: 28px;
+  }
+
+  .contactus .row>div:first-child{
+    padding-right: 0;
+  
+  }
+
+  .contactus .row>div:last-child{
+    padding-left: 0;
+    
+  }
+ 
+
+  .contactus .enquiry-heading {
+    font-size: 28px;
+    line-height: 34px; 
+    margin: 0;
+    margin-bottom: 18px;
+  }
+  
+  .contactus .enquiry-description{
+    margin-bottom: 18px;
+  }
+  
+  .contactus .enquiry-description p{
+    font-size:14px;
+    line-height: 20px;
+  }
+  
+  .contactus .contact-items {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+  }
+
+  .contactus .contact-items .contact-label{
+    font-size: 14px;
+  }
+  
+  .contactus .contact-items .contact-item {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+  }
+  
+  .contactus .contact-items .contact-text { 
+    font-family: var(--heading-font-family);
+      font-size: 14px;
+      font-weight: 700;
+      line-height: 20px;
+      color: var(--text-color);
+      margin: 0;
+      text-decoration: none;
+  }
+
+  .contactus .contact-items .contact-text a{
+      color: var(--text-color);
+      text-decoration: none;
+  }
+  
+  
+  .contactus .contact-items .contact-link {
+    font-size: 14px;
+    line-height: 20px;
+  
+  }
+
+  .contactus .contactus-bottom{
+    padding-top: 28px;
+  }
+
+  .contactus.contactus-variation .contactus-bottom>div:first-child{
+    margin-bottom: 18px;
+  }
+
+  .contactus.contactus-variation .contactus-bottom>div:last-child{
+    flex-direction: column;
+    row-gap: 18px;
+  }
+  
+}
+
+@media (width >= 768px) {
+  .contactus.block {
+    padding: 40px 0;
+  }
+}
+
+@media (width >= 1024px) {
+  .contactus.block {
+    padding: 80px 0;
+  }
+
+  .contactus .contactus-bottom>div:last-child>div:last-child{
+    margin-left: 90px;
+  }
+
+  .contactus .contactus-bottom>div:last-child a{
+    margin:0;
+  }
+}
+
