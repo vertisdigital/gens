@@ -233,13 +233,12 @@
     }
     
 }
-
-
 @media (width>=1200px) {
     .statistics-wrapper .statistics.block::before {
-        left: 100px;
-        right: 100px;
         max-width: none;
         width: auto;
+        left: 100px;
+        right: 100px;
     }
 }
+
