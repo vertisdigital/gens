@@ -37,11 +37,11 @@ export default function ImageComponent({
 
   return `
     <picture>
-      <source media="(max-width: ${breakpoints.mobile.width}px)" 
+      <source media="(max-width: 767px)" 
               srcset="${breakpoints.mobile.src}/as/${asImageName ? asImageName : 'img.webp'}${breakpoints.mobile.smartCrop ? `?smartcrop=${breakpoints.mobile.smartCrop}` : ''}">
-      <source media="(max-width: ${breakpoints.tablet.width}px)" 
+      <source media="(max-width: 991px)" 
               srcset="${breakpoints.tablet.src}/as/${asImageName ? asImageName : 'img.webp'}${breakpoints.tablet.smartCrop ? `?smartcrop=${breakpoints.tablet.smartCrop}` : ''}">
-      <source media="(max-width: ${breakpoints.desktop.width}px)" 
+      <source media="(max-width: 1920px)" 
               srcset="${breakpoints.desktop.src}/as/${asImageName ? asImageName : 'img.webp'}${breakpoints.desktop.smartCrop ? `?smartcrop=${breakpoints.desktop.smartCrop}` : ''}">             
       <img src="${src}" 
            alt="${alt}" 
