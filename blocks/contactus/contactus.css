@@ -1,13 +1,4 @@
-.contactus.block {
-  width: 100%;
-  background-color:  var(--whisper-gray);
-}
-.contactus.block .container>div:first-child{
-  padding:0
-}
-.contactus.block .container>div:last-child{
-  padding:0
-}
+
 .enquiry {
   margin: 0 auto;
 }
@@ -25,6 +16,32 @@
   padding-left: 18px;
   
 }
+
+.contactus .contactus-bottom>div:first-child{
+  font-size: 28px;
+  font-weight: 400;
+  line-height: 40px;
+  color: var(--text-color);
+}
+
+.contactus .contactus-bottom>div:last-child{
+  display: flex;
+  align-items: flex-start;
+}
+
+.contactus.block {
+  width: 100%;
+  background-color:  var(--whisper-gray);
+}
+
+.contactus.block .container>div:first-child{
+  padding:0
+}
+
+.contactus.block .container>div:last-child{
+  padding:0
+}
+
 
 .contactus .contactus-top{
   padding-bottom: 0;
@@ -136,17 +153,7 @@
 }
 
 
-.contactus .contactus-bottom>div:first-child{
-  font-size: 28px;
-  font-weight: 400;
-  line-height: 40px;
-  color: var(--text-color);
-}
 
-.contactus .contactus-bottom>div:last-child{
-  display: flex;
-  align-items: flex-start;
-}
 
 .contactus .contactus-bottom>div:last-child a{
   background-color: var(--primary-gold);
@@ -232,6 +239,7 @@
   .contactus.block{
     padding: 32px 0;
   }
+
   .contactus .row>div{
     padding: 0;
   }
@@ -330,9 +338,11 @@
   .contactus.block {
     padding: 80px 0;
   }
+
   .contactus .contactus-bottom>div:last-child>div:last-child{
     margin-left: 90px;
   }
+
   .contactus .contactus-bottom>div:last-child a{
     margin:0;
   }
