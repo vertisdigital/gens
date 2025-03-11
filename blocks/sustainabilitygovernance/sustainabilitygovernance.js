@@ -15,15 +15,15 @@ export default function decorate(block) {
 
     // Process each card
     cards.forEach((cardItem) => {
-        const [cardTitle, cardImg, cardDesc] = cardItem.children;
+        const [cardImg, cardTitle, cardDesc] = cardItem.children;
         cardItem.classList.add("governance-card");
-
+        
         // Create new image element with correct src
         const img = document.createElement("img");
-        img.src = `../../icons/${cardTitle.textContent.trim()}.svg`;
+        img.src = `../../icons/${cardImg.textContent.trim()}.svg`;
         img.alt = cardTitle.textContent.trim();
-
         
+
         // Create the card structure
         const cardWrapper = document.createElement("div");
         cardWrapper.classList.add("governance-card");
