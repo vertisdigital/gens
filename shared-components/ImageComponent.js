@@ -38,11 +38,11 @@ export default function ImageComponent({
   return `
     <picture>
       <source media="(max-width: ${breakpoints.mobile.width}px)" 
-              srcset="${breakpoints.mobile.src}/as/${asImageName ? asImageName : 'type.webp'} ${breakpoints.mobile.cropRatio ? `?crop=${breakpoints.mobile.cropRatio}` : ''}${breakpoints.mobile.imgWidth ? `&width=${breakpoints.mobile.imgWidth}`: '&width=500'}">
+              srcset="${breakpoints.mobile.src}/as/${asImageName ? asImageName : 'img.webp'}?smartcrop=Small">
       <source media="(max-width: ${breakpoints.tablet.width}px)" 
-              srcset="${breakpoints.tablet.src}/as/${asImageName ? asImageName : 'type.webp'}${breakpoints.tablet.cropRatio ? `?crop=${breakpoints.tablet.cropRatio}` : ''}${breakpoints.tablet.imgWidth ? `&width=${breakpoints.tablet.imgWidth}`: '&width=800'}">
+              srcset="${breakpoints.tablet.src}/as/${asImageName ? asImageName : 'img.webp'}?smartcrop=Medium">
       <source media="(min-width: ${breakpoints.desktop.width + 1}px)" 
-              srcset="${breakpoints.desktop.src}/as/${asImageName ? asImageName : 'type.webp'}${breakpoints.desktop.cropRatio ? `?crop=${breakpoints.desktop.cropRatio}` : ''}${breakpoints.desktop.imgWidth ? `&width=${breakpoints.desktop.imgWidth}`: '&width=1600'}">             
+              srcset="${breakpoints.desktop.src}/as/${asImageName ? asImageName : 'img.webp'}?smartcrop=Desktop">             
       <img src="${src}" 
            alt="${alt}" 
            title="${alt}"

@@ -25,21 +25,15 @@ export default function decorate(block) {
       breakpoints: {
         mobile: {
           width: 767,
-          imgWidth: 500,
           src: `${imageUrl}`,
-          cropRatio:'45p,15p,35p,80p'
         },
         tablet: {
           width: 991,
-          imgWidth: 800,
           src: `${imageUrl}`,
-          cropRatio:'30p,15p,60p,70p'
         },
         desktop: {
           width: 1920,
           src: `${imageUrl}`,
-          imgWidth: 1600,
-          cropRatio:''
         },
       },
       lazy: false,
