@@ -17,23 +17,23 @@ export default function decorate(block) {
   if (imageLink) {
     const imageUrl = imageLink.getAttribute('href');
     const imageAlt = imageLink.getAttribute('title') || 'Hero Image';
-
     const imageHtml = ImageComponent({
       src: imageUrl,
       alt: imageAlt,
       className: 'hero-image',
+      asImageName: 'hero.webp',
       breakpoints: {
         mobile: {
-          width: 768,
           src: `${imageUrl}`,
+          smartCrop : 'Small'
         },
         tablet: {
-          width: 1024,
           src: `${imageUrl}`,
+          smartCrop : 'Medium'
         },
         desktop: {
-          width: 1920,
           src: `${imageUrl}`,
+          smartCrop : 'Desktop'
         },
       },
       lazy: false,
@@ -293,9 +293,9 @@ export default function decorate(block) {
         alt: 'Chevron Left (1) Icon',
         className: 'first-svg-icon', // You can customize the class name if needed
         breakpoints: {
-          mobile: { width: 768, src: firstIconLink.getAttribute('href') },
-          tablet: { width: 1024, src: firstIconLink.getAttribute('href') },
-          desktop: { width: 1920, src: firstIconLink.getAttribute('href') },
+          mobile: {src: firstIconLink.getAttribute('href') },
+          tablet: {src: firstIconLink.getAttribute('href') },
+          desktop: {src: firstIconLink.getAttribute('href') },
         },
         lazy: false,
       });
@@ -306,9 +306,9 @@ export default function decorate(block) {
         alt: 'Chevron Left Icon',
         className: 'second-svg-icon', // You can customize the class name if needed
         breakpoints: {
-          mobile: { width: 768, src: secondIconLink.getAttribute('href') },
-          tablet: { width: 1024, src: secondIconLink.getAttribute('href') },
-          desktop: { width: 1920, src: secondIconLink.getAttribute('href') },
+          mobile: {  src: secondIconLink.getAttribute('href') },
+          tablet: { src: secondIconLink.getAttribute('href') },
+          desktop: {src: secondIconLink.getAttribute('href') },
         },
         lazy: false,
       });
@@ -332,28 +332,29 @@ export default function decorate(block) {
         // const imgUrl = aTag.getAttribute('href');
         const imgUrl = aTag?.getAttribute('href');
         const imgAlt = aTag?.getAttribute('title');
-
         const imgHtml = ImageComponent({
           src: imgUrl,
           alt: imgAlt,
           className: 'news-thumbnail',
+          asImageName: 'hero.webp',
           breakpoints: {
             mobile: {
-              width: 768,
               src: `${imgUrl}`,
+              imgWidth: 100,
             },
             tablet: {
-              width: 1024,
               src: `${imgUrl}`,
+              imgWidth: 160,
             },
             desktop: {
-              width: 1920,
               src: `${imgUrl}`,
+              imgWidth: 160,
             },
           },
           lazy: false,
         });
 
+    
         newsLetterImage.insertAdjacentHTML('beforeend', imgHtml);
         moveInstrumentation(itemDivs[2], newsLetterImage);
         aTag.remove();
@@ -402,6 +403,7 @@ export default function decorate(block) {
 
   const carouselItemsAll = heroContainer.querySelectorAll('.carousel-item');
 
+  // Check if we're not in author instance before setting up auto-scroll
   const isAuthorInstance = document.getElementById('OverlayBlockingElement');
   if (carouselItemsAll.length > 0 && !isAuthorInstance) {
     setInterval(() => {

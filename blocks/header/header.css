@@ -839,6 +839,9 @@ content: '🡢';
   padding: 0;
   transition: text-decoration 0.3s ease-in-out;
   border-radius: 0;
+  white-space: normal;
+  text-overflow:unset;
+  text-align: left;
 
   /* display: flex; */
 }

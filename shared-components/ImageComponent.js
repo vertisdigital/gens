@@ -4,6 +4,7 @@
  * @param {string} props.src Main image source URL
  * @param {string} props.alt Image alt text
  * @param {string} props.className CSS class names
+ * @param {string} props.asImageName Image Type
  * @param {Object} [props.breakpoints] Breakpoint configurations
  * @param {boolean} [props.lazy=true] Whether to use lazy loading
  * @returns {string} HTML string for the responsive image
@@ -12,10 +13,11 @@ export default function ImageComponent({
   src,
   alt,
   className = '',
+  asImageName = '',
   breakpoints = {
-    mobile: { width: 768, src: '' },
-    tablet: { width: 1024, src: '' },
-    desktop: { width: 1920, src: '' },
+    mobile: { width: 767, src: '', smartCrop: ''},
+    tablet: { width: 991, src: '', smartCrop: '' },
+    desktop: { width: 1920, src: '', smartCrop: '' },
   },
   lazy = true,
 }) {
@@ -36,11 +38,11 @@ export default function ImageComponent({
   return `
     <picture>
       <source media="(max-width: ${breakpoints.mobile.width}px)" 
-              srcset="${breakpoints.mobile.src}">
+              srcset="${breakpoints.mobile.src}/as/${asImageName ? asImageName : 'img.webp'}${breakpoints.mobile.smartCrop ? `?smartcrop=${breakpoints.mobile.smartCrop}` : ''}">
       <source media="(max-width: ${breakpoints.tablet.width}px)" 
-              srcset="${breakpoints.tablet.src}">
-      <source media="(min-width: ${breakpoints.tablet.width + 1}px)" 
-              srcset="${breakpoints.desktop.src}">
+              srcset="${breakpoints.tablet.src}/as/${asImageName ? asImageName : 'img.webp'}${breakpoints.tablet.smartCrop ? `?smartcrop=${breakpoints.tablet.smartCrop}` : ''}">
+      <source media="(max-width: ${breakpoints.desktop.width}px)" 
+              srcset="${breakpoints.desktop.src}/as/${asImageName ? asImageName : 'img.webp'}${breakpoints.desktop.smartCrop ? `?smartcrop=${breakpoints.desktop.smartCrop}` : ''}">             
       <img src="${src}" 
            alt="${alt}" 
            title="${alt}"
