@@ -19,27 +19,6 @@
     margin-bottom: 36px;
     position: relative;
 }
-.tabs-header::before {
-    content: '';
-    background: var(--background-color);
-    min-width: 100vw;
-    height: 100%;
-    position: absolute;
-    top: 0;
-    left: 0;
-    transform: translateX(-100%);
-    z-index: -1;
-}
-.tabs-header::after {
-    content: '';
-    background: var(--background-color);
-    min-width: 100vw;
-    height: 100%;
-    position: absolute;
-    top: 0;
-    left: 0;
-    z-index: -1;
-}
 
 .tab-title {
     position: relative;
@@ -120,6 +99,7 @@
     /* margin-bottom: 36px; */
     gap: 0;
 }
+
 .tabs-container .about-us-stats .about-us-right-content:last-child{
     margin-bottom: 0;
     padding-bottom: 0;
@@ -178,6 +158,7 @@
 .tabs-container .projectslist {
     margin-top: 0;
 }
+
 .tabs-container .about-us-stats .about-us-right-content .statistic p:first-child {
     font-size: 28px;
     line-height: 28px;
@@ -186,6 +167,7 @@
 .tabs-content>div>div:first-child{
     margin-top: 0;
 }
+
 .tabs-container .about-us-stats .about-us-right-content:nth-child(2)>div:nth-child(2) {
     flex: 1;
     margin-left: 15px;
@@ -205,6 +187,7 @@
     .tabs-header {
         margin-bottom: 24px;
     }
+
     .tab-title {
         font-size: 18px;
         padding: 33px 0;
@@ -214,6 +197,7 @@
         margin-bottom: 16px;
         padding-top: 16px;
     }
+
     .tabs-container .about-us-stats .about-us-right-content:last-child {
         margin-bottom: 0;
         padding-bottom: 0;
@@ -257,7 +241,7 @@
     }
 
     .tabs-container .about-us-stats {
-        margin-bottom: 0px;
+        margin-bottom: 0;
         padding-bottom: 0;
     }
     
@@ -266,6 +250,7 @@
         padding-top: 12px;
         margin-bottom: 40px;
     }
+
     .tabs-container .about-us-stats .about-us-right-content:last-child{
         margin-bottom: 0;
         padding-bottom: 0;
