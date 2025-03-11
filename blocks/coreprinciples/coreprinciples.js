@@ -11,7 +11,7 @@ export default function decorate(block) {
   wrapper.classList.add('coreprinciples');
   const container = document.createElement('div');
   wrapper.appendChild(container);
-  container.className = 'container-xl container-lg container-md container-sm';
+  container.className = 'container';
 
   const row = document.createElement('div');
   row.className = 'row';

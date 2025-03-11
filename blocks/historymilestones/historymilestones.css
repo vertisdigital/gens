@@ -2,7 +2,7 @@
     margin-bottom: 24px;
     padding-bottom: 24px;
 }
-.historymilestones-wrapper:nth-last-child(2) {
+.historymilestones-wrapper.no-border{
     margin-bottom: 0px;
 }
 .historymilestones-container {
@@ -39,7 +39,8 @@
     bottom: -24px;
     height: 1px;
 }
-.historymilestones-wrapper:nth-last-child(2) .historymilestones-milestones::after {
+.historymilestones-wrapper:last-child .historymilestones-milestones::after ,
+.historymilestones-wrapper.no-border .historymilestones-milestones::after {
     display: none;
 }
 .historymilestones-milestone {
@@ -69,13 +70,17 @@
     font-weight: 600;
     line-height: 20px; /* 120% */
 }
+.historymilestones-container .loadmore-wrapper {
+    position: relative;
+    margin-top: -24px;
+}
 
 @media (width >= 768px) {
     .historymilestones-wrapper:not(:last-child) {
         margin-bottom: 48px;
         padding-bottom: 48px;
     }
-    .historymilestones-wrapper:nth-last-child(2) {
+    .historymilestones-wrapper.no-border{
         margin-bottom: 0px;
     }
     .historymilestones-container {
@@ -111,13 +116,16 @@
         font-size: 18px;
         line-height: 24px; /* 120% */
     }
+    .historymilestones-container .loadmore-wrapper {
+        margin-top: -48px;
+    }
 }
 @media (width > 993px) {
     .historymilestones-wrapper:not(:last-child) {
         margin-bottom: 68px;
         padding-bottom: 68px;
     }
-    .historymilestones-wrapper:nth-last-child(2) {
+    .historymilestones-wrapper.no-border {
         margin-bottom: 0px;
     }
     .historymilestones-container {
@@ -153,5 +161,8 @@
     .historymilestones-description {
         font-size: 20px;
         line-height: 24px; /* 120% */
+    }
+    .historymilestones-container .loadmore-wrapper {
+        margin-top: -68px;
     }
 }

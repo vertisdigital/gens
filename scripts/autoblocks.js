@@ -16,6 +16,7 @@ function createTabStructure(main) {
   const tabsContainer = document.createElement('div');
   tabsContainer.className = 'tabs-container section tab-container container-xl container-lg container-md container-sm tabpanel';
   tabsContainer.setAttribute('data-section-status', 'loaded');
+  tabsContainer.style.display = 'none';
 
   const tabNav = document.createElement('div');
   tabNav.className = 'tab-nav tabs-header row';
@@ -43,7 +44,7 @@ function createTabElement(section, index) {
 
   const tabTitle = document.createElement('div');
   tabTitle.textContent = titleText;
-  tabTitle.className = 'tab-title col-xl-6 col-lg-6 col-md-3 col-sm-2';
+  tabTitle.className = 'tab-title';
   tabTitle.setAttribute('role', 'tab');
   tabTitle.setAttribute('data-tab-index', index);
   tabTitle.setAttribute('tabindex', '0');
@@ -152,6 +153,11 @@ function processTabs(main) {
 
     // Insert the tab container before the first tab element
     firstTabElement.parentNode.insertBefore(elements.container, firstTabElement);
+
+    // Show the tab container after 1000ms
+    setTimeout(() => {
+      elements.container.style.display = 'block';
+    }, 1000);
 
     // Ensure tab-nav exists before adding event listeners
     if (!document.querySelector('.tab-nav')) {

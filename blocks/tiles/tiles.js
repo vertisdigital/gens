@@ -6,12 +6,7 @@ import SvgIcon from '../../shared-components/SvgIcon.js';
  */
 export default function decorate(block) {
   // Add container wrappers for each breakpoint
-  block.classList.add(
-    'container-xl',
-    'container-lg',
-    'container-md',
-    'container-sm',
-  );
+  block.classList.add('container');
 
   // Create row wrapper
   const row = document.createElement('div');

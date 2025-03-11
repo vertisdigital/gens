@@ -6,7 +6,7 @@ export default function decorate(block) {
   let awardsGalleryContainer = block.querySelector('.awardsgallery-container');
   if (!awardsGalleryContainer) {
     awardsGalleryContainer = document.createElement('div');
-    awardsGalleryContainer.className = 'awardsgallery-container container-xl container-lg container-md container-sm';
+    awardsGalleryContainer.className = 'awardsgallery-container container';
     moveInstrumentation(block, awardsGalleryContainer);
   }
   // Create cards grid container
