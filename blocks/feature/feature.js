@@ -25,7 +25,7 @@ export default function decorate(block) {
   const blockchildren = block.children;
   // Find the title and replace it with a heading
   const titleElement = blockchildren[0].children[0];
-  if (titleElement) {
+  if (titleElement && titleElement.textContent.trim()!='') {
     const header = document.createElement('header');
     moveInstrumentation(titleElement, header);
 
@@ -39,7 +39,7 @@ export default function decorate(block) {
 
   // Find the heading and replace it with a heading
   const headingElement = blockchildren[1].children[0];
-  if (headingElement) {
+  if (headingElement && headingElement.textContent.trim()!='') {
     const headingText = headingElement.textContent;
     const headingHtml = Heading({ level: 2, text: headingText, className: 'about-us-left-heading' });
     const parsedHtml = stringToHTML(headingHtml);
@@ -51,7 +51,7 @@ export default function decorate(block) {
   // Find the sub-heading and replace it with a sub-heading
 
   const subHeading = blockchildren[2].children[0];
-  if (subHeading) {
+  if (subHeading && subHeading.textContent.trim() != '') {
     subHeading.classList.add('about-us-left-sub-heading')
     aboutUsLeftContent.appendChild(subHeading);
   }
