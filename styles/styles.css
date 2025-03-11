@@ -349,7 +349,7 @@ main .section.highlight {
   }
 
   .row {
-    --bs-gutter-x: 36px;
+    --bs-gutter-x: 18px;
     display: flex;
     flex-wrap: wrap;
   }
@@ -469,7 +469,7 @@ main .section.highlight {
   }
 
   .row {
-    --bs-gutter-x: 48px;
+    --bs-gutter-x: 24px;
   }
 
   /* Row-cols selectors first */
@@ -613,7 +613,7 @@ main .section.highlight {
   }
 
   .row {
-    --bs-gutter-x: 72px;
+    --bs-gutter-x: 36px;
   }
 
   /* Row-cols selectors first */
@@ -656,8 +656,8 @@ main .section.highlight {
   }
 
   .row>* {
-    padding-right: 36px;
-    padding-left: 36px;
+    padding-right: 18px;
+    padding-left: 18px;
   }
 
   .row>*:first-child {
