@@ -71,9 +71,9 @@ function updateIframeHeight(iframeWrapper, endpoint) {
   if (typeof height === 'object') {
     if (deviceType === 'tablet') {
       if (isLandscape()) {
-        height = height[deviceType].landscape || height[deviceType];
+        height = height[deviceType]?.landscape || height[deviceType];
       } else {
-        height = height[deviceType].portrait || height[deviceType];
+        height = height[deviceType]?.portrait || height[deviceType];
       }
     } else {
       height = height[deviceType] || height.desktop;
