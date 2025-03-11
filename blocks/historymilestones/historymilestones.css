@@ -29,6 +29,7 @@
     flex-direction: column;
     row-gap: 24px;
     position: relative;
+    width: 100%;
 }
 .historymilestones-wrapper:not(:last-child) .historymilestones-milestones::after {
     content: "";
