@@ -42,6 +42,10 @@
 
 
 @media (width >= 768px) {
+    .awardsgallery .award-title {
+        font-size: 18px;
+    }
+
     .awardsgallery .awardsgallery-image {
         margin-bottom: 15px;
         height: 360px;
@@ -56,13 +60,13 @@
     }
     
     .awardsgallery .award-year {
-        font-size: 24px;
+        font-size: 18px;
     }
 
     
     .awardsgallery .award-description {
-    font-size: 16px;
-}
+        font-size: 16px;
+    }
 }
 
 @media (width >= 993px) {
@@ -86,9 +90,5 @@
 
     .awardsgallery .award-title {
         font-size: 20px;
-    }
-    
-    .awardsgallery .award-description {
-        font-size: 16px;
     }
 }
