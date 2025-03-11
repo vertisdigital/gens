@@ -27,7 +27,7 @@ export default function decorate(block) {
 
   // Create left column (heading) - 40% on desktop and tablet
   const leftCol = document.createElement('div');
-  leftCol.className = 'col-xl-6 col-md-3 container-sm-4';
+  leftCol.className = 'col-xl-6 col-md-3 col-sm-4';
 
   // Create heading container with proper attributes
   const headingContainer = document.createElement('div');
@@ -49,7 +49,7 @@ export default function decorate(block) {
 
   // Create right column (description and contacts) - 60% on desktop and tablet
   const rightCol = document.createElement('div');
-  rightCol.className = 'col-xl-6 col-md-3 container-sm-4';
+  rightCol.className = 'col-xl-6 col-md-3 col-sm-4';
 
   // Add description with authoring attributes
   const description = enquiryFirstChild[1];
@@ -96,7 +96,7 @@ export default function decorate(block) {
             src: `${imageLink}`,
           },
           tablet: {
-            width: 1024,
+            width: 993,
             src: `${imageLink}`,
           },
           desktop: {
@@ -178,7 +178,6 @@ export default function decorate(block) {
   enquiryChildren[0].innerHTML = '';
   enquiryChildren[0].append(row);
   container.append(enquiryChildren[0]);
-  // container.append(row);
 
 
   // second row
