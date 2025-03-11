@@ -1,4 +1,5 @@
 import { moveInstrumentation } from "../../scripts/scripts.js";
+import { getIcon } from "../../shared-components/icons/index.js";
 
 export default function decorate(block) {
     const [title, ...cards] = [...block.children];
@@ -18,12 +19,6 @@ export default function decorate(block) {
         const [cardImg, cardTitle, cardDesc] = cardItem.children;
         cardItem.classList.add("governance-card");
         
-        // Create new image element with correct src
-        const img = document.createElement("img");
-        img.src = `../../icons/${cardImg.textContent.trim()}.svg`;
-        img.alt = cardTitle.textContent.trim();
-        
-
         // Create the card structure
         const cardWrapper = document.createElement("div");
         cardWrapper.classList.add("governance-card");
@@ -32,7 +27,7 @@ export default function decorate(block) {
 
         const imgWrapper = document.createElement("div");
         imgWrapper.classList.add("governance-img");
-        imgWrapper.appendChild(img);
+        imgWrapper.innerHTML = getIcon(cardImg.textContent.trim());
         moveInstrumentation(cardImg, imgWrapper);
 
         const contentWrapper = document.createElement("div");
