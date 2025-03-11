@@ -339,17 +339,14 @@ export default function decorate(block) {
           asImageName: 'hero.webp',
           breakpoints: {
             mobile: {
-              width: 767,
               src: `${imgUrl}`,
               imgWidth: 100,
             },
             tablet: {
-              width: 991,
               src: `${imgUrl}`,
               imgWidth: 160,
             },
             desktop: {
-              width: 1920,
               src: `${imgUrl}`,
               imgWidth: 160,
             },
