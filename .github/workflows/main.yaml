@@ -1,8 +1,5 @@
-name: Build and Update Config
-on: 
-  push:
-    branches:
-      - '**'
+name: Build
+on: [push]
 
 jobs:
   build:
@@ -18,16 +15,15 @@ jobs:
 
   update-config-url:
     runs-on: ubuntu-latest
-    if: github.ref == 'refs/heads/int' || github.ref == 'refs/heads/uat' || github.ref == 'refs/heads/main'
     steps:
     - name: Checkout code
       uses: actions/checkout@v2
-      
     - name: Set environment variables
       run: |
-        BRANCH_NAME="${GITHUB_REF#refs/heads/}"
-        echo "BRANCH_NAME=$BRANCH_NAME" >> $GITHUB_ENV
+        # Extract branch name from github.ref
+        BRANCH_NAME=${GITHUB_REF#refs/heads/}
         
+        # Set specific URLs for uat and main branches, use branch name for others
         if [ "$BRANCH_NAME" == "uat" ]; then
           echo "CONFIG_URL=https://uat--genting-stage--wppopen.aem.page/tools/assets-selector/config.json" >> $GITHUB_ENV
         elif [ "$BRANCH_NAME" == "main" ]; then
@@ -35,33 +31,13 @@ jobs:
         else
           echo "CONFIG_URL=https://${BRANCH_NAME}--genting--wppopen.aem.live/tools/assets-selector/config.json" >> $GITHUB_ENV
         fi
-        
-    - name: Check if update is needed
-      id: check_update
-      run: |
-        # Get current configUrl from component-models.json
-        CURRENT_URL=$(grep -o '"configUrl": "[^"]*"' component-models.json | head -1 | cut -d'"' -f4)
-        echo "Current URL: $CURRENT_URL"
-        echo "Target URL: $CONFIG_URL"
-        
-        if [ "$CURRENT_URL" == "$CONFIG_URL" ]; then
-          echo "URLs match, no update needed"
-          echo "UPDATE_NEEDED=false" >> $GITHUB_ENV
-        else
-          echo "URLs don't match, update needed"
-          echo "UPDATE_NEEDED=true" >> $GITHUB_ENV
-        fi
-        
     - name: Update config URL
-      if: env.UPDATE_NEEDED == 'true'
       run: |
-        sed -i "s|\"configUrl\": \".*\"|\"configUrl\": \"${CONFIG_URL}\"|g" component-models.json
-        
+        sed -i "s|\"configUrl\": \".*\"|\"configUrl\": \"${CONFIG_URL}\"|" component-models.json
     - name: Commit changes
-      if: env.UPDATE_NEEDED == 'true'
       run: |
         git config --global user.name "josephogilvy"
         git config --global user.email "joseph.ambrose@ogilvy.com"
         git add component-models.json
-        git commit -m "Update configUrl for $BRANCH_NAME branch"
+        git commit -m "Update configUrl for ${{ github.ref_name }} branch"
         git push
