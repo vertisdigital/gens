@@ -782,6 +782,22 @@
               }
             }
           }
+        },
+        {
+          "title": "IFrame",
+          "id": "iframe",
+          "plugins": {
+            "xwalk": {
+              "page": {
+                "resourceType": "core/franklin/components/block/v1/block/item",
+                "template": {
+                  "name": "IFrame",
+                  "model": "iframe",
+                  "filter": "iframe"
+                }
+              }
+            }
+          }
         }
       ]
     }
