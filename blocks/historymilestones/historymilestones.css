@@ -88,9 +88,6 @@
     .historymilestones-wrapper.no-border{
         margin-bottom: 0px;
     }
-    .historymilestones-container {
-        row-gap: 26px;
-    }
     .historymilestones-milestones {
         margin-left: -12px;
         margin-right: -12px;
@@ -129,6 +126,9 @@
     }
     .historymilestones-container .loadmore-wrapper {
         margin-top: -48px;
+    }
+    .historymilestones-image {
+        margin-bottom: 12px;
     }
 }
 @media (width > 993px) {
