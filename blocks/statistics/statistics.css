@@ -167,6 +167,10 @@
          margin-bottom: 40px;
 
     }
+    
+    .statistics .statistics-description-wrapper h3, .statistics .statistics-title {
+        font-size: 32px;
+    }
 
     .statistics .statistic-item {
         font-size: 64px;
@@ -189,6 +193,10 @@
     .statistics-description-wrapper {
         padding: 28px 0;
         margin-bottom: 28px;
+    }
+
+    .statistics .statistics-description-wrapper h3 {
+        font-size: 28px;
     }
 
     .statistics .statistics-row {
