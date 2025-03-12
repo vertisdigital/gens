@@ -12,3 +12,39 @@ jobs:
         node-version: 20
     - run: npm ci
     - run: npm run lint
+
+  update-config-url:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v2
+    - name: Set environment variables
+      run: |
+        # Extract branch name from github.ref
+        BRANCH_NAME=${GITHUB_REF#refs/heads/}
+        
+        # Set specific URLs for uat and main branches, use branch name for others
+        if [ "$BRANCH_NAME" == "uat" ]; then
+          echo "CONFIG_URL=https://uat--genting-stage--wppopen.aem.page/tools/assets-selector/config.json" >> $GITHUB_ENV
+        elif [ "$BRANCH_NAME" == "main" ]; then
+          echo "CONFIG_URL=https://uat--genting-prod--wppopen.aem.page/tools/assets-selector/config.json" >> $GITHUB_ENV
+        else
+          echo "CONFIG_URL=https://${BRANCH_NAME}--genting--wppopen.aem.live/tools/assets-selector/config.json" >> $GITHUB_ENV
+        fi
+    - name: Update config URL
+      run: |
+        sed -i "s|\"configUrl\": \".*\"|\"configUrl\": \"${CONFIG_URL}\"|" component-models.json
+    - name: Commit changes
+      run: |
+        git config --global user.name "josephogilvy"
+        git config --global user.email "joseph.ambrose@ogilvy.com"
+        
+        # Check if there are changes to commit
+        if [[ -n "$(git status --porcelain component-models.json)" ]]; then
+          echo "Changes detected in component-models.json, committing..."
+          git add component-models.json
+          git commit -m "Update configUrl for ${{ github.ref_name }} branch"
+          git push
+        else
+          echo "No changes to component-models.json, skipping commit"
+        fi
