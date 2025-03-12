@@ -197,7 +197,8 @@
         margin-bottom: 16px;
         padding-top: 16px;
     }
-    .tabs-container .about-us-stats .about-us-right-content:first-child>div:last-child{
+
+    .tabs-container .about-us-stats .about-us-right-content:first-child{
         padding-top: 0;
     }
 
@@ -254,7 +255,7 @@
         margin-bottom: 40px;
     }
 
-    .tabs-container .about-us-stats .about-us-right-content:first-child>div:last-child{
+    .tabs-container .about-us-stats .about-us-right-content:first-child{
         padding-top: 0;
     }
 
@@ -272,6 +273,7 @@
 
     .tabs-container .about-us-stats .about-us-left-title {
         font-size: 22px;
+        line-height: 1;
     }
 
     .tabs-container .about-us-stats .about-us-right-content .statistic {
