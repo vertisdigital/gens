@@ -1390,6 +1390,18 @@
         "component": "text",
         "name": "heading",
         "label": "Heading"
+      },
+      {
+        "component": "number",
+        "name": "year",
+        "label": "Year",
+        "valueType": "number",
+        "value": 0,
+        "validation": {
+          "maxLength": 4,
+          "regExp": "^\\d{4}$",
+          "customErrorMsg": "Please enter a valid year (e.g., 2024)"
+        }
       }
     ]
   },
