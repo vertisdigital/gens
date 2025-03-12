@@ -1,8 +1,7 @@
 {
     "repoNames": [
-      "delivery-p144202-e1512622.adobeaemcloud.com",
       "delivery-p144202-e1488374.adobeaemcloud.com"
     ],
-    "aemTierType": ["delivery", "author"],
+    "aemTierType": ["delivery"],
     "type": ["folder", "file", "images", "documents", "video"]
   }

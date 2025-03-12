@@ -29,10 +29,12 @@
       "listing",
       "projectcards",
       "enquiry",
+      "contactus",
       "tiles",
       "textsection",
       "textmediablock",
       "projectslist",
+      "iframe",
       "tabsectiontitle",
       "awardsgallery",
       "sustainabilitygovernance",
@@ -78,6 +80,7 @@
       "listing",
       "projectcards",
       "enquiry",
+      "contactus",
       "tiles",
       "textsection",
       "textmediablock",
@@ -200,6 +203,13 @@
     "id": "corporatepolicies",
     "components": [
       "policytile"
+    ]
+  },
+  {
+    "id": "contactus",
+    "components": [
+      "enquiry",
+      "enquirycta"
     ]
   }, 
   {

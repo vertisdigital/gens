@@ -6,13 +6,18 @@ export default function decorate(block) {
   if (Number.isNaN(maxItems)) {
     maxItems = 8;
   }
-  if (maxItems > 0) {
+  const items = block.closest(".section").querySelectorAll(".historymilestones-wrapper");
+  if (maxItems > 0 && items.length > maxItems) {
     let activeItems = maxItems;
 
-    const items = block.closest(".section").querySelectorAll(".historymilestones-wrapper");
     items.forEach((item, index) => {
       if (index >= activeItems) {
-      item.style.display = 'none';
+        item.style.display = 'none';
+      }
+      if(index >=activeItems - 1){
+        item.classList.add('no-border');
+      }else{
+        item.classList.remove('no-border');
       }
     });
 
@@ -35,6 +40,11 @@ export default function decorate(block) {
       items.forEach((item, index) => {
         if (index < activeItems) {
           item.style.display = 'block';
+        } 
+        if(index >=activeItems - 1){
+          item.classList.add('no-border');
+        }else{
+          item.classList.remove('no-border');
         }
       });
     });
