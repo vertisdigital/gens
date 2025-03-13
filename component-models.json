@@ -1757,8 +1757,8 @@
         "name": "ctaLabel",
         "label": "CTA Label",
         "validation": {
-          "maxLength": 15,
-          "customErrorMsg": "CTA text cannot exceed 15 characters"
+          "maxLength": 30,
+          "customErrorMsg": "CTA text cannot exceed 30 characters"
         }
       },
       {
