@@ -1,9 +1,11 @@
-.corporate-policies-list > div:last-child {
-    border-bottom: none;
-}
+
 .corporate-policies-list-item {
     padding: 68px 0;
     border-bottom: 2px solid var(--border-color, #e5e5e5);
+}
+
+.corporate-policies-border-bottom .corporate-policies-list>div:last-child {
+    border-bottom: none;
 }
 
 .corporate-policies-list-item .left-col {
