@@ -171,6 +171,10 @@ a:any-link.factsheet-button {
     font-weight: 700;
   }
 
+  .row.tiles-container .no-image-tile>div>div:first-child p {
+    font-size: 32px;
+  }
+
    .row.tiles-container .image-tile>div>div:nth-child(2) p{
     font-size: 16px;
     font-weight: 400;

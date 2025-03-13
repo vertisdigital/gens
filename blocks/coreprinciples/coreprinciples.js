@@ -22,7 +22,7 @@ export default function decorate(block) {
   items.forEach((item) => {
     // Add responsive column classes as per requirements
     const col = document.createElement('div');
-    col.className = 'col-lg-4 col-md-3 col-sm-4 principles-item';
+    col.className = 'col-xl-4 col-md-3 col-sm-4 principles-item';
 
     // Get the icon URL
     const iconLink = item.querySelector('a');

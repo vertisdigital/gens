@@ -110,7 +110,7 @@ function createNavItem(itemData) {
     itemData.links.forEach((link, index) => {
       if (index > 0) { // Skip first item
         const li = document.createElement('li');
-        li.className = 'col-xl-4 col-lg-4';
+        li.className = 'col-xl-4';
         const linkContainer = document.createElement('div');
         linkContainer.className = 'button-container';
         const a = document.createElement('a');

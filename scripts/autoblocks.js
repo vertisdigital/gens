@@ -14,7 +14,7 @@ function createTabStructure(main) {
   }
 
   const tabsContainer = document.createElement('div');
-  tabsContainer.className = 'tabs-container section tab-container container-xl container-lg container-md container-sm tabpanel';
+  tabsContainer.className = 'tabs-container section tab-container container-xl container-md container-sm tabpanel';
   tabsContainer.setAttribute('data-section-status', 'loaded');
   tabsContainer.style.display = 'none';
 
@@ -44,7 +44,7 @@ function createTabElement(section, index) {
 
   const tabTitle = document.createElement('div');
   tabTitle.textContent = titleText;
-  tabTitle.className = 'tab-title col-xl-6 col-lg-6 col-md-3 col-sm-2';
+  tabTitle.className = 'tab-title col-xl-6 col-md-3 col-sm-2';
   tabTitle.setAttribute('role', 'tab');
   tabTitle.setAttribute('data-tab-index', index);
   tabTitle.setAttribute('tabindex', '0');

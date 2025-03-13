@@ -36,7 +36,7 @@ export default async function decorate(block) {
 
     // Create logo and description column
     const logoColumn = document.createElement('div');
-    logoColumn.className = 'col-xl-12 col-lg-12 col-md-3 col-sm-4';
+    logoColumn.className = 'col-xl-12 col-md-3 col-sm-4';
 
     // Add logo
     const logoWrapper = document.createElement('div');
