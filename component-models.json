@@ -1417,7 +1417,7 @@
       {
         "component": "multiselect",
         "name": "style",
-        "label": "Style",
+        "label": "Variation",
         "options": [
           {
             "name": "Statistics Feature",
@@ -1426,6 +1426,19 @@
           {
             "name": "Statistics Description",
             "value": "statistics-description"
+          }
+        ]
+      },
+      {
+        "component": "select",
+        "name": "classes",
+        "value": "",
+        "label": "Style",
+        "valueType": "string",
+        "options": [
+          {
+            "name": "Default",
+            "value": ""
           },
           {
             "name": "Statistics Financial Variation",
@@ -1731,7 +1744,7 @@
         }
       },
       {
-        "component": "text",
+        "component": "richtext",
         "name": "description",
         "label": "Policy Description",
         "validation": {
@@ -1744,8 +1757,8 @@
         "name": "ctaLabel",
         "label": "CTA Label",
         "validation": {
-          "maxLength": 15,
-          "customErrorMsg": "CTA text cannot exceed 15 characters"
+          "maxLength": 30,
+          "customErrorMsg": "CTA text cannot exceed 30 characters"
         }
       },
       {
