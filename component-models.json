@@ -1349,20 +1349,6 @@
     ]
   },
   {
-    "id": "projectslist",
-    "fields": [
-      {
-        "component": "text",
-        "name": "title",
-        "label": "Title",
-        "validation": {
-          "maxLength": 50,
-          "customErrorMsg": "Title cannot exceed 50 characters"
-        }
-      }
-    ]
-  },
-  {
     "id": "projectslistitem",
     "fields": [
       {
