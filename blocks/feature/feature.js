@@ -139,7 +139,7 @@ export default function decorate(block) {
 
       // Handle text feature
       const textElement = featureChildren[2].querySelector('[data-aue-prop="feature-title"]') ?? featureChildren[2];
-      if (textElement) {
+      if (textElement && textElement.textContent.trim() !== '') {
         const textContainer = document.createElement('div');
         const statisticDiv = document.createElement('div');
         statisticDiv.className = 'statistic';
