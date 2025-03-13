@@ -24,22 +24,16 @@ export default function decorate(block) {
       asImageName: 'hero.webp',
       breakpoints: {
         mobile: {
-          width: 768,
-          imgWidth: 800,
-          imgHeight: 560,
           src: `${imageUrl}`,
+          smartCrop : 'Small'
         },
         tablet: {
-          width: 993,
-          imgWidth: 1200,
-          imgHeight: 750,
           src: `${imageUrl}`,
+          smartCrop : 'Medium'
         },
         desktop: {
-          width: 1920,
           src: `${imageUrl}`,
-          imgWidth: 1920,
-          imgHeight: 830,
+          smartCrop : 'Desktop'
         },
       },
       lazy: false,
@@ -299,9 +293,9 @@ export default function decorate(block) {
         alt: 'Chevron Left (1) Icon',
         className: 'first-svg-icon', // You can customize the class name if needed
         breakpoints: {
-          mobile: { width: 768, src: firstIconLink.getAttribute('href') },
-          tablet: { width: 1024, src: firstIconLink.getAttribute('href') },
-          desktop: { width: 1920, src: firstIconLink.getAttribute('href') },
+          mobile: {src: firstIconLink.getAttribute('href') },
+          tablet: {src: firstIconLink.getAttribute('href') },
+          desktop: {src: firstIconLink.getAttribute('href') },
         },
         lazy: false,
       });
@@ -312,9 +306,9 @@ export default function decorate(block) {
         alt: 'Chevron Left Icon',
         className: 'second-svg-icon', // You can customize the class name if needed
         breakpoints: {
-          mobile: { width: 768, src: secondIconLink.getAttribute('href') },
-          tablet: { width: 1024, src: secondIconLink.getAttribute('href') },
-          desktop: { width: 1920, src: secondIconLink.getAttribute('href') },
+          mobile: {  src: secondIconLink.getAttribute('href') },
+          tablet: { src: secondIconLink.getAttribute('href') },
+          desktop: {src: secondIconLink.getAttribute('href') },
         },
         lazy: false,
       });
@@ -345,22 +339,16 @@ export default function decorate(block) {
           asImageName: 'hero.webp',
           breakpoints: {
             mobile: {
-              width: 768,
               src: `${imgUrl}`,
               imgWidth: 100,
-              imgHeight: 100,
             },
             tablet: {
-              width: 993,
               src: `${imgUrl}`,
               imgWidth: 160,
-              imgHeight: 130,
             },
             desktop: {
-              width: 1920,
               src: `${imgUrl}`,
               imgWidth: 160,
-              imgHeight: 130,
             },
           },
           lazy: false,

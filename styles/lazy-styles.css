@@ -10,7 +10,8 @@
 }
 
 .tabs-container .about-us-stats {
-    margin-bottom: 80px;
+    /* margin-bottom: 80px; */
+    margin-bottom: 0;
     padding-top: 0;
 }
 
@@ -20,16 +21,17 @@
     width: 100%;
     overflow-x: auto;
     margin-bottom: 36px;
+    position: relative;
 }
 
 .tab-title {
     position: relative;
     text-align: center;
-    padding: 45px 0 33px;
+    padding: 36px 0 45px;
     color: var(--body-text-color);
-    font-size: 24px;
+    font-size: 20px;
     font-weight: 600;
-    line-height: 30px;
+    line-height: 24px;
     border-bottom: 2px solid var(--body-text-color);
     cursor: pointer;
     flex: 1 1;
@@ -104,6 +106,11 @@
     gap: 0;
 }
 
+.tabs-container .about-us-stats .about-us-right-content:last-child{
+    margin-bottom: 0;
+    padding-bottom: 0;
+}
+
 .tabs-container .about-us-stats .about-us-left-title {
     color: var(--text-color);
     font-size: 28px;
@@ -158,23 +165,54 @@
     margin-top: 0;
 }
 
-@media (width <=1024px) {
+.tabs-container .about-us-stats .about-us-right-content .statistic p:first-child {
+    font-size: 28px;
+    line-height: 28px;
+}
+ 
+.tabs-content>div>div:first-child{
+    margin-top: 0;
+}
 
+.tabs-container .about-us-stats .about-us-right-content:nth-child(2)>div:nth-child(2) {
+    flex: 1;
+    margin-left: 15px;
+}
+
+.tabs-container .textmediablock-wrapper {
+    margin-top:48px
+}
+ 
+@media (width <=1024px) {
     .tabs-container .projectslist {
         margin-top: 56px;
+    }
+    .tabs-header{
+        margin-bottom: 83px;
     }
 }
 
 @media(width<=992px) {
+    .tabs-header {
+        margin-bottom: 83px;
+    }
+
     .tab-title {
-        font-size: 22px;
-        font-weight: 600;
-        line-height: 26px;
+        font-size: 18px;
+        padding: 33px 0;
     }
 
     .tabs-container .about-us-stats .about-us-right-content {
         margin-bottom: 16px;
         padding-top: 16px;
+    }
+    .tabs-container .about-us-stats .about-us-right-content:first-child>div:last-child{
+        padding-top: 0;
+    }
+
+    .tabs-container .about-us-stats .about-us-right-content:last-child {
+        margin-bottom: 0;
+        padding-bottom: 0;
     }
 
     .tabs-container .about-us-stats .about-us-left-title {
@@ -197,18 +235,43 @@
         font-size: 32px;
         line-height: 42px;
     }
+
+    .tabs-container .textmediablock-wrapper {
+        margin-top:24px
+    }
 }
 
 @media(width<768px) {
-    .tab-title {
-        font-size: 18px;
-        line-height: 24px;
+    .tabs-header {
+        margin-bottom: 18px;
     }
 
+    .tab-title {
+        font-size: 16px;
+        line-height: 20px;
+        padding: 28px 0;
+    }
+
+    .tabs-container .about-us-stats {
+        margin-bottom: 0;
+        padding-bottom: 0;
+    }
+    
+
     .tabs-container .about-us-stats .about-us-right-content {
-        padding-top: 12px;
+        padding-top: 18px;
         margin-bottom: 40px;
     }
+
+    .tabs-container .about-us-stats .about-us-right-content:first-child>div:last-child{
+        padding-top: 0;
+    }
+
+    .tabs-container .about-us-stats .about-us-right-content:last-child{
+        margin-bottom: 0;
+        padding-bottom: 0;
+    }
+
 
     .panel-heading h2 {
         font-size: 28px;
@@ -238,13 +301,22 @@
     .tabs-container .projectslist {
         margin-top: 36px;
     }
-}
-
-@media(width >=1024px) {
-    .tabs-container .about-us-stats .about-us-right-content:nth-child(2)>div:nth-child(2) {
-        width: 53%;
+    
+    .tabs-header{
+        margin-bottom: 36px;
     }
 
+    .tabs-container .textmediablock-wrapper {
+        margin-top:18px
+    }
+}
+@media (width >= 768px) {
+    .tabs-container .about-us-stats .about-us-right-content .statistic p:first-child {
+        font-size: 32px;
+        line-height: 32px;
+    }
+}
+@media(width >=1024px) {
     .tabs-container .about-us-stats .about-us-right-content {
         display: flex;
         flex-direction: row;
@@ -276,8 +348,4 @@
     .tabs-container .about-us-stats {
         padding-bottom: 0 !important;
     }
-}
-
-.tabs-content>div>div:first-child{
-    margin-top: 0;
 }

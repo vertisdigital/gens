@@ -206,55 +206,7 @@ export default async function decorate(block) {
       columnsContainer.appendChild(col);
     });
 
-    // Function to handle layout based on screen size
-    const handleLayout = () => {
-      const isDesktop = window.innerWidth >= 992;
-
-      if (isDesktop && !mainContainer.querySelector('.right-section')) {
-        // Create right and left sections for desktop
-        const topContainer = document.createElement('div');
-        topContainer.className = 'top-container';
-
-        const rightSection = document.createElement('div');
-        rightSection.className = 'right-section';
-        const rightRow = document.createElement('div');
-        rightRow.className = 'row';
-
-        const leftSection = document.createElement('div');
-        leftSection.className = 'left-section';
-        const leftRow = document.createElement('div');
-        leftRow.className = 'row';
-
-        // Move logo column to right section's row
-        rightRow.appendChild(logoColumn);
-        rightSection.appendChild(rightRow);
-
-        // Move nav columns to left section's row
-        navColumns.forEach((col) => {
-          leftRow.appendChild(col);
-        });
-        leftSection.appendChild(leftRow);
-
-        // Add sections to main container
-        topContainer.appendChild(rightSection);
-        topContainer.appendChild(leftSection);
-        mainContainer.appendChild(topContainer);
-      } else if (!isDesktop) {
-        columnsContainer.appendChild(logoColumn);
-        navColumns.forEach((col) => {
-          columnsContainer.appendChild(col);
-        });
-        mainContainer.insertBefore(columnsContainer, mainContainer.firstChild);
-      }
-    };
-
-    // Initial layout setup
-    handleLayout();
-
-    // Update layout on resize
-    window.addEventListener('resize', handleLayout);
-
-    // Create bottom section for copyright and links
+    // Create bottom section for copyright and links first
     const bottomSection = document.createElement('div');
     bottomSection.className = 'mt-4';
 
@@ -340,6 +292,83 @@ export default async function decorate(block) {
       bottomSection.appendChild(bottomColumnsContainer);
     }
 
+    // After the handleLayout function declaration, let's add storage for cloned sections
+    let clonedRightSection = null;
+    let clonedLeftSection = null;
+
+    // Update the handleLayout function
+    const handleLayout = () => {
+      const isDesktop = window.innerWidth >= 992;
+      const existingRightSection = mainContainer.querySelector('.right-section');
+
+      if (isDesktop) {
+        if (!existingRightSection) {
+          // If we have cloned sections, reuse them
+          if (clonedRightSection && clonedLeftSection) {
+            const topContainer = document.createElement('div');
+            topContainer.className = 'top-container';
+            topContainer.appendChild(clonedRightSection.cloneNode(true));
+            topContainer.appendChild(clonedLeftSection.cloneNode(true));
+            mainContainer.innerHTML = '';
+            mainContainer.appendChild(topContainer);
+          } else {
+            // Create right and left sections for desktop
+            const topContainer = document.createElement('div');
+            topContainer.className = 'top-container';
+
+            const rightSection = document.createElement('div');
+            rightSection.className = 'right-section';
+            const rightRow = document.createElement('div');
+            rightRow.className = 'row';
+
+            const leftSection = document.createElement('div');
+            leftSection.className = 'left-section';
+            const leftRow = document.createElement('div');
+            leftRow.className = 'row';
+
+            // Move logo column to right section's row
+            rightRow.appendChild(logoColumn);
+            rightSection.appendChild(rightRow);
+
+            // Move nav columns to left section's row
+            navColumns.forEach((col) => {
+              leftRow.appendChild(col);
+            });
+            leftSection.appendChild(leftRow);
+
+            // Store cloned versions for future use
+            clonedRightSection = rightSection.cloneNode(true);
+            clonedLeftSection = leftSection.cloneNode(true);
+
+            // Add sections to main container
+            topContainer.appendChild(rightSection);
+            topContainer.appendChild(leftSection);
+            mainContainer.innerHTML = '';
+            mainContainer.appendChild(topContainer);
+          }
+        }
+      } else {
+        // Mobile layout
+        mainContainer.innerHTML = '';
+        columnsContainer.appendChild(logoColumn);
+        navColumns.forEach((col) => {
+          columnsContainer.appendChild(col);
+        });
+        mainContainer.appendChild(columnsContainer);
+      }
+
+      // Re-append bottom section after layout changes
+      if (bottomSection) {
+        mainContainer.appendChild(bottomSection);
+      }
+    };
+
+    // Initial layout setup
+    handleLayout();
+
+    // Update layout on resize
+    window.addEventListener('resize', handleLayout);
+
     // Assemble the footer
     mainContainer.append(bottomSection);
     footer.appendChild(mainContainer);
@@ -361,18 +390,3 @@ export default async function decorate(block) {
     block.append(section);
   }
 }
-
-/*
-| Condition  | Action                                                    |
-|------------|-----------------------------------------------------------|
-| **For Prod** | Uncomment **line-13** and comment **line-14**            |
-|            | Use `"sourceSection"` instead of `"fragment"`             |
-|            | Comment out `footer.classList.add('footer');` in **line-55** |
-|            | Replace `"fragment"` with `"fragment.firstElementChild"`  |
-|            | in **line-67** and **line-394**                            |
-| **For Local** | Uncomment **line-14** and comment **line-13**           |
-|            | Use `"fragment"` instead of `"sourceSection"`             |
-|            | Add `footer.classList.add('footer');` in **line-55**       |
-|            | Replace `"fragment.firstElementChild"` with `"fragment"`  |
-|            | in **line-67** and **line-394**                            |
-*/

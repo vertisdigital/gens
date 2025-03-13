@@ -783,7 +783,7 @@ main .section.highlight {
   .container-md,
   .container-sm,
   .container {
-    max-width: 1440px;
+    max-width: 1920px;
     padding-right: 160px;
     padding-left: 160px;
   }
@@ -971,6 +971,7 @@ main::before {
   content: '';
   background: url("../icons/genting-page-mobile-bg.jpg") repeat-y;
   background-position: center top;
+  background-size: 100%;
   position: absolute;
   inset: 0;
   z-index: -1;
@@ -979,12 +980,14 @@ main::before {
   main::before {
     background: url("../icons/genting-page-tablet-bg.jpg") repeat-y;
     background-position: center top;
+    background-size: 100%;
   }
 }
 @media (width >= 1024px) {
   main::before {
     background: url("../icons/genting-page-desktop-bg-1440.jpg") repeat-y;
     background-position: center top;
+    background-size: 100%;
   }
 }
 @media (width >= 1441px) {
@@ -993,4 +996,8 @@ main::before {
     background-position: center top;
     background-size: 100%;
   }
+}
+
+.grey-background{
+  background-color: var(--light-grey);
 }

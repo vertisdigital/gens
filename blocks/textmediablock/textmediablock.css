@@ -53,8 +53,15 @@
   line-height: 50px;
 }
 
+[data-block-name="textmediablock"]>div.textmediablock-title-only-nested-1-1 {
+  margin-bottom: -38px;
+}
+
 /* Tablet and up: Grid layout */
 @media (width<=992px) {
+  .textmediablock-wrapper{
+      margin: 44px 0;
+  }
   [data-block-name="textmediablock"]>div:first-child{
   margin-bottom: 24px
   }
@@ -70,6 +77,9 @@
     font-size: 16px;
     font-weight: 400;
     line-height: 24px;
+  }
+  [data-block-name="textmediablock"]>div.textmediablock-title-only-nested-1-1 {
+    margin-bottom: -20px;
   }
 } 
 @media (width<768px) {
@@ -96,7 +106,9 @@
     font-size: 14px;
     line-height: 20px;
   }
-
+  [data-block-name="textmediablock"]>div.textmediablock-title-only-nested-1-1 {
+    margin-bottom: -4px;
+  }
 
 } 
 

@@ -612,6 +612,23 @@
     "id": "listing",
     "fields": [
       {
+        "component": "select",
+        "name": "classes",
+        "value": "",
+        "label": "Style Options",
+        "valueType": "string",
+        "options": [
+          {
+            "name": "Default",
+            "value": ""
+          },
+          {
+            "name": "Grey Background",
+            "value": "grey-background"
+          }
+        ]
+      },
+      {
         "component": "text",
         "name": "title",
         "label": "Section Name",
@@ -1772,6 +1789,64 @@
         "label": "IFrame URL",
         "description": "URL of the content to embed in IFrame",
         "valueType": "string"
+      }
+    ]
+  },
+  {
+    "id": "director",
+    "fields": [
+      {
+        "component": "tab",
+        "label": "Personal Details",
+        "name": "personalDetailsTab"
+      },
+      {
+        "component": "custom-asset-namespace:custom-asset",
+        "name": "image",
+        "label": "Image",
+        "configUrl": "https://sprint-2--genting--wppopen.aem.live/tools/assets-selector/config.json",
+        "multi": false,
+        "validation": {
+          "required": true,
+          "customErrorMsg": "Image is required"
+        }
+      },
+      {
+        "component": "text",
+        "name": "directorName",
+        "label": "Name",
+        "valueType": "string",
+        "value": "",
+        "validation": {
+          "maxLength": 60,
+          "required": true,
+          "customErrorMsg": "Name is required and cannot exceed 60 characters"
+        }
+      },
+      {
+        "component": "text",
+        "name": "designation",
+        "label": "Designation",
+        "validation": {
+          "maxLength": 50,
+          "required": true,
+          "customErrorMsg": "Designation is required and cannot exceed 50 characters"
+        }
+      },
+      {
+        "component": "tab",
+        "label": "Description",
+        "name": "descriptionTab"
+      },
+      {
+        "component": "richtext",
+        "name": "description",
+        "label": "Description",
+        "valueType": "string",
+        "validation": {
+          "maxLength": 2500,
+          "customErrorMsg": "Description cannot exceed 2500 characters"
+        }
       }
     ]
   },

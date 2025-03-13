@@ -25,21 +25,19 @@ export default function decorate(block) {
   const blockchildren = block.children;
   // Find the title and replace it with a heading
   const titleElement = blockchildren[0].children[0];
-  if (titleElement) {
-    const header = document.createElement('header');
-    moveInstrumentation(titleElement, header);
-
+  if (titleElement && titleElement.textContent.trim() !== '') {
     const titleText = titleElement.textContent;
     const titleHtml = Heading({ level: 3, text: titleText, className: 'about-us-left-title' });
     const parsedHtml = stringToHTML(titleHtml);
-    header.append(parsedHtml);
-    aboutUsLeftContent.append(header);
+    moveInstrumentation(titleElement, parsedHtml);
+
+    aboutUsLeftContent.append(parsedHtml);
     titleElement.remove();
   }
 
   // Find the heading and replace it with a heading
   const headingElement = blockchildren[1].children[0];
-  if (headingElement) {
+  if (headingElement && headingElement.textContent.trim() !== '') {
     const headingText = headingElement.textContent;
     const headingHtml = Heading({ level: 2, text: headingText, className: 'about-us-left-heading' });
     const parsedHtml = stringToHTML(headingHtml);
@@ -51,8 +49,8 @@ export default function decorate(block) {
   // Find the sub-heading and replace it with a sub-heading
 
   const subHeading = blockchildren[2].children[0];
-  if (subHeading) {
-    subHeading.classList.add('about-us-left-sub-heading')
+  if (subHeading && subHeading.textContent.trim() !== '') {
+    subHeading.classList.add('about-us-left-sub-heading');
     aboutUsLeftContent.appendChild(subHeading);
   }
 
@@ -77,9 +75,8 @@ export default function decorate(block) {
       link.href = linkHref;
 
       // fix for text with / i.e. default content from AEM when link used
-      if(linkHref){
-        if((linkHref.textContent.startsWith("/") || linkHref.textContent.startsWith("#")))
-          linkHref.textContent =''
+      if (linkHref) {
+        if ((linkHref.textContent.startsWith('/') || linkHref.textContent.startsWith('#'))) { linkHref.textContent = ''; }
         link.title = linkHref.title;
       }
       link.textContent = linkText.textContent.trim();
@@ -102,12 +99,12 @@ export default function decorate(block) {
   aboutUsRightContent.classList.add('col-xl-6', 'col-lg-6', 'col-md-3', 'col-sm-4', 'about-us-right');
 
   // Collect all imageAndDescription elements first
-  const featureItems = [].slice.call(block.children,4);
+  const featureItems = [].slice.call(block.children, 4);
   if (featureItems) {
     featureItems.forEach((feature) => {
       const featureChildren = feature.children;
       // checking and validating the feature item structure, as we need to get 4 children
-      if(featureChildren.length !== 4) return;
+      if (featureChildren.length !== 4) return;
       // Create feature item container
       const featureContainer = document.createElement('div');
       featureContainer.classList.add('about-us-right-content');
@@ -142,7 +139,7 @@ export default function decorate(block) {
       }
 
       // Handle text feature
-      const textElement = featureChildren[2].querySelector('[data-aue-prop="feature-title"]')??featureChildren[2];
+      const textElement = featureChildren[2].querySelector('[data-aue-prop="feature-title"]') ?? featureChildren[2];
       if (textElement) {
         const textContainer = document.createElement('div');
         const statisticDiv = document.createElement('div');
@@ -152,9 +149,9 @@ export default function decorate(block) {
         const textContent = textElement.querySelector('p') ? textElement.querySelectorAll('p') : textElement.innerHTML;
         if (typeof textContent === 'object') {
           textContent.forEach((text) => {
-            //const span = document.createElement('div');
-            //span.innerHTML = text.innerHTML;
-            //moveInstrumentation(text, span);
+            // const span = document.createElement('div');
+            // span.innerHTML = text.innerHTML;
+            // moveInstrumentation(text, span);
             statisticDiv.appendChild(text);
           });
         } else {
@@ -185,7 +182,7 @@ export default function decorate(block) {
   }
   // check if data-aue-model="indices" exists
   const indices = blockchildren[blockchildren.length - 1];
-  if (indices && indices.children.length === 3 ) {
+  if (indices && indices.children.length === 3) {
     // get less indices, more indices and indexnumber content elements
     const lessIndices = indices.children[1];
     const moreIndices = indices.children[0];
@@ -206,12 +203,11 @@ export default function decorate(block) {
     const convDescription = aboutUsRightContent.children;
     // removing the first child of all the feature items for the indices variant
     for (let i = 0; i < convDescription.length; i += 1) {
-      if(convDescription[i].children[0].textContent?.trim() === '' && !convDescription[i].children[0].querySelector('picture, img') )
-        convDescription[i].children[0]?.remove();
+      if (convDescription[i].children[0].textContent?.trim() === '' && !convDescription[i].children[0].querySelector('picture, img')) { convDescription[i].children[0]?.remove(); }
     }
     // featureitems are  more than indexNumber indices then hide
     // the remaing and show link to show more indices link with remaining indices count in text
-    if (!Number.isNaN(indexNumber) &&  indexNumber > 0 && indexNumber < convDescription.length) {
+    if (!Number.isNaN(indexNumber) && indexNumber > 0 && indexNumber < convDescription.length) {
       // hide the remaining indices
       for (let i = indexNumber; i < convDescription.length; i += 1) {
         convDescription[i].style.display = 'none';
@@ -241,10 +237,10 @@ export default function decorate(block) {
       indices.innerHTML = '';
       indices.appendChild(showMoreIndicesLink);
       indices.appendChild(showLessIndicesLink);
-    }else {
+    } else {
       indices.style.display = 'none';
     }
-    
+
     indices.appendChild(indexElement);
     aboutUsRightContent.appendChild(indices);
   }

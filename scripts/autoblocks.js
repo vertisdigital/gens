@@ -101,6 +101,18 @@ function updateTabStates(tabs, panels, activeIndex) {
   tabs.forEach((tab) => tab.classList.remove('active'));
   tabs[activeIndex].classList.add('active');
 
+    const tabsContainer = document.querySelector('.tab-nav');
+    const tabWidth = tabs[activeIndex].offsetWidth;
+    const containerWidth = tabsContainer.offsetWidth;
+    const tabPosition = tabs[activeIndex].offsetLeft;
+
+    const centerOffset = tabPosition - (containerWidth - tabWidth) / 2;
+    
+    tabsContainer.scrollTo({
+      left: centerOffset,
+      behavior: 'smooth'
+    });
+  
   // Update panels
   panels.forEach((panel) => panel.classList.remove('active'));
   panels[activeIndex].classList.add('active');

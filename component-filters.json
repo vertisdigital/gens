@@ -50,7 +50,8 @@
       "projectslist",
       "awardsgallery",
       "historymilestones",
-      "loadmore"
+      "loadmore",
+      "boardofdirectors"
     ]
   },
   {
@@ -210,6 +211,12 @@
     "components": [
       "enquiry",
       "enquirycta"
+    ]
+  }, 
+  {
+    "id": "boardofdirectors",
+    "components": [
+      "director"
     ]
   }
 ]

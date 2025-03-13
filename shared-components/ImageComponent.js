@@ -15,9 +15,9 @@ export default function ImageComponent({
   className = '',
   asImageName = '',
   breakpoints = {
-    mobile: { width: 768, src: '', imgWidth: 1600, imgHeight: 1600 },
-    tablet: { width: 993, src: '', imgWidth: 1600, imgHeight: 1600 },
-    desktop: { width: 1920, src: '', imgWidth: 1600, imgHeight: 1600 },
+    mobile: { width: 767, src: '', smartCrop: ''},
+    tablet: { width: 991, src: '', smartCrop: '' },
+    desktop: { width: 1920, src: '', smartCrop: '' },
   },
   lazy = true,
 }) {
@@ -57,13 +57,13 @@ export default function ImageComponent({
 
   return `
     <picture>
-      <source media="(max-width: ${updatedBreakpoints.mobile.width}px)" 
-              srcset="${updatedBreakpoints.mobile.src}">
-      <source media="(max-width: ${updatedBreakpoints.tablet.width}px)" 
-              srcset="${updatedBreakpoints.tablet.src}">
-      <source media="(min-width: ${updatedBreakpoints.tablet.width + 1}px)" 
-              srcset="${updatedBreakpoints.desktop.src}">
-      <img src="${updatedBreakpoints.desktop.src}" 
+      <source media="(max-width: 767px)" 
+              srcset="${breakpoints.mobile.src}/as/${asImageName ? asImageName : 'img.webp'}${breakpoints.mobile.smartCrop ? `?smartcrop=${breakpoints.mobile.smartCrop}` : ''}">
+      <source media="(max-width: 991px)" 
+              srcset="${breakpoints.tablet.src}/as/${asImageName ? asImageName : 'img.webp'}${breakpoints.tablet.smartCrop ? `?smartcrop=${breakpoints.tablet.smartCrop}` : ''}">
+      <source media="(max-width: 1920px)" 
+              srcset="${breakpoints.desktop.src}/as/${asImageName ? asImageName : 'img.webp'}${breakpoints.desktop.smartCrop ? `?smartcrop=${breakpoints.desktop.smartCrop}` : ''}">             
+      <img src="${src}" 
            alt="${alt}" 
            title="${alt}"
            class="${className}"
