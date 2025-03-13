@@ -24,7 +24,7 @@
 }
 
 .statistics-description-wrapper {
-    font-size: 16px;
+    font-size: var(--body-font-size-m);
     font-weight: 400;
     line-height: 24px;
     color: var(--body-text-color);
@@ -39,7 +39,7 @@
 
 .statistics-container button {
     display: block;
-    font-size: 16px;
+    font-size: var(--body-font-size-m);
     font-weight: 700;
     line-height: 24px;
     text-decoration-line: underline;
@@ -53,14 +53,14 @@
 }
 
 .statistics .statistics-description-wrapper h3 {
-    font-size: 40px;
+    font-size: var(--heading-font-size-l);
     font-weight: 500;
     line-height: 50px;
     color: var(--text-color);
 }
 
 .statistics .statistic-item {
-    font-size: 80px;
+    font-size: var(--heading-font-size-xxl);
     font-weight: 400;
     line-height: 80px;
     color: var(--primary-gold);
@@ -71,7 +71,7 @@
 }
 
 .statistics .text-container {
-    font-size: 16px;
+    font-size: var(--body-font-size-m);
     font-weight: 400;
     line-height: 24px;
     color: var(--body-text-color);
@@ -109,7 +109,7 @@
 .statistics .statistics-title {
     color: var(--text-color);
     margin-bottom: 64px;
-    font-size: 40px;
+    font-size: var(--heading-font-size-l);
     font-style: normal;
     font-weight: 500;
     line-height: 50px; /* 121.429% */

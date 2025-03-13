@@ -685,7 +685,7 @@ header .header{
 
 .header-inner-wrapper .header-nav .primary-nav .nav-item{
   color: var(--text-color);
-  font-size: 16px;
+  font-size: var(--body-font-size-m);
   font-weight: 600;
   line-height: 18px;
   padding: 16px;
@@ -707,7 +707,7 @@ header .header{
 .header-inner-wrapper .header-nav .primary-nav .nav-item .primary-menu-links,
 .header-inner-wrapper .header-nav .primary-nav .nav-item .primary-menu-links a{
   text-align: center;
-  font-size: 16px;
+  font-size: var(--body-font-size-m);
   font-weight: 600;
   line-height: 18px;
   display: flex;
@@ -754,7 +754,7 @@ header .header{
 }
 
 .header-inner-wrapper .secondary-nav .secondary-header .secondary-header-wrapper a{
-  font-size: 40px;
+  font-size: var(--heading-font-size-l);
   font-weight: 500;
   line-height: 34px;
   letter-spacing: -0.5px;
@@ -801,7 +801,7 @@ content: '🡢';
 }
 
 .header-inner-wrapper .secondary-header .secondary-header-wrapper a{
-  font-size: 40px;
+  font-size: var(--heading-font-size-l);
   font-weight: 500;
   line-height: 50px;
 }
@@ -1002,7 +1002,7 @@ content: '🡢';
   }
 
   .header-inner-wrapper .secondary-nav .secondary-header .secondary-header-wrapper .back-btn{
-    font-size: 16px;
+    font-size: var(--body-font-size-m);
     font-weight: 700;
     line-height: 24px; 
     text-transform: uppercase;
@@ -1056,7 +1056,7 @@ content: '🡢';
 .header-inner-wrapper .secondary-nav .secondary-header .secondary-header-wrapper .back-btn {
   padding-left: 0;
   padding-bottom: 0;
-  font-size: 14px;
+  font-size: var(--heading-font-size-s);
 }
 
 .header-inner-wrapper .secondary-nav .secondary-header-links .nav-links li .button-container{
@@ -1084,7 +1084,7 @@ content: '🡢';
 
 .header-inner-wrapper .nav-item .links > div:first-child {
   /* Title styling */
-  font-size: 16px;
+  font-size: var(--body-font-size-m);
   font-weight: 600;
   line-height: 18px;
   text-transform: uppercase;
@@ -1100,7 +1100,7 @@ content: '🡢';
 
 /* Overview link styling */
 .header-inner-wrapper .nav-item .links > div:nth-child(4) a {
-  font-size: 40px;
+  font-size: var(--heading-font-size-l);
   font-weight: 500;
   line-height: 50px;
   letter-spacing: -0.5px;
@@ -1219,7 +1219,7 @@ content: '🡢';
   }
   .header-inner-wrapper .secondary-nav .secondary-header .secondary-header-wrapper .close-btn {
     display: flex;
-    font-size: 20px;
+    font-size: var(--heading-font-size-m);
   }
   .header-inner-wrapper .secondary-nav .secondary-header-links .nav-links li .button-container {
     margin-bottom: 10px;

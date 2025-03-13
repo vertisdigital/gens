@@ -4,7 +4,7 @@
 } 
 
 .exploremore .exploremore-wrapper-container .exploremore-title{
-  font-size: 40px;
+  font-size: var(--heading-font-size-l);
   font-weight: 500;
   line-height: 50px;
   letter-spacing: -0.5px;

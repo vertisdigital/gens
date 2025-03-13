@@ -62,6 +62,9 @@ Usage Example:
   --body-font-family: 'DM Sans', sans-serif;
   --heading-font-family: 'DM Sans', sans-serif;
 
+  /* base font size */
+  --base-font-size: 16px;
+
   /* body sizes */
   --body-font-size-m: 16px;
   --body-font-size-s: 12px;
@@ -99,34 +102,6 @@ Usage Example:
   src: local('Arial');
 }
 
-@media (width >=567px) {
-  :root {
-    /* body sizes */
-    --body-font-size-s: 14px;
-
-    /* heading sizes */
-    --heading-font-size-s: 16px;
-
-  }
-}
-
-@media (width >=900px) {
-  :root {
-    /* body sizes */
-    --body-font-size-m: 18px;
-    --body-font-size-s: 16px;
-    --body-font-size-xs: 14px;
-
-    /* heading sizes */
-    --heading-font-size-xxl: 45px;
-    --heading-font-size-xl: 36px;
-    --heading-font-size-l: 28px;
-    --heading-font-size-m: 22px;
-    --heading-font-size-s: 20px;
-    --heading-font-size-xs: 18px;
-  }
-}
-
 * {
   box-sizing: border-box;
 }
@@ -136,7 +111,7 @@ body {
   background-color: var(--background-color);
   color: var(--body-text-color);
   font-family: var(--body-font-family);
-  font-size: var(--body-font-size-m);
+  font-size: var(--base-font-size);
   line-height: 1.5;
   font-weight: 400;
   box-sizing: border-box;
@@ -211,6 +186,39 @@ h6 {
   line-height: 1.5;
 }
 
+@media (width >=567px) {
+  h5 {
+    font-size: var(--body-font-size-m);
+  }
+}
+
+@media (width >=900px) {
+  h1 {
+    font-size: 45px;
+  }
+  
+  h2 {
+    font-size: 36px;
+  }
+  
+  h3 {
+    font-size: 28px;
+  }
+  
+  h4 {
+    font-size: 22px;
+  }
+  
+  h5 {
+    font-size: var(--heading-font-size-m);
+  }
+  
+  h6 {
+    font-size: 18px;
+  }
+  
+}
+
 p,
 dl,
 ol,
@@ -232,6 +240,20 @@ pre {
   background-color: var(--light-color);
   overflow-x: auto;
   white-space: pre;
+}
+
+@media (width >=567px) {
+  code,
+  pre {
+    font-size: var(--heading-font-size-s);
+  }
+}
+
+@media (width >=900px) {
+  code,
+  pre {
+    font-size: var(--body-font-size-m);
+  }
 }
 
 input,
@@ -267,7 +289,7 @@ button {
   font-family: var(--body-font-family);
   font-style: normal;
   font-weight: 600;
-  font-size: 16px;
+  font-size: var(--body-font-size-m);
   line-height: 1.5;
   text-align: center;
   text-decoration: underline;

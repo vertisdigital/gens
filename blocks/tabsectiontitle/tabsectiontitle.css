@@ -15,6 +15,6 @@
 @media (width>=1024px) {
     .tabsectiontitle-container .tabs-title {
         padding-top: 80px;
-        font-size: 40px;
+        font-size: var(--heading-font-size-l);
     }
 }

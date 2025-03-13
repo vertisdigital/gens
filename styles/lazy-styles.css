@@ -25,7 +25,7 @@
     text-align: center;
     padding: 36px 0 45px;
     color: var(--body-text-color);
-    font-size: 20px;
+    font-size: var(--heading-font-size-m);
     font-weight: 600;
     line-height: 24px;
     border-bottom: 2px solid var(--body-text-color);
@@ -76,7 +76,7 @@
 
 .panel-heading h2 {
     font-family: var(--heading-font-family);
-    font-size: 40px;
+    font-size: var(--heading-font-size-l);
     font-weight: 500;
     line-height: 50px;
     color: var(--text-color);
@@ -117,19 +117,19 @@
 
 .tabs-container .about-us-stats .about-us-right-content .statistic {
     color: var(--primary-gold);
-    font-size: 40px;
+    font-size: var(--heading-font-size-l);
     font-weight: 500;
     line-height: 50px;
 }
 
 .tabs-container .about-us-stats .about-us-right-content [data-aue-prop="feature-heading"] {
     color: var(--body-text-color);
-    font-size: 16px;
+    font-size: var(--body-font-size-m);
     line-height: 24px;
 }
 
 .tabs-container .statistics .statistic-item {
-    font-size: 40px;
+    font-size: var(--heading-font-size-l);
 }
 
 .cards {
@@ -217,7 +217,7 @@
     }
 
     .tabs-container .about-us-stats .about-us-right-content [data-aue-prop="feature-heading"] {
-        font-size: 16px;
+        font-size: var(--body-font-size-m);
         line-height: 20px;
     }
 
@@ -238,7 +238,7 @@
     }
 
     .tab-title {
-        font-size: 16px;
+        font-size: var(--body-font-size-m);
         line-height: 20px;
         padding: 28px 0;
     }
@@ -282,7 +282,7 @@
     }
 
     .tabs-container .about-us-stats .about-us-right-content [data-aue-prop="feature-heading"] {
-        font-size: 14px;
+        font-size: var(--heading-font-size-s);
         line-height: 20px;
     }
 
@@ -312,7 +312,7 @@
     }
 
     .tabs-container .about-us-stats .about-us-right-content .statistic span:first-child {
-        font-size: 40px;
+        font-size: var(--heading-font-size-l);
         line-height: 40px;
     }
 
@@ -321,7 +321,7 @@
     }
 
     .tabs-container .about-us-stats .about-us-right-content .statistic p:first-child {
-        font-size: 40px;
+        font-size: var(--heading-font-size-l);
         line-height: 40px;
     }
 
