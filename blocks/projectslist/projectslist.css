@@ -20,10 +20,11 @@ p {
 .project-title,
 .project-subtitle {
     color: var(--text-color);
+    font-size: var(--font-size-s);
 }
 
 .project-title  {
-    font-size: 25px;
+    font-size: var(--font-size-m);
 }
 
 .project-long-description,

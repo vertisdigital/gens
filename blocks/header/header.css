@@ -853,13 +853,18 @@ content: '🡢';
 
 .header-inner-wrapper .secondary-nav .secondary-header-links .nav-links li .button-container:hover a {
   color: var(--primary-gold);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
 }
 
-.header-inner-wrapper .secondary-nav .secondary-header-links .nav-links li .button-container:hover::after {
+.header-inner-wrapper .secondary-nav .secondary-header-links .nav-links li .button-container a:hover::after {
   content: '';
   background: url(../../icons/right-arrow.svg) no-repeat center;
   width: 18px;
   height: 18px;
+  display: inline-block;
 }
 
 

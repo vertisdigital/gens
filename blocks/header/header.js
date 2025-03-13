@@ -228,8 +228,8 @@ function createHeaderStructure(block) {
 
   // Create search icon
   const searchWrapper = document.createElement('div');
-  const searchIcon = SvgIcon({ name: 'search', className: 'icon-search', size: '14' });
-  searchWrapper.appendChild(stringToHtml(searchIcon));
+  // const searchIcon = SvgIcon({ name: 'search', className: 'icon-search', size: '14' });
+  // searchWrapper.appendChild(stringToHtml(searchIcon));
 
   // Assemble the structure
   nav.append(logoWrapper, primaryNav, searchWrapper);

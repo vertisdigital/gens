@@ -11,7 +11,7 @@
     content: '';
     width: calc(100% - 320px);
     height: 1px;
-    max-width: 1120px;
+    max-width: 1165px;
     background: var(--text-color);
     margin: 0 auto;
     transform: translateY(136px);
@@ -88,7 +88,7 @@
 }
 @media (width <= 1199px) {
     .coreprinciples .coreprinciples::after {
-        width: calc(100% - 88px);
+        width: calc(100% - 86px);
     }
 }
 @media (width <= 992px) {
@@ -122,6 +122,16 @@
 
     .coreprinciples .coreprinciples::after {
         transform: translateY(56px);
+    }
+
+    .row .principles-item:nth-child(1), .row .principles-item:nth-child(3){
+        margin-left: -12px;
+    }
+
+    .row .principles-item:nth-child(2) {
+        margin-left: 12px;
+        padding-right: 0;
+        padding-left: 24px;
     }
 }
 @media (width < 768px) {
@@ -166,12 +176,32 @@
     }
 
     .principles-item, .principles-item:first-child, .principles-item:last-child {
-        padding: 0 9px;
+        padding: 0px;
+    }
+    
+    .principles-item > div{
+        padding: 12px;
+    }
+
+    .row .principles-item:nth-child(1), .row .principles-item:nth-child(3){
+        margin-left: 0px;
+    }
+
+    .row .principles-item:nth-child(2) {
+        margin-left: 0px;
+        padding-right: 0;
+        padding-left: 0px;
     }
 }
 
 @media (width>=1920px) {
     .coreprinciples .coreprinciples::after {
         max-width: 1440px;
+    }
+}
+
+@media (width>=1200px){
+    .principles-item > div{
+        padding: 20px;
     }
 }
