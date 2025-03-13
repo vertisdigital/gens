@@ -186,6 +186,7 @@
     .tabs-container .projectslist {
         margin-top: 56px;
     }
+
     .tabs-header{
         margin-bottom: 83px;
     }
@@ -206,7 +207,7 @@
         padding-top: 16px;
     }
 
-    .tabs-container .about-us-stats .about-us-right-content:first-child{
+    .tabs-container .about-us-stats .about-us-right-content:first-child>div:last-child{
         padding-top: 0;
     }
 
@@ -243,7 +244,7 @@
 
 @media(width<768px) {
     .tabs-header {
-        margin-bottom: 18px;
+        margin-bottom: 36px;
     }
 
     .tab-title {
@@ -303,9 +304,6 @@
         margin-top: 36px;
     }
     
-    .tabs-header{
-        margin-bottom: 36px;
-    }
 
     .tabs-container .textmediablock-wrapper {
         margin-top:18px

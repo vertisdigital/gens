@@ -53,27 +53,41 @@ export default function decorate(block) {
   contactItems.className = 'contact-items';
   contactItems.setAttribute('role', 'list');
 
-  const indices = { phone: 3, email1: 7, email2: 11, email3: 15, address: 17 };
+  const indices = {
+    phone: 3, email1: 7, email2: 11, email3: 15, address: 17,
+  };
 
   const contactInfo = Object.fromEntries(
     Object.entries(indices).map(([key, index]) => [
       key,
-      enquiryFirstChild[index]?.querySelector('p')?.textContent.trim() || ''
-    ])
+      enquiryFirstChild[index]?.querySelector('p')?.textContent.trim() || '',
+    ]),
   );
 
-  const { phone, email1, email2, email3, address } = contactInfo;
+  const {
+    phone, email1, email2, email3, address,
+  } = contactInfo;
   const imageLink = wrapper.querySelectorAll('a[href*="/content/dam/"][href$=".svg"], a[href*="delivery-"]');
 
   const contactData = [
-    { value: phone, type: 'tel', key: 'phoneNumber', label: 'PhoneNumber', imageIndex: 0 },
-    { value: email1, type: 'mailto', key: 'emailAddress', label: 'EmailAddress', imageIndex: 1, textContentIndex: 4 },
-    { value: email2, type: 'mailto', key: 'emailAddress', label: 'EmailAddress', imageIndex: 2, textContentIndex: 8 },
-    { value: email3, type: 'mailto', key: 'emailAddress', label: 'EmailAddress', imageIndex: 3, textContentIndex: 12 },
-    { value: address, type: null, key: 'address', label: 'Address', imageIndex: 4 }
+    {
+      value: phone, type: 'tel', key: 'phoneNumber', label: 'PhoneNumber', imageIndex: 0,
+    },
+    {
+      value: email1, type: 'mailto', key: 'emailAddress', label: 'EmailAddress', imageIndex: 1, textContentIndex: 4,
+    },
+    {
+      value: email2, type: 'mailto', key: 'emailAddress', label: 'EmailAddress', imageIndex: 2, textContentIndex: 8,
+    },
+    {
+      value: email3, type: 'mailto', key: 'emailAddress', label: 'EmailAddress', imageIndex: 3, textContentIndex: 12,
+    },
+    {
+      value: address, type: null, key: 'address', label: 'Address', imageIndex: 4,
+    },
   ];
 
-  const createContactItem = (text, linkType, prop, label, imageLink, displayLabel = '') => {
+  const createContactItem = (text, linkType, prop, label, imageSrc, displayLabel = '') => {
     if (!text) return null;
 
     const contactItemWrapper = document.createElement('div');
@@ -94,12 +108,16 @@ export default function decorate(block) {
     iconWrapper.className = 'contact-icon';
     iconWrapper.setAttribute('aria-hidden', 'true');
 
-    if (imageLink) {
+    if (imageSrc) {
       const picture = ImageComponent({
-        src: imageLink,
+        src: imageSrc,
         alt: '',
         className: 'enquiry-image',
-        breakpoints: { mobile: { width: 768, src: imageLink }, tablet: { width: 991, src: imageLink }, desktop: { width: 1920, src: imageLink } },
+        breakpoints: {
+          mobile: { width: 768, src: imageSrc },
+          tablet: { width: 991, src: imageSrc },
+          desktop: { width: 1920, src: imageSrc },
+        },
         lazy: true,
       });
 
@@ -134,10 +152,20 @@ export default function decorate(block) {
     return contactItemWrapper;
   };
 
-  contactData.forEach(({ value, type, key, label, imageIndex, textContentIndex }) => {
+  contactData.forEach(({
+    value, type, key, label, imageIndex, textContentIndex,
+  }) => {
     if (value) {
       const imageHref = imageLink[imageIndex]?.getAttribute('href') || '';
-      const contactItem = createContactItem(value, type, key, label, imageHref,  textContentIndex !== undefined ? enquiryFirstChild[textContentIndex].textContent : undefined);
+      const contactItem = createContactItem(
+        value,
+        type,
+        key,
+        label,
+        imageHref,
+        textContentIndex !== undefined
+          ? enquiryFirstChild[textContentIndex].textContent : undefined,
+      );
       if (contactItem) contactItems.append(contactItem);
     }
   });
@@ -170,7 +198,7 @@ export default function decorate(block) {
     rightCol2.append(enquirySecondChild[1].cloneNode(true));
   }
 
-  const viewJobCTAName = enquirySecondChild[4]?.cloneNode(true)?.textContent?.trim().replace(/-/g, "").toLowerCase() || "";
+  const viewJobCTAName = enquirySecondChild[4]?.cloneNode(true)?.textContent?.trim().replace(/-/g, '').toLowerCase() || '';
   const northEastArrow = SvgIcon({
     name: viewJobCTAName,
     className: 'contactus-bottom-cta',
@@ -178,34 +206,32 @@ export default function decorate(block) {
     color: 'currentColor',
   });
 
-const targetElement = enquirySecondChild[2];
-const nextTarget = enquirySecondChild[3];
+  const targetElement = enquirySecondChild[2];
+  const nextTarget = enquirySecondChild[3];
 
-if (targetElement) {
-  const anchorElement = targetElement.querySelector('a');
+  if (targetElement) {
+    const anchorElement = targetElement.querySelector('a');
 
-  if (anchorElement) {
-    const nextTargetText = nextTarget?.cloneNode(true)?.textContent.trim();
+    if (anchorElement) {
+      const nextTargetText = nextTarget?.cloneNode(true)?.textContent.trim();
 
-    if (nextTargetText) {
-      anchorElement.target = nextTargetText;
-    } else if (northEastArrow) {
+      if (nextTargetText) {
+        anchorElement.target = nextTargetText;
+      } else if (northEastArrow) {
       // Append SVG only if `northEastArrow` is valid
-      const svgElement = typeof northEastArrow === 'string' ? stringToHtml(northEastArrow) : northEastArrow;
-      if (svgElement) {
-        anchorElement.appendChild(svgElement);
+        const svgElement = typeof northEastArrow === 'string' ? stringToHtml(northEastArrow) : northEastArrow;
+        if (svgElement) {
+          anchorElement.appendChild(svgElement);
+        }
       }
     }
+
+    // Clone and append `targetElement` to `rightCol2`
+    rightCol2.append(targetElement.cloneNode(true));
   }
 
-  // Clone and append `targetElement` to `rightCol2`
-  rightCol2.append(targetElement.cloneNode(true));
-}
-
-
-
   row2.append(rightCol2);
-   if (enquiryChildren[1]) {
+  if (enquiryChildren[1]) {
     enquiryChildren[1].innerHTML = '';
     enquiryChildren[1].append(row2);
     container.append(enquiryChildren[1]);
