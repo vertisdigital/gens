@@ -34,6 +34,20 @@ function createTabStructure(main) {
 }
 
 /**
+ * Gets the initial active tab index based on URL hash
+ * @returns {number} Index of tab to activate
+ */
+function getInitialActiveTab() {
+  const hash = window.location.hash;
+  if (hash === '#rws') {
+    return 0;
+  } else if (hash === '#rws2') {
+    return 1;
+  }
+  return 0; // Default to first tab
+}
+
+/**
  * Creates individual tab elements
  * @param {Element} section The section to create tab from
  * @param {number} index Tab index
@@ -41,6 +55,7 @@ function createTabStructure(main) {
  */
 function createTabElement(section, index) {
   const titleText = section.getAttribute('data-tabtitle');
+  const initialActiveIndex = getInitialActiveTab();
 
   const tabTitle = document.createElement('div');
   tabTitle.textContent = titleText;
@@ -48,7 +63,7 @@ function createTabElement(section, index) {
   tabTitle.setAttribute('role', 'tab');
   tabTitle.setAttribute('data-tab-index', index);
   tabTitle.setAttribute('tabindex', '0');
-  if (index === 0) tabTitle.classList.add('active');
+  if (index === initialActiveIndex) tabTitle.classList.add('active');
 
   const tabPanel = section.cloneNode(true);
   tabPanel.classList.add('tab', 'block', 'tab-panel');
@@ -56,7 +71,7 @@ function createTabElement(section, index) {
   tabPanel.setAttribute('data-block-status', 'loaded');
   tabPanel.setAttribute('role', 'tabpanel');
   tabPanel.setAttribute('data-tab-index', index);
-  tabPanel.classList.toggle('active', index === 0);
+  tabPanel.classList.toggle('active', index === initialActiveIndex);
 
   return { tabTitle, tabPanel };
 }
@@ -90,13 +105,28 @@ function assembleTabStructure({
 }
 
 /**
- * Updates tab states
+ * Scrolls to the tab container smoothly
+ * @param {Element} container The tab container to scroll to
+ */
+function scrollToTabs(container) {
+  const headerOffset = 100; // Adjust this value based on your fixed header height
+  const elementPosition = container.getBoundingClientRect().top;
+  const offsetPosition = elementPosition + window.scrollY - headerOffset;
+
+  window.scrollTo({
+    top: offsetPosition,
+    behavior: 'smooth'
+  });
+}
+
+/**
+ * Updates tab states and handles scrolling
  * @param {Array} tabs Tab elements
  * @param {Array} panels Panel elements
  * @param {number} activeIndex Index to activate
+ * @param {boolean} shouldScroll Whether to scroll to the tabs
  */
-function updateTabStates(tabs, panels, activeIndex) {
-
+function updateTabStates(tabs, panels, activeIndex, shouldScroll = true) {
   // Update tabs
   tabs.forEach((tab) => tab.classList.remove('active'));
   tabs[activeIndex].classList.add('active');
@@ -104,6 +134,14 @@ function updateTabStates(tabs, panels, activeIndex) {
   // Update panels
   panels.forEach((panel) => panel.classList.remove('active'));
   panels[activeIndex].classList.add('active');
+
+  // Scroll to tabs if needed
+  if (shouldScroll) {
+    const container = tabs[0].closest('.tabs-container');
+    if (container) {
+      scrollToTabs(container);
+    }
+  }
 }
 
 /**
@@ -123,12 +161,24 @@ function addTabFunctionality({ tabs, panels, container }) {
     return;
   }
 
+  // Handle URL hash changes
+  window.addEventListener('hashchange', () => {
+    const newIndex = getInitialActiveTab();
+    updateTabStates([...tabNav.children], [...container.querySelector('.tab-wrapper').children], newIndex, true);
+  });
+
+  // Handle initial page load hash after a short delay to ensure DOM is ready
+  setTimeout(() => {
+    const initialIndex = getInitialActiveTab();
+    updateTabStates([...tabNav.children], [...container.querySelector('.tab-wrapper').children], initialIndex, true);
+  }, 8000); // Slightly after the container display timeout
+
   tabNav.addEventListener('click', (e) => {
     const clickedTab = e.target.closest('.tab-title');
     if (!clickedTab) return;
 
     const index = Number(clickedTab.getAttribute('data-tab-index'));
-    updateTabStates([...tabNav.children], [...container.querySelector('.tab-wrapper').children], index);
+    updateTabStates([...tabNav.children], [...container.querySelector('.tab-wrapper').children], index, true);
   });
 }
 
