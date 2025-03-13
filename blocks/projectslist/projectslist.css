@@ -23,7 +23,7 @@ p {
 }
 
 .project-title  {
-    font-size: 25px;
+    font-size: var(--font-size-m);
 }
 
 .project-long-description,
