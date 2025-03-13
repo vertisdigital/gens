@@ -1,7 +1,16 @@
-
+.corporatepolicies-wrapper{
+    padding: 68px 0;
+}
 .corporate-policies-list-item {
     padding: 68px 0;
     border-bottom: 2px solid var(--border-color, #e5e5e5);
+}
+
+.corporate-policies-list>div:first-child{
+    padding-top: 0;
+}
+.corporate-policies-list>div:last-child{
+    padding-bottom: 0;
 }
 
 .corporate-policies-border-bottom .corporate-policies-list>div:last-child {
@@ -37,11 +46,17 @@
     padding: 0;
     margin: 0;
 }
+.corporate-policies-cta-right .corporate-policies-list-item .right-col > div:last-child{
+  text-align: end;
+}
 .corporate-policies-list-item .right-col > div:last-child a > span:last-child {
     line-height: 0;
 }
 
 @media (width <= 992px) {
+    .corporatepolicies-wrapper{
+        padding: 56px 0;
+    }
     .corporate-policies-list-item {
         padding: 48px 0px;
     }
@@ -55,6 +70,9 @@
 }
 
 @media (width < 768px) {
+    .corporatepolicies-wrapper{
+        padding: 32px 0;
+    }
     .corporate-policies-list-item {
         padding: 36px 0px;
     }
