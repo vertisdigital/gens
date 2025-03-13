@@ -171,7 +171,7 @@ function addTabFunctionality({ tabs, panels, container }) {
   setTimeout(() => {
     const initialIndex = getInitialActiveTab();
     updateTabStates([...tabNav.children], [...container.querySelector('.tab-wrapper').children], initialIndex, true);
-  }, 2000); // Slightly after the container display timeout
+  }, 1000); // Slightly after the container display timeout
 
   tabNav.addEventListener('click', (e) => {
     const clickedTab = e.target.closest('.tab-title');
