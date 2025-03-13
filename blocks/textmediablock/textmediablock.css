@@ -3,14 +3,14 @@
     margin: 68px 0;
   }
  
-  [data-block-name="textmediablock"]>div:first-child{
+  .textmediablock-container>div:first-child{
   margin-bottom: 36px
   }
   .text-media-block-heading-variation-nested-1-1 {
-    border-bottom: 2px solid var(--border-color, #e5e5e5);
+    border-bottom: 2px solid var(--neutral-color);
     margin-bottom: 0;
     padding-bottom: 36px;
-    border-bottom: 2px solid var(--border-color, #e5e5e5);
+    border-bottom: 2px solid var(--neutral-color);
     color: var(--text-color);
     font-size:40px;
     font-weight: 500;
@@ -19,10 +19,6 @@
   .textmediablock-wrapper:has(.text-media-block-heading-variation-nested-1-1) {
     margin: 0;    
   }
-  /* .text-media-block-heading-variation-nested-1-1  [data-block-name="textmediablock"]>div:first-child{
-   
-      } */
-
 /* Media styles */
 
  .mediablock {
@@ -69,7 +65,7 @@
   line-height: 50px;
 }
 
-[data-block-name="textmediablock"]>div.textmediablock-title-only-nested-1-1 {
+.textmediablock-container>div.textmediablock-title-only-nested-1-1 {
   margin-bottom: -38px;
 }
 
@@ -78,11 +74,11 @@
   .textmediablock-wrapper{
       margin: 44px 0;
   }
-  [data-block-name="textmediablock"]>div:first-child{
+  .textmediablock-container>div:first-child{
   margin-bottom: 24px
   }
 
-  .text-media-block-heading-variation-nested-1-1  [data-block-name="textmediablock"]>div:first-child{
+  .text-media-block-heading-variation-nested-1-1  .textmediablock-container>div:first-child{
     margin-bottom: 0;
     font-size:32px;
     line-height: 42px;
@@ -100,7 +96,7 @@
     font-weight: 400;
     line-height: 24px;
   }
-  [data-block-name="textmediablock"]>div.textmediablock-title-only-nested-1-1 {
+  .textmediablock-container>div.textmediablock-title-only-nested-1-1 {
     margin-bottom: -20px;
   }
 } 
@@ -109,10 +105,10 @@
     margin: 24px 0;
   }
 
-  [data-block-name="textmediablock"]>div:first-child{
+  .textmediablock-container>div:first-child{
   margin-bottom: 18px
 }
-.text-media-block-heading-variation-nested-1-1  [data-block-name="textmediablock"]>div:first-child{
+.text-media-block-heading-variation-nested-1-1  .textmediablock-container>div:first-child{
   margin-bottom: 0;
   font-size:28px;
   line-height: 32px;
@@ -133,7 +129,7 @@
     font-size: var(--font-size-xxs);
     line-height: 20px;
   }
-  [data-block-name="textmediablock"]>div.textmediablock-title-only-nested-1-1 {
+  .textmediablock-container>div.textmediablock-title-only-nested-1-1 {
     margin-bottom: -4px;
   }
 
