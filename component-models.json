@@ -7,7 +7,7 @@
         "valueType": "string",
         "name": "image",
         "label": "image",
-        "configUrl": "https://corporate-policies--genting--wppopen.aem.live/tools/assets-selector/config.json",
+        "configUrl": "https://sprint-2--genting--wppopen.aem.live/tools/assets-selector/config.json",
         "multi": false,
         "validation": {
           "rootPath": "/content/dam/genting-singapore"
@@ -182,7 +182,7 @@
         "valueType": "string",
         "name": "image",
         "label": "Image",
-        "configUrl": "https://corporate-policies--genting--wppopen.aem.live/tools/assets-selector/config.json",
+        "configUrl": "https://sprint-2--genting--wppopen.aem.live/tools/assets-selector/config.json",
         "multi": false
       },
       {
@@ -231,7 +231,7 @@
         "valueType": "string",
         "name": "bannerimage",
         "label": "Banner Image",
-        "configUrl": "https://corporate-policies--genting--wppopen.aem.live/tools/assets-selector/config.json",
+        "configUrl": "https://sprint-2--genting--wppopen.aem.live/tools/assets-selector/config.json",
         "multi": false,
         "validation": {
           "rootPath": "/content/dam/genting-singapore"
@@ -321,7 +321,7 @@
         "component": "custom-asset-namespace:custom-asset",
         "name": "image",
         "label": "Carousel Image",
-        "configUrl": "https://corporate-policies--genting--wppopen.aem.live/tools/assets-selector/config.json",
+        "configUrl": "https://sprint-2--genting--wppopen.aem.live/tools/assets-selector/config.json",
         "valueType": "string",
         "validation": {
           "rootPath": "/content/dam/genting-singapore"
@@ -416,7 +416,7 @@
         "valueType": "string",
         "name": "feature-icon",
         "label": "Icon",
-        "configUrl": "https://corporate-policies--genting--wppopen.aem.live/tools/assets-selector/config.json",
+        "configUrl": "https://sprint-2--genting--wppopen.aem.live/tools/assets-selector/config.json",
         "multi": false
       },
       {
@@ -591,7 +591,7 @@
         "valueType": "string",
         "name": "linkImage",
         "label": "Link Image",
-        "configUrl": "https://corporate-policies--genting--wppopen.aem.live/tools/assets-selector/config.json",
+        "configUrl": "https://sprint-2--genting--wppopen.aem.live/tools/assets-selector/config.json",
         "multi": false
       },
       {
@@ -655,7 +655,7 @@
         "component": "custom-asset-namespace:custom-asset",
         "name": "image",
         "label": "Background Image",
-        "configUrl": "https://corporate-policies--genting--wppopen.aem.live/tools/assets-selector/config.json",
+        "configUrl": "https://sprint-2--genting--wppopen.aem.live/tools/assets-selector/config.json",
         "multi": false,
         "title": "Image",
         "validation": {
@@ -775,7 +775,7 @@
         "component": "custom-asset-namespace:custom-asset",
         "name": "image",
         "label": "Project Image",
-        "configUrl": "https://corporate-policies--genting--wppopen.aem.live/tools/assets-selector/config.json",
+        "configUrl": "https://sprint-2--genting--wppopen.aem.live/tools/assets-selector/config.json",
         "multi": false,
         "validation": {
           "rootPath": "/content/dam/genting-singapore"
@@ -871,7 +871,7 @@
         "component": "custom-asset-namespace:custom-asset",
         "name": "phoneIcon",
         "label": "Phone Icon",
-        "configUrl": "https://corporate-policies--genting--wppopen.aem.live/tools/assets-selector/config.json",
+        "configUrl": "https://sprint-2--genting--wppopen.aem.live/tools/assets-selector/config.json",
         "multi": false
       },
       {
@@ -914,7 +914,7 @@
             "component": "custom-asset-namespace:custom-asset",
             "name": "emailIcon1",
             "label": "Email Icon",
-            "configUrl": "https://corporate-policies--genting--wppopen.aem.live/tools/assets-selector/config.json",
+            "configUrl": "https://sprint-2--genting--wppopen.aem.live/tools/assets-selector/config.json",
             "multi": false
           },
           {
@@ -954,7 +954,7 @@
             "component": "custom-asset-namespace:custom-asset",
             "name": "emailIcon2",
             "label": "Email Icon",
-            "configUrl": "https://corporate-policies--genting--wppopen.aem.live/tools/assets-selector/config.json",
+            "configUrl": "https://sprint-2--genting--wppopen.aem.live/tools/assets-selector/config.json",
             "multi": false
           },
           {
@@ -994,7 +994,7 @@
             "component": "custom-asset-namespace:custom-asset",
             "name": "emailIcon3",
             "label": "Email Icon",
-            "configUrl": "https://corporate-policies--genting--wppopen.aem.live/tools/assets-selector/config.json",
+            "configUrl": "https://sprint-2--genting--wppopen.aem.live/tools/assets-selector/config.json",
             "multi": false
           },
           {
@@ -1024,7 +1024,7 @@
         "component": "custom-asset-namespace:custom-asset",
         "name": "addressIcon",
         "label": "Address Icon",
-        "configUrl": "https://corporate-policies--genting--wppopen.aem.live/tools/assets-selector/config.json",
+        "configUrl": "https://sprint-2--genting--wppopen.aem.live/tools/assets-selector/config.json",
         "multi": false
       },
       {
@@ -1143,7 +1143,7 @@
         "component": "custom-asset-namespace:custom-asset",
         "name": "image",
         "label": "Image",
-        "configUrl": "https://corporate-policies--genting--wppopen.aem.live/tools/assets-selector/config.json",
+        "configUrl": "https://sprint-2--genting--wppopen.aem.live/tools/assets-selector/config.json",
         "multi": false
       },
       {
@@ -1157,7 +1157,7 @@
         "label": "File Path",
         "name": "filepath",
         "valueType": "string",
-        "configUrl": "https://corporate-policies--genting--wppopen.aem.live/tools/assets-selector/config.json",
+        "configUrl": "https://sprint-2--genting--wppopen.aem.live/tools/assets-selector/config.json",
         "multi": false,
         "condition": {
           "===": [
@@ -1223,7 +1223,7 @@
         "component": "custom-asset-namespace:custom-asset",
         "name": "image",
         "label": "Image",
-        "configUrl": "https://corporate-policies--genting--wppopen.aem.live/tools/assets-selector/config.json",
+        "configUrl": "https://sprint-2--genting--wppopen.aem.live/tools/assets-selector/config.json",
         "multi": false
       },
       {
@@ -1334,7 +1334,7 @@
         "component": "custom-asset-namespace:custom-asset",
         "name": "image",
         "label": "Image",
-        "configUrl": "https://corporate-policies--genting--wppopen.aem.live/tools/assets-selector/config.json"
+        "configUrl": "https://sprint-2--genting--wppopen.aem.live/tools/assets-selector/config.json"
       },
       {
         "component": "text",
@@ -1388,7 +1388,7 @@
         "component": "custom-asset-namespace:custom-asset",
         "name": "image",
         "label": "Image",
-        "configUrl": "https://corporate-policies--genting--wppopen.aem.live/tools/assets-selector/config.json",
+        "configUrl": "https://sprint-2--genting--wppopen.aem.live/tools/assets-selector/config.json",
         "multi": false
       },
       {
@@ -1561,7 +1561,7 @@
         "component": "custom-asset-namespace:custom-asset",
         "name": "awardimage",
         "label": "Award Image",
-        "configUrl": "https://corporate-policies--genting--wppopen.aem.live/tools/assets-selector/config.json",
+        "configUrl": "https://sprint-2--genting--wppopen.aem.live/tools/assets-selector/config.json",
         "multi": false,
         "validation": {
           "rootPath": "/content/dam/genting-singapore"
@@ -1634,7 +1634,7 @@
         "component": "custom-asset-namespace:custom-asset",
         "name": "image",
         "label": "Image",
-        "configUrl": "https://corporate-policies--genting--wppopen.aem.live/tools/assets-selector/config.json",
+        "configUrl": "https://sprint-2--genting--wppopen.aem.live/tools/assets-selector/config.json",
         "multi": false
       },
       {
@@ -1833,7 +1833,7 @@
         "component": "custom-asset-namespace:custom-asset",
         "name": "image",
         "label": "Image",
-        "configUrl": "https://corporate-policies--genting--wppopen.aem.live/tools/assets-selector/config.json",
+        "configUrl": "https://sprint-2--genting--wppopen.aem.live/tools/assets-selector/config.json",
         "multi": false,
         "validation": {
           "required": true,
