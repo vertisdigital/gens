@@ -1735,8 +1735,8 @@
         "name": "description",
         "label": "Policy Description",
         "validation": {
-          "maxLength": 500,
-          "customErrorMsg": "Description cannot exceed 500 characters"
+          "maxLength": 2000,
+          "customErrorMsg": "Description cannot exceed 2000 characters"
         }
       },
       {
