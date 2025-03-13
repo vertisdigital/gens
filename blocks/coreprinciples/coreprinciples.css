@@ -88,7 +88,7 @@
 }
 @media (width <= 1199px) {
     .coreprinciples .coreprinciples::after {
-        width: calc(100% - 110px);
+        width: calc(100% - 86px);
     }
 }
 @media (width <= 992px) {
@@ -122,6 +122,16 @@
 
     .coreprinciples .coreprinciples::after {
         transform: translateY(56px);
+    }
+
+    .row .principles-item:nth-child(1), .row .principles-item:nth-child(3){
+        margin-left: -12px;
+    }
+
+    .row .principles-item:nth-child(2) {
+        margin-left: 12px;
+        padding-right: 0;
+        padding-left: 24px;
     }
 }
 @media (width < 768px) {
@@ -171,6 +181,16 @@
     
     .principles-item > div{
         padding: 12px;
+    }
+
+    .row .principles-item:nth-child(1), .row .principles-item:nth-child(3){
+        margin-left: 0px;
+    }
+
+    .row .principles-item:nth-child(2) {
+        margin-left: 0px;
+        padding-right: 0;
+        padding-left: 0px;
     }
 }
 
