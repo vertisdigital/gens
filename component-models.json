@@ -1322,6 +1322,10 @@
           {
             "name": "Text Media Block Title Only",
             "value": "textmediablock-title-only"
+          },
+          {
+            "name": "Text Media Block Heading Variation",
+            "value": "text-media-block-heading-variation"
           }
         ]
       }
