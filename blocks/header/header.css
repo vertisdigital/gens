@@ -833,7 +833,7 @@ content: '🡢';
   background: none;
   text-decoration: none;
   color: var(--text-color);
-  font-size: 24px;
+  font-size: var(--font-size-xs);
   font-weight: 400;
   line-height: 30px;
   padding: 0;
@@ -997,7 +997,7 @@ content: '🡢';
   }
 
   .header-inner-wrapper .secondary-nav .secondary-header .secondary-header-wrapper a {
-    font-size: var(--font-size-l);
+    font-size: 1.125rem;
     line-height: 28px;
     margin-bottom: 36px;
   }
@@ -1049,7 +1049,7 @@ content: '🡢';
 }
 
 .header-inner-wrapper .secondary-nav .secondary-header .secondary-header-wrapper a {
-  font-size: var(--font-size-m);
+  font-size: 1.125rem;
   line-height: 26px;
   margin-bottom: 28px;
 }
