@@ -63,7 +63,7 @@
   }
 
   [data-aue-model="listitem"] .row [class*="col-"], [data-gen-model="listitem"] .row [class*="col-"] {
-    padding: 36px 0;
+    padding: 36px 0 30px;
   }
 
   [data-aue-model="listitem"] .row > div:first-child p, [data-gen-model="listitem"] .row > div:first-child p{

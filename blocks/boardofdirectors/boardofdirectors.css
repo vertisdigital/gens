@@ -56,7 +56,6 @@
 .boardofdirectors .director-card img {
     width: 100%;
     aspect-ratio: 1;
-    object-fit: cover;
     display: block;
     margin-bottom: 8px;
     height: 206px;
