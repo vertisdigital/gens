@@ -1472,11 +1472,6 @@
       },
       {
         "component": "text",
-        "name": "heading",
-        "label": "Heading"
-      },
-      {
-        "component": "text",
         "valueType": "number",
         "name": "year",
         "label": "Year",
