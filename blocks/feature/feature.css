@@ -4,7 +4,7 @@
   display: flex;
   margin: auto;
   margin-bottom: 18px;
-  padding: 36px 0 18px;
+  padding: 36px 0 9px;
 }
 
 .feature-wrapper .about-us-stats:not(:last-child) {
@@ -288,7 +288,7 @@ color: var(--body-text-color);
 
 @media  (width >= 1024px) {
   .feature-wrapper .about-us-stats {
-    padding: 68px 0;
+    padding: 68px 0 34px;
   }
 
   .about-us-stats .about-us-left{

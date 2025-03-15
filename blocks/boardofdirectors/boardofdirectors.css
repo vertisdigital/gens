@@ -150,3 +150,9 @@
         margin-bottom: 37px;
     }
 }
+
+@media (width >= 1600px) {
+    .boardofdirectors .director-card img {
+        height: 306px;
+    }
+}
