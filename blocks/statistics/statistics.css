@@ -33,6 +33,7 @@
     line-height: 24px;
     color: var(--body-text-color);
     border-bottom: 1px solid var(--text-color);
+    padding-bottom: 20px;
     margin-bottom: 50px;
 }
 
@@ -48,7 +49,6 @@
     text-decoration-line: underline;
     color: var(--primary-gold);
     margin-left: auto;
-    margin-bottom: 20px;
     background: none;
 }
 
