@@ -182,7 +182,8 @@ function addTabFunctionality({ tabs, panels, container }) {
   // Handle initial page load hash after a short delay to ensure DOM is ready
   setTimeout(() => {
     const initialIndex = getInitialActiveTab();
-    updateTabStates([...tabNav.children], [...container.querySelector('.tab-wrapper').children], initialIndex, true);
+    const isScroll = window.location.hash !== '';
+    updateTabStates([...tabNav.children], [...container.querySelector('.tab-wrapper').children], initialIndex, isScroll);
   }, 1000); // Slightly after the container display timeout
 
   tabNav.addEventListener('click', (e) => {
