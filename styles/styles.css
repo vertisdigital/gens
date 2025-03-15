@@ -119,12 +119,9 @@ body {
   display: none;
 }
 
-body.appear {
-  display: block;
-}
-
 header {
   height: var(--nav-height);
+  display: none;
 }
 
 header .header,
@@ -135,6 +132,14 @@ footer .footer {
 header .header[data-block-status="loaded"],
 footer .footer[data-block-status="loaded"] {
   visibility: visible;
+}
+
+body.appear {
+  display: block;
+}
+
+body.appear header {
+  display: block;
 }
 
 h1,
