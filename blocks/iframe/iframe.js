@@ -56,6 +56,11 @@ function updateIframeHeight(iframeWrapper, endpoint) {
       tablet: '1110px',
       desktop: '1060px',
     },
+    'share-quote-and-chart': {
+       mobile: '3500px',
+      tablet: '1900px',
+      desktop: '1850px',
+    },
     email_alerts: {
       mobile: '770px',
       tablet: '660px',
