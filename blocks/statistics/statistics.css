@@ -48,6 +48,7 @@
     text-decoration-line: underline;
     color: var(--primary-gold);
     margin-left: auto;
+    margin-bottom: 20px;
     background: none;
 }
 
