@@ -66,7 +66,7 @@
     padding: 36px 0 30px;
   }
 
-  [data-aue-model="listitem"] .row > div:first-child p, [data-gen-model="listitem"] .row > div:first-child p{
+  .listing:not(.without-images) [data-gen-model="listitem"] .row > div:first-child p {
     padding: 0;
     margin: 0;
     line-height: 0;
@@ -96,7 +96,7 @@
     color: var(--text-color);
   }
 
-  [data-aue-model="listitem"] .row [class*="col-"]:nth-child(2) a, [data-gen-model="listitem"] .row [class*="col-"]:nth-child(2) a {
+  .arrow-link-wrapper {
     width: 24px;
     height: 24px;
     position: absolute;
@@ -106,7 +106,7 @@
     color: var(--primary-gold);
   }
 
-  [data-aue-model="listitem"] .row [class*="col-"]:nth-child(2) a span, [data-gen-model="listitem"] .row [class*="col-"]:nth-child(2) a span {
+  .arrow-link-wrapper a span {
     width: 100%;
     height: 100%;
     padding: 0;
@@ -114,7 +114,7 @@
 
   }
 
-  [data-aue-model="listitem"] .row [class*="col-"]:nth-child(2) a span svg, [data-gen-model="listitem"] .row [class*="col-"]:nth-child(2) a span svg{
+  .arrow-link-wrapper span svg{
     color: var(--primary-gold);
   }
 
@@ -244,8 +244,12 @@
 }
 
 .listing-wrapper {
-  padding: 32px 0;
   position: relative;
+}
+
+.listing-wrapper .container:not(.without-images) {
+  padding-top: 32px;
+  padding-bottom: 32px;
 }
 
 .listing.grey-background {
@@ -298,8 +302,9 @@
 }
 
 @media (width >= 768px) {
-  .listing-wrapper {
-    padding: 40px 0 20px;
+  .listing-wrapper .container:not(.without-images) {
+    padding-top: 40px;
+    padding-bottom: 20px;
   }
 
   .listing-wrapper .listing [data-aue-prop="title"], .listing-wrapper .listing [data-gen-prop="title"] {
@@ -326,9 +331,10 @@
   }
 }
 
-@media (width >= 1024px) {
-  .listing-wrapper {
-    padding: 80px 0 60px;
+@media (width >= 993px) {
+  .listing-wrapper .container:not(.without-images) {
+    padding-top: 80px; 
+    padding-bottom: 60px;
   }
 
   .listing-wrapper .listing [data-aue-prop="title"], .listing-wrapper .listing [data-gen-prop="title"] {
@@ -353,14 +359,14 @@
   padding-bottom: 40px;
 }
 
-.content-wrapper .arrow-link-wrapper {
+/* .content-wrapper .arrow-link-wrapper {
   position: absolute;
   bottom: 0;
   right: 0;
   display: flex;
   align-items: center;
   text-decoration: none;
-}
+} */
 
 .content-wrapper .left-arrow-icon {
   fill: currentcolor;

@@ -32,10 +32,6 @@
     align-items: center;
 }
 
-.principles-item, .principles-item:first-child, .principles-item:last-child {
-    padding: 0 18px;
-}
-
 .principles-item > div {
     background-color: #f7f7f7;
     padding: 16px;

@@ -56,7 +56,8 @@ Usage Example:
   --soft-ivory: #F5E7C4;
   --whisper-gray: #F7F7F7;
   --soft-ivory-blue: #FBF6E9;
-  --neutral-color: #9E9E9E;
+  --neutral-color:#9E9E9E;
+
 
   /* fonts */
   --body-font-family: 'DM Sans', sans-serif;
@@ -74,10 +75,6 @@ Usage Example:
   --font-size-xl: 2.5rem;
   --font-size-xxl: 3.75rem;
   --font-size-xxxl: 5rem;
-
-  /* New additions */
-  --font-size-xxl-s: 3rem;
-  --font-size-xxl-m: 4rem;
 
   /* nav height */
   --nav-height: 50px;
@@ -121,10 +118,6 @@ body {
 
 body.appear {
   display: block;
-}
-
-header {
-  height: var(--nav-height);
 }
 
 header .header,

@@ -8,6 +8,9 @@ export default function decorate(block) {
 
   // Process list items
   const listItems = block.querySelectorAll('[data-aue-model="listitem"], [data-gen-model="listitem"]');
+  const isListingWithoutImage = block.classList.contains('without-images');
+
+  
   listItems.forEach((item) => {
     // Create row from styles.css
     const row = document.createElement('div');
@@ -41,7 +44,7 @@ export default function decorate(block) {
 
     // Process image
     const imgContainer = item.querySelector('div:first-child');
-    if (imgContainer) {
+    if (imgContainer && !isListingWithoutImage) {
       imgContainer.classList.add('col-xl-4', 'col-md-2', 'col-sm-4');
 
       const imgAnchor = imgContainer.querySelector('a');
@@ -88,7 +91,12 @@ export default function decorate(block) {
 
     // Create single wrapper for content
     const contentWrapper = document.createElement('div');
-    contentWrapper.classList.add('col-xl-8', 'col-md-4', 'col-sm-4', 'content-wrapper');
+
+    if(isListingWithoutImage) {
+      contentWrapper.classList.add('col-xl-12', 'col-md-6', 'col-sm-4', 'content-wrapper');
+    } else {
+      contentWrapper.classList.add('col-xl-8', 'col-md-4', 'col-sm-4', 'content-wrapper');
+    }
 
     // Add content elements to wrapper
     if (title) {

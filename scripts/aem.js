@@ -505,6 +505,7 @@ function decorateAEMStructure(element) {
   const hasPicture = element.querySelector('div > picture') || element.children[0]?.tagName === 'DIV';
   const divElements = [...element.children].filter((el) => el.tagName === 'DIV');
   const isProjectList = element.classList[0].indexOf('projectslist') === 0;
+  const isListing = element.classList[0].indexOf('listing') === 0;
   const isSpecialComponent = ['projectcards', 'coreprinciples', 'herobanner']
     .some(component => element.classList[0]?.indexOf(component) === 0);
   
@@ -519,7 +520,7 @@ function decorateAEMStructure(element) {
   const hasListStructure = divElements.length >= 5;
 
   // Add AEM attributes based on structure type
-  if (hasListStructure && divElements[0].querySelector('a') && !isProjectList) {
+  if (hasListStructure && isListing && !isProjectList) {
     // Add listitem attributes to container
     element.setAttribute('data-gen-model', 'listitem');
 

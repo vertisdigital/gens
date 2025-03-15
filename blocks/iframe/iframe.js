@@ -94,6 +94,7 @@ function updateIframeHeight(iframeWrapper, endpoint) {
 
 export default function decorate(block) {
   const link = block.querySelector('a');
+  link.remove();
 
   const iframe = document.createElement('iframe');
   const url = link.href;
