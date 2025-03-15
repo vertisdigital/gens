@@ -1,5 +1,5 @@
 .coreprinciples {
-    padding: 136px 0;
+    padding: 68px 0;
 }
 
 .coreprinciples .coreprinciples {
@@ -14,7 +14,7 @@
     max-width: 1165px;
     background: var(--text-color);
     margin: 0 auto;
-    transform: translateY(136px);
+    transform: translateY(68px);
 }
 
 .coreprinciples .row {
@@ -117,11 +117,11 @@
     }
 
     .coreprinciples {
-        padding: 56px 0;
+        padding: 28px 0;
     }
 
     .coreprinciples .coreprinciples::after {
-        transform: translateY(56px);
+        transform: translateY(28px);
     }
 
     .row .principles-item:nth-child(1), .row .principles-item:nth-child(3){
