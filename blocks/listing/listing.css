@@ -66,7 +66,7 @@
     padding: 36px 0 30px;
   }
 
-  [data-aue-model="listitem"] .row > div:first-child p, [data-gen-model="listitem"] .row > div:first-child p{
+  .listing:not(.without-images) [data-gen-model="listitem"] .row > div:first-child p {
     padding: 0;
     margin: 0;
     line-height: 0;
