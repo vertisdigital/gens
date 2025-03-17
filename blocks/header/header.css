@@ -909,6 +909,9 @@ content: '🡢';
 .header-inner-wrapper .header-nav .logo-wrapper{
   max-width: 140px;
   max-height: 42px;
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
 }
 
   .header-inner-wrapper .header-nav .hamburger{
@@ -1030,7 +1033,7 @@ content: '🡢';
   }
 
   .header-inner-wrapper .header-nav .logo-wrapper{
-    max-width: 114px;
+    max-width: 124px;
     max-height: 34px;
   }
 
