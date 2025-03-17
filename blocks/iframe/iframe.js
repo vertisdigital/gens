@@ -66,6 +66,21 @@ function updateIframeHeight(iframeWrapper, endpoint) {
       tablet: '660px',
       desktop: '600px',
     },
+    "Historic Price Lookup":{
+      mobile: '1850px',
+      desktop: '1220px',
+    },
+    "Investment Calculator":{
+      mobile: '1100px',
+      desktop: '860px',
+      tablet: '960px',
+      disableScroll:true
+    },
+    "Share Quote And Chart":{
+      desktop: '1860px',
+      tablet:"3240px",
+      mobile:"3540px"
+    },
     default: {
       mobile: '1850px',
       desktop: '1220px',
@@ -90,6 +105,24 @@ function updateIframeHeight(iframeWrapper, endpoint) {
   } else {
     setElementHeight(iframeWrapper, endpointHeightConfig.default);
   }
+
+  if(endpointHeightConfig[endpoint]?.disableScroll){
+    const iframe=iframeWrapper.querySelector('iframe')
+    iframe.setAttribute('scrolling','no')
+  }
+}
+
+function getTabsEvent(){
+  const tabs = document.querySelectorAll('.tab-title');
+  const iframeWrappers = document.querySelectorAll('.iframe-wrapper');
+  const SHARE_QUOTE_IFRAME=0;
+  updateIframeHeight(iframeWrappers[SHARE_QUOTE_IFRAME],`${tabs[SHARE_QUOTE_IFRAME].innerHTML}`)
+  
+  tabs.forEach((tab, index) => {
+    tab.addEventListener('click', () => {
+      updateIframeHeight(iframeWrappers[index],`${tabs[index].innerHTML}`)
+    });
+  });
 }
 
 export default function decorate(block) {
@@ -119,11 +152,13 @@ export default function decorate(block) {
   const iframeWrapper = document.querySelector('.iframe-wrapper');
 
   const endpoint = new window.URL(url).pathname.replace('/', '').replace('.rev', '');
-
   updateIframeHeight(iframeWrapper, endpoint);
+  getTabsEvent();
   window.addEventListener('resize', () => {
     updateIframeHeight(iframeWrapper, endpoint);
+    getTabsEvent();
   });
+
 
   block.appendChild(iframe);
 }
