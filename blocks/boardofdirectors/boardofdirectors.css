@@ -148,11 +148,26 @@
     .boardofdirectors .segment-wrapper {
         margin-bottom: 37px;
     }
-}
 
-@media (width >= 1600px) {
+    .boardofdirectors .segment-wrapper .wrapper>div:first-child {
+        padding-left: 18px;
+    }
+
+    .boardofdirectors .segment-wrapper .wrapper>div:last-child {
+        padding-right: 18px;
+    }
+
+    .boardofdirectors .segment-wrapper .wrapper{
+        margin-left: -18px;
+        margin-right: -18px;
+    }
+
+    .boardofdirectors .director-card {
+        height: auto;
+    }
+
     .boardofdirectors .director-card img {
-        height: 306px;
-        object-fit: cover;
+        aspect-ratio: unset;
+        height: auto;
     }
 }
