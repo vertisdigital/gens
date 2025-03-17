@@ -153,10 +153,16 @@ export default function decorate(block) {
 
   const endpoint = new window.URL(url).pathname.replace('/', '').replace('.rev', '');
   updateIframeHeight(iframeWrapper, endpoint);
+  if(window.location.pathname.includes('stock-information')){
   getTabsEvent();
+    
+}
   window.addEventListener('resize', () => {
     updateIframeHeight(iframeWrapper, endpoint);
-    getTabsEvent();
+    if(window.location.pathname.includes('stock-information')){
+  getTabsEvent();
+    
+}
   });
 
 
