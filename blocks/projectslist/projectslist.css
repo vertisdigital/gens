@@ -68,6 +68,10 @@ p {
         font-size: var(--font-size-xxs);
         line-height: 20px;
     }
+    .project-image {
+        padding-top: 18px;
+        width: 100%;
+    }
 }
 
 @media (width <= 426px) {
@@ -76,12 +80,6 @@ p {
         padding-top: 15px;
         padding-bottom: 20px;
     }
-
-    .project-image {
-        padding-top: 15px;
-        width: 100%;
-    }
-
     .left-col {
         padding: 0;
     }
