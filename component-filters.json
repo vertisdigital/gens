@@ -94,7 +94,8 @@
     "components": [
       "featureItem",
       "linkField",
-      "indices"
+      "indices",
+      "loadmore"
     ]
   },
   {
