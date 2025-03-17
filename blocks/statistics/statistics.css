@@ -1,8 +1,12 @@
 .statistics .statistics-row {
-    padding-bottom: 50px;
+    padding-bottom: 25px;
     row-gap: 36px;
     margin-left: -18px;
     margin-right: -18px;
+}
+
+.statistics.statistics-financial-variation .statistics-row {
+    row-gap: 48px;
 }
 
 .statistics .statistics-row:not(:last-child) {
@@ -24,12 +28,12 @@
 }
 
 .statistics-description-wrapper {
-    font-size: 16px;
+    font-size: var(--font-size-xs);
     font-weight: 400;
     line-height: 24px;
     color: var(--body-text-color);
-    padding: 50px 0;
     border-bottom: 1px solid var(--text-color);
+    padding-bottom: 20px;
     margin-bottom: 50px;
 }
 
@@ -39,7 +43,7 @@
 
 .statistics-container button {
     display: block;
-    font-size: 16px;
+    font-size: var(--font-size-xs);
     font-weight: 700;
     line-height: 24px;
     text-decoration-line: underline;
@@ -53,14 +57,14 @@
 }
 
 .statistics .statistics-description-wrapper h3 {
-    font-size: 40px;
+    font-size: var(--font-size-xl);
     font-weight: 500;
     line-height: 50px;
     color: var(--text-color);
 }
 
 .statistics .statistic-item {
-    font-size: 80px;
+    font-size: var(--font-size-xxxl);
     font-weight: 400;
     line-height: 80px;
     color: var(--primary-gold);
@@ -71,7 +75,7 @@
 }
 
 .statistics .text-container {
-    font-size: 16px;
+    font-size: var(--font-size-xs);
     font-weight: 400;
     line-height: 24px;
     color: var(--body-text-color);
@@ -82,16 +86,29 @@
     position: relative;
 }
 
+
 .statistics-wrapper .statistics.block.statistics-variation{
     margin-top: 0;
     position: static;
+}
+
+.statistics-wrapper .statistics.statistics-financial-variation.block {
+    margin-top: 0;
+}
+
+.statistics-wrapper .statistics.statistics-financial-variation.block .statistics-row>div:first-child{
+    width: 100% ;
+    font-size: var(--font-size-m);
+    font-weight: 400;
+    line-height:40px;
+    color: var(--text-color);
 }
 
 .statistics-wrapper .statistics.block::before {
     content: '';
     background: var(--background-color);
     position: absolute;
-    inset: -80px 0 0;
+    inset: -70px 0 0;
     width: 100%;
     max-width: 1280px;
     margin: 0 auto;
@@ -108,17 +125,25 @@
 
 .statistics .statistics-title {
     color: var(--text-color);
-    margin-bottom: 64px;
-    font-size: 40px;
+    margin-bottom: 20px;
+    font-size: var(--font-size-xl);
     font-style: normal;
     font-weight: 500;
-    line-height: 50px; /* 121.429% */
+    line-height: 50px; 
     letter-spacing: -0.5px;
+}
+
+.statistics.statistics-financial-variation .statistics-title {
+    padding-bottom: 48px;
+    margin-bottom: 48px;
+    border-bottom: 2px solid var(--neutral-color);
 }
 
 .statistics.block.statistics-variation .statistics-title {
     margin-bottom: 12px;
 }
+
+ 
 
 @media (width <= 1280px) {
     .statistics-wrapper .statistics.block::before {
@@ -138,10 +163,14 @@
         margin-top: 0;
     }
 
+    .statistics-wrapper .statistics.statistics-financial-variation.block {
+        margin-top: 0;
+    }
+
     .statistics-title{
         margin-bottom: 24px;
-        font-size: 32px;
-        line-height: 42px; /* 121.429% */
+        font-size: var(--font-size-l);
+        line-height: 42px; 
     }
 
     .statistics.block.statistics-variation .statistics-title {
@@ -162,8 +191,18 @@
 }
 
 @media (width<=992px) {
+    .statistics-description-wrapper {
+        padding: 40px 0;
+         margin-bottom: 40px;
+
+    }
+    
+    .statistics .statistics-description-wrapper h3, .statistics .statistics-title {
+        font-size: var(--font-size-l);
+    }
+
     .statistics .statistic-item {
-        font-size: 64px;
+        font-size: var(--font-size-xxl-m);
         line-height: 64px;
     }
 
@@ -173,18 +212,46 @@
         margin-right: -12px;
     }
 
+    .statistics.statistics-financial-variation .statistics-row {
+        row-gap: 36px;
+    }
+
+    .statistics.statistics-financial-variation .statistics-title {
+        padding-bottom: 40px;
+        margin-bottom: 40px;
+    }
+
     .statistics .statistics-row .feature-item {
         padding-left: 12px;
         padding-right: 12px;
     }
+
+    .statistics-wrapper .statistics.statistics-financial-variation.block .statistics-row>div:first-child{
+        font-size:var(--font-size-s);
+        line-height:32px;
+    }
 }
 
 @media (width<768px) {
+    .statistics-description-wrapper {
+        padding: 28px 0;
+        margin-bottom: 28px;
+    }
+
+    .statistics .statistics-description-wrapper h3 {
+        font-size: var(--font-size-m);
+    }
+
     .statistics .statistics-row {
         row-gap: 18px;
         margin-left: 0;
         margin-right: 0;
     }
+
+    .statistics.statistics-financial-variation .statistics-row {
+        row-gap: 28px;
+    }
+    
 
     .statistics .statistics-row .feature-item {
         padding-left: 0;
@@ -192,7 +259,7 @@
     }
 
     .statistics .statistic-item {
-        font-size: 48px;
+        font-size: var(--font-size-xxl-s);
         line-height: 48px;
     }
 
@@ -204,17 +271,29 @@
         margin-top: 0;
     }
 
-    .statistics-wrapper .statistics.block::before {
-        left: 10px;
-        right: 10px;
+    .statistics-wrapper .statistics.statistics-financial-variation.block {
+        margin-top: 0;
     }
 
     .statistics .statistics-title{
         margin-bottom: 24px;
+        font-size: var(--font-size-m);;
+        line-height: 34px; 
+    }
 
-        /* Headings/H2 */
-        font-size: 28px;
-        line-height: 34px; /* 121.429% */
+    .statistics.statistics-financial-variation .statistics-title {
+        padding-bottom: 32px;
+        margin-bottom: 32px;
+    }
+
+    .statistics-wrapper .statistics.statistics-financial-variation.block .statistics-row>div:first-child{
+        font-size: var(--font-size-s);
+        line-height:28px;
+    }
+
+    .statistics-wrapper .statistics.block::before {
+        left: 10px;
+        right: 10px;
     }
 
     .statistics.block.statistics-variation .statistics-title {
@@ -222,3 +301,12 @@
     }
     
 }
+@media (width>=1200px) {
+    .statistics-wrapper .statistics.block::before {
+        max-width: none;
+        width: auto;
+        left: 100px;
+        right: 100px;
+    }
+}
+

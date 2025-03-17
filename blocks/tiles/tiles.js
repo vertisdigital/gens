@@ -44,6 +44,7 @@ export default function decorate(block) {
       // Handle CTA link
       const childrens = tile.children;
       const buttonContainer = childrens[5].querySelector('a');
+      childrens[3].textContent = '';
 
       const ctaCaption = childrens[6];
       if (buttonContainer && buttonContainer.textContent.trim() !== '' && ctaCaption !== null) {
@@ -73,8 +74,6 @@ export default function decorate(block) {
         size: '14',
         color: '',
       });
-
-      childrens[3].textContent = '';
 
       if (buttonContainer && buttonContainer.textContent.trim() !== '' && ctaCaption !== null) {
         const ctaLink = document.createElement('a');

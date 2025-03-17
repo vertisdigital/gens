@@ -74,6 +74,10 @@
         padding: 0 18px;
     }
 
+    .awardsgallery .awardsgallery-image img {
+        max-width: 250px;
+    }
+
     .awardsgallery .awardsgallery-image {
         margin-bottom: 20px;
         height: 350px;

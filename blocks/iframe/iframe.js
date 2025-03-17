@@ -56,10 +56,30 @@ function updateIframeHeight(iframeWrapper, endpoint) {
       tablet: '1110px',
       desktop: '1060px',
     },
+    'share-quote-and-chart': {
+       mobile: '3500px',
+      tablet: '1900px',
+      desktop: '1850px',
+    },
     email_alerts: {
       mobile: '770px',
       tablet: '660px',
       desktop: '600px',
+    },
+    "Historic Price Lookup":{
+      mobile: '1850px',
+      desktop: '1220px',
+    },
+    "Investment Calculator":{
+      mobile: '1100px',
+      desktop: '860px',
+      tablet: '960px',
+      disableScroll:true
+    },
+    "Share Quote And Chart":{
+      desktop: '1860px',
+      tablet:"3240px",
+      mobile:"3540px"
     },
     default: {
       mobile: '1850px',
@@ -85,10 +105,29 @@ function updateIframeHeight(iframeWrapper, endpoint) {
   } else {
     setElementHeight(iframeWrapper, endpointHeightConfig.default);
   }
+
+  if(endpointHeightConfig[endpoint]?.disableScroll){
+    const iframe=iframeWrapper.querySelector('iframe')
+    iframe.setAttribute('scrolling','no')
+  }
+}
+
+function getTabsEvent(){
+  const tabs = document.querySelectorAll('.tab-title');
+  const iframeWrappers = document.querySelectorAll('.iframe-wrapper');
+  const SHARE_QUOTE_IFRAME=0;
+  updateIframeHeight(iframeWrappers[SHARE_QUOTE_IFRAME],`${tabs[SHARE_QUOTE_IFRAME].innerHTML}`)
+  
+  tabs.forEach((tab, index) => {
+    tab.addEventListener('click', () => {
+      updateIframeHeight(iframeWrappers[index],`${tabs[index].innerHTML}`)
+    });
+  });
 }
 
 export default function decorate(block) {
   const link = block.querySelector('a');
+  link.remove();
 
   const iframe = document.createElement('iframe');
   const url = link.href;
@@ -113,11 +152,19 @@ export default function decorate(block) {
   const iframeWrapper = document.querySelector('.iframe-wrapper');
 
   const endpoint = new window.URL(url).pathname.replace('/', '').replace('.rev', '');
-
   updateIframeHeight(iframeWrapper, endpoint);
+  if(window.location.pathname.includes('stock-information')){
+  getTabsEvent();
+    
+}
   window.addEventListener('resize', () => {
     updateIframeHeight(iframeWrapper, endpoint);
+    if(window.location.pathname.includes('stock-information')){
+  getTabsEvent();
+    
+}
   });
+
 
   block.appendChild(iframe);
 }

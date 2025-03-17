@@ -1,5 +1,5 @@
 .coreprinciples {
-    padding: 136px 0;
+    padding: 68px 0;
 }
 
 .coreprinciples .coreprinciples {
@@ -7,14 +7,13 @@
     position: relative;
 }
 
-.coreprinciples .coreprinciples::after {
+.coreprinciples .coreprinciples .container::after {
     content: '';
-    width: calc(100% - 320px);
+    width: 100%;
     height: 1px;
-    max-width: 1120px;
     background: var(--text-color);
     margin: 0 auto;
-    transform: translateY(136px);
+    transform: translateY(68px);
 }
 
 .coreprinciples .row {
@@ -31,10 +30,6 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-}
-
-.principles-item, .principles-item:first-child, .principles-item:last-child {
-    padding: 0 18px;
 }
 
 .principles-item > div {
@@ -66,7 +61,7 @@
 }
 
 .coreprinciples .coreprinciples-card-title {
-    font-size: 20px;
+    font-size: var(--font-size-s);
     font-weight: 600;
     line-height: 24px;
     margin-bottom: 10px;
@@ -75,20 +70,20 @@
 }
 
 .coreprinciples [data-aue-prop="description"], .coreprinciples div:last-child p {
-    font-size: 16px;
+    font-size: var(--font-size-xs);
     line-height: 24px;
     color: var(--body-text-color);
 }
 
 .coreprinciples [data-richtext-prop="description"], .coreprinciples div:last-child p {
-    font-size: 16px;
+    font-size: var(--font-size-xs);
     font-weight: 400;
     line-height: 24px;
     color: var(--body-text-color);
 }
 @media (width <= 1199px) {
-    .coreprinciples .coreprinciples::after {
-        width: calc(100% - 88px);
+    .coreprinciples .coreprinciples .container::after {
+        width: 100%;
     }
 }
 @media (width <= 992px) {
@@ -117,11 +112,21 @@
     }
 
     .coreprinciples {
-        padding: 56px 0;
+        padding: 28px 0;
     }
 
-    .coreprinciples .coreprinciples::after {
-        transform: translateY(56px);
+    .coreprinciples .coreprinciples .container::after {
+        transform: translateY(28px);
+    }
+
+    .row .principles-item:nth-child(1), .row .principles-item:nth-child(3){
+        margin-left: -12px;
+    }
+
+    .row .principles-item:nth-child(2) {
+        margin-left: 12px;
+        padding-right: 0;
+        padding-left: 24px;
     }
 }
 @media (width < 768px) {
@@ -129,7 +134,7 @@
         padding: 24px 0;
     }
 
-    .coreprinciples .coreprinciples::after {
+    .coreprinciples .coreprinciples .container::after {
         display: none;
     }
     
@@ -144,18 +149,18 @@
     }
 
     .coreprinciples .coreprinciples-card-title {
-        font-size: 16px;
+        font-size: var(--font-size-xs);
         line-height: 20px;
         margin-bottom: 8px;
     }
 
     .coreprinciples [data-aue-prop="description"], .coreprinciples div:last-child p {
-        font-size: 14px;
+        font-size: var(--font-size-xxs);
         line-height: 20px;
     }
 
     .coreprinciples [data-richtext-prop="description"], .coreprinciples div:last-child p {
-        font-size: 14px;
+        font-size: var(--font-size-xxs);
         line-height: 20px;
     }
 
@@ -166,6 +171,26 @@
     }
 
     .principles-item, .principles-item:first-child, .principles-item:last-child {
-        padding: 0 9px;
+        padding: 0px;
+    }
+    
+    .principles-item > div{
+        padding: 12px;
+    }
+
+    .row .principles-item:nth-child(1), .row .principles-item:nth-child(3){
+        margin-left: 0px;
+    }
+
+    .row .principles-item:nth-child(2) {
+        margin-left: 0px;
+        padding-right: 0;
+        padding-left: 0px;
+    }
+}
+
+@media (width>=1200px){
+    .principles-item > div{
+        padding: 20px;
     }
 }

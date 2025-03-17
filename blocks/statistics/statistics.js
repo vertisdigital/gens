@@ -3,13 +3,10 @@ import Heading from '../../shared-components/Heading.js';
 import stringToHTML from '../../shared-components/Utility.js';
 
 export default function decorate(block) {
-  const pageUrl = window.location.href;
-  const isAboutUsPage = pageUrl.includes('aboutus');
-  // Add container classes from styles.css
-  if (isAboutUsPage) {
-    block.classList.add('statistics-variation');
-  }
   const blockChilden = [].slice.call(block.children);
+  const isStaticFinanicialVariation = block.classList.contains(
+    'statistics-financial-variation',
+  );
   const isStatisDesc = blockChilden[0].textContent.trim() === 'statistics-description';
   const isStatFeatures = blockChilden[0].textContent.trim() === 'statistics-feature';
 
@@ -30,7 +27,10 @@ export default function decorate(block) {
 
   if (isStatFeatures) {
     // finding the feature items
-    const featureItems = blockChilden.slice(2);
+    blockChilden[2].remove();
+    const featureItems = isStaticFinanicialVariation
+      ? blockChilden.slice(2)
+      : blockChilden.slice(3);
 
     const featureContainer = document.createElement('div');
     featureContainer.className = 'row statistics-row';
@@ -39,7 +39,6 @@ export default function decorate(block) {
       featureContainer.appendChild(featureItem);
       featureItem.classList.add(
         'col-xl-4',
-        'col-lg-4',
         'col-md-3',
         'col-sm-4',
         'feature-item',
@@ -55,7 +54,10 @@ export default function decorate(block) {
     // processing the statistics description block
     const statisticBlockDescription = blockChilden[2];
 
-    if (statisticBlockDescription && statisticBlockDescription.textContent.trim() !== '') {
+    if (
+      statisticBlockDescription
+      && statisticBlockDescription.textContent.trim() !== ''
+    ) {
       statisticBlockDescription.classList.add('statistics-description-wrapper');
       const descChildren = statisticBlockDescription.children;
       // replacing the title with  h2

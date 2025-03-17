@@ -7,7 +7,7 @@
         "valueType": "string",
         "name": "image",
         "label": "image",
-        "configUrl": "https://custom-assets-picker-issue--genting--wppopen.aem.live/tools/assets-selector/config.json",
+        "configUrl": "https://sprint-2--genting--wppopen.aem.live/tools/assets-selector/config.json",
         "multi": false,
         "validation": {
           "rootPath": "/content/dam/genting-singapore"
@@ -182,7 +182,7 @@
         "valueType": "string",
         "name": "image",
         "label": "Image",
-        "configUrl": "https://custom-assets-picker-issue--genting--wppopen.aem.live/tools/assets-selector/config.json",
+        "configUrl": "https://sprint-2--genting--wppopen.aem.live/tools/assets-selector/config.json",
         "multi": false
       },
       {
@@ -231,7 +231,7 @@
         "valueType": "string",
         "name": "bannerimage",
         "label": "Banner Image",
-        "configUrl": "https://custom-assets-picker-issue--genting--wppopen.aem.live/tools/assets-selector/config.json",
+        "configUrl": "https://sprint-2--genting--wppopen.aem.live/tools/assets-selector/config.json",
         "multi": false,
         "validation": {
           "rootPath": "/content/dam/genting-singapore"
@@ -321,7 +321,7 @@
         "component": "custom-asset-namespace:custom-asset",
         "name": "image",
         "label": "Carousel Image",
-        "configUrl": "https://custom-assets-picker-issue--genting--wppopen.aem.live/tools/assets-selector/config.json",
+        "configUrl": "https://sprint-2--genting--wppopen.aem.live/tools/assets-selector/config.json",
         "valueType": "string",
         "validation": {
           "rootPath": "/content/dam/genting-singapore"
@@ -416,7 +416,7 @@
         "valueType": "string",
         "name": "feature-icon",
         "label": "Icon",
-        "configUrl": "https://custom-assets-picker-issue--genting--wppopen.aem.live/tools/assets-selector/config.json",
+        "configUrl": "https://sprint-2--genting--wppopen.aem.live/tools/assets-selector/config.json",
         "multi": false
       },
       {
@@ -591,7 +591,7 @@
         "valueType": "string",
         "name": "linkImage",
         "label": "Link Image",
-        "configUrl": "https://custom-assets-picker-issue--genting--wppopen.aem.live/tools/assets-selector/config.json",
+        "configUrl": "https://sprint-2--genting--wppopen.aem.live/tools/assets-selector/config.json",
         "multi": false
       },
       {
@@ -611,6 +611,27 @@
   {
     "id": "listing",
     "fields": [
+      {
+        "component": "select",
+        "name": "classes",
+        "value": "",
+        "label": "Style Options",
+        "valueType": "string",
+        "options": [
+          {
+            "name": "Default",
+            "value": ""
+          },
+          {
+            "name": "Grey Background",
+            "value": "grey-background"
+          },
+          {
+            "name": "Without Images",
+            "value": "without-images"
+          }
+        ]
+      },
       {
         "component": "text",
         "name": "title",
@@ -638,7 +659,7 @@
         "component": "custom-asset-namespace:custom-asset",
         "name": "image",
         "label": "Background Image",
-        "configUrl": "https://custom-assets-picker-issue--genting--wppopen.aem.live/tools/assets-selector/config.json",
+        "configUrl": "https://sprint-2--genting--wppopen.aem.live/tools/assets-selector/config.json",
         "multi": false,
         "title": "Image",
         "validation": {
@@ -758,7 +779,7 @@
         "component": "custom-asset-namespace:custom-asset",
         "name": "image",
         "label": "Project Image",
-        "configUrl": "https://custom-assets-picker-issue--genting--wppopen.aem.live/tools/assets-selector/config.json",
+        "configUrl": "https://sprint-2--genting--wppopen.aem.live/tools/assets-selector/config.json",
         "multi": false,
         "validation": {
           "rootPath": "/content/dam/genting-singapore"
@@ -854,7 +875,7 @@
         "component": "custom-asset-namespace:custom-asset",
         "name": "phoneIcon",
         "label": "Phone Icon",
-        "configUrl": "https://custom-assets-picker-issue--genting--wppopen.aem.live/tools/assets-selector/config.json",
+        "configUrl": "https://sprint-2--genting--wppopen.aem.live/tools/assets-selector/config.json",
         "multi": false
       },
       {
@@ -897,7 +918,7 @@
             "component": "custom-asset-namespace:custom-asset",
             "name": "emailIcon1",
             "label": "Email Icon",
-            "configUrl": "https://custom-assets-picker-issue--genting--wppopen.aem.live/tools/assets-selector/config.json",
+            "configUrl": "https://sprint-2--genting--wppopen.aem.live/tools/assets-selector/config.json",
             "multi": false
           },
           {
@@ -937,7 +958,7 @@
             "component": "custom-asset-namespace:custom-asset",
             "name": "emailIcon2",
             "label": "Email Icon",
-            "configUrl": "https://custom-assets-picker-issue--genting--wppopen.aem.live/tools/assets-selector/config.json",
+            "configUrl": "https://sprint-2--genting--wppopen.aem.live/tools/assets-selector/config.json",
             "multi": false
           },
           {
@@ -977,7 +998,7 @@
             "component": "custom-asset-namespace:custom-asset",
             "name": "emailIcon3",
             "label": "Email Icon",
-            "configUrl": "https://custom-assets-picker-issue--genting--wppopen.aem.live/tools/assets-selector/config.json",
+            "configUrl": "https://sprint-2--genting--wppopen.aem.live/tools/assets-selector/config.json",
             "multi": false
           },
           {
@@ -1007,7 +1028,7 @@
         "component": "custom-asset-namespace:custom-asset",
         "name": "addressIcon",
         "label": "Address Icon",
-        "configUrl": "https://custom-assets-picker-issue--genting--wppopen.aem.live/tools/assets-selector/config.json",
+        "configUrl": "https://sprint-2--genting--wppopen.aem.live/tools/assets-selector/config.json",
         "multi": false
       },
       {
@@ -1126,7 +1147,7 @@
         "component": "custom-asset-namespace:custom-asset",
         "name": "image",
         "label": "Image",
-        "configUrl": "https://custom-assets-picker-issue--genting--wppopen.aem.live/tools/assets-selector/config.json",
+        "configUrl": "https://sprint-2--genting--wppopen.aem.live/tools/assets-selector/config.json",
         "multi": false
       },
       {
@@ -1140,7 +1161,7 @@
         "label": "File Path",
         "name": "filepath",
         "valueType": "string",
-        "configUrl": "https://custom-assets-picker-issue--genting--wppopen.aem.live/tools/assets-selector/config.json",
+        "configUrl": "https://sprint-2--genting--wppopen.aem.live/tools/assets-selector/config.json",
         "multi": false,
         "condition": {
           "===": [
@@ -1206,7 +1227,7 @@
         "component": "custom-asset-namespace:custom-asset",
         "name": "image",
         "label": "Image",
-        "configUrl": "https://custom-assets-picker-issue--genting--wppopen.aem.live/tools/assets-selector/config.json",
+        "configUrl": "https://sprint-2--genting--wppopen.aem.live/tools/assets-selector/config.json",
         "multi": false
       },
       {
@@ -1289,13 +1310,39 @@
     ]
   },
   {
+    "id": "textmediablock",
+    "fields": [
+      {
+        "component": "select",
+        "name": "classes",
+        "value": "",
+        "label": "Style Options",
+        "valueType": "string",
+        "options": [
+          {
+            "name": "Default",
+            "value": ""
+          },
+          {
+            "name": "Text Media Block Title Only",
+            "value": "textmediablock-title-only"
+          },
+          {
+            "name": "Text Media Block Heading Variation",
+            "value": "text-media-block-heading-variation"
+          }
+        ]
+      }
+    ]
+  },
+  {
     "id": "media",
     "fields": [
       {
         "component": "custom-asset-namespace:custom-asset",
         "name": "image",
         "label": "Image",
-        "configUrl": "https://custom-assets-picker-issue--genting--wppopen.aem.live/tools/assets-selector/config.json"
+        "configUrl": "https://sprint-2--genting--wppopen.aem.live/tools/assets-selector/config.json"
       },
       {
         "component": "text",
@@ -1327,7 +1374,7 @@
         }
       },
       {
-        "component": "text",
+        "component": "richtext",
         "name": "longdescription",
         "label": "Long Description",
         "valueType": "string",
@@ -1349,8 +1396,42 @@
         "component": "custom-asset-namespace:custom-asset",
         "name": "image",
         "label": "Image",
-        "configUrl": "https://custom-assets-picker-issue--genting--wppopen.aem.live/tools/assets-selector/config.json",
+        "configUrl": "https://sprint-2--genting--wppopen.aem.live/tools/assets-selector/config.json",
         "multi": false
+      },
+      {
+        "component": "aem-content",
+        "name": "link",
+        "label": "Link"
+      },
+      {
+        "component": "text",
+        "name": "linkText",
+        "label": "Text"
+      },
+      {
+        "component": "text",
+        "name": "linkTitle",
+        "label": "Title"
+      },
+      {
+        "component": "select",
+        "name": "linkType",
+        "label": "Type",
+        "options": [
+          {
+            "name": "default",
+            "value": ""
+          },
+          {
+            "name": "primary",
+            "value": "primary"
+          },
+          {
+            "name": "secondary",
+            "value": "secondary"
+          }
+        ]
       }
     ]
   },
@@ -1360,7 +1441,7 @@
       {
         "component": "multiselect",
         "name": "style",
-        "label": "Style",
+        "label": "Variation",
         "options": [
           {
             "name": "Statistics Feature",
@@ -1373,9 +1454,28 @@
         ]
       },
       {
+        "component": "select",
+        "name": "classes",
+        "value": "",
+        "label": "Style",
+        "valueType": "string",
+        "options": [
+          {
+            "name": "Default",
+            "value": ""
+          },
+          {
+            "name": "Statistics Financial Variation",
+            "value": "statistics-financial-variation"
+          }
+        ]
+      },
+      {
         "component": "text",
-        "name": "heading",
-        "label": "Heading"
+        "valueType": "number",
+        "name": "year",
+        "label": "Year",
+        "placeholder": null
       }
     ]
   },
@@ -1464,7 +1564,7 @@
         "component": "custom-asset-namespace:custom-asset",
         "name": "awardimage",
         "label": "Award Image",
-        "configUrl": "https://custom-assets-picker-issue--genting--wppopen.aem.live/tools/assets-selector/config.json",
+        "configUrl": "https://sprint-2--genting--wppopen.aem.live/tools/assets-selector/config.json",
         "multi": false,
         "validation": {
           "rootPath": "/content/dam/genting-singapore"
@@ -1537,7 +1637,7 @@
         "component": "custom-asset-namespace:custom-asset",
         "name": "image",
         "label": "Image",
-        "configUrl": "https://custom-assets-picker-issue--genting--wppopen.aem.live/tools/assets-selector/config.json",
+        "configUrl": "https://sprint-2--genting--wppopen.aem.live/tools/assets-selector/config.json",
         "multi": false
       },
       {
@@ -1663,12 +1763,12 @@
         }
       },
       {
-        "component": "text",
+        "component": "richtext",
         "name": "description",
         "label": "Policy Description",
         "validation": {
-          "maxLength": 500,
-          "customErrorMsg": "Description cannot exceed 500 characters"
+          "maxLength": 2000,
+          "customErrorMsg": "Description cannot exceed 2000 characters"
         }
       },
       {
@@ -1676,8 +1776,8 @@
         "name": "ctaLabel",
         "label": "CTA Label",
         "validation": {
-          "maxLength": 15,
-          "customErrorMsg": "CTA text cannot exceed 15 characters"
+          "maxLength": 30,
+          "customErrorMsg": "CTA text cannot exceed 30 characters"
         }
       },
       {
@@ -1721,6 +1821,90 @@
         "label": "IFrame URL",
         "description": "URL of the content to embed in IFrame",
         "valueType": "string"
+      }
+    ]
+  },
+  {
+    "id": "director",
+    "fields": [
+      {
+        "component": "tab",
+        "label": "Personal Details",
+        "name": "personalDetailsTab"
+      },
+      {
+        "component": "custom-asset-namespace:custom-asset",
+        "name": "image",
+        "label": "Image",
+        "configUrl": "https://sprint-2--genting--wppopen.aem.live/tools/assets-selector/config.json",
+        "multi": false,
+        "validation": {
+          "required": true,
+          "customErrorMsg": "Image is required"
+        }
+      },
+      {
+        "component": "text",
+        "name": "directorName",
+        "label": "Name",
+        "valueType": "string",
+        "value": "",
+        "validation": {
+          "maxLength": 60,
+          "required": true,
+          "customErrorMsg": "Name is required and cannot exceed 60 characters"
+        }
+      },
+      {
+        "component": "text",
+        "name": "designation",
+        "label": "Designation",
+        "validation": {
+          "maxLength": 50,
+          "required": true,
+          "customErrorMsg": "Designation is required and cannot exceed 50 characters"
+        }
+      },
+      {
+        "component": "tab",
+        "label": "Description",
+        "name": "descriptionTab"
+      },
+      {
+        "component": "richtext",
+        "name": "description",
+        "label": "Description",
+        "valueType": "string",
+        "validation": {
+          "maxLength": 2500,
+          "customErrorMsg": "Description cannot exceed 2500 characters"
+        }
+      }
+    ]
+  },
+  {
+    "id": "corporatepolicies",
+    "fields": [
+      {
+        "component": "select",
+        "name": "classes",
+        "value": "",
+        "label": "Style options",
+        "valueType": "string",
+        "options": [
+          {
+            "name": "Default",
+            "value": ""
+          },
+          {
+            "name": "Corporate Policies Border Bottom",
+            "value": "corporate-policies-border-bottom"
+          },
+          {
+            "name": "Corporate Policies CTA Right",
+            "value": "corporate-policies-cta-right"
+          }
+        ]
       }
     ]
   }

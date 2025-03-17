@@ -74,7 +74,7 @@ export default function decorate(block) {
   const projectCards = block.querySelectorAll('[data-aue-model="projectcard"],[data-gen-model="featureItem"]');
   projectCards.forEach((card) => {
     const cardElement = document.createElement('div');
-    cardElement.className = 'project-card col-xl-3 col-lg-3 col-md-3 col-sm-2';
+    cardElement.className = 'project-card col-xl-3 col-md-3 col-sm-2';
     moveInstrumentation(card, cardElement);
 
     // Handle card image

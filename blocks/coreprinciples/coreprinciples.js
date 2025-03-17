@@ -22,7 +22,7 @@ export default function decorate(block) {
   items.forEach((item) => {
     // Add responsive column classes as per requirements
     const col = document.createElement('div');
-    col.className = 'col-lg-4 col-md-3 col-sm-4 principles-item';
+    col.className = 'col-xl-4 col-md-3 col-sm-4 principles-item';
 
     // Get the icon URL
     const iconLink = item.querySelector('a');
@@ -44,23 +44,6 @@ export default function decorate(block) {
 
     // Alt image text
     const altText = item.children[1];
-
-    // Create and add image using ImageComponent
-    // if (iconUrl) {
-    //   const img = document.createElement('img');
-    //   img.src = iconUrl;
-    //   img.loading = 'lazy';
-    //   img.width = 64;
-    //   img.height = 64;
-
-    //   if (altText) {
-    //     img.alt = altText?.textContent;
-    //   }
-
-    //   const picture = document.createElement('picture');
-    //   picture.appendChild(img);
-    //   iconWrapper.appendChild(picture);
-    // }
 
     if (iconUrl) {
       const picture = ImageComponent({
