@@ -137,6 +137,8 @@
 @media (width >= 993px) {
     .boardofdirectors .director-card img {
         margin-bottom: 12px;
+        aspect-ratio: unset;
+        height: auto;
     }
 
     .boardofdirectors .board-director-info {
@@ -163,11 +165,6 @@
     }
 
     .boardofdirectors .director-card {
-        height: auto;
-    }
-
-    .boardofdirectors .director-card img {
-        aspect-ratio: unset;
         height: auto;
     }
 }
