@@ -24,7 +24,7 @@
 }
 
 .statistics-description-wrapper {
-    font-size: 16px;
+    font-size: var(--font-size-xs);
     font-weight: 400;
     line-height: 24px;
     color: var(--body-text-color);
@@ -39,7 +39,7 @@
 
 .statistics-container button {
     display: block;
-    font-size: 16px;
+    font-size: var(--font-size-xs);
     font-weight: 700;
     line-height: 24px;
     text-decoration-line: underline;
@@ -53,14 +53,14 @@
 }
 
 .statistics .statistics-description-wrapper h3 {
-    font-size: 40px;
+    font-size: var(--font-size-xl);
     font-weight: 500;
     line-height: 50px;
     color: var(--text-color);
 }
 
 .statistics .statistic-item {
-    font-size: 80px;
+    font-size: var(--font-size-xxxl);
     font-weight: 400;
     line-height: 80px;
     color: var(--primary-gold);
@@ -71,7 +71,7 @@
 }
 
 .statistics .text-container {
-    font-size: 16px;
+    font-size: var(--font-size-xs);
     font-weight: 400;
     line-height: 24px;
     color: var(--body-text-color);
@@ -91,7 +91,7 @@
     content: '';
     background: var(--background-color);
     position: absolute;
-    inset: -80px 0 0;
+    inset: -70px 0 0;
     width: 100%;
     max-width: 1280px;
     margin: 0 auto;
@@ -109,7 +109,7 @@
 .statistics .statistics-title {
     color: var(--text-color);
     margin-bottom: 64px;
-    font-size: 40px;
+    font-size: var(--font-size-xl);
     font-style: normal;
     font-weight: 500;
     line-height: 50px; /* 121.429% */
@@ -140,7 +140,7 @@
 
     .statistics-title{
         margin-bottom: 24px;
-        font-size: 32px;
+        font-size: var(--font-size-l);
         line-height: 42px; /* 121.429% */
     }
 
@@ -167,6 +167,11 @@
          margin-bottom: 40px;
 
     }
+    
+    .statistics .statistics-description-wrapper h3, .statistics .statistics-title {
+        font-size: var(--font-size-l);
+    }
+
     .statistics .statistic-item {
         font-size: 64px;
         line-height: 64px;
@@ -189,6 +194,11 @@
         padding: 28px 0;
         margin-bottom: 28px;
     }
+
+    .statistics .statistics-description-wrapper h3 {
+        font-size: var(--font-size-m);
+    }
+
     .statistics .statistics-row {
         row-gap: 18px;
         margin-left: 0;
@@ -222,7 +232,7 @@
         margin-bottom: 24px;
 
         /* Headings/H2 */
-        font-size: 28px;
+        font-size: var(--font-size-m);
         line-height: 34px; /* 121.429% */
     }
 
@@ -231,3 +241,12 @@
     }
     
 }
+@media (width>=1200px) {
+    .statistics-wrapper .statistics.block::before {
+        max-width: none;
+        width: auto;
+        left: 100px;
+        right: 100px;
+    }
+}
+

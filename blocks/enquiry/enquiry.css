@@ -26,7 +26,7 @@
 }
 
 .enquiry-wrapper .enquiry-heading {
-  font-size: 40px;
+  font-size: var(--font-size-xl);
   font-weight: 500;
   line-height: 50px; 
   letter-spacing: -0.5px;
@@ -40,7 +40,7 @@
 
 .enquiry-wrapper .enquiry-description p{
   font-family: var(--heading-font-family);
-  font-size:16px;
+  font-size: var(--font-size-xs);
   font-weight: 400;
   line-height: 24px;
   color: var(--text-color); 
@@ -88,7 +88,7 @@
 /* Contact Text Styling */
 .enquiry-wrapper .contact-items .contact-text { 
   font-family: var(--heading-font-family);
-    font-size: 16px;
+    font-size: var(--font-size-xs);
     font-weight: 700;
     line-height: 24px;
     margin: 0;
@@ -106,7 +106,7 @@
 /* Interactive Elements */
 .enquiry-wrapper .contact-items .contact-link {
   font-family: var(--heading-font-family);
-  font-size: 16px;
+  font-size: var(--font-size-xs);
   font-weight: 700;
   line-height: 24px;
   color: var(--text-color);
@@ -118,7 +118,7 @@
 /* Tablet Layout  */
  @media (width >= 768px) and (width < 1024px) {
   .enquiry-wrapper .enquiry-heading {
-    font-size: 32px;
+    font-size: var(--font-size-l);
     line-height: 42px; 
     margin: 0;
   }
@@ -128,7 +128,7 @@
   }
   
   .enquiry-wrapper .enquiry-description p{
-    font-size: 16px;
+    font-size: var(--font-size-xs);
     line-height: 24px;
   }
   
@@ -147,7 +147,7 @@
   /* Contact Text Styling */
   .enquiry-wrapper .contact-items .contact-text { 
     font-family: var(--heading-font-family);
-      font-size: 16px;
+      font-size: var(--font-size-xs);
       line-height: 24px;
   }
 
@@ -155,7 +155,7 @@
   
   /* Interactive Elements */
   .enquiry-wrapper .contact-items .contact-link {
-    font-size: 16px;
+    font-size: var(--font-size-xs);
     line-height: 24px;
   
   }
@@ -179,7 +179,7 @@
   }
 
   .enquiry-wrapper .enquiry-heading {
-    font-size: 28px;
+    font-size: var(--font-size-m);
     line-height: 34px; 
     margin: 0;
     margin-bottom: 18px;
@@ -222,7 +222,7 @@
   /* Contact Text Styling */
   .enquiry-wrapper .contact-items .contact-text { 
     font-family: var(--heading-font-family);
-      font-size: 14px;
+      font-size: var(--font-size-xxs);
       font-weight: 700;
       line-height: 20px;
       color: var(--text-color);
@@ -239,7 +239,7 @@
   
   /* Interactive Elements */
   .enquiry-wrapper .contact-items .contact-link {
-    font-size: 14px;
+    font-size: var(--font-size-xxs);
     line-height: 20px;
   
   }

@@ -25,7 +25,7 @@ jobs:
         
         # Set specific URLs for uat and main branches, use branch name for others
         if [ "$BRANCH_NAME" == "uat" ]; then
-          echo "CONFIG_URL=https://uat--genting-stage--wppopen.aem.live/tools/assets-selector/config.json" >> $GITHUB_ENV
+          echo "CONFIG_URL=https://int--genting--wppopen.aem.live/tools/assets-selector/config.json" >> $GITHUB_ENV
         elif [ "$BRANCH_NAME" == "main" ]; then
           echo "CONFIG_URL=https://main--genting-prod--wppopen.aem.live/tools/assets-selector/config.json" >> $GITHUB_ENV
         else

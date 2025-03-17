@@ -13,3 +13,6 @@ jira
 tabs-issue
 
 blocks/author-*
+
+# Ignore assets selector config file
+tools/assets-selector/config.json

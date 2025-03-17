@@ -20,21 +20,22 @@ p {
 .project-title,
 .project-subtitle {
     color: var(--text-color);
+    font-size: var(--font-size-s);
 }
 
 .project-title  {
-    font-size: 25px;
+    font-size: var(--font-size-m);
 }
 
 .project-long-description,
 .project-short-description  {
-    font-size: 14px;
+    font-size: var(--font-size-xxs);
 }
 
 .project-long-description  {
     margin-top: 12px;
     /* margin-bottom: 30px; */
-    font-size: 16px;
+    font-size: var(--font-size-xs);
     line-height: 24px;
 }
 
@@ -64,7 +65,7 @@ p {
         width: 100%;
     }
     .project-long-description  {
-        font-size: 14px;
+        font-size: var(--font-size-xxs);
         line-height: 20px;
     }
 }

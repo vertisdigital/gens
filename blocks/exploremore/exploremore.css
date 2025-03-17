@@ -4,7 +4,7 @@
 } 
 
 .exploremore .exploremore-wrapper-container .exploremore-title{
-  font-size: 40px;
+  font-size: var(--font-size-xl);
   font-weight: 500;
   line-height: 50px;
   letter-spacing: -0.5px;
@@ -38,7 +38,7 @@
 }
 
 .exploremore-wrapper-container .exploremore-item .exploremore-caption{
-  font-size: 28px;
+  font-size: var(--font-size-m);
   font-weight: 400;
   line-height: 50px; 
   letter-spacing: -0.5px;
@@ -76,7 +76,7 @@
   } 
 
   .exploremore .exploremore-wrapper-container .exploremore-title{
-    font-size: 32px;
+    font-size: var(--font-size-l);
     font-weight: 500;
     line-height: 42px;
     margin-bottom: 40px;
@@ -104,7 +104,7 @@
   } 
 
   .exploremore .exploremore-wrapper-container .exploremore-title{
-    font-size: 28px;
+    font-size: var(--font-size-m);
     line-height: 34px;
     margin-bottom: 32px;
   }

@@ -15,7 +15,7 @@
 }
 
 .projectcards .projectcards-title {
-  font-size: 20px;
+  font-size: var(--font-size-s);
   font-style: normal;
   font-weight: 600;
   line-height: 24px;
@@ -25,7 +25,7 @@
   }
 
   .projectcards .projectcards-heading {
-  font-size: 40px;
+  font-size: var(--font-size-xl);
   font-style: normal;
   font-weight: 500;
   line-height: 50px; 
@@ -37,7 +37,7 @@
 }
 
 .projectcards .projectcards-description {
-  font-size: 16px;
+  font-size: var(--font-size-xs);
   font-style: normal;
   font-weight: 400;
   line-height:24px;
@@ -84,7 +84,7 @@
 }
 
 .projectcards .project-card-title {
-  font-size: 16px;
+  font-size: var(--font-size-xs);
   font-weight: 700;
   line-height: 24px;
   color: var(--text-color);
@@ -92,7 +92,7 @@
 }
 
 .projectcards .project-card-location {
-  font-size: 16px;
+  font-size: var(--font-size-xs);
   font-weight: 400;
   line-height: 24px; 
   color: var(--text-color);
@@ -104,7 +104,7 @@
 }
 
 .projectcards .view-all-link {
-  font-size: 16px;
+  font-size: var(--font-size-xs);
   line-height: 24px;
   color: var(--primary-gold)!important;
   text-decoration: none;
@@ -133,7 +133,7 @@
   }
   
   .projectcards .projectcards-title {
-    font-size: 16px;
+    font-size: var(--font-size-xs);
     font-weight: 700;
     line-height: 18px;
     margin-bottom: 16px;
@@ -141,7 +141,7 @@
     }
   
     .projectcards .projectcards-heading {
-      font-size: 32px;
+      font-size: var(--font-size-l);
       line-height: 42px; 
     }
   
@@ -182,7 +182,7 @@
     }
     
     .projectcards .projectcards-title {
-      font-size: 16px;
+      font-size: var(--font-size-xs);
       font-weight: 600;
       line-height: 20px;
       margin-bottom: 12px;
@@ -190,12 +190,12 @@
       }
     
       .projectcards .projectcards-heading {
-        font-size: 28px;
+        font-size: var(--font-size-m);
         line-height: 34px; 
       }
 
       .projectcards .projectcards-description {
-        font-size: 14px;
+        font-size: var(--font-size-xxs);
         line-height:20px;
       }
     
@@ -217,20 +217,20 @@
     }
 
     .projectcards .project-card-title {
-      font-size: 14px;
+      font-size: var(--font-size-xxs);
       font-weight: 700;
       line-height: 20px;
     }
     
     .projectcards .project-card-location {
-      font-size: 14px;
+      font-size: var(--font-size-xxs);
       font-weight: 400;
       line-height: 20px; 
     
     }
 
     .projectcards .view-all-link {
-      font-size: 14px;
+      font-size: var(--font-size-xxs);
       line-height: 20px;
     }
    

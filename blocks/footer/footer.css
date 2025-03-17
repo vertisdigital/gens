@@ -48,7 +48,7 @@
 
 /* Body/P1 */
 .footer .footer-description{
-    font-size: 16px;
+    font-size: var(--font-size-xs);
     font-weight: 400;
     line-height: 24px;
     color: var(--soft-ivory);
@@ -103,7 +103,7 @@
 }
 
 .footer .left-section .footer-nav-title{
-    font-size:16px;
+    font-size: var(--font-size-xs);
     font-weight: 700;
     line-height: 24px;
     color: var(--background-color);
@@ -111,21 +111,21 @@
 }
 
 .footer .left-section .button-container a{
-    font-size: 16px;
+    font-size: var(--font-size-xs);
     font-weight: 400;
     line-height: 24px;
     margin-bottom: 6px;
 }
 
 .footer .footer-bottom-links .button-container a{
-    font-size: 16px;
+    font-size: var(--font-size-xs);
     font-weight: 400;
     line-height: 24px;
     margin-bottom: 6px;
 }
 
 .footer .mt-4 .copywrite{
-    font-size: 16px;
+    font-size: var(--font-size-xs);
     font-weight: 400;
     line-height: 24px;
     color: var(--soft-ivory);
@@ -185,7 +185,7 @@
     }
 
     .footer .footer-nav-title{
-        font-size:16px;
+        font-size: var(--font-size-xs);
         font-weight: 700;
         line-height: 24px;
     }
@@ -239,17 +239,17 @@
     }
 
     .footer .footer-nav-title{
-        font-size:16px;
+        font-size: var(--font-size-xs);
         font-weight: 700;
         line-height: 24px;
     }
     .footer .footer-description, .footer nav a, .footer .mt-4 .copywrite, .footer .footer-bottom-links .button-container a {
-        font-size: 14px;
+        font-size: var(--font-size-xxs);
         line-height: 20px;
     }  
 
     .footer .left-section .button-container a{
-        font-size: 14px;
+        font-size: var(--font-size-xxs);
         line-height: 20px;
         margin-bottom: 10px;
     }

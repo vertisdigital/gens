@@ -1,13 +1,13 @@
 .tabsectiontitle-container .tabs-title {
     color: #000;
     font-weight: 500;
-    font-size: 28px;
+    font-size: var(--font-size-m);
     margin-bottom: 15px;
 }
 
 @media (width>=768px) {
     .tabsectiontitle-container .tabs-title {
-        font-size: 32px;
+        font-size: var(--font-size-l);
         padding-top: 56px;
         margin-bottom: 25px;
     }
@@ -15,6 +15,6 @@
 @media (width>=1024px) {
     .tabsectiontitle-container .tabs-title {
         padding-top: 80px;
-        font-size: 40px;
+        font-size: var(--font-size-xl);
     }
 }

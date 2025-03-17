@@ -110,7 +110,7 @@ function createNavItem(itemData) {
     itemData.links.forEach((link, index) => {
       if (index > 0) { // Skip first item
         const li = document.createElement('li');
-        li.className = 'col-xl-4 col-lg-4';
+        li.className = 'col-xl-4';
         const linkContainer = document.createElement('div');
         linkContainer.className = 'button-container';
         const a = document.createElement('a');
@@ -228,8 +228,8 @@ function createHeaderStructure(block) {
 
   // Create search icon
   const searchWrapper = document.createElement('div');
-  const searchIcon = SvgIcon({ name: 'search', className: 'icon-search', size: '14' });
-  searchWrapper.appendChild(stringToHtml(searchIcon));
+  // const searchIcon = SvgIcon({ name: 'search', className: 'icon-search', size: '14' });
+  // searchWrapper.appendChild(stringToHtml(searchIcon));
 
   // Assemble the structure
   nav.append(logoWrapper, primaryNav, searchWrapper);

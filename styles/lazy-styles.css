@@ -25,7 +25,7 @@
     text-align: center;
     padding: 36px 0 45px;
     color: var(--body-text-color);
-    font-size: 20px;
+    font-size: var(--font-size-s);
     font-weight: 600;
     line-height: 24px;
     border-bottom: 2px solid var(--body-text-color);
@@ -59,7 +59,6 @@
     display: none;
 
     .container-xl,
-    .container-lg,
     .container-md,
     .container-sm,
     .container {
@@ -77,7 +76,7 @@
 
 .panel-heading h2 {
     font-family: var(--heading-font-family);
-    font-size: 40px;
+    font-size: var(--font-size-xl);
     font-weight: 500;
     line-height: 50px;
     color: var(--text-color);
@@ -107,7 +106,7 @@
 
 .tabs-container .about-us-stats .about-us-left-title {
     color: var(--text-color);
-    font-size: 28px;
+    font-size: var(--font-size-m);
     font-weight: 400;
     line-height: 40px;
 }
@@ -118,19 +117,19 @@
 
 .tabs-container .about-us-stats .about-us-right-content .statistic {
     color: var(--primary-gold);
-    font-size: 40px;
+    font-size: var(--font-size-xl);
     font-weight: 500;
     line-height: 50px;
 }
 
 .tabs-container .about-us-stats .about-us-right-content [data-aue-prop="feature-heading"] {
     color: var(--body-text-color);
-    font-size: 16px;
+    font-size: var(--font-size-xs);
     line-height: 24px;
 }
 
 .tabs-container .statistics .statistic-item {
-    font-size: 40px;
+    font-size: var(--font-size-xl);
 }
 
 .cards {
@@ -150,7 +149,7 @@
 
 .section.tabspanel [data-aue-prop="panelheading"] {
     margin-bottom: 2rem;
-    font-size: var(--heading-font-size-l);
+    font-size: var(--font-size-xl);
     color: var(--text-color);
 }
 
@@ -160,7 +159,7 @@
 }
 
 .tabs-container .about-us-stats .about-us-right-content .statistic p:first-child {
-    font-size: 28px;
+    font-size: var(--font-size-m);
     line-height: 28px;
 }
  
@@ -212,19 +211,19 @@
     }
 
     .tabs-container .about-us-stats .about-us-right-content .statistic {
-        font-size: 32px;
+        font-size: var(--font-size-l);
         line-height: 42px;
 
     }
 
     .tabs-container .about-us-stats .about-us-right-content [data-aue-prop="feature-heading"] {
-        font-size: 16px;
+        font-size: var(--font-size-xs);
         line-height: 20px;
     }
 
 
     .panel-heading h2 {
-        font-size: 32px;
+        font-size: var(--font-size-l);
         line-height: 42px;
     }
 
@@ -239,7 +238,7 @@
     }
 
     .tab-title {
-        font-size: 16px;
+        font-size: var(--font-size-xs);
         line-height: 20px;
         padding: 28px 0;
     }
@@ -266,7 +265,7 @@
 
 
     .panel-heading h2 {
-        font-size: 28px;
+        font-size: var(--font-size-m);
         line-height: 34px;
     }
 
@@ -277,13 +276,13 @@
     }
 
     .tabs-container .about-us-stats .about-us-right-content .statistic {
-        font-size: 28px;
+        font-size: var(--font-size-m);
         line-height: 34px;
 
     }
 
     .tabs-container .about-us-stats .about-us-right-content [data-aue-prop="feature-heading"] {
-        font-size: 14px;
+        font-size: var(--font-size-xxs);
         line-height: 20px;
     }
 
@@ -301,7 +300,7 @@
 }
 @media (width >= 768px) {
     .tabs-container .about-us-stats .about-us-right-content .statistic p:first-child {
-        font-size: 32px;
+        font-size: var(--font-size-l);
         line-height: 32px;
     }
 }
@@ -313,7 +312,7 @@
     }
 
     .tabs-container .about-us-stats .about-us-right-content .statistic span:first-child {
-        font-size: 40px;
+        font-size: var(--font-size-xl);
         line-height: 40px;
     }
 
@@ -322,7 +321,7 @@
     }
 
     .tabs-container .about-us-stats .about-us-right-content .statistic p:first-child {
-        font-size: 40px;
+        font-size: var(--font-size-xl);
         line-height: 40px;
     }
 

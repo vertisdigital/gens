@@ -14,7 +14,7 @@
   }
 
   [data-aue-model="linkField"] a, [data-gen-model="linkField"] a {
-    font-size: 16px;
+    font-size: var(--font-size-xs);
     font-weight: 700;
     line-height: 24px;
     text-align: end;
@@ -42,7 +42,7 @@
   /* Header styles */
   [data-aue-prop="title"], [data-gen-prop="title"] {
     color: var(--text-color);
-    font-size: var(--heading-font-size-s);
+    font-size: var(--font-size-xxs);
     line-height: 24px;
     margin-bottom: 10px;
     font-style: normal;
@@ -51,7 +51,7 @@
 
   [data-aue-prop="heading"], [data-gen-prop="heading"] {
     color: var(--text-color);
-    font-size: 40px;
+    font-size: var(--font-size-xl);
     font-weight: 500;
     margin-bottom: 36px;
     line-height: 50px;
@@ -81,14 +81,14 @@
   }
 
   [data-aue-model="listitem"] .row [class*="col-"]:nth-child(2) [data-aue-label="Title"], [data-gen-model="listitem"] .row [class*="col-"]:nth-child(2) [data-gen-label="Title"] {
-    font-size: var(--heading-font-size-s);
+    font-size: var(--font-size-xxs);
     font-weight: 600;
     line-height: 24px;
     margin-bottom: 12px;
   }
 
   [data-aue-model="listitem"] .row [class*="col-"]:nth-child(2) [data-richtext-label="Description"], [data-gen-model="listitem"] .row [class*="col-"]:nth-child(2) [data-richtext-label="Description"] {
-    font-size: 16px;
+    font-size: var(--font-size-xs);
     font-weight: 400;
     line-height: 24px;
     margin-top: 0;
@@ -129,7 +129,7 @@
     display: flex;
     align-items: center;
     gap: 16px;
-    font-size: 16px;
+    font-size: var(--font-size-xs);
     font-weight: 700;
     line-height: 24px;
     margin-top: 36px;
@@ -150,12 +150,12 @@
   @media (width < 992px){
   /* Header styles */
   [data-aue-prop="title"], [data-gen-prop="title"] {
-    font-size: 16px;
+    font-size: var(--font-size-xs);
     font-weight: 700;
   }
 
   [data-aue-prop="heading"], [data-gen-prop="heading"]{
-    font-size: 32px;
+    font-size: var(--font-size-l);
     margin-bottom: 24px;
     line-height: 42px;
     font-weight: 500;
@@ -192,7 +192,7 @@
   /* Mobile Design */
   @media (width < 768px) {
     [data-aue-prop="heading"], [data-gen-prop="heading"] {
-      font-size: 28px;
+      font-size: var(--font-size-m);
       line-height: 34px;
       margin-bottom: 18px;
       font-weight: 500;
@@ -224,19 +224,19 @@
     }
 
     [data-aue-model="listitem"] .row [class*="col-"]:nth-child(2) [data-richtext-label="Description"], [data-gen-model="listitem"] .row [class*="col-"]:nth-child(2) [data-richtext-label="Description"] {
-      font-size: 14px;
+      font-size: var(--font-size-xxs);
       line-height: 20px;
       margin-top: 0;
       margin-bottom: 100px !important;
     }
 
     [data-aue-model="listitem"] .row [class*="col-"]:nth-child(2) a, [data-gen-model="listitem"] .row [class*="col-"]:nth-child(2) a {
-      font-size: 14px;
+      font-size: var(--font-size-xxs);
       bottom: 18px;
     }
 
     .links-container .button {
-      font-size: 14px;
+      font-size: var(--font-size-xxs);
       line-height: 20px;
     }
   }
@@ -266,7 +266,7 @@
 
 .listing-wrapper .listing [data-aue-prop="title"], .listing-wrapper .listing [data-gen-prop="title"] {
   /* font-family: dmSans-bold; */
-  font-size: 16px;
+  font-size: var(--font-size-xs);
   font-weight: 600;
   line-height: 20px;
   letter-spacing: -0.5px;
@@ -275,7 +275,7 @@
 }
 
 .listing-wrapper .listing [data-aue-prop="heading"], .listing-wrapper .listing [data-gen-prop="heading"], .listing > div:nth-child(2) [data-gen-prop="title"] {
-  font-size: 28px;
+  font-size: var(--font-size-m);
   font-weight: 500;
   line-height: 34px;
   color: var(--text-color);
@@ -284,14 +284,14 @@
 }
 
 .listing-wrapper .listing [data-aue-model="listitem"] [data-aue-prop="title"], .listing-wrapper .listing [data-gen-model="listitem"] [data-gen-prop="title"] {
-  font-size: 16px;
+  font-size: var(--font-size-xs);
   line-height: 20px;
   font-weight: 600;
   margin-bottom: 8px;
 }
 
 .listing-wrapper .listing [data-aue-model="listitem"] [data-aue-prop="description"], .listing-wrapper .listing [data-gen-model="listitem"] [data-gen-prop="description"] {
-  font-size: 14px;
+  font-size: var(--font-size-xxs);
   line-height: 20px;
   font-weight: 400;
   color: var(--text-color);
@@ -303,12 +303,12 @@
   }
 
   .listing-wrapper .listing [data-aue-prop="title"], .listing-wrapper .listing [data-gen-prop="title"] {
-    font-size: 32px;
+    font-size: var(--font-size-l);
     line-height: 24px;
   }
 
   .listing-wrapper .listing [data-aue-prop="heading"], .listing-wrapper .listing [data-gen-prop="heading"], .listing > div:nth-child(2) [data-gen-prop="title"] {
-    font-size: 32px;
+    font-size: var(--font-size-l);
     line-height: 42px;
     margin-bottom: 24px;
     font-weight: 500;
@@ -321,7 +321,7 @@
   }
 
   .listing-wrapper .listing [data-aue-model="listitem"] [data-aue-prop="description"], .listing-wrapper .listing [data-gen-model="listitem"] [data-gen-prop="description"] {
-    font-size: 16px;
+    font-size: var(--font-size-xs);
     line-height: 24px;
   }
 }
@@ -332,18 +332,18 @@
   }
 
   .listing-wrapper .listing [data-aue-prop="title"], .listing-wrapper .listing [data-gen-prop="title"] {
-    font-size: 20px;
+    font-size: var(--font-size-s);
   }
 
   .listing-wrapper .listing [data-aue-prop="heading"], .listing-wrapper .listing [data-gen-prop="heading"], .listing > div:nth-child(2) [data-gen-prop="title"] {
-    font-size: 40px;
+    font-size: var(--font-size-xl);
     line-height: normal;
     margin-bottom: 36px;
     font-weight: 500;
   }
 
   .listing-wrapper .listing [data-aue-model="listitem"] [data-aue-prop="title"], .listing-wrapper .listing [data-gen-model="listitem"] [data-gen-prop="title"] {
-    font-size: 20px;
+    font-size: var(--font-size-s);
     margin-bottom: 12px;
   }
 }

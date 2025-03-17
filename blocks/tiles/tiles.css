@@ -33,7 +33,7 @@
   align-items: center;
   color: var(--primary-gold) !important;
   font-weight: 700;
-  font-size: 16px;
+  font-size: var(--font-size-xs);
   align-self: flex-end;
   margin: 24px 0 0;
   transition: transform 0.2s ease-out;
@@ -50,27 +50,27 @@ a:any-link.factsheet-button {
   align-items: center;
 }
 .row.tiles-container .no-image-tile>div>div:first-child p {
-    font-size: 40px;
+    font-size: var(--font-size-xl);
     line-height: 50px;
     font-weight: 500;
     margin-bottom: 12px;
   }
 .row.tiles-container .no-image-tile>div>div:nth-child(2) p {
-    font-size: 16px;
+    font-size: var(--font-size-xs);
     line-height: 24px;
     font-weight: 400;
     margin-bottom: 24px;
     color: var(--body-text-color)
   }
 .row.tiles-container .image-tile>div>div:first-child p {
-  font-size: 20px;
+  font-size: var(--font-size-s);
   font-weight: 600;
   line-height: 24px;
   color: var(--background-color);
   margin-bottom: 12px
 }
 .row.tiles-container .image-tile>div>div:nth-child(2) p {
-  font-size: 16px;
+  font-size: var(--font-size-xs);
   font-weight: 400;
   line-height: 24px;
   color: var(--light-grey);
@@ -93,20 +93,20 @@ a:any-link.factsheet-button {
 .tiles-container .learn-button {
   bottom: 20px;
   right: 20px;
-  font-size: 16px;
+  font-size: var(--font-size-xs);
 }
 
 @media screen and (width < 768px) {
 
   .factsheet-button {
     margin: 16px 0 0;
-    font-size: 14px;
+    font-size: var(--font-size-xxs);
   }
 
  
   
   .row.tiles-container .no-image-tile>div>div:first-child p {
-    font-size: 28px;
+    font-size: var(--font-size-m);
     line-height: 34px;
     font-weight: 500;
     margin-bottom: 8px;
@@ -114,14 +114,14 @@ a:any-link.factsheet-button {
 
  
   .row.tiles-container .image-tile>div>div:first-child p {
-    font-size: 16px;
+    font-size: var(--font-size-xs);
     line-height: 20px;
     font-weight: 700;
   }
 
  
   .row.tiles-container .no-image-tile>div>div:nth-child(2) p {
-    font-size: 14px;
+    font-size: var(--font-size-xxs);
     font-weight: 400;
     line-height: 20px;
   }
@@ -129,7 +129,7 @@ a:any-link.factsheet-button {
  
 
    .row.tiles-container .image-tile>div>div:nth-child(2) p{
-    font-size: 14px;
+    font-size: var(--font-size-xxs);
     font-weight: 400;
     line-height: 20px;
     margin-bottom: 28px;
@@ -141,7 +141,7 @@ a:any-link.factsheet-button {
   }
 
   .tiles-container .learn-button {
-    font-size: 16px;
+    font-size: var(--font-size-xs);
     right: 20px;
   }
 }
@@ -171,8 +171,12 @@ a:any-link.factsheet-button {
     font-weight: 700;
   }
 
+  .row.tiles-container .no-image-tile>div>div:first-child p {
+    font-size: var(--font-size-l);
+  }
+
    .row.tiles-container .image-tile>div>div:nth-child(2) p{
-    font-size: 16px;
+    font-size: var(--font-size-xs);
     font-weight: 400;
     line-height: 24px;
     margin-bottom: 34px;
