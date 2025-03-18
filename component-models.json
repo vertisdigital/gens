@@ -725,7 +725,7 @@
     "id": "projectcards",
     "fields": [
       {
-        "component": "select",
+        "component": "multiselect",
         "name": "classes",
         "value": "",
         "label": "Style Classes",
@@ -738,6 +738,10 @@
           {
             "name": "Certifications",
             "value": "certifications"
+          },
+          {
+            "name": "Grey Background",
+            "value": "grey-background"
           }
         ]
       },
@@ -1221,6 +1225,28 @@
     ]
   },
   {
+    "id": "coreprinciples",
+    "fields": [
+      {
+        "component": "select",
+        "name": "classes",
+        "value": "",
+        "label": "Style Options",
+        "valueType": "string",
+        "options": [
+          {
+            "name": "Default",
+            "value": ""
+          },
+          {
+            "name": "Core Principles No Border",
+            "value": "coreprinciples-no-border"
+          }
+        ]
+      }
+    ]
+  },
+  {
     "id": "coreprinciple",
     "fields": [
       {
@@ -1419,20 +1445,28 @@
       },
       {
         "component": "select",
-        "name": "linkType",
-        "label": "Type",
+        "name": "linkSvgIcon",
+        "label": "Link SVG Icon",
         "options": [
           {
-            "name": "default",
+            "name": "Select",
             "value": ""
           },
           {
-            "name": "primary",
-            "value": "primary"
+            "name": "Arrow",
+            "value": "arrow"
           },
           {
-            "name": "secondary",
-            "value": "secondary"
+            "name": "Right Arrow",
+            "value": "right-arrow"
+          },
+          {
+            "name": "Download Arrow",
+            "value": "download-arrow"
+          },
+          {
+            "name": "North East Arrow",
+            "value": "north-east-arrow"
           }
         ]
       }

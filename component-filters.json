@@ -133,7 +133,8 @@
   {
     "id": "projectcards",
     "components": [
-      "projectcard"
+      "projectcard",
+      "linkField"
     ]
   },
   {
