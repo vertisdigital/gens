@@ -105,6 +105,10 @@
     .corporate-policies-list-item .right-col {
         padding: 0;
     }
+    .corporate-policies-list>div:last-child{
+        padding-bottom: 24px;
+        padding-left: 0px;
+    }
     .corporate-policies-list-item .right-col > div:first-child {
         font-size: var(--font-size-xxs);
         line-height: 20px;
@@ -113,9 +117,5 @@
     .corporate-policies-list-item .right-col > div:nth-child(3) a {
         font-size: var(--font-size-xs);
         line-height: 20px;
-    }
-    .corporate-policies-list>div:last-child{
-        padding-bottom: 24px;
-        padding-left: 0px;
     }
 }
