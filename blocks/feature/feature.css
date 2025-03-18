@@ -387,4 +387,7 @@ color: var(--body-text-color);
     top: -28px;
     height: calc(100% + 28px);
   }
+  .about-us-left h2.about-us-left-heading{
+    font-size: var(--font-size-m);
+  }
 }

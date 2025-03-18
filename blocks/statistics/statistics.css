@@ -202,7 +202,7 @@
     }
 
     .statistics .statistic-item {
-        font-size: var(--font-size-xxl-m);
+        font-size: var(--font-size-xxl);
         line-height: 64px;
     }
 
@@ -259,7 +259,7 @@
     }
 
     .statistics .statistic-item {
-        font-size: var(--font-size-xxl-s);
+        font-size: var(--font-size-xl);
         line-height: 48px;
     }
 
