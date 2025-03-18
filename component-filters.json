@@ -10,15 +10,9 @@
   {
     "id": "section",
     "components": [
-      "text",
-      "image",
-      "button",
-      "title",
-      "hero",
       "herobanner",
       "cards",
       "columns",
-      "fragment",
       "coreprinciples",
       "feature",
       "linkField",
@@ -31,7 +25,6 @@
       "enquiry",
       "contactus",
       "tiles",
-      "textsection",
       "textmediablock",
       "projectslist",
       "iframe",
@@ -70,10 +63,6 @@
   {
     "id": "column",
     "components": [
-      "text",
-      "image",
-      "button",
-      "title",
       "coreprinciples",
       "imageLink",
       "socialLinks",
