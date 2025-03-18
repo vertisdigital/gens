@@ -41,6 +41,20 @@
       "id": "blocks",
       "components": [
         {
+          "title": "A",
+          "id": "a-header",
+          "plugins": {
+            "xwalk": {
+              "page": {
+                "resourceType": "core/franklin/components/section/v1/section",
+                "template": {
+                  "name": "A"
+                }
+              }
+            }
+          }
+        },
+        {
           "title": "AwardsGallery",
           "id": "awardsgallery",
           "plugins": {
@@ -73,6 +87,20 @@
           }
         },
         {
+          "title": "B",
+          "id": "b-header",
+          "plugins": {
+            "xwalk": {
+              "page": {
+                "resourceType": "core/franklin/components/section/v1/section",
+                "template": {
+                  "name": "B"
+                }
+              }
+            }
+          }
+        },
+        {
           "title": "BannerCarousel",
           "id": "bannercarousel",
           "plugins": {
@@ -97,6 +125,20 @@
                 "template": {
                   "name": "BoardOfDirectors",
                   "filter": "boardofdirectors"
+                }
+              }
+            }
+          }
+        },
+        {
+          "title": "C",
+          "id": "c-header",
+          "plugins": {
+            "xwalk": {
+              "page": {
+                "resourceType": "core/franklin/components/section/v1/section",
+                "template": {
+                  "name": "C"
                 }
               }
             }
@@ -180,6 +222,20 @@
           }
         },
         {
+          "title": "D",
+          "id": "d-header",
+          "plugins": {
+            "xwalk": {
+              "page": {
+                "resourceType": "core/franklin/components/section/v1/section",
+                "template": {
+                  "name": "D"
+                }
+              }
+            }
+          }
+        },
+        {
           "title": "Director",
           "id": "director",
           "plugins": {
@@ -191,6 +247,20 @@
                   "model": "director"
                 }
               } 
+            }
+          }
+        },
+        {
+          "title": "E",
+          "id": "e-header",
+          "plugins": {
+            "xwalk": {
+              "page": {
+                "resourceType": "core/franklin/components/section/v1/section",
+                "template": {
+                  "name": "E"
+                }
+              }
             }
           }
         },
@@ -236,6 +306,20 @@
                   "name": "ExploreMore",
                   "model": "exploremore",
                   "filter": "exploremore"
+                }
+              }
+            }
+          }
+        },
+        {
+          "title": "F",
+          "id": "f-header",
+          "plugins": {
+            "xwalk": {
+              "page": {
+                "resourceType": "core/franklin/components/section/v1/section",
+                "template": {
+                  "name": "F"
                 }
               }
             }
@@ -289,6 +373,20 @@
           }
         },
         {
+          "title": "G",
+          "id": "g-header",
+          "plugins": {
+            "xwalk": {
+              "page": {
+                "resourceType": "core/franklin/components/section/v1/section",
+                "template": {
+                  "name": "G"
+                }
+              }
+            }
+          }
+        },
+        {
           "title": "GovernanceTile",
           "id": "governancetile",
           "plugins": {
@@ -298,6 +396,20 @@
                 "template": {
                   "name": "GovernanceTile",
                   "model": "governancetile"
+                }
+              }
+            }
+          }
+        },
+        {
+          "title": "H",
+          "id": "h-header",
+          "plugins": {
+            "xwalk": {
+              "page": {
+                "resourceType": "core/franklin/components/section/v1/section",
+                "template": {
+                  "name": "H"
                 }
               }
             }
@@ -351,6 +463,20 @@
           }
         },
         {
+          "title": "I",
+          "id": "i-header",
+          "plugins": {
+            "xwalk": {
+              "page": {
+                "resourceType": "core/franklin/components/section/v1/section",
+                "template": {
+                  "name": "I"
+                }
+              }
+            }
+          }
+        },
+        {
           "title": "IFrame",
           "id": "iframe",
           "plugins": {
@@ -393,6 +519,20 @@
                   "name": "Indices",
                   "model": "indices",
                   "filter": "indices"
+                }
+              }
+            }
+          }
+        },
+        {
+          "title": "L",
+          "id": "l-header",
+          "plugins": {
+            "xwalk": {
+              "page": {
+                "resourceType": "core/franklin/components/section/v1/section",
+                "template": {
+                  "name": "L"
                 }
               }
             }
@@ -477,6 +617,20 @@
           }
         },
         {
+          "title": "M",
+          "id": "m-header",
+          "plugins": {
+            "xwalk": {
+              "page": {
+                "resourceType": "core/franklin/components/section/v1/section",
+                "template": {
+                  "name": "M"
+                }
+              }
+            }
+          }
+        },
+        {
           "title": "Media",
           "id": "media",
           "plugins": {
@@ -501,6 +655,20 @@
                 "template": {
                   "name": "MilestoneItem",
                   "model": "milestoneitem"
+                }
+              }
+            }
+          }
+        },
+        {
+          "title": "P",
+          "id": "p-header",
+          "plugins": {
+            "xwalk": {
+              "page": {
+                "resourceType": "core/franklin/components/section/v1/section",
+                "template": {
+                  "name": "P"
                 }
               }
             }
@@ -583,6 +751,20 @@
           }
         },
         {
+          "title": "S",
+          "id": "s-header",
+          "plugins": {
+            "xwalk": {
+              "page": {
+                "resourceType": "core/franklin/components/section/v1/section",
+                "template": {
+                  "name": "S"
+                }
+              }
+            }
+          }
+        },
+        {
           "title": "SocialLinks",
           "id": "socialLinks",
           "plugins": {
@@ -657,6 +839,20 @@
                   "name": "SustainabilityGovernance",
                   "model": "sustainabilitygovernance",
                   "filter": "sustainabilitygovernance"
+                }
+              }
+            }
+          }
+        },
+        {
+          "title": "T",
+          "id": "t-header",
+          "plugins": {
+            "xwalk": {
+              "page": {
+                "resourceType": "core/franklin/components/section/v1/section",
+                "template": {
+                  "name": "T"
                 }
               }
             }
