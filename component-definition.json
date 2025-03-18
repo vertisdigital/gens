@@ -37,7 +37,7 @@
       ]
     },
     {
-      "title": "A-block",
+      "title": "A",
       "id": "a-block",
       "components": [
         {
@@ -75,7 +75,7 @@
       ]
     },
     {
-      "title": "B-block",
+      "title": "B",
       "id": "b-block",
       "components": [
         {
@@ -111,7 +111,7 @@
       ]
     },
     {
-      "title": "C-block",
+      "title": "C",
       "id": "c-block",
       "components": [
         {
@@ -179,7 +179,7 @@
       ]
     },
     {
-      "title": "D-block",
+      "title": "D",
       "id": "d-block",
       "components": [
         {
@@ -200,7 +200,7 @@
       ]
     },
     {
-      "title": "E-block",
+      "title": "E",
       "id": "e-block",
       "components": [
         {
@@ -253,7 +253,7 @@
       ]
     },
     {
-      "title": "F-block",
+      "title": "F",
       "id": "f-block",
       "components": [
         {
@@ -306,7 +306,7 @@
       ]
     },
     {
-      "title": "G-block",
+      "title": "G",
       "id": "g-block",
       "components": [
         {
@@ -327,7 +327,7 @@
       ]
     },
     {
-      "title": "H-block",
+      "title": "H",
       "id": "h-block",
       "components": [
         {
@@ -380,7 +380,7 @@
       ]
     },
     {
-      "title": "I-block",
+      "title": "I",
       "id": "i-block",
       "components": [
         {
@@ -434,7 +434,7 @@
       ]
     },
     {
-      "title": "L-block",
+      "title": "L",
       "id": "l-block",
       "components": [
         {
@@ -518,7 +518,7 @@
       ]
     },
     {
-      "title": "M-block",
+      "title": "M",
       "id": "m-block",
       "components": [
         {
@@ -554,7 +554,7 @@
       ]
     },
     {
-      "title": "P-block",
+      "title": "P",
       "id": "p-block",
       "components": [
         {
@@ -636,7 +636,7 @@
       ]
     },
     {
-      "title": "S-block",
+      "title": "S",
       "id": "s-block",
       "components": [
         {
@@ -722,7 +722,7 @@
       ]
     },
     {
-      "title": "T-block",
+      "title": "T",
       "id": "t-block",
       "components": [
         {
