@@ -166,7 +166,8 @@ export default function decorate(block) {
 
   // Handle View All link
   if (projectCards.length > 0) {
-    const linkFieldElement = block.querySelector('[data-aue-model="linkField"]');
+    const linkFieldElement = block.children[block.children.length - 1];
+
     if (linkFieldElement) {
       const linkContainer = document.createElement('div');
       moveInstrumentation(linkFieldElement, linkContainer);
@@ -174,19 +175,10 @@ export default function decorate(block) {
       const linkElement = linkFieldElement.querySelector('a');
       if (linkElement) {
         const linkDiv = document.createElement('div');
-        const viewAllLink = document.createElement('a');
-        viewAllLink.href = linkElement.getAttribute('href');
-        viewAllLink.textContent = linkElement.textContent;
-        viewAllLink.className = 'view-all-link';
-        moveInstrumentation(linkElement, viewAllLink);
-
-        const targetDiv = document.createElement('div');
-        moveInstrumentation(linkFieldElement.querySelector('[data-aue-prop="linkTarget"]'), targetDiv);
-        viewAllLink.target = linkFieldElement.querySelector('[data-aue-prop="linkTarget"]')?.textContent || '_self';
-
-        linkDiv.appendChild(viewAllLink);
+        linkElement.className = 'view-all-link';
+        linkElement.target = linkFieldElement.children[2].textContent;
+        linkDiv.appendChild(linkElement); 
         linkContainer.appendChild(linkDiv);
-        linkContainer.appendChild(targetDiv);
       }
 
       projectCardsContainer.appendChild(linkContainer);

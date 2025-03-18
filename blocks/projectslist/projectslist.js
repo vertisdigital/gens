@@ -66,6 +66,12 @@ export default function decorate(block) {
         leftCol.appendChild(shortDescription);
       }
 
+      const projectCta = allDivElements[5];
+      projectCta.className = 'project-cta';
+      leftCol.appendChild(projectCta);
+
+     
+
       // Create right column (description and contacts) - 60% on desktop and tablet
       const rightCol = document.createElement('div');
       rightCol.className = 'col-xl-6 col-md-3 col-sm-4 right-col';

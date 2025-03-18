@@ -15,6 +15,9 @@
     margin: 0 auto;
     transform: translateY(68px);
 }
+.coreprinciples.coreprinciples-no-border .container::after{
+    display: none;
+}
 
 .coreprinciples .row {
     display: flex;
@@ -38,6 +41,9 @@
     display: flex;
     flex-direction: column;
     height: 100%; /* Fills parent height */
+}
+.principles-item > div:first-child {
+    padding: 20px;
 }
 
 .coreprinciples .icon-wrapper {

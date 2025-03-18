@@ -39,12 +39,25 @@ p {
     line-height: 24px;
 }
 
+.project-cta a.button:any-link{
+    background:none;
+    cursor:pointer;
+    padding:0;
+    color: var(--primary-gold);
+    margin-top:30px
+   }
+
 @media (width <= 992px)  {
     .projectslistitem {
         padding-top: 24px;
         padding-bottom: 40px;
     }
+    .project-cta a.button:any-link{
+        margin-top:24px
+       }
 }
+
+
 
 
 @media (width <= 769px) {
@@ -72,6 +85,9 @@ p {
         padding-top: 18px;
         width: 100%;
     }
+    .project-cta a.button:any-link{
+        margin-top:20px
+       }
 }
 
 @media (width <= 426px) {
