@@ -37,7 +37,6 @@
       ]
     },
     {
-      "title": "A",
       "id": "a-block",
       "components": [
         {
@@ -74,8 +73,7 @@
         }
       ]
     },
-    { 
-      "title": "B",
+    {
       "id": "b-block",
       "components": [
         {
@@ -111,7 +109,6 @@
       ]
     },
     {
-      "title": "C",
       "id": "c-block",
       "components": [
         {
@@ -179,7 +176,6 @@
       ]
     },
     {
-      "title": "D",
       "id": "d-block",
       "components": [
         {
@@ -200,7 +196,6 @@
       ]
     },
     {
-      "title": "E",
       "id": "e-block",
       "components": [
         {
@@ -253,7 +248,6 @@
       ]
     },
     {
-      "title": "F",
       "id": "f-block",
       "components": [
         {
@@ -306,7 +300,6 @@
       ]
     },
     {
-      "title": "G",
       "id": "g-block",
       "components": [
         {
@@ -327,7 +320,6 @@
       ]
     },
     {
-      "title": "H",
       "id": "h-block",
       "components": [
         {
@@ -380,7 +372,6 @@
       ]
     },
     {
-      "title": "I",
       "id": "i-block",
       "components": [
         {
@@ -434,7 +425,6 @@
       ]
     },
     {
-      "title": "L",
       "id": "l-block",
       "components": [
         {
@@ -518,7 +508,6 @@
       ]
     },
     {
-      "title": "M",
       "id": "m-block",
       "components": [
         {
@@ -554,7 +543,6 @@
       ]
     },
     {
-      "title": "P",
       "id": "p-block",
       "components": [
         {
@@ -636,7 +624,6 @@
       ]
     },
     {
-      "title": "S",
       "id": "s-block",
       "components": [
         {
@@ -722,7 +709,6 @@
       ]
     },
     {
-      "title": "T",
       "id": "t-block",
       "components": [
         {
