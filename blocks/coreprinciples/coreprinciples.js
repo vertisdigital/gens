@@ -9,6 +9,17 @@ export default function decorate(block) {
   // Add container classes for responsive layout
   const wrapper = document.createElement('div');
   wrapper.classList.add('coreprinciples');
+  
+  const removeBorderBottom={
+    "esg":true
+  }
+  let pathname=window.location.pathname.split('/')
+  pathname=pathname[pathname.length-1]
+  
+  if(removeBorderBottom[pathname]){
+    wrapper.setAttribute('id','remove-border-bottom')
+  }
+  
   const container = document.createElement('div');
   wrapper.appendChild(container);
   container.className = 'container';

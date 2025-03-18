@@ -16,6 +16,10 @@
     transform: translateY(68px);
 }
 
+#remove-border-bottom .container::after{
+    display: none;
+}
+
 .coreprinciples .row {
     display: flex;
     flex-wrap: wrap;
