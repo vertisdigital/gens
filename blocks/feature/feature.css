@@ -30,11 +30,11 @@
   font-weight: 600;
   color: var(--text-color);
   margin: 0;
-  /* margin-bottom: 12px; */
+  margin-bottom: 12px;
 }
 
 .about-us-left h2.about-us-left-heading{
-  font-size: var(--font-size-xl);
+  font-size: var(--font-size-m);
   font-weight: 500;
   color: var(--text-color);
   margin: 0;
@@ -214,7 +214,7 @@ color: var(--body-text-color);
 
 
   .about-us-left .about-us-left-title{
-    /* margin-bottom: 16px; */
+    margin-bottom: 16px;
     font-size: 18px;
     line-height: 24px;
   }
@@ -303,7 +303,7 @@ color: var(--body-text-color);
     font-size: var(--font-size-s);
     font-weight: 600;
     line-height: 24px;
-    /* margin-bottom: 20px; */
+    margin-bottom: 20px;
   }
 
   .about-us-left h2.about-us-left-heading {
