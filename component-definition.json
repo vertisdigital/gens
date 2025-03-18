@@ -37,6 +37,28 @@
       ]
     },
     {
+      "title": "A",
+      "id": "a-block",
+      "components": [
+        {
+          "title": "AwardsGallery",
+          "id": "awardsgallery",
+          "plugins": {
+            "xwalk": {
+              "page": {
+                "resourceType": "core/franklin/components/block/v1/block",
+                "template": {
+                  "name": "AwardsGallery",
+                  "filter": "awardsgallery",
+                  "model": "awardsgallery"
+                }
+              }
+            }
+          }
+        }
+      ]
+    },
+    {
       "title": "Blocks",
       "id": "blocks",
       "components": [
