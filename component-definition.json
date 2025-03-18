@@ -37,30 +37,8 @@
       ]
     },
     {
-      "title": "A",
+      "title": "A-block",
       "id": "a-block",
-      "components": [
-        {
-          "title": "AwardsGallery",
-          "id": "awardsgallery",
-          "plugins": {
-            "xwalk": {
-              "page": {
-                "resourceType": "core/franklin/components/block/v1/block",
-                "template": {
-                  "name": "AwardsGallery",
-                  "filter": "awardsgallery",
-                  "model": "awardsgallery"
-                }
-              }
-            }
-          }
-        }
-      ]
-    },
-    {
-      "title": "Blocks",
-      "id": "blocks",
       "components": [
         {
           "title": "AwardsGallery",
@@ -93,7 +71,13 @@
               }
             }
           }
-        },
+        }
+      ]
+    },
+    {
+      "title": "B-block",
+      "id": "b-block",
+      "components": [
         {
           "title": "BannerCarousel",
           "id": "bannercarousel",
@@ -123,7 +107,13 @@
               }
             }
           }
-        },
+        }
+      ]
+    },
+    {
+      "title": "C-block",
+      "id": "c-block",
+      "components": [
         {
           "title": "ContactUs",
           "id": "contactus",
@@ -185,7 +175,13 @@
               }
             }
           }
-        },
+        }
+      ]
+    },
+    {
+      "title": "D-block",
+      "id": "d-block",
+      "components": [
         {
           "title": "Director",
           "id": "director",
@@ -200,7 +196,13 @@
               } 
             }
           }
-        },
+        }
+      ]
+    },
+    {
+      "title": "E-block",
+      "id": "e-block",
+      "components": [
         {
           "title": "Enquiry",
           "id": "enquiry",
@@ -247,7 +249,13 @@
               }
             }
           }
-        },
+        }
+      ]
+    },
+    {
+      "title": "F-block",
+      "id": "f-block",
+      "components": [
         {
           "title": "Feature",
           "id": "feature",
@@ -294,7 +302,13 @@
               }
             }
           }
-        },
+        }
+      ]
+    },
+    {
+      "title": "G-block",
+      "id": "g-block",
+      "components": [
         {
           "title": "GovernanceTile",
           "id": "governancetile",
@@ -309,7 +323,13 @@
               }
             }
           }
-        },
+        }
+      ]
+    },
+    {
+      "title": "H-block",
+      "id": "h-block",
+      "components": [
         {
           "title": "Hero",
           "id": "hero",
@@ -356,7 +376,13 @@
               }
             }
           }
-        },
+        }
+      ]
+    },
+    {
+      "title": "I-block",
+      "id": "i-block",
+      "components": [
         {
           "title": "IFrame",
           "id": "iframe",
@@ -404,7 +430,13 @@
               }
             }
           }
-        },
+        }
+      ]
+    },
+    {
+      "title": "L-block",
+      "id": "l-block",
+      "components": [
         {
           "title": "LinkField",
           "id": "linkField",
@@ -482,7 +514,13 @@
               }
             }
           }
-        },
+        }
+      ]
+    },
+    {
+      "title": "M-block",
+      "id": "m-block",
+      "components": [
         {
           "title": "Media",
           "id": "media",
@@ -512,7 +550,13 @@
               }
             }
           }
-        },
+        }
+      ]
+    },
+    {
+      "title": "P-block",
+      "id": "p-block",
+      "components": [
         {
           "title": "PolicyTile",
           "id": "policytile",
@@ -588,7 +632,13 @@
               }
             }
           }
-        },
+        }
+      ]
+    },
+    {
+      "title": "S-block",
+      "id": "s-block",
+      "components": [
         {
           "title": "SocialLinks",
           "id": "socialLinks",
@@ -668,7 +718,13 @@
               }
             }
           }
-        },
+        }
+      ]
+    },
+    {
+      "title": "T-block",
+      "id": "t-block",
+      "components": [
         {
           "title": "TabSectionTitle",
           "id": "tabsectiontitle",
