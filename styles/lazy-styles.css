@@ -27,7 +27,7 @@
 .tab-title {
     position: relative;
     text-align: center;
-    padding: 36px 0 45px;
+    padding: 36px 0;
     color: var(--body-text-color);
     font-size: var(--font-size-s);
     font-weight: 600;
