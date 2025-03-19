@@ -88,10 +88,7 @@ function updateIframeHeight(iframeWrapper, endpoint) {
     },
     "Sustainability Reports":{
       mobile: '6680px',
-      tablet: {
-        landscape: '11340px',
-        portrait: '2260px',
-      },
+      tablet: "11340px",
       desktop: '2620px',
     },
     default: {
