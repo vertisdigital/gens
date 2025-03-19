@@ -178,9 +178,6 @@
     margin-left: 15px;
 }
 
-.tabs-container .textmediablock-wrapper {
-    margin-top:48px
-}
  
 @media (width <=1024px) {
     .tabs-container .projectslist {
@@ -309,8 +306,14 @@
         font-size: var(--font-size-l);
         line-height: 32px;
     }
+    .tab-panel.corporatepolicies-container .corporatepolicies-wrapper {
+        margin: 34px 0;
+    }
 }
 @media(width >=1024px) {
+    .tabs-container .textmediablock-wrapper {
+        margin: 34px 0;
+    }
     .tabs-container .about-us-stats .about-us-right-content {
         display: flex;
         flex-direction: row;
