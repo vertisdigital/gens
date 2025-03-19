@@ -1,16 +1,112 @@
 version: 1
 
 indices:
-  pages:
+  default:
     include:
       - '/**'
     exclude:
-      - '/**.json'
+      - '/blocks/**'
+      - '/scripts/**'
+      - '/styles/**'
+      - '/tools/**'
+      - '/shared-components/**'
+      - '/*.json'
+      - '/*.yaml'
+      - '/*.md'
+      - '/helix-query.yaml'
+      - '/helix-sitemap.yaml'
     target: /query-index.json
     properties:
+      title:
+        select: head > meta[property="og:title"]
+        value: attribute(el, "content")
+      description:
+        select: head > meta[name="description"]
+        value: attribute(el, "content")
+      image:
+        select: head > meta[property="og:image"]
+        value: attribute(el, "content")
       lastModified:
         select: none
         value: parseTimestamp(headers["last-modified"], "ddd, DD MMM YYYY hh:mm:ss GMT")
       robots:
         select: head > meta[name="robots"]
         value: attribute(el, "content")
+      author:
+        select: head > meta[name="author"]
+        value: attribute(el, "content")
+      date:
+        select: head > meta[name="publication-date"]
+        value: attribute(el, "content")
+      category:
+        select: head > meta[name="category"]
+        value: attribute(el, "content")
+      tags:
+        select: head > meta[name="article:tag"]
+        values: attribute(el, "content")
+      template:
+        select: head > meta[name="template"]
+        value: attribute(el, "content")
+      section:
+        select: head > meta[name="section"]
+        value: attribute(el, "content")
+      breadcrumbs:
+        select: nav.breadcrumbs
+        value: innerHTML(el)
+      headings:
+        select: main h1, main h2, main h3
+        values: textContent(el)
+      firstParagraph:
+        select: main p:first-of-type
+        value: textContent(el)
+      wordCount:
+        select: main
+        value: match(textContent(el), "\\w+", "g").length
+      fullContent:
+        select: main
+        value: textContent(el)
+
+  blocks:
+    include:
+      - '/blocks/**'
+    exclude:
+      - '/blocks/**/*.js'
+      - '/blocks/**/*.css'
+    target: /blocks-index.json
+    properties:
+      name:
+        select: none
+        value: path.split('/').pop()
+      type:
+        select: none
+        value: path.split('/').slice(-2, -1)[0]
+      lastModified:
+        select: none
+        value: parseTimestamp(headers["last-modified"], "ddd, DD MMM YYYY hh:mm:ss GMT")
+
+  content-blocks:
+    include:
+      - '/**'
+    exclude:
+      - '/blocks/**'
+      - '/scripts/**'
+      - '/styles/**'
+      - '/tools/**'
+      - '/shared-components/**'
+      - '/*.json'
+      - '/*.yaml'
+      - '/*.md'
+    target: /content-blocks-index.json
+    properties:
+      path:
+        select: none
+        value: path
+      title:
+        select: head > title
+        value: textContent(el)
+      blockContents:
+        select: main .block
+        values: textContent(el)
+      allContent:
+        select: body
+        value: textContent(el)
