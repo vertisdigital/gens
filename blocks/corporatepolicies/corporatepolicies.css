@@ -1,5 +1,5 @@
 .corporatepolicies-wrapper{
-    padding: 68px 0;
+    margin: 68px 0;
 }
 .corporate-policies-list-item {
     padding: 68px 0;
@@ -67,7 +67,7 @@
 
 @media (width <= 992px) {
     .corporatepolicies-wrapper{
-        padding: 56px 0;
+        margin: 56px 0;
     }
     .corporate-policies-list-item {
         padding: 48px 0px;
@@ -83,7 +83,7 @@
 
 @media (width < 768px) {
     .corporatepolicies-wrapper{
-        padding: 24px 0;
+        margin: 24px 0;
     }
     .corporate-policies-list-item {
         padding: 24px 0px;
