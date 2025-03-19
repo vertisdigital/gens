@@ -91,6 +91,11 @@ function updateIframeHeight(iframeWrapper, endpoint) {
       tablet: "11340px",
       desktop: '2620px',
     },
+    "investor-calendar":{
+      mobile: '1020px',
+      tablet: "640px",
+      desktop: '640px',
+    },
     default: {
       mobile: '1850px',
       desktop: '1220px',
@@ -116,9 +121,10 @@ function updateIframeHeight(iframeWrapper, endpoint) {
   } else {
     setElementHeight(iframeWrapper, endpointHeightConfig.default);
   }
+  
+  const iframe=iframeWrapper.querySelector('iframe')
 
-  if(endpointHeightConfig[endpoint]?.disableScroll){
-    const iframe=iframeWrapper.querySelector('iframe')
+  if(endpointHeightConfig[endpoint]?.disableScroll && iframe){
     iframe.setAttribute('scrolling','no')
   }
 }
