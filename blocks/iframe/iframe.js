@@ -20,7 +20,7 @@ function updateIframeHeight(iframeWrapper, endpoint) {
   if (isTablet) {
     deviceType = 'tablet';
   }
-
+  
   const endpointHeightConfig = {
     home: {
       mobile: '1850px',
@@ -81,6 +81,19 @@ function updateIframeHeight(iframeWrapper, endpoint) {
       tablet:"3240px",
       mobile:"3540px"
     },
+    "Annual Reports":{
+      mobile: '13890px',
+      tablet: '26020px',
+      desktop: '5690px',
+    },
+    "Sustainability Reports":{
+      mobile: '6680px',
+      tablet: {
+        landscape: '11340px',
+        portrait: '2260px',
+      },
+      desktop: '2620px',
+    },
     default: {
       mobile: '1850px',
       desktop: '1220px',
@@ -88,6 +101,7 @@ function updateIframeHeight(iframeWrapper, endpoint) {
   };
 
   let height = endpointHeightConfig[endpoint];
+
   if (typeof height === 'object') {
     if (deviceType === 'tablet') {
       if (isLandscape()) {
@@ -125,6 +139,17 @@ function getTabsEvent(){
   });
 }
 
+function updateIframeForTab(){
+  const tabsIframePages={
+    '/index/investors-overview/publications':true,
+    '/index/investors-overview/stock-information':true
+  }
+  const isTabIframeRoute=tabsIframePages[window.location.pathname.replace('#','')]
+   if(isTabIframeRoute){
+      getTabsEvent();
+    } 
+}
+
 export default function decorate(block) {
   const link = block.querySelector('a');
   link.remove();
@@ -153,16 +178,11 @@ export default function decorate(block) {
 
   const endpoint = new window.URL(url).pathname.replace('/', '').replace('.rev', '');
   updateIframeHeight(iframeWrapper, endpoint);
-  if(window.location.pathname.includes('stock-information')){
-  getTabsEvent();
-    
-}
+  updateIframeForTab();
+  
   window.addEventListener('resize', () => {
     updateIframeHeight(iframeWrapper, endpoint);
-    if(window.location.pathname.includes('stock-information')){
-  getTabsEvent();
-    
-}
+    updateIframeForTab();
   });
 
 
