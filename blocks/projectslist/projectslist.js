@@ -16,8 +16,7 @@ export default function decorate(block) {
   ) || wrapper;
 
   Array.from(projectsContainer.children).forEach((project) => {
-
-    if(project.children[0].textContent !== '') {
+    if (project.children[0].textContent !== '') {
       const projectContainer = document.createElement('div');
       projectContainer.className = 'projectslistitem';
       moveInstrumentation(project, projectContainer);
@@ -55,9 +54,8 @@ export default function decorate(block) {
         leftCol.appendChild(longDescription);
       }
 
-      const shortDescriptionText = project.querySelector(
-        '[data-aue-prop="shortdescription"]',
-      );
+      const shortDescriptionText = allDivElements[3];
+
       if (shortDescriptionText) {
         const shortDescription = document.createElement('p');
         shortDescription.className = 'project-short-description';
@@ -70,13 +68,11 @@ export default function decorate(block) {
       projectCta.className = 'project-cta';
       leftCol.appendChild(projectCta);
 
-     
-
       // Create right column (description and contacts) - 60% on desktop and tablet
       const rightCol = document.createElement('div');
       rightCol.className = 'col-xl-6 col-md-3 col-sm-4 right-col';
 
-      const imageLink = project.querySelector('a[href*="delivery-"]', 'a[href*="/content/dam/"][href$=".png"], a[href*="/content/dam/"][href$=".jpeg"], a[href*="/content/dam/"][href$=".jpg"], a[href*="/content/dam/"][href$=".gif"], a[href*="/content/dam/"][href$=".svg"]');
+      const imageLink = allDivElements[4].querySelector('a');
 
       if (imageLink) {
         const imageUrl = imageLink.getAttribute('href');
