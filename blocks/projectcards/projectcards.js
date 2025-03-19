@@ -153,7 +153,7 @@ export default function decorate(block) {
       locationDiv.setAttribute('data-aue-label', 'Location');
       locationDiv.setAttribute('data-aue-type', 'text');
       locationDiv.className = 'project-card-location';
-      locationDiv.textContent = locationElement.textContent;
+      locationDiv.innerHTML = locationElement.innerHTML;
       cardContent.appendChild(locationDiv);
       locationElement.remove();
     }
