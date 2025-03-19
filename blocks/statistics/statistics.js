@@ -60,7 +60,7 @@ export default function decorate(block) {
     ) {
       statisticBlockDescription.classList.add('statistics-description-wrapper');
       const descChildren = statisticBlockDescription.children;
-      // replacing the title with  h2
+      // replacing the title with h2
       const titleElement = descChildren[0];
       if (titleElement) {
         const titleText = titleElement.textContent;
@@ -74,51 +74,71 @@ export default function decorate(block) {
         titleElement.outerHTML = parsedHtml.outerHTML;
       }
 
-      // adding class  statistics-description to description
-      const descriptionChildren = descChildren[1]?.querySelectorAll('p');
+      // Handle description text with character limit
+      const descriptionParagraph = descChildren[1]?.querySelector('p');
       const readMoreContent = descChildren[2];
       const readLessContent = descChildren[3];
-      if (descriptionChildren?.length > 1) {
-        for (let i = 1; i < descriptionChildren.length; i += 1) {
-          descriptionChildren[i].classList.add('hide');
-        }
-        const readMoreElement = document.createElement('button');
-        const readLessElement = document.createElement('button');
-        moveInstrumentation(readMoreContent, readMoreElement);
-        moveInstrumentation(readLessContent, readLessElement);
 
-        readMoreElement.textContent = readMoreContent?.textContent ?? 'Read More';
+      if (descriptionParagraph) {
+        const fullHtml = descriptionParagraph.innerHTML;
+        
+        // Find the position of first <br> tag
+        const firstBrIndex = fullHtml.indexOf('<br>');
+        
+        // Only proceed with truncation if there's a <br> tag
+        if (firstBrIndex !== -1) {
+          // Create container for truncated and full text
+          const textContainer = document.createElement('div');
+          textContainer.className = 'description-text-container';
+          
+          // Create elements for truncated and full text
+          const truncatedElement = document.createElement('p');
+          truncatedElement.innerHTML = fullHtml.substring(0, firstBrIndex);
+          truncatedElement.className = 'truncated-text';
+          
+          const fullTextElement = document.createElement('p');
+          fullTextElement.innerHTML = fullHtml;
+          fullTextElement.className = 'full-text hide';
+          
+          textContainer.appendChild(truncatedElement);
+          textContainer.appendChild(fullTextElement);
+          
+          // Replace original paragraph with our container
+          descriptionParagraph.replaceWith(textContainer);
 
-        // removing the readMoreContent
-        readMoreContent.remove();
+          const readMoreElement = document.createElement('button');
+          const readLessElement = document.createElement('button');
+          moveInstrumentation(readMoreContent, readMoreElement);
+          moveInstrumentation(readLessContent, readLessElement);
 
-        readMoreElement.onclick = (e) => {
-          e.preventDefault();
-          for (let i = 1; i < descriptionChildren.length; i += 1) {
-            descriptionChildren[i].classList.remove('hide');
-          }
-          readMoreElement.classList.add('hide');
-          readLessElement.classList.remove('hide');
-        };
-        statisticBlockDescription.appendChild(readMoreElement);
+          readMoreElement.textContent = readMoreContent?.textContent ?? 'Read More';
+          readMoreContent.remove();
 
-        readLessElement.textContent = readLessContent?.textContent ?? 'Read Less';
-        // removing the readLessContent
-        readLessContent.remove();
+          readMoreElement.onclick = (e) => {
+            e.preventDefault();
+            truncatedElement.classList.add('hide');
+            fullTextElement.classList.remove('hide');
+            readMoreElement.classList.add('hide');
+            readLessElement.classList.remove('hide');
+          };
+          statisticBlockDescription.appendChild(readMoreElement);
 
-        readLessElement.classList.add('hide');
-        readLessElement.onclick = (e) => {
-          e.preventDefault();
-          for (let i = 1; i < descriptionChildren.length; i += 1) {
-            descriptionChildren[i].classList.add('hide');
-          }
-          readMoreElement.classList.remove('hide');
+          readLessElement.textContent = readLessContent?.textContent ?? 'Read Less';
+          readLessContent.remove();
+
           readLessElement.classList.add('hide');
-        };
-        statisticBlockDescription.appendChild(readLessElement);
-      } else {
-        readMoreContent?.classList.add('hide');
-        readLessContent?.classList.add('hide');
+          readLessElement.onclick = (e) => {
+            e.preventDefault();
+            truncatedElement.classList.remove('hide');
+            fullTextElement.classList.add('hide');
+            readMoreElement.classList.remove('hide');
+            readLessElement.classList.add('hide');
+          };
+          statisticBlockDescription.appendChild(readLessElement);
+        } else {
+          readMoreContent?.classList.add('hide');
+          readLessContent?.classList.add('hide');
+        }
       }
 
       block.appendChild(statisticBlockDescription);
