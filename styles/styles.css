@@ -324,15 +324,6 @@ button.secondary {
   color: var(--text-color);
 }
 
-ul a.button:any-link, ul a:any-link {
-  background: none;
-  margin: 0;
-  padding: 0;
-  color: var(--primary-gold);
-  text-decoration: underline;
-  cursor: pointer;
-  display: inline;
-}
 
 main img {
   max-width: 100%;
