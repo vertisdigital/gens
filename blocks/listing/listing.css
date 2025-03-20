@@ -258,6 +258,10 @@
   background: none;
 }
 
+.listing.grey-background .button {
+  margin-bottom: 0;
+}
+
 .listing-wrapper .listing.grey-background {
   padding-top: 32px;
   padding-bottom: 32px;
@@ -283,6 +287,11 @@
   letter-spacing: -0.5px;
   color: var(--text-color);
   margin-bottom: 10px;
+}
+
+.listing-wrapper .listing [data-aue-prop="title"]:empty, 
+.listing-wrapper .listing [data-gen-prop="title"]:empty {
+  margin-bottom: 0;
 }
 
 .listing-wrapper .listing [data-aue-prop="heading"], .listing-wrapper .listing [data-gen-prop="heading"], .listing > div:nth-child(2) [data-gen-prop="title"] {
