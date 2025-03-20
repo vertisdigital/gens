@@ -254,14 +254,13 @@
   margin-bottom: 32px;
 }
 
+.listing.grey-background {
+  background: none;
+}
+
 .listing-wrapper .listing.grey-background {
   padding-top: 32px;
   padding-bottom: 32px;
-}
-
-
-.listing.grey-background {
-  background: none;
 }
 
 .listing.grey-background::before{
