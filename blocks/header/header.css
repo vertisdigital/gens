@@ -1049,6 +1049,7 @@ content: '🡢';
 .header-inner-wrapper .secondary-nav{
   height: 100vh;
   overflow-y: scroll;
+  padding-bottom: 100px;
 }
 
 .header-inner-wrapper .secondary-nav .secondary-header .secondary-header-wrapper a {
