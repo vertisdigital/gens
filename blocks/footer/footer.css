@@ -1,4 +1,4 @@
-.footer h1,h2,h3,h4,h5,h6,p,a,button,div,img,picture,ul,li{
+.footer h1,h2,h3,h4,h5,h6,p,a,button,div,img,picture{
     margin: 0;
     padding: 0;
 }
@@ -131,6 +131,11 @@
     color: var(--soft-ivory);
 }
 
+.footer .mt-4 .copywrite a{
+    color: var(--soft-ivory);
+    text-decoration: underline;
+}
+
 .footer .copywrite-right{
     display: grid;
     gap: 10px;
@@ -148,7 +153,6 @@
   .footer .copywrite-right .copywrite-links .button-container a{
     white-space: nowrap;
   }
-
 
 
 @media(width<=992px){
@@ -270,6 +274,12 @@
     .footer .mt-4 .footer-bottom-links .row [data-aue-prop="linkText"]{
         text-align: start;
 
+    }
+}
+
+@media(width>1440px){
+    .footer .mt-4 .copywrite{
+       line-height: 32px;
     }
 }
 

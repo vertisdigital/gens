@@ -7,7 +7,7 @@
         "valueType": "string",
         "name": "image",
         "label": "image",
-        "configUrl": "https://int--genting--wppopen.aem.live/tools/assets-selector/config.json",
+        "configUrl": "https://sprint-2--genting--wppopen.aem.live/tools/assets-selector/config.json",
         "multi": false,
         "validation": {
           "rootPath": "/content/dam/genting-singapore"
@@ -182,7 +182,7 @@
         "valueType": "string",
         "name": "image",
         "label": "Image",
-        "configUrl": "https://int--genting--wppopen.aem.live/tools/assets-selector/config.json",
+        "configUrl": "https://sprint-2--genting--wppopen.aem.live/tools/assets-selector/config.json",
         "multi": false
       },
       {
@@ -231,7 +231,7 @@
         "valueType": "string",
         "name": "bannerimage",
         "label": "Banner Image",
-        "configUrl": "https://int--genting--wppopen.aem.live/tools/assets-selector/config.json",
+        "configUrl": "https://sprint-2--genting--wppopen.aem.live/tools/assets-selector/config.json",
         "multi": false,
         "validation": {
           "rootPath": "/content/dam/genting-singapore"
@@ -321,7 +321,7 @@
         "component": "custom-asset-namespace:custom-asset",
         "name": "image",
         "label": "Carousel Image",
-        "configUrl": "https://int--genting--wppopen.aem.live/tools/assets-selector/config.json",
+        "configUrl": "https://sprint-2--genting--wppopen.aem.live/tools/assets-selector/config.json",
         "valueType": "string",
         "validation": {
           "rootPath": "/content/dam/genting-singapore"
@@ -416,7 +416,7 @@
         "valueType": "string",
         "name": "feature-icon",
         "label": "Icon",
-        "configUrl": "https://int--genting--wppopen.aem.live/tools/assets-selector/config.json",
+        "configUrl": "https://sprint-2--genting--wppopen.aem.live/tools/assets-selector/config.json",
         "multi": false
       },
       {
@@ -591,7 +591,7 @@
         "valueType": "string",
         "name": "linkImage",
         "label": "Link Image",
-        "configUrl": "https://int--genting--wppopen.aem.live/tools/assets-selector/config.json",
+        "configUrl": "https://sprint-2--genting--wppopen.aem.live/tools/assets-selector/config.json",
         "multi": false
       },
       {
@@ -625,6 +625,10 @@
           {
             "name": "Grey Background",
             "value": "grey-background"
+          },
+          {
+            "name": "Without Images",
+            "value": "without-images"
           }
         ]
       },
@@ -655,7 +659,7 @@
         "component": "custom-asset-namespace:custom-asset",
         "name": "image",
         "label": "Background Image",
-        "configUrl": "https://int--genting--wppopen.aem.live/tools/assets-selector/config.json",
+        "configUrl": "https://sprint-2--genting--wppopen.aem.live/tools/assets-selector/config.json",
         "multi": false,
         "title": "Image",
         "validation": {
@@ -721,6 +725,27 @@
     "id": "projectcards",
     "fields": [
       {
+        "component": "multiselect",
+        "name": "classes",
+        "value": "",
+        "label": "Style Classes",
+        "valueType": "string",
+        "options": [
+          {
+            "name": "Default",
+            "value": ""
+          },
+          {
+            "name": "Certifications",
+            "value": "certifications"
+          },
+          {
+            "name": "Grey Background",
+            "value": "grey-background"
+          }
+        ]
+      },
+      {
         "component": "text",
         "name": "title",
         "label": "Section Name",
@@ -758,7 +783,7 @@
         "component": "custom-asset-namespace:custom-asset",
         "name": "image",
         "label": "Project Image",
-        "configUrl": "https://int--genting--wppopen.aem.live/tools/assets-selector/config.json",
+        "configUrl": "https://sprint-2--genting--wppopen.aem.live/tools/assets-selector/config.json",
         "multi": false,
         "validation": {
           "rootPath": "/content/dam/genting-singapore"
@@ -807,12 +832,13 @@
         ]
       },
       {
-        "component": "text",
+        "component": "richtext",
         "name": "location",
-        "label": "Location",
+        "label": "Location/Description",
+        "valueType": "string",
         "validation": {
-          "maxLength": 15,
-          "customErrorMsg": "Location cannot exceed 15 characters"
+          "maxLength": 500,
+          "customErrorMsg": "Location / Description cannot exceed 500 characters"
         }
       }
     ]
@@ -820,6 +846,11 @@
   {
     "id": "enquiry",
     "fields": [
+      {
+        "component": "tab",
+        "label": "Section",
+        "name": "sectionTab"
+      },
       {
         "component": "text",
         "name": "heading",
@@ -832,7 +863,6 @@
       {
         "component": "text",
         "name": "description",
-        "value": "",
         "label": "Description",
         "valueType": "string",
         "validation": {
@@ -841,10 +871,15 @@
         }
       },
       {
+        "component": "tab",
+        "label": "Phone",
+        "name": "phoneDetailsTab"
+      },
+      {
         "component": "custom-asset-namespace:custom-asset",
         "name": "phoneIcon",
         "label": "Phone Icon",
-        "configUrl": "https://int--genting--wppopen.aem.live/tools/assets-selector/config.json",
+        "configUrl": "https://sprint-2--genting--wppopen.aem.live/tools/assets-selector/config.json",
         "multi": false
       },
       {
@@ -864,33 +899,140 @@
         }
       },
       {
-        "component": "custom-asset-namespace:custom-asset",
-        "name": "emailIcon",
-        "label": "Email Icon",
-        "configUrl": "https://int--genting--wppopen.aem.live/tools/assets-selector/config.json",
-        "multi": false
+        "component": "tab",
+        "label": "Email",
+        "name": "emailDetailsTab"
       },
       {
-        "component": "text",
-        "name": "emailIconAlt",
-        "label": "Email Icon Alt Text"
+        "component": "container",
+        "label": "Email 1",
+        "name": "email1",
+        "collapsible": true,
+        "fields": [
+          {
+            "component": "text",
+            "name": "emailLabel1",
+            "label": "Email Label",
+            "validation": {
+              "maxLength": 50,
+              "customErrorMsg": "Email Label cannot exceed 50 characters"
+            }
+          },
+          {
+            "component": "custom-asset-namespace:custom-asset",
+            "name": "emailIcon1",
+            "label": "Email Icon",
+            "configUrl": "https://sprint-2--genting--wppopen.aem.live/tools/assets-selector/config.json",
+            "multi": false
+          },
+          {
+            "component": "text",
+            "name": "emailIconAlt1",
+            "label": "Email Icon Alt Text"
+          },
+          {
+            "component": "text",
+            "name": "emailAddress1",
+            "label": "Email Address",
+            "validation": {
+              "regExp": "^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,}$",
+              "minLength": 10,
+              "maxLength": 30,
+              "customErrorMsg": "Please enter a valid Email Address between 10-30 characters"
+            }
+          }
+        ]
       },
       {
-        "component": "text",
-        "name": "emailAddress",
-        "label": "Email Address",
-        "validation": {
-          "regExp": "^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,}$",
-          "minLength": 10,
-          "maxLength": 30,
-          "customErrorMsg": "Please enter a valid Email Address between 10-30 characters"
-        }
+        "component": "container",
+        "label": "Email 2",
+        "name": "email2",
+        "collapsible": true,
+        "fields": [
+          {
+            "component": "text",
+            "name": "emailLabel2",
+            "label": "Email Label",
+            "validation": {
+              "maxLength": 50,
+              "customErrorMsg": "Email Label cannot exceed 50 characters"
+            }
+          },
+          {
+            "component": "custom-asset-namespace:custom-asset",
+            "name": "emailIcon2",
+            "label": "Email Icon",
+            "configUrl": "https://sprint-2--genting--wppopen.aem.live/tools/assets-selector/config.json",
+            "multi": false
+          },
+          {
+            "component": "text",
+            "name": "emailIconAlt2",
+            "label": "Email Icon Alt Text"
+          },
+          {
+            "component": "text",
+            "name": "emailAddress2",
+            "label": "Email Address",
+            "validation": {
+              "regExp": "^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,}$",
+              "minLength": 10,
+              "maxLength": 30,
+              "customErrorMsg": "Please enter a valid Email Address between 10-30 characters"
+            }
+          }
+        ]
+      },
+      {
+        "component": "container",
+        "label": "Email 3",
+        "name": "email3",
+        "collapsible": true,
+        "fields": [
+          {
+            "component": "text",
+            "name": "emailLabel3",
+            "label": "Email Label",
+            "validation": {
+              "maxLength": 50,
+              "customErrorMsg": "Email Label cannot exceed 50 characters"
+            }
+          },
+          {
+            "component": "custom-asset-namespace:custom-asset",
+            "name": "emailIcon3",
+            "label": "Email Icon",
+            "configUrl": "https://sprint-2--genting--wppopen.aem.live/tools/assets-selector/config.json",
+            "multi": false
+          },
+          {
+            "component": "text",
+            "name": "emailIconAlt3",
+            "label": "Email Icon Alt Text"
+          },
+          {
+            "component": "text",
+            "name": "emailAddress3",
+            "label": "Email Address",
+            "validation": {
+              "regExp": "^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,}$",
+              "minLength": 10,
+              "maxLength": 30,
+              "customErrorMsg": "Please enter a valid Email Address between 10-30 characters"
+            }
+          }
+        ]
+      },
+      {
+        "component": "tab",
+        "label": "Address",
+        "name": "addressDetailsTab"
       },
       {
         "component": "custom-asset-namespace:custom-asset",
         "name": "addressIcon",
         "label": "Address Icon",
-        "configUrl": "https://int--genting--wppopen.aem.live/tools/assets-selector/config.json",
+        "configUrl": "https://sprint-2--genting--wppopen.aem.live/tools/assets-selector/config.json",
         "multi": false
       },
       {
@@ -902,6 +1044,84 @@
         "component": "text",
         "name": "address",
         "label": "Address"
+      }
+    ]
+  },
+  {
+    "id": "enquirycta",
+    "fields": [
+      {
+        "component": "text",
+        "name": "subtitle",
+        "label": "Sub Title",
+        "validation": {
+          "maxLength": 100,
+          "customErrorMsg": "Sub Title cannot exceed 100 characters"
+        }
+      },
+      {
+        "component": "text",
+        "name": "subdescription",
+        "label": "Sub Description",
+        "validation": {
+          "maxLength": 300,
+          "customErrorMsg": "Sub Description cannot exceed 300 characters"
+        }
+      },
+      {
+        "component": "aem-content",
+        "name": "cta",
+        "label": "CTA",
+        "validation": {
+          "rootPath": "/content/genting-singapore"
+        }
+      },
+      {
+        "component": "text",
+        "name": "ctaText",
+        "label": "Text"
+      },
+      {
+        "component": "select",
+        "name": "ctaTarget",
+        "label": "Target",
+        "options": [
+          {
+            "name": "Same Tab",
+            "value": "_self"
+          },
+          {
+            "name": "New Tab",
+            "value": "_blank"
+          }
+        ]
+      },
+      {
+        "component": "select",
+        "name": "ctaSvgIcon",
+        "label": "CTA SVG Icon",
+        "options": [
+          {
+            "name": "Select",
+            "value": ""
+          },
+          {
+            "name": "Arrow",
+            "value": "arrow"
+          },
+          {
+            "name": "Right Arrow",
+            "value": "right-arrow"
+          },
+          {
+            "name": "Download Arrow",
+            "value": "download-arrow"
+          },
+          {
+            "name": "North East Arrow",
+            "value": "north-east-arrow"
+          }
+        ]
       }
     ]
   },
@@ -931,7 +1151,7 @@
         "component": "custom-asset-namespace:custom-asset",
         "name": "image",
         "label": "Image",
-        "configUrl": "https://int--genting--wppopen.aem.live/tools/assets-selector/config.json",
+        "configUrl": "https://sprint-2--genting--wppopen.aem.live/tools/assets-selector/config.json",
         "multi": false
       },
       {
@@ -945,7 +1165,7 @@
         "label": "File Path",
         "name": "filepath",
         "valueType": "string",
-        "configUrl": "https://int--genting--wppopen.aem.live/tools/assets-selector/config.json",
+        "configUrl": "https://sprint-2--genting--wppopen.aem.live/tools/assets-selector/config.json",
         "multi": false,
         "condition": {
           "===": [
@@ -1005,13 +1225,35 @@
     ]
   },
   {
+    "id": "coreprinciples",
+    "fields": [
+      {
+        "component": "select",
+        "name": "classes",
+        "value": "",
+        "label": "Style Options",
+        "valueType": "string",
+        "options": [
+          {
+            "name": "Default",
+            "value": ""
+          },
+          {
+            "name": "Core Principles No Border",
+            "value": "coreprinciples-no-border"
+          }
+        ]
+      }
+    ]
+  },
+  {
     "id": "coreprinciple",
     "fields": [
       {
         "component": "custom-asset-namespace:custom-asset",
         "name": "image",
         "label": "Image",
-        "configUrl": "https://int--genting--wppopen.aem.live/tools/assets-selector/config.json",
+        "configUrl": "https://sprint-2--genting--wppopen.aem.live/tools/assets-selector/config.json",
         "multi": false
       },
       {
@@ -1110,6 +1352,10 @@
           {
             "name": "Text Media Block Title Only",
             "value": "textmediablock-title-only"
+          },
+          {
+            "name": "Text Media Block Heading Variation",
+            "value": "text-media-block-heading-variation"
           }
         ]
       }
@@ -1122,7 +1368,7 @@
         "component": "custom-asset-namespace:custom-asset",
         "name": "image",
         "label": "Image",
-        "configUrl": "https://int--genting--wppopen.aem.live/tools/assets-selector/config.json"
+        "configUrl": "https://sprint-2--genting--wppopen.aem.live/tools/assets-selector/config.json"
       },
       {
         "component": "text",
@@ -1154,7 +1400,7 @@
         }
       },
       {
-        "component": "text",
+        "component": "richtext",
         "name": "longdescription",
         "label": "Long Description",
         "valueType": "string",
@@ -1176,8 +1422,53 @@
         "component": "custom-asset-namespace:custom-asset",
         "name": "image",
         "label": "Image",
-        "configUrl": "https://int--genting--wppopen.aem.live/tools/assets-selector/config.json",
+        "configUrl": "https://sprint-2--genting--wppopen.aem.live/tools/assets-selector/config.json",
         "multi": false
+      },
+      {
+        "component": "aem-content",
+        "name": "link",
+        "label": "Link",
+        "validation": {
+          "rootPath": "/content/genting-singapore"
+        }
+      },
+      {
+        "component": "text",
+        "name": "linkText",
+        "label": "Text"
+      },
+      {
+        "component": "text",
+        "name": "linkTitle",
+        "label": "Title"
+      },
+      {
+        "component": "select",
+        "name": "linkSvgIcon",
+        "label": "Link SVG Icon",
+        "options": [
+          {
+            "name": "Select",
+            "value": ""
+          },
+          {
+            "name": "Arrow",
+            "value": "arrow"
+          },
+          {
+            "name": "Right Arrow",
+            "value": "right-arrow"
+          },
+          {
+            "name": "Download Arrow",
+            "value": "download-arrow"
+          },
+          {
+            "name": "North East Arrow",
+            "value": "north-east-arrow"
+          }
+        ]
       }
     ]
   },
@@ -1187,7 +1478,7 @@
       {
         "component": "multiselect",
         "name": "style",
-        "label": "Style",
+        "label": "Variation",
         "options": [
           {
             "name": "Statistics Feature",
@@ -1200,9 +1491,32 @@
         ]
       },
       {
+        "component": "select",
+        "name": "classes",
+        "value": "",
+        "label": "Style",
+        "valueType": "string",
+        "options": [
+          {
+            "name": "Default",
+            "value": ""
+          },
+          {
+            "name": "Statistics Financial Variation",
+            "value": "statistics-financial-variation"
+          }
+        ]
+      },
+      {
         "component": "text",
         "name": "heading",
         "label": "Heading"
+      },
+      {
+        "component": "text",
+        "valueType": "number",
+        "name": "year",
+        "label": "Year"
       }
     ]
   },
@@ -1281,6 +1595,384 @@
           "maxLength": 80,
           "customErrorMsg": "Section Title cannot exceed 80 characters"
         }
+      }
+    ]
+  },
+  {
+    "id": "awardstile",
+    "fields": [
+      {
+        "component": "custom-asset-namespace:custom-asset",
+        "name": "awardimage",
+        "label": "Award Image",
+        "configUrl": "https://sprint-2--genting--wppopen.aem.live/tools/assets-selector/config.json",
+        "multi": false,
+        "validation": {
+          "rootPath": "/content/dam/genting-singapore"
+        }
+      },
+      {
+        "component": "text",
+        "name": "awardimageAlt",
+        "label": "Award Image AltText",
+        "valueType": "string"
+      },
+      {
+        "component": "text",
+        "name": "awardyear",
+        "label": "Award Year",
+        "validation": {
+          "maxLength": 4,
+          "regExp": "^\\d{4}$",
+          "customErrorMsg": "Please enter a valid year (e.g., 2024)"
+        }
+      },
+      {
+        "component": "text",
+        "name": "awardheading",
+        "label": "Award Title", 
+        "validation": {
+          "maxLength": 100,
+          "customErrorMsg": "Title cannot exceed 100 characters"
+        }
+      },
+      {
+        "component": "text",
+        "name": "awarddescription",
+        "label": "Award Description",
+        "validation": {
+          "maxLength": 200,
+          "customErrorMsg": "Description cannot exceed 250 characters"
+        }
+      }
+    ]
+  },
+  {
+    "id": "historymilestones",
+    "fields": [
+      {
+        "component": "text",
+        "name": "year",
+        "label": "Year",
+        "validation": {
+          "maxLength": 4,
+          "pattern": "^[0-9]{4}$",
+          "customErrorMsg": "Please enter a valid year (e.g., 2024)"
+        }
+      },
+      {
+        "component": "text", 
+        "name": "description",
+        "label": "Description",
+        "validation": {
+          "maxLength": 500,
+          "customErrorMsg": "Description cannot exceed 500 characters"
+        }
+      }
+    ]
+  },
+  {
+    "id": "milestoneitem",
+    "fields": [
+      {
+        "component": "custom-asset-namespace:custom-asset",
+        "name": "image",
+        "label": "Image",
+        "configUrl": "https://sprint-2--genting--wppopen.aem.live/tools/assets-selector/config.json",
+        "multi": false
+      },
+      {
+        "component": "text",
+        "name": "date",
+        "label": "Date",
+        "valueType": "date"
+      },
+      {
+        "component": "text",
+        "name": "title",
+        "label": "Title",
+        "validation": {
+          "maxLength": 500,
+          "customErrorMsg": "Description cannot exceed 500 characters"
+        }
+      }
+    ]
+  },
+  {
+    "id": "loadmore",
+    "fields": [
+      {
+        "component": "text",
+        "name": "loadMoreLabel",
+        "label": "Load More",
+        "valueType": "string",
+        "validation": {
+          "maxLength": 30,
+          "customErrorMsg": "Load More cannot exceed 30 characters"
+        }
+      },
+      {
+        "component": "number",
+        "name": "loadMoreItems",
+        "label": "Load More Items",
+        "valueType": "number"
+      }
+    ]
+  },
+  {
+    "id": "sustainabilitygovernance",
+    "fields": [
+      {
+        "component": "text",
+        "name": "title",
+        "label": "Section Title",
+        "validation": {
+          "maxLength": 35,
+          "required": true,
+          "customErrorMsg": "Section title is required and cannot exceed 35 characters"
+        }
+      }
+    ]
+  },
+  {
+    "id": "governancetile",
+    "fields": [
+      {
+        "component": "select",
+        "name": "icon",
+        "label": "Icon",
+        "options": [
+          {
+            "name": "Select",
+            "value": ""
+          },
+          {
+            "name": "Board of Directors",
+            "value": "board-of-directors"
+          },
+          {
+            "name": "CEO",
+            "value": "ceo"
+          },
+          {
+            "name": "Sustainability Steering Committee",
+            "value": "sustainability-steering-committee"
+          },
+          {
+            "name": "Sustainability Working Groups",
+            "value": "sustainability-working-groups"
+          },
+          {
+            "name": "Sustainability Department",
+            "value": "sustainability-department"
+          }
+        ]
+      },
+      {
+        "component": "text",
+        "name": "title",
+        "label": "Title",
+        "validation": {
+          "maxLength": 100,
+          "required": true,
+          "customErrorMsg": "Title is required and cannot exceed 100 characters"
+        }
+      },
+      {
+        "component": "text",
+        "name": "description",
+        "label": "Description",
+        "validation": {
+          "maxLength": 2000,
+          "required": true,
+          "customErrorMsg": "Description is required and cannot exceed 2000 characters"
+        }
+      }
+    ]
+  },
+  {
+    "id": "policytile",
+    "fields": [
+      {
+        "component": "text",
+        "name": "title",
+        "label": "Policy Title",
+        "validation": {
+          "maxLength": 100,
+          "required": true,
+          "customErrorMsg": "Policy title is required and cannot exceed 100 characters"
+        }
+      },
+      {
+        "component": "richtext",
+        "name": "description",
+        "label": "Policy Description",
+        "validation": {
+          "maxLength": 2000,
+          "customErrorMsg": "Description cannot exceed 2000 characters"
+        }
+      },
+      {
+        "component": "text",
+        "name": "ctaLabel",
+        "label": "CTA Label",
+        "validation": {
+          "maxLength": 30,
+          "customErrorMsg": "CTA text cannot exceed 30 characters"
+        }
+      },
+      {
+        "component": "aem-content",
+        "name": "ctaLink",
+        "label": "CTA Link",
+        "validation": {
+          "rootPath": "/content/genting-singapore"
+        }
+      },
+      {
+        "component": "select",
+        "name": "ctaSvgIcon",
+        "label": "CTA SVG Icon",
+        "options": [
+          {
+            "name": "Select",
+            "value": ""
+          },
+          {
+            "name": "Arrow",
+            "value": "arrow"
+          },
+          {
+            "name": "Right Arrow",
+            "value": "right-arrow"
+          },
+          {
+            "name": "Download Arrow",
+            "value": "download-arrow"
+          },
+          {
+            "name": "North East Arrow",
+            "value": "north-east-arrow"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "contactus",
+    "fields": [
+      {
+        "component": "select",
+        "name": "classes",
+        "value": "",
+        "label": "Style options",
+        "valueType": "string",
+        "options": [
+          {
+            "name": "Default",
+            "value": ""
+          },
+          {
+            "name": "Contact Us Variation",
+            "value": "contactus-variation"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "iframe",
+    "fields": [
+      {
+        "component": "text",
+        "name": "url",
+        "label": "IFrame URL",
+        "description": "URL of the content to embed in IFrame",
+        "valueType": "string"
+      }
+    ]
+  },
+  {
+    "id": "director",
+    "fields": [
+      {
+        "component": "tab",
+        "label": "Personal Details",
+        "name": "personalDetailsTab"
+      },
+      {
+        "component": "custom-asset-namespace:custom-asset",
+        "name": "image",
+        "label": "Image",
+        "configUrl": "https://sprint-2--genting--wppopen.aem.live/tools/assets-selector/config.json",
+        "multi": false,
+        "validation": {
+          "required": true,
+          "customErrorMsg": "Image is required"
+        }
+      },
+      {
+        "component": "text",
+        "name": "directorName",
+        "label": "Name",
+        "valueType": "string",
+        "value": "",
+        "validation": {
+          "maxLength": 60,
+          "required": true,
+          "customErrorMsg": "Name is required and cannot exceed 60 characters"
+        }
+      },
+      {
+        "component": "text",
+        "name": "designation",
+        "label": "Designation",
+        "validation": {
+          "maxLength": 50,
+          "required": true,
+          "customErrorMsg": "Designation is required and cannot exceed 50 characters"
+        }
+      },
+      {
+        "component": "tab",
+        "label": "Description",
+        "name": "descriptionTab"
+      },
+      {
+        "component": "richtext",
+        "name": "description",
+        "label": "Description",
+        "valueType": "string",
+        "validation": {
+          "maxLength": 2500,
+          "customErrorMsg": "Description cannot exceed 2500 characters"
+        }
+      }
+    ]
+  },
+  {
+    "id": "corporatepolicies",
+    "fields": [
+      {
+        "component": "select",
+        "name": "classes",
+        "value": "",
+        "label": "Style options",
+        "valueType": "string",
+        "options": [
+          {
+            "name": "Default",
+            "value": ""
+          },
+          {
+            "name": "Corporate Policies Border Bottom",
+            "value": "corporate-policies-border-bottom"
+          },
+          {
+            "name": "Corporate Policies CTA Right",
+            "value": "corporate-policies-cta-right"
+          }
+        ]
       }
     ]
   }

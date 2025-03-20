@@ -14,6 +14,7 @@ import {
   loadCSS,
 } from './aem.js';
 import processTabs from './autoblocks.js';
+import { redirectRouter } from '../shared-components/Utility.js';
 
 
 /**
@@ -67,7 +68,6 @@ async function loadFonts() {
  * @param {Element} main The container element
  */
 function buildAutoBlocks(main) {
-  console.log('Building auto blocks');
   try {
     processTabs(main);
   } catch (error) {
@@ -81,6 +81,8 @@ function buildAutoBlocks(main) {
  */
 // eslint-disable-next-line import/prefer-default-export
 export function decorateMain(main, isExecute) {
+  redirectRouter()
+  
   decorateButtons(main);
   decorateIcons(main);
   decorateSections(main, isExecute);
