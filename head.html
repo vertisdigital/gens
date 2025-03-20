@@ -2,11 +2,11 @@
 <script src="/scripts/aem.js" type="module"></script>
 <script src="/scripts/scripts.js" type="module"></script>
 <link rel="stylesheet" href="/styles/styles.css"/>
-<div>${env}</div>
-<div>$[env]</div>
-<div>$[env:ENVIRONMENT]</div>
-<div>$[env.ENVIRONMENT]</div>
-<div>${env:ENVIRONMENT}</div>
-<div>${env.ENVIRONMENT}</div>
-<div> Environment Variable: ${System.getenv("ENVIRONMENT")}</div>
-<meta name="environment" content="${envVariable:ENVIRONMENT}"/>
+<script>
+    document.addEventListener("DOMContentLoaded", function() {
+      const envVar = "<%= System.getenv('YOUR_ENV_VARIABLE_NAME') %>";
+      document.getElementById("env-display").innerText = envVar;
+    });
+  </script>
+  
+  <div id="env-display"></div>
