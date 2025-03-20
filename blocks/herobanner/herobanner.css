@@ -6,6 +6,7 @@
   min-height: 798px;
   padding-top:225px;
   padding-bottom: 210px;
+  margin-bottom: 45px;
 }
 
 .hero-banner-container img {
@@ -337,6 +338,7 @@
     padding-left: 0;
     min-height: 324px;
     position: relative;
+    margin-bottom: 24px;
   }
 
   .hero-arrow-icon {
