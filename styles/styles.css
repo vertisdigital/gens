@@ -65,7 +65,6 @@ Usage Example:
 
   /* base font size */
   --base-font-size: 16px;
-
   --font-size-xxxs: 0.75rem;
   --font-size-xxs: 0.875rem;
   --font-size-xs: 1rem;
@@ -223,6 +222,15 @@ blockquote {
   margin-bottom: 0.25em;
 }
 
+ul{
+  padding-left: 18px;
+}
+
+
+ul>li>ul{
+  padding-left: 32px;
+}
+
 code,
 pre {
   font-size: var(--font-size-xxxs);
@@ -314,6 +322,16 @@ button.secondary {
   background-color: unset;
   border: 2px solid currentcolor;
   color: var(--text-color);
+}
+
+ul a.button:any-link, ul a:any-link {
+  background: none;
+  margin: 0;
+  padding: 0;
+  color: var(--primary-gold);
+  text-decoration: underline;
+  cursor: pointer;
+  display: inline;
 }
 
 main img {
@@ -841,3 +859,4 @@ main::before {
 .grey-background{
   background-color: var(--light-grey);
 }
+

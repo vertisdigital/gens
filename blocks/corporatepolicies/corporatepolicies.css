@@ -5,6 +5,9 @@
     padding: 68px 0;
     border-bottom: 2px solid var(--body-text-color);
 }
+.corporate-policies-list-item ul a, .corporate-policies-list-item ul a.button:any-link{
+    font-weight: 400;
+}
 .corporate-policies-list p a{
     color: var(--primary-gold);
     text-decoration:  underline;
