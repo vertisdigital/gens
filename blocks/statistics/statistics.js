@@ -4,10 +4,11 @@ import stringToHTML from '../../shared-components/Utility.js';
 
 export default function decorate(block) {
   const blockChilden = [].slice.call(block.children);
-  const isStaticFinanicialVariation = block.classList.contains('statistics-financial-variation');
+  const isStaticFinanicialVariation = block.classList.contains(
+    'statistics-financial-variation',
+  );
   const isStatisDesc = blockChilden[0].textContent.trim() === 'statistics-description';
   const isStatFeatures = blockChilden[0].textContent.trim() === 'statistics-feature';
-
 
   // processing the sesction title
   const heading = blockChilden[1];
@@ -27,7 +28,9 @@ export default function decorate(block) {
   if (isStatFeatures) {
     // finding the feature items
     blockChilden[2].remove();
-    const featureItems = isStaticFinanicialVariation ? blockChilden.slice(2) : blockChilden.slice(3);
+    const featureItems = isStaticFinanicialVariation
+      ? blockChilden.slice(2)
+      : blockChilden.slice(3);
 
     const featureContainer = document.createElement('div');
     featureContainer.className = 'row statistics-row';
@@ -78,28 +81,28 @@ export default function decorate(block) {
 
       if (descriptionParagraph) {
         const fullHtml = descriptionParagraph.innerHTML;
-        
+
         // Find the position of first <br> tag
         const firstBrIndex = fullHtml.indexOf('<br>');
-        
+
         // Only proceed with truncation if there's a <br> tag
         if (firstBrIndex !== -1) {
           // Create container for truncated and full text
           const textContainer = document.createElement('div');
           textContainer.className = 'description-text-container';
-          
+
           // Create elements for truncated and full text
           const truncatedElement = document.createElement('p');
           truncatedElement.innerHTML = fullHtml.substring(0, firstBrIndex);
           truncatedElement.className = 'truncated-text';
-          
+
           const fullTextElement = document.createElement('p');
           fullTextElement.innerHTML = fullHtml;
           fullTextElement.className = 'full-text hide';
-          
+
           textContainer.appendChild(truncatedElement);
           textContainer.appendChild(fullTextElement);
-          
+
           // Replace original paragraph with our container
           descriptionParagraph.replaceWith(textContainer);
 
