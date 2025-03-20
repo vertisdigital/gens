@@ -15,8 +15,9 @@
       },
       {
         "component": "text",
-        "name": "imageAlt",
-        "label": "Alt Text"
+        "name": "imageTitle",
+        "label": "Alt Text",
+        "valueType": "string"
       }
     ]
   },
@@ -239,6 +240,12 @@
       },
       {
         "component": "text",
+        "name": "bannerimageTitle",
+        "label": "Alt Text",
+        "valueType": "string"
+      },
+      {
+        "component": "text",
         "name": "bannerheading",
         "label": "Banner Heading",
         "validation": {
@@ -326,6 +333,12 @@
         "validation": {
           "rootPath": "/content/dam/genting-singapore"
         }
+      },
+      {
+        "component": "text",
+        "name": "imageTitle",
+        "label": "Alt Text",
+        "valueType": "string"
       },
       {
         "component": "text",
@@ -421,8 +434,9 @@
       },
       {
         "component": "text",
-        "name": "feature-icon-alt",
-        "label": "Icon Alt Text"
+        "name": "feature-iconTitle",
+        "label": "Alt Text",
+        "valueType": "string"
       },
       {
         "component": "richtext",
@@ -595,6 +609,12 @@
         "multi": false
       },
       {
+        "component": "text",
+        "name": "linkImageTitle",
+        "label": "Alt Text",
+        "valueType": "string"
+      },
+      {
         "component": "richtext",
         "name": "description",
         "value": "",
@@ -668,8 +688,9 @@
       },
       {
         "component": "text",
-        "name": "imageAlt",
-        "label": "Image Alt Text"
+        "name": "imageTitle",
+        "label": "Alt Text",
+        "valueType": "string"
       },
       {
         "component": "text",
@@ -791,8 +812,9 @@
       },
       {
         "component": "text",
-        "name": "imageAlt",
-        "label": "Image Alt Text"
+        "name": "imageTitle",
+        "label": "Alt Text",
+        "valueType": "string"
       },
       {
         "component": "aem-content",
@@ -884,8 +906,9 @@
       },
       {
         "component": "text",
-        "name": "phoneIconAlt",
-        "label": "Phone Icon Alt Text"
+        "name": "phoneIconTitle",
+        "label": "Alt Text",
+        "valueType": "string"
       },
       {
         "component": "text",
@@ -927,8 +950,9 @@
           },
           {
             "component": "text",
-            "name": "emailIconAlt1",
-            "label": "Email Icon Alt Text"
+            "name": "emailIcon1Title",
+            "label": "Alt Text",
+            "valueType": "string"
           },
           {
             "component": "text",
@@ -967,8 +991,9 @@
           },
           {
             "component": "text",
-            "name": "emailIconAlt2",
-            "label": "Email Icon Alt Text"
+            "name": "emailIcon2Title",
+            "label": "Alt Text",
+            "valueType": "string"
           },
           {
             "component": "text",
@@ -1007,8 +1032,9 @@
           },
           {
             "component": "text",
-            "name": "emailIconAlt3",
-            "label": "Email Icon Alt Text"
+            "name": "emailIcon3Title",
+            "label": "Alt Text",
+            "valueType": "string"
           },
           {
             "component": "text",
@@ -1037,8 +1063,9 @@
       },
       {
         "component": "text",
-        "name": "addressIconAlt",
-        "label": "Address Icon Alt Text"
+        "name": "addressIconTitle",
+        "label": "Alt Text",
+        "valueType": "string"
       },
       {
         "component": "text",
@@ -1155,6 +1182,12 @@
         "multi": false
       },
       {
+        "component": "text",
+        "name": "imageTitle",
+        "label": "Alt Text",
+        "valueType": "string"
+      },
+      {
         "component": "boolean",
         "label": "File Download?",
         "name": "reveal",
@@ -1175,6 +1208,12 @@
             true
           ]
         }
+      },
+      {
+        "component": "text",
+        "name": "filepathTitle",
+        "label": "Alt Text",
+        "valueType": "string"
       },
       {
         "component": "aem-content",
@@ -1258,8 +1297,8 @@
       },
       {
         "component": "text",
-        "name": "altTextImg",
-        "label": "Image Alt Text",
+        "name": "imageTitle",
+        "label": "Alt Text",
         "valueType": "string"
       },
       {
@@ -1372,7 +1411,7 @@
       },
       {
         "component": "text",
-        "name": "imageAlt",
+        "name": "imageTitle",
         "label": "Alt Text",
         "valueType": "string"
       }
@@ -1424,6 +1463,12 @@
         "label": "Image",
         "configUrl": "https://int--genting--wppopen.aem.live/tools/assets-selector/config.json",
         "multi": false
+      },
+      {
+        "component": "text",
+        "name": "imageTitle",
+        "label": "Alt Text",
+        "valueType": "string"
       },
       {
         "component": "aem-content",
@@ -1613,8 +1658,8 @@
       },
       {
         "component": "text",
-        "name": "awardimageAlt",
-        "label": "Award Image AltText",
+        "name": "awardimageTitle",
+        "label": "Alt Text",
         "valueType": "string"
       },
       {
@@ -1680,6 +1725,12 @@
         "label": "Image",
         "configUrl": "https://int--genting--wppopen.aem.live/tools/assets-selector/config.json",
         "multi": false
+      },
+      {
+        "component": "text",
+        "name": "imageTitle",
+        "label": "Alt Text",
+        "valueType": "string"
       },
       {
         "component": "text",
@@ -1910,6 +1961,12 @@
           "required": true,
           "customErrorMsg": "Image is required"
         }
+      },
+      {
+        "component": "text",
+        "name": "imageTitle",
+        "label": "Alt Text",
+        "valueType": "string"
       },
       {
         "component": "text",

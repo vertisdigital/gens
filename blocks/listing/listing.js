@@ -52,8 +52,7 @@ export default function decorate(block) {
         // const img = document.createElement('img');
         // Set initial src to ensure img tag has a value
         const imageUrl = imgAnchor.href;
-        const imageAlt = '';
-
+        const imageAlt =item.querySelectorAll('a[href]')[1]?.getAttribute('title') || '';
         const imageHtml = ImageComponent({
             src: imageUrl,
             alt: imageAlt,

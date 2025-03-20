@@ -86,8 +86,8 @@ export default function decorate(block) {
       imageContainer.setAttribute('data-aue-type', 'image');
 
       const imageUrl = imageLink.getAttribute('href');
-      const imageAlt = card.querySelector('[data-aue-prop="title"]')?.textContent || 'Project Image';
-
+      const imageAlt =card.querySelectorAll('a[href]')[1]?.getAttribute('title') || card.querySelector('[data-aue-prop="title"]')?.textContent || 'Project Image';
+      
       const imageHtml = ImageComponent({
         src: imageUrl,
         alt: imageAlt,
