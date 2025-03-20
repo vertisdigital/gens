@@ -6,10 +6,6 @@
     margin: 45px 0;
   }
 
-  .projectcards.grey-background {
-    padding: 45px 0;
-  }
-
   .projectcards .projectcards-header {
     margin-bottom: 42px;
 
@@ -125,6 +121,7 @@
 
   .projectcards.grey-background{
     background-color: var(--whisper-gray);
+    padding: 45px 0;
   }
   
   .projectcards ul {
