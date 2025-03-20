@@ -833,7 +833,7 @@ content: '🡢';
   background: none;
   text-decoration: none;
   color: var(--text-color);
-  font-size: 24px;
+  font-size: var(--font-size-xs);
   font-weight: 400;
   line-height: 30px;
   padding: 0;
@@ -909,6 +909,9 @@ content: '🡢';
 .header-inner-wrapper .header-nav .logo-wrapper{
   max-width: 140px;
   max-height: 42px;
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
 }
 
   .header-inner-wrapper .header-nav .hamburger{
@@ -997,7 +1000,7 @@ content: '🡢';
   }
 
   .header-inner-wrapper .secondary-nav .secondary-header .secondary-header-wrapper a {
-    font-size: var(--font-size-l);
+    font-size: 1.125rem;
     line-height: 28px;
     margin-bottom: 36px;
   }
@@ -1030,7 +1033,7 @@ content: '🡢';
   }
 
   .header-inner-wrapper .header-nav .logo-wrapper{
-    max-width: 114px;
+    max-width: 124px;
     max-height: 34px;
   }
 
@@ -1046,10 +1049,11 @@ content: '🡢';
 .header-inner-wrapper .secondary-nav{
   height: 100vh;
   overflow-y: scroll;
+  padding-bottom: 100px;
 }
 
 .header-inner-wrapper .secondary-nav .secondary-header .secondary-header-wrapper a {
-  font-size: var(--font-size-m);
+  font-size: 1.125rem;
   line-height: 26px;
   margin-bottom: 28px;
 }

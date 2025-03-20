@@ -9,6 +9,17 @@ export default function decorate(block) {
   // Add container classes for responsive layout
   const wrapper = document.createElement('div');
   wrapper.classList.add('coreprinciples');
+  
+  const removeBorderBottom={
+    "esg":true
+  }
+  let pathname=window.location.pathname.split('/')
+  pathname=pathname[pathname.length-1]
+  
+  if(removeBorderBottom[pathname]){
+    wrapper.setAttribute('id','remove-border-bottom')
+  }
+  
   const container = document.createElement('div');
   wrapper.appendChild(container);
   container.className = 'container';
@@ -44,23 +55,6 @@ export default function decorate(block) {
 
     // Alt image text
     const altText = item.children[1];
-
-    // Create and add image using ImageComponent
-    // if (iconUrl) {
-    //   const img = document.createElement('img');
-    //   img.src = iconUrl;
-    //   img.loading = 'lazy';
-    //   img.width = 64;
-    //   img.height = 64;
-
-    //   if (altText) {
-    //     img.alt = altText?.textContent;
-    //   }
-
-    //   const picture = document.createElement('picture');
-    //   picture.appendChild(img);
-    //   iconWrapper.appendChild(picture);
-    // }
 
     if (iconUrl) {
       const picture = ImageComponent({

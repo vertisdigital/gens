@@ -504,11 +504,12 @@ function decorateAEMStructure(element) {
   // Check for feature item structure
   const hasPicture = element.querySelector('div > picture') || element.children[0]?.tagName === 'DIV';
   const divElements = [...element.children].filter((el) => el.tagName === 'DIV');
-  const isProjectCard = element.classList[0].indexOf('projectslist') === 0;
-
+  const isProjectList = element.classList[0].indexOf('projectslist') === 0;
+  const isListing = element.classList[0].indexOf('listing') === 0;
+  const isSpecialComponent = ['projectcards', 'coreprinciples', 'herobanner']
+    .some(component => element.classList[0]?.indexOf(component) === 0);
   
-  const hasFeatureStructure = divElements.length >= 4 // At least 4 divs
-      && hasPicture;
+  const hasFeatureStructure = divElements.length >= 4 && isSpecialComponent && hasPicture;
 
   // Check for link field structure
   const hasLinkButton = element.querySelector('div > a.button');
@@ -516,52 +517,10 @@ function decorateAEMStructure(element) {
   const hasLinkStructure = hasRequiredDivs && hasLinkButton;
 
   // Check for tile structure
-  const hasTileStructure = divElements.length >= 5;
-
-  // Check for ProjectCard structure
-  const hasProjectCardStructure = divElements.length === 3;
+  const hasListStructure = divElements.length >= 5;
 
   // Add AEM attributes based on structure type
-  if (hasProjectCardStructure && !hasLinkButton) {
-    // Add ProjectCard attributes to container
-    element.setAttribute('data-gen-model', 'projectcard');
-    element.setAttribute('data-gen-label', 'ProjectCard');
-
-    // Handle first div (optional picture container)
-    const [pictureDiv] = divElements;
-    if (pictureDiv && pictureDiv.querySelector('picture')) {
-      pictureDiv.setAttribute('data-gen-prop', 'projectImage');
-      pictureDiv.setAttribute('data-gen-label', 'Image');
-      pictureDiv.setAttribute('data-gen-type', 'media');
-    }
-
-    // Handle button container (second div)
-    const [, buttonDiv] = divElements;
-    if (buttonDiv) {
-      const button = buttonDiv.querySelector('a.button');
-      if (button) {
-        button.setAttribute('data-gen-prop', 'projectText');
-        button.setAttribute('data-gen-label', 'Text');
-        button.setAttribute('data-gen-type', 'text');
-      }
-    }
-
-    // Handle target div (third div)
-    const [,, targetDiv] = divElements;
-    if (targetDiv) {
-      targetDiv.setAttribute('data-gen-prop', 'projectTarget');
-      targetDiv.setAttribute('data-gen-label', 'Target');
-      targetDiv.setAttribute('data-gen-type', 'text');
-    }
-
-    // Handle location div (fourth div)
-    const [,,, locationDiv] = divElements;
-    if (locationDiv) {
-      locationDiv.setAttribute('data-gen-prop', 'location');
-      locationDiv.setAttribute('data-gen-label', 'Location');
-      locationDiv.setAttribute('data-gen-type', 'text');
-    }
-  } else if (hasTileStructure && divElements[0].querySelector('a') && !isProjectCard) {
+  if (hasListStructure && isListing && !isProjectList) {
     // Add listitem attributes to container
     element.setAttribute('data-gen-model', 'listitem');
 
@@ -619,7 +578,7 @@ function decorateAEMStructure(element) {
       p.setAttribute('data-gen-label', 'Target');
       p.setAttribute('data-gen-type', 'text');
     }
-  } else if (hasFeatureStructure && !isProjectCard) {
+  } else if (hasFeatureStructure && !isProjectList) {
     // Add feature item attributes to container
     element.setAttribute('data-gen-model', 'featureItem');
 
@@ -643,8 +602,6 @@ function decorateAEMStructure(element) {
   } else if (hasLinkStructure) {
     // Add link field attributes to container
     element.setAttribute('data-gen-model', 'linkField');
-    element.setAttribute('data-gen-filter', 'linkField');
-    element.setAttribute('data-gen-label', 'Link Field');
   } else {
     // Handle single div text content
     const textDiv = divElements[0];
@@ -655,13 +612,10 @@ function decorateAEMStructure(element) {
 
       if (hasLongText) {
         textDiv.setAttribute('data-gen-prop', 'description');
-        textDiv.setAttribute('data-gen-label', 'Description');
-        textDiv.setAttribute('data-gen-type', 'richtext');
       } else {
         const { innerHTML } = textDiv;
         const p = document.createElement('p');
         p.setAttribute('data-gen-prop', 'title');
-        p.setAttribute('data-gen-type', 'text');
         p.innerHTML = innerHTML;
 
         textDiv.textContent = '';

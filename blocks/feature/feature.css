@@ -2,9 +2,7 @@
 /* About-Us CSS */
 .feature-wrapper .about-us-stats{
   display: flex;
-  margin: auto;
-  margin-bottom: 18px;
-  padding: 36px 0 18px;
+  margin: 36px 0 18px;
 }
 
 .feature-wrapper .about-us-stats:not(:last-child) {
@@ -30,11 +28,11 @@
   font-weight: 600;
   color: var(--text-color);
   margin: 0;
-  /* margin-bottom: 12px; */
+  margin-bottom: 12px;
 }
 
 .about-us-left h2.about-us-left-heading{
-  font-size: var(--font-size-xl);
+  font-size: var(--font-size-m);
   font-weight: 500;
   color: var(--text-color);
   margin: 0;
@@ -45,7 +43,7 @@
 .about-us-left .about-us-left-sub-heading{
  margin: 0;
  margin-bottom: 10px;
- font-size: var(--font-size-xxxs);
+ font-size: var(--font-size-xxs);
 }
 
 .about-us-left .links-container a{
@@ -159,6 +157,9 @@
 .about-us-stats .about-us-right-content.text-container p{
 color: var(--body-text-color);
 }
+.about-us-stats .about-us-right-content.text-container:last-child {
+  margin-bottom: 0;
+}
 
 .about-us-left a.button {
   background: none;
@@ -198,8 +199,7 @@ color: var(--body-text-color);
 /* Responsive design */
 @media  (width >= 768px) {
   .feature-wrapper .about-us-stats{
-    margin-bottom: 0;
-    padding: 56px 0 0;
+    margin: 56px 0 0;
   }
 
   .about-us-stats .about-us-left{
@@ -214,7 +214,7 @@ color: var(--body-text-color);
 
 
   .about-us-left .about-us-left-title{
-    /* margin-bottom: 16px; */
+    margin-bottom: 16px;
     font-size: 18px;
     line-height: 24px;
   }
@@ -288,7 +288,7 @@ color: var(--body-text-color);
 
 @media  (width >= 1024px) {
   .feature-wrapper .about-us-stats {
-    padding: 68px 0;
+    margin: 34px 0;
   }
 
   .about-us-stats .about-us-left{
@@ -303,7 +303,7 @@ color: var(--body-text-color);
     font-size: var(--font-size-s);
     font-weight: 600;
     line-height: 24px;
-    /* margin-bottom: 20px; */
+    margin-bottom: 20px;
   }
 
   .about-us-left h2.about-us-left-heading {
@@ -386,5 +386,8 @@ color: var(--body-text-color);
     right: 10px;
     top: -28px;
     height: calc(100% + 28px);
+  }
+  .about-us-left h2.about-us-left-heading{
+    font-size: var(--font-size-m);
   }
 }

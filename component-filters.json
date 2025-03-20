@@ -10,15 +10,7 @@
   {
     "id": "section",
     "components": [
-      "text",
-      "image",
-      "button",
-      "title",
-      "hero",
       "herobanner",
-      "cards",
-      "columns",
-      "fragment",
       "coreprinciples",
       "feature",
       "linkField",
@@ -29,11 +21,16 @@
       "listing",
       "projectcards",
       "enquiry",
+      "contactus",
       "tiles",
-      "textsection",
       "textmediablock",
       "projectslist",
-      "tabsectiontitle"
+      "iframe",
+      "tabsectiontitle",
+      "awardsgallery",
+      "sustainabilitygovernance",
+      "corporatepolicies",
+      "statistics"
     ]
   },
   {
@@ -41,7 +38,13 @@
     "components": [
       "feature",
       "textmediablock",
-      "projectslist"
+      "projectslist",
+      "awardsgallery",
+      "historymilestones",
+      "loadmore",
+      "boardofdirectors",
+      "iframe",
+      "corporatepolicies"
     ]
   },
   {
@@ -59,10 +62,6 @@
   {
     "id": "column",
     "components": [
-      "text",
-      "image",
-      "button",
-      "title",
       "coreprinciples",
       "imageLink",
       "socialLinks",
@@ -71,6 +70,7 @@
       "listing",
       "projectcards",
       "enquiry",
+      "contactus",
       "tiles",
       "textsection",
       "textmediablock",
@@ -83,7 +83,8 @@
     "components": [
       "featureItem",
       "linkField",
-      "indices"
+      "indices",
+      "loadmore"
     ]
   },
   {
@@ -169,6 +170,43 @@
     "components": [
       "statisticsDescription",
       "featureItem"
+    ]
+  },
+  {
+    "id": "awardsgallery",
+    "components": [
+      "awardstile"
+    ]
+  },
+  {
+    "id": "historymilestones",
+    "components": [
+      "milestoneitem"
+    ]
+  },
+  {
+    "id": "sustainabilitygovernance",
+    "components": [
+      "governancetile"
+    ]
+  },
+  {
+    "id": "corporatepolicies",
+    "components": [
+      "policytile"
+    ]
+  },
+  {
+    "id": "contactus",
+    "components": [
+      "enquiry",
+      "enquirycta"
+    ]
+  }, 
+  {
+    "id": "boardofdirectors",
+    "components": [
+      "director"
     ]
   }
 ]

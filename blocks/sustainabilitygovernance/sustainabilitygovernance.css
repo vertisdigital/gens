@@ -1,0 +1,150 @@
+.governance-section {
+    margin-bottom: 56px;
+}
+.governance-title {
+    color: var(--text-color);
+    font-size: 28px;
+    font-weight: 500;
+    line-height: 34px;
+    padding-bottom: 16px;
+    margin-top: 8px;
+    margin-bottom: 24px;
+    border-bottom: 1px solid var(--neutral-color);
+}
+.governance-card {
+    background: var(--whisper-gray);
+    padding: 24px;
+    display: flex;
+    flex-direction: column;
+    gap: 28px;
+    margin-bottom: 56px;
+    position: relative;
+}
+.governance-card:last-child {
+    margin-bottom: 0;
+}
+.governance-card:before {
+    content: "";
+    width: 1px;
+    height: 56px;
+    background: url("../../icons/divider-dashed-line.svg") repeat-y;
+    position: absolute;
+    top: 100%;
+    left: 50%;
+}
+.governance-card::after {
+    content: "";
+    width: 8px;
+    height: 8px;
+    background: url("../../icons/divider-ellipse.svg") no-repeat;
+    position: absolute;
+    top: calc(100% + 24px);
+    left: calc(50% - 4px);
+    background-size: 100%;
+}
+.governance-card:last-child::before,
+.governance-card:last-child::after {
+    display: none;
+}
+.governance-img {
+    width: 80px;
+}
+.governance-img img,
+.governance-img svg {
+    display: block;
+    width: 100%;
+}
+.governance-content-title {
+    color: var(--text-color);
+    font-size: 16px;
+    font-weight: 600;
+    line-height: 20px;
+    position: relative;
+    padding-top: 24px;
+}
+.governance-content-title::before {
+    content: "";
+    background: var(--primary-gold);
+    width: 80px;
+    height: 2px;
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+.governance-content-desc {
+    color: var(--body-text-color);
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 20px;
+    padding-top: 16px;
+}
+@media (width >= 768px) {
+    .governance-section {
+        margin-bottom: 80px;
+    }
+    .governance-title {
+        font-size: 32px;
+        line-height: 42px;
+        padding-bottom: 32px;
+        margin-top: 20px;
+        margin-bottom: 50px;
+    }
+    .governance-card {
+        padding: 40px;
+        flex-direction: row;
+        gap: 40px;
+        margin-bottom: 80px;
+    }
+    .governance-card:before {
+        height: 80px;
+    }
+    .governance-card::after {
+        width: 10px;
+        height: 10px;
+        top: calc(100% + 35px);
+        left: calc(50% - 5px);
+    }
+    .governance-img,
+    .governance-img svg {
+        width: 124px;
+    }
+    .governance-content {
+        flex: 1;
+    }
+    .governance-content-title {
+        font-size: 18px;
+        line-height: 24px;
+    }
+    .governance-content-desc {
+        font-size: 16px;
+        line-height: 24px;
+        padding-top: 12px;
+    }
+}
+
+@media (width >= 993px) {
+    .governance-section {
+        margin-bottom: 45px;
+    }
+    .governance-title {
+        font-size: 40px;
+        line-height: 50px;
+        padding-bottom: 48px;
+        margin-top: 45px;
+        margin-bottom: 80px;
+    }
+    .governance-card {
+        padding: 68px;
+        gap: 68px;
+        margin-bottom: 120px;
+    }
+    .governance-card:before {
+        height: 120px;
+    }
+    .governance-card::after {
+        top: calc(100% + 55px);
+    }
+    .governance-content-title {
+        font-size: 20px;
+    }
+}

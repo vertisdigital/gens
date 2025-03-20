@@ -9,7 +9,7 @@ function createTabStructure(main) {
   
   const tabElements = main.querySelectorAll('div[data-tabtitle]');
   if (tabElements.length === 0) {
-    console.warn('[Tab System] No tab elements found.');
+    //console.warn('[Tab System] No tab elements found.');
     return null;
   }
 
@@ -59,7 +59,7 @@ function createTabElement(section, index) {
 
   const tabTitle = document.createElement('div');
   tabTitle.textContent = titleText;
-  tabTitle.className = 'tab-title col-xl-6 col-md-3 col-sm-2';
+  tabTitle.className = 'tab-title';
   tabTitle.setAttribute('role', 'tab');
   tabTitle.setAttribute('data-tab-index', index);
   tabTitle.setAttribute('tabindex', '0');
@@ -131,6 +131,18 @@ function updateTabStates(tabs, panels, activeIndex, shouldScroll = true) {
   tabs.forEach((tab) => tab.classList.remove('active'));
   tabs[activeIndex].classList.add('active');
 
+    const tabsContainer = document.querySelector('.tab-nav');
+    const tabWidth = tabs[activeIndex].offsetWidth;
+    const containerWidth = tabsContainer.offsetWidth;
+    const tabPosition = tabs[activeIndex].offsetLeft;
+
+    const centerOffset = tabPosition - (containerWidth - tabWidth) / 2;
+    
+    tabsContainer.scrollTo({
+      left: centerOffset,
+      behavior: 'smooth'
+    });
+  
   // Update panels
   panels.forEach((panel) => panel.classList.remove('active'));
   panels[activeIndex].classList.add('active');
@@ -170,7 +182,8 @@ function addTabFunctionality({ tabs, panels, container }) {
   // Handle initial page load hash after a short delay to ensure DOM is ready
   setTimeout(() => {
     const initialIndex = getInitialActiveTab();
-    updateTabStates([...tabNav.children], [...container.querySelector('.tab-wrapper').children], initialIndex, true);
+    const isScroll = window.location.hash !== '';
+    updateTabStates([...tabNav.children], [...container.querySelector('.tab-wrapper').children], initialIndex, isScroll);
   }, 1000); // Slightly after the container display timeout
 
   tabNav.addEventListener('click', (e) => {
