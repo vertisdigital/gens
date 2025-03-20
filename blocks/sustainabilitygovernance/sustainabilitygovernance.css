@@ -124,13 +124,13 @@
 
 @media (width >= 993px) {
     .governance-section {
-        margin-bottom: 120px;
+        margin-bottom: 45px;
     }
     .governance-title {
         font-size: 40px;
         line-height: 50px;
         padding-bottom: 48px;
-        margin-top: 58px;
+        margin-top: 45px;
         margin-bottom: 80px;
     }
     .governance-card {

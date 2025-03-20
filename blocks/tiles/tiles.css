@@ -85,7 +85,7 @@ a:any-link.factsheet-button {
   color: var(--background-color) !important;
 }
 .tiles-wrapper {
-  padding: 18px 0;
+  margin: 24px 0;
 }
 .row.tiles-container {
   row-gap: 28px;
@@ -197,7 +197,11 @@ a:any-link.factsheet-button {
 }
 @media (width >= 1024px) {
   .tiles-wrapper {
-    margin: 34px 0;
+    margin: 45px 0;
+  }
+
+  .tile-all-image-variation {
+    margin: 45px 0;
   }
 
   .row.tiles-container {
