@@ -3,7 +3,7 @@
   }
 
   .projectcards{
-    padding: 35px 0;
+    margin: 45px 0;
   }
 
   .projectcards .projectcards-header {
@@ -305,6 +305,9 @@
   }
 
   @media (width>=993px) {
+    .project-cards-wrapper {
+      margin: 45px 0;
+    }
     .certifications .projectcards-heading {
       font-size: 40px;
       line-height: 50px;

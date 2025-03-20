@@ -9,6 +9,10 @@ p {
     display: flex;
 }
 
+.projectslistitem:last-child {
+    padding-bottom: 0;
+}
+
 .left-col {
     padding-right: 15px;
 }
@@ -111,5 +115,11 @@ p {
     
     .right-col {
         padding: 0;
+    }
+}
+
+@media (width>=993px) {
+    .projectslist-wrapper {
+        margin: 45px 0;
     }
 }

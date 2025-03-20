@@ -2,9 +2,7 @@
 /* About-Us CSS */
 .feature-wrapper .about-us-stats{
   display: flex;
-  margin: auto;
-  margin-bottom: 18px;
-  padding: 36px 0 9px;
+  margin: 36px 0 18px;
 }
 
 .feature-wrapper .about-us-stats:not(:last-child) {
@@ -159,6 +157,9 @@
 .about-us-stats .about-us-right-content.text-container p{
 color: var(--body-text-color);
 }
+.about-us-stats .about-us-right-content.text-container:last-child {
+  margin-bottom: 0;
+}
 
 .about-us-left a.button {
   background: none;
@@ -198,8 +199,7 @@ color: var(--body-text-color);
 /* Responsive design */
 @media  (width >= 768px) {
   .feature-wrapper .about-us-stats{
-    margin-bottom: 0;
-    padding: 56px 0 0;
+    margin: 56px 0 0;
   }
 
   .about-us-stats .about-us-left{
@@ -288,7 +288,7 @@ color: var(--body-text-color);
 
 @media  (width >= 1024px) {
   .feature-wrapper .about-us-stats {
-    padding: 68px 0 34px;
+    margin: 34px 0;
   }
 
   .about-us-stats .about-us-left{
