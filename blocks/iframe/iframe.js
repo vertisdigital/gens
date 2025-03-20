@@ -40,12 +40,12 @@ function updateIframeHeight(iframeWrapper, endpoint) {
       desktop: '2620px',
     },
     newsroom: {
-      mobile: '1940px',
+      mobile: '3000px',
       tablet: {
         landscape: '1500px',
-        portrait: '1600px',
+        portrait: '1570px',
       },
-      desktop: '1450px',
+      desktop: '1430px',
     },
     'agm-egm': {
       mobile: '950px',
