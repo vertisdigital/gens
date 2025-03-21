@@ -250,6 +250,14 @@
   height: 14px;
 }
 
+.left-carousel-arrow svg, .right-carousel-arrow svg {
+  cursor: pointer;
+}
+
+.left-carousel-arrow .disabled svg, .right-carousel-arrow .disabled svg {
+  cursor: auto;
+}
+
 .news-thumbnail {
   width: 151px;
   height: 118px;
