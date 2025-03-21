@@ -1050,6 +1050,7 @@ content: '🡢';
   height: 100vh;
   overflow-y: scroll;
   padding-bottom: 160px;
+  scroll-padding-bottom: 200px;
 }
 
 .header-inner-wrapper .secondary-nav .secondary-header .secondary-header-wrapper a {
