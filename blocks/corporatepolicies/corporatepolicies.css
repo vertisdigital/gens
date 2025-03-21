@@ -7,6 +7,11 @@
     border-bottom: 2px solid var(--body-text-color);
 }
 
+.corporate-policies-list-item ul, .corporate-policies-list-item ul li, .corporate-policies-list-item ul p{
+    margin-top: 0;
+    margin-bottom: 10px;
+}
+
 .corporate-policies-list-item ul a, .corporate-policies-list-item ul a.button:any-link{    
   background: none;
   margin: 0;
