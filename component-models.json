@@ -434,9 +434,8 @@
       },
       {
         "component": "text",
-        "name": "feature-iconTitle",
-        "label": "Alt Text",
-        "valueType": "string"
+        "name": "feature-icon-alt",
+        "label": "Alt Text"
       },
       {
         "component": "richtext",
@@ -906,9 +905,8 @@
       },
       {
         "component": "text",
-        "name": "phoneIconTitle",
-        "label": "Alt Text",
-        "valueType": "string"
+        "name": "phoneIconAlt",
+        "label": "Phone Icon Alt Text"
       },
       {
         "component": "text",
@@ -950,9 +948,8 @@
           },
           {
             "component": "text",
-            "name": "emailIcon1Title",
-            "label": "Alt Text",
-            "valueType": "string"
+            "name": "emailIconAlt1",
+            "label": "Email Icon Alt Text"
           },
           {
             "component": "text",
@@ -991,9 +988,8 @@
           },
           {
             "component": "text",
-            "name": "emailIcon2Title",
-            "label": "Alt Text",
-            "valueType": "string"
+            "name": "emailIconAlt2",
+            "label": "Email Icon Alt Text"
           },
           {
             "component": "text",
@@ -1032,9 +1028,8 @@
           },
           {
             "component": "text",
-            "name": "emailIcon3Title",
-            "label": "Alt Text",
-            "valueType": "string"
+            "name": "emailIconAlt3",
+            "label": "Email Icon Alt Text"
           },
           {
             "component": "text",
@@ -1063,9 +1058,8 @@
       },
       {
         "component": "text",
-        "name": "addressIconTitle",
-        "label": "Alt Text",
-        "valueType": "string"
+        "name": "addressIconAlt",
+        "label": "Address Icon Alt Text"
       },
       {
         "component": "text",
