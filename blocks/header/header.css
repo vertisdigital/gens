@@ -546,6 +546,7 @@ header .header{
 
   .header-inner-wrapper .secondary-nav.active {
     right: 0;
+    padding-top: 26px;
   }
 
   .header-inner-wrapper .secondary-header {
@@ -573,6 +574,10 @@ header .header{
 
   .header-inner-wrapper .header .col-12 {
     width: 100%; /* Full width on mobile */
+  }
+
+  .header-inner-wrapper .secondary-nav .secondary-header-links{
+    padding-top: 24px !important
   }
 }
 
@@ -1070,7 +1075,7 @@ content: '🡢';
 }
 
 .header-inner-wrapper .secondary-nav .secondary-header-links .nav-links li .button-container{
-  margin-bottom: 30px;
+  margin-bottom: 24px;
 }
 
 .header-inner-wrapper .secondary-nav .secondary-header-links .nav-links li .button-container::after {
