@@ -60,37 +60,58 @@ export default function decorate(block) {
     linkContainer.className = 'links-container';
     moveInstrumentation(linkField, linkContainer);
 
-    // Get all three divs containing link info
-    const linkDivs = linkField.children;
+    const linkDivs = Array.from(linkField.children);
+    // Ensure we have the expected structure (3 elements)
     if (linkDivs.length === 3) {
-      const linkText = linkDivs[0];
-      const iconName = linkDivs[1].textContent.trim().replace('-', '');
-      const target = linkDivs[2].textContent.trim();
+      // Get elements by index with proper type checking
+      const [linkTextDiv, iconDiv, targetDiv] = linkDivs;
+      
+      const linkData = {
+        text: linkTextDiv?.textContent?.trim(),
+        url: linkTextDiv?.querySelector('a')?.getAttribute('href'),
+        icon: iconDiv?.textContent?.trim()?.replace('-', ''),
+        target: targetDiv?.textContent?.trim(),
+        title: linkTextDiv?.querySelector('a')?.getAttribute('title')
+      };
 
-      // Create link element
-      const link = document.createElement('a');
-      // Get href from the link element if it exists, otherwise use the text content
-      const linkHref = linkText.querySelector('a');
-      link.href = linkHref;
+      if (linkData.text || linkData.url) {
+        const link = document.createElement('a');
+        link.href = linkData.url || '#';
+        
+        // Handle special case for default AEM content
+        if (linkData.text.startsWith('/') || linkData.text.startsWith('#')) {
+          link.textContent = '';
+        } else {
+          link.textContent = linkData.text;
+        }
 
-      // fix for text with / i.e. default content from AEM when link used
-      if (linkHref) {
-        if ((linkHref.textContent.startsWith('/') || linkHref.textContent.startsWith('#'))) { linkHref.textContent = ''; }
-        link.title = linkHref.title;
+        if (linkData.title) {
+          link.setAttribute('title', linkData.title);
+        }
+
+        // Add icon if specified
+        if (linkData.icon) {
+          const arrowSVG = SvgIcon({ 
+            name: linkData.icon, 
+            className: 'about-us-left-link', 
+            size: '24px' 
+          });
+          link.append(stringToHTML(arrowSVG));
+        }
+
+        moveInstrumentation(linkTextDiv.querySelector('a'), link);
+        linkContainer.appendChild(link);
       }
-      link.textContent = linkText.textContent.trim();
-      link.setAttribute('target', target);
-
-      // Add arrow icon if specified
-      if (iconName) {
-        const arrowSVG = SvgIcon({ name: iconName, className: 'about-us-left-link', size: '24px' });
-        link.append(stringToHTML(arrowSVG));
-      }
-
-      moveInstrumentation(linkDivs[0], link);
-      linkContainer.appendChild(link);
+      
+      // Remove original elements after copying
+      linkTextDiv.remove();
+      iconDiv.remove();
+      targetDiv.remove();
+      
+      aboutUsLeftContent.appendChild(linkContainer);
     }
-    aboutUsLeftContent.appendChild(linkContainer);
+    // Remove the original linkField container after processing
+    linkField.remove();
   }
 
   // About-Us right container
