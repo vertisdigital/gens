@@ -452,7 +452,15 @@ function initializeHeader(header) {
         hamburgerBtn.classList.remove('active');
       }
     }
+  
+    // Check if the clicked element has a hash (#) in its href
+    const target = e.target;
+    if (target.href.includes("#")) {
+      window.location.href = e.target.href; // Navigate to the correct section
+      window.location.reload()
+    } 
   });
+  
 }
 
 /**
