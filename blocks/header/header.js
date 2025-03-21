@@ -92,7 +92,8 @@ function createNavItem(itemData) {
 
   titleDiv.appendChild(titleContent);
   navItem.appendChild(titleDiv);
-  navItem.appendChild(detailedcaption);
+  if(detailedcaption.getAttribute('href'))
+    navItem.appendChild(detailedcaption);
   navItem.appendChild(overviewLink);
 
   if (itemData.caption && itemData.captionTarget) {
@@ -353,7 +354,6 @@ function initializeHeader(header) {
       emptyLinks.className = 'nav-links row';
       linksCol.appendChild(emptyLinks);
       linksContainer.appendChild(linksCol);
-
       secondaryNavWrapper.append(secondaryHeader, linksContainer);
       secondaryNav.append(secondaryNavWrapper);
       header.appendChild(secondaryNav);
