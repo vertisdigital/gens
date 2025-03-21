@@ -215,10 +215,6 @@
 
     }
 
-    [data-aue-model="listitem"] .row [class*="col-"]:nth-child(2), [data-gen-model="listitem"] .row [class*="col-"]:nth-child(2) {
-      min-height: 207px;
-    }
-
     [data-aue-model="listitem"] .row [class*="col-"]:nth-child(2) [data-aue-label="Title"], [data-gen-model="listitem"] .row [class*="col-"]:nth-child(2) [data-gen-label="Title"] {
       margin-top: 0;
       margin-bottom: 8px;
@@ -315,6 +311,7 @@
   line-height: 20px;
   font-weight: 400;
   color: var(--text-color);
+  margin-bottom: 45px;
 }
 
 @media (width >= 768px) {
