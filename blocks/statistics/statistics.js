@@ -43,8 +43,8 @@ export default function decorate(block) {
         'col-sm-4',
         'feature-item',
       );
-      featureItem.children[2]?.classList.add('statistic-item');
-      featureItem.children[3]?.classList.add('text-container');
+      featureItem.children[1]?.classList.add('statistic-item');
+      featureItem.children[2]?.classList.add('text-container');
     });
 
     block.appendChild(featureContainer);
