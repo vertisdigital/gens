@@ -37,6 +37,8 @@ export default async function decorate(block) {
     const logoWrapper = document.createElement('div');
     logoWrapper.className = 'footer-logo';
 
+    const logoLink = document.createElement('a');
+    logoLink.href = '/';
     const logo = document.createElement('img');
     const socialImgContainer = container.querySelector('.imagelink')?.querySelectorAll('p');
     const logoImg = socialImgContainer[0]?.querySelector('a');
@@ -44,7 +46,8 @@ export default async function decorate(block) {
       logo.src = logoImg.href;
       logo.alt = logoImg.alt || 'Genting Singapore';
     }
-    logoWrapper.appendChild(logo);
+    logoLink.appendChild(logo);
+    logoWrapper.appendChild(logoLink);
 
     // Add description
     const description = document.createElement('p');
@@ -167,7 +170,7 @@ export default async function decorate(block) {
             const buttonContainer = linkItem.querySelector('.button-container');
             const anchor = buttonContainer?.querySelector('a');
             // Get target from the third <div><p> element if it exists
-            const targetElement = linkItem.querySelector('div:nth-child(3) p');
+            const targetElement = linkItem.children[2]?.querySelector('p');
             const target = targetElement ? targetElement.textContent.trim() : '_self';
 
             if (anchor) {
