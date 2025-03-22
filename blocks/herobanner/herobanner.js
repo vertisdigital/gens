@@ -139,12 +139,12 @@ export default function decorate(block) {
   });
   const leftArrowDisabled = SvgIcon({
     name: 'leftarrowdisabled',
-    className: 'arrow-link',
+    className: 'arrow-link disabled',
     size: '12',
   });
   const rightArrowDisabled = SvgIcon({
     name: 'rightarrowdisabled',
-    className: 'arrow-link',
+    className: 'arrow-link disabled',
     size: '12',
   });
   const ellipse = SvgIcon({

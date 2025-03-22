@@ -146,13 +146,12 @@ export default async function decorate(block) {
         const nav = document.createElement('nav');
 
         // Get section title - first div contains the title
-        const titleContainer = linkSection.children[0];
+        const titleContainer = linkSection.children[1];
         const titleElement = titleContainer?.querySelector('p');
 
         if (titleElement) {
           // Create heading element for title
-          const heading = document.createElement('h2');
-          heading.textContent = titleElement.textContent;
+          const heading = titleElement.querySelector('a');
           heading.className = 'footer-nav-title';
 
           nav.appendChild(heading);
