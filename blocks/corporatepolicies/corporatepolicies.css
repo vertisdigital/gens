@@ -45,12 +45,12 @@
 
 .corporate-policies-list>div:last-child{
     padding-bottom: 80px;
+    border: none;
 }
 
 .corporate-policies-border-bottom .corporate-policies-list>div:last-child{
     padding-bottom: 0;
     border-bottom: none;
-
 }
 
 
