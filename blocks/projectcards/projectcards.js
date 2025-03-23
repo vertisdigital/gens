@@ -73,10 +73,17 @@ export default function decorate(block) {
   // Handle project cards
   const projectCards = Array.from(block.querySelectorAll('[data-aue-model="projectcard"],[data-gen-model="featureItem"]'));
   
-  // Remove and store the last element only if its first div contains button-container
-  const lastElement = projectCards.length > 0 && 
-  projectCards[projectCards.length - 1].firstElementChild.querySelector('.button-container') ? 
-    projectCards.pop() : null;
+  // Handle last element differently for author vs publish instance
+  let lastElement = null;
+  if (window.location.hostname.includes('author')) {
+    // In author instance, find linkField without removing from projectCards
+    lastElement = block.querySelector('[data-aue-model="linkField"]');
+  } else {
+    // In publish instance, check and pop last element if it has button-container
+    lastElement = projectCards.length > 0 && 
+      projectCards[projectCards.length - 1].firstElementChild.querySelector('.button-container') ? 
+      projectCards.pop() : null;
+  }
 
   projectCards.forEach((card) => {
     const cardElement = document.createElement('div');
