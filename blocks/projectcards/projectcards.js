@@ -71,7 +71,13 @@ export default function decorate(block) {
   cardsGridContainer.className = 'projectcards-grid row';
 
   // Handle project cards
-  const projectCards = block.querySelectorAll('[data-aue-model="projectcard"],[data-gen-model="featureItem"]');
+  const projectCards = Array.from(block.querySelectorAll('[data-aue-model="projectcard"],[data-gen-model="featureItem"]'));
+  
+  // Remove and store the last element only if its first div contains button-container
+  const lastElement = projectCards.length > 0 && 
+  projectCards[projectCards.length - 1].firstElementChild.querySelector('.button-container') ? 
+    projectCards.pop() : null;
+
   projectCards.forEach((card) => {
     const cardElement = document.createElement('div');
     cardElement.className = 'project-card col-xl-3 col-md-3 col-sm-2';
@@ -164,26 +170,22 @@ export default function decorate(block) {
 
   projectCardsContainer.appendChild(cardsGridContainer);
 
-  // Handle View All link
-  if (projectCards.length > 0) {
-    const linkFieldElement = block.children[block.children.length - 1];
-
-    if (linkFieldElement) {
-      const linkContainer = document.createElement('div');
-      moveInstrumentation(linkFieldElement, linkContainer);
-      linkContainer.className = 'projectcards-view-all';
-      const linkElement = linkFieldElement.querySelector('a');
-      if (linkElement) {
-        const linkDiv = document.createElement('div');
-        linkElement.className = 'view-all-link';
-        linkElement.target = linkFieldElement.children[2].textContent;
-        linkDiv.appendChild(linkElement); 
-        linkContainer.appendChild(linkDiv);
-      }
-
-      projectCardsContainer.appendChild(linkContainer);
-      linkFieldElement.remove();
+  // Handle View All link using the stored last element
+  if (lastElement) {
+    const linkContainer = document.createElement('div');
+    moveInstrumentation(lastElement, linkContainer);
+    linkContainer.className = 'projectcards-view-all';
+    const linkElement = lastElement.querySelector('a');
+    if (linkElement) {
+      const linkDiv = document.createElement('div');
+      linkElement.className = 'view-all-link';
+      linkElement.target = lastElement.children[2]?.textContent || '_self';
+      linkDiv.appendChild(linkElement); 
+      linkContainer.appendChild(linkDiv);
     }
+
+    projectCardsContainer.appendChild(linkContainer);
+    lastElement.remove();
   }
 
   // Clear original block content and append new structure
