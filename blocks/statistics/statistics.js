@@ -43,8 +43,8 @@ export default function decorate(block) {
         'col-sm-4',
         'feature-item',
       );
-      featureItem.children[2]?.classList.add('statistic-item');
-      featureItem.children[3]?.classList.add('text-container');
+      featureItem.children[1]?.classList.add('statistic-item');
+      featureItem.children[2]?.classList.add('text-container');
     });
 
     block.appendChild(featureContainer);
@@ -81,28 +81,28 @@ export default function decorate(block) {
 
       if (descriptionParagraph) {
         const fullHtml = descriptionParagraph.innerHTML;
-        
+
         // Find the position of first <br> tag
         const firstBrIndex = fullHtml.indexOf('<br>');
-        
+
         // Only proceed with truncation if there's a <br> tag
         if (firstBrIndex !== -1) {
           // Create container for truncated and full text
           const textContainer = document.createElement('div');
           textContainer.className = 'description-text-container';
-          
+
           // Create elements for truncated and full text
           const truncatedElement = document.createElement('p');
           truncatedElement.innerHTML = fullHtml.substring(0, firstBrIndex);
           truncatedElement.className = 'truncated-text';
-          
+
           const fullTextElement = document.createElement('p');
           fullTextElement.innerHTML = fullHtml;
           fullTextElement.className = 'full-text hide';
-          
+
           textContainer.appendChild(truncatedElement);
           textContainer.appendChild(fullTextElement);
-          
+
           // Replace original paragraph with our container
           descriptionParagraph.replaceWith(textContainer);
 

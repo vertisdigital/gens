@@ -34,8 +34,6 @@ function handleImageElement(mediaBlock) {
         },
         lazy: true,
       });
-      // Remove original link
-      // imageLink.remove();
 
       if (picture) {
         const imageElement = stringToHtml(picture);

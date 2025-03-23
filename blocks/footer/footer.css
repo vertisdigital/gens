@@ -29,8 +29,6 @@
 
 .footer .right-section {
     width: 25%;
-
-    /* float: left; */
     padding-right: 18px;
 }
 
@@ -108,6 +106,7 @@
     line-height: 24px;
     color: var(--background-color);
     margin-bottom: 10px;
+    display: block;
 }
 
 .footer .left-section .button-container a{
@@ -192,6 +191,7 @@
         font-size: var(--font-size-xs);
         font-weight: 700;
         line-height: 24px;
+        color: var(--background-color);
     }
 
     .footer .button-bottom-links .row{
@@ -246,6 +246,7 @@
         font-size: var(--font-size-xs);
         font-weight: 700;
         line-height: 24px;
+        color: var(--background-color);
     }
     .footer .footer-description, .footer nav a, .footer .mt-4 .copywrite, .footer .footer-bottom-links .button-container a {
         font-size: var(--font-size-xxs);
@@ -261,10 +262,6 @@
     .footer .mt-4 .footer-bottom-links .row>div {
         text-align: start;
     }
-
-    /* .footer .mt-4 .footer-bottom-links .row [data-link-model="links"]{
-        padding: 0 18px!important;
-    } */
   
     .footer .mt-4 .footer-bottom-links .row [data-linkfield-model="linkField"]{
         padding: 0;

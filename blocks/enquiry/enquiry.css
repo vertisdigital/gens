@@ -69,8 +69,6 @@
   height: 32px;
   flex-shrink: 0;
   color: var(--primary-gold);
-
-  /* padding: 12px; */
 }
 
 .enquiry-wrapper .contact-items .contact-icon picture{

@@ -8,8 +8,6 @@
 
   .projectcards .projectcards-header {
     margin-bottom: 42px;
-
-    /* padding: 0 18px; */
   }
 
   .projectcards .projectcards-title {
@@ -221,7 +219,6 @@
       }
       
       .projectcards .project-card [data-aue-prop="image"]{
-        /* height: 206px; */
         margin-bottom: 8px;
       }
 

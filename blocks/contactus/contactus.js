@@ -54,7 +54,7 @@ export default function decorate(block) {
   contactItems.setAttribute('role', 'list');
 
   const indices = {
-    phone: 3, email1: 7, email2: 11, email3: 15, address: 17,
+    phone: 3, email1: 6, email2: 9, email3: 12, address: 14,
   };
 
  
@@ -72,7 +72,7 @@ export default function decorate(block) {
 
 
   const imageIndices = {
-    phoneSrc: 2, email1Src: 5, email2Src: 9, email3Src: 13, addressSrc: 16,
+    phoneSrc: 2, email1Src: 5, email2Src: 8, email3Src: 11, addressSrc: 13,
   };
 
   const ImageInfo = Object.fromEntries(
@@ -95,10 +95,10 @@ export default function decorate(block) {
       value: email1, type: 'mailto', key: 'emailAddress', label: 'EmailAddress', textContentIndex: 4, imageSrc: email1Src,
     },
     {
-      value: email2, type: 'mailto', key: 'emailAddress', label: 'EmailAddress', textContentIndex: 8, imageSrc: email2Src,
+      value: email2, type: 'mailto', key: 'emailAddress', label: 'EmailAddress', textContentIndex: 7, imageSrc: email2Src,
     },
     {
-      value: email3, type: 'mailto', key: 'emailAddress', label: 'EmailAddress', textContentIndex: 12, imageSrc: email3Src,
+      value: email3, type: 'mailto', key: 'emailAddress', label: 'EmailAddress', textContentIndex: 10, imageSrc: email3Src,
     },
     {
       value: address, type: null, key: 'address', label: 'Address', imageSrc: addressSrc,
@@ -253,7 +253,6 @@ export default function decorate(block) {
     enquiryChildren[1].append(row2);
     container.append(enquiryChildren[1]);
   }
-  // container.append(row2);
 
   wrapper.innerHTML = '';
   wrapper.append(container);

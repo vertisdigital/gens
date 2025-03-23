@@ -3,5 +3,5 @@
       "delivery-p144202-e1488374.adobeaemcloud.com"
     ],
     "aemTierType": ["delivery"],
-    "type": ["folder", "file", "images", "documents", "video"]
+    "type": ["folder", "images", "documents", "video"]
   }
