@@ -44,7 +44,7 @@ export default async function decorate(block) {
     const logoImg = socialImgContainer[0]?.querySelector('a');
     if (logoImg) {
       logo.src = logoImg.href;
-      logo.alt = logoImg.alt || 'Genting Singapore';
+      logo.alt = logoImg.title || 'Genting Singapore';
     }
     logoLink.appendChild(logo);
     logoWrapper.appendChild(logoLink);
