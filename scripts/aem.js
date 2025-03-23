@@ -509,7 +509,7 @@ function decorateAEMStructure(element) {
   const isSpecialComponent = ['projectcards', 'coreprinciples', 'herobanner']
     .some(component => element.classList[0]?.indexOf(component) === 0);
   
-  const hasFeatureStructure = divElements.length >= 4 && isSpecialComponent && hasPicture;
+  const hasFeatureStructure = divElements.length >= 3 && isSpecialComponent && hasPicture;
 
   // Check for link field structure
   const hasLinkButton = element.querySelector('div > a.button');
