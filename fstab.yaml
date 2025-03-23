@@ -1,5 +1,4 @@
 mountpoints:
-
   /:
     url: "https://author-p144202-e1488374.adobeaemcloud.com/bin/franklin.delivery/wppopen/genting/main"
     type: "markup"
