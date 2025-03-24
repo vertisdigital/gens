@@ -775,6 +775,7 @@
         },
         {
           "title": "Tiles",
+          
           "id": "tiles",
           "plugins": {
             "xwalk": {
