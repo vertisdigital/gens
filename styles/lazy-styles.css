@@ -10,7 +10,6 @@
 }
 
 .tabs-container .about-us-stats {
-    /* margin-bottom: 80px; */
     margin-bottom: 0;
     padding-top: 0;
 }
@@ -100,8 +99,6 @@
     border-top: 1px solid var(--text-color);
     align-items: flex-start;
     padding-top: 16px;
-
-    /* margin-bottom: 36px; */
     gap: 0;
 }
 

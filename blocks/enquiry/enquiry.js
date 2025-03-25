@@ -79,7 +79,6 @@ export default function decorate(block) {
     iconWrapper.setAttribute('aria-hidden', 'true');
 
     if (imageLink) {
-      // const imageUrl = imageLink.getAttribute('href');
       const picture = ImageComponent({
         src: imageLink,
         alt: '',
@@ -100,8 +99,6 @@ export default function decorate(block) {
         },
         lazy: true,
       });
-      // Remove original link
-      // imageLink.remove();
 
       if (picture) {
         const imageElement = stringToHtml(picture);

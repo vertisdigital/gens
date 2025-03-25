@@ -78,7 +78,7 @@ export default function decorate(block) {
         const imageUrl = imageLink.getAttribute('href');
         const picture = ImageComponent({
           src: imageUrl,
-          alt: '',
+          alt: allDivElements[4].querySelectorAll('a')[1]?.getAttribute('title')||'',
           className: 'proejctlisting-image',
           breakpoints: {
             mobile: {

@@ -11,20 +11,15 @@ export default async function decorate(block) {
   const footerMeta = getMetadata('footer');
   const footerPath = footerMeta ? new URL(footerMeta, window.location).pathname : '/footer';
   const fragment = await loadFragment(footerPath);
-  // const fragment = block;
   if (fragment) {
     const section = document.createElement('section');
-    // const existingMain = document.getElementsByTagName('main')[0];
 
     // Create and build all the footer content
     const footer = document.createElement('div');
-    // footer.classList.add('footer');
-    // const container = fragment.firstElementChild;
 
     const container = fragment.firstElementChild;
 
     footer.setAttribute('role', 'contentinfo');
-    // footer.className = container.className;
 
     // Create main container with responsive classes
     const mainContainer = document.createElement('div');
@@ -42,14 +37,17 @@ export default async function decorate(block) {
     const logoWrapper = document.createElement('div');
     logoWrapper.className = 'footer-logo';
 
+    const logoLink = document.createElement('a');
+    logoLink.href = '/';
     const logo = document.createElement('img');
     const socialImgContainer = container.querySelector('.imagelink')?.querySelectorAll('p');
     const logoImg = socialImgContainer[0]?.querySelector('a');
     if (logoImg) {
       logo.src = logoImg.href;
-      logo.alt = logoImg.alt || 'Genting Singapore';
+      logo.alt = logoImg.title || 'Genting Singapore';
     }
-    logoWrapper.appendChild(logo);
+    logoLink.appendChild(logo);
+    logoWrapper.appendChild(logoLink);
 
     // Add description
     const description = document.createElement('p');
@@ -146,13 +144,12 @@ export default async function decorate(block) {
         const nav = document.createElement('nav');
 
         // Get section title - first div contains the title
-        const titleContainer = linkSection.children[0];
+        const titleContainer = linkSection.children[1];
         const titleElement = titleContainer?.querySelector('p');
 
         if (titleElement) {
           // Create heading element for title
-          const heading = document.createElement('h2');
-          heading.textContent = titleElement.textContent;
+          const heading = titleElement.querySelector('a');
           heading.className = 'footer-nav-title';
 
           nav.appendChild(heading);
@@ -173,7 +170,7 @@ export default async function decorate(block) {
             const buttonContainer = linkItem.querySelector('.button-container');
             const anchor = buttonContainer?.querySelector('a');
             // Get target from the third <div><p> element if it exists
-            const targetElement = linkItem.querySelector('div:nth-child(3) p');
+            const targetElement = linkItem.children[2]?.querySelector('p');
             const target = targetElement ? targetElement.textContent.trim() : '_self';
 
             if (anchor) {

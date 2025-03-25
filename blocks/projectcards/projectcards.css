@@ -3,13 +3,11 @@
   }
 
   .projectcards{
-    padding: 35px 0;
+    margin: 45px 0;
   }
 
   .projectcards .projectcards-header {
     margin-bottom: 42px;
-
-    /* padding: 0 18px; */
   }
 
   .projectcards .projectcards-title {
@@ -121,6 +119,7 @@
 
   .projectcards.grey-background{
     background-color: var(--whisper-gray);
+    padding: 45px 0;
   }
   
   .projectcards ul {
@@ -128,7 +127,7 @@
   }
 
   @media (width<=992px){
-    .projectcards{
+    .projectcards.grey-background {
       padding: 40px 0 44px;
     }
 
@@ -179,6 +178,9 @@
 
   @media (width <= 768px) {
       .projectcards{
+        margin: 24px 0;
+      }
+      .projectcards.grey-background {
         padding: 32px 0 12px;
       }
 
@@ -217,7 +219,6 @@
       }
       
       .projectcards .project-card [data-aue-prop="image"]{
-        /* height: 206px; */
         margin-bottom: 8px;
       }
 
@@ -305,6 +306,9 @@
   }
 
   @media (width>=993px) {
+    .project-cards-wrapper {
+      margin: 45px 0;
+    }
     .certifications .projectcards-heading {
       font-size: 40px;
       line-height: 50px;

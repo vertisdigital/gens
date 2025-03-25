@@ -9,7 +9,7 @@ function createTabStructure(main) {
   
   const tabElements = main.querySelectorAll('div[data-tabtitle]');
   if (tabElements.length === 0) {
-    console.warn('[Tab System] No tab elements found.');
+    //console.warn('[Tab System] No tab elements found.');
     return null;
   }
 
