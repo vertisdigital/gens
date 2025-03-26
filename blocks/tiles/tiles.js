@@ -32,7 +32,7 @@ export default function decorate(block) {
       );
       if (imageLink) {
         // Set as background
-        tile.style.backgroundImage = `url(${imageLink}/as/tiles.webp?width=800)`;
+        tile.style.backgroundImage = `url(${imageLink}/as/tiles.webp?width=850)`;
         tile.style.backgroundPosition = 'center';
         tile.style.backgroundSize = 'cover';
         tile.style.backgroundRepeat = 'no-repeat';
