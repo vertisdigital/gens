@@ -1,6 +1,23 @@
 import { getMetadata } from '../../scripts/aem.js';
 import { loadFragment } from '../fragment/fragment.js';
 import SVGIcon from '../../shared-components/SvgIcon.js';
+import { isMobile } from '../../shared-components/Utility.js';
+
+const handleAccordionToggle = (e, keyboardTrigger = false) => {
+  if (e.target.classList.contains('links-heading') || keyboardTrigger) {
+    const currentActive = document.querySelector('.collapsible-links.active');
+    if (currentActive !== e.currentTarget) {
+      currentActive?.classList?.remove('active');
+      currentActive?.setAttribute('aria-expanded', 'false');
+      e.currentTarget.classList.add('active');
+      e.currentTarget?.setAttribute('aria-expanded', 'true');
+      return;
+    }
+    const isActive = e.currentTarget.classList.contains('active');
+    e.currentTarget.classList.toggle('active');
+    e.currentTarget?.setAttribute('aria-expanded', !isActive);
+  }
+}
 
 /**
  * loads and decorates the footer
@@ -135,17 +152,16 @@ export default async function decorate(block) {
     const navColumns = navigationLinks.map(() => {
       const col = document.createElement('div');
       col.className = 'col-xl-4 col-md-3 col-sm-4 collapsible-links';
-      col.addEventListener('click', e => {
-        if (e.target.classList.contains('links-heading')) {
-          const currentActive = document.querySelector('.collapsible-links.active');
-          if (currentActive !== e.currentTarget) {
-            currentActive?.classList?.remove('active');
-            e.currentTarget.classList.add('active');
-            return;
+      if (isMobile()) {
+        col.setAttribute('tabindex', '0');
+        col.addEventListener('click', (e) => handleAccordionToggle(e));
+        col.addEventListener('keydown', (e) => {
+          if (e.key === 'Enter' || e.key === ' ') {
+            e.preventDefault();
+            handleAccordionToggle(e, true);
           }
-          e.currentTarget.classList.toggle('active');
-        } 
-      });
+        });
+      }
       return col;
     });
 

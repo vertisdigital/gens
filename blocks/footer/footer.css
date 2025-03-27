@@ -282,6 +282,7 @@
         display: flex;
         justify-content: space-between;
         align-items: center;
+        cursor: pointer;
     }
    
     .footer .links-heading::after {
@@ -315,7 +316,7 @@
     .footer .footer-child-element.container .collapsible-links {
         padding-top: 16px;
         padding-bottom: 16px;
-        border-top: 1px solid var(--background-color)
+        border-top: 1px solid var(--background-color);
     }
     .footer .footer-child-element .row>div {
         padding-right: 0;
