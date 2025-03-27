@@ -29,3 +29,7 @@ export function redirectRouter(){
      window.location.replace(redirectPathExist) 
   }
 }
+
+export function isMobile() {
+  return window.innerWidth < 768;
+};
