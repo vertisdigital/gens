@@ -15,7 +15,7 @@ import {
 } from './aem.js';
 import processTabs from './autoblocks.js';
 import { redirectRouter } from '../shared-components/Utility.js';
-import { errorLogger } from './logger.js';
+import { errorLogger as logger} from './logger.js';
 
 
 /**
@@ -60,7 +60,7 @@ async function loadFonts() {
   try {
     if (!window.location.hostname.includes('localhost')) sessionStorage.setItem('fonts-loaded', 'true');
   } catch (e) {
-    errorLogger.error(e);
+    logger.error(e);
   }
 }
 
@@ -72,7 +72,7 @@ function buildAutoBlocks(main) {
   try {
     processTabs(main);
   } catch (error) {
-    errorLogger.error(`Auto Blocking failed, ${error}`);
+    logger.error(`Auto Blocking failed, ${error}`);
   }
 }
 
@@ -111,7 +111,7 @@ async function loadEager(doc) {
       loadFonts();
     }
   } catch (e) {
-    errorLogger.error(e);
+    logger.error(e);
   }
 }
 

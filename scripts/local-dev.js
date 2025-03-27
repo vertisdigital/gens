@@ -1,5 +1,5 @@
 import { loadMockContent } from './mock-data.js';
-import { errorLogger } from './logger.js';
+import { errorLogger as logger} from './logger.js';
 
 class LocalDevelopment {
   constructor() {
@@ -38,8 +38,7 @@ class LocalDevelopment {
             module.default(block);
           }
         } catch (error) {
-          errorLogger.error(`Error loading block ${blockName}:, ${error}`);
-          console.error(`Error loading block ${blockName}:`, error);
+          logger.error(`Error loading block ${blockName}:, ${error}`);
         }
       }),
     );

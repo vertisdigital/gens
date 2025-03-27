@@ -9,7 +9,7 @@
  * OF ANY KIND, either express or implied. See the License for the specific language
  * governing permissions and limitations under the License.
  */
-import { errorLogger } from "./logger.js";
+import { errorLogger as logger } from "./logger.js";
 /* eslint-env browser */
 function sampleRUM(checkpoint, data) {
   // eslint-disable-next-line max-len
@@ -48,7 +48,7 @@ function sampleRUM(checkpoint, data) {
               .replace(/ at /, '@')
               .trim();
           } catch (err) {
-            errorLogger.error(err);
+            logger.error(err);
             /* error structure was not as expected */
           }
           return errData;
@@ -119,7 +119,7 @@ function sampleRUM(checkpoint, data) {
     }
     document.dispatchEvent(new CustomEvent('rum', { detail: { checkpoint, data } }));
   } catch (error) {
-    errorLogger.error(error);
+    logger.error(error);
     // something went awry
   }
 }
@@ -144,7 +144,7 @@ function setup() {
         [window.hlx.codeBasePath] = scriptURL.href.split('/scripts/scripts.js');
       }
     } catch (error) {
-      errorLogger.error(error);
+      logger.error(error);
     }
   }
 }
@@ -791,14 +791,14 @@ async function loadBlock(block) {
               await mod.default(block);
             }
           } catch (error) {
-            errorLogger.error(`failed to load module for ${blockName}, ${error}`);
+            logger.error(`failed to load module for ${blockName}, ${error}`);
           }
           resolve();
         })();
       });
       await Promise.all([cssLoaded, decorationComplete]);
     } catch (error) {
-      errorLogger.error(`failed to load block for ${blockName}, ${error}`);
+      logger.error(`failed to load block for ${blockName}, ${error}`);
     }
     block.dataset.blockStatus = 'loaded';
   }
