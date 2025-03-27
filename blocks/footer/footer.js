@@ -134,7 +134,18 @@ export default async function decorate(block) {
     // Create columns dynamically based on navigation sections
     const navColumns = navigationLinks.map(() => {
       const col = document.createElement('div');
-      col.className = 'col-xl-4 col-md-3 col-sm-4';
+      col.className = 'col-xl-4 col-md-3 col-sm-4 collapsible-links';
+      col.addEventListener('click', e => {
+        if (e.target.classList.contains('links-heading')) {
+          const currentActive = document.querySelector('.collapsible-links.active');
+          if (currentActive !== e.currentTarget) {
+            currentActive?.classList?.remove('active');
+            e.currentTarget.classList.add('active');
+            return;
+          }
+          e.currentTarget.classList.toggle('active');
+        } 
+      });
       return col;
     });
 
@@ -149,10 +160,12 @@ export default async function decorate(block) {
 
         if (titleElement) {
           // Create heading element for title
+          const headingContainer = document.createElement('div');
+          headingContainer.className = "links-heading"
           const heading = titleElement.querySelector('a');
           heading.className = 'footer-nav-title';
-
-          nav.appendChild(heading);
+          headingContainer.appendChild(heading);
+          nav.appendChild(headingContainer);
           nav.setAttribute('aria-label', titleElement.textContent);
         }
 
@@ -165,7 +178,7 @@ export default async function decorate(block) {
           linkItems.forEach((linkItem) => {
             const linkContainer = document.createElement('div');
             linkContainer.setAttribute('data-link-model', 'links');
-
+            linkContainer.className = "footer-links";
             // Get the button container and link
             const buttonContainer = linkItem.querySelector('.button-container');
             const anchor = buttonContainer?.querySelector('a');
