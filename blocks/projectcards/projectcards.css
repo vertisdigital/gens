@@ -140,7 +140,6 @@ flex-wrap: nowrap;
 }
 .carousel-prev,.carousel-prev:focus, .carousel-prev:hover{
 background-color: transparent;
-/* transform:scaleX(-1); */
 }
 .carousel-next,.carousel-next:focus, .carousel-next:hover{
   background-color: transparent;
