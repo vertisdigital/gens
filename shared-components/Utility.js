@@ -15,14 +15,14 @@ export function redirectRouter(){
   pathName = pathName[pathName.length - 1]
   
   const redirectableRoutes = {
-    "/company/governance/code-of-conduct": "/index/sustainability/corporate-policies",
-    "/company/governance/human-rights-policy": "/index/sustainability/corporate-policies",
-    "/company/governance/tax-governance-policy": "/index/sustainability/corporate-policies",
-    "/company/governance/whistleblowing-policy": "/index/sustainability/corporate-policies",
-    "/sustainability/sustainability-new/ourapproach": "/index/sustainability",
-    "/sustainability/sustainability-new/report": "/index/sustainability/sustainability-reports",
-    "/investors/publications/annual-report": "/index/investors-overview/publications",
-    "/investors/agm-egm": "/index/investors-overview/agm-egm"
+    "/company/governance/code-of-conduct": "/sustainability/corporate-policies",
+    "/company/governance/human-rights-policy": "/sustainability/corporate-policies",
+    "/company/governance/tax-governance-policy": "/sustainability/corporate-policies",
+    "/company/governance/whistleblowing-policy": "/sustainability/corporate-policies",
+    "/sustainability/sustainability-new/ourapproach": "/sustainability",
+    "/sustainability/sustainability-new/report": "/sustainability/sustainability-reports",
+    "/investors/publications/annual-report": "/investors-overview/publications",
+    "/investors/agm-egm": "/investors-overview/agm-egm"
   }
   const redirectPathExist=redirectableRoutes[pathName]
   
