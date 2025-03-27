@@ -159,7 +159,7 @@ export default function decorate(block) {
   let cardPair = document.createElement('div');
   cardPair.classList.add('card-pair');
   
-  projectCards.forEach((card) => {
+  projectCards.forEach((card,index) => {
     const cardElement = document.createElement('div');
     cardElement.className = 'project-card col-xl-3 col-md-3 col-sm-2';
     moveInstrumentation(card, cardElement);
