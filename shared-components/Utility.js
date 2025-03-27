@@ -21,7 +21,8 @@ export function redirectRouter(){
     "/company/governance/whistleblowing-policy": "/index/sustainability/corporate-policies",
     "/sustainability/sustainability-new/ourapproach": "/index/sustainability",
     "/sustainability/sustainability-new/report": "/index/sustainability/sustainability-reports",
-    "/investors/publications/annual-report": "/index/investors-overview/publications"
+    "/investors/publications/annual-report": "/index/investors-overview/publications",
+    "/investors/agm-egm": "/index/investors-overview/agm-egm"
   }
   const redirectPathExist=redirectableRoutes[pathName]
   
