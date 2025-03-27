@@ -139,7 +139,6 @@ export default function decorate(block) {
   // Create cards grid container
   const cardsGridContainer = document.createElement('div');
   cardsGridContainer.className = 'projectcards-grid row';
-  cardsGridContainer.setAttribute("id","carousel-container");
 
   // Handle project cards
   const projectCards = Array.from(block.querySelectorAll('[data-aue-model="projectcard"],[data-gen-model="featureItem"]'));
@@ -151,120 +150,117 @@ export default function decorate(block) {
     lastElement = block.querySelector('[data-aue-model="linkField"]');
   } else {
     // In publish instance, check and pop last element if it has button-container
-    lastElement = projectCards.length > 0 &&
-      projectCards[projectCards.length - 1].firstElementChild.querySelector('.button-container') ?
+    lastElement = projectCards.length > 0 && 
+      projectCards[projectCards.length - 1].firstElementChild.querySelector('.button-container') ? 
       projectCards.pop() : null;
   }
-
   let cardPair = document.createElement('div');
-cardPair.classList.add('card-pair'); // This will be the main container for 4 cards
+  cardPair.classList.add('card-pair');
+  
+  projectCards.forEach((card) => {
+    const cardElement = document.createElement('div');
+    cardElement.className = 'project-card col-xl-3 col-md-3 col-sm-2';
+    moveInstrumentation(card, cardElement);
 
-projectCards.forEach((card, index) => {
-  const cardElement = document.createElement('div');
-  cardElement.className = 'project-card col-xl-3 col-md-3 col-sm-2';
-  moveInstrumentation(card, cardElement);
+    // Handle card image
+    const imageLink = card.querySelector('a[href]');
+    if (imageLink) {
+      const imageContainer = document.createElement('div');
+      imageContainer.setAttribute('data-aue-prop', 'image');
+      imageContainer.setAttribute('data-aue-label', 'Image');
+      imageContainer.setAttribute('data-aue-type', 'image');
 
-  // Handle card image
-  const imageLink = card.querySelector('a[href]');
-  if (imageLink) {
-    const imageContainer = document.createElement('div');
-    imageContainer.setAttribute('data-aue-prop', 'image');
-    imageContainer.setAttribute('data-aue-label', 'Image');
-    imageContainer.setAttribute('data-aue-type', 'image');
-
-    const imageUrl = imageLink.getAttribute('href');
-    const imageAlt =
-      card.querySelectorAll('a[href]')[1]?.getAttribute('title') ||
-      card.querySelector('[data-aue-prop="title"]')?.textContent ||
-      'Project Image';
-
-    const imageHtml = ImageComponent({
-      src: imageUrl,
-      alt: imageAlt,
-      className: 'project-card-image',
-      asImageName: 'projectcards.webp',
-      breakpoints: {
-        mobile: {
-          width: 768,
-          src: `${imageUrl}`,
-          imgWidth: 170,
-          imgHeight: 170,
+      const imageUrl = imageLink.getAttribute('href');
+      const imageAlt =card.querySelectorAll('a[href]')[1]?.getAttribute('title') || card.querySelector('[data-aue-prop="title"]')?.textContent || 'Project Image';
+      
+      const imageHtml = ImageComponent({
+        src: imageUrl,
+        alt: imageAlt,
+        className: 'project-card-image',
+        asImageName: 'projectcards.webp',
+        breakpoints: {
+          mobile: {
+            width: 768,
+            src: `${imageUrl}`,
+            imgWidth: 170,
+            imgHeight: 170,
+          },
+          tablet: {
+            width: 993,
+            src: `${imageUrl}`,
+            imgWidth: 370,
+            imgHeight: 370,
+          },
+          desktop: {
+            width: 1920,
+            src: `${imageUrl}`,
+            imgWidth: 260,
+            imgHeight: 260,
+          },
         },
-        tablet: {
-          width: 993,
-          src: `${imageUrl}`,
-          imgWidth: 370,
-          imgHeight: 370,
-        },
-        desktop: {
-          width: 1920,
-          src: `${imageUrl}`,
-          imgWidth: 260,
-          imgHeight: 260,
-        },
-      },
-      lazy: true,
-    });
+        lazy: true,
+      });
 
-    imageContainer.insertAdjacentHTML('beforeend', imageHtml);
-    cardElement.appendChild(imageContainer);
-    imageLink.remove();
-  }
+      imageContainer.insertAdjacentHTML('beforeend', imageHtml);
+      cardElement.appendChild(imageContainer);
+      imageLink.remove();
+    }
 
-  // Handle card content
-  const cardContent = document.createElement('div');
-  cardContent.className = 'project-card-content';
+    // Handle card content
+    const cardContent = document.createElement('div');
+    cardContent.className = 'project-card-content';
 
-  // Handle card title
-  const cardTitle = card.querySelector(
-    '[data-aue-prop="projectText"], .button-container .button'
-  );
-  if (cardTitle) {
-    const titleDiv = document.createElement('div');
-    titleDiv.className = 'project-card-title';
-    cardTitle.className = '';
-    // setting the link target
-    const linkTarget =
-      card.querySelector('[data-aue-prop="projectTarget"], [data-gen-prop="feature-title"]')
-        ?.textContent || '_self';
-    cardTitle.setAttribute('target', linkTarget);
+    // Handle card title
+    const cardTitle = card.querySelector(
+      '[data-aue-prop="projectText"], .button-container .button',
+    );
+    if (cardTitle) {
+      const titleDiv = document.createElement('div');
+      titleDiv.className = 'project-card-title';
+      cardTitle.className = '';
+      // setting the link target
+      const linkTarget = card.querySelector(
+        '[data-aue-prop="projectTarget"], [data-gen-prop="feature-title"]',
+      )?.textContent || '_self';
+      cardTitle.setAttribute('target', linkTarget);
 
-    titleDiv.appendChild(cardTitle);
-    cardContent.appendChild(titleDiv);
-  }
+      titleDiv.appendChild(cardTitle);
+      cardContent.appendChild(titleDiv);
+    }
 
-  // Handle card location
-  const locationElement = card.querySelector(
-    '[data-aue-prop="location"], div:last-child'
-  );
-  if (locationElement) {
-    const locationDiv = document.createElement('div');
-    locationDiv.setAttribute('data-aue-prop', 'location');
-    locationDiv.setAttribute('data-aue-label', 'Location');
-    locationDiv.setAttribute('data-aue-type', 'text');
-    locationDiv.className = 'project-card-location';
-    locationDiv.innerHTML = locationElement.innerHTML;
-    cardContent.appendChild(locationDiv);
-    locationElement.remove();
-  }
+    // Handle card location
+    const locationElement = card.querySelector(
+      '[data-aue-prop="location"], div:last-child',
+    );
+    if (locationElement) {
+      const locationDiv = document.createElement('div');
+      locationDiv.setAttribute('data-aue-prop', 'location');
+      locationDiv.setAttribute('data-aue-label', 'Location');
+      locationDiv.setAttribute('data-aue-type', 'text');
+      locationDiv.className = 'project-card-location';
+      locationDiv.innerHTML = locationElement.innerHTML;
+      cardContent.appendChild(locationDiv);
+      locationElement.remove();
+    }
 
-  cardElement.appendChild(cardContent);
-
+    cardElement.appendChild(cardContent);
+    
   // Append the cardElement to the card-pair div
-  cardPair.appendChild(cardElement);
+	cardPair.appendChild(cardElement);
 
   // After every 4 cards, append the card-pair div to the parent container
-  if ((index + 1) % 4 === 0 || index === projectCards.length - 1) {
-    // Append the current card-pair (group of 4 cards) to the cardsGridContainer
-    cardsGridContainer.appendChild(cardPair);
-    // Create a new card-pair container for the next group of 4 cards
-    cardPair = document.createElement('div');
-    cardPair.classList.add('card-pair');
-  }
-});
+	  if ((index + 1) % 4 === 0 || index === projectCards.length - 1) {
+		// Append the current card-pair (group of 4 cards) to the cardsGridContainer
+		cardsGridContainer.appendChild(cardPair);
+		// Create a new card-pair container for the next group of 4 cards
+		cardPair = document.createElement('div');
+		cardPair.classList.add('card-pair');
+	  }
+  });
 
-  
-  const carouselContaier = document.createElement('div');
+  projectCardsContainer.appendChild(cardsGridContainer);
+
+const carouselContaier = document.createElement('div');
   carouselContaier.setAttribute('class', 'carousel');
 
   carouselContaier.appendChild(cardsGridContainer)
@@ -296,6 +292,7 @@ projectCards.forEach((card, index) => {
     if(currentIndex !== totalItems-1)
       moveSlide(1);
   })
+
   // Handle View All link using the stored last element
   if (lastElement) {
     const linkContainer = document.createElement('div');
@@ -306,7 +303,7 @@ projectCards.forEach((card, index) => {
       const linkDiv = document.createElement('div');
       linkElement.className = 'view-all-link';
       linkElement.target = lastElement.children[2]?.textContent || '_self';
-      linkDiv.appendChild(linkElement);
+      linkDiv.appendChild(linkElement); 
       linkContainer.appendChild(linkDiv);
     }
 
@@ -332,7 +329,7 @@ projectCards.forEach((card, index) => {
       }
     });
   });
-
+  
   const projectCard=document.querySelectorAll('.project-card')
   if(projectCard.length<=4){
     nextButton.append(stringToHTML(nextDisableCta))
