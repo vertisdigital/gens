@@ -5,6 +5,8 @@ import SvgIcon from '../../../shared-components/SvgIcon.js';
 import stringToHTML from '../../../shared-components/Utility.js';
 
 let currentIndex = 0;
+const CAROUSEL_SIZE=4;
+
 const nextDisableCta = SvgIcon({
   name: "disableRightArrow",
   className: "carousel-next-cta",
@@ -52,9 +54,9 @@ function moveSlide(direction) {
 
   const totalItems = document.querySelectorAll('.carousel-item').length;
   const projectCard = document.querySelectorAll('.project-card')
-  if (projectCard.length <= 4)
+  if (projectCard.length <= CAROUSEL_SIZE)
     return;
-  const carouselContainer = document.querySelector('#carousel-container');
+  const carouselContainer = document.querySelector('.carousel-container');
 
   
   currentIndex += direction;
@@ -138,7 +140,7 @@ export default function decorate(block) {
 
   // Create cards grid container
   const cardsGridContainer = document.createElement('div');
-  cardsGridContainer.className = 'projectcards-grid row';
+  cardsGridContainer.className = 'projectcards-grid row carousel-container';
 
   // Handle project cards
   const projectCards = Array.from(block.querySelectorAll('[data-aue-model="projectcard"],[data-gen-model="featureItem"]'));
@@ -249,7 +251,7 @@ export default function decorate(block) {
 	cardPair.appendChild(cardElement);
 
   // After every 4 cards, append the card-pair div to the parent container
-	  if ((index + 1) % 4 === 0 || index === projectCards.length - 1) {
+	  if ((index + 1) % CAROUSEL_SIZE === 0 || index === projectCards.length - 1) {
 		// Append the current card-pair (group of 4 cards) to the cardsGridContainer
 		cardsGridContainer.appendChild(cardPair);
 		// Create a new card-pair container for the next group of 4 cards
@@ -275,7 +277,7 @@ const carouselContaier = document.createElement('div');
   prevButton.append(stringToHTML(prevDisableCta))
 
   const buttonGroup=document.createElement('div')
-  buttonGroup.setAttribute('class','buttonGroup')
+  buttonGroup.setAttribute('class','button-group')
   
   buttonGroup.appendChild(prevButton)
   buttonGroup.appendChild(nextButton)
@@ -330,8 +332,8 @@ const carouselContaier = document.createElement('div');
     });
   });
   
-  const projectCard=document.querySelectorAll('.project-card')
-  if(projectCard.length<=4){
+  const projectCard= block.querySelectorAll('.project-card')
+  if(projectCard.length<=CAROUSEL_SIZE){
     nextButton.append(stringToHTML(nextDisableCta))
   }else{
     nextButton.append(stringToHTML(nextCta))
