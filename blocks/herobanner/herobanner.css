@@ -11,7 +11,6 @@
 
 .hero-banner-container img {
   width: 100%;
-  object-fit: cover;
 }
 
 .hero-image {
@@ -270,6 +269,9 @@
 
 /* Responsive adjustments */
 @media (width <= 991px) {
+  .hero-banner-container img {
+    object-fit: cover;
+  }
   .hero-title {
     font-size: 48px;
     line-height: 56px;
