@@ -22,6 +22,14 @@
   z-index: -1;
 }
 
+.news-link-container img {
+  align-content: flex-end;
+}
+
+.hero-banner-container.hero-carousal-variation img {
+  height: 100%;
+}
+
 .hero-title {
   font-size: 56px;
   font-weight: 400;
@@ -167,9 +175,6 @@
   height: 100%;   
 }
 
-.news-link-container img {
-  align-content: flex-end;
-}
 
 .hero-banner-container .carousel-image img {
   height: 118px;
