@@ -3,7 +3,6 @@
   width: 100%;
   color: var(--background-color);
   overflow: hidden;
-  min-height: 798px;
   padding-top:225px;
   padding-bottom: 210px;
   margin-bottom: 45px;
@@ -102,7 +101,6 @@
 .carousel-wrapper {
   display: flex;
   transition: transform 0.3s ease;
-  height: 190px;
   width: 608px;
 }
 
@@ -144,8 +142,8 @@
   justify-content: flex-start;
   align-items: center;
   align-self: stretch;
-  gap: 36px;
-  padding: 36px;
+  gap: 47px;
+  padding: 20px;
 }
 
 /* Left side: Text content (Title, Description, Read More) */
