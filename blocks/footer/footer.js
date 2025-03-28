@@ -4,7 +4,7 @@ import SVGIcon from '../../shared-components/SvgIcon.js';
 import { isMobile } from '../../shared-components/Utility.js';
 
 const handleAccordionToggle = (e, keyboardTrigger = false) => {
-  if (e.target.classList.contains('links-heading') || keyboardTrigger) {
+  if (e?.target?.classList?.contains('links-heading') || (keyboardTrigger && e?.target?.classList?.contains('collapsible-links'))) {
     const currentActive = document.querySelector('.collapsible-links.active');
     if (currentActive !== e.currentTarget) {
       currentActive?.classList?.remove('active');
@@ -157,7 +157,6 @@ export default async function decorate(block) {
         col.addEventListener('click', (e) => handleAccordionToggle(e));
         col.addEventListener('keydown', (e) => {
           if (e.key === 'Enter' || e.key === ' ') {
-            e.preventDefault();
             handleAccordionToggle(e, true);
           }
         });
