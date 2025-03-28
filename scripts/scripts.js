@@ -60,7 +60,7 @@ async function loadFonts() {
   try {
     if (!window.location.hostname.includes('localhost')) sessionStorage.setItem('fonts-loaded', 'true');
   } catch (e) {
-    logger.error(e);
+    // do nothing
   }
 }
 

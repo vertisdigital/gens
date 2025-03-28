@@ -176,6 +176,10 @@
     .historymilestones-image{
         margin-bottom: 14px;
     }
+    .historymilestones-image img {
+        height: auto;
+        object-fit: fill;
+    }
     .historymilestones-date {
         font-size: 16px;
         line-height: 24px; /* 150% */
