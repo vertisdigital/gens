@@ -452,7 +452,7 @@ function initializeHeader(header) {
   
     // Check if the clicked element has a hash (#) in its href
     const target = e.target;
-    if (target.href.includes("#")) {
+    if (target.href?.includes("#")) {
       window.location.href = e.target.href; // Navigate to the correct section
       window.location.reload()
     } 

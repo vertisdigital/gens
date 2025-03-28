@@ -60,7 +60,7 @@ jobs:
         BRANCH_NAME=${GITHUB_REF#refs/heads/}
         
         # Set Adobe Launch script URL based on branch
-        if [ "$BRANCH_NAME" == "uat" ] || [ "$BRANCH_NAME" == "main" ]; then
+        if [ "$BRANCH_NAME" == "main" ]; then
           LAUNCH_URL="https://assets.adobedtm.com/9a26c7c29956/9d78c9fea2b9/launch-82eb0a5e0018.min.js"
         else
           LAUNCH_URL="https://assets.adobedtm.com/9a26c7c29956/9d78c9fea2b9/launch-c830de7b55b7-development.min.js"
