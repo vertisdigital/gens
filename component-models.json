@@ -1864,9 +1864,45 @@
         }
       },
       {
+        "component": "boolean",
+        "label": "File Download?",
+        "name": "reveal",
+        "valueType": "boolean"
+      },
+      {
+        "component": "custom-asset-namespace:custom-asset",
+        "label": "File Path",
+        "name": "filepath",
+        "valueType": "string",
+        "configUrl": "https://corporate-policies-download--genting--wppopen.aem.live/tools/assets-selector/config.json",
+        "multi": false,
+        "condition": {
+          "===": [
+            {
+              "var": "reveal"
+            },
+            true
+          ]
+        }
+      },
+      {
+        "component": "text",
+        "name": "filepathTitle",
+        "label": "Alt Text",
+        "valueType": "string"
+      },
+      {
         "component": "text",
         "name": "ctaLabel",
         "label": "CTA Label",
+        "condition": {
+          "===": [
+            {
+              "var": "reveal"
+            },
+            false
+          ]
+        },
         "validation": {
           "maxLength": 30,
           "customErrorMsg": "CTA text cannot exceed 30 characters"
@@ -1876,6 +1912,14 @@
         "component": "aem-content",
         "name": "ctaLink",
         "label": "CTA Link",
+        "condition": {
+          "===": [
+            {
+              "var": "reveal"
+            },
+            false
+          ]
+        },
         "validation": {
           "rootPath": "/content/genting-singapore"
         }
