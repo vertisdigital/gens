@@ -1191,13 +1191,15 @@
         "component": "boolean",
         "label": "File Download?",
         "name": "reveal",
-        "valueType": "boolean"
+        "valueType": "boolean",
+        "value": false
       },
       {
         "component": "custom-asset-namespace:custom-asset",
         "label": "File Path",
         "name": "filepath",
         "valueType": "string",
+        "value": "",
         "configUrl": "https://corporate-policies-download--genting--wppopen.aem.live/tools/assets-selector/config.json",
         "multi": false,
         "condition": {
