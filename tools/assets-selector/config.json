@@ -10,7 +10,8 @@
         {
           "columns": 2,
           "defaultValue": [
-            "image/*"
+            "image/*",
+            "application/pdf"
           ],
           "element": "checkbox",
           "name": "type",
@@ -36,20 +37,6 @@
       ],
       "groupKey": "FileTypeGroup",
       "header": "File Type"
-    },
-    {
-      "fields": [{
-        "columns": 3,
-        "defaultValue": ["wknd:products/snorkling123"],
-        "element": "taggroup",
-        "name": "property=metadata.application.xcm:keywords.id",
-        "options": [{
-          "label": "Snorkling",
-          "value": "wknd:products/snorkling123"
-        }]
-      }],
-      "groupKey": "AssetTagsGroup",
-      "header": "Assets Tags"
     }
   ],
   "hideFilters": "true",
