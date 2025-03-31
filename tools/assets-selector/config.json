@@ -11,7 +11,8 @@
           "columns": 2,
           "defaultValue": [
             "image/*",
-            "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"
+            "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
+            "application/pdf"
           ],
           "element": "checkbox",
           "name": "type",
