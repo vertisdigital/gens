@@ -26,9 +26,17 @@
               "value": "video/*"
             },
             {
-              "label": "Documents",
-              "value": "documents/*"
-            }
+              "label": "PDF",
+              "value": "application/pdf"
+            },
+            {
+              "label": "Word",
+              "value": "application/vnd.openxmlformats-officedocument.wordprocessingml.document"
+            },
+            {
+              "label": "Excel",
+              "value": "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"
+            }            
           ]
         }
       ],
