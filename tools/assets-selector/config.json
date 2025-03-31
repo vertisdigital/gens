@@ -26,17 +26,10 @@
               "value": "video/*"
             },
             {
-              "label": "PDF",
-              "value": "application/pdf"
-            },
-            {
-              "label": "Word",
-              "value": "application/vnd.openxmlformats-officedocument.wordprocessingml.document"
-            },
-            {
-              "label": "Excel",
-              "value": "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"
-            }            
+              "label": "Documents",
+              "value": "documents/*"
+            }
+                   
           ]
         }
       ],
@@ -64,7 +57,19 @@
             {
               "label": "GIF",
               "value": "image/gif"
-            }
+            },
+            {
+              "label": "PDF",
+              "value": "application/pdf"
+            },
+            {
+              "label": "Word",
+              "value": "application/vnd.openxmlformats-officedocument.wordprocessingml.document"
+            },
+            {
+              "label": "Excel",
+              "value": "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"
+            }     
           ],
           "columns": 3
         }
