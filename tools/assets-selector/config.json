@@ -18,6 +18,13 @@
             "image/svg+xml",
             "image/bmp",
             "image/vnd.microsoft.icon",
+            "video/mp4",
+            "video/webm",
+            "video/ogg",
+            "video/avi",
+            "video/mov",
+            "video/wmv",
+            "video/flv",
             "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
             "application/pdf"
           ],
