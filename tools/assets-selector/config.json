@@ -18,8 +18,36 @@
           "name": "type",
           "options": [
             {
-              "label": "Images",
-              "value": "image/*"
+              "label": "JPEG",
+              "value": "image/jpeg"
+            },
+            {
+              "label": "PNG",
+              "value": "image/png"
+            },
+            {
+              "label": "GIF",
+              "value": "image/gif"
+            },
+            {
+              "label": "WEBP",
+              "value": "image/webp"
+            },
+            {
+              "label": "TIFF",
+              "value": "image/tiff"
+            },
+            {
+              "label": "SVG",
+              "value": "image/svg+xml"
+            },
+            {
+              "label": "BMP",
+              "value": "image/bmp"
+            },
+            {
+              "label": "ICO",
+              "value": "image/vnd.microsoft.icon"
             },
             {
               "label": "Videos",
