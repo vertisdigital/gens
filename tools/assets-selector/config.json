@@ -26,6 +26,8 @@
             "video/wmv",
             "video/flv",
             "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
+            "application/vnd.openxmlformats-officedocument.presentationml.presentation",
+            "application/vnd.openxmlformats-officedocument.wordprocessingml.document",
             "application/pdf"
           ],
           "element": "checkbox",
@@ -96,7 +98,15 @@
                 "value": "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"
             },
             {
+              "label": "Presentations",
+              "value": "application/vnd.openxmlformats-officedocument.presentationml.presentation"
+            },
+            {
               "label": "Documents",
+              "value": "application/vnd.openxmlformats-officedocument.wordprocessingml.document"
+            },
+            {
+              "label": "PDF",
               "value": "application/pdf"
             },
             {
