@@ -27,7 +27,7 @@
             },
             {
               "label": "Application",
-              "value": "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"
+              "value": "application/*"
             }
           ]
         }
