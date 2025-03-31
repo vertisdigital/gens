@@ -366,12 +366,8 @@
   .hero-banner-container.hero-carousal-variation  {
     padding: 125px 20px;
     padding-left: 0;
-    min-height: 324px;
     position: relative;
     margin-bottom: 24px;
-  }
-  .hero-image {
-    height: 100%;
   }
   .hero-arrow-icon {
     padding: 10px;
