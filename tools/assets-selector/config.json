@@ -8,7 +8,7 @@
         {
           "fields": [
             {
-              "defaultValue": ["image/*", "video/*","file/*"],
+              "defaultValue": ["image/*", "video/*","application/*"],
               "element": "checkbox",
               "name": "type",
               "options": [
@@ -22,7 +22,7 @@
                   "value": "video/*"
                 },
                 {
-                  "label": "Xlsx",
+                  "label": "Application",
                   "value": "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"
                 }
               ]
