@@ -40,16 +40,18 @@
     {
       "fields": [{
         "columns": 3,
-        "defaultValue": ["wknd:products/snorkling"],
+        "defaultValue": ["wknd:products/snorkling123"],
         "element": "taggroup",
         "name": "property=metadata.application.xcm:keywords.id",
         "options": [{
           "label": "Snorkling",
-          "value": "wknd:products/snorkling"
+          "value": "wknd:products/snorkling123"
         }]
       }],
       "groupKey": "AssetTagsGroup",
       "header": "Assets Tags"
     }
-  ]
+  ],
+  "hideFilters": "true",
+  "useProdDomain": true
 }
