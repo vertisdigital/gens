@@ -8,7 +8,7 @@
         {
           "fields": [
             {
-              "element": "dropdown",
+              "element": "filters",
               "name": "type",
               "options": [
                 {
@@ -50,5 +50,6 @@
       ],
     "showFilterPanel": true,
     "showCheckboxes": true,
-    "multiSelect": true
+    "multiSelect": true,
+    "defaultView": "card"
 }
