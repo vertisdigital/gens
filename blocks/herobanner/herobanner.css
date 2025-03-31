@@ -368,6 +368,7 @@
     padding-left: 0;
     position: relative;
     margin-bottom: 24px;
+    min-height: 500px;
   }
   .hero-arrow-icon {
     padding: 10px;
