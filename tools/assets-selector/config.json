@@ -11,7 +11,7 @@
           "defaultValue": [
             "image/*",
             "video/*",
-            "application/*"
+            "documents/*"
           ],
           "element": "checkbox",
           "name": "type",
@@ -26,8 +26,8 @@
               "value": "video/*"
             },
             {
-              "label": "Application",
-              "value": "application/*"
+              "label": "Documents",
+              "value": "documents/*"
             }
           ]
         }
