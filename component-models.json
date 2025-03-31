@@ -1862,13 +1862,7 @@
           "maxLength": 2000,
           "customErrorMsg": "Description cannot exceed 2000 characters"
         }
-      },
-      {
-        "component": "boolean",
-        "label": "File Download?",
-        "name": "reveal",
-        "valueType": "boolean"
-      },
+      },      
       {
         "component": "text",
         "name": "ctaLabel",
@@ -1877,6 +1871,12 @@
           "maxLength": 30,
           "customErrorMsg": "CTA text cannot exceed 30 characters"
         }
+      },
+      {
+        "component": "boolean",
+        "label": "File Download?",
+        "name": "reveal",
+        "valueType": "boolean"
       },
       {
         "component": "custom-asset-namespace:custom-asset",
