@@ -8,7 +8,7 @@
         {
           "fields": [
             {
-              "defaultValue": ["image/*", "video/*","documents/*"],
+              "defaultValue": ["image/*", "video/*","file/*"],
               "element": "checkbox",
               "name": "type",
               "options": [
