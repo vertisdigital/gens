@@ -8,16 +8,14 @@
         {
           "fields": [
             {
+              "defaultValue": ["image/*"],
               "element": "checkbox",
               "name": "type",
               "options": [
                 {
                   "label": "Image",
+                  "readOnly": true,
                   "value": "image/*"
-                },
-                {
-                  "label": "video",
-                  "value": "video/*"
                 }
               ]
             }
