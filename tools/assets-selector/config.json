@@ -18,6 +18,18 @@
                   "value": "image/*"
                 }
               ]
+            },
+            {
+              "defaultValue": ["video/*"],
+              "element": "checkbox",
+              "name": "type",
+              "options": [
+                {
+                  "label": "video",
+                  "readOnly": true,
+                  "value": "video/*"
+                }
+              ]
             }
           ],
           "groupKey": "FileTypeGroup",
