@@ -4,50 +4,34 @@
     ],    
     "rails": false,
     "aemTierType": "delivery",
-    "filterSchema": [
-        {
-          "fields": [
-            {
-              "element": "filters",
-              "name": "type",
-              "options": [
-                {
-                  "label": "Image",
-                  "value": "image/*"
-                },
-                {
-                  "label": "Video",
-                  "value": "video/*"
-                },
-                {
-                  "label": "Document",
-                  "value": "application/pdf"
-                }
-              ]
-            }
-          ],
-          "groupKey": "FileTypeGroup",
-          "header": "File Type"
-        },
-        {
-          "fields": [
-            {
-              "columns": 3,
-              "defaultValue": ["arena"],
-              "element": "taggroup",
-              "name": "property=xcm:keywords.id=",
-              "options": [
-                {
-                  "label": "Demo",
-                  "value": "demo"
-                }
-              ]
-            }
-          ],
-          "groupKey": "AssetTagsGroup",
-          "header": "Assets Tags"
-        }
-      ],
+    "filters": [
+      {
+        "name": "type",
+        "values": [
+          {
+            "value": "image/*",
+            "text": "Image"
+          },
+          {
+            "value": "video/*",
+            "text": "Video"
+          },
+          {
+            "value": "application/pdf",
+            "text": "Document"
+          }
+        ]
+      },
+      {
+        "name": "property=xcm:keywords.id=",
+        "values": [
+          {
+            "value": "demo",
+            "text": "Demo"
+          }
+        ]
+      }
+    ],
     "showFilterPanel": true,
     "showCheckboxes": true,
     "multiSelect": true,
