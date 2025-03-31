@@ -54,8 +54,9 @@ function moveSlide(direction , block) {
 
   const totalItems = document.querySelectorAll('.carousel-item').length;
   const projectCard = document.querySelectorAll('.project-card')
-  if (projectCard.length <= CAROUSEL_SIZE)
+  if (projectCard.length <= CAROUSEL_SIZE) {
     return;
+  }
   const carouselContainer = document.querySelector('.carousel-container');
 
   
