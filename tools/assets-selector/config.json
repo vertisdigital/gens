@@ -30,6 +30,24 @@
               "value": "documents/*"
             }
           ]
+        },
+        { 
+            "fields": 
+                [ 
+                    { 
+                        "element": "checkbox",
+                        "name": "type",
+                        "options": [ 
+                            { 
+                                "label": "JPG",
+                                "value": "image/jpeg" 
+                            }
+                        ],
+                        "columns": 3
+                    }
+                ],
+            "header": "Mime Types",
+            "groupKey": "MimeTypeGroup"
         }
       ],
       "groupKey": "FileTypeGroup",
