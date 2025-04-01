@@ -78,6 +78,7 @@ export default function decorate(block) {
       if (buttonContainer && buttonContainer.textContent.trim() !== '' && ctaCaption !== null) {
         const ctaLink = document.createElement('a');
         ctaLink.href = buttonContainer.href;
+        ctaLink.target = childrens[3]?.textContent === 'true' ? '_blank' : '_self';
         ctaLink.className = 'factsheet-button animated-cta';
         ctaLink.innerHTML = `${ctaCaption.textContent} ${downArraowWithLine}`;
         // Replace CTA caption with link
