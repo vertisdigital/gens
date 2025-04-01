@@ -1978,39 +1978,7 @@
             "name": "New Tab",
             "value": "_blank"
           }
-        ],
-
-        "condition": {
-          "===": [
-            {
-              "var": "reveal"
-            },
-            false
-          ]
-        }
-      },
-      {
-        "component": "select",
-        "name": "filepathTarget",
-        "label": "Target",
-        "options": [
-          {
-            "name": "Same Tab",
-            "value": "_self"
-          },
-          {
-            "name": "New Tab",
-            "value": "_blank"
-          }
-        ],
-        "condition": {
-          "===": [
-            {
-              "var": "reveal"
-            },
-            true
-          ]
-        }
+        ]
       }
     ]
   },
