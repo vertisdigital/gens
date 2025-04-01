@@ -309,8 +309,7 @@
     .statistics-wrapper .statistics.block::before {
         max-width: none;
         width: auto;
-        left: 100px;
+    left: 100px;
         right: 100px;
     }
 }
-
