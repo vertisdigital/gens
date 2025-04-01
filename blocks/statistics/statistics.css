@@ -90,13 +90,6 @@
     position: relative;
 }
 
-.statistics-wrapper .statistics.block.margin-top-none {
-    margin-top: 0!important;
-}
-.statistics-wrapper .statistics.block.margin-top-overlap{
-    margin-top: -68px!important;
-}
-
 
 .statistics-wrapper .statistics.block.statistics-variation{
     margin-top: 0;
@@ -316,8 +309,7 @@
     .statistics-wrapper .statistics.block::before {
         max-width: none;
         width: auto;
-        left: 100px;
+    left: 100px;
         right: 100px;
     }
 }
-
