@@ -293,9 +293,9 @@
 
 /* Responsive adjustments */
 @media (width <= 991px) {
-  .hero-banner-container img {
+  /* .hero-banner-container img {
     object-fit: cover;
-  }
+  } */
   .hero-title {
     font-size: 48px;
     line-height: 56px;
@@ -363,13 +363,17 @@
 
 /* Ensure responsive layout */
 @media (width <= 767px) {
+
+  .hero-banner-container.hero-carousal-variation img{
+    height: auto;
+  }
+
   .hero-banner-container,
   .hero-banner-container.hero-carousal-variation  {
-    padding: 125px 20px;
     padding-left: 0;
     position: relative;
     margin-bottom: 24px;
-    min-height: 500px;
+    height: 729px;
   }
   .hero-arrow-icon {
     padding: 10px;
