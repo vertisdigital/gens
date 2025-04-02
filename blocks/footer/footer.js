@@ -146,12 +146,12 @@ export default async function decorate(block) {
         // Get section title - first div contains the title
         const titleContainer = linkSection.children[1];
         const titleElement = titleContainer?.querySelector('p');
-
+        const titleTarget = linkSection.children[2]?.textContent?.trim() || '_self';
         if (titleElement) {
           // Create heading element for title
           const heading = titleElement.querySelector('a');
           heading.className = 'footer-nav-title';
-
+          heading.target = titleTarget;
           nav.appendChild(heading);
           nav.setAttribute('aria-label', titleElement.textContent);
         }
@@ -267,7 +267,7 @@ export default async function decorate(block) {
             link.textContent = originalLink.textContent;
 
             // Get target from the third div if it exists
-            const targetElement = linkItem.querySelector('div:nth-child(3) p');
+            const targetElement = linkItem.children[2]?.querySelector('p');
             if (targetElement && targetElement.textContent.trim() === '_blank') {
               link.target = '_blank';
               link.rel = 'noopener noreferrer';

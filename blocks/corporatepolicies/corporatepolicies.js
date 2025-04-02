@@ -55,25 +55,24 @@ export default function decorate(block) {
               const link = linkElement?.querySelector("a");
               if (link) {
                 link.title = lastThirdChild.textContent;
+                link.target = children[7]?.textContent || "_self";
                 link.innerHTML = `<span>${lastThirdText}</span>${ctaIcon}`;
                 lastThirdChild.textContent = ""; // Clear moved text
               }
 
               // Set remaining children excluding first one and handle special case
               if (children[5]) {
-                // const checkDownloadLink = children[5].textContent?.trim();
                 if (checkDownloadLink === 'true') {
                   // Remove elements 3 and 5
                   remainingChildren = [
                     ...children.slice(1, 2),
                     children[4],
-                    ...children.slice(6)
+                    ...children.slice(6, 7)
                   ].map((c) => c.outerHTML).join("");
                 } else if (checkDownloadLink === 'false') {
                   // Remove elements 5 and 6
                   remainingChildren = [
                     ...children.slice(1, 5),
-                    ...children.slice(7)
                   ].map((c) => c.outerHTML).join("");
                 } else {
                   remainingChildren = children.slice(1).map((c) => c.outerHTML).join("");
