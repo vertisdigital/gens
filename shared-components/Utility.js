@@ -22,7 +22,8 @@ export function redirectRouter(){
     "/sustainability/sustainability-new/ourapproach": "/sustainability",
     "/sustainability/sustainability-new/report": "/sustainability/sustainability-reports",
     "/investors/publications/annual-report": "/investors-overview/publications",
-    "/investors/agm-egm": "/investors-overview/agm-egm"
+    "/investors/agm-egm": "/investors-overview/agm-egm",
+    "/privacy-policy": "/contact-us/privacypolicy"
   }
   const redirectPathExist=redirectableRoutes[pathName]
   
