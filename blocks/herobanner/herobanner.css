@@ -9,6 +9,7 @@
 }
 .hero-banner-container.hero-carousal-variation {
   padding-bottom: 210px;
+  min-height: 730px;
 }
 
 .hero-banner-container img {
