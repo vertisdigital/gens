@@ -958,6 +958,7 @@
             "component": "text",
             "name": "emailAddress1",
             "label": "Email Address",
+            "valueFormat": "email",
             "validation": {
               "regExp": "^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,}$",
               "minLength": 10,
@@ -999,6 +1000,7 @@
             "component": "text",
             "name": "emailAddress2",
             "label": "Email Address",
+            "valueFormat": "email",
             "validation": {
               "regExp": "^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,}$",
               "minLength": 10,
@@ -1040,6 +1042,7 @@
             "component": "text",
             "name": "emailAddress3",
             "label": "Email Address",
+            "valueFormat": "email",
             "validation": {
               "regExp": "^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,}$",
               "minLength": 10,
