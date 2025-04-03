@@ -361,6 +361,9 @@
     position: relative;
     margin-bottom: 24px;
   }
+  .hero-banner-container.hero-carousal-variation {
+    height: 654px;
+  }
   .hero-arrow-icon {
     padding: 10px;
   }
