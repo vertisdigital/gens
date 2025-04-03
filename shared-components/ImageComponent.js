@@ -57,7 +57,7 @@ export default function ImageComponent({
 
   return `
     <picture>
-      <source media="(min-width: 992px)" 
+      <source media="(min-width: 993px)" 
               srcset="${breakpoints.desktop.src}/as/${asImageName ? asImageName : 'img.webp'}${breakpoints.desktop.smartCrop ? `?smartcrop=${breakpoints.desktop.smartCrop}` : ''}">
       <source media="(min-width: 768px)" 
               srcset="${breakpoints.tablet.src}/as/${asImageName ? asImageName : 'img.webp'}${breakpoints.tablet.smartCrop ? `?smartcrop=${breakpoints.tablet.smartCrop}` : ''}">

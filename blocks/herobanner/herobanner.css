@@ -6,10 +6,10 @@
   padding-top:225px;
   padding-bottom: 150px;
   margin-bottom: 45px;
+  aspect-ratio: 320 / 133;
 }
 .hero-banner-container.hero-carousal-variation {
   padding-bottom: 210px;
-  aspect-ratio: 320 / 133;
 }
 
 .hero-banner-container img {
@@ -62,11 +62,6 @@
   margin: 0;
   text-shadow: 0 1px 2px rgb(0 0 0 / 30%);
   padding-left: 0;
-  min-height: 250px;   
-}
-
-.hero-banner-container.hero-carousal-variation .hero-description {
-  min-height: auto;
 }
 
 .hero-banner-container .button-container {
@@ -279,18 +274,6 @@
   margin-top: 2px;
 }
 
-@media (width <= 1599px) {
-  .hero-description {
-    min-height: 100px;
-  }
-}
-
-@media (width <= 1439px) {
-  .hero-description {
-    min-height: auto;
-  }
-}
-
 /* Responsive adjustments */
 @media (width <= 991px) {
   /* .hero-banner-container img {
@@ -352,18 +335,22 @@
   .hero-arrow-icon {
     padding: 12px;
   }
+  .hero-banner-container {
+    aspect-ratio: 52 / 45;
+  }
 
   .hero-banner-container, 
   .hero-banner-container.hero-carousal-variation {
     padding: 185px 20px 195px;
     padding-left: 0;
-    min-height: 450px;
   }
 }
 
 /* Ensure responsive layout */
-@media (width <= 767px) {
-
+@media (width <= 767px) { 
+  .hero-banner-container {
+    aspect-ratio: 13 / 18;
+  }
   .hero-banner-container.hero-carousal-variation img{
     height: auto;
   }
