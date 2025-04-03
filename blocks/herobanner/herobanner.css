@@ -373,7 +373,9 @@
     padding-left: 0;
     position: relative;
     margin-bottom: 24px;
-    height: 729px;
+  }
+  .hero-banner-container.hero-carousal-variation {
+    height: 654px;
   }
   .hero-arrow-icon {
     padding: 10px;
