@@ -470,3 +470,8 @@
     padding-bottom: 118px;
   }
 }
+@media(width >=410px) and (width < 500px) {
+  .hero-banner-container.hero-carousal-variation {
+    height: 725px;
+  }
+}
