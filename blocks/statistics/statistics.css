@@ -160,7 +160,7 @@
 
 @media (width <= 1024px) {
     .statistics-wrapper .statistics.block {
-        margin-top: -46px;
+        margin-top: -90px;
     }
 
     .statistics-wrapper .statistics.block.statistics-variation{
@@ -203,6 +203,7 @@
     
     .statistics .statistics-description-wrapper h3, .statistics .statistics-title {
         font-size: var(--font-size-l);
+        margin-bottom: 12px;
     }
 
     .statistics .statistic-item {

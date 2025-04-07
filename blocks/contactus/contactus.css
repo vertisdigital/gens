@@ -175,9 +175,6 @@
 
 /* Tablet Layout  */
  @media (width >= 768px) and (width < 1024px) {
-  .contactus .contactus-top{
-    padding-bottom: 40px;
-  }
 
   .contactus .enquiry-heading {
     font-size: 32px;
@@ -242,10 +239,6 @@
 
   .contactus .row>div{
     padding: 0;
-  }
-
-  .contactus .contactus-top{
-    padding-bottom: 28px;
   }
 
   .contactus .row>div:first-child{

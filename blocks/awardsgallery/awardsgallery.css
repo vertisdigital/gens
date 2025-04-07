@@ -1,5 +1,5 @@
 .awardsgallery .awardsgallery-card {
-    margin-bottom: 15px;
+    margin-bottom: 44px;
 }
 
 .awardsgallery .awardsgallery-image {
@@ -7,12 +7,8 @@
     align-items: center;
     justify-content: center;
     border: 1px solid var(--light-grey);
-    height: 162px;
+    aspect-ratio: 361 / 350;
     margin-bottom: 10px;
-}
-
-.awardsgallery .awardsgallery-image img {
-    max-width: 80px;
 }
 
 .awardsgallery .awardsgallery-content * {
@@ -35,6 +31,9 @@
 .awardsgallery .award-description {
     font-size: 14px;
 }
+.awardsgallery .award-description p {
+    margin-bottom: 0;   
+}
 
 .awardsgallery .awardsgallery-grid {
     justify-content: center;
@@ -42,18 +41,17 @@
 
 
 @media (width >= 768px) {
+    .awardsgallery .awardsgallery-card {
+        margin-bottom: 70px;
+    }
     .awardsgallery .award-title {
         font-size: 18px;
     }
 
     .awardsgallery .awardsgallery-image {
         margin-bottom: 15px;
-        height: 360px;
     }
 
-    .awardsgallery .awardsgallery-image img {
-        max-width: 160px;
-    }
 
     .awardsgallery .awardsgallery-content * {
         margin-bottom: 6px;
@@ -76,7 +74,7 @@
 
     .awardsgallery .awardsgallery-image {
         margin-bottom: 20px;
-        height: 350px;
+        aspect-ratio: 349 / 350;
     }
 
     .awardsgallery .awardsgallery-content * {

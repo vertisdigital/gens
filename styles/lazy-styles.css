@@ -21,6 +21,13 @@
     overflow-x: auto;
     margin-bottom: 36px;
     position: relative;
+    position: relative;
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+}
+
+.tabs-header::-webkit-scrollbar {
+    display: none; /* For Chrome, Safari, and Opera */
 }
 
 .tab-title {
