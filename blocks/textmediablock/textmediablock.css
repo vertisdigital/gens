@@ -59,6 +59,9 @@
 
 /* Tablet and up: Grid layout */
 @media (width<=992px) {
+  .textblock{
+    gap: 24px;
+  }
   .textmediablock-wrapper{
       margin: 44px 0;
   }
