@@ -170,9 +170,6 @@
   
   }
 
-  @media (width <= 834px) {
-  }
-
   @media (width < 768px) {
       .projectcards{
         margin: 24px 0;
