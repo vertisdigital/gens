@@ -16,20 +16,17 @@ function handleImageElement(mediaBlock) {
           mobile: {
             width: 768,
             src: `${imageUrl}`,
-            imgWidth: 768,
-            imgHeight: 200,
+            imgWidth: 768
           },
           tablet: {
             width: 1024,
             src: `${imageUrl}`,
-            imgWidth: 1024,
-            imgHeight: 400,
+            imgWidth: 1024
           },
           desktop: {
             width: 1920,
             src: `${imageUrl}`,
-            imgWidth: 1600,
-            imgHeight: 630,
+            imgWidth: 1600
           },
         },
         lazy: true,

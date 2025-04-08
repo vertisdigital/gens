@@ -33,20 +33,20 @@ export default function ImageComponent({
     updatedBreakpoints.mobile.src = `${src}/as/${asImageName}${
       breakpoints.mobile.smartCrop
         ? `?smartcrop=${breakpoints.mobile.smartCrop}`
-        : `?width=${mobileWidth}&height=${mobileHeight}`
+        : `?width=${mobileWidth}${mobileHeight ? `&height=${mobileHeight}` : ''}`
     }`;
     updatedBreakpoints.tablet.src = `${src}/as/${asImageName}${
       breakpoints.tablet.smartCrop
         ? `?smartcrop=${breakpoints.tablet.smartCrop}`
-        : `?width=${tabletWidth}&height=${tabletHeight}`
+        : `?width=${tabletWidth}${mobileHeight ? `&height=${tabletHeight}` : ''}`
     }`;
     updatedBreakpoints.desktop.src = `${src}/as/${asImageName}${
       breakpoints.desktop.smartCrop
         ? `?smartcrop=${breakpoints.desktop.smartCrop}`
-        : `?width=${desktopWidth}&height=${desktopHeight}`
+        : `?width=${desktopWidth}${mobileHeight ? `&height=${desktopHeight}` : ''}`
     }`;
   } else {
-    updatedBreakpoints.mobile.src = `${src}/as/img.webp`;
+    updatedBreakpoints.desktop.src = `${src}/as/img.webp`;
     updatedBreakpoints.tablet.src = `${src}/as/img.webp`;
     updatedBreakpoints.mobile.src = `${src}/as/img.webp`;
   }
