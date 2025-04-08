@@ -44,7 +44,7 @@
 }
 
 .corporate-policies-list>div:last-child{
-    padding-bottom: 80px;
+    padding-bottom: 0;
     border: none;
 }
 
