@@ -15,6 +15,8 @@ indices:
       branch:
         - main
         - ${branch}
+      robots:
+        - not(contains(value, "noindex"))
     properties:
       # Basic metadata
       title:
@@ -32,183 +34,502 @@ indices:
       image:
         select: meta[property="og:image"]
         value: attribute(el, "content")
+      url:
+        select: none
+        value: path
  
-      # Block content
       # 1. Cards
-      cardsText:
-        select: .cards-card-body
+      cardsAllContent:
+        select: .cards
         value: textContent(el)
-      cardsImage:
-        select: .cards-card-image img
-        value: attribute(el, "src")
+      cardsAllTitles:
+        select: .cards > div > div > div:nth-child(1)
+        value: textContent(el)
+      cardsAllDescriptions:
+        select: .cards > div > div > div:nth-child(2)
+        value: textContent(el)
+      cardsAllImages:
+        select: .cards > div > div > div:nth-child(1) > a
+        value: attribute(el, "href")
  
       # 2. Columns
       columnsContent:
-        select: .columns-img-col
+        select: .columns > div > div
         value: textContent(el)
  
       # 3. Core Principles
-      corePrinciplesTitle:
-        select: div[data-aue-model="coreprinciple"] [data-aue-prop="title"]
+      corePrinciplesAllContent:
+        select: .coreprinciples
         value: textContent(el)
-      corePrinciplesDescription:
-        select: div[data-aue-model="coreprinciple"] [data-richtext-prop="description"]
+      corePrinciplesTitles:
+        select: .coreprinciples > div > div:nth-child(2)
         value: textContent(el)
-      corePrinciplesImage:
-        select: div[data-aue-model="coreprinciple"] a
+      corePrinciplesDescriptions:
+        select: .coreprinciples > div > div:nth-child(3)
         value: textContent(el)
+      corePrinciplesImages:
+        select: .coreprinciples > div > div:nth-child(1) > div > a
+        value: attribute(el, "href")
  
       # 4. Enquiry
       enquiryHeading:
-        select: div[data-aue-model="enquiry"] [data-aue-prop="heading"]
+        select: .enquiry > div:nth-child(1) > div
         value: textContent(el)
       enquiryDescription:
-        select: div[data-aue-model="enquiry"] [data-richtext-prop="description"]
+        select: .enquiry-wrapper > div > div:nth-child(2) > div
         value: textContent(el)
       enquiryPhone:
-        select: div[data-aue-model="enquiry"] [data-aue-prop="phoneNumber"]
+        select: .enquiry-wrapper > div > div:nth-child(3) > div
         value: textContent(el)
       enquiryEmail:
-        select: div[data-aue-model="enquiry"] [data-aue-prop="emailAddress"]
+        select: .enquiry-wrapper > div > div:nth-child(5) > div
         value: textContent(el)
       enquiryAddress:
-        select: div[data-aue-model="enquiry"] [data-aue-prop="address"]
+        select: .enquiry-wrapper > div > div:nth-child(7) > div
         value: textContent(el)
  
       # 5. Explore More
       exploreModeTitle:
-        select: .exploremore [data-aue-prop="title"]
+        select: .exploremore > div:nth-child(1) > div
         value: textContent(el)
       exploreModeFirstCta:
-        select: .exploremore [data-aue-prop="firstCtaCaption"]
+        select: .exploremore > div:nth-child(2) > div
         value: textContent(el)
       exploreModeSecondCta:
-        select: .exploremore [data-aue-prop="secondCtaCaption"]
+        select: .exploremore > div:nth-child(4) > div
         value: textContent(el)
  
       # 6. Feature
-      featureTitle:
-        select: div[data-aue-model="feature"] [data-aue-prop="title"]
+      featureAllContent:
+        select: .feature
         value: textContent(el)
-      featureHeading:
-        select: div[data-aue-model="feature"] [data-aue-prop="heading"]
+      featureAllTitles:
+        select: .feature > div > div:nth-child(1)
         value: textContent(el)
-      featureSubHeading:
-        select: div[data-aue-model="feature"] [data-richtext-prop="sub-heading"]
+      featureAllDescriptions:
+        select: .feature > div > div:nth-child(2)
         value: textContent(el)
-      featureItemTitle:
-        select: div[data-aue-model="featureItem"] [data-richtext-prop="feature-title"]
-        value: textContent(el)
-      featureItemHeading:
-        select: div[data-aue-model="featureItem"] [data-aue-prop="feature-heading"]
-        value: textContent(el)
-      featureStatistic:
-        select: div[data-aue-model="featureItem"] .statistic
-        value: textContent(el)
+      featureAllImages:
+        select: .feature > div > div:nth-child(4) > div > a
+        value: attribute(el, "href")
  
       # 7. Footer
       footerDescription:
-        select: .footer [data-richtext-prop="description"]
+        select: .footer > div > div:nth-child(2) > div
         value: textContent(el)
       footerLinks:
-        select: .footer .nav-sections a
+        select: .footer > div > div > a
         value: textContent(el)
  
       # 8. Fragment
       fragmentReference:
-        select: .fragment [data-aue-prop="reference"]
+        select: .fragment > div > div
         value: textContent(el)
  
       # 9. Header
       headerLinks:
-        select: .nav-wrapper .nav-sections a
+        select: .header > div > div > a
         value: textContent(el)
  
       # 10. Hero
-      heroText:
-        select: .hero [data-richtext-prop="text"]
+      heroTitle:
+        select: .hero > div:nth-child(1) > div
+        value: textContent(el)
+      heroHeading:
+        select: .hero > div:nth-child(2) > div
+        value: textContent(el)
+      heroDescription:
+        select: .hero > div:nth-child(3) > div
         value: textContent(el)
       heroImage:
-        select: .hero picture img
-        value: attribute(el, "src")
+        select: .hero > div:nth-child(4) > div > a
+        value: attribute(el, "href")
  
       # 11. Hero Banner
-      heroBannerHeading:
-        select: div[data-aue-model="herobanner"] [data-aue-prop="bannerheading"]
+      heroBannerAllContent:
+        select: .herobanner
         value: textContent(el)
-      heroBannerTitle:
-        select: div[data-aue-model="herobanner"] [data-aue-prop="bannertitle"]
+      heroBannerAllTitles:
+        select: .herobanner > div:nth-child(2) > div
         value: textContent(el)
-      heroBannerDescription:
-        select: div[data-aue-model="herobanner"] [data-richtext-prop="bannerdescription"]
+      heroBannerAllDescriptions:
+        select: .herobanner > div:nth-child(3) > div
         value: textContent(el)
-      heroBannerImage:
-        select: div[data-aue-model="herobanner"] a
-        value: textContent(el)
+      heroBannerAllImages:
+        select: .herobanner > div:nth-child(1) > div > a
+        value: attribute(el, "href")
  
       # 12. Listing
-      listingTitle:
-        select: div[data-aue-model="listing"] [data-aue-prop="title"]
+      listingAllContent:
+        select: .listing
         value: textContent(el)
-      listingHeading:
-        select: div[data-aue-model="listing"] [data-aue-prop="heading"]
+      listingAllTitles:
+        select: .listing > div > div:nth-child(1)
         value: textContent(el)
-      listingItemTitle:
-        select: div[data-aue-model="listitem"] [data-aue-prop="title"]
-        value: textContent(el)
-      listingItemDescription:
-        select: div[data-aue-model="listitem"] [data-aue-prop="description"]
+      listingAllDescriptions:
+        select: .listing > div > div:nth-child(2)
         value: textContent(el)
  
       # 13. Project Cards
-      projectCardsTitle:
-        select: div[data-aue-model="projectcards"] [data-aue-prop="title"]
+      projectCardsAllContent:
+        select: .projectcards
         value: textContent(el)
-      projectCardsHeading:
-        select: div[data-aue-model="projectcards"] [data-aue-prop="heading"]
+      projectCardsAllTitles:
+        select: .projectcards > div > div:nth-child(2)
         value: textContent(el)
-      projectCardsDescription:
-        select: div[data-aue-model="projectcards"] [data-richtext-prop="description"]
+      projectCardsAllDescriptions:
+        select: .projectcards > div > div:nth-child(3)
         value: textContent(el)
-      projectCardTitle:
-        select: div[data-aue-model="projectcard"] [data-aue-prop="title"]
-        value: textContent(el)
-      projectCardLocation:
-        select: div[data-aue-model="projectcard"] [data-aue-prop="location"]
-        value: textContent(el)
-      projectCardImage:
-        select: div[data-aue-model="projectcard"] a
-        value: textContent(el)
+      projectCardsAllImages:
+        select: .projectcards > div > div > a
+        value: attribute(el, "href")
  
       # 14. Text Media Block
-      textMediaBlockHeading:
-        select: div[data-aue-model="textmediablock"] [data-aue-prop="heading"]
+      textMediaBlockAllContent:
+        select: .textmediablock
         value: textContent(el)
-      textMediaBlockDescription:
-        select: div[data-aue-model="textmediablock"] [data-richtext-prop="description"]
+      textMediaBlockAllHeadings:
+        select: .textmediablock > div:nth-child(1) > div
         value: textContent(el)
-      textMediaBlockImage:
-        select: div[data-aue-model="media"] a
+      textMediaBlockAllDescriptions:
+        select: .textmediablock > div:nth-child(2) > div
         value: textContent(el)
+      textMediaBlockAllImages:
+        select: .textmediablock > div:nth-child(3) > div > a
+        value: attribute(el, "href")
  
       # 15. Text Section
       textSectionHeading:
-        select: div[data-aue-model="textsection"] [data-aue-prop="heading"]
+        select: .textsection > div:nth-child(1) > div
         value: textContent(el)
       textSectionDescription:
-        select: div[data-aue-model="textsection"] [data-richtext-prop="description"]
+        select: .textsection > div:nth-child(2) > div
         value: textContent(el)
  
       # 16. Tiles
-      tilesHeading:
-        select: div[data-aue-model="tile"] [data-aue-prop="heading"]
+      tilesAllContent:
+        select: .tiles
         value: textContent(el)
-      tilesDescription:
-        select: div[data-aue-model="tile"] [data-richtext-prop="description"]
+      tilesHeadings:
+        select: .tiles > div > div:nth-child(1)
         value: textContent(el)
-      tilesImage:
-        select: div[data-aue-model="tile"] a
+      tilesDescriptions:
+        select: .tiles > div > div:nth-child(2)
         value: textContent(el)
-      tilesCta:
-        select: div[data-aue-model="tile"] [data-aue-prop="ctaCaption"]
+      tilesImages:
+        select: .tiles > div > div:nth-child(3) > a
+        value: attribute(el, "href")
+      tilesCtas:
+        select: .tiles > div > div:nth-child(7)
+        value: textContent(el)
+
+      # 17. Awards Gallery
+      awardsgalleryAllContent:
+        select: .awardsgallery
+        value: textContent(el)
+      awardsgalleryAllTitles:
+        select: .awardsgallery > div > div:nth-child(1)
+        value: textContent(el)
+      awardsgalleryAllYears:
+        select: .awardsgallery > div > div:nth-child(1) > div
+        value: textContent(el)
+      awardsgalleryAllDescriptions:
+        select: .awardsgallery > div > div:nth-child(3) > div
+        value: textContent(el)
+        
+      # 18. Board of Directors
+      boardofdirectorsAllContent:
+        select: .boardofdirectors
+        value: textContent(el)
+      boardofdirectorsAllNames:
+        select: .boardofdirectors > div > div:nth-child(1)
+        value: textContent(el)
+      boardofdirectorsAllTitles:
+        select: .boardofdirectors > div > div:nth-child(4) > div
+        value: textContent(el)
+      boardofdirectorsAllBios:
+        select: .boardofdirectors > div > div:nth-child(7) > div
+        value: textContent(el)
+        
+      # 19. Contact Us
+      contactUsAllContent:
+        select: .contactus
+        value: textContent(el)
+      contactUsAllHeadings:
+        select: .contactus > div:nth-child(1) > div
+        value: textContent(el)
+      contactUsAllDescriptions:
+        select: .contactus > div:nth-child(1) > div:nth-child(2)
+        value: textContent(el)
+      contactUsAllEmails:
+        select: .contactus > div:nth-child(1) > div:nth-child(7)
+        value: textContent(el)
+        
+      # 20. Corporate Policies
+      corporatePoliciesAllContent:
+        select: .corporatepolicies
+        value: textContent(el)
+      corporatePoliciesAllHeadings:
+        select: .corporatepolicies > div > div:nth-child(1)
+        value: textContent(el)
+      corporatePoliciesAllDescriptions:
+        select: .corporatepolicies > div > div:nth-child(2)
+        value: textContent(el)
+      corporatePoliciesAllLinks:
+        select: .corporatepolicies > div > div:nth-child(4) > a
+        value: attribute(el, "href")
+        
+      # 21. Image Link
+      imageLinkAllContent:
+        select: .imagelink
+        value: textContent(el)
+      imageLinkAllHrefs:
+        select: .imagelink > div > a
+        value: attribute(el, "href")
+      imageLinkAllImages:
+        select: .imagelink > div > img
+        value: attribute(el, "src")
+        
+      # 22. Links
+      linksAllContent:
+        select: .links
+        value: textContent(el)
+      linksAllText:
+        select: .links > div > div
+        value: textContent(el)
+      linksAllHrefs:
+        select: .links > div > div > a
+        value: attribute(el, "href")
+        
+      # 23. Social Links
+      socialLinksAllContent:
+        select: .sociallinks
+        value: textContent(el)
+      socialLinksAllText:
+        select: .sociallinks > div > div
+        value: textContent(el)
+      socialLinksAllHrefs:
+        select: .sociallinks > div > div > a
+        value: attribute(el, "href")
+        
+      # 24. Statistics
+      statisticsTitle:
+        select: .statistics > div:nth-child(2) > div
+        value: textContent(el)
+      statisticsValue:
+        select: .statistics > div:nth-child(4) > div:nth-child(2)
+        value: textContent(el)
+      statisticsLabel:
+        select: .statistics > div:nth-child(4) > div:nth-child(3)
+        value: textContent(el)
+        
+      # 25. Projects List
+      projectsListAllContent:
+        select: .projectslist
+        value: textContent(el)
+      projectsListAllTitles:
+        select: .projectslist > div > div:nth-child(1)
+        value: textContent(el)
+      projectsListAllDescriptions:
+        select: .projectslist > div > div:nth-child(3)
+        value: textContent(el)
+      projectsListAllImages:
+        select: .projectslist > div > div:nth-child(5) > a
+        value: attribute(el, "href")
+        
+      # 26. Banner Carousel
+      bannerCarouselTitle:
+        select: .bannercarousel > div > div:nth-child(1) > div
+        value: textContent(el)
+      bannerCarouselDescription:
+        select: .bannercarousel > div > div:nth-child(2) > div
+        value: textContent(el)
+      bannerCarouselImage:
+        select: .bannercarousel > div > div:nth-child(3) > div > a
+        value: attribute(el, "href")
+
+      # 27. Iframe
+      iframeUrl:
+        select: .iframe > div > div:nth-child(1)
+        value: textContent(el)
+
+      # 28. Section
+      sectionStyle:
+        select: .section
+        value: attribute(el, "class")
+      sectionContent:
+        select: .section > div
+        value: textContent(el)
+
+      # 29. Tabs
+      tabsAllContent:
+        select: .tabs
+        value: textContent(el)
+      tabsAllTitles:
+        select: .tabs > div > div:nth-child(1)
+        value: textContent(el)
+
+      # 30. Accordion
+      accordionTitle:
+        select: .accordion > div > div:nth-child(1)
+        value: textContent(el)
+      accordionContent:
+        select: .accordion > div > div:nth-child(2)
+        value: textContent(el)
+
+      # 31. Form
+      formTitle:
+        select: .form > div > div:nth-child(1)
+        value: textContent(el)
+      formFields:
+        select: .form > div > div:nth-child(2)
+        value: textContent(el)
+
+      # 32. Table
+      tableTitle:
+        select: .table > div > div:nth-child(1)
+        value: textContent(el)
+      tableContent:
+        select: .table > div > div:nth-child(2)
+        value: textContent(el)
+
+      # 33. Button
+      buttonText:
+        select: .button > div > div:nth-child(2)
+        value: textContent(el)
+      buttonLink:
+        select: .button > div > div:nth-child(1) > a
+        value: attribute(el, "href")
+      buttonType:
+        select: .button
+        value: attribute(el, "class")
+
+      # 34. Title
+      titleText:
+        select: .title > div > div:nth-child(1)
+        value: textContent(el)
+      titleType:
+        select: .title > div > div:nth-child(2)
+        value: textContent(el)
+
+      # 35. Image
+      imageUrl:
+        select: .image > div > div:nth-child(1) > a
+        value: attribute(el, "href")
+      imageAlt:
+        select: .image > div > div:nth-child(2)
+        value: textContent(el)
+
+      # 36. Carousel
+      carouselTitle:
+        select: .carousel > div > div:nth-child(1)
+        value: textContent(el)
+      carouselItems:
+        select: .carousel > div > div:nth-child(2)
+        value: textContent(el)
+
+      # 37. Video
+      videoUrl:
+        select: .video > div > div:nth-child(1)
+        value: textContent(el)
+      videoTitle:
+        select: .video > div > div:nth-child(2)
+        value: textContent(el)
+
+      # 38. Breadcrumb
+      breadcrumbItems:
+        select: .breadcrumb > div > div > a
+        value: textContent(el)
+      breadcrumbPaths:
+        select: .breadcrumb > div > div > a
+        value: attribute(el, "href")
+
+      # 39. Separator
+      separatorStyle:
+        select: .separator
+        value: attribute(el, "class")
+
+      # 40. Quote
+      quoteText:
+        select: .quote > div > div:nth-child(1)
+        value: textContent(el)
+      quoteAuthor:
+        select: .quote > div > div:nth-child(2)
+        value: textContent(el)
+
+      # 41. Download
+      downloadTitle:
+        select: .download > div > div:nth-child(1)
+        value: textContent(el)
+      downloadLink:
+        select: .download > div > div:nth-child(2) > a
+        value: attribute(el, "href")
+
+      # 42. Teaser
+      teaserTitle:
+        select: .teaser > div > div:nth-child(1)
+        value: textContent(el)
+      teaserDescription:
+        select: .teaser > div > div:nth-child(2)
+        value: textContent(el)
+      teaserImage:
+        select: .teaser > div > div:nth-child(3) > a
+        value: attribute(el, "href")
+
+      # 43. Timeline
+      timelineTitle:
+        select: .timeline > div > div:nth-child(1)
+        value: textContent(el)
+      timelineItems:
+        select: .timeline > div > div:nth-child(2)
+        value: textContent(el)
+
+      # 44. Map
+      mapLocation:
+        select: .map > div > div:nth-child(1)
+        value: textContent(el)
+      mapZoom:
+        select: .map > div > div:nth-child(2)
+        value: textContent(el)
+
+      # 45. Search
+      searchPlaceholder:
+        select: .search > div > div:nth-child(1)
+        value: textContent(el)
+
+      # 46. Sustainability Governance
+      sustainabilityGovernanceAllContent:
+        select: .sustainabilitygovernance
+        value: textContent(el)
+      sustainabilityGovernanceAllTitles:
+        select: .sustainabilitygovernance > div > div:nth-child(1)
+        value: textContent(el)
+      sustainabilityGovernanceAllDescriptions:
+        select: .sustainabilitygovernance > div > div:nth-child(2)
+        value: textContent(el)
+
+      # 47. History Milestones
+      historyMilestonesAllContent:
+        select: .historymilestones
+        value: textContent(el)
+      historyMilestonesAllYears:
+        select: .historymilestones > div > div:nth-child(1)
+        value: textContent(el)
+      historyMilestonesAllDescriptions:
+        select: .historymilestones > div > div:nth-child(2)
+        value: textContent(el)
+
+      # 48. Load More
+      loadMoreText:
+        select: .loadmore > div > div:nth-child(1)
+        value: textContent(el)
+
+      # 49. Tab Section Title
+      tabSectionTitleText:
+        select: .tabsectiontitle > div > div:nth-child(1)
+        value: textContent(el)
+        
+      # Full-text search support
+      fullContent:
+        select: main
         value: textContent(el)
