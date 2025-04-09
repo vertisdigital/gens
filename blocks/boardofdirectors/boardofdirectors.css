@@ -55,10 +55,9 @@
 
 .boardofdirectors .director-card img {
     width: 100%;
-    aspect-ratio: 1;
     display: block;
     margin-bottom: 8px;
-    height: 206px;
+    height: auto;
     opacity: 1;
 }
 
