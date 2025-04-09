@@ -279,18 +279,7 @@ function initializeHeader(header) {
     const primaryNav = header.querySelector('.primary-nav');
     primaryNav.classList.toggle('active');
 
-    // header.classList.add('fixed-header');
-    if(window.scrollY===0){
-      if(hamburger.classList.contains('active')){
-        headerSection.classList.add('fixed-header') 
-        defaultLogo.style.display = 'none';
-        scrollLogo.style.display = 'block';
-      }else{
-        headerSection.classList.remove('fixed-header');
-        defaultLogo.style.display = 'block';
-        scrollLogo.style.display = 'none';
-      }
-    }
+    updateHeaderState(header)
     // Use setTimeout to ensure class toggle happens before icon change
     setTimeout(() => {
       if (hamburger.classList.contains('active')) {
@@ -501,6 +490,8 @@ function updateHeaderState(header) {
   const defaultLogo = header.querySelector('.default-logo');
   const scrollLogo = header.querySelector('.scroll-logo');
   const isMegaMenuOpen=document.querySelector('.secondary-nav.active')
+  const hamburger=header.querySelector('.hamburger')
+  const headerSection=document.querySelector('.header')
   
   if (defaultLogo && scrollLogo) {
     if (scrollPosition > 0 && !isHeaderFixed) {
@@ -514,6 +505,18 @@ function updateHeaderState(header) {
       scrollLogo.style.display = 'none';
       isHeaderFixed = false;
     }
+    if(scrollPosition === 0 &&  window.innerWidth<1024){
+
+    if(hamburger.classList.contains('active')){
+      headerSection.classList.add('fixed-header') 
+      defaultLogo.style.display = 'none';
+      scrollLogo.style.display = 'block';
+    }else{
+      headerSection.classList.remove('fixed-header');
+      defaultLogo.style.display = 'block';
+      scrollLogo.style.display = 'none';
+    }
+  }
   }
 }
 
