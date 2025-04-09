@@ -299,7 +299,7 @@ function initializeHeader(header) {
       }
     }, 0);
   });
-
+  
   navItems.forEach((item) => {
     const linksDiv = item.querySelector('.links');
     const overviewLink = linksDiv?.querySelector('.overview-link');
@@ -383,20 +383,13 @@ function initializeHeader(header) {
           const clonedLinks = originalLinks.cloneNode(true);
           emptyLinks.innerHTML = ''; // Clear previous links
           emptyLinks.append(...clonedLinks.children); // Append cloned children
-
-          headerSection.classList.add('fixed-header') 
-          header.classList.add('fixed-header');
-          defaultLogo.style.display = 'none';
-          scrollLogo.style.display = 'block';
+          updateHeaderState(header,true)
         } else {
           // Clear links when closing
           emptyLinks.innerHTML = '';
-          if(window.scrollY===0){
-            headerSection.classList.remove('fixed-header');
-            defaultLogo.style.display = 'block';
-            scrollLogo.style.display = 'none';
-          }
+          updateHeaderState(header)
         }
+        
 
         secondaryNav.classList.toggle(activeClass);
         overlay.classList.toggle(activeClass);
@@ -421,12 +414,7 @@ function initializeHeader(header) {
       closeBtn.addEventListener('click', (e) => {
         e.stopPropagation();
         closeSecondary();
-        const scrollPosition = window.scrollY;
-        if(scrollPosition===0){
-          headerSection.classList.remove('fixed-header');
-          defaultLogo.style.display = 'block';
-          scrollLogo.style.display = 'none';
-        }
+        updateHeaderState(header)
       });
     }
   });
@@ -485,7 +473,7 @@ function initializeHeader(header) {
  * Updates header state based on scroll position
  * @param {Element} header Header element
  */
-function updateHeaderState(header) {
+function updateHeaderState(header,isClicked=false) {
   const scrollPosition = window.scrollY;
   const defaultLogo = header.querySelector('.default-logo');
   const scrollLogo = header.querySelector('.scroll-logo');
@@ -494,13 +482,13 @@ function updateHeaderState(header) {
   const headerSection=document.querySelector('.header')
   
   if (defaultLogo && scrollLogo) {
-    if (scrollPosition > 0 && !isHeaderFixed) {
-      header.classList.add('fixed-header');
+    if ((scrollPosition >= 0 && !isHeaderFixed) || isClicked  || isMegaMenuOpen) {
+      headerSection.classList.add('fixed-header');
       defaultLogo.style.display = 'none';
       scrollLogo.style.display = 'block';
       isHeaderFixed = true;
-    } else if (scrollPosition === 0 && isHeaderFixed && !isMegaMenuOpen) {
-      header.classList.remove('fixed-header');
+    } else if (scrollPosition === 0 && isHeaderFixed) {
+      headerSection.classList.remove('fixed-header');
       defaultLogo.style.display = 'block';
       scrollLogo.style.display = 'none';
       isHeaderFixed = false;
