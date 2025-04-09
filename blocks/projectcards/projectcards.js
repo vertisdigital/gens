@@ -365,5 +365,9 @@ export default function decorate(block) {
       element.setAttribute('data-listener-added', 'true');
     }
   });
+  
+  if(block.querySelectorAll('.card-pair').length===1){
+	block.querySelector('.button-group').style.display='none'
+  }
 	
 }
