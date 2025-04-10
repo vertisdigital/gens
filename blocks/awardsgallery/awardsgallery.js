@@ -24,8 +24,6 @@ export default function decorate(block) {
       const imageContainer = document.createElement('div');
       const imageUrl = imageLink.getAttribute('href');
       imageContainer.className = 'awardsgallery-image';
-      //   const imageAlt = card.querySelector('[data-aue-prop="title"]')?.textContent
-      //     || 'Awards Gallery Image';
 
       const imageHtml = ImageComponent({
         src: imageUrl,

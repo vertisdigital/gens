@@ -10,15 +10,7 @@
   {
     "id": "section",
     "components": [
-      "text",
-      "image",
-      "button",
-      "title",
-      "hero",
       "herobanner",
-      "cards",
-      "columns",
-      "fragment",
       "coreprinciples",
       "feature",
       "linkField",
@@ -31,7 +23,6 @@
       "enquiry",
       "contactus",
       "tiles",
-      "textsection",
       "textmediablock",
       "projectslist",
       "iframe",
@@ -51,7 +42,9 @@
       "awardsgallery",
       "historymilestones",
       "loadmore",
-      "boardofdirectors"
+      "boardofdirectors",
+      "iframe",
+      "corporatepolicies"
     ]
   },
   {
@@ -69,10 +62,6 @@
   {
     "id": "column",
     "components": [
-      "text",
-      "image",
-      "button",
-      "title",
       "coreprinciples",
       "imageLink",
       "socialLinks",
@@ -94,7 +83,8 @@
     "components": [
       "featureItem",
       "linkField",
-      "indices"
+      "indices",
+      "loadmore"
     ]
   },
   {

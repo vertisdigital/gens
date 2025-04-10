@@ -20,7 +20,7 @@ function updateIframeHeight(iframeWrapper, endpoint) {
   if (isTablet) {
     deviceType = 'tablet';
   }
-
+  
   const endpointHeightConfig = {
     home: {
       mobile: '1850px',
@@ -40,12 +40,12 @@ function updateIframeHeight(iframeWrapper, endpoint) {
       desktop: '2620px',
     },
     newsroom: {
-      mobile: '1940px',
+      mobile: '3000px',
       tablet: {
         landscape: '1500px',
-        portrait: '1600px',
+        portrait: '1570px',
       },
-      desktop: '1450px',
+      desktop: '1430px',
     },
     'agm-egm': {
       mobile: '950px',
@@ -56,10 +56,45 @@ function updateIframeHeight(iframeWrapper, endpoint) {
       tablet: '1110px',
       desktop: '1060px',
     },
+    'share-quote-and-chart': {
+       mobile: '3500px',
+      tablet: '1900px',
+      desktop: '1850px',
+    },
     email_alerts: {
       mobile: '770px',
       tablet: '660px',
       desktop: '600px',
+    },
+    "Historic Price Lookup":{
+      mobile: '1850px',
+      desktop: '1220px',
+    },
+    "Investment Calculator":{
+      mobile: '1100px',
+      desktop: '860px',
+      tablet: '960px',
+      disableScroll:true
+    },
+    "Share Quote And Chart":{
+      desktop: '1860px',
+      tablet:"3240px",
+      mobile:"3540px"
+    },
+    "Annual Reports":{
+      mobile: '13890px',
+      tablet: '26020px',
+      desktop: '5690px',
+    },
+    "Sustainability Reports":{
+      mobile: '6680px',
+      tablet: "11340px",
+      desktop: '2620px',
+    },
+    "investor-calendar":{
+      mobile: '1020px',
+      tablet: "640px",
+      desktop: '640px',
     },
     default: {
       mobile: '1850px',
@@ -68,6 +103,7 @@ function updateIframeHeight(iframeWrapper, endpoint) {
   };
 
   let height = endpointHeightConfig[endpoint];
+
   if (typeof height === 'object') {
     if (deviceType === 'tablet') {
       if (isLandscape()) {
@@ -85,10 +121,41 @@ function updateIframeHeight(iframeWrapper, endpoint) {
   } else {
     setElementHeight(iframeWrapper, endpointHeightConfig.default);
   }
+  
+  const iframe=iframeWrapper.querySelector('iframe')
+
+  if(endpointHeightConfig[endpoint]?.disableScroll && iframe){
+    iframe.setAttribute('scrolling','no')
+  }
+}
+
+function getTabsEvent(){
+  const tabs = document.querySelectorAll('.tab-title');
+  const iframeWrappers = document.querySelectorAll('.iframe-wrapper');
+  const SHARE_QUOTE_IFRAME=0;
+  updateIframeHeight(iframeWrappers[SHARE_QUOTE_IFRAME],`${tabs[SHARE_QUOTE_IFRAME].innerHTML}`)
+  
+  tabs.forEach((tab, index) => {
+    tab.addEventListener('click', () => {
+      updateIframeHeight(iframeWrappers[index],`${tabs[index].innerHTML}`)
+    });
+  });
+}
+
+function updateIframeForTab(){
+  const tabsIframePages={
+    '/index/investors-overview/publications':true,
+    '/index/investors-overview/stock-information':true
+  }
+  const isTabIframeRoute=tabsIframePages[window.location.pathname.replace('#','')]
+   if(isTabIframeRoute){
+      getTabsEvent();
+    } 
 }
 
 export default function decorate(block) {
   const link = block.querySelector('a');
+  link.remove();
 
   const iframe = document.createElement('iframe');
   const url = link.href;
@@ -111,13 +178,16 @@ export default function decorate(block) {
   };
 
   const iframeWrapper = document.querySelector('.iframe-wrapper');
-
+  iframeWrapper.classList.add('container');
   const endpoint = new window.URL(url).pathname.replace('/', '').replace('.rev', '');
-
   updateIframeHeight(iframeWrapper, endpoint);
+  updateIframeForTab();
+  
   window.addEventListener('resize', () => {
     updateIframeHeight(iframeWrapper, endpoint);
+    updateIframeForTab();
   });
+
 
   block.appendChild(iframe);
 }

@@ -9,6 +9,17 @@ export default function decorate(block) {
   // Add container classes for responsive layout
   const wrapper = document.createElement('div');
   wrapper.classList.add('coreprinciples');
+  
+  const removeBorderBottom={
+    "esg":true
+  }
+  let pathname=window.location.pathname.split('/')
+  pathname=pathname[pathname.length-1]
+  
+  if(removeBorderBottom[pathname]){
+    wrapper.setAttribute('id','remove-border-bottom')
+  }
+  
   const container = document.createElement('div');
   wrapper.appendChild(container);
   container.className = 'container';
@@ -24,9 +35,10 @@ export default function decorate(block) {
     const col = document.createElement('div');
     col.className = 'col-xl-4 col-md-3 col-sm-4 principles-item';
 
-    // Get the icon URL
+    // Get the icon URL and alt text from anchor
     const iconLink = item.querySelector('a');
     const iconUrl = iconLink?.href || '';
+    const altText = iconLink?.title || '';  // Get alt text from anchor title
 
     // Create icon wrapper with authoring attributes
     const iconWrapper = document.createElement('div');
@@ -42,13 +54,10 @@ export default function decorate(block) {
       });
     }
 
-    // Alt image text
-    const altText = item.children[1];
-
     if (iconUrl) {
       const picture = ImageComponent({
         src: iconUrl,
-        alt: altText?.textContent.trim(),
+        alt: altText,  // Use the alt text from anchor title
         className: 'enquiry-image',
         breakpoints: {
           mobile: {
@@ -75,8 +84,7 @@ export default function decorate(block) {
 
     // Convert title to h3 with preserved authoring attributes
     const allDivElements = item.querySelectorAll('div');
-    // const title = item.querySelector('[data-aue-prop="title"], [data-gen-prop="feature-title"]');
-    const title = allDivElements[2];
+    const title = allDivElements[1];
     if (title !== null) {
       const h3 = document.createElement('h3');
       h3.textContent = title.textContent;
@@ -91,7 +99,7 @@ export default function decorate(block) {
     }
 
     // Preserve description data-aue attributes
-    const description = allDivElements[3];
+    const description = allDivElements[2];
     if (description) {
       const descAttributes = [...description.attributes].filter((attr) => attr.name.startsWith('data-aue-') || attr.name.startsWith('data-richtext-'));
       descAttributes.forEach((attr) => {
@@ -101,9 +109,6 @@ export default function decorate(block) {
 
     // Clean up original icon link
     iconLink?.parentElement.remove();
-
-    // Clean up original image alt text
-    altText?.parentElement.removeChild(altText);
 
     // Insert icon wrapper at start
     item.insertBefore(iconWrapper, item.firstChild);

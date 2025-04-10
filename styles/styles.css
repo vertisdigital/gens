@@ -56,7 +56,8 @@ Usage Example:
   --soft-ivory: #F5E7C4;
   --whisper-gray: #F7F7F7;
   --soft-ivory-blue: #FBF6E9;
-  --neutral-color: #9E9E9E;
+  --neutral-color:#9E9E9E;
+
 
   /* fonts */
   --body-font-family: 'DM Sans', sans-serif;
@@ -64,7 +65,6 @@ Usage Example:
 
   /* base font size */
   --base-font-size: 16px;
-
   --font-size-xxxs: 0.75rem;
   --font-size-xxs: 0.875rem;
   --font-size-xs: 1rem;
@@ -74,10 +74,6 @@ Usage Example:
   --font-size-xl: 2.5rem;
   --font-size-xxl: 3.75rem;
   --font-size-xxxl: 5rem;
-
-  /* New additions */
-  --font-size-xxl-s: 3rem;
-  --font-size-xxl-m: 4rem;
 
   /* nav height */
   --nav-height: 50px;
@@ -121,10 +117,6 @@ body {
 
 body.appear {
   display: block;
-}
-
-header {
-  height: var(--nav-height);
 }
 
 header .header,
@@ -230,6 +222,15 @@ blockquote {
   margin-bottom: 0.25em;
 }
 
+ul{
+  padding-left: 18px;
+}
+
+
+ul>li>ul{
+  padding-left: 32px;
+}
+
 code,
 pre {
   font-size: var(--font-size-xxxs);
@@ -322,6 +323,7 @@ button.secondary {
   border: 2px solid currentcolor;
   color: var(--text-color);
 }
+
 
 main img {
   max-width: 100%;
@@ -848,3 +850,4 @@ main::before {
 .grey-background{
   background-color: var(--light-grey);
 }
+

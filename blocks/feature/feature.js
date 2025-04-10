@@ -9,10 +9,8 @@ import { moveInstrumentation } from '../../scripts/scripts.js';
  * @param {Element} block The herobanner block element
  */
 export default function decorate(block) {
-  // const featureResource = block.querySelector('[data-aue-label="Feature"]');
 
   const container = document.createElement('div');
-  // moveInstrumentation(featureResource, container);
 
   container.classList.add('container');
 
@@ -60,37 +58,58 @@ export default function decorate(block) {
     linkContainer.className = 'links-container';
     moveInstrumentation(linkField, linkContainer);
 
-    // Get all three divs containing link info
-    const linkDivs = linkField.children;
+    const linkDivs = Array.from(linkField.children);
+    // Ensure we have the expected structure (3 elements)
     if (linkDivs.length === 3) {
-      const linkText = linkDivs[0];
-      const iconName = linkDivs[1].textContent.trim().replace('-', '');
-      const target = linkDivs[2].textContent.trim();
+      // Get elements by index with proper type checking
+      const [linkTextDiv, iconDiv, targetDiv] = linkDivs;
+      
+      const linkData = {
+        text: linkTextDiv?.textContent?.trim(),
+        url: linkTextDiv?.querySelector('a')?.getAttribute('href'),
+        icon: iconDiv?.textContent?.trim()?.replace('-', ''),
+        target: targetDiv?.textContent?.trim(),
+        title: linkTextDiv?.querySelector('a')?.getAttribute('title')
+      };
 
-      // Create link element
-      const link = document.createElement('a');
-      // Get href from the link element if it exists, otherwise use the text content
-      const linkHref = linkText.querySelector('a');
-      link.href = linkHref;
+      if (linkData.text || linkData.url) {
+        const link = document.createElement('a');
+        link.href = linkData.url || '#';
+        
+        // Handle special case for default AEM content
+        if (linkData.text.startsWith('/') || linkData.text.startsWith('#')) {
+          link.textContent = '';
+        } else {
+          link.textContent = linkData.text;
+        }
 
-      // fix for text with / i.e. default content from AEM when link used
-      if (linkHref) {
-        if ((linkHref.textContent.startsWith('/') || linkHref.textContent.startsWith('#'))) { linkHref.textContent = ''; }
-        link.title = linkHref.title;
+        if (linkData.title) {
+          link.setAttribute('title', linkData.title);
+        }
+
+        // Add icon if specified
+        if (linkData.icon) {
+          const arrowSVG = SvgIcon({ 
+            name: linkData.icon, 
+            className: 'about-us-left-link', 
+            size: '24px' 
+          });
+          link.append(stringToHTML(arrowSVG));
+        }
+
+        moveInstrumentation(linkTextDiv.querySelector('a'), link);
+        linkContainer.appendChild(link);
       }
-      link.textContent = linkText.textContent.trim();
-      link.setAttribute('target', target);
-
-      // Add arrow icon if specified
-      if (iconName) {
-        const arrowSVG = SvgIcon({ name: iconName, className: 'about-us-left-link', size: '24px' });
-        link.append(stringToHTML(arrowSVG));
-      }
-
-      moveInstrumentation(linkDivs[0], link);
-      linkContainer.appendChild(link);
+      
+      // Remove original elements after copying
+      linkTextDiv.remove();
+      iconDiv.remove();
+      targetDiv.remove();
+      
+      aboutUsLeftContent.appendChild(linkContainer);
     }
-    aboutUsLeftContent.appendChild(linkContainer);
+    // Remove the original linkField container after processing
+    linkField.remove();
   }
 
   // About-Us right container
@@ -103,14 +122,15 @@ export default function decorate(block) {
     featureItems.forEach((feature) => {
       const featureChildren = feature.children;
       // checking and validating the feature item structure, as we need to get 4 children
-      if (featureChildren.length !== 4) return;
+      
       // Create feature item container
       const featureContainer = document.createElement('div');
       featureContainer.classList.add('about-us-right-content');
       moveInstrumentation(feature, featureContainer);
       // Handle image feature
-      const imageElement = featureChildren[0].querySelector('[data-aue-prop="feature-icon"], img, a');
-      if (imageElement) {
+      const isImageExists = featureChildren[0].querySelector('a') ? true : false;
+      if (isImageExists) {
+        const imageElement = featureChildren[0].querySelector('a');
         const imageContainer = document.createElement('div');
         const imageLink = imageElement.getAttribute('src') ?? imageElement.getAttribute('href');
         const imgAltText = feature.querySelector('[data-aue-prop="feature-icon-alt"]')?.textContent || '';
@@ -138,7 +158,7 @@ export default function decorate(block) {
       }
 
       // Handle text feature
-      const textElement = featureChildren[2].querySelector('[data-aue-prop="feature-title"]') ?? featureChildren[2];
+      const textElement = featureChildren[1];
       if (textElement && textElement.textContent.trim() !== '') {
         const textContainer = document.createElement('div');
         const statisticDiv = document.createElement('div');
@@ -148,9 +168,6 @@ export default function decorate(block) {
         const textContent = textElement.querySelector('p') ? textElement.querySelectorAll('p') : textElement.innerHTML;
         if (typeof textContent === 'object') {
           textContent.forEach((text) => {
-            // const span = document.createElement('div');
-            // span.innerHTML = text.innerHTML;
-            // moveInstrumentation(text, span);
             statisticDiv.appendChild(text);
           });
         } else {
@@ -165,7 +182,7 @@ export default function decorate(block) {
       }
 
       // Handle feature heading
-      const featureHeadingElement = featureChildren[3];
+      const featureHeadingElement = featureChildren[2];
       if (featureHeadingElement) {
         const headingContainer = document.createElement('div');
         const featureHeadingP = document.createElement('p');

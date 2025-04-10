@@ -1,4 +1,5 @@
 /* eslint-disable no-console */
+import { errorLogger as logger } from "./logger.js";
 
 /**
  * Creates the basic tab structure
@@ -9,7 +10,7 @@ function createTabStructure(main) {
   
   const tabElements = main.querySelectorAll('div[data-tabtitle]');
   if (tabElements.length === 0) {
-    console.warn('[Tab System] No tab elements found.');
+    //console.warn('[Tab System] No tab elements found.');
     return null;
   }
 
@@ -182,7 +183,8 @@ function addTabFunctionality({ tabs, panels, container }) {
   // Handle initial page load hash after a short delay to ensure DOM is ready
   setTimeout(() => {
     const initialIndex = getInitialActiveTab();
-    updateTabStates([...tabNav.children], [...container.querySelector('.tab-wrapper').children], initialIndex, true);
+    const isScroll = window.location.hash !== '';
+    updateTabStates([...tabNav.children], [...container.querySelector('.tab-wrapper').children], initialIndex, isScroll);
   }, 1000); // Slightly after the container display timeout
 
   tabNav.addEventListener('click', (e) => {
@@ -232,7 +234,7 @@ function processTabs(main) {
     // Remove original sections
     structure.tabElements.forEach((section) => section.remove());
   } catch (error) {
-    console.error('[Tab System] Error processing tabs:', error);
+    logger.error(`[Tab System] Error processing tabs:, ${error}`);
   }
 }
 

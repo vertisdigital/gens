@@ -32,7 +32,7 @@ export default function decorate(block) {
       );
       if (imageLink) {
         // Set as background
-        tile.style.backgroundImage = `url(${imageLink}/as/tiles.webp?width=600&height=500)`;
+        tile.style.backgroundImage = `url(${imageLink}/as/tiles.webp?width=850)`;
         tile.style.backgroundPosition = 'center';
         tile.style.backgroundSize = 'cover';
         tile.style.backgroundRepeat = 'no-repeat';
@@ -44,6 +44,7 @@ export default function decorate(block) {
       // Handle CTA link
       const childrens = tile.children;
       const buttonContainer = childrens[5].querySelector('a');
+      childrens[3].textContent = '';
 
       const ctaCaption = childrens[6];
       if (buttonContainer && buttonContainer.textContent.trim() !== '' && ctaCaption !== null) {
@@ -74,11 +75,10 @@ export default function decorate(block) {
         color: '',
       });
 
-      childrens[3].textContent = '';
-
       if (buttonContainer && buttonContainer.textContent.trim() !== '' && ctaCaption !== null) {
         const ctaLink = document.createElement('a');
         ctaLink.href = buttonContainer.href;
+        ctaLink.target = childrens[3]?.textContent === 'true' ? '_blank' : '_self';
         ctaLink.className = 'factsheet-button animated-cta';
         ctaLink.innerHTML = `${ctaCaption.textContent} ${downArraowWithLine}`;
         // Replace CTA caption with link

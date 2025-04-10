@@ -9,7 +9,7 @@ function handleImageElement(mediaBlock) {
       const imageUrl = linkElement.getAttribute('href');
       const picture = ImageComponent({
         src: imageUrl,
-        alt: '',
+        alt: mediaBlock.querySelectorAll('a')[1]?.getAttribute('title')||'',
         className: 'mediablock-image',
         asImageName: 'hero.webp',
         breakpoints: {
@@ -34,8 +34,6 @@ function handleImageElement(mediaBlock) {
         },
         lazy: true,
       });
-      // Remove original link
-      // imageLink.remove();
 
       if (picture) {
         const imageElement = stringToHtml(picture);

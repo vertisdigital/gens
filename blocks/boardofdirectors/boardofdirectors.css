@@ -55,16 +55,10 @@
 
 .boardofdirectors .director-card img {
     width: 100%;
-    aspect-ratio: 1;
-    object-fit: cover;
     display: block;
     margin-bottom: 8px;
-    height: 206px;
-    opacity: 0.6;
-}
-
-.boardofdirectors .director-card.active img {
-   opacity: 1;
+    height: auto;
+    opacity: 1;
 }
 
 .boardofdirectors .director-info {
@@ -138,6 +132,8 @@
 @media (width >= 993px) {
     .boardofdirectors .director-card img {
         margin-bottom: 12px;
+        aspect-ratio: unset;
+        height: auto;
     }
 
     .boardofdirectors .board-director-info {
@@ -148,5 +144,22 @@
 
     .boardofdirectors .segment-wrapper {
         margin-bottom: 37px;
+    }
+
+    .boardofdirectors .segment-wrapper .wrapper>div:first-child {
+        padding-left: 18px;
+    }
+
+    .boardofdirectors .segment-wrapper .wrapper>div:last-child {
+        padding-right: 18px;
+    }
+
+    .boardofdirectors .segment-wrapper .wrapper{
+        margin-left: -18px;
+        margin-right: -18px;
+    }
+
+    .boardofdirectors .director-card {
+        height: auto;
     }
 }

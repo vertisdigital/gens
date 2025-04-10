@@ -1,5 +1,7 @@
 import ImageComponent from "../../shared-components/ImageComponent.js";
 import stringToHTML from "../../shared-components/Utility.js";
+import { moveInstrumentation } from '../../scripts/scripts.js';
+
 
 const getGroups = (updatedChildren) => {
   let groups = [];
@@ -139,7 +141,7 @@ export default function decorate(block) {
   function restructureBlock() {
     const container = document.createElement('div');
     container.className = 'container';
-
+    moveInstrumentation(block, container);
     const row = document.createElement('div');
     row.className = '';
 
@@ -151,6 +153,7 @@ export default function decorate(block) {
         directors.push(director);
         const colDiv = document.createElement('div');
         colDiv.className = 'col-xl-4 col-md-3 col-sm-4';
+        moveInstrumentation(directorEl, colDiv);
         setupDirectorCard(director, colDiv);
         updatedChildren?.push(colDiv);
       }

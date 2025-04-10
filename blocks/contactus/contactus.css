@@ -321,6 +321,10 @@
     margin-bottom: 18px;
   }
 
+  .contactus .contactus-bottom>div:first-child p {
+    font-size: 22px;
+  }
+
   .contactus.contactus-variation .contactus-bottom>div:last-child{
     flex-direction: column;
     row-gap: 18px;

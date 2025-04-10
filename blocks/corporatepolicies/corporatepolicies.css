@@ -1,26 +1,60 @@
 .corporatepolicies-wrapper{
-    padding: 68px 0;
+    margin: 45px 0;
 }
+
 .corporate-policies-list-item {
     padding: 68px 0;
-    border-bottom: 2px solid var(--neutral-color);
+    border-bottom: 2px solid var(--body-text-color);
+}
+
+.corporate-policies-list-item ul, .corporate-policies-list-item ul li, .corporate-policies-list-item ul p{
+    margin-top: 0;
+    margin-top: 10px;
+}
+
+.corporate-policies-list-item ul a, .corporate-policies-list-item ul a.button:any-link{    
+  background: none;
+  margin: 0;
+  padding: 0;
+  color: var(--primary-gold);
+  text-decoration: underline;
+  cursor: pointer;
+  display: inline;
+  font-weight: 400;
+}
+
+.corporate-policies-list p a{
+    color: var(--primary-gold);
+    text-decoration:  underline;
+    cursor: pointer;
+}
+
+.corporate-policies-list-item>div:first-child{
+    padding-right: 18px;
+
+}
+
+.corporate-policies-list-item>div:last-child{
+    padding-left: 18px;
+
 }
 
 .corporate-policies-list>div:first-child{
     padding-top: 0;
 }
+
 .corporate-policies-list>div:last-child{
     padding-bottom: 80px;
-
+    border: none;
 }
+
 .corporate-policies-border-bottom .corporate-policies-list>div:last-child{
     padding-bottom: 0;
     border-bottom: none;
-
 }
 
 
-.corporate-policies-list-item .left-col {
+.corporate-policies-list-item .left-col h2{
     font-size: var(--font-size-xl);
     font-weight: 500;
     line-height: 50px;
@@ -35,7 +69,7 @@
     margin-bottom: 24px;
 }
 
-.corporate-policies-list-item .right-col > div:last-child a {
+.corporate-policies-list-item .right-col > div:nth-child(3) a{
     background: none;
     display: inline-flex;
     align-items: center;
@@ -49,37 +83,58 @@
     padding: 0;
     margin: 0;
 }
-.corporate-policies-cta-right .corporate-policies-list-item .right-col > div:last-child{
+
+.corporate-policies-cta-right .corporate-policies-list-item .right-col > div:nth-child(3){
   text-align: end;
 }
-.corporate-policies-list-item .right-col > div:last-child a > span:last-child {
+
+.corporate-policies-list-item .right-col > div:nth-child(3) a > span:last-child {
     line-height: 0;
+}
+
+.corporate-policies-list-item .right-col > div:nth-child(3) a > span:first-child {
+    line-height: 1;
 }
 
 @media (width <= 992px) {
     .corporatepolicies-wrapper{
-        padding: 56px 0;
+        margin: 56px 0;
     }
+
     .corporate-policies-list-item {
-        padding: 48px 0px;
+        padding: 48px 0;
     }
-    .corporate-policies-list-item .left-col {
+
+    .corporate-policies-list-item .left-col h2{
         font-size: var(--font-size-l);
         line-height: 42px;
     }
-    .corporate-policies-list-item .right-col > div:first-child {
+
+    .corporate-policies-list-item .right-col > div:nth-child(4) {
         margin-bottom: 10px;
     }
 }
 
 @media (width < 768px) {
     .corporatepolicies-wrapper{
-        padding: 32px 0;
+        margin: 24px 0;
     }
+
     .corporate-policies-list-item {
-        padding: 36px 0px;
+        padding: 24px 0;
     }
-    .corporate-policies-list-item .left-col {
+
+    .corporate-policies-list-item>div:first-child{
+        padding-right: 0;
+    
+    }
+
+    .corporate-policies-list-item>div:last-child{
+        padding-left: 0;
+    
+    }
+
+    .corporate-policies-list-item .left-col h2{
         font-size: var(--font-size-m);
         line-height: 34px;
         margin-bottom: 16px;
@@ -88,12 +143,19 @@
     .corporate-policies-list-item .right-col {
         padding: 0;
     }
+
+    .corporate-policies-list>div:last-child{
+        padding-bottom: 24px;
+        padding-left: 0;
+    }
+
     .corporate-policies-list-item .right-col > div:first-child {
         font-size: var(--font-size-xxs);
         line-height: 20px;
         margin-bottom: 8px;
     }
-    .corporate-policies-list-item .right-col > div:last-child a {
+
+    .corporate-policies-list-item .right-col > div:nth-child(3) a {
         font-size: var(--font-size-xs);
         line-height: 20px;
     }

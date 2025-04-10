@@ -54,8 +54,10 @@ export default function decorate(block) {
   contactItems.setAttribute('role', 'list');
 
   const indices = {
-    phone: 3, email1: 7, email2: 11, email3: 15, address: 17,
+    phone: 3, email1: 6, email2: 9, email3: 12, address: 14,
   };
+
+ 
 
   const contactInfo = Object.fromEntries(
     Object.entries(indices).map(([key, index]) => [
@@ -67,23 +69,39 @@ export default function decorate(block) {
   const {
     phone, email1, email2, email3, address,
   } = contactInfo;
-  const imageLink = wrapper.querySelectorAll('a[href*="/content/dam/"][href$=".svg"], a[href*="delivery-"]');
+
+
+  const imageIndices = {
+    phoneSrc: 2, email1Src: 5, email2Src: 8, email3Src: 11, addressSrc: 13,
+  };
+
+  const ImageInfo = Object.fromEntries(
+    Object.entries(imageIndices).map(([key, index]) => [
+      key,
+      enquiryFirstChild[index]?.querySelector('a') || '',
+    ]),
+  );
+
+  const {
+    phoneSrc, email1Src, email2Src, email3Src, addressSrc,
+  } = ImageInfo;
+
 
   const contactData = [
     {
-      value: phone, type: 'tel', key: 'phoneNumber', label: 'PhoneNumber', imageIndex: 0,
+      value: phone, type: 'tel', key: 'phoneNumber', label: 'PhoneNumber', imageSrc: phoneSrc,
     },
     {
-      value: email1, type: 'mailto', key: 'emailAddress', label: 'EmailAddress', imageIndex: 1, textContentIndex: 4,
+      value: email1, type: 'mailto', key: 'emailAddress', label: 'EmailAddress', textContentIndex: 4, imageSrc: email1Src,
     },
     {
-      value: email2, type: 'mailto', key: 'emailAddress', label: 'EmailAddress', imageIndex: 2, textContentIndex: 8,
+      value: email2, type: 'mailto', key: 'emailAddress', label: 'EmailAddress', textContentIndex: 7, imageSrc: email2Src,
     },
     {
-      value: email3, type: 'mailto', key: 'emailAddress', label: 'EmailAddress', imageIndex: 3, textContentIndex: 12,
+      value: email3, type: 'mailto', key: 'emailAddress', label: 'EmailAddress', textContentIndex: 10, imageSrc: email3Src,
     },
     {
-      value: address, type: null, key: 'address', label: 'Address', imageIndex: 4,
+      value: address, type: null, key: 'address', label: 'Address', imageSrc: addressSrc,
     },
   ];
 
@@ -153,10 +171,10 @@ export default function decorate(block) {
   };
 
   contactData.forEach(({
-    value, type, key, label, imageIndex, textContentIndex,
+    value, type, key, label, textContentIndex,imageSrc
   }) => {
     if (value) {
-      const imageHref = imageLink[imageIndex]?.getAttribute('href') || '';
+      const imageHref = imageSrc?.getAttribute('href') || '';
       const contactItem = createContactItem(
         value,
         type,
@@ -235,7 +253,6 @@ export default function decorate(block) {
     enquiryChildren[1].append(row2);
     container.append(enquiryChildren[1]);
   }
-  // container.append(row2);
 
   wrapper.innerHTML = '';
   wrapper.append(container);
