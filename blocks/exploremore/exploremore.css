@@ -116,8 +116,8 @@
   }
 
   .exploremore-wrapper-container .exploremore-item .exploremore-caption{
-    font-size: 22px;
-    line-height: 34px; 
+    font-size: var(--font-size-md);
+    line-height: 34px;
   }
 
   .exploremore-wrapper-container .exploremore-item .exploremore-link-container{
