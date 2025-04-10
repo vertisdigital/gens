@@ -249,12 +249,10 @@ color: var(--body-text-color);
     column-gap: 15px;
     margin-bottom: 24px;
   }
-
   .about-us-stats .about-us-right-content .statistic{
     font-size: 64px;
     line-height: 64px;
   }
-
   .about-us-stats .about-us-right-content>div:nth-child(2) p{
     font-size: var(--font-size-xs);
     font-weight: 400;
