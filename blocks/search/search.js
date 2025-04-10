@@ -1,5 +1,3 @@
-import { createOptimizedPicture } from '../../scripts/aem.js';
-
 export default function decorate(block) {
   // Extract data from block content
   const title = block.querySelector('div:nth-child(1) > div')?.textContent || '';

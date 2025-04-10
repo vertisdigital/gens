@@ -524,7 +524,7 @@ indices:
 
       # 45. Search
       searchTitle:
-        select: .search > form > h2
+        select: .search .search-title
         value: textContent(el)
       searchPlaceholder:
         select: .search input[type="search"]
