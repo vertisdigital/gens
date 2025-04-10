@@ -2153,6 +2153,28 @@
           "maxLength": 20,
           "customErrorMsg": "CTA caption cannot exceed 20 characters"
         }
+      },
+      {
+        "component": "boolean",
+        "name": "redirectToResultsPage",
+        "label": "Redirect to Search Results Page",
+        "valueType": "boolean"
+      },
+      {
+        "component": "aem-content",
+        "name": "resultsPageLink",
+        "label": "Search Results Page Link",
+        "condition": {
+          "===": [
+            {
+              "var": "redirectToResultsPage"
+            },
+            true
+          ]
+        },
+        "validation": {
+          "rootPath": "/content/genting-singapore"
+        }
       }
     ]
   }

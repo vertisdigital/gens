@@ -4,6 +4,8 @@ export default function decorate(block) {
   const placeholder = block.querySelector('div:nth-child(2) > div')?.textContent || 'Search...';
   const ctaCaption = block.querySelector('div:nth-child(3) > div')?.textContent || 'Search';
   const iconClass = block.querySelector('div:nth-child(4) > div')?.textContent || 'search';
+  const redirectToResultsPage = block.querySelector('div:nth-child(5) > div')?.textContent === 'true';
+  const resultsPageLink = block.querySelector('div:nth-child(6) > div > a')?.getAttribute('href') || '/search';
   
   // Clear the block
   block.innerHTML = '';
@@ -12,7 +14,7 @@ export default function decorate(block) {
   const searchForm = document.createElement('form');
   searchForm.className = 'search-form';
   searchForm.role = 'search';
-  searchForm.action = '/search';
+  searchForm.action = redirectToResultsPage ? resultsPageLink : '/search';
   searchForm.method = 'get';
   
   // Create title if present
