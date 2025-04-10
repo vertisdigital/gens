@@ -31,9 +31,11 @@ export default function decorate(block) {
           let ctaIcon = "";
 
           if (children.length > 2) {
-            const lastChild = children[children.length - 1];
-            const lastSecondChild = children[children.length - 2]; // Second-last element
-            const lastThirdChild = children[children.length - 3]; // Third-last element
+            const checkDownloadLink = children[5]?.textContent?.trim();
+            const lastChild = children[4];
+            // If checkDownloadLink is 'false', use the last element (index 6), otherwise use index 3
+            const linkElement = checkDownloadLink === 'true' ? children[6] : children[3];
+            const lastThirdChild = children[2]; // Third-last element
 
             const lastChildText = lastChild?.textContent?.trim();
             const lastThirdText = lastThirdChild?.textContent?.trim();
@@ -50,13 +52,34 @@ export default function decorate(block) {
 
             if (lastThirdText) {
               // Modify <a> only if lastThirdChild has text
-              const link = lastSecondChild?.querySelector("a");
+              const link = linkElement?.querySelector("a");
               if (link) {
+                link.title = lastThirdChild.textContent;
+                link.target = children[7]?.textContent || "_self";
                 link.innerHTML = `<span>${lastThirdText}</span>${ctaIcon}`;
                 lastThirdChild.textContent = ""; // Clear moved text
               }
-              // Set remaining children excluding first one
-              remainingChildren = children.slice(1).map((c) => c.outerHTML).join("");
+
+              // Set remaining children excluding first one and handle special case
+              if (children[5]) {
+                if (checkDownloadLink === 'true') {
+                  // Remove elements 3 and 5
+                  remainingChildren = [
+                    ...children.slice(1, 2),
+                    children[4],
+                    ...children.slice(6, 7)
+                  ].map((c) => c.outerHTML).join("");
+                } else if (checkDownloadLink === 'false') {
+                  // Remove elements 5 and 6
+                  remainingChildren = [
+                    ...children.slice(1, 5),
+                  ].map((c) => c.outerHTML).join("");
+                } else {
+                  remainingChildren = children.slice(1).map((c) => c.outerHTML).join("");
+                }
+              } else {
+                remainingChildren = children.slice(1).map((c) => c.outerHTML).join("");
+              }
             } else {
               // If no text in lastThirdChild, just use the second child as remaining
               remainingChildren = children.slice(1, 2).map((c) => c.outerHTML).join("");

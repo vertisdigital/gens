@@ -70,6 +70,10 @@
     color: var(--primary-gold);
 }
 
+.statistics.statistics-financial-variation .statistic-item {
+    font-size: 4.375rem;
+}
+
 .statistics .statistic-item sup, .statistics .statistic-item sub {
     line-height: 0;
 }
@@ -305,8 +309,7 @@
     .statistics-wrapper .statistics.block::before {
         max-width: none;
         width: auto;
-        left: 100px;
+    left: 100px;
         right: 100px;
     }
 }
-

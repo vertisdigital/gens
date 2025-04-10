@@ -1191,7 +1191,8 @@
         "component": "boolean",
         "label": "File Download?",
         "name": "reveal",
-        "valueType": "boolean"
+        "valueType": "boolean",
+        "value": false
       },
       {
         "component": "custom-asset-namespace:custom-asset",
@@ -1536,7 +1537,7 @@
         ]
       },
       {
-        "component": "select",
+        "component": "multiselect",
         "name": "classes",
         "value": "",
         "label": "Style",
@@ -1549,6 +1550,14 @@
           {
             "name": "Statistics Financial Variation",
             "value": "statistics-financial-variation"
+          },
+          {
+            "name": "Margin Top None",
+            "value": "margin-top-none"
+          },
+          {
+            "name": "Margin Top Overlap",
+            "value": "margin-top-overlap"
           }
         ]
       },
@@ -1665,12 +1674,7 @@
       {
         "component": "text",
         "name": "awardyear",
-        "label": "Award Year",
-        "validation": {
-          "maxLength": 4,
-          "regExp": "^\\d{4}$",
-          "customErrorMsg": "Please enter a valid year (e.g., 2024)"
-        }
+        "label": "Award Year" 
       },
       {
         "component": "text",
@@ -1743,8 +1747,8 @@
         "name": "title",
         "label": "Title",
         "validation": {
-          "maxLength": 500,
-          "customErrorMsg": "Description cannot exceed 500 characters"
+          "maxLength": 100,
+          "customErrorMsg": "Description cannot exceed 100 characters"
         }
       }
     ]
@@ -1766,7 +1770,12 @@
         "component": "number",
         "name": "loadMoreItems",
         "label": "Load More Items",
-        "valueType": "number"
+        "valueType": "number",
+        "validation": {
+          "numberMin": 1,
+          "numberMax": 100,
+          "customErrorMsg": "Load More Items must be a number between 1 and 100"
+        }
       }
     ]
   },
@@ -1862,7 +1871,7 @@
           "maxLength": 2000,
           "customErrorMsg": "Description cannot exceed 2000 characters"
         }
-      },
+      },      
       {
         "component": "text",
         "name": "ctaLabel",
@@ -1871,11 +1880,19 @@
           "maxLength": 30,
           "customErrorMsg": "CTA text cannot exceed 30 characters"
         }
-      },
+      },      
       {
         "component": "aem-content",
         "name": "ctaLink",
         "label": "CTA Link",
+        "condition": {
+          "===": [
+            {
+              "var": "reveal"
+            },
+            false
+          ]
+        },
         "validation": {
           "rootPath": "/content/genting-singapore"
         }
@@ -1904,6 +1921,57 @@
           {
             "name": "North East Arrow",
             "value": "north-east-arrow"
+          }
+        ]
+      },
+      {
+        "component": "boolean",
+        "label": "File Download?",
+        "name": "reveal",
+        "valueType": "boolean"
+      },
+      {
+        "component": "custom-asset-namespace:custom-asset",
+        "label": "File Path",
+        "name": "filepath",
+        "valueType": "string",
+        "configUrl": "https://int-rel-2--genting--wppopen.aem.live/tools/assets-selector/config.json",
+        "multi": false,
+        "condition": {
+          "===": [
+            {
+              "var": "reveal"
+            },
+            true
+          ]
+        }
+      },
+      {
+        "component": "text",
+        "name": "filepathTitle",
+        "label": "Alt Text",
+        "valueType": "string",
+        "condition": {
+          "===": [
+            {
+              "var": "reveal"
+            },
+            true
+          ]
+        }
+      },
+      {
+        "component": "select",
+        "name": "ctaLinkTarget",
+        "label": "Target",
+        "options": [
+          {
+            "name": "Same Tab",
+            "value": "_self"
+          },
+          {
+            "name": "New Tab",
+            "value": "_blank"
           }
         ]
       }

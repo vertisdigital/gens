@@ -3,15 +3,17 @@
   width: 100%;
   color: var(--background-color);
   overflow: hidden;
-  min-height: 798px;
   padding-top:225px;
-  padding-bottom: 210px;
+  padding-bottom: 150px;
   margin-bottom: 45px;
+  aspect-ratio: 320 / 133;
+}
+.hero-banner-container.hero-carousal-variation {
+  padding-bottom: 210px;
 }
 
 .hero-banner-container img {
   width: 100%;
-  object-fit: cover;
 }
 
 .hero-image {
@@ -19,8 +21,16 @@
   top: 0;
   left: 0;
   width: 100%;
-  height: 100%;
+  height: auto;
   z-index: -1;
+}
+
+.news-link-container img {
+  align-content: flex-end;
+}
+
+.hero-banner-container.hero-carousal-variation img {
+  height: 100%;
 }
 
 .hero-title {
@@ -51,8 +61,8 @@
   color: var(--light-grey);
   margin: 0;
   text-shadow: 0 1px 2px rgb(0 0 0 / 30%);
-  padding-left: 0;   
-} 
+  padding-left: 0;
+}
 
 .hero-banner-container .button-container {
   display: flex;
@@ -103,7 +113,6 @@
 .carousel-wrapper {
   display: flex;
   transition: transform 0.3s ease;
-  height: 190px;
   width: 608px;
 }
 
@@ -145,8 +154,8 @@
   justify-content: flex-start;
   align-items: center;
   align-self: stretch;
-  gap: 36px;
-  padding: 36px;
+  gap: 47px;
+  padding: 20px;
 }
 
 /* Left side: Text content (Title, Description, Read More) */
@@ -168,9 +177,6 @@
   height: 100%;   
 }
 
-.news-link-container img {
-  align-content: flex-end;
-}
 
 .hero-banner-container .carousel-image img {
   height: 118px;
@@ -270,6 +276,9 @@
 
 /* Responsive adjustments */
 @media (width <= 991px) {
+  /* .hero-banner-container img {
+    object-fit: cover;
+  } */
   .hero-title {
     font-size: 48px;
     line-height: 56px;
@@ -326,24 +335,35 @@
   .hero-arrow-icon {
     padding: 12px;
   }
-
   .hero-banner-container {
+    aspect-ratio: 52 / 45;
+  }
+
+  .hero-banner-container, 
+  .hero-banner-container.hero-carousal-variation {
     padding: 185px 20px 195px;
     padding-left: 0;
-    min-height: 450px;
   }
 }
 
 /* Ensure responsive layout */
-@media (width <= 767px) {
+@media (width <= 767px) { 
   .hero-banner-container {
-    padding: 125px 20px;
+    aspect-ratio: 13 / 18;
+  }
+  .hero-banner-container.hero-carousal-variation img{
+    height: auto;
+  }
+
+  .hero-banner-container,
+  .hero-banner-container.hero-carousal-variation  {
     padding-left: 0;
-    min-height: 324px;
     position: relative;
     margin-bottom: 24px;
   }
-
+  .hero-banner-container.hero-carousal-variation {
+    height: 654px;
+  }
   .hero-arrow-icon {
     padding: 10px;
   }
@@ -448,5 +468,10 @@
 
   .hero-carousal-variation .hero-content {
     padding-bottom: 118px;
+  }
+}
+@media(width >=410px) and (width < 500px) {
+  .hero-banner-container.hero-carousal-variation {
+    height: 725px;
   }
 }

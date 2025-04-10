@@ -178,7 +178,7 @@ export default function decorate(block) {
   };
 
   const iframeWrapper = document.querySelector('.iframe-wrapper');
-
+  iframeWrapper.classList.add('container');
   const endpoint = new window.URL(url).pathname.replace('/', '').replace('.rev', '');
   updateIframeHeight(iframeWrapper, endpoint);
   updateIframeForTab();

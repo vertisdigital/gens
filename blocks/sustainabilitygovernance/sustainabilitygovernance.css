@@ -34,11 +34,11 @@
 }
 .governance-card::after {
     content: "";
-    width: 8px;
-    height: 8px;
+    width: 9px;
+    height: 9px;
     background: url("../../icons/divider-ellipse.svg") no-repeat;
     position: absolute;
-    top: calc(100% + 24px);
+    top: calc(100% + 22px);
     left: calc(50% - 4px);
     background-size: 100%;
 }
@@ -99,9 +99,9 @@
         height: 80px;
     }
     .governance-card::after {
-        width: 10px;
-        height: 10px;
-        top: calc(100% + 35px);
+        width: 11px;
+        height: 11px;
+        top: calc(100% + 37px);
         left: calc(50% - 5px);
     }
     .governance-img,
@@ -142,7 +142,7 @@
         height: 120px;
     }
     .governance-card::after {
-        top: calc(100% + 55px);
+        top: calc(100% + 53px);
     }
     .governance-content-title {
         font-size: 20px;

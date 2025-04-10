@@ -59,11 +59,7 @@
     display: block;
     margin-bottom: 8px;
     height: 206px;
-    opacity: 0.6;
-}
-
-.boardofdirectors .director-card.active img {
-   opacity: 1;
+    opacity: 1;
 }
 
 .boardofdirectors .director-info {

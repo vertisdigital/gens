@@ -172,7 +172,7 @@ export default async function decorate(block) {
         // Get section title - first div contains the title
         const titleContainer = isMobile() ? linkSection.children[0] : linkSection.children[1];
         const titleElement = titleContainer?.querySelector('p');
-
+        const titleTarget = linkSection.children[2]?.textContent?.trim() || '_self';
         if (titleElement) {
           // Create heading element for title
           const headingContainer = document.createElement('div');
@@ -184,6 +184,7 @@ export default async function decorate(block) {
           } else {
             headingElement = titleElement.querySelector('a');
             headingElement.textContent = linkSection.children[0]?.textContent;
+            headingElement.target = titleTarget;
           }
           headingElement.className = 'footer-nav-title';
           headingContainer.appendChild(headingElement);
@@ -298,7 +299,7 @@ export default async function decorate(block) {
             link.textContent = originalLink.textContent;
 
             // Get target from the third div if it exists
-            const targetElement = linkItem.querySelector('div:nth-child(3) p');
+            const targetElement = linkItem.children[2]?.querySelector('p');
             if (targetElement && targetElement.textContent.trim() === '_blank') {
               link.target = '_blank';
               link.rel = 'noopener noreferrer';
