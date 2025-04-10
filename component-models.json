@@ -1674,7 +1674,7 @@
       {
         "component": "text",
         "name": "awardyear",
-        "label": "Award Year" 
+        "label": "Award Year"
       },
       {
         "component": "text",
@@ -1871,7 +1871,7 @@
           "maxLength": 2000,
           "customErrorMsg": "Description cannot exceed 2000 characters"
         }
-      },      
+      },
       {
         "component": "text",
         "name": "ctaLabel",
@@ -1880,7 +1880,7 @@
           "maxLength": 30,
           "customErrorMsg": "CTA text cannot exceed 30 characters"
         }
-      },      
+      },
       {
         "component": "aem-content",
         "name": "ctaLink",
@@ -2171,8 +2171,8 @@
       },
       {
         "component": "aem-content",
-        "name": "resultsPageLink",
-        "label": "Search Results Page Link",
+        "name": "link",
+        "label": "Link",
         "condition": {
           "===": [
             {
@@ -2184,6 +2184,65 @@
         "validation": {
           "rootPath": "/content/genting-singapore"
         }
+      },
+      {
+        "component": "text",
+        "name": "linkText",
+        "label": "Text",
+        "condition": {
+          "===": [
+            {
+              "var": "redirectToResultsPage"
+            },
+            true
+          ]
+        },
+        "description": "Maximum allowed characters are 50 to support multiple variations/views, however author to decide the best view",
+        "validation": {
+          "maxLength": 50,
+          "customErrorMsg": "Maximum allowed characters are 50 to support multiple variations/views, however author to decide the best view"
+        }
+      },
+      {
+        "component": "text",
+        "name": "linkTitle",
+        "label": "Title",
+        "condition": {
+          "===": [
+            {
+              "var": "redirectToResultsPage"
+            },
+            true
+          ]
+        },
+        "description": "Maximum allowed characters are 50 to support multiple variations/views, however author to decide the best view",
+        "validation": {
+          "maxLength": 50,
+          "customErrorMsg": "Maximum allowed characters are 50 to support multiple variations/views, however author to decide the best view"
+        }
+      },
+      {
+        "component": "select",
+        "name": "linkTarget",
+        "label": "Target",
+        "condition": {
+          "===": [
+            {
+              "var": "redirectToResultsPage"
+            },
+            true
+          ]
+        },
+        "options": [
+          {
+            "name": "Same Tab",
+            "value": "_self"
+          },
+          {
+            "name": "New Tab",
+            "value": "_blank"
+          }
+        ]
       }
     ]
   }
