@@ -12,7 +12,7 @@
 }
 
 .awardsgallery .awardsgallery-image img {
-    max-width: 80px;
+    max-width: 80%;
 }
 
 .awardsgallery .awardsgallery-content * {
@@ -39,7 +39,9 @@
 .awardsgallery .awardsgallery-grid {
     justify-content: center;
 }
-
+.awardsgallery picture {
+    text-align: center;
+}
 
 @media (width >= 768px) {
     .awardsgallery .award-title {
