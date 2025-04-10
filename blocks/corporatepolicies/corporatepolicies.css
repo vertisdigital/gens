@@ -159,4 +159,7 @@
         font-size: var(--font-size-xs);
         line-height: 20px;
     }
+    .corporate-policies-list-item .right-col > div:nth-child(3) a > span:first-child {
+        font-size: var(--font-size-ms);        
+    }
 }
