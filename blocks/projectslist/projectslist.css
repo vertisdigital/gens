@@ -67,9 +67,12 @@ p {
    }
 
 @media (width <= 992px)  {
+    .projectslist-wrapper {
+        margin: 28px 0;
+    }
     .projectslistitem {
-        padding-top: 24px;
-        padding-bottom: 24px;
+        padding-top: 28px;
+        padding-bottom: 28px;
     }
     .project-cta a.button:any-link{
         margin-top:24px
@@ -120,7 +123,7 @@ p {
     }
 }
 
-@media (width>=768px) {
+@media (width>=993) {
     .projectslist-wrapper {
         margin: 45px 0;
     }

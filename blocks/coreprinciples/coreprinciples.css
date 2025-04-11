@@ -125,12 +125,12 @@
     }
 
     .coreprinciples {
-        padding: 0 0 45px;
+        padding: 0 0 28px;
         margin-top: 28px;
     }
 
     .coreprinciples .coreprinciples .container::after {
-        transform: translateY(45px);
+        transform: translateY(28px);
     }
 }
 @media (width < 768px) {

@@ -126,8 +126,11 @@
   }
 
   @media (width<=992px){
+    .projectcards{
+      margin: 28px 0;
+    }
     .projectcards.grey-background {
-      padding: 40px 0 44px;
+      padding: 28px 0 28px;
     }
 
     .projectcards .projectcards-header {
@@ -151,7 +154,7 @@
     
     .projectcards .projectcards-grid {
       box-sizing: border-box;
-      margin-bottom: 42px;
+      margin-bottom: 28px;
       row-gap: 24px;
       margin-left: -12px;
       margin-right: -12px;

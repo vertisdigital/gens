@@ -276,6 +276,9 @@
 
 /* Responsive adjustments */
 @media (width <= 991px) {
+  .hero-banner-container {
+    margin-bottom: 28px;
+  }
   /* .hero-banner-container img {
     object-fit: cover;
   } */

@@ -98,11 +98,11 @@
 
 @media (width <= 992px) {
     .corporatepolicies-wrapper{
-        margin: 45px 0;
+        margin: 28px 0;
     }
 
     .corporate-policies-list-item {
-        padding: 48px 0;
+        padding: 28px 0;
     }
 
     .corporate-policies-list-item .left-col h2{
