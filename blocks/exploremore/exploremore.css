@@ -85,6 +85,7 @@
   .exploremore-wrapper-container .exploremore-item{
      width: 48%;
      padding-top: 12px;
+     align-items: flex-start;
   }
 
   .exploremore-wrapper-container .exploremore-item .exploremore-caption{
@@ -94,7 +95,7 @@
   }
 
   .exploremore-wrapper-container .exploremore-item .exploremore-link-container{
-    padding: 12px;
+    padding: 10px 12px;
   }
 }
 
@@ -113,6 +114,7 @@
      width: 100%;
      padding: 0;
      margin-bottom: 18px;
+     align-items: center;
   }
 
   .exploremore-wrapper-container .exploremore-item .exploremore-caption{
