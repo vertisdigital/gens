@@ -2161,7 +2161,7 @@
       },
       {
         "component": "text",
-        "name": "disableAllCaption",
+        "name": "disableAllText",
         "label": "Disable All CTA Caption",
         "validation": {
           "maxLength": 50,
@@ -2187,7 +2187,7 @@
       },
       {
         "component": "text",
-        "name": "allowAllCaption",
+        "name": "allowAllText",
         "label": "Allow All CTA Caption",
         "validation": {
           "maxLength": 50,
