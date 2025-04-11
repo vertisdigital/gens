@@ -280,6 +280,7 @@ function initializeHeader(header) {
       if (hamburger.classList.contains('active')) {
         hamburger.replaceChildren(closeIcon);
         document.body.classList.add('no-scroll');
+        updateHeaderState(header,true)
       } else {
         document.body.classList.remove('no-scroll');
         hamburger.replaceChildren(hamburgerIcon);
@@ -291,10 +292,11 @@ function initializeHeader(header) {
         if (activeSecondary) activeSecondary.classList.remove('active');
         overlay.classList.remove('active');
         currentActive = null;
+        updateHeaderState(header)
       }
     }, 0);
   });
-
+  
   navItems.forEach((item) => {
     const linksDiv = item.querySelector('.links');
     const overviewLink = linksDiv?.querySelector('.overview-link');
@@ -358,7 +360,7 @@ function initializeHeader(header) {
       // Handle click on nav item - Clone links here
       item.addEventListener('click', (e) => {
         e.preventDefault();
-
+        
         if (currentActive && currentActive !== item) {
           // Close currently active menu
           currentActive.classList.remove(activeClass);
@@ -378,10 +380,13 @@ function initializeHeader(header) {
           const clonedLinks = originalLinks.cloneNode(true);
           emptyLinks.innerHTML = ''; // Clear previous links
           emptyLinks.append(...clonedLinks.children); // Append cloned children
+          updateHeaderState(header,true)
         } else {
           // Clear links when closing
           emptyLinks.innerHTML = '';
+          updateHeaderState(header,false,'navLink')
         }
+        
 
         secondaryNav.classList.toggle(activeClass);
         overlay.classList.toggle(activeClass);
@@ -406,6 +411,7 @@ function initializeHeader(header) {
       closeBtn.addEventListener('click', (e) => {
         e.stopPropagation();
         closeSecondary();
+        updateHeaderState(header)
       });
     }
   });
@@ -464,19 +470,24 @@ function initializeHeader(header) {
  * Updates header state based on scroll position
  * @param {Element} header Header element
  */
-function updateHeaderState(header) {
+function updateHeaderState(header,isClicked=false,clickedFrom='') {
   const scrollPosition = window.scrollY;
   const defaultLogo = header.querySelector('.default-logo');
   const scrollLogo = header.querySelector('.scroll-logo');
-
+  const isMegaMenuOpen = header.querySelector('.secondary-nav.active')
+  const headerSection = document.querySelector('.header')
+  
   if (defaultLogo && scrollLogo) {
-    if (scrollPosition > 0 && !isHeaderFixed) {
-      header.classList.add('fixed-header');
+    if ((scrollPosition > 0 && !isHeaderFixed) || isClicked) {
+      headerSection.classList.add('fixed-header');
       defaultLogo.style.display = 'none';
       scrollLogo.style.display = 'block';
       isHeaderFixed = true;
     } else if (scrollPosition === 0 && isHeaderFixed) {
-      header.classList.remove('fixed-header');
+      if(window.innerWidth > 992 && clickedFrom === '' && isMegaMenuOpen){
+        return;
+      } 
+      headerSection.classList.remove('fixed-header');
       defaultLogo.style.display = 'block';
       scrollLogo.style.display = 'none';
       isHeaderFixed = false;
