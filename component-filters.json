@@ -31,7 +31,7 @@
       "sustainabilitygovernance",
       "corporatepolicies",
       "statistics",
-      "cookiebanner"
+      "cookiesettings"
     ]
   },
   {
@@ -208,6 +208,12 @@
     "id": "boardofdirectors",
     "components": [
       "director"
+    ]
+  },
+  {
+    "id": "cookiesettings",
+    "components": [
+      "cookiesettingsitem"
     ]
   }
 ]

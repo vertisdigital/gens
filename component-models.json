@@ -2204,5 +2204,123 @@
         }
       }
     ]
+  },
+  {
+    "id": "cookiesettings",
+    "fields": [
+      {
+        "component": "text",
+        "name": "title",
+        "label": "Title",
+        "validation": {
+          "maxLength": 50,
+          "customErrorMsg": "Title cannot exceed 50 characters"
+        }
+      },
+      {
+        "component": "text",
+        "name": "heading",
+        "label": "Heading",
+        "validation": {
+          "maxLength": 100,
+          "customErrorMsg": "Heading cannot exceed 100 characters"
+        }
+      },
+      {
+        "component": "richtext",
+        "name": "description",
+        "label": "Description",
+        "valueType": "string",
+        "validation": {
+          "maxLength": 500,
+          "customErrorMsg": "Description cannot exceed 500 characters"
+        }
+      },
+      {
+        "component": "aem-content",
+        "name": "cookiePolicyLink",
+        "label": "Cookie Policy Link",
+        "validation": {
+          "rootPath": "/content/genting-singapore"
+        }
+      },
+      {
+        "component": "text",
+        "name": "cookiePolicyText",
+        "label": "Cookie Policy Text",
+        "validation": {
+          "maxLength": 50,
+          "customErrorMsg": "Text cannot exceed 50 characters"
+        }
+      },
+      {
+        "component": "aem-content",
+        "name": "privacyPolicyLink",
+        "label": "Privacy Policy Link",
+        "validation": {
+          "rootPath": "/content/genting-singapore"
+        }
+      },
+      {
+        "component": "text",
+        "name": "privacyPolicyText",
+        "label": "Privacy Policy Text",
+        "validation": {
+          "maxLength": 50,
+          "customErrorMsg": "Text cannot exceed 50 characters"
+        }
+      },
+      {
+        "component": "text",
+        "name": "confirmButtonText",
+        "label": "Confirm Button Text",
+        "validation": {
+          "maxLength": 50,
+          "customErrorMsg": "Text cannot exceed 50 characters"
+        }
+      }
+    ]
+  },
+  {
+    "id": "cookiesettingsitem",
+    "fields": [
+      {
+        "component": "text",
+        "name": "title",
+        "label": "Title",
+        "validation": {
+          "maxLength": 100,
+          "customErrorMsg": "Title cannot exceed 100 characters"
+        }
+      },
+      {
+        "component": "text",
+        "name": "description",
+        "label": "Description",
+        "validation": {
+          "maxLength": 500,
+          "customErrorMsg": "Description cannot exceed 500 characters"
+        }
+      },
+      {
+        "component": "select",
+        "name": "status",
+        "label": "Status",
+        "options": [
+          {
+            "name": "Always Active",
+            "value": "always-active"
+          },
+          {
+            "name": "Active",
+            "value": "active"
+          },
+          {
+            "name": "Inactive",
+            "value": "inactive"
+          }
+        ]
+      }
+    ]
   }
 ]
