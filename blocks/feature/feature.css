@@ -199,7 +199,7 @@ color: var(--body-text-color);
 /* Responsive design */
 @media  (width >= 768px) {
   .feature-wrapper .about-us-stats{
-    margin: 40px 0 0;
+    margin: 28px 0 0;
   }
 
   .about-us-stats .about-us-left{
