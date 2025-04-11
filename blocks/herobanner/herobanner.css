@@ -427,6 +427,7 @@
   .hero-banner-container .carousel-image img {
     height: 92px;
     flex: 1 0 0;
+    object-fit: cover;
   }
 
   .navigation-arrows {
