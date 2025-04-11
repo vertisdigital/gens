@@ -36,10 +36,7 @@ function updateIframeHeight(iframeWrapper, endpoint) {
     },
     newsroom: {
       mobile: '3000px',
-      tablet: {
-        landscape: '1500px',
-        portrait: '1570px',
-      },
+      tablet: '1500px',
       desktop: '1430px',
     },
     'agm-egm': {
@@ -79,7 +76,7 @@ function updateIframeHeight(iframeWrapper, endpoint) {
     "Annual Reports": {
       mobile: '15380px',
       tablet: '27020px',
-      desktop: '5034px',
+      desktop: '5690px',
     },
     "Sustainability Reports": {
       mobile: '7180px',
