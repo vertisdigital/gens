@@ -2112,7 +2112,7 @@
       },
       {
         "component": "aem-content",
-        "name": "cookieSettingsLink",
+        "name": "cookieSettings",
         "label": "Cookie Settings Link",
         "validation": {
           "rootPath": "/content/genting-singapore"
@@ -2153,7 +2153,7 @@
       },
       {
         "component": "aem-content",
-        "name": "disableAllLink",
+        "name": "disableAll",
         "label": "Disable All Link",
         "validation": {
           "rootPath": "/content/genting-singapore"
@@ -2179,7 +2179,7 @@
       },
       {
         "component": "aem-content",
-        "name": "allowAllLink",
+        "name": "allowAll",
         "label": "Allow All Link",
         "validation": {
           "rootPath": "/content/genting-singapore"
@@ -2238,7 +2238,7 @@
       },
       {
         "component": "aem-content",
-        "name": "cookiePolicyLink",
+        "name": "cookiePolicy",
         "label": "Cookie Policy Link",
         "validation": {
           "rootPath": "/content/genting-singapore"
@@ -2255,7 +2255,7 @@
       },
       {
         "component": "aem-content",
-        "name": "privacyPolicyLink",
+        "name": "privacyPolicy",
         "label": "Privacy Policy Link",
         "validation": {
           "rootPath": "/content/genting-singapore"
@@ -2272,11 +2272,11 @@
       },
       {
         "component": "text",
-        "name": "confirmButtonText",
-        "label": "Confirm Button Text",
+        "name": "confirmButtonCaption",
+        "label": "Confirm Button Caption",
         "validation": {
           "maxLength": 50,
-          "customErrorMsg": "Text cannot exceed 50 characters"
+          "customErrorMsg": "Caption cannot exceed 50 characters"
         }
       }
     ]
