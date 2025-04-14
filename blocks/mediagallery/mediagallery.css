@@ -34,14 +34,11 @@
 }
 
 .mediagallery-wrapper {
-    margin-bottom: 36px;
-}
-
-.mediagallery-wrapper {
     display: flex;
     justify-content: center;
     align-items: center;
     flex-wrap: wrap;
+    margin-bottom: 36px;
 }
 
 @media (width <=992px) {
