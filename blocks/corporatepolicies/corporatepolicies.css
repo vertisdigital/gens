@@ -44,7 +44,7 @@
 }
 
 .corporate-policies-list>div:last-child{
-    padding-bottom: 80px;
+    padding-bottom: 0;
     border: none;
 }
 
@@ -98,11 +98,11 @@
 
 @media (width <= 992px) {
     .corporatepolicies-wrapper{
-        margin: 56px 0;
+        margin: 28px 0;
     }
 
     .corporate-policies-list-item {
-        padding: 48px 0;
+        padding: 28px 0;
     }
 
     .corporate-policies-list-item .left-col h2{

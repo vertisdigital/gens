@@ -100,6 +100,7 @@
 @media (width <= 992px) {
     .coreprinciples .icon-wrapper {
         padding: 36px 10px;
+        margin-bottom: 0;
     }
 
     .coreprinciples .row {
@@ -107,6 +108,7 @@
         margin-left: -12px;
         margin-right: -12px;
         row-gap: 24px;
+        width: auto;
     }
 
     .coreprinciples .icon-wrapper picture {
@@ -129,16 +131,6 @@
 
     .coreprinciples .coreprinciples .container::after {
         transform: translateY(28px);
-    }
-
-    .row .principles-item:nth-child(1), .row .principles-item:nth-child(3){
-        margin-left: -12px;
-    }
-
-    .row .principles-item:nth-child(2) {
-        margin-left: 12px;
-        padding-right: 0;
-        padding-left: 24px;
     }
 }
 @media (width < 768px) {

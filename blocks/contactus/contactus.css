@@ -175,8 +175,13 @@
 
 /* Tablet Layout  */
  @media (width >= 768px) and (width < 1024px) {
-  .contactus .contactus-top{
-    padding-bottom: 40px;
+
+  .contactus .row>div:first-child{
+    padding-right: 12px; 
+  }
+  
+  .contactus .row>div:last-child{
+    padding-left: 12px;   
   }
 
   .contactus .enquiry-heading {
@@ -242,10 +247,6 @@
 
   .contactus .row>div{
     padding: 0;
-  }
-
-  .contactus .contactus-top{
-    padding-bottom: 28px;
   }
 
   .contactus .row>div:first-child{
