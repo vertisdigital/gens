@@ -106,7 +106,7 @@ a:any-link.factsheet-button {
  
   
   .row.tiles-container .no-image-tile>div>div:first-child p {
-    font-size: var(--font-size-m);
+    font-size: var(--font-size-sm);
     line-height: 34px;
     font-weight: 500;
     margin-bottom: 8px;

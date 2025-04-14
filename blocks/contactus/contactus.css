@@ -269,6 +269,7 @@
   
   .contactus .enquiry-description{
     margin-bottom: 18px;
+    font-size: var(--font-size-xxs);
   }
   
   .contactus .enquiry-description p{
@@ -329,6 +330,12 @@
   .contactus.contactus-variation .contactus-bottom>div:last-child{
     flex-direction: column;
     row-gap: 18px;
+  }
+  .contactus.contactus-variation .contactus-bottom>div:last-child>div:first-child p{
+    font-size: var(--font-size-xxs);
+  }
+  .contactus .contactus-bottom>div:last-child a{
+    font-size: var(--font-size-xxs);
   }
   
 }

@@ -107,6 +107,12 @@ p {
     .project-cta a.button:any-link{
         margin-top:20px
        }
+    .project-title  {
+        font-size: var(--font-size-sm);
+    }
+    .project-subtitle {
+        font-size: var(--font-size-xs);
+    }
 }
 
 @media (width <= 426px) {

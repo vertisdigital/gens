@@ -378,6 +378,7 @@
   }
 
   .hero-heading {
+    font-size: var(--font-size-xs);
     margin-bottom: 8px;
   }
 
