@@ -36,7 +36,7 @@ function updateImagesProperty(block){
 
 function handleLayoutOnResize(block){
     updateImagesProperty(block)
-    addEventListener("resize", () => {
+    window.addEventListener("resize", () => {
         updateImagesProperty(block)
      });
 
