@@ -10,6 +10,10 @@ const imagesHeight={
     tablet:{
         width:"233px",
         height:"136px"
+    },
+    desktop:{
+        width:"349px",
+        height:"206px"
     }
 }
 
@@ -50,7 +54,8 @@ export default function decorate(block) {
         const img = document.createElement('img');
         img.src = imageUrl;
         img.alt = link.title || 'Gallery Image';
-        img.style.width="100%"
+        img.style.width = imagesHeight.desktop.width
+        img.style.height=imagesHeight.desktop.height
         img.style.display="block"
         const mediagallerySection = link.parentElement.parentElement.parentElement;
         mediagallerySection.innerHTML=""
@@ -72,9 +77,6 @@ export default function decorate(block) {
 
     Array.from(firstRow.children).forEach((element, index) => {
         if (index < 2){
-            const img=element.querySelector('img')
-            img.style.width = "349px"
-            img.style.height = "206px"
             wrapperDiv1.appendChild(element.cloneNode(true));
             element.remove()
         }
@@ -93,9 +95,6 @@ export default function decorate(block) {
 
     Array.from(secRow.children).forEach((element, index) => {
         if (index > 0) {
-            const img = element.querySelector('img')
-            img.style.width = "349px"
-            img.style.height = "206px"
             wrapperDiv2.appendChild(element.cloneNode(true));
             element.remove()
         }else{
