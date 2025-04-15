@@ -69,9 +69,12 @@ Usage Example:
   --font-size-xxs: 0.875rem;
   --font-size-xs: 1rem;
   --font-size-s: 1.25rem;
+  --font-size-sm: 1.375rem;
+  --font-size-md: 1.5rem;
   --font-size-m: 1.75rem;
   --font-size-l: 2rem;
   --font-size-xl: 2.5rem;
+  --font-size-ml: 3rem;
   --font-size-xxl: 3.75rem;
   --font-size-xxxl: 5rem;
 
@@ -537,8 +540,8 @@ main .section.highlight {
   }
 
   .row>* {
-    padding-right: calc(var(--bs-gutter-x) * 0.25);
-    padding-left: calc(var(--bs-gutter-x) * 0.25);
+    padding-right: calc(var(--bs-gutter-x) * 0.5);
+    padding-left: calc(var(--bs-gutter-x) * 0.5);
   }
 
   .row>*:first-child {

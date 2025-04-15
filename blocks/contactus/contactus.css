@@ -175,8 +175,13 @@
 
 /* Tablet Layout  */
  @media (width >= 768px) and (width < 1024px) {
-  .contactus .contactus-top{
-    padding-bottom: 40px;
+
+  .contactus .row>div:first-child{
+    padding-right: 12px; 
+  }
+  
+  .contactus .row>div:last-child{
+    padding-left: 12px;   
   }
 
   .contactus .enquiry-heading {
@@ -244,10 +249,6 @@
     padding: 0;
   }
 
-  .contactus .contactus-top{
-    padding-bottom: 28px;
-  }
-
   .contactus .row>div:first-child{
     padding-right: 0;
   
@@ -268,6 +269,7 @@
   
   .contactus .enquiry-description{
     margin-bottom: 18px;
+    font-size: var(--font-size-xxs);
   }
   
   .contactus .enquiry-description p{
@@ -328,6 +330,12 @@
   .contactus.contactus-variation .contactus-bottom>div:last-child{
     flex-direction: column;
     row-gap: 18px;
+  }
+  .contactus.contactus-variation .contactus-bottom>div:last-child>div:first-child p{
+    font-size: var(--font-size-xxs);
+  }
+  .contactus .contactus-bottom>div:last-child a{
+    font-size: var(--font-size-xxs);
   }
   
 }
