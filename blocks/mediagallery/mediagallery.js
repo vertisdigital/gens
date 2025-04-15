@@ -62,52 +62,53 @@ export default function decorate(block) {
         mediagallerySection.append(img)
     }); 
 
-    const mediaGallery = block.querySelectorAll('[data-block-name="mediagallery"]')
-    const firstRow = mediaGallery[0]
-    firstRow.classList.add('one-two-row')
-    const secRow = mediaGallery[1]
-    secRow.classList.add('one-two-row')
-    const lastRow=mediaGallery[mediaGallery.length - 1]
-    lastRow.classList.add('last-row')
-
+    const firstRows = block.querySelectorAll('.mg-two-one-row')
+    const secRows = block.querySelectorAll('.mg-one-two-row')
+    const lastRows = block.querySelectorAll('.mg-one-one-one-row')
     
+    lastRows.forEach(lastRow => { lastRow.classList.add('last-row') })
 
-    const wrapperDiv1 = document.createElement('div');
-    wrapperDiv1.classList.add('wrapped-container');
+    firstRows.forEach(firstRow=>{
+        const wrapperDiv = document.createElement('div');
+        wrapperDiv.classList.add('wrapped-container');
+        Array.from(firstRow.children).forEach((element, index) => {
+        console.log('index: ', index);
+            if (index < 2) {
+                wrapperDiv.appendChild(element.cloneNode(true));
+                element.remove()
+            }
+            else {
+                element.classList.add("right-img")
+                element.classList.add("ml")
+                const img = element.querySelector('img')
+                img.style.height = imagesHeight.lg.desktop.height
+                img.style.width = imagesHeight.lg.desktop.width
+            }
 
-    Array.from(firstRow.children).forEach((element, index) => {
-        if (index < 2){
-            wrapperDiv1.appendChild(element.cloneNode(true));
-            element.remove()
-        }
-        else{
-            element.classList.add("right-img")
-            element.classList.add("ml")
-            const img = element.querySelector('img')
-            img.style.height = imagesHeight.lg.desktop.height
-            img.style.width = imagesHeight.lg.desktop.width
-        }
-
-    })
-    firstRow.prepend(wrapperDiv1)
-    const wrapperDiv2 = document.createElement('div');
-    wrapperDiv2.classList.add('wrapped-container');
-
-    Array.from(secRow.children).forEach((element, index) => {
-        if (index > 0) {
-            wrapperDiv2.appendChild(element.cloneNode(true));
-            element.remove()
-        }else{
-            const img = element.querySelector('img')
-            img.style.height = imagesHeight.lg.desktop.height
-            img.style.width = imagesHeight.lg.desktop.width
-            element.classList.add("mr")
-            element.classList.add("right-img")
-
-        }
+        })
+        firstRow.prepend(wrapperDiv)
     })
 
-    secRow.append(wrapperDiv2)
+    secRows.forEach(secRow=>{
+        const wrapperDiv = document.createElement('div');
+        wrapperDiv.classList.add('wrapped-container');
+    
+        Array.from(secRow.children).forEach((element, index) => {
+            if (index > 0) {
+                wrapperDiv.appendChild(element.cloneNode(true));
+                element.remove()
+            }else{
+                const img = element.querySelector('img')
+                img.style.height = imagesHeight.lg.desktop.height
+                img.style.width = imagesHeight.lg.desktop.width
+                element.classList.add("mr")
+                element.classList.add("right-img")
+    
+            }
+        })
+    
+        secRow.append(wrapperDiv)
+    })
 
     handleLayoutOnResize(block)
     
