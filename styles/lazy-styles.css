@@ -304,6 +304,9 @@
     .tabs-container .textmediablock-wrapper {
         margin-top:18px
     }
+    .tabs-container .corporate-policies-list-item .left-col h2 {
+        font-size: var(--font-size-sm);
+    }
 }
 @media (width >= 768px) {
     .tabs-container .about-us-stats .about-us-right-content .statistic p:first-child {
