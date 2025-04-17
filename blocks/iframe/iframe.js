@@ -10,7 +10,6 @@ function setElementHeight(element, height) {
 }
 
 function updateIframeHeight(iframeWrapper, endpoint) {
-  console.log("endpoint: ", endpoint)
   const isMobile = window.innerWidth < 767;
   const isTablet = window.innerWidth >= 768 && window.innerWidth <= 993;
 
