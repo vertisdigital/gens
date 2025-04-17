@@ -94,13 +94,7 @@ function updateIframeHeight(iframeWrapper, endpoint) {
     },
   };
 
-  let height = Object.keys(endpointHeightConfig).filter(item => endpoint.includes(item));
-  console.log("height: ", height)
-  if (height.length) {
-    height = endpointHeightConfig[height[0]]
-  } else {
-    height = endpointHeightConfig.default
-  }
+  let height = endpointHeightConfig[endpoint];
 
   if (typeof height === 'object') {
     if (deviceType === 'tablet') {
@@ -168,12 +162,12 @@ export default function decorate(block) {
 
   const iframeWrapper = document.querySelector('.iframe-wrapper');
   iframeWrapper.classList.add('container');
-  const endpoint = new window.URL(url).pathname.replace('/', '').replace('.rev', '').replace('.htm', '');
-  updateIframeHeight(iframeWrapper, endpoint);
+  const endpoint = new window.URL(url).pathname.replace('/', '').split('.');
+  updateIframeHeight(iframeWrapper, endpoint[0]);
   getTabsEvent();
 
   window.addEventListener('resize', () => {
-    updateIframeHeight(iframeWrapper, endpoint);
+    updateIframeHeight(iframeWrapper, endpoint[0]);
     getTabsEvent();
   });
 
