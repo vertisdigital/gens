@@ -1,1 +1,14 @@
-/* add styles for separator */
+.separator-line {
+    margin-top: 24px;
+    margin-bottom: 24px;
+    width: 100%;
+    height: 1px;
+    background-color: var(--text-color);
+}
+
+@media(width>=768px) {
+    .separator-line {
+        margin-top: 45px;
+        margin-bottom: 45px;
+    }
+}
