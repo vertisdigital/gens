@@ -1,18 +1,18 @@
 const imagesHeight={
     lg:{
-        desktop: { height: "451px", width:"735px"},
-        tablet: { height: "301px", width:"490px"},
+        desktop: { height: "451px", width:"100%"},
+        tablet: { height: "301px", width:"100%"},
     },
     mobile:{
-        width:"342px",
+        width:"100%",
         height:"206px"
     },
     tablet:{
-        width:"233px",
+        width:"100%",
         height:"136px"
     },
     desktop:{
-        width:"349px",
+        width:"100%",
         height:"206px"
     }
 }
@@ -24,7 +24,7 @@ function updateImagesProperty(block){
             img.style.width = imagesHeight.mobile.width
             img.style.height = imagesHeight.mobile.height
         })
-    } else {
+    } else if(window.innerWidth < 993){
         const mediaGallery = block.querySelectorAll('img')
         mediaGallery.forEach(img=>{
             img.style.width = imagesHeight.tablet.width
@@ -62,17 +62,21 @@ export default function decorate(block) {
         mediagallerySection.append(img)
     }); 
 
-    const firstRows = block.querySelectorAll('.mg-two-one-row')
-    const secRows = block.querySelectorAll('.mg-one-two-row')
-    const lastRows = block.querySelectorAll('.mg-one-one-one-row')
+    let firstRows, secRows, lastRows = null;
+    const checkElementExist= Array.from(block.classList)
     
-    lastRows.forEach(lastRow => { lastRow.classList.add('last-row') })
+    firstRows=checkElementExist.includes('mg-two-one-row')
+    secRows=checkElementExist.includes('mg-one-two-row')
+    lastRows=checkElementExist.includes('mg-one-one-one-row')
 
-    firstRows.forEach(firstRow=>{
+    if(lastRows){
+        block.classList.add('last-row')
+    }
+
+    if(firstRows){
         const wrapperDiv = document.createElement('div');
         wrapperDiv.classList.add('wrapped-container');
-        Array.from(firstRow.children).forEach((element, index) => {
-        console.log('index: ', index);
+        Array.from(block.children).forEach((element, index) => {
             if (index < 2) {
                 wrapperDiv.appendChild(element.cloneNode(true));
                 element.remove()
@@ -86,14 +90,14 @@ export default function decorate(block) {
             }
 
         })
-        firstRow.prepend(wrapperDiv)
-    })
+        block.prepend(wrapperDiv)
+    }
 
-    secRows.forEach(secRow=>{
+    if(secRows){
         const wrapperDiv = document.createElement('div');
         wrapperDiv.classList.add('wrapped-container');
     
-        Array.from(secRow.children).forEach((element, index) => {
+        Array.from(block.children).forEach((element, index) => {
             if (index > 0) {
                 wrapperDiv.appendChild(element.cloneNode(true));
                 element.remove()
@@ -107,9 +111,8 @@ export default function decorate(block) {
             }
         })
     
-        secRow.append(wrapperDiv)
-    })
-
+        block.append(wrapperDiv)
+    }
     handleLayoutOnResize(block)
     
 }
