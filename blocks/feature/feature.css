@@ -149,8 +149,8 @@
   padding: 0;
   margin: 0;
   color: var(--text-color);
-  font-size: var(--font-size-xs);
-  font-weight: 400;
+  font-size: var(--font-size-xxs);
+  font-weight: 700;
   line-height: 24px;
 }
 
@@ -249,12 +249,10 @@ color: var(--body-text-color);
     column-gap: 15px;
     margin-bottom: 24px;
   }
-
   .about-us-stats .about-us-right-content .statistic{
     font-size: 64px;
     line-height: 64px;
   }
-
   .about-us-stats .about-us-right-content>div:nth-child(2) p{
     font-size: var(--font-size-xs);
     font-weight: 400;

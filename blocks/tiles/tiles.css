@@ -141,7 +141,7 @@ a:any-link.factsheet-button {
   }
 
   .tiles-container .learn-button {
-    font-size: var(--font-size-xs);
+    font-size: var(--font-size-xxs);
     right: 20px;
   }
 }

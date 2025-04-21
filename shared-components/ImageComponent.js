@@ -57,12 +57,12 @@ export default function ImageComponent({
 
   return `
     <picture>
-      <source media="(max-width: 767px)" 
-              srcset="${breakpoints.mobile.src}/as/${asImageName ? asImageName : 'img.webp'}${breakpoints.mobile.smartCrop ? `?smartcrop=${breakpoints.mobile.smartCrop}` : ''}">
-      <source media="(max-width: 991px)" 
+      <source media="(min-width: 993px)" 
+              srcset="${breakpoints.desktop.src}/as/${asImageName ? asImageName : 'img.webp'}${breakpoints.desktop.smartCrop ? `?smartcrop=${breakpoints.desktop.smartCrop}` : ''}">
+      <source media="(min-width: 768px)" 
               srcset="${breakpoints.tablet.src}/as/${asImageName ? asImageName : 'img.webp'}${breakpoints.tablet.smartCrop ? `?smartcrop=${breakpoints.tablet.smartCrop}` : ''}">
-      <source media="(max-width: 1920px)" 
-              srcset="${breakpoints.desktop.src}/as/${asImageName ? asImageName : 'img.webp'}${breakpoints.desktop.smartCrop ? `?smartcrop=${breakpoints.desktop.smartCrop}` : ''}">             
+      <source media="(min-width: 320px)" 
+              srcset="${breakpoints.mobile.src}/as/${asImageName ? asImageName : 'img.webp'}${breakpoints.mobile.smartCrop ? `?smartcrop=${breakpoints.mobile.smartCrop}` : ''}">             
       <img src="${src}" 
            alt="${alt}" 
            title="${alt}"
@@ -70,7 +70,7 @@ export default function ImageComponent({
            ${lazy ? 'loading="lazy"' : ''}
            width="${updatedBreakpoints.desktop.imgWidth}"
            height="${updatedBreakpoints.desktop.imgHeight}"
-           />
+      />
     </picture>
   `;
 }

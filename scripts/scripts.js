@@ -15,6 +15,7 @@ import {
 } from './aem.js';
 import processTabs from './autoblocks.js';
 import { redirectRouter } from '../shared-components/Utility.js';
+import { errorLogger as logger} from './logger.js';
 
 
 /**
@@ -71,7 +72,7 @@ function buildAutoBlocks(main) {
   try {
     processTabs(main);
   } catch (error) {
-    console.error('Auto Blocking failed', error);
+    logger.error(`Auto Blocking failed, ${error}`);
   }
 }
 
@@ -110,7 +111,7 @@ async function loadEager(doc) {
       loadFonts();
     }
   } catch (e) {
-    // do nothing
+    logger.error(e);
   }
 }
 
