@@ -1422,7 +1422,7 @@
         "label": "Title",
         "validation": {
           "maxLength": 100,
-          "customErrorMsg": "Title cannot exceed 100 characters"
+          "customErrorMsg": "Title cannot exceed 100 characters "
         }
       },
       {
