@@ -62,12 +62,11 @@ export default function decorate(block) {
         mediagallerySection.append(img)
     }); 
 
-    let firstRows, secRows, lastRows = null;
     const checkElementExist= Array.from(block.classList)
     
-    firstRows=checkElementExist.includes('mg-two-one-row')
-    secRows=checkElementExist.includes('mg-one-two-row')
-    lastRows=checkElementExist.includes('mg-one-one-one-row')
+    const firstRows=checkElementExist.includes('mg-two-one-row')
+    const secRows=checkElementExist.includes('mg-one-two-row')
+    const lastRows=checkElementExist.includes('mg-one-one-one-row')
 
     if(lastRows){
         block.classList.add('last-row')
