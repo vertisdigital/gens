@@ -199,7 +199,7 @@ color: var(--body-text-color);
 /* Responsive design */
 @media  (width >= 768px) {
   .feature-wrapper .about-us-stats{
-    margin: 56px 0 0;
+    margin: 28px 0 0;
   }
 
   .about-us-stats .about-us-left{
@@ -386,6 +386,6 @@ color: var(--body-text-color);
     height: calc(100% + 28px);
   }
   .about-us-left h2.about-us-left-heading{
-    font-size: var(--font-size-m);
+    font-size: var(--font-size-sm);
   }
 }

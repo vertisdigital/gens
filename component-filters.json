@@ -162,14 +162,16 @@
       "statistics",
       "statisticsDescription",
       "feature",
-      "herobanner"
+      "herobanner",
+      "listing"
     ]
   },
   {
     "id": "statistics",
     "components": [
       "statisticsDescription",
-      "featureItem"
+      "featureItem",
+      "listing"
     ]
   },
   {

@@ -155,7 +155,7 @@
   align-items: center;
   align-self: stretch;
   gap: 47px;
-  padding: 20px;
+  padding: 24px;
 }
 
 /* Left side: Text content (Title, Description, Read More) */
@@ -276,6 +276,9 @@
 
 /* Responsive adjustments */
 @media (width <= 991px) {
+  .hero-banner-container {
+    margin-bottom: 28px;
+  }
   /* .hero-banner-container img {
     object-fit: cover;
   } */
@@ -375,6 +378,7 @@
   }
 
   .hero-heading {
+    font-size: var(--font-size-xs);
     margin-bottom: 8px;
   }
 
@@ -427,6 +431,7 @@
   .hero-banner-container .carousel-image img {
     height: 92px;
     flex: 1 0 0;
+    object-fit: cover;
   }
 
   .navigation-arrows {
