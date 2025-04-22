@@ -216,6 +216,11 @@
 }
 
 @media(width<768px){
+    .footer .footer-child-element .row>div {
+        padding-right: 0;
+        padding-left: 0;
+    }
+
     .footer .footer-child-element .row>div:first-child{
         margin-bottom:12px
     }
@@ -228,6 +233,9 @@
     .footer .footer-logo{
         margin-bottom: 18px;
     }
+    .footer .copywrite-right {
+        padding-left: 0!important;
+    }
 
     .footer .social-icons .social-links{
         margin-bottom: 0;
@@ -239,20 +247,27 @@
     }
 
     .footer nav{
-        margin-bottom: 30px;
+        margin-bottom: 0;
     }
 
     .footer .footer-nav-title{
         font-size: var(--font-size-xs);
         font-weight: 700;
-        line-height: 24px;
+        line-height: 20px;
         color: var(--background-color);
     }
-    .footer .footer-description, .footer nav a, .footer .mt-4 .copywrite, .footer .footer-bottom-links .button-container a {
+    .footer nav a {
         font-size: var(--font-size-xxs);
         line-height: 20px;
-    }  
-
+    }
+    .footer .footer-links a {
+        margin-bottom: 12px;
+        display: block;
+    }
+    .footer .footer-description, .footer .mt-4 .copywrite, .footer .footer-bottom-links .button-container a {
+        font-size: var(--font-size-xxs);
+        line-height: 20px;
+    }
     .footer .left-section .button-container a{
         font-size: var(--font-size-xxs);
         line-height: 20px;
@@ -271,6 +286,42 @@
     .footer .mt-4 .footer-bottom-links .row [data-aue-prop="linkText"]{
         text-align: start;
 
+    }
+    .footer .links-heading {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        cursor: pointer;
+    }
+   
+    .footer .links-heading::after {
+        content: "";
+        width: 8px;
+        height: 12px;
+        background: url(../../icons/arrow-down.svg) no-repeat center;
+        margin-left: auto;
+        display: block;
+        fill: white;
+    }
+    .footer .collapsible-links .footer-links {
+        display: none;
+    }
+    .footer .footer-links:last-child a {
+        margin-bottom: 0;
+    }
+    .footer .collapsible-links.active .footer-links {
+        display: block;
+    }
+    .footer .collapsible-links.active .links-heading {
+        margin-bottom: 12px;
+    }
+    .footer .collapsible-links.active .links-heading:after {
+       transform: rotate(180deg);
+    }
+    .footer .footer-child-element.container .collapsible-links {
+        padding-top: 16px;
+        padding-bottom: 16px;
+        border-top: 1px solid var(--background-color);
     }
 }
 

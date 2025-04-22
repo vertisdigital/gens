@@ -43,6 +43,11 @@
     padding-top: 0;
 }
 
+.corporate-policies-list>div:first-child.corporate-policies-list-item .left-col h2{
+    font-size: var(--font-size-xl);
+    font-weight: 500;
+}
+
 .corporate-policies-list>div:last-child{
     padding-bottom: 0;
     border: none;
