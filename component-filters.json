@@ -31,8 +31,14 @@
       "sustainabilitygovernance",
       "corporatepolicies",
       "statistics",
-      "search",
-      "searchresults"
+      "search"
+    ]
+  },
+  {
+    "id": "search",
+    "components": [
+      "searchinput",
+      "searchtips"
     ]
   },
   {
