@@ -8,6 +8,7 @@ helix-importer-ui
 *.bak
 .idea
 .cursorrules
+.cursorrules-eds
 
 
 jira
