@@ -1,8 +1,8 @@
 import ImageComponent from '../../shared-components/ImageComponent.js';
 import Heading from '../../shared-components/Heading.js';
 import { moveInstrumentation } from '../../scripts/scripts.js';
-import SvgIcon from '../../../shared-components/SvgIcon.js';
-import stringToHTML from '../../../shared-components/Utility.js';
+import SvgIcon from '../../shared-components/SvgIcon.js';
+import stringToHTML from '../../shared-components/Utility.js';
 
 let currentIndex = [];
 const CAROUSEL_SIZE=4;
