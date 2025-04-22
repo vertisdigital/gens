@@ -43,7 +43,7 @@
 
 .statistics-container button {
     display: block;
-    font-size: var(--font-size-xs);
+    font-size: var(--font-size-xxs);
     font-weight: 700;
     line-height: 24px;
     text-decoration-line: underline;
@@ -79,7 +79,7 @@
 }
 
 .statistics .text-container {
-    font-size: var(--font-size-xs);
+    font-size: var(--font-size-xxs);
     font-weight: 400;
     line-height: 24px;
     color: var(--body-text-color);
@@ -160,7 +160,7 @@
 
 @media (width <= 1024px) {
     .statistics-wrapper .statistics.block {
-        margin-top: -46px;
+        margin-top: -90px;
     }
 
     .statistics-wrapper .statistics.block.statistics-variation{
@@ -196,13 +196,14 @@
 
 @media (width<=992px) {
     .statistics-description-wrapper {
-        padding: 40px 0;
-         margin-bottom: 40px;
+        padding: 28px 0;
+         margin-bottom: 28px;
 
     }
     
     .statistics .statistics-description-wrapper h3, .statistics .statistics-title {
         font-size: var(--font-size-l);
+        margin-bottom: 12px;
     }
 
     .statistics .statistic-item {
@@ -263,7 +264,7 @@
     }
 
     .statistics .statistic-item {
-        font-size: var(--font-size-xl);
+        font-size: var(--font-size-ml);
         line-height: 48px;
     }
 

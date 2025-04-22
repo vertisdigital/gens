@@ -6,6 +6,11 @@
     margin: 0;
   }
 
+  picture {
+    display: block;
+    line-height: 0;
+  }
+
   /* CTA section - moved up to fix specificity issue */
   [data-aue-model="linkField"], [data-gen-model="linkField"] {
     text-align: end;
@@ -66,7 +71,7 @@
   }
 
   [data-aue-model="listitem"] .row [class*="col-"], [data-gen-model="listitem"] .row [class*="col-"] {
-    padding: 36px 0 30px;
+    padding: 36px 0 36px;
   }
 
   .listing:not(.without-images) [data-gen-model="listitem"] .row > div:first-child p {

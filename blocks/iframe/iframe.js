@@ -20,16 +20,11 @@ function updateIframeHeight(iframeWrapper, endpoint) {
   if (isTablet) {
     deviceType = 'tablet';
   }
-  
+
   const endpointHeightConfig = {
     home: {
       mobile: '1850px',
       desktop: '1220px',
-    },
-    'annual-reports': {
-      mobile: '15600px',
-      tablet: '4640px',
-      desktop: '5690px',
     },
     'sustainability-reports': {
       mobile: '6680px',
@@ -41,23 +36,20 @@ function updateIframeHeight(iframeWrapper, endpoint) {
     },
     newsroom: {
       mobile: '3000px',
-      tablet: {
-        landscape: '1500px',
-        portrait: '1570px',
-      },
+      tablet: '1500px',
       desktop: '1430px',
     },
     'agm-egm': {
-      mobile: '950px',
-      desktop: '790px',
+      mobile: '1050px',
+      desktop: '880px',
     },
     'analysts-coverage': {
       mobile: '1300px',
       tablet: '1110px',
-      desktop: '1060px',
+      desktop: '1080px',
     },
     'share-quote-and-chart': {
-       mobile: '3500px',
+      mobile: '3500px',
       tablet: '1900px',
       desktop: '1850px',
     },
@@ -66,32 +58,32 @@ function updateIframeHeight(iframeWrapper, endpoint) {
       tablet: '660px',
       desktop: '600px',
     },
-    "Historic Price Lookup":{
+    "Historic Price Lookup": {
       mobile: '1850px',
       desktop: '1220px',
     },
-    "Investment Calculator":{
+    "Investment Calculator": {
       mobile: '1100px',
       desktop: '860px',
       tablet: '960px',
-      disableScroll:true
+      disableScroll: true
     },
-    "Share Quote And Chart":{
+    "Share Quote And Chart": {
       desktop: '1860px',
-      tablet:"3240px",
-      mobile:"3540px"
+      tablet: "3240px",
+      mobile: "3540px"
     },
-    "Annual Reports":{
-      mobile: '13890px',
-      tablet: '26020px',
+    "Annual Reports": {
+      mobile: '15380px',
+      tablet: '27020px',
       desktop: '5690px',
     },
-    "Sustainability Reports":{
-      mobile: '6680px',
+    "Sustainability Reports": {
+      mobile: '7180px',
       tablet: "11340px",
       desktop: '2620px',
     },
-    "investor-calendar":{
+    "investor-calendar": {
       mobile: '1020px',
       tablet: "640px",
       desktop: '640px',
@@ -121,36 +113,27 @@ function updateIframeHeight(iframeWrapper, endpoint) {
   } else {
     setElementHeight(iframeWrapper, endpointHeightConfig.default);
   }
-  
-  const iframe=iframeWrapper.querySelector('iframe')
 
-  if(endpointHeightConfig[endpoint]?.disableScroll && iframe){
-    iframe.setAttribute('scrolling','no')
+  const iframe = iframeWrapper.querySelector('iframe')
+
+  if (endpointHeightConfig[endpoint]?.disableScroll && iframe) {
+    iframe.setAttribute('scrolling', 'no')
   }
 }
 
-function getTabsEvent(){
+function getTabsEvent() {
   const tabs = document.querySelectorAll('.tab-title');
   const iframeWrappers = document.querySelectorAll('.iframe-wrapper');
-  const SHARE_QUOTE_IFRAME=0;
-  updateIframeHeight(iframeWrappers[SHARE_QUOTE_IFRAME],`${tabs[SHARE_QUOTE_IFRAME].innerHTML}`)
-  
-  tabs.forEach((tab, index) => {
-    tab.addEventListener('click', () => {
-      updateIframeHeight(iframeWrappers[index],`${tabs[index].innerHTML}`)
-    });
-  });
-}
+  const SHARE_QUOTE_IFRAME = 0;
+  if (tabs.length) {
+    updateIframeHeight(iframeWrappers[SHARE_QUOTE_IFRAME], `${tabs[SHARE_QUOTE_IFRAME].innerHTML}`)
 
-function updateIframeForTab(){
-  const tabsIframePages={
-    '/index/investors-overview/publications':true,
-    '/index/investors-overview/stock-information':true
+    tabs.forEach((tab, index) => {
+      tab.addEventListener('click', () => {
+        updateIframeHeight(iframeWrappers[index], `${tabs[index].innerHTML}`)
+      });
+    });
   }
-  const isTabIframeRoute=tabsIframePages[window.location.pathname.replace('#','')]
-   if(isTabIframeRoute){
-      getTabsEvent();
-    } 
 }
 
 export default function decorate(block) {
@@ -179,13 +162,13 @@ export default function decorate(block) {
 
   const iframeWrapper = document.querySelector('.iframe-wrapper');
   iframeWrapper.classList.add('container');
-  const endpoint = new window.URL(url).pathname.replace('/', '').replace('.rev', '');
+  const endpoint = new window.URL(url).pathname.replace('/', '').replace('.rev', '').replace('.htm', '');
   updateIframeHeight(iframeWrapper, endpoint);
-  updateIframeForTab();
-  
+  getTabsEvent();
+
   window.addEventListener('resize', () => {
     updateIframeHeight(iframeWrapper, endpoint);
-    updateIframeForTab();
+    getTabsEvent();
   });
 
 

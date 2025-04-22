@@ -58,19 +58,18 @@
   }
 
   .projectcards .project-card [data-aue-prop="image"]{
-    height: 253px;
     margin-bottom: 12px;
   }
 
   .projectcards .project-card [data-aue-prop="image"] picture{
     width: 100%;
-    height: 100%;
+    height: auto;
   }
 
   .projectcards .project-card-image {
     width: 100%;
-    height: 100%;
-    object-fit: cover;
+    height: auto;
+    aspect-ratio: 1 / 1;
   }
 
   .projectcards .project-card-content {
@@ -127,8 +126,11 @@
   }
 
   @media (width<=992px){
+    .projectcards{
+      margin: 28px 0;
+    }
     .projectcards.grey-background {
-      padding: 40px 0 44px;
+      padding: 28px 0 28px;
     }
 
     .projectcards .projectcards-header {
@@ -152,7 +154,7 @@
     
     .projectcards .projectcards-grid {
       box-sizing: border-box;
-      margin-bottom: 42px;
+      margin-bottom: 28px;
       row-gap: 24px;
       margin-left: -12px;
       margin-right: -12px;
@@ -161,22 +163,13 @@
     .projectcards .project-card {
       padding: 0 12px!important;
     }
-
     .projectcards .project-card [data-aue-prop="image"]{
-      height: 206px;
       margin-bottom: 10px;
     }
-
   
   }
 
-  @media (width <= 834px) {
-    .projectcards .project-card [data-aue-prop="image"]{
-      height: 361px;
-    }
-  }
-
-  @media (width <= 768px) {
+  @media (width < 768px) {
       .projectcards{
         margin: 24px 0;
       }
@@ -241,12 +234,6 @@
       }
     
     
-  } 
-
-  @media (width <= 640px) {
-    .projectcards .project-card [data-aue-prop="image"]{
-      height: 162px;
-    }
   }
 
   /* CERTIFICATIONS VARIATION  */
@@ -256,12 +243,12 @@
 
   .certifications .project-card [data-aue-prop="image"] {
     margin-bottom: 12px;
-    height: 122px;
     text-align: center;
     background: var(--background-color);
     display: flex;
     justify-content: center;
     align-items: center;
+    aspect-ratio: 162 / 122;
   }
 
   .certifications .project-card [data-aue-prop="image"] img,
@@ -269,9 +256,9 @@
     height: auto;
     width: auto;
     display: block;
-    object-fit: contain;
     max-width: 106px;
     max-height: 106px;
+    aspect-ratio: auto;
   }
 
   .certifications .project-card-title {
@@ -292,7 +279,7 @@
 
     .certifications .project-card [data-aue-prop="image"] {
       margin-bottom: 20px;
-      height: 230px;
+      aspect-ratio: 361 / 230;
     }
 
     .certifications .project-card-title {
@@ -317,7 +304,7 @@
 
     .certifications .project-card [data-aue-prop="image"] {
       margin-bottom: 25px;
-      height: 161px;
+      aspect-ratio: 253 / 161;
     }
 
     .certifications .project-card-title {

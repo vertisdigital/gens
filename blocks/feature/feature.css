@@ -149,8 +149,8 @@
   padding: 0;
   margin: 0;
   color: var(--text-color);
-  font-size: var(--font-size-xs);
-  font-weight: 400;
+  font-size: var(--font-size-xxs);
+  font-weight: 700;
   line-height: 24px;
 }
 
@@ -199,7 +199,7 @@ color: var(--body-text-color);
 /* Responsive design */
 @media  (width >= 768px) {
   .feature-wrapper .about-us-stats{
-    margin: 56px 0 0;
+    margin: 28px 0 0;
   }
 
   .about-us-stats .about-us-left{
@@ -249,12 +249,10 @@ color: var(--body-text-color);
     column-gap: 15px;
     margin-bottom: 24px;
   }
-
   .about-us-stats .about-us-right-content .statistic{
     font-size: 64px;
     line-height: 64px;
   }
-
   .about-us-stats .about-us-right-content>div:nth-child(2) p{
     font-size: var(--font-size-xs);
     font-weight: 400;
@@ -388,6 +386,6 @@ color: var(--body-text-color);
     height: calc(100% + 28px);
   }
   .about-us-left h2.about-us-left-heading{
-    font-size: var(--font-size-m);
+    font-size: var(--font-size-sm);
   }
 }
