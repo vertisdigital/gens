@@ -1,5 +1,6 @@
 .awardsgallery .awardsgallery-card {
-    margin-bottom: 15px;
+    margin-bottom: 44px;
+    padding: 0 9px;
 }
 
 .awardsgallery .awardsgallery-image {
@@ -7,12 +8,12 @@
     align-items: center;
     justify-content: center;
     border: 1px solid var(--light-grey);
-    height: 162px;
+    aspect-ratio: 361 / 350;
     margin-bottom: 10px;
 }
 
 .awardsgallery .awardsgallery-image img {
-    max-width: 80px;
+    max-width: 80%;
 }
 
 .awardsgallery .awardsgallery-content * {
@@ -35,26 +36,42 @@
 .awardsgallery .award-description {
     font-size: 14px;
 }
+.awardsgallery .award-description p {
+    margin-bottom: 0;   
+}
 
 .awardsgallery .awardsgallery-grid {
     justify-content: center;
+    margin-left: -9px;
+    margin-right: -9px;
 }
 
+.awardsgallery .awardsgallery-card:first-child{
+    padding-left: 9px;
+}
+
+.awardsgallery .awardsgallery-card:last-child{
+    padding-right: 9px;
+}
+.awardsgallery picture {
+    text-align: center;
+}
 
 @media (width >= 768px) {
+    .awardsgallery .awardsgallery-card {
+        margin-bottom: 70px;
+        padding: 0 12px;
+    }
     .awardsgallery .award-title {
         font-size: 18px;
     }
 
     .awardsgallery .awardsgallery-image {
         margin-bottom: 15px;
-        height: 360px;
     }
-
     .awardsgallery .awardsgallery-image img {
         max-width: 160px;
     }
-
     .awardsgallery .awardsgallery-content * {
         margin-bottom: 6px;
     }
@@ -62,11 +79,24 @@
     .awardsgallery .award-year {
         font-size: 18px;
     }
-
-    
     .awardsgallery .award-description {
         font-size: 16px;
     }
+
+    .awardsgallery .awardsgallery-grid {
+        justify-content: center;
+        margin-left: -12px;
+        margin-right: -12px;
+    }
+    
+    
+    .awardsgallery .awardsgallery-card:first-child{
+        padding-left: 12px;
+    }
+
+    .awardsgallery .awardsgallery-card:last-child{
+        padding-right: 12px;
+    } 
 }
 
 @media (width >= 993px) {
@@ -76,7 +106,7 @@
 
     .awardsgallery .awardsgallery-image {
         margin-bottom: 20px;
-        height: 350px;
+        aspect-ratio: 349 / 350;
     }
 
     .awardsgallery .awardsgallery-content * {
@@ -90,5 +120,18 @@
 
     .awardsgallery .award-title {
         font-size: 20px;
+    }
+    .awardsgallery .awardsgallery-grid {
+        justify-content: center;
+        margin-left: -18px;
+        margin-right: -18px;
+    }
+    
+    .awardsgallery .awardsgallery-card:first-child{
+        padding-left: 18px;
+    }
+
+    .awardsgallery .awardsgallery-card:last-child{
+        padding-right: 18px;
     }
 }

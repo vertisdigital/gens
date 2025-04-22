@@ -106,7 +106,7 @@ a:any-link.factsheet-button {
  
   
   .row.tiles-container .no-image-tile>div>div:first-child p {
-    font-size: var(--font-size-m);
+    font-size: var(--font-size-sm);
     line-height: 34px;
     font-weight: 500;
     margin-bottom: 8px;
@@ -152,12 +152,12 @@ a:any-link.factsheet-button {
 
   .row.tiles-container {
     row-gap: 36px;
-    margin-left: -18px;
-    margin-right: -18px;
+    margin-left: -12px;
+    margin-right: -12px;
   }
 
   .row.tiles-container > div {
-    padding: 0 18px;
+    padding: 0 12px;
   }
 }
 @media screen and (width < 992px) and (width >= 768px) {
@@ -215,6 +215,6 @@ a:any-link.factsheet-button {
   }
 
   .row.tiles-container > .image-tile > div {
-    min-height: 472px;
+    aspect-ratio: 776 / 472;
   }
 }
