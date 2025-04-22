@@ -67,12 +67,11 @@ export default function decorate(block) {
         mediagallerySection.append(img)
     }); 
 
-    let firstRows, secRows, lastRows = null;
     const checkElementExist= Array.from(block.classList)
     
-    firstRows=checkElementExist.includes('mg-two-one-row')
-    secRows=checkElementExist.includes('mg-one-two-row')
-    lastRows=checkElementExist.includes('mg-one-one-one-row')
+    const firstRows=checkElementExist.includes('mg-two-one-row')
+    const secRows=checkElementExist.includes('mg-one-two-row')
+    const lastRows=checkElementExist.includes('mg-one-one-one-row')
 
     if(lastRows){
         block.classList.add('last-row')
@@ -159,11 +158,11 @@ export default function decorate(block) {
 
         if (!img.hasAttribute('data-listener-added')) {
             img.addEventListener('click', () => {
-                const modal = document.querySelector('.media-gallery-modal')
-                modal.style.visibility = 'visible'
+                const modalElement = document.querySelector('.media-gallery-modal')
+                modalElement.style.visibility = 'visible'
                 document.body.style.position='relative'
-                const modalElement = document.querySelector('.media-gallery-modal-body')
-                const rect = modalElement.getBoundingClientRect();
+                const modalBodyElement = document.querySelector('.media-gallery-modal-body')
+                const rect = modalBodyElement.getBoundingClientRect();
                 const scrollTop =  document.documentElement.scrollTop;
                 const scrollLeft = document.documentElement.scrollLeft;
                 document.querySelector('.media-gallery-body-img').src=img.src
