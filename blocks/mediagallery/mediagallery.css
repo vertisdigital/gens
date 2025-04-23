@@ -124,6 +124,10 @@
     width: 100%;
 }
 
+.media-gallery-images{
+    cursor: pointer;
+}
+
 @media (width <=992px) {
     .ml {
         margin-left: 23px;
