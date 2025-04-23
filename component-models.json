@@ -388,6 +388,23 @@
     "id": "feature",
     "fields": [
       {
+        "component": "multiselect",
+        "name": "classes",
+        "value": "",
+        "label": "Style",
+        "valueType": "string",
+        "options": [
+          {
+            "name": "Default",
+            "value": ""
+          },
+          {
+            "name": "border-bottom",
+            "value": "border-bottom"
+          }
+        ]
+      },
+      {
         "component": "text",
         "name": "title",
         "label": "Section Name",
@@ -423,24 +440,7 @@
   },
   {
     "id": "featureItem",
-    "fields": [
-      {
-        "component": "multiselect",
-        "name": "classes",
-        "value": "",
-        "label": "Style",
-        "valueType": "string",
-        "options": [
-          {
-            "name": "Default",
-            "value": ""
-          },
-          {
-            "name": "border-bottom",
-            "value": "border-bottom"
-          }
-        ]
-      },
+    "fields": [      
       {
         "component": "custom-asset-namespace:custom-asset",
         "valueType": "string",
