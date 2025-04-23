@@ -196,6 +196,20 @@ color: var(--body-text-color);
   z-index: -1;
 }
 
+.feature.border-bottom .about-us-stats .about-us-right-content {
+  border-top: 1px solid var(--text-color);
+  padding-top: 16px;
+}
+
+.feature.border-bottom .about-us-stats .about-us-right-content:first-child {
+  border-top: none;
+}
+
+.feature.border-bottom .about-us-stats .about-us-right-content p {
+  font-weight: 400;
+  color: var(--body-text-color);
+}
+
 /* Responsive design */
 @media  (width >= 768px) {
   .feature-wrapper .about-us-stats{
