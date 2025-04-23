@@ -352,6 +352,7 @@ export default async function decorate(block) {
           columnsContainer.appendChild(col);
         });
         mainContainer.appendChild(columnsContainer);
+        mainContainer.insertBefore(logoWrapper, mainContainer.firstChild)
       }
 
       // Re-append bottom section after layout changes
