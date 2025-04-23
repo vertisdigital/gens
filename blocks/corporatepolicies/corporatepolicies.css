@@ -43,6 +43,13 @@
     padding-top: 0;
 }
 
+.corporate-policies-list-item .left-col h2{
+    font-size: var(--font-size-m);
+    font-weight: 500;
+    line-height: 50px;
+    color: var(--text-color);
+}
+
 .corporate-policies-list>div:first-child.corporate-policies-list-item .left-col h2{
     font-size: var(--font-size-xl);
     font-weight: 500;
@@ -58,12 +65,7 @@
     border-bottom: none;
 }
 
-.corporate-policies-list-item .left-col h2{
-    font-size: var(--font-size-m);
-    font-weight: 500;
-    line-height: 50px;
-    color: var(--text-color);
-}
+
 
 .corporate-policies-list-item .right-col > div:first-child {
     font-size: var(--font-size-xs);
