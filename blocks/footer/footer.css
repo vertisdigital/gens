@@ -162,6 +162,7 @@
     
     .footer .footer-logo{
         margin-bottom: 20px;
+        margin-left: 18px;
     }
 
     .footer .social-icons .social-links{
@@ -232,6 +233,7 @@
     
     .footer .footer-logo{
         margin-bottom: 18px;
+        margin-left: 0px;
     }
     .footer .copywrite-right {
         padding-left: 0!important;
