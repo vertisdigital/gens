@@ -40,7 +40,7 @@ function createTabStructure(main) {
  * @returns {number} Index of active tab or -1 if none found
  */
 function findActiveTabIndex(tabElements) {
-  for (let i = 0; i < tabElements.length; i++) {
+  for (let i = 0; i < tabElements.length; i += 1) {
     if (tabElements[i].getAttribute('data-active') === 'true') {
       return i;
     }
