@@ -1,6 +1,23 @@
 import { getMetadata } from '../../scripts/aem.js';
 import { loadFragment } from '../fragment/fragment.js';
 import SVGIcon from '../../shared-components/SvgIcon.js';
+import { isMobile } from '../../shared-components/Utility.js';
+
+const handleAccordionToggle = (e, keyboardTrigger = false) => {
+  if (e?.target?.classList?.contains('links-heading') || e?.target?.classList?.contains('footer-nav-title') || (keyboardTrigger && e?.target?.classList?.contains('collapsible-links'))) {
+    const currentActive = document.querySelector('.collapsible-links.active');
+    if (currentActive !== e.currentTarget) {
+      currentActive?.classList?.remove('active');
+      currentActive?.setAttribute('aria-expanded', 'false');
+      e.currentTarget.classList.add('active');
+      e.currentTarget?.setAttribute('aria-expanded', 'true');
+      return;
+    }
+    const isActive = e.currentTarget.classList.contains('active');
+    e.currentTarget.classList.toggle('active');
+    e.currentTarget?.setAttribute('aria-expanded', !isActive);
+  }
+};
 
 /**
  * loads and decorates the footer
@@ -134,7 +151,16 @@ export default async function decorate(block) {
     // Create columns dynamically based on navigation sections
     const navColumns = navigationLinks.map(() => {
       const col = document.createElement('div');
-      col.className = 'col-xl-4 col-md-3 col-sm-4';
+      col.className = 'col-xl-4 col-md-3 col-sm-4 collapsible-links';
+      if (isMobile()) {
+        col.setAttribute('tabindex', '0');
+        col.addEventListener('click', (e) => handleAccordionToggle(e));
+        col.addEventListener('keydown', (e) => {
+          if (e.key === 'Enter' || e.key === ' ') {
+            handleAccordionToggle(e, true);
+          }
+        });
+      }
       return col;
     });
 
@@ -144,28 +170,36 @@ export default async function decorate(block) {
         const nav = document.createElement('nav');
 
         // Get section title - first div contains the title
-        const titleContainer = linkSection.children[1];
+        const titleContainer = isMobile() ? linkSection.children[0] : linkSection.children[1];
         const titleElement = titleContainer?.querySelector('p');
         const titleTarget = linkSection.children[2]?.textContent?.trim() || '_self';
         if (titleElement) {
           // Create heading element for title
-          const heading = titleElement.querySelector('a');
-          heading.className = 'footer-nav-title';
-          heading.target = titleTarget;
-          nav.appendChild(heading);
+          const headingContainer = document.createElement('div');
+          headingContainer.className = 'links-heading';
+          let headingElement = null;
+          if (isMobile()) {
+            headingElement = document.createElement('h2');
+            headingElement.textContent = titleElement?.textContent || '';
+          } else {
+            headingElement = titleElement.querySelector('a');
+            headingElement.textContent = linkSection.children[0]?.textContent;
+            headingElement.target = titleTarget;
+          }
+          headingElement.className = 'footer-nav-title';
+          headingContainer.appendChild(headingElement);
+          nav.appendChild(headingContainer);
           nav.setAttribute('aria-label', titleElement.textContent);
         }
 
         // Get all link items - every div with a button-container
-        const linkItems = Array.from(linkSection.children).filter(div =>
-          div.querySelector('.button-container')
-        );
+        const linkItems = Array.from(linkSection.children).filter((div) => div.querySelector('.button-container'));
 
         if (linkItems.length > 0) {
           linkItems.forEach((linkItem) => {
             const linkContainer = document.createElement('div');
             linkContainer.setAttribute('data-link-model', 'links');
-
+            linkContainer.className = 'footer-links';
             // Get the button container and link
             const buttonContainer = linkItem.querySelector('.button-container');
             const anchor = buttonContainer?.querySelector('a');
@@ -244,9 +278,7 @@ export default async function decorate(block) {
       // Process link fields - get all divs containing button-container
       const linksBlock = bottomContent.querySelector('.links.block');
       if (linksBlock) {
-        const linkItems = Array.from(linksBlock.children).filter(div =>
-          div.querySelector('.button-container')
-        );
+        const linkItems = Array.from(linksBlock.children).filter((div) => div.querySelector('.button-container'));
 
         linkItems.forEach((linkItem) => {
           // Create link field container

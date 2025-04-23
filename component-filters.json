@@ -30,7 +30,8 @@
       "awardsgallery",
       "sustainabilitygovernance",
       "corporatepolicies",
-      "statistics"
+      "statistics",
+      "separator"
     ]
   },
   {
@@ -44,7 +45,8 @@
       "loadmore",
       "boardofdirectors",
       "iframe",
-      "corporatepolicies"
+      "corporatepolicies",
+      "separator"
     ]
   },
   {
@@ -75,7 +77,8 @@
       "textsection",
       "textmediablock",
       "linkField",
-      "projectslist"
+      "projectslist",
+      "separator"
     ]
   },
   {
@@ -163,7 +166,8 @@
       "statisticsDescription",
       "feature",
       "herobanner",
-      "listing"
+      "listing",
+      "separator"
     ]
   },
   {
