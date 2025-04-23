@@ -2102,6 +2102,28 @@
     ]
   },
   {
+    "id": "search",
+    "fields": [
+      {
+        "component": "select",
+        "name": "classes",
+        "value": "",
+        "label": "Style Options",
+        "valueType": "string",
+        "options": [
+          {
+            "name": "Default",
+            "value": ""
+          },
+          {
+            "name": "Header Search",
+            "value": "header-search"
+          }
+        ]
+      }
+    ]
+  },
+  {
     "id": "searchinput",
     "fields": [
       {
