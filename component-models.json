@@ -425,6 +425,23 @@
     "id": "featureItem",
     "fields": [
       {
+        "component": "multiselect",
+        "name": "classes",
+        "value": "",
+        "label": "Style",
+        "valueType": "string",
+        "options": [
+          {
+            "name": "Default",
+            "value": ""
+          },
+          {
+            "name": "border-bottom",
+            "value": "border-bottom"
+          }
+        ]
+      },
+      {
         "component": "custom-asset-namespace:custom-asset",
         "valueType": "string",
         "name": "feature-icon",
