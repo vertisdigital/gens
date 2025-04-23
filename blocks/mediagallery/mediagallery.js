@@ -1,5 +1,6 @@
 import SvgIcon from '../../shared-components/SvgIcon.js';
 import stringToHTML from '../../shared-components/Utility.js';
+import ImageComponent from "../../shared-components/ImageComponent.js";
 
 const imagesHeight={
     lg:{
@@ -95,8 +96,30 @@ export default function decorate(block) {
         img.setAttribute('data-listener-date', imageDetails[2].innerText)
 
         const mediagallerySection = link.parentElement.parentElement.parentElement;
+
+        const picture = ImageComponent({
+            src: imageUrl,
+            alt: link.title || 'Gallery Image',
+            className: 'director-card',
+            breakpoints: {
+                mobile: {
+                    src: `${imageUrl}`,
+                    height:imagesHeight.mobile.height
+                },
+                tablet: {
+                    src: `${imageUrl}`,
+                    height: imagesHeight.tablet.height
+                },
+                desktop: {
+                    src: `${imageUrl}`,
+                    height: imagesHeight.desktop.height
+                },
+            },
+            lazy: true,
+        });
+
         mediagallerySection.innerHTML=""
-        mediagallerySection.append(img)
+        mediagallerySection.append(stringToHTML(picture))
     }); 
 
     const checkElementExist= Array.from(block.classList)

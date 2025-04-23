@@ -5,6 +5,7 @@
 
 .mediagallery {
     display: flex;
+    justify-content: center;
 }
 
 .wrapped-container {
@@ -15,7 +16,6 @@
 
 .right-img {
     display: flex;
-    flex: 3;
 }
 
 .right-img img {
