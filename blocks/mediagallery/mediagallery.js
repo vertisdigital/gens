@@ -82,25 +82,14 @@ export default function decorate(block) {
     galleryLinks.forEach(link => {
         const imageUrl = link.href;
 
-        const img = document.createElement('img');
-        img.src = imageUrl;
-        img.alt = link.title || 'Gallery Image';
-        img.style.width = imagesHeight.desktop.width
-        img.style.height=imagesHeight.desktop.height
-        img.style.display = "block"
-        img.style.cursor="pointer"
-        img.classList.add('media-gallery-images')
         const imageDetails = link.parentElement.parentElement.parentElement.querySelectorAll('div')
-        
-        img.setAttribute('data-listener-title', imageDetails[1].innerText)
-        img.setAttribute('data-listener-date', imageDetails[2].innerText)
 
         const mediagallerySection = link.parentElement.parentElement.parentElement;
 
         const picture = ImageComponent({
             src: imageUrl,
             alt: link.title || 'Gallery Image',
-            className: 'director-card',
+            className: 'media-gallery-images',
             breakpoints: {
                 mobile: {
                     src: `${imageUrl}`,
@@ -119,7 +108,11 @@ export default function decorate(block) {
         });
 
         mediagallerySection.innerHTML=""
-        mediagallerySection.append(stringToHTML(picture))
+        const parsedImg = stringToHTML(picture)
+        const img = parsedImg.querySelector('img')
+        img.setAttribute('data-listener-title', imageDetails[1].innerText)
+        img.setAttribute('data-listener-date', imageDetails[2].innerText)
+        mediagallerySection.append(parsedImg)
     }); 
 
     const checkElementExist= Array.from(block.classList)
