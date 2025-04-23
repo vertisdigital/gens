@@ -58,6 +58,7 @@
   .search-input-wrapper .input-wrapper{
     width: 100%;
     position: relative;
+    /* margin: 24px 0; */
   }
   .search-input-wrapper .search-input{
     width: 100%;
@@ -136,14 +137,20 @@
 
     .search-result-count{
       display: none;
+
     }
 
     .search-result-count.active{
       display: block;
+      color: var(--body-text-color);
+      font-size: var(--font-size-xs);
+      font-weight: 400;
+      line-height: 28px; 
     }
 
     .header-search .search-result-count{
       display: none;
+      
     }
 
 
@@ -164,9 +171,7 @@
     color: var(--primary-gold);
   }
 
-  .search-results-wrapper{
-  margin-top: 100px;
-  }
+  
   .header-search .search-results-wrapper{
     display: none;
   }
@@ -218,6 +223,7 @@
     padding: 36px;
     background: var(--soft-pearl);
     border: 1px solid var(--soft-ivory);
+    margin-top: 32px;
   }
   .search-results-wrapper .search-tips h2{
     color: var(--text-color);
@@ -251,4 +257,24 @@
   .highlight{
     color: var(--primary-gold);
     font-weight: 900;
+  }
+
+  .pagination-wrapper{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 40px;
+    color: var(--text-color);
+    font-size: var(--font-size-xs);
+    font-style: normal;
+    font-weight: 400;
+  }
+  .pagination-wrapper button{
+    background: none;
+  }
+  .pagination-wrapper button .arrow-icon{
+    color:var(--primary-gold)
+  }
+  .pagination-wrapper button:disabled .arrow-icon path{
+    fill: var(--neutral-color);
   }
