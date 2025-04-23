@@ -152,19 +152,6 @@
     "id": "tabs",
     "fields": [
       {
-        "component": "multiselect",
-        "name": "classes",
-        "value": "",
-        "label": "Style Classes",
-        "valueType": "string",
-        "options": [
-          {
-            "name": "Tab",
-            "value": "tab"
-          }
-        ]
-      },
-      {
         "component": "text",
         "name": "tabtitle",
         "label": "Tab Title",
