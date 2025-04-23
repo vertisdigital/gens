@@ -210,6 +210,12 @@ color: var(--body-text-color);
   color: var(--body-text-color);
 }
 
+.feature.statistic-number .about-us-stats .about-us-right-content .statistic p {
+  font-size: var(--font-size-l);
+  line-height: 42px;
+  font-weight: 500;
+}
+
 /* Responsive design */
 @media  (width >= 768px) {
   .feature-wrapper .about-us-stats{
@@ -367,6 +373,10 @@ color: var(--body-text-color);
   .about-us-stats .about-us-right-content.text-container{
     padding-top: 20px;
     margin-bottom: 36px;
+  }
+  .feature.statistic-number .about-us-stats .about-us-right-content .statistic p {
+    font-size: var(--font-size-xl);
+    line-height: 50px;
   }
 }
 @media (width <= 1023px) {
