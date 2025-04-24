@@ -39,6 +39,12 @@ function updateImagesProperty(block){
             img.style.height=imagesHeight.lg.tablet.height
             img.style.width = imagesHeight.lg.tablet.width
         })
+    }else{
+        const images = block.querySelectorAll('img')
+        images.forEach(img => {
+            img.style.width = imagesHeight.desktop.width
+            img.style.height = imagesHeight.desktop.height
+        })
     }
 }
 

@@ -5,7 +5,7 @@
 
 .mediagallery {
     display: flex;
-    justify-content: center;
+    line-height: 0 !important;
 }
 
 .wrapped-container {
@@ -153,11 +153,20 @@
     .media-gallery-body-img {
         height: 424px;
     }
+    
+    .mg-one-one-one-row{
+        width: 100% !important;
+    }
+
+    .mediagallery{
+        width: 210px;
+    }
 }
 
 @media (width <=640px) {
     .mediagallery {
         display: block;
+        width: 100%;
     }
 
     .ml {

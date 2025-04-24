@@ -1,12 +1,22 @@
 export default function decorate(block) {
   const [loadmoreEle, itemCount] = block.children;
+  console.log('itemCount: ', itemCount);
   let maxItems = Number.parseInt(itemCount?.textContent.trim() || "8", 10);
+  console.log('maxItems: ', maxItems);
   const loadmoreText = loadmoreEle?.textContent.trim() || "Load More";
 
   if (Number.isNaN(maxItems)) {
     maxItems = 8;
   }
-  const items = block.closest(".section").querySelectorAll(".historymilestones-wrapper");
+  const closestElement=block.closest(".section")
+  const historyMileStone=closestElement.querySelectorAll(".historymilestones-wrapper")
+  const mediagallery=closestElement.querySelectorAll(".mediagallery-wrapper")
+  let items = historyMileStone
+  if(mediagallery.length){
+    items = mediagallery;
+    maxItems=3;
+  }
+
   if (maxItems > 0 && items.length > maxItems) {
     let activeItems = maxItems;
 
@@ -55,3 +65,4 @@ export default function decorate(block) {
     block.style.display = "none";
   }
 }
+
