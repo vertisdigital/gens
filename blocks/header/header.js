@@ -7,6 +7,34 @@ import stringToHtml from '../../shared-components/Utility.js';
 let ticking = false;
 let isHeaderFixed = false;
 
+/**
+ * Updates header state based on scroll position
+ * @param {Element} header Header element
+ */
+function updateHeaderState(header, isClicked = false, clickedFrom = '') {
+  const scrollPosition = window.scrollY;
+  const defaultLogo = header.querySelector('.default-logo');
+  const scrollLogo = header.querySelector('.scroll-logo');
+  const isMegaMenuOpen = header.querySelector('.secondary-nav.active')
+  const headerSection = document.querySelector('.header')
+
+  if (defaultLogo && scrollLogo) {
+    if ((scrollPosition > 0 && !isHeaderFixed) || isClicked) {
+      headerSection.classList.add('fixed-header');
+      defaultLogo.style.display = 'none';
+      scrollLogo.style.display = 'block';
+      isHeaderFixed = true;
+    } else if (scrollPosition === 0 && isHeaderFixed) {
+      if (window.innerWidth > 992 && clickedFrom === '' && isMegaMenuOpen) {
+        return;
+      }
+      headerSection.classList.remove('fixed-header');
+      defaultLogo.style.display = 'block';
+      scrollLogo.style.display = 'none';
+      isHeaderFixed = false;
+    }
+  }
+}
 
 /**
  * Sets AEM data attributes
