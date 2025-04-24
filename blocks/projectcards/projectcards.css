@@ -160,7 +160,7 @@
     flex: 1;
     min-width: 100%;
     padding: 0;
-	  height: max-content;
+    height: max-content;
   }
 
   @media (width<=992px){
@@ -308,7 +308,6 @@
   .certifications .project-card [data-aue-prop="image"] {
     margin-bottom: 12px;
     text-align: center;
-    background: var(--background-color);
     display: flex;
     justify-content: center;
     align-items: center;
