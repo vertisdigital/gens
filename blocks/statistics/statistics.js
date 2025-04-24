@@ -52,7 +52,7 @@ export default function decorate(block) {
 
   if (isStatisDesc) {
     // processing the statistics description block
-    const statisticBlockDescription = blockChilden[2];
+    const statisticBlockDescription = blockChilden[3];
 
     if (
       statisticBlockDescription
