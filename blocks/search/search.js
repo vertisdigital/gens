@@ -39,6 +39,7 @@ export default function decorate(block) {
   dropDownCloseBtn.addEventListener('click', (e) => {
     e.stopPropagation();
     document.querySelector('.secondary-nav')?.classList.remove('active');
+    document.querySelector('.header .search-wrapper')?.classList.remove('active');
   });
 
   searchHeadingWrapper.append(searchHeading, dropDownCloseBtn);
@@ -56,15 +57,14 @@ export default function decorate(block) {
   searchInput.placeholder = inputPlaceholder;
   searchInput.className = 'search-input';
 
-  const clearBtn = stringToHTML(SvgIcon({ name: 'close', className: 'close-icon', size: 18 }));
+  const clearBtn = document.createElement('div');
+  clearBtn.className = 'clear-btn-wrapper';
+  const clearBtnIcon = stringToHTML(SvgIcon({ name: 'close', className: 'close-icon', size: 18 }));
+  const clearBtnText = document.createElement('span');
+  clearBtnText.className = 'clear-btn-text';
+  clearBtnText.textContent = 'Clear';
+  clearBtn.append(clearBtnIcon, clearBtnText);
 
-//   const clearBtn =  document.createElement('div');
-//     clearBtn.className = 'clear-btn-wrapper';
-//   const clearBtnIcon = stringToHTML(SvgIcon({ name: 'close', className: 'close-icon', size: 18 }));
-//   const clearBtnText = document.createElement('span');
-//     clearBtnText.className = 'clear-btn-text';
-//     clearBtnText.textContent = 'Clear';
-//     clearBtn.append(clearBtnIcon, clearBtnText);
   clearBtn.addEventListener('click', () => {
     searchInput.value = '';
     searchResultsWrapper.classList.remove('active');
@@ -79,6 +79,7 @@ export default function decorate(block) {
     if (query.length > 3) {
       window.location.href = `/searchresults?query=${encodeURIComponent(query)}`;
     }
+    searchInput.value = '';
   });
 
   inputWrapper.append(inputSearchIcon, searchInput, clearBtn);
@@ -112,14 +113,12 @@ export default function decorate(block) {
 
   const highlightMatch = (text, keyword) => {
     const regex = new RegExp(`(${keyword})`, 'gi');
-    return text.replace(regex, `<span class="highlight">$1</span>`);
+    return text.replace(regex, '<span class="highlight">$1</span>');
   };
 
   const renderResults = (query, page = 1) => {
     const itemsPerPage = 2;
-    const results = searchData.data.filter(item =>
-      item.description.toLowerCase().includes(query.toLowerCase())
-    );
+    const results = searchData.data.filter((item) => item.fullContent.toLowerCase().includes(query.toLowerCase()));
 
     const start = (page - 1) * itemsPerPage;
     const paginatedResults = results.slice(start, start + itemsPerPage);
@@ -130,12 +129,12 @@ export default function decorate(block) {
       searchResultCount.classList.add('active');
       searchResultCount.innerHTML = `${results.length} results found for <span>'${query}'</span>`;
 
-      paginatedResults.forEach(item => {
+      paginatedResults.forEach((item) => {
         const div = document.createElement('div');
         div.className = 'search-results-item';
         div.innerHTML = `
           <a class="title" href="${item.path}">${highlightMatch(item.title, query)}</a>
-          <div class="description">${highlightMatch(item.heroBannerAllDescriptions, query)}</div>
+          <div class="description">${highlightMatch(item.description, query)}</div>
         `;
         searchResults.appendChild(div);
       });
@@ -181,9 +180,18 @@ export default function decorate(block) {
     } else {
       searchResults.innerHTML = '';
       paginationWrapper.innerHTML = '';
+      searchResultsWrapper.classList.remove('active');
       clearBtn.classList.remove('active');
       searchResultCount.classList.remove('active');
     }
+  };
+
+  const debounce = (func, delay) => {
+    let timeout;
+    return (...args) => {
+      clearTimeout(timeout);
+      timeout = setTimeout(() => func.apply(this, args), delay);
+    };
   };
 
   const handleInput = () => {
@@ -191,7 +199,7 @@ export default function decorate(block) {
     updateSearch(query);
   };
 
-  searchInput.addEventListener('input', handleInput);
+  searchInput.addEventListener('input', debounce(handleInput, 300));
 
   const handleQueryOnLoad = () => {
     const params = new URLSearchParams(window.location.search);
