@@ -130,7 +130,7 @@
     position: relative;
     width: 100%;
     overflow: hidden;
-    text-align: center;
+    text-align: left;
   }
 
   .carousel-container {
@@ -212,7 +212,7 @@
 
   @media (width <= 834px) {
     .projectcards .project-card [data-aue-prop="image"]{
-      height: 361px;
+      height: auto;
     }
 	.button-group{
 		gap: 32px;
