@@ -32,7 +32,7 @@
     font-weight: 400;
     line-height: 24px;
     color: var(--body-text-color);
-    padding-bottom: 80px;
+    padding-bottom: 60px;
     margin-bottom: 50px;
 }
 
@@ -111,7 +111,7 @@
     content: '';
     background: var(--background-color);
     position: absolute;
-    inset: -70px 0 0;
+    inset: -50px 0 0;
     width: 100%;
     max-width: 1280px;
     margin: 0 auto;
@@ -186,20 +186,18 @@
     
 
     .herobanner-container .statistics-wrapper:nth-child(2) .statistics.block::before {
-        top: -22px;
+        top: 0;
     }
 
     .herobanner-container .statistics-wrapper:nth-child(2) .statistics.block.statistics-variation::before {
         top: 0;
     }
-
-
   
 }
 
 @media (width<=992px) {
     .statistics-description-wrapper {
-        padding: 28px 0 65px;
+        padding: 28px 0 32px;
          margin-bottom: 28px;
     }
     
@@ -245,7 +243,7 @@
 
 @media (width<768px) {
     .statistics-description-wrapper {
-        padding: 28px 0;
+        padding: 24px 0;
         margin-bottom: 28px;
     }
 
