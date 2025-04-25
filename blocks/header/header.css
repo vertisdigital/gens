@@ -1201,3 +1201,35 @@ header .header{
     padding-right: 32px;
   }
 }
+
+/* Search */
+.header .search-wrapper{
+  color: var(--background-color);
+  position: relative;
+  cursor: pointer;
+}
+.header .search-wrapper::before{
+  content: '';
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: var(--primary-gold);
+  height: 2px;
+  display: none;
+}
+
+.header .search-wrapper.active::before{
+  display: block;
+}
+
+.header .search-wrapper .icon-wrapper svg path{
+  fill: var(--background-color);
+}
+.header.fixed-header .search-wrapper .icon-wrapper svg path{
+  fill: var(--text-color);
+}
+.header .search-wrapper.active .icon-wrapper svg path{
+  fill: var(--primary-gold);
+}
+

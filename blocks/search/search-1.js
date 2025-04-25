@@ -2,200 +2,216 @@ import Heading from '../../shared-components/Heading.js';
 import SvgIcon from '../../shared-components/SvgIcon.js';
 import stringToHTML from '../../shared-components/Utility.js';
 
-/**
- * Loads and decorates the Search Results block.
- * @param {Element} block The searchresult block element
- */
 export default function decorate(block) {
+  const blockchildren = [...block.children];
+  const searchInputDetails = blockchildren[0] ? [...blockchildren[0].children] : [];
+  const searchResultsDetails = blockchildren[1] ? [...blockchildren[1].children] : [];
 
-    var blockchildren = [...block.children];
-    if(blockchildren.length > 0) {
-    var searchInputDetails  = [...blockchildren[0].children]
-    var searchResultsDetails  = [...blockchildren[1].children]
+  let searchData = {};
+  const fetchSearchData = async () => {
+    try {
+      const response = await fetch('/query-index.json');
+      const data = await response.json();
+      searchData = data;
+      handleQueryOnLoad();
+    } catch (error) {
+      console.error('Error fetching data:', error);
     }
+  };
 
-    if(searchInputDetails){
-     // Fetching search Data and storing on load
-    let searchData = {};
-    var fetchSearchData = async () => {
-        try {
-        var response = await fetch('/query-index.json');
-        var data = await response.json();
-        searchData = data;
-        console.log('searchData', searchData);
+  const searchWrapper = document.createElement('div');
+  searchWrapper.classList.add('search-nav');
 
-        } catch (error) {
-        console.error('Error fetching data:', error);
-        }
-    }
-    fetchSearchData();
+  const searchInputContainer = document.createElement('div');
+  searchInputContainer.classList.add('container');
 
-    var searchWrapper = document.createElement('div');
-    searchWrapper.classList.add('search-nav');
+  const searchHeadingWrapper = document.createElement('div');
+  searchHeadingWrapper.className = 'search-heading-wrapper';
 
-    // Header search dropdown
-    // var secondaryNavSearch = document.querySelector('.secondary-nav');
+  const searchTitle = searchInputDetails[0]?.textContent.trim() || 'Search';
+  const searchHeading = stringToHTML(Heading({ level: 2, text: searchTitle, className: 'search-heading' }));
 
-    var searchInputContainer = document.createElement('div');
-    searchInputContainer.classList.add('container');
+  const dropDownCloseBtn = document.createElement('button');
+  dropDownCloseBtn.className = 'close-btn';
+  dropDownCloseBtn.setAttribute('aria-label', 'Close menu');
+  dropDownCloseBtn.innerHTML = SvgIcon({ name: 'close', className: 'close-icon', size: 18 });
 
-    var searchHeadingWrapper = document.createElement('div');
-    searchHeadingWrapper.className = 'search-heading-wrapper';
-
-    var searchTitle = searchInputDetails[0]?.textContent.trim() || 'Search';
-
-    // Generating heading
-    var searchHeading = stringToHTML(Heading({ level: 2, text: searchTitle, className: 'search-heading' }));
-
-    // Header Search dropdown closing functionality
-    var dropDownCloseBtn = document.createElement('button');
-    dropDownCloseBtn.className = 'close-btn';
-    dropDownCloseBtn.setAttribute('aria-label', 'Close menu');
-    var dropDownCloseBtnIcon = SvgIcon({ name: 'close', className: 'close-icon', size: 18 });
-    dropDownCloseBtn.innerHTML = dropDownCloseBtnIcon;
-    dropDownCloseBtn.addEventListener('click', (e) => {
+  dropDownCloseBtn.addEventListener('click', (e) => {
     e.stopPropagation();
-    });
+    document.querySelector('.secondary-nav')?.classList.remove('active');
+    document.querySelector('.header .search-wrapper')?.classList.remove('active');
+  });
 
-    // Append search heading and close button to heading wrapper
-    searchHeadingWrapper.append(searchHeading, dropDownCloseBtn);
+  searchHeadingWrapper.append(searchHeading, dropDownCloseBtn);
 
+  const inputPlaceholder = searchInputDetails[2]?.textContent.trim() || 'Search...';
+  const searchInputWrapper = document.createElement('div');
+  searchInputWrapper.className = 'search-input-wrapper';
 
-    // Search input
-    var inputPlaceholder = searchInputDetails[2]?.textContent.trim() || 'Search...';
-    var searchInputWrapper = document.createElement('div');
-    searchInputWrapper.className = 'search-input-wrapper';
+  const inputWrapper = document.createElement('div');
+  inputWrapper.className = 'input-wrapper';
 
-    var inputWrapper = document.createElement('div');
-    inputWrapper.className = 'input-wrapper';
-    var inputSearchIcon = stringToHTML(SvgIcon({ name: 'search', class: 'search-icon', size: '18px' }));
-    var searchInput = document.createElement('input');
-    searchInput.type = 'text';
-    searchInput.placeholder =  inputPlaceholder || 'Search...';
-    searchInput.className = 'search-input';
-    // var clearBtnWrapper = document.createElement('div');
-    // clearBtnWrapper.className = 'clear-btn-wrapper';
-    var clearBtn = stringToHTML(SvgIcon({ name: 'close', className: 'close-icon', size: 18 }));
-    // var clearBtnText = document.createElement('span');
-    // clearBtnText.className = 'clear-btn-text';
-    // clearBtnText.textContent = 'Clear';
-    // clearBtn.appendChild(clearBtnText);
-    // clearBtnWrapper.appendChild(clearBtn);
-    inputWrapper.append(inputSearchIcon, searchInput, clearBtn);
+  const inputSearchIcon = stringToHTML(SvgIcon({ name: 'search', class: 'search-icon', size: '18px' }));
+  const searchInput = document.createElement('input');
+  searchInput.type = 'text';
+  searchInput.placeholder = inputPlaceholder;
+  searchInput.className = 'search-input';
 
-    // Clear button functionality
-    clearBtn.addEventListener('click', () => {
-        searchInput.value = ''; // Clear the input field
-        searchResults.innerHTML = ""; // Clear the results
-        searchResultCount.classList.remove('active'); // Hide result count
-        searchResultsWrapper.classList.remove('active'); // Hide results wrapper
-        clearBtn.classList.remove('active'); // Hide clear button
-    });
+  const clearBtn = document.createElement('div');
+  clearBtn.className = 'clear-btn-wrapper';
+  const clearBtnIcon = stringToHTML(SvgIcon({ name: 'close', className: 'close-icon', size: 18 }));
+  const clearBtnText = document.createElement('span');
+  clearBtnText.className = 'clear-btn-text';
+  clearBtnText.textContent = 'Clear';
+  clearBtn.append(clearBtnIcon, clearBtnText);
 
-    // search Button
-    var searchBtn = document.createElement('div');
-    searchBtn.className = 'search-btn';
-    searchBtn.innerHTML = searchInputDetails[1]?.innerHTML || 'Search';
-  
-    // append search input and button to the wrapper
-    searchInputWrapper.append(inputWrapper, searchBtn);
+  clearBtn.addEventListener('click', () => {
+    searchInput.value = '';
+    searchResultsWrapper.classList.remove('active');
+    updateSearch('');
+  });
 
-    // Search result count
-    var searchResultCount = document.createElement('div');
-    searchResultCount.className = 'search-result-count';
-    searchResultCount.textContent = '0 results found';
-    // searchResultCount.style.display = 'none';
+  const searchBtn = document.createElement('button');
+  searchBtn.className = 'search-btn';
+  searchBtn.innerHTML = searchInputDetails[1]?.innerHTML || 'Search';
+  searchBtn.addEventListener('click', () => {
+    const query = searchInput.value.trim();
+    if (query.length > 3) {
+      window.location.href = `/searchresults?query=${encodeURIComponent(query)}`;
+    }
+    searchInput.value = '';
+  });
 
-    // append all search elements to the container
-    searchInputContainer.append(searchHeadingWrapper, searchInputWrapper,searchResultCount);
-    searchWrapper.append(searchInputContainer);
-}
+  inputWrapper.append(inputSearchIcon, searchInput, clearBtn);
+  searchInputWrapper.append(inputWrapper, searchBtn);
+  searchInputContainer.append(searchHeadingWrapper, searchInputWrapper);
 
-    if(searchResultsDetails){
-    // Results wrapper
-    var searchResultsWrapper = document.createElement('div');
-    searchResultsWrapper.className = 'container search-results-wrapper';
+  const searchResultCount = document.createElement('div');
+  searchResultCount.className = 'search-result-count';
+  searchInputContainer.appendChild(searchResultCount);
+  searchWrapper.appendChild(searchInputContainer);
 
-    var searchResults = document.createElement("div");
-    searchResults.className = "search-results";
+  const searchResultsWrapper = document.createElement('div');
+  searchResultsWrapper.className = 'container search-results-wrapper';
 
-    var searchTips = document.createElement("div");
-    searchTips.className = "search-tips";
-    var searchTipsHeadingText = searchResultsDetails[0]?.textContent.trim() || 'Search tips:';
-    var searchTipsHeading = stringToHTML(Heading({ level: 2, text: searchTipsHeadingText, className: 'search-tips-heading' }));
-    var searchTipsList = searchResultsDetails[1];
-    searchTipsList.className = "search-tips-list";
-    searchTips.append(searchTipsHeading,searchTipsList);
+  const searchTips = document.createElement('div');
+  searchTips.className = 'search-tips';
 
-    
-    searchResults.innerHTML = ""; // Clear previous results
+  if (searchResultsDetails.length >= 2) {
+    const heading = Heading({ level: 2, text: searchResultsDetails[0].textContent.trim(), className: 'search-tips-heading' });
+    const list = searchResultsDetails[1];
+    list.className = 'search-tips-list';
+    searchTips.append(stringToHTML(heading), list);
+  }
 
-    searchResultsWrapper.append(searchTips,searchResults);
+  const searchResults = document.createElement('div');
+  searchResults.className = 'search-results';
+  const paginationWrapper = document.createElement('div');
+  paginationWrapper.className = 'pagination-wrapper';
 
-    var debounce = (func, delay = 300) => {
-        let timer;
-        return (...args) => {
-          clearTimeout(timer);
-          timer = setTimeout(() => {
-            func.apply(this, args);
-          }, delay);
-        };
-      };
-      
-    // Show Suggestions
-    // Highlight matching part in description
-    var highlightMatch = (text, keyword) => {
-        var regex = new RegExp(`(${keyword})`, 'gi');
-        return text.replace(regex, `<span class="highlight">$1</span>`);
+  searchResultsWrapper.append(searchTips, searchResults, paginationWrapper);
+
+  const highlightMatch = (text, keyword) => {
+    const regex = new RegExp(`(${keyword})`, 'gi');
+    return text.replace(regex, '<span class="highlight">$1</span>');
+  };
+
+  const renderResults = (query, page = 1) => {
+    const itemsPerPage = 2;
+    const results = searchData.data.filter((item) => item.fullContent.toLowerCase().includes(query.toLowerCase()));
+
+    const start = (page - 1) * itemsPerPage;
+    const paginatedResults = results.slice(start, start + itemsPerPage);
+
+    searchResults.innerHTML = '';
+    if (paginatedResults.length > 0) {
+      searchResultsWrapper.classList.add('active');
+      searchResultCount.classList.add('active');
+      searchResultCount.innerHTML = `${results.length} results found for <span>'${query}'</span>`;
+
+      paginatedResults.forEach((item) => {
+        const div = document.createElement('div');
+        div.className = 'search-results-item';
+        div.innerHTML = `
+          <a class="title" href="${item.path}">${highlightMatch(item.title, query)}</a>
+          <div class="description">${highlightMatch(item.description, query)}</div>
+        `;
+        searchResults.appendChild(div);
+      });
+
+      renderPagination(results.length, page, query);
+    } else {
+      searchResultsWrapper.classList.remove('active');
+      searchResultCount.classList.add('active');
+      searchResultCount.innerHTML = `No result found for <span>'${query}'</span>`;
+    }
+  };
+
+  const renderPagination = (total, currentPage, query) => {
+    const itemsPerPage = 2;
+    const totalPages = Math.ceil(total / itemsPerPage);
+    paginationWrapper.innerHTML = '';
+
+    if (totalPages > 1) {
+      const leftArrow = document.createElement('button');
+      leftArrow.innerHTML = SvgIcon({ name: 'leftarrow', className: 'arrow-icon', size: 18 });
+      leftArrow.className = 'left-arrow';
+      leftArrow.disabled = currentPage === 1;
+      leftArrow.addEventListener('click', () => renderResults(query, currentPage - 1));
+
+      const rightArrow = document.createElement('button');
+      rightArrow.innerHTML = SvgIcon({ name: 'rightarrow', className: 'arrow-icon', size: 18 });
+      rightArrow.className = 'right-arrow';
+      rightArrow.disabled = currentPage === totalPages;
+      rightArrow.addEventListener('click', () => renderResults(query, currentPage + 1));
+
+      const pageInfo = document.createElement('span');
+      pageInfo.className = 'page-info';
+      pageInfo.textContent = `Page ${currentPage} / ${totalPages}`;
+
+      paginationWrapper.append(leftArrow, pageInfo, rightArrow);
+    }
+  };
+
+  const updateSearch = (query) => {
+    if (query.length > 3) {
+      clearBtn.classList.add('active');
+      renderResults(query);
+    } else {
+      searchResults.innerHTML = '';
+      paginationWrapper.innerHTML = '';
+      searchResultsWrapper.classList.remove('active');
+      clearBtn.classList.remove('active');
+      searchResultCount.classList.remove('active');
+    }
+  };
+
+  const debounce = (func, delay) => {
+    let timeout;
+    return (...args) => {
+      clearTimeout(timeout);
+      timeout = setTimeout(() => func.apply(this, args), delay);
     };
-    var showResults = (query) => {
-        if (query.length > 3) {
-        clearBtn.classList.add('active');
-        searchResults.innerHTML = "";
-    
-        var results = searchData.data.filter(item =>
-            item.description.toLowerCase().includes(query)
-        );
-    
-        if(results.length > 0) {
-            searchResultsWrapper.classList.add('active');
-            searchResultCount.classList.add('active');
-            // searchResultCount.style.display = 'block';
-            searchResultCount.innerHTML = searchResultCount.innerHTML = `${results.length} results found for <span>'${query}'</span>`;      ;
-            searchResults.innerHTML = ""; // Clear previous results
-            results.forEach(item => {
-            var div = document.createElement("div");
-            div.className = "search-results-item";
-            div.innerHTML = `
-                <a class="title" href="${item.path}">${highlightMatch(item.title, query)}</a>
-                <div class="description">${highlightMatch(item.heroBannerAllDescriptions, query)}</div>
-            `;
-            searchResults.appendChild(div);
-            });
-        }
-        else{
-            searchResultsWrapper.classList.remove('active');           
-            searchResultCount.classList.add('active');
-            searchResultCount.innerHTML = `No result found for <span>'${query}'</span>`;      ;                    
-        }
-        } else {
-        searchResultsWrapper.classList.remove('active');
-        clearBtn.classList.remove('active');
-        searchResultCount.classList.remove('active') // Hide result count
-        searchResults.innerHTML = ""; // Optional: clear suggestions if input too short
-        }
-    };
+  };
 
-    // Handle input with debounce
-    var handleInput = debounce(() => {
-        var query = searchInput.value.trim().toLowerCase();
-        showResults(query);
-    }, 300);
+  const handleInput = () => {
+    const query = searchInput.value.trim();
+    updateSearch(query);
+  };
 
-    // Search input functionality
-    searchInput.addEventListener('input', handleInput);
-}
-    block.innerHTML = ""; // Clear the block content
-    // searchWrapper.append(searchInputWrapper, searchResultsWrapper)
-    block.append(searchWrapper, searchResultsWrapper);
+  searchInput.addEventListener('input', debounce(handleInput, 300));
+
+  const handleQueryOnLoad = () => {
+    const params = new URLSearchParams(window.location.search);
+    const query = params.get('query')?.trim();
+    if (query && query.length > 3) {
+      searchInput.value = query;
+      updateSearch(query);
+    }
+  };
+
+  fetchSearchData();
+
+  block.innerHTML = '';
+  block.append(searchWrapper, searchResultsWrapper);
 }
