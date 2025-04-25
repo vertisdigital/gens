@@ -107,7 +107,7 @@
     color: var(--text-color);
 }
 
-.statistics-wrapper .statistics.block::before {
+.herobanner-container .statistics-wrapper:nth-child(2) .statistics.block::before {
     content: '';
     background: var(--background-color);
     position: absolute;
@@ -116,10 +116,12 @@
     max-width: 1280px;
     margin: 0 auto;
     z-index: -1;
+    box-shadow: 4px 4px 20px rgba(0, 0, 0, 0.05);
 }
 
-.statistics-wrapper:has(.statistics-description-wrapper) .statistics.block::before {
-    box-shadow: 4px 4px 20px rgba(0, 0, 0, 0.05);
+
+.herobanner-container .statistics-wrapper:nth-child(2) .statistics .statistics-row:last-child {
+    padding-bottom: 80px;
 }
 
 .statistics-wrapper .statistics.block.statistics-variation::before{
@@ -151,7 +153,7 @@
 }
 
 @media (width <= 1280px) {
-    .statistics-wrapper .statistics.block::before {
+    .herobanner-container .statistics-wrapper:nth-child(2) .statistics.block::before {
         left: 22px;
         right: 22px;
         width: auto;
@@ -183,11 +185,11 @@
     }
     
 
-    .statistics-wrapper .statistics.block::before {
+    .herobanner-container .statistics-wrapper:nth-child(2) .statistics.block::before {
         top: -22px;
     }
 
-    .statistics-wrapper .statistics.block.statistics-variation::before {
+    .herobanner-container .statistics-wrapper:nth-child(2) .statistics.block.statistics-variation::before {
         top: 0;
     }
 
@@ -234,6 +236,10 @@
     .statistics-wrapper .statistics.statistics-financial-variation.block .statistics-row>div:first-child{
         font-size:var(--font-size-s);
         line-height:32px;
+    }
+
+    .herobanner-container .statistics-wrapper:nth-child(2) .statistics .statistics-row:last-child {
+        padding-bottom: 65px;
     }
 }
 
@@ -296,7 +302,7 @@
         line-height:28px;
     }
 
-    .statistics-wrapper .statistics.block::before {
+    .herobanner-container .statistics-wrapper:nth-child(2) .statistics.block::before {
         left: 10px;
         right: 10px;
     }
@@ -307,7 +313,7 @@
     
 }
 @media (width>=1200px) {
-    .statistics-wrapper .statistics.block::before {
+    .herobanner-container .statistics-wrapper:nth-child(2) .statistics.block::before {
         max-width: none;
         width: auto;
         left: 100px;
