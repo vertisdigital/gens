@@ -225,6 +225,9 @@
         padding-bottom: 40px;
         margin-bottom: 40px;
     }
+    .herobanner-container .statistics>.statistics-title {
+        padding-top: 32px;
+    }
 
     .statistics .statistics-row .feature-item {
         padding-left: 12px;
@@ -293,6 +296,10 @@
     .statistics.statistics-financial-variation .statistics-title {
         padding-bottom: 32px;
         margin-bottom: 32px;
+    }
+
+    .herobanner-container .statistics>.statistics-title {
+        padding-top: 24px;
     }
 
     .statistics-wrapper .statistics.statistics-financial-variation.block .statistics-row>div:first-child{
