@@ -8,6 +8,7 @@ export default function decorate(block) {
   const searchResultsDetails = blockchildren[1] ? [...blockchildren[1].children] : [];
 
   let searchData = {};
+
   const fetchSearchData = async () => {
     try {
       const response = await fetch('/query-index.json');
@@ -19,6 +20,7 @@ export default function decorate(block) {
     }
   };
 
+  // --- Build search input section
   const searchWrapper = document.createElement('div');
   searchWrapper.classList.add('search-nav');
 
@@ -31,6 +33,8 @@ export default function decorate(block) {
   const searchTitle = searchInputDetails[0]?.textContent.trim() || 'Search';
   const searchHeading = stringToHTML(Heading({ level: 2, text: searchTitle, className: 'search-heading' }));
 
+  searchInputDetails[0]?.replaceChildren(searchHeading);
+
   const dropDownCloseBtn = document.createElement('button');
   dropDownCloseBtn.className = 'close-btn';
   dropDownCloseBtn.setAttribute('aria-label', 'Close menu');
@@ -42,9 +46,11 @@ export default function decorate(block) {
     document.querySelector('.header .search-wrapper')?.classList.remove('active');
   });
 
-  searchHeadingWrapper.append(searchHeading, dropDownCloseBtn);
+  searchHeadingWrapper.append(searchInputDetails[0], dropDownCloseBtn);
 
   const inputPlaceholder = searchInputDetails[2]?.textContent.trim() || 'Search...';
+  searchInputDetails[2]?.replaceChildren();
+  
   const searchInputWrapper = document.createElement('div');
   searchInputWrapper.className = 'search-input-wrapper';
 
@@ -52,6 +58,7 @@ export default function decorate(block) {
   inputWrapper.className = 'input-wrapper';
 
   const inputSearchIcon = stringToHTML(SvgIcon({ name: 'search', class: 'search-icon', size: '18px' }));
+
   const searchInput = document.createElement('input');
   searchInput.type = 'text';
   searchInput.placeholder = inputPlaceholder;
@@ -71,9 +78,8 @@ export default function decorate(block) {
     updateSearch('');
   });
 
-  const searchBtn = document.createElement('button');
+  const searchBtn = searchInputDetails[1];
   searchBtn.className = 'search-btn';
-  searchBtn.innerHTML = searchInputDetails[1]?.innerHTML || 'Search';
   searchBtn.addEventListener('click', () => {
     const query = searchInput.value.trim();
     if (query.length > 3) {
@@ -91,6 +97,7 @@ export default function decorate(block) {
   searchInputContainer.appendChild(searchResultCount);
   searchWrapper.appendChild(searchInputContainer);
 
+  // --- Build search results section
   const searchResultsWrapper = document.createElement('div');
   searchResultsWrapper.className = 'container search-results-wrapper';
 
@@ -98,10 +105,12 @@ export default function decorate(block) {
   searchTips.className = 'search-tips';
 
   if (searchResultsDetails.length >= 2) {
-    const heading = Heading({ level: 2, text: searchResultsDetails[0].textContent.trim(), className: 'search-tips-heading' });
+    const heading = stringToHTML(Heading({ level: 2, text: searchResultsDetails[0].textContent.trim(), className: 'search-tips-heading' }));
+    searchResultsDetails[0]?.replaceChildren(heading);
+
     const list = searchResultsDetails[1];
     list.className = 'search-tips-list';
-    searchTips.append(stringToHTML(heading), list);
+    searchTips.append(searchResultsDetails[0], list);
   }
 
   const searchResults = document.createElement('div');
@@ -110,6 +119,8 @@ export default function decorate(block) {
   paginationWrapper.className = 'pagination-wrapper';
 
   searchResultsWrapper.append(searchTips, searchResults, paginationWrapper);
+
+  // --- Helper functions
 
   const highlightMatch = (text, keyword) => {
     const regex = new RegExp(`(${keyword})`, 'gi');
@@ -124,6 +135,7 @@ export default function decorate(block) {
     const paginatedResults = results.slice(start, start + itemsPerPage);
 
     searchResults.innerHTML = '';
+
     if (paginatedResults.length > 0) {
       searchResultsWrapper.classList.add('active');
       searchResultCount.classList.add('active');
@@ -212,6 +224,12 @@ export default function decorate(block) {
 
   fetchSearchData();
 
-  block.innerHTML = '';
+
+  // 1. Hide original authored content instead of deleting
+  block.querySelectorAll(':scope > div').forEach((child) => {
+    child.style.display = 'none';
+  });
+
+  // 2. Add new structure
   block.append(searchWrapper, searchResultsWrapper);
 }
