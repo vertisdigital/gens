@@ -249,6 +249,9 @@ color: var(--body-text-color);
     column-gap: 15px;
     margin-bottom: 24px;
   }
+  .about-us-stats .about-us-right-content p {
+    font-size: var(--font-size-xs);
+  }
   .about-us-stats .about-us-right-content .statistic{
     font-size: 64px;
     line-height: 64px;
