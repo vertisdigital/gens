@@ -16,11 +16,11 @@ export default function decorate(block) {
       searchData = data;
       handleQueryOnLoad();
     } catch (error) {
-      console.error('Error fetching data:', error);
+      console.error('Error fetching search data:', error);
     }
   };
 
-  // --- Build search input section
+  // Search Input Part start
   const searchWrapper = document.createElement('div');
   searchWrapper.classList.add('search-nav');
 
@@ -30,10 +30,8 @@ export default function decorate(block) {
   const searchHeadingWrapper = document.createElement('div');
   searchHeadingWrapper.className = 'search-heading-wrapper';
 
-  const searchTitle = searchInputDetails[0]?.textContent.trim() || 'Search';
+  const searchTitle = searchInputDetails[1]?.textContent.trim() || 'Search';
   const searchHeading = stringToHTML(Heading({ level: 2, text: searchTitle, className: 'search-heading' }));
-
-  searchInputDetails[0]?.replaceChildren(searchHeading);
 
   const dropDownCloseBtn = document.createElement('button');
   dropDownCloseBtn.className = 'close-btn';
@@ -46,11 +44,11 @@ export default function decorate(block) {
     document.querySelector('.header .search-wrapper')?.classList.remove('active');
   });
 
-  searchHeadingWrapper.append(searchInputDetails[0], dropDownCloseBtn);
+  searchHeadingWrapper.append(searchHeading, dropDownCloseBtn);
 
   const inputPlaceholder = searchInputDetails[2]?.textContent.trim() || 'Search...';
-  searchInputDetails[2]?.replaceChildren();
-  
+  if (searchInputDetails[2]) searchInputDetails[2].style.display = 'none';
+
   const searchInputWrapper = document.createElement('div');
   searchInputWrapper.className = 'search-input-wrapper';
 
@@ -78,26 +76,30 @@ export default function decorate(block) {
     updateSearch('');
   });
 
-  const searchBtn = searchInputDetails[1];
+  const searchBtn = document.createElement('button');
+  const searchBtnText = searchInputDetails[4]?.querySelector('a')?.textContent.trim() || 'Search';
   searchBtn.className = 'search-btn';
+  searchBtn.type = 'button';
+  searchBtn.textContent = searchBtnText;
+
   searchBtn.addEventListener('click', () => {
     const query = searchInput.value.trim();
     if (query.length > 3) {
-      window.location.href = `/searchresults?query=${encodeURIComponent(query)}`;
+      window.location.href = `${searchInputDetails[4].querySelector('a').href}?query=${encodeURIComponent(query)}`;
     }
     searchInput.value = '';
   });
 
   inputWrapper.append(inputSearchIcon, searchInput, clearBtn);
   searchInputWrapper.append(inputWrapper, searchBtn);
-  searchInputContainer.append(searchHeadingWrapper, searchInputWrapper);
 
-  const searchResultCount = document.createElement('div');
+  const searchResultCount = searchInputDetails[3]?.cloneNode(true) || document.createElement('div');
   searchResultCount.className = 'search-result-count';
-  searchInputContainer.appendChild(searchResultCount);
-  searchWrapper.appendChild(searchInputContainer);
 
-  // --- Build search results section
+  searchInputContainer.append(searchHeadingWrapper, searchInputWrapper, searchResultCount);
+  searchWrapper.append(searchInputContainer);
+
+  // Search Results Part
   const searchResultsWrapper = document.createElement('div');
   searchResultsWrapper.className = 'container search-results-wrapper';
 
@@ -105,31 +107,39 @@ export default function decorate(block) {
   searchTips.className = 'search-tips';
 
   if (searchResultsDetails.length >= 2) {
-    const heading = stringToHTML(Heading({ level: 2, text: searchResultsDetails[0].textContent.trim(), className: 'search-tips-heading' }));
-    searchResultsDetails[0]?.replaceChildren(heading);
+    const heading = Heading({ level: 2, text: searchResultsDetails[0].textContent.trim(), className: 'search-tips-heading' });
+    const tipsHeading = stringToHTML(heading);
 
-    const list = searchResultsDetails[1];
+    const list = searchResultsDetails[1].cloneNode(true);
     list.className = 'search-tips-list';
-    searchTips.append(searchResultsDetails[0], list);
+
+    searchTips.append(tipsHeading, list);
   }
 
   const searchResults = document.createElement('div');
   searchResults.className = 'search-results';
+
   const paginationWrapper = document.createElement('div');
   paginationWrapper.className = 'pagination-wrapper';
 
   searchResultsWrapper.append(searchTips, searchResults, paginationWrapper);
 
-  // --- Helper functions
-
+  // Function to highlight match
   const highlightMatch = (text, keyword) => {
     const regex = new RegExp(`(${keyword})`, 'gi');
     return text.replace(regex, '<span class="highlight">$1</span>');
   };
 
+  // Function to render search results
   const renderResults = (query, page = 1) => {
-    const itemsPerPage = 2;
-    const results = searchData.data.filter((item) => item.fullContent.toLowerCase().includes(query.toLowerCase()));
+    const itemsPerPage = 7;
+    const lowerQuery = query.toLowerCase();
+    const results = searchData.data.filter((item) => (
+      item.title?.toLowerCase().includes(lowerQuery) ||
+      item.description?.toLowerCase().includes(lowerQuery) ||
+      item.fullContent?.toLowerCase().includes(lowerQuery) ||
+      item.keywords?.toLowerCase().includes(lowerQuery)
+    ));
 
     const start = (page - 1) * itemsPerPage;
     const paginatedResults = results.slice(start, start + itemsPerPage);
@@ -139,7 +149,7 @@ export default function decorate(block) {
     if (paginatedResults.length > 0) {
       searchResultsWrapper.classList.add('active');
       searchResultCount.classList.add('active');
-      searchResultCount.innerHTML = `${results.length} results found for <span>'${query}'</span>`;
+      searchResultCount.innerHTML = `${results.length} ${searchInputDetails[3]?.textContent.trim()} <span>'${query}'</span>`;
 
       paginatedResults.forEach((item) => {
         const div = document.createElement('div');
@@ -159,8 +169,9 @@ export default function decorate(block) {
     }
   };
 
+  // Function to render pagination
   const renderPagination = (total, currentPage, query) => {
-    const itemsPerPage = 2;
+    const itemsPerPage = 7;
     const totalPages = Math.ceil(total / itemsPerPage);
     paginationWrapper.innerHTML = '';
 
@@ -185,6 +196,7 @@ export default function decorate(block) {
     }
   };
 
+  // Function to update search
   const updateSearch = (query) => {
     if (query.length > 3) {
       clearBtn.classList.add('active');
@@ -222,14 +234,15 @@ export default function decorate(block) {
     }
   };
 
+  // Preserve original content
+  const originalContentWrapper = document.createElement('div');
+  originalContentWrapper.className = 'original-content-wrapper';
+  originalContentWrapper.style.display = 'none';
+  originalContentWrapper.append(...blockchildren);
+
+  // Final appending
+  block.innerHTML = '';
+  block.append(originalContentWrapper, searchWrapper, searchResultsWrapper);
+
   fetchSearchData();
-
-
-  // 1. Hide original authored content instead of deleting
-  block.querySelectorAll(':scope > div').forEach((child) => {
-    child.style.display = 'none';
-  });
-
-  // 2. Add new structure
-  block.append(searchWrapper, searchResultsWrapper);
 }
