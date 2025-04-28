@@ -36,8 +36,8 @@ function updateIframeHeight(iframeWrapper, endpoint) {
     },
     newsroom: {
       mobile: '3000px',
-      tablet: '1500px',
-      desktop: '1470px',
+      tablet: '1520px',
+      desktop: '1500px',
     },
     'agm-egm': {
       mobile: '1080px',
