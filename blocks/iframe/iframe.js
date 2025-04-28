@@ -27,7 +27,7 @@ function updateIframeHeight(iframeWrapper, endpoint) {
       desktop: '1220px',
     },
     'sustainability-reports': {
-      mobile: '6680px',
+      mobile: '8080px',
       tablet: {
         landscape: '2620px',
         portrait: '2260px',
@@ -37,11 +37,11 @@ function updateIframeHeight(iframeWrapper, endpoint) {
     newsroom: {
       mobile: '3000px',
       tablet: '1500px',
-      desktop: '1430px',
+      desktop: '1470px',
     },
     'agm-egm': {
-      mobile: '1050px',
-      desktop: '880px',
+      mobile: '1080px',
+      desktop: '900px',
     },
     'analysts-coverage': {
       mobile: '1300px',
@@ -75,13 +75,13 @@ function updateIframeHeight(iframeWrapper, endpoint) {
     },
     "Annual Reports": {
       mobile: '15380px',
-      tablet: '27020px',
-      desktop: '5690px',
+      tablet: '29020px',
+      desktop: '5950px',
     },
     "Sustainability Reports": {
       mobile: '7180px',
-      tablet: "11340px",
-      desktop: '2620px',
+      tablet: "12700px",
+      desktop: '2680px',
     },
     "investor-calendar": {
       mobile: '1020px',
@@ -94,7 +94,12 @@ function updateIframeHeight(iframeWrapper, endpoint) {
     },
   };
 
-  let height = endpointHeightConfig[endpoint];
+  let height = Object.keys(endpointHeightConfig).filter(item => endpoint.includes(item));
+  if (height.length) {
+    height = endpointHeightConfig[height[0]]
+  } else {
+    height = endpointHeightConfig.default
+  }
 
   if (typeof height === 'object') {
     if (deviceType === 'tablet') {
@@ -162,12 +167,12 @@ export default function decorate(block) {
 
   const iframeWrapper = document.querySelector('.iframe-wrapper');
   iframeWrapper.classList.add('container');
-  const endpoint = new window.URL(url).pathname.replace('/', '').replace('.rev', '').replace('.htm', '');
-  updateIframeHeight(iframeWrapper, endpoint);
+  const endpoint = new window.URL(url).pathname.replace('/', '').split('.');
+  updateIframeHeight(iframeWrapper, endpoint[0]);
   getTabsEvent();
 
   window.addEventListener('resize', () => {
-    updateIframeHeight(iframeWrapper, endpoint);
+    updateIframeHeight(iframeWrapper, endpoint[0]);
     getTabsEvent();
   });
 
