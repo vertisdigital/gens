@@ -138,16 +138,18 @@
 
 .footer .copywrite-right{
     display: grid;
-    gap: 10px;
-    row-gap: 15px;
     grid-template-columns: repeat(3, auto);
     justify-content: space-between;
     padding: 0 0 0 18px !important;
+    height: max-content;
+    line-height: 29px;
 }
+
+.col-xl-6.col-md-3.col-sm-4.copywrite-right {}
 
 
 .footer .copywrite-right .copywrite-links {
-    box-sizing: border-box; 
+    box-sizing: border-box;
   }
 
   .footer .copywrite-right .copywrite-links .button-container a{
@@ -208,7 +210,7 @@ p.-row {
     }
 
     .footer .copywrite-right{
-        grid-template-columns: repeat(2, auto);
+        grid-template-columns: repeat(2, 1fr);
         row-gap: 10px;
     }
 
