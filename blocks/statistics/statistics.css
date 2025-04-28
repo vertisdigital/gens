@@ -314,11 +314,19 @@
     }
     
 }
+@media (width>=993px) {
+    .statistics .statistics-row .feature-item {
+        width: 50%;
+    }
+}
 @media (width>=1200px) {
     .statistics-wrapper .statistics.block::before {
         max-width: none;
         width: auto;
-    left: 100px;
+        left: 100px;
         right: 100px;
+    }
+    .statistics .statistics-row .feature-item {
+        width: 33.33333333%;;
     }
 }
