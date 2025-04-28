@@ -112,8 +112,9 @@
 .footer .left-section .button-container a{
     font-size: var(--font-size-xs);
     font-weight: 400;
-    line-height: 24px;
+    line-height: 20px;
     margin-bottom: 6px;
+    display: inline-block;
 }
 
 .footer .footer-bottom-links .button-container a{
@@ -153,6 +154,9 @@
     white-space: nowrap;
   }
 
+p.-row {
+    line-height: 24px;
+}
 
 @media(width<=992px){
     .footer {
@@ -211,7 +215,6 @@
     .footer .mt-4 .footer-bottom-links .row [data-link-model="links"]{
         padding: 0;
     }
- 
 
 }
 
@@ -271,6 +274,10 @@
     .footer .mt-4 .footer-bottom-links .row [data-aue-prop="linkText"]{
         text-align: start;
 
+    }
+
+    p.-row {
+        line-height: 20px;
     }
 }
 

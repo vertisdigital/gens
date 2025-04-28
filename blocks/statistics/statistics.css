@@ -239,9 +239,14 @@
 
 @media (width<768px) {
     .statistics-description-wrapper {
+        font-size: var(--font-size-xxs);
         padding: 28px 0;
         margin-bottom: 28px;
     }
+
+    .statistics-description-wrapper .description-text-container{
+        font-size: var(--font-size-xxs);
+     }
 
     .statistics .statistics-description-wrapper h3 {
         font-size: var(--font-size-m);
