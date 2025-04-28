@@ -212,6 +212,9 @@
       font-size: var(--font-size-xxs);
       line-height: 20px;
     }
+    [data-gen-model="linkField"] a {
+      font-size: var(--font-size-xxs);
+    }
   }
 
 }

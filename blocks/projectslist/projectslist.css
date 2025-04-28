@@ -105,7 +105,8 @@ p {
         width: 100%;
     }
     .project-cta a.button:any-link{
-        margin-top:20px
+        margin-top:20px;
+        font-size: var(--font-size-xxs);
        }
     .project-title  {
         font-size: var(--font-size-sm);
