@@ -3,6 +3,7 @@ import { moveInstrumentation } from '../../scripts/scripts.js';
 import ImageComponent from '../../shared-components/ImageComponent.js';
 import stringToHtml from '../../shared-components/Utility.js';
 import SvgIcon from '../../shared-components/SvgIcon.js';
+import { errorLogger as logger } from "../../../scripts/logger.js";
 
 export default function decorate(block) {
   if (!block || !block.children.length) return;
@@ -268,7 +269,6 @@ export default function decorate(block) {
       navigator.clipboard.writeText(btn.textContent)
         .then(() => {
           const clipText=btn.querySelector('.tooltiptext')
-          clipText.innerHTML=""
           clipText.innerHTML = `Copied to clipboard`
           clipText.style.visibility = 'visible'
           clipText.style.opacity = '1'
@@ -280,7 +280,7 @@ export default function decorate(block) {
           }, 2000);
         })
         .catch(err => {
-          console.error("Failed to copy: ", err);
+          logger.error("Failed to copy: ", err);
         });
     })
   })

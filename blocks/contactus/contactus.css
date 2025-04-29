@@ -184,16 +184,15 @@
 .tooltip .tooltiptext {
   visibility: hidden;
   width: max-content;
-  background-color: #555;
-  color: #fff;
+  background-color: var(--dark-color);
+  color: var(--background-color);
   text-align: center;
   border-radius: 6px;
   padding: 5px;
   position: absolute;
   z-index: 1;
   bottom: 150%;
-  left: 50%;
-  margin-left: -75px;
+  left: 20%;
   opacity: 0;
   transition: opacity 0.3s;
   font-size: var(--font-size-xxs);
@@ -207,7 +206,7 @@
   margin-left: -5px;
   border-width: 5px;
   border-style: solid;
-  border-color: #555 transparent transparent transparent;
+  border-color: var(--dark-color) transparent transparent transparent;
 }
 
 
@@ -257,7 +256,7 @@
   .contactus .contact-items .contact-link {
     font-size: 16px;
     line-height: 24px;
-  
+    text-decoration: none;
   }
 
   .contactus .contactus-bottom{
