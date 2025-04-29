@@ -338,7 +338,7 @@ export default function decorate(block) {
           breakpoints: {
             mobile: {
               src: `${imgUrl}`,
-              imgWidth: 320,
+              imgWidth: 120,
             },
             tablet: {
               src: `${imgUrl}`,
