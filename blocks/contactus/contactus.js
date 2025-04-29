@@ -3,6 +3,7 @@ import { moveInstrumentation } from '../../scripts/scripts.js';
 import ImageComponent from '../../shared-components/ImageComponent.js';
 import stringToHtml from '../../shared-components/Utility.js';
 import SvgIcon from '../../shared-components/SvgIcon.js';
+import { errorLogger as logger } from "../../../scripts/logger.js";
 
 export default function decorate(block) {
   if (!block || !block.children.length) return;
@@ -152,13 +153,21 @@ export default function decorate(block) {
     textElement.setAttribute('data-aue-type', 'text');
 
     if (linkType) {
-      const link = document.createElement('a');
-      link.className = 'contact-link';
-      link.href = `${linkType}:${text}`;
-      link.textContent = text;
-      link.setAttribute('aria-label', `${linkType === 'tel' ? 'Call us at' : 'Email us at'} ${text}`);
-      link.setAttribute('tabindex', '0');
-      textElement.append(link);
+      const clipBoard=document.createElement('div')
+      clipBoard.classList.add('tooltip')
+      
+      const clipSpan=document.createElement('span')
+      clipSpan.classList.add('tooltiptext')
+
+      const button = document.createElement('button');
+      button.className = 'contact-link';
+      button.textContent = text;
+      button.setAttribute('aria-label', `${linkType === 'tel' ? 'Call us at' : 'Email us at'} ${text}`);
+      
+      button.append(clipSpan)
+      clipBoard.append(button)
+
+      textElement.append(clipBoard);
     } else {
       textElement.textContent = text;
     }
@@ -254,6 +263,28 @@ export default function decorate(block) {
     container.append(enquiryChildren[1]);
   }
 
+  const buttons = container.querySelectorAll('.contact-link')
+  buttons.forEach((btn)=>{
+    btn.addEventListener('click',()=>{
+      navigator.clipboard.writeText(btn.textContent)
+        .then(() => {
+          const clipText=btn.querySelector('.tooltiptext')
+          clipText.innerHTML = `Copied to clipboard`
+          clipText.style.visibility = 'visible'
+          clipText.style.opacity = '1'
+
+          setTimeout(() => {
+            clipText.style.visibility = 'hidden'
+            clipText.style.opacity = '0'
+            clipText.innerHTML = ""
+          }, 2000);
+        })
+        .catch(err => {
+          logger.error("Failed to copy: ", err);
+        });
+    })
+  })
+  
   wrapper.innerHTML = '';
   wrapper.append(container);
 }
