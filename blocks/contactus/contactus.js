@@ -152,11 +152,21 @@ export default function decorate(block) {
     textElement.setAttribute('data-aue-type', 'text');
 
     if (linkType) {
+      const clipBoard=document.createElement('div')
+      clipBoard.classList.add('tooltip')
+      
+      const clipSpan=document.createElement('span')
+      clipSpan.classList.add('tooltiptext')
+
       const button = document.createElement('button');
       button.className = 'contact-link';
       button.textContent = text;
       button.setAttribute('aria-label', `${linkType === 'tel' ? 'Call us at' : 'Email us at'} ${text}`);
-      textElement.append(button);
+      
+      button.append(clipSpan)
+      clipBoard.append(button)
+
+      textElement.append(clipBoard);
     } else {
       textElement.textContent = text;
     }
@@ -253,11 +263,21 @@ export default function decorate(block) {
   }
 
   const buttons = container.querySelectorAll('.contact-link')
-  buttons.forEach(btn=>{
+  buttons.forEach((btn)=>{
     btn.addEventListener('click',()=>{
-       navigator.clipboard.writeText(btn.innerHTML)
+      navigator.clipboard.writeText(btn.textContent)
         .then(() => {
-          alert("Copied to clipboard!");
+          const clipText=btn.querySelector('.tooltiptext')
+          clipText.innerHTML=""
+          clipText.innerHTML = `Copied to clipboard`
+          clipText.style.visibility = 'visible'
+          clipText.style.opacity = '1'
+
+          setTimeout(() => {
+            clipText.style.visibility = 'hidden'
+            clipText.style.opacity = '0'
+            clipText.innerHTML = ""
+          }, 2000);
         })
         .catch(err => {
           console.error("Failed to copy: ", err);
