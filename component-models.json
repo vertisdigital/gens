@@ -2124,7 +2124,16 @@
   },
   {
     "id": "downloadlinkitem",
-    "fields": [   
+    "fields": [ 
+      {
+        "component": "text",
+        "name": "downloadctaname",
+        "label": " Download CTA Name",
+        "validation": {
+          "maxLength": 30,
+          "customErrorMsg": "CTA text cannot exceed 30 characters"
+        }
+      },  
       {
         "component": "text",
         "name": "downloadctalabel",
