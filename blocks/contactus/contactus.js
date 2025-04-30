@@ -3,7 +3,7 @@ import { moveInstrumentation } from '../../scripts/scripts.js';
 import ImageComponent from '../../shared-components/ImageComponent.js';
 import stringToHtml from '../../shared-components/Utility.js';
 import SvgIcon from '../../shared-components/SvgIcon.js';
-import { errorLogger as logger } from "../../../scripts/logger.js";
+import { errorLogger as logger } from "../../scripts/logger.js";
 
 export default function decorate(block) {
   if (!block || !block.children.length) return;
