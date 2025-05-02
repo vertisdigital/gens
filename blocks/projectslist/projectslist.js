@@ -15,8 +15,8 @@ export default function decorate(block) {
     '[data-aue-model="projectslist"], [data-gen-model="projectslist"]',
   ) || wrapper;
 
-  Array.from(projectsContainer.children).forEach((project) => {
-    if (project.children[0].textContent !== '') {
+  Array.from(projectsContainer.children).forEach((project, index) => {
+    if (project.children[0].textContent !== '' && index < Array.from(projectsContainer.children).length - 1) {
       const projectContainer = document.createElement('div');
       projectContainer.className = 'projectslistitem';
       moveInstrumentation(project, projectContainer);
@@ -65,11 +65,10 @@ export default function decorate(block) {
       }
 
       const projectCta = allDivElements[5];
-      if(projectCta){
+      if (projectCta) {
         projectCta.className = 'project-cta';
         leftCol.appendChild(projectCta);
       }
-
       // Create right column (description and contacts) - 60% on desktop and tablet
       const rightCol = document.createElement('div');
       rightCol.className = 'col-xl-6 col-md-3 col-sm-4 right-col';
@@ -112,6 +111,9 @@ export default function decorate(block) {
       projectContainer.appendChild(leftCol);
       projectContainer.appendChild(rightCol);
       container.appendChild(projectContainer);
+    }
+    else {
+      container.append(project)
     }
   });
   // Replace original content
