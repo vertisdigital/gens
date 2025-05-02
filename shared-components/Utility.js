@@ -44,24 +44,27 @@ export function downloadLink(item) {
   const LABEL = '.project-subtitle';
   const LINK = '.project-long-description';
   const ICON = '.project-short-description';
-  const downloadLinkElements = item.querySelector('[data-aue-model="downloadlinkitem"]')
+  const downloadLinkElements = item.querySelectorAll('[data-aue-model="downloadlinkitem"]')
 
-  if (!downloadLinkElements) return
-  const linkTag = document.createElement('a')
-  linkTag.setAttribute('target', '_blank')
-  linkTag.classList.add('download-link-item')
-  linkTag.href = downloadLinkElements.querySelector(LINK).querySelector('a').href
-  linkTag.innerHTML = `<span>${downloadLinkElements.querySelector(LABEL).textContent}</span>`
-
-  const iconName = downloadLinkElements.querySelector(ICON).textContent.replace(/-/g, "").toLowerCase().trim()
-  const icon = SvgIcon({
-    name: iconName,
-    className: '',
-    size: '16px',
-  });
-
-  linkTag.append(stringToHTML(icon));
-
-  downloadLinkElements.innerHTML = ""
-  downloadLinkElements.append(linkTag)
+  if (!downloadLinkElements.length) return
+  
+  downloadLinkElements.forEach(downloadLinkElement=>{
+    const linkTag = document.createElement('a')
+    linkTag.setAttribute('target', '_blank')
+    linkTag.classList.add('download-link-item')
+    linkTag.href = downloadLinkElement.querySelector(LINK).querySelector('a').href
+    linkTag.innerHTML = `<span>${downloadLinkElement.querySelector(LABEL).textContent}</span>`
+  
+    const iconName = downloadLinkElement.querySelector(ICON).textContent.replace(/-/g, "").toLowerCase().trim()
+    const icon = SvgIcon({
+      name: iconName,
+      className: '',
+      size: '16px',
+    });
+  
+    linkTag.append(stringToHTML(icon));
+  
+    downloadLinkElement.innerHTML = ""
+    downloadLinkElement.append(linkTag)
+  })
 }
