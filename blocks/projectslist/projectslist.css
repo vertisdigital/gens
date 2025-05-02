@@ -66,6 +66,22 @@ p {
     margin-top:30px
    }
 
+.download-link-item {
+    line-height: 1;
+    background: none;
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    text-decoration: underline !important;
+    text-decoration-thickness: 1px !important;
+    font-size: var(--font-size-xs);
+    font-weight: 700;
+    line-height: 24px;
+    color: var(--primary-gold) !important;
+    padding: 0;
+    margin: 0;
+}
+
 @media (width <= 992px)  {
     .projectslist-wrapper {
         margin: 28px 0;

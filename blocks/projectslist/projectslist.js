@@ -1,6 +1,6 @@
 import { moveInstrumentation } from '../../scripts/scripts.js';
 import ImageComponent from '../../shared-components/ImageComponent.js';
-import stringToHtml from '../../shared-components/Utility.js';
+import stringToHtml, { downloadLink } from '../../shared-components/Utility.js';
 
 export default function decorate(block) {
   // Restructure the HTML for better semantics and accessibility
@@ -65,14 +65,16 @@ export default function decorate(block) {
       }
 
       const projectCta = allDivElements[5];
-      projectCta.className = 'project-cta';
-      leftCol.appendChild(projectCta);
+      if(projectCta){
+        projectCta.className = 'project-cta';
+        leftCol.appendChild(projectCta);
+      }
 
       // Create right column (description and contacts) - 60% on desktop and tablet
       const rightCol = document.createElement('div');
       rightCol.className = 'col-xl-6 col-md-3 col-sm-4 right-col';
 
-      const imageLink = allDivElements[4].querySelector('a');
+      const imageLink = allDivElements[4]?.querySelector('a');
 
       if (imageLink) {
         const imageUrl = imageLink.getAttribute('href');
@@ -115,5 +117,5 @@ export default function decorate(block) {
   // Replace original content
   wrapper.innerHTML = '';
   wrapper.appendChild(container);
-  
+  downloadLink(block)
 }
