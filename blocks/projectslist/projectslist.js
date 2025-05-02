@@ -16,7 +16,7 @@ export default function decorate(block) {
   ) || wrapper;
 
   Array.from(projectsContainer.children).forEach((project, index) => {
-    if (project.children[0].textContent !== '' && index < Array.from(projectsContainer.children).length - 1) {
+    if (project.children[0].textContent !== '') {
       const projectContainer = document.createElement('div');
       projectContainer.className = 'projectslistitem';
       moveInstrumentation(project, projectContainer);
@@ -108,12 +108,14 @@ export default function decorate(block) {
           rightCol.appendChild(imageContainer);
         }
       }
+
+      if (leftCol.children[0].textContent.toLowerCase() === 'downloadlinkitem') {
+        leftCol.setAttribute("data-aue-model", "downloadlinkitem")
+      }
+
       projectContainer.appendChild(leftCol);
       projectContainer.appendChild(rightCol);
       container.appendChild(projectContainer);
-    }
-    else {
-      container.append(project)
     }
   });
   // Replace original content
