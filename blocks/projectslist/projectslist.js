@@ -15,7 +15,7 @@ export default function decorate(block) {
     '[data-aue-model="projectslist"], [data-gen-model="projectslist"]',
   ) || wrapper;
 
-  Array.from(projectsContainer.children).forEach((project, index) => {
+  Array.from(projectsContainer.children).forEach((project) => {
     if (project.children[0].textContent !== '') {
       const projectContainer = document.createElement('div');
       projectContainer.className = 'projectslistitem';
