@@ -132,6 +132,12 @@
    
 }
 
+.contact-link,
+.contact-link:focus,
+.contact-link:hover {
+  background: transparent;
+}
+
 .contactus .contact-items .contact-link {
   font-family: var(--heading-font-family);
   font-size: 16px;
@@ -170,10 +176,6 @@
 
 .contactus .contactus-bottom>div:last-child a span{
   line-height:0;
-}
-
-.contact-link,.contact-link:focus, .contact-link:hover{
-  background: transparent;
 }
 
 .tooltip {
