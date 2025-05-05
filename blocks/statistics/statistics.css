@@ -233,7 +233,6 @@
         margin-bottom: 40px;
     }
     .herobanner-container .statistics-wrapper:nth-child(2) .statistics>.statistics-title {
-        /* padding-top: 32px; */
         min-height: 32px;
     }
 
@@ -250,9 +249,6 @@
     .herobanner-container .statistics-wrapper:nth-child(2) .statistics .statistics-row:last-child {
         padding-bottom: 32px;
     }
-    /* .herobanner-container .statistics-wrapper:nth-child(2) .statistics .statistics-row:first-child {
-        padding-top: 32px;
-    } */
 }
 
 @media (width<768px) {
@@ -310,10 +306,6 @@
     .statistics.statistics-financial-variation .statistics-title {
         padding-bottom: 32px;
         margin-bottom: 32px;
-    }
-
-    .herobanner-container .statistics-wrapper:nth-child(2) .statistics>.statistics-title {
-        /* padding-top: 24px; */
     }
 
     .statistics-wrapper .statistics.statistics-financial-variation.block .statistics-row>div:first-child{
