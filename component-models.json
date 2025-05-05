@@ -1400,7 +1400,7 @@
     "id": "textmediablock",
     "fields": [
       {
-        "component": "select",
+        "component": "multiselect",
         "name": "classes",
         "value": "",
         "label": "Style Options",
