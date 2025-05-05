@@ -295,7 +295,7 @@ export default async function decorate(block) {
 
     // Update the handleLayout function
     const handleLayout = () => {
-      const isDesktop = window.innerWidth >= 992;
+      const isDesktop = window.innerWidth > 1024;
       const existingRightSection = mainContainer.querySelector('.right-section');
 
       if (isDesktop) {
@@ -352,6 +352,7 @@ export default async function decorate(block) {
           columnsContainer.appendChild(col);
         });
         mainContainer.appendChild(columnsContainer);
+        mainContainer.insertBefore(logoWrapper, mainContainer.firstChild)
       }
 
       // Re-append bottom section after layout changes
