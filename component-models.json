@@ -2130,7 +2130,6 @@
         "name": "downloadctaname",
         "label": " Download CTA Name",
         "value": "DownloadLinkItem",
-        "hidden": true,
         "validation": {
           "maxLength": 30,
           "customErrorMsg": "CTA text cannot exceed 30 characters"
