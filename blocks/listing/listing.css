@@ -202,7 +202,9 @@
       margin-top: 0;
       margin-bottom: 100px !important;
     }
-
+    [data-gen-model="linkField"] a {
+      font-size: var(--font-size-xxs);
+    }
     [data-aue-model="listitem"] .row [class*="col-"]:nth-child(2) a, [data-gen-model="listitem"] .row [class*="col-"]:nth-child(2) a {
       font-size: var(--font-size-xxs);
       bottom: 18px;

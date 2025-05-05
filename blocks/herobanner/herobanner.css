@@ -165,8 +165,8 @@
 }
 
 .carousel-image {
-  width: 151px;
-  height: 118px;
+  width: auto;
+  height: auto;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -179,7 +179,7 @@
 
 
 .hero-banner-container .carousel-image img {
-  height: 118px;
+  height: auto;
 }
 
 .news-title {
@@ -415,8 +415,8 @@
 
 
   .carousel-image {
-    width: 92px;
-    height: 92px;
+    width: auto;
+    height: auto;
   }
 
   .carousel-wrapper {
@@ -429,7 +429,7 @@
   }
 
   .hero-banner-container .carousel-image img {
-    height: 92px;
+    height: auto;
     flex: 1 0 0;
     object-fit: cover;
   }
@@ -438,7 +438,7 @@
     gap:3px;
     padding-right: 5px;
     bottom: 18px;
-    right: 130px;
+    right: 148px;
   }
 
   .left-carousel-arrow {
