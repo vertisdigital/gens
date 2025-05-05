@@ -41,21 +41,22 @@ export function isMobile() {
 
 
 export function downloadLink(item) {
-  const LABEL = '.project-subtitle';
-  const LINK = '.project-long-description';
-  const ICON = '.project-short-description';
-  const downloadLinkElements = item.querySelectorAll('[data-download-link="downloadlinkitem"]')
+  const LABEL = 1;
+  const LINK = 2;
+  const ICON = 3;
+  const downloadLinkElements = item.querySelectorAll('[data-gen-download="downloadlinkitem"]')
 
   if (!downloadLinkElements.length) return
   
   downloadLinkElements.forEach(downloadLinkElement=>{
+    const childElement=downloadLinkElement.children
     const linkTag = document.createElement('a')
     linkTag.setAttribute('target', '_blank')
     linkTag.classList.add('download-link-item')
-    linkTag.href = downloadLinkElement.querySelector(LINK).querySelector('a').href
-    linkTag.innerHTML = `<span>${downloadLinkElement.querySelector(LABEL).textContent}</span>`
+    linkTag.href = childElement[LINK].querySelector('a').href
+    linkTag.innerHTML = `<span>${childElement[LABEL].textContent}</span>`
   
-    const iconName = downloadLinkElement.querySelector(ICON).textContent.replace(/-/g, "").toLowerCase().trim()
+    const iconName = childElement[ICON].textContent.replace(/-/g, "").toLowerCase().trim()
     const icon = SvgIcon({
       name: iconName,
       className: '',

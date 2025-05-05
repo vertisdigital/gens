@@ -24,6 +24,10 @@ export default function decorate(block) {
       // Create left column (heading) - 40% on desktop and tablet
       const leftCol = document.createElement('div');
       leftCol.className = 'col-xl-6 col-md-3 col-sm-4 left-col';
+      
+      if(project.getAttribute('data-gen-download')==='downloadlinkitem'){
+        leftCol.setAttribute('data-gen-download','downloadlinkitem');
+      }
 
       const allDivElements = project.children;
 
@@ -107,10 +111,6 @@ export default function decorate(block) {
           imageContainer.appendChild(imageElement);
           rightCol.appendChild(imageContainer);
         }
-      }
-
-      if (leftCol.children[0].textContent.toLowerCase() === 'downloadlinkitem') {
-        leftCol.setAttribute("data-download-link", "downloadlinkitem")
       }
 
       projectContainer.appendChild(leftCol);
