@@ -67,7 +67,7 @@ p {
    }
 
 .download-link-item {
-    line-height: 1;
+    line-height: 1 !important;
     background: none;
     display: inline-flex;
     align-items: center;
