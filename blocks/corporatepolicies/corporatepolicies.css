@@ -115,7 +115,9 @@
         font-size: var(--font-size-l);
         line-height: 42px;
     }
-
+    .corporate-policies-list>div:first-child.corporate-policies-list-item .left-col h2{
+        font-size: var(--font-size-l);
+    }
     .corporate-policies-list-item .right-col > div:nth-child(4) {
         margin-bottom: 10px;
     }
@@ -145,7 +147,9 @@
         line-height: 34px;
         margin-bottom: 16px;
     }
-
+    .corporate-policies-list>div:first-child.corporate-policies-list-item .left-col h2{
+        font-size: var(--font-size-m);
+    }
     .corporate-policies-list-item .right-col {
         padding: 0;
     }
