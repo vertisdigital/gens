@@ -30,7 +30,8 @@ export default function decorate(block) {
   // Convert each item to use proper semantic structure
   const items = [...coreBlock.querySelectorAll('[data-aue-model="coreprinciple"], [data-gen-model="featureItem"]')];
   const isFourCards = items.length === 4
-
+  const isMoreThenSix = items.length >= 6
+  
   items.forEach((item) => {
     // Add responsive column classes as per requirements
     const col = document.createElement('div');
@@ -126,8 +127,8 @@ export default function decorate(block) {
   coreBlock.appendChild(wrapper);
 
   function handleLayout() {
+    const childElement=row.children
     if (isFourCards) {
-      const childElement=row.children
       if (window.innerWidth < 1024) {
         row.style.removeProperty('max-width')
         childElement[0].style.removeProperty('padding-left')
@@ -137,6 +138,15 @@ export default function decorate(block) {
         childElement[0].style.paddingLeft = window.innerWidth===1024 ? "12px" : "18px"
         childElement[childElement.length - 1].style.paddingRight = window.innerWidth === 1024 ? "12px" : "18px"
       }
+    }
+    if(isMoreThenSix){
+      if (window.innerWidth < 1024) {
+        childElement[0].style.removeProperty('padding-left')
+        childElement[childElement.length - 1].style.removeProperty('padding-right')
+      } else {
+        childElement[0].style.paddingLeft = window.innerWidth===1024 ? "12px" : "18px"
+        childElement[childElement.length - 1].style.paddingRight = window.innerWidth === 1024 ? "12px" : "18px"
+      }      
     }
   }
   handleLayout()
