@@ -92,6 +92,27 @@
     line-height: 24px;
     color: var(--body-text-color);
 }
+
+.core-principle-single-card{
+    display: flex !important;
+    flex-direction: row !important;
+    justify-content: center;
+    align-items: center;
+    gap: 68px;
+    padding: 68px !important;
+}
+
+.core-principle-single-card-line{
+    border: solid 2px var(--primary-gold);
+    width: 80px;
+    margin-bottom: 32px;
+}
+
+.icon-single-wrapper{
+    padding: 0 !important;
+    margin: 0 !important;
+}
+
 @media (width <= 1199px) {
     .coreprinciples .coreprinciples .container::after {
         width: 100%;
