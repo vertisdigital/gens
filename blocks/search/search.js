@@ -132,7 +132,7 @@ export default function decorate(block) {
 
   // Function to render search results
   const renderResults = (query, page = 1) => {
-    const itemsPerPage = 7;
+    const itemsPerPage = Number(searchInputDetails[6]?.textContent.trim()) || 7;
     const lowerQuery = query.toLowerCase();
     const results = searchData.data.filter((item) => (
       item.title?.toLowerCase().includes(lowerQuery) ||
@@ -149,7 +149,8 @@ export default function decorate(block) {
     if (paginatedResults.length > 0) {
       searchResultsWrapper.classList.add('active');
       searchResultCount.classList.add('active');
-      searchResultCount.innerHTML = `${results.length} ${searchInputDetails[3]?.textContent.trim()} <span>'${query}'</span>`;
+      const searchResultCountText = searchInputDetails[7]?.textContent.trim() || 'results found for';
+      searchResultCount.innerHTML = `${results.length} ${searchResultCountText} <span>'${query}'</span>`;
 
       paginatedResults.forEach((item) => {
         const div = document.createElement('div');
@@ -165,13 +166,14 @@ export default function decorate(block) {
     } else {
       searchResultsWrapper.classList.remove('active');
       searchResultCount.classList.add('active');
-      searchResultCount.innerHTML = `No result found for <span>'${query}'</span>`;
+      const noResultsText = searchInputDetails[7]?.textContent.trim() || 'No results found';
+      searchResultCount.innerHTML = `${noResultsText} <span>'${query}'</span>`;
     }
   };
 
   // Function to render pagination
   const renderPagination = (total, currentPage, query) => {
-    const itemsPerPage = 7;
+    const itemsPerPage = Number(searchInputDetails[6]?.textContent.trim()) || 7;
     const totalPages = Math.ceil(total / itemsPerPage);
     paginationWrapper.innerHTML = '';
 
