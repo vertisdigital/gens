@@ -96,19 +96,18 @@
     .coreprinciples .coreprinciples .container::after {
         width: 100%;
     }
-}
-@media (width <= 992px) {
-    .coreprinciples .icon-wrapper {
-        padding: 36px 10px;
-        margin-bottom: 0;
-    }
-
     .coreprinciples .row {
         justify-content: left;
         margin-left: -12px;
         margin-right: -12px;
         row-gap: 24px;
         width: auto;
+    }
+}
+@media (width <= 992px) {
+    .coreprinciples .icon-wrapper {
+        padding: 36px 10px;
+        margin-bottom: 0;
     }
 
     .coreprinciples .icon-wrapper picture {
