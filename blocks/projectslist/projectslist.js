@@ -70,6 +70,8 @@ export default function decorate(block) {
 
       const projectCta = allDivElements[5];
       if (projectCta) {
+        const target = allDivElements[7]?.textContent || '_self';
+        projectCta.querySelector('a')?.setAttribute('target', target);
         projectCta.className = 'project-cta';
         leftCol.appendChild(projectCta);
       }
