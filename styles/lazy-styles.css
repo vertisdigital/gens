@@ -41,7 +41,7 @@
     border-bottom: 2px solid var(--body-text-color);
     cursor: pointer;
     flex: 1 1;
-    min-width: 248px;
+    min-width: 252px;
 }
 
 .tab-title.active {
