@@ -228,6 +228,9 @@ export default async function decorate(block) {
 
       // Add text content - looking for the copyright text in the default-content-wrapper
       const textContent = bottomContent.querySelector('.default-content-wrapper');
+      const pTag = textContent.querySelector('p')
+      pTag.classList.remove('-row')
+      pTag.classList.add('footer-row')
       if (textContent) {
         const textDiv = document.createElement('div');
         textDiv.className = 'copywrite';
@@ -295,7 +298,7 @@ export default async function decorate(block) {
 
     // Update the handleLayout function
     const handleLayout = () => {
-      const isDesktop = window.innerWidth >= 992;
+      const isDesktop = window.innerWidth > 1024;
       const existingRightSection = mainContainer.querySelector('.right-section');
 
       if (isDesktop) {
@@ -352,6 +355,7 @@ export default async function decorate(block) {
           columnsContainer.appendChild(col);
         });
         mainContainer.appendChild(columnsContainer);
+        mainContainer.insertBefore(logoWrapper, mainContainer.firstChild)
       }
 
       // Re-append bottom section after layout changes
