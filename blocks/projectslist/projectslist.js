@@ -26,7 +26,7 @@ export default function decorate(block) {
       leftCol.className = 'col-xl-6 col-md-3 col-sm-4 left-col';
       
       if(project.getAttribute('data-gen-download')==='downloadlinkitem'){
-        leftCol.setAttribute('data-gen-download','downloadlinkitem');
+        projectContainer.setAttribute('data-gen-download','downloadlinkitem');
       }
 
       const allDivElements = project.children;
@@ -70,8 +70,6 @@ export default function decorate(block) {
 
       const projectCta = allDivElements[5];
       if (projectCta) {
-        const target = allDivElements[7]?.textContent || '_self';
-        projectCta.querySelector('a')?.setAttribute('target', target);
         projectCta.className = 'project-cta';
         leftCol.appendChild(projectCta);
       }
