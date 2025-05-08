@@ -4,7 +4,7 @@
   }
  
   .textmediablock-container>div:first-child{
-  margin-bottom: 36px
+  margin-bottom: 9px;
   }
   [class*="text-media-block-heading-variation"] {
     margin-bottom: 0;
@@ -44,6 +44,7 @@
   line-height: 50px;
   color: var(--text-color);
   flex: 1;
+  letter-spacing: -0.5px;
 }
 
 .textblock .text-section {
@@ -55,6 +56,10 @@
   font-weight: 400;
   line-height: 24px;
   color: var(--body-text-color);
+}
+
+.textmediablock.textmediablock-title-only-nested-1-1.mediablock > div p{
+  line-height: 0 !important;
 }
 
 /* Tablet and up: Grid layout */

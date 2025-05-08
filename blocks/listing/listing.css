@@ -348,6 +348,7 @@
   .listing-wrapper .listing [data-aue-model="listitem"] [data-aue-prop="title"], .listing-wrapper .listing [data-gen-model="listitem"] [data-gen-prop="title"] {
     font-size: var(--font-size-s);
     margin-bottom: 12px;
+    line-height: 28px;
   }
 }
 

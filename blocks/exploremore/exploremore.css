@@ -40,7 +40,7 @@
 .exploremore-wrapper-container .exploremore-item .exploremore-caption{
   font-size: var(--font-size-m);
   font-weight: 400;
-  line-height: 50px; 
+  line-height: 40px;
   letter-spacing: -0.5px;
   color: var(--text-color);
 }
