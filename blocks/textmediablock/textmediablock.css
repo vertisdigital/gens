@@ -109,6 +109,7 @@
    .textblock .heading {
     font-size: var(--font-size-m);
     line-height: 34px;
+    letter-spacing: -0.5px;
   }
   
   .text-section p{

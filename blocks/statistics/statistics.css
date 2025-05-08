@@ -245,10 +245,14 @@
     }
     .statistics .text-container {
         font-size: var(--font-size-xxs);
+        letter-spacing: 1px;
+        line-height: 20px;
     }
 
     .statistics-description-wrapper .description-text-container{
         font-size: var(--font-size-xxs);
+        line-height: 20px;
+        letter-spacing: 0px;
      }
 
     .statistics .statistics-description-wrapper h3 {

@@ -394,7 +394,7 @@
   }
 
   .news-title {
-    font-size: var(--font-size-xxxs);
+    font-size: var(--font-size-xxs);
     margin-bottom: 4px;
     line-height: 18px;
   }

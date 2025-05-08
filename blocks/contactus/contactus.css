@@ -261,8 +261,8 @@
  
 
   .contactus .enquiry-heading {
-    font-size: 28px;
-    line-height: 34px; 
+    font-size: var(--font-size-l);
+    line-height: 44px;
     margin: 0;
     margin-bottom: 18px;
   }
@@ -270,6 +270,7 @@
   .contactus .enquiry-description{
     margin-bottom: 18px;
     font-size: var(--font-size-xxs);
+    line-height: 20px;
   }
   
   .contactus .enquiry-description p{
@@ -324,7 +325,9 @@
   }
 
   .contactus .contactus-bottom>div:first-child p {
-    font-size: 22px;
+    font-size: var(--font-size-m);
+    letter-spacing: -0.5px;
+    line-height: 34px;
   }
 
   .contactus.contactus-variation .contactus-bottom>div:last-child{

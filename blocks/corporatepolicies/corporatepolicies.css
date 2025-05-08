@@ -137,6 +137,7 @@
         font-size: var(--font-size-m);
         line-height: 34px;
         margin-bottom: 16px;
+        letter-spacing: -0.5px;
     }
 
     .corporate-policies-list-item .right-col {

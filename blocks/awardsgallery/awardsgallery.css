@@ -35,6 +35,7 @@
 
 .awardsgallery .award-description {
     font-size: 14px;
+    line-height: 20px;
 }
 .awardsgallery .award-description p {
     margin-bottom: 0;   

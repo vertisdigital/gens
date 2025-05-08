@@ -100,6 +100,7 @@
 .tabs-container .about-us-stats .about-us-right-content p {
     font-weight: 400;
     color: var(--body-text-color);
+    line-height: 20px;
 }
 
 .tabs-container .about-us-stats .about-us-right-content {
@@ -305,7 +306,8 @@
         margin-top:18px
     }
     .tabs-container .corporate-policies-list-item .left-col h2 {
-        font-size: var(--font-size-sm);
+        font-size: var(--font-size-s);
+        letter-spacing: -0.5px;
     }
 }
 @media (width >= 768px) {
