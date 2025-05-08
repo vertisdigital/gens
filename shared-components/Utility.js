@@ -44,12 +44,15 @@ export function downloadLink(item) {
   const LABEL = 1;
   const LINK = 2;
   const ICON = 3;
-  const downloadLinkElements = item.querySelectorAll('[data-gen-download="downloadlinkitem"]')
+  let downloadLinkElements = item.querySelectorAll('[data-gen-download="downloadlinkitem"]')
+  if(!downloadLinkElements.length){
+    downloadLinkElements=item.querySelectorAll('[data-aue-model="downloadlinkitem"]')
+  }
 
   if (!downloadLinkElements.length) return
   
   downloadLinkElements.forEach(downloadLinkElement=>{
-    const childElement=downloadLinkElement.children
+    const childElement=downloadLinkElement?.children[0]?.children
     const linkTag = document.createElement('a')
     linkTag.setAttribute('target', '_blank')
     linkTag.classList.add('download-link-item')
