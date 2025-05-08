@@ -69,6 +69,7 @@ export function downloadLink(item) {
     linkTag.append(stringToHTML(icon));
   
     downloadLinkElement.innerHTML = ""
+    downloadLinkElement.style.padding="0px"
     downloadLinkElement.append(linkTag)
   })
 }
