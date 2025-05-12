@@ -24,7 +24,8 @@
 
 
 .footer .button-container a{
-    color: var(--background-color);
+    color: var(--soft-ivory);
+    line-height: 20px;
 }
 
 .footer .right-section {
@@ -49,7 +50,7 @@
     font-size: var(--font-size-xs);
     font-weight: 400;
     line-height: 24px;
-    color: var(--background-color);
+    color: var(--soft-ivory);
     margin-bottom: 30px;
     overflow-wrap: anywhere;
 }
@@ -103,7 +104,7 @@
 .footer .left-section .footer-nav-title{
     font-size: var(--font-size-xs);
     font-weight: 700;
-    line-height: 24px;
+    line-height: 20px;
     color: var(--background-color);
     margin-bottom: 10px;
     display: block;
@@ -128,11 +129,11 @@
     font-size: var(--font-size-xs);
     font-weight: 400;
     line-height: 24px;
-    color: var(--background-color);
+    color: var(--soft-ivory);
 }
 
 .footer .mt-4 .copywrite a{
-    color: var(--background-color);
+    color: var(--soft-ivory);
     text-decoration: underline;
 }
 

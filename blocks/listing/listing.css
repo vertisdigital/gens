@@ -340,7 +340,7 @@
 
   .listing-wrapper .listing [data-aue-prop="heading"], .listing-wrapper .listing [data-gen-prop="heading"], .listing > div:nth-child(2) [data-gen-prop="title"] {
     font-size: var(--font-size-xl);
-    line-height: normal;
+    line-height: 50px;
     margin-bottom: 36px;
     font-weight: 500;
   }

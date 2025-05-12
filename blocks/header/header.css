@@ -694,7 +694,7 @@ header .header{
 .header-inner-wrapper .header-nav .primary-nav .nav-item .primary-menu-links,
 .header-inner-wrapper .header-nav .primary-nav .nav-item .primary-menu-links a{
   text-align: center;
-  font-size: var(--font-size-xxs);
+  font-size: var(--font-size-xs);
   font-weight: 600;
   line-height: 18px;
   display: flex;
@@ -1028,6 +1028,9 @@ header .header{
 
 .header-inner-wrapper .secondary-nav .secondary-header-links .nav-links li .button-container::after {
   margin-top: 4px;
+}
+.header-inner-wrapper .header-nav .primary-nav .nav-item .primary-menu-links {
+  font-size: 14px;
 }
 }
 

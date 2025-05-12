@@ -64,8 +64,8 @@
         padding: 0 12px;
     }
     .awardsgallery .award-title {
-        font-size: 32px;
-        line-height: 42px;
+        font-size: 18px;
+        line-height: 24px;
         letter-spacing: -0.5px;
     }
 
@@ -81,6 +81,7 @@
     
     .awardsgallery .award-year {
         font-size: 18px;
+        line-height: 24px;
     }
     .awardsgallery .award-description {
         font-size: 16px;

@@ -118,6 +118,7 @@
 
     .coreprinciples .coreprinciples-card-title {
         font-size: 18px;
+        line-height: 24px;
     }
 
     .principles-item, .principles-item:first-child, .principles-item:last-child {
