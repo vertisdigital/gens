@@ -38,7 +38,8 @@
     line-height: 20px;
 }
 .awardsgallery .award-description p {
-    margin-bottom: 0;   
+    margin-bottom: 0;
+    color: var(--text-color);
 }
 
 .awardsgallery .awardsgallery-grid {
