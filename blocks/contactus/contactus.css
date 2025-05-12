@@ -162,7 +162,7 @@
   padding: 14px 30px;
   font-size: 16px;
   font-weight: 700;
-  line-height: 24px;
+  line-height: 16px;
   text-decoration: none;
   display:flex;
   align-items:center;
@@ -262,8 +262,8 @@
  
 
   .contactus .enquiry-heading {
-    font-size: var(--font-size-l);
-    line-height: 44px;
+    font-size: var(--font-size-m);
+    line-height: 34px;
     margin: 0;
     margin-bottom: 18px;
   }
@@ -326,9 +326,9 @@
   }
 
   .contactus .contactus-bottom>div:first-child p {
-    font-size: var(--font-size-m);
+    font-size: var(--font-size-sm);
     letter-spacing: -0.5px;
-    line-height: 34px;
+    line-height: 28px;
   }
 
   .contactus.contactus-variation .contactus-bottom>div:last-child{
@@ -340,6 +340,7 @@
   }
   .contactus .contactus-bottom>div:last-child a{
     font-size: var(--font-size-xxs);
+    line-height: 14px;
   }
   
 }
