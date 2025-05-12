@@ -284,7 +284,7 @@
 
     .certifications .project-card-title {
       font-size: 16px;
-      line-height: 14px
+      line-height: 20px
     }
 
     .certifications .project-card-location {
@@ -308,7 +308,7 @@
     }
 
     .certifications .project-card-title {
-      line-height: 24px
+      line-height: 20px;
     }
 
     .certifications .project-card-location {
