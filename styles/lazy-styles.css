@@ -307,7 +307,7 @@
         margin-top:18px
     }
     .tabs-container .corporate-policies-list-item .left-col h2 {
-        font-size: var(--font-size-s);
+        font-size: var(--font-size-m);
         letter-spacing: -0.5px;
     }
 }

@@ -116,6 +116,7 @@ p {
        }
     .project-title  {
         font-size: var(--font-size-sm);
+        line-height: 28px;
     }
     .project-subtitle {
         font-size: var(--font-size-xs);

@@ -110,8 +110,8 @@ export default function decorate(block) {
           mobile: {
             width: 768,
             src: `${imageUrl}`,
-            imgWidth: 155,
-            imgHeight: 155,
+            imgWidth: 180,
+            imgHeight: 180,
           },
           tablet: {
             width: 993,

@@ -8,7 +8,7 @@
     align-items: center;
     justify-content: center;
     border: 1px solid var(--light-grey);
-    aspect-ratio: 361 / 350;
+    aspect-ratio: 1/1;
     margin-bottom: 10px;
 }
 

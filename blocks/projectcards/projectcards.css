@@ -256,9 +256,6 @@
     height: auto;
     width: auto;
     display: block;
-    max-width: 106px;
-    max-height: 106px;
-    aspect-ratio: auto;
   }
 
   .certifications .project-card-title {

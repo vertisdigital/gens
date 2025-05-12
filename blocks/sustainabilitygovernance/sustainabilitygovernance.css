@@ -46,13 +46,11 @@
 .governance-card:last-child::after {
     display: none;
 }
-.governance-img {
-    width: 80px;
-}
+
 .governance-img img,
 .governance-img svg {
     display: block;
-    width: 100%;
+    aspect-ratio: 1/1;
 }
 .governance-content-title {
     color: var(--text-color);
@@ -104,10 +102,7 @@
         top: calc(100% + 37px);
         left: calc(50% - 5px);
     }
-    .governance-img,
-    .governance-img svg {
-        width: 124px;
-    }
+    
     .governance-content {
         flex: 1;
     }
