@@ -101,6 +101,7 @@
     font-weight: 400;
     color: var(--body-text-color);
     line-height: 20px;
+    letter-spacing: -0.5px;
 }
 
 .tabs-container .about-us-stats .about-us-right-content {

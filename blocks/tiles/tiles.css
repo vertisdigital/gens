@@ -61,7 +61,8 @@ a:any-link.factsheet-button {
     line-height: 24px;
     font-weight: 400;
     margin-bottom: 24px;
-    color: var(--body-text-color)
+    color: var(--body-text-color);
+    letter-spacing: -0.5px;
   }
 .row.tiles-container .image-tile>div>div:first-child p {
   font-size: var(--font-size-s);

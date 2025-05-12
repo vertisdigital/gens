@@ -247,9 +247,9 @@ p.footer-row {
     }
 
     .footer .footer-nav-title{
-        font-size: var(--font-size-xs);
+        font-size: var(--font-size-xxs);
         font-weight: 700;
-        line-height: 24px;
+        line-height: 20px;
         color: var(--background-color);
     }
     .footer .footer-description, .footer nav a, .footer .mt-4 .copywrite, .footer .footer-bottom-links .button-container a {
