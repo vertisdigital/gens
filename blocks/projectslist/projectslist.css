@@ -33,7 +33,9 @@ p {
 }
 
 .project-title  {
-    font-size: var(--font-size-sm);
+    font-size: var(--font-size-m);
+    line-height: 40px;
+    letter-spacing: -0.5px;
 }
 
 .project-long-description,
@@ -67,6 +69,10 @@ p {
    }
 
 @media (width <= 992px)  {
+    .project-title  {
+        font-size: var(--font-size-md);
+        line-height: 34px;
+    }
     .projectslist-wrapper {
         margin: 32px 0;
     }
