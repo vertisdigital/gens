@@ -262,8 +262,8 @@
  
 
   .contactus .enquiry-heading {
-    font-size: var(--font-size-m);
-    line-height: 34px;
+    font-size: var(--font-size-l);
+    line-height: 44px;
     margin: 0;
     margin-bottom: 18px;
   }
