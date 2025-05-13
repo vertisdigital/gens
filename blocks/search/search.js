@@ -9,17 +9,6 @@ export default function decorate(block) {
 
   let searchData = {};
 
-  const fetchSearchData = async () => {
-    try {
-      const response = await fetch('/query-index.json');
-      const data = await response.json();
-      searchData = data;
-      handleQueryOnLoad();
-    } catch (error) {
-      console.error('Error fetching search data:', error);
-    }
-  };
-
   // Search Input Part start
   const searchWrapper = document.createElement('div');
   searchWrapper.classList.add('search-nav');
@@ -70,12 +59,6 @@ export default function decorate(block) {
   clearBtnText.textContent = 'Clear';
   clearBtn.append(clearBtnIcon, clearBtnText);
 
-  clearBtn.addEventListener('click', () => {
-    searchInput.value = '';
-    searchResultsWrapper.classList.remove('active');
-    updateSearch('');
-  });
-
   const searchBtn = document.createElement('button');
   const searchBtnText = searchInputDetails[4]?.querySelector('a')?.textContent.trim() || 'Search';
   searchBtn.className = 'search-btn';
@@ -93,7 +76,7 @@ export default function decorate(block) {
   inputWrapper.append(inputSearchIcon, searchInput, clearBtn);
   searchInputWrapper.append(inputWrapper, searchBtn);
 
-  const searchResultCount =  document.createElement('div');
+  const searchResultCount = document.createElement('div');
   searchResultCount.className = 'search-result-count';
 
   searchInputContainer.append(searchHeadingWrapper, searchInputWrapper, searchResultCount);
@@ -135,10 +118,10 @@ export default function decorate(block) {
     const itemsPerPage = Number(searchInputDetails[6]?.textContent.trim()) || 7;
     const lowerQuery = query.toLowerCase();
     const results = searchData.data.filter((item) => (
-      item.title?.toLowerCase().includes(lowerQuery) ||
-      item.description?.toLowerCase().includes(lowerQuery) ||
-      item.fullContent?.toLowerCase().includes(lowerQuery) ||
-      item.keywords?.toLowerCase().includes(lowerQuery)
+      item.title?.toLowerCase().includes(lowerQuery)
+      || item.description?.toLowerCase().includes(lowerQuery)
+      || item.fullContent?.toLowerCase().includes(lowerQuery)
+      || item.keywords?.toLowerCase().includes(lowerQuery)
     ));
 
     const start = (page - 1) * itemsPerPage;
@@ -162,39 +145,35 @@ export default function decorate(block) {
         searchResults.appendChild(div);
       });
 
-      renderPagination(results.length, page, query);
+      // renderPagination(results.length, page, query);
+      const total = results.length;
+      const totalPages = Math.ceil(total / itemsPerPage);
+      paginationWrapper.innerHTML = '';
+
+      if (totalPages > 1) {
+        const leftArrow = document.createElement('button');
+        leftArrow.innerHTML = SvgIcon({ name: 'leftarrow', className: 'arrow-icon', size: 18 });
+        leftArrow.className = 'left-arrow';
+        leftArrow.disabled = page === 1;
+        leftArrow.addEventListener('click', () => renderResults(query, page - 1));
+
+        const rightArrow = document.createElement('button');
+        rightArrow.innerHTML = SvgIcon({ name: 'rightarrow', className: 'arrow-icon', size: 18 });
+        rightArrow.className = 'right-arrow';
+        rightArrow.disabled = page === totalPages;
+        rightArrow.addEventListener('click', () => renderResults(query, page + 1));
+
+        const pageInfo = document.createElement('span');
+        pageInfo.className = 'page-info';
+        pageInfo.textContent = `Page ${page} / ${totalPages}`;
+
+        paginationWrapper.append(leftArrow, pageInfo, rightArrow);
+      }
     } else {
       searchResultsWrapper.classList.remove('active');
       searchResultCount.classList.add('active');
       const noResultsText = searchInputDetails[7]?.textContent.trim() || 'No results found';
       searchResultCount.innerHTML = `${noResultsText} <span>'${query}'</span>`;
-    }
-  };
-
-  // Function to render pagination
-  const renderPagination = (total, currentPage, query) => {
-    const itemsPerPage = Number(searchInputDetails[6]?.textContent.trim()) || 7;
-    const totalPages = Math.ceil(total / itemsPerPage);
-    paginationWrapper.innerHTML = '';
-
-    if (totalPages > 1) {
-      const leftArrow = document.createElement('button');
-      leftArrow.innerHTML = SvgIcon({ name: 'leftarrow', className: 'arrow-icon', size: 18 });
-      leftArrow.className = 'left-arrow';
-      leftArrow.disabled = currentPage === 1;
-      leftArrow.addEventListener('click', () => renderResults(query, currentPage - 1));
-
-      const rightArrow = document.createElement('button');
-      rightArrow.innerHTML = SvgIcon({ name: 'rightarrow', className: 'arrow-icon', size: 18 });
-      rightArrow.className = 'right-arrow';
-      rightArrow.disabled = currentPage === totalPages;
-      rightArrow.addEventListener('click', () => renderResults(query, currentPage + 1));
-
-      const pageInfo = document.createElement('span');
-      pageInfo.className = 'page-info';
-      pageInfo.textContent = `Page ${currentPage} / ${totalPages}`;
-
-      paginationWrapper.append(leftArrow, pageInfo, rightArrow);
     }
   };
 
@@ -235,6 +214,23 @@ export default function decorate(block) {
       updateSearch(query);
     }
   };
+
+  const fetchSearchData = async () => {
+    try {
+      const response = await fetch('/query-index.json');
+      const data = await response.json();
+      searchData = data;
+      handleQueryOnLoad();
+    } catch (error) {
+      console.error('Error fetching search data:', error);
+    }
+  };
+
+  clearBtn.addEventListener('click', () => {
+    searchInput.value = '';
+    searchResultsWrapper.classList.remove('active');
+    updateSearch('');
+  });
 
   // Preserve original content
   const originalContentWrapper = document.createElement('div');
