@@ -80,6 +80,7 @@
     }
     .awardsgallery .awardsgallery-content * {
         margin-bottom: 6px;
+        line-height: 24px;
     }
     
     .awardsgallery .award-year {

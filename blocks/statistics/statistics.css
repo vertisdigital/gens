@@ -64,9 +64,9 @@
 }
 
 .statistics .statistic-item {
-    font-size: var(--font-size-xxxl);
+    font-size: var(--font-size-xgl);
     font-weight: 400;
-    line-height: 80px;
+    line-height: 64px;
     color: var(--primary-gold);
 }
 
@@ -210,11 +210,10 @@
     .statistics .statistics-description-wrapper h3, .statistics .statistics-title {
         font-size: var(--font-size-l);
         margin-bottom: 12px;
-        line-height: 34px;
+        line-height: 42px;
     }
 
     .statistics .statistic-item {
-        font-size: var(--font-size-xxl);
         line-height: 64px;
     }
 
@@ -264,6 +263,7 @@
 
     .statistics .statistics-description-wrapper h3 {
         font-size: var(--font-size-m);
+        line-height: 34px;
     }
 
     .statistics .statistics-row {
