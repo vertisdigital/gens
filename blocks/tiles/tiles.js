@@ -94,7 +94,9 @@ export default function decorate(block) {
   });
 
   block.textContent = '';
-
+  if (row?.querySelector('.learn-button')) {
+    block.classList.add('with-cta');
+  }
   if (isFirsTileImage) {
     const allImageVariation = document.createElement('div');
     allImageVariation.className = 'tile-all-image-variation ';

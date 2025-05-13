@@ -13,13 +13,16 @@
 }
 .row.tiles-container > .image-tile > div {
   background-color: var(--text-color);
-  padding: 20px;
+  padding: 20px 20px 15px;
   display: flex;
   flex-direction: column;
   justify-content: end;
   width: 100%;
   min-height: 314px;
   position: relative;
+}
+.tiles.block.with-cta .tiles-container > .image-tile > div {
+    padding: 20px 20px 40px;
 }
 .tiles.block > .image-tile {
   color: var(--background-color);
@@ -67,12 +70,12 @@ a:any-link.factsheet-button {
   font-weight: 600;
   line-height: 24px;
   color: var(--background-color);
-  margin-bottom: 12px
+  margin-bottom: 6px;
 }
 .row.tiles-container .image-tile>div>div:nth-child(2) p {
   font-size: var(--font-size-xs);
   font-weight: 400;
-  line-height: 24px;
+  line-height: 20px;
   color: var(--light-grey);
 }
 .learn-button{
@@ -90,7 +93,7 @@ a:any-link.factsheet-button {
   row-gap: 28px;
 }
 .tiles-container .learn-button {
-  bottom: 20px;
+  bottom: 15px;
   right: 20px;
   font-size: var(--font-size-xs);
 }
@@ -130,7 +133,7 @@ a:any-link.factsheet-button {
    .row.tiles-container .image-tile>div>div:nth-child(2) p{
     font-size: var(--font-size-xxs);
     font-weight: 400;
-    line-height: 20px;
+    line-height: 18px;
   }
 
   .learn-button {
@@ -176,7 +179,7 @@ a:any-link.factsheet-button {
    .row.tiles-container .image-tile>div>div:nth-child(2) p{
     font-size: var(--font-size-xs);
     font-weight: 400;
-    line-height: 24px;
+    line-height: 18px;
   }
 
   .learn-button {

@@ -71,7 +71,7 @@
 }
 
 .statistics.statistics-financial-variation .statistic-item {
-    font-size: 4.375rem;
+    font-size: 4rem;
 }
 
 .statistics .statistic-item sup, .statistics .statistic-item sub {
@@ -275,7 +275,9 @@
         font-size: var(--font-size-ml);
         line-height: 48px;
     }
-
+    .statistics.statistics-financial-variation .statistic-item {
+        font-size: var(--font-size-ml);
+    }
     .statistics-wrapper .statistics.block {
         margin-top: -54px;
     }
@@ -314,19 +316,11 @@
     }
     
 }
-@media (width>=993px) {
-    .statistics .statistics-row .feature-item {
-        width: 50%;
-    }
-}
 @media (width>=1200px) {
     .statistics-wrapper .statistics.block::before {
         max-width: none;
         width: auto;
         left: 100px;
         right: 100px;
-    }
-    .statistics .statistics-row .feature-item {
-        width: 33.33333333%;;
     }
 }
