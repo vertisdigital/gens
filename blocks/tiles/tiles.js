@@ -98,6 +98,9 @@ export default function decorate(block) {
   if (isFirsTileImage) {
     const allImageVariation = document.createElement('div');
     allImageVariation.className = 'tile-all-image-variation ';
+    if (row?.querySelector('.learn-button')) {
+      allImageVariation.classList.add('with-cta');
+    }
     allImageVariation.appendChild(row);
     block.appendChild(allImageVariation);
   } else {
