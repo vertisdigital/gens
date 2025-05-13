@@ -55,6 +55,7 @@
     margin-bottom: 8px;
     height: auto;
     opacity: 1;
+    aspect-ratio: 16/9;
 }
 
 .boardofdirectors .director-info {

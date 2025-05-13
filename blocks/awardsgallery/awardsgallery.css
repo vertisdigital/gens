@@ -8,7 +8,7 @@
     align-items: center;
     justify-content: center;
     border: 1px solid var(--light-grey);
-    aspect-ratio: 361 / 350;
+    aspect-ratio: 1/1;
     margin-bottom: 10px;
 }
 
@@ -19,6 +19,8 @@
 .awardsgallery .awardsgallery-content * {
     text-align: center;
     margin-bottom: 6px;
+    line-height: 20px;
+    letter-spacing: 0;
 }
 
 .awardsgallery .award-year {
@@ -35,9 +37,11 @@
 
 .awardsgallery .award-description {
     font-size: 14px;
+    line-height: 20px;
 }
 .awardsgallery .award-description p {
-    margin-bottom: 0;   
+    margin-bottom: 0;
+    color: var(--text-color);
 }
 
 .awardsgallery .awardsgallery-grid {
@@ -64,6 +68,8 @@
     }
     .awardsgallery .award-title {
         font-size: 18px;
+        line-height: 24px;
+        letter-spacing: 0;
     }
 
     .awardsgallery .awardsgallery-image {
@@ -78,6 +84,7 @@
     
     .awardsgallery .award-year {
         font-size: 18px;
+        line-height: 24px;
     }
     .awardsgallery .award-description {
         font-size: 16px;

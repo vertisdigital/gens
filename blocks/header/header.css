@@ -741,7 +741,7 @@ header .header{
 .header-inner-wrapper .secondary-nav .secondary-header .secondary-header-wrapper a{
   font-size: var(--font-size-xl);
   font-weight: 500;
-  line-height: 34px;
+  line-height: 30px;
   letter-spacing: -0.5px;
   color:var(--text-color);
   text-decoration: none;
@@ -815,7 +815,7 @@ header .header{
   color: var(--text-color);
   font-size: var(--font-size-xs);
   font-weight: 400;
-  line-height: 30px;
+  line-height: 24px;
   padding: 0;
   transition: text-decoration 0.3s ease-in-out;
   border-radius: 0;
@@ -956,7 +956,7 @@ header .header{
 
   .header-inner-wrapper .secondary-nav .secondary-header .secondary-header-wrapper a {
     font-size: 1.125rem;
-    line-height: 28px;
+    line-height: 24px;
     margin-bottom: 36px;
   }
 
@@ -978,6 +978,9 @@ header .header{
 
   .header-inner-wrapper .secondary-nav .secondary-header-links .nav-links{
     flex-direction: column;
+  }
+  .header-inner-wrapper .secondary-nav .secondary-header-links .nav-links li .button-container a {
+    line-height: 24px;
   }
 
 }
@@ -1005,7 +1008,7 @@ header .header{
 
 .header-inner-wrapper .secondary-nav .secondary-header .secondary-header-wrapper a {
   font-size: 1.125rem;
-  line-height: 26px;
+  line-height: 24px;
   margin-bottom: 28px;
 }
 
@@ -1025,6 +1028,9 @@ header .header{
 
 .header-inner-wrapper .secondary-nav .secondary-header-links .nav-links li .button-container::after {
   margin-top: 4px;
+}
+.header-inner-wrapper .header-nav .primary-nav .nav-item .primary-menu-links {
+  font-size: 14px;
 }
 }
 

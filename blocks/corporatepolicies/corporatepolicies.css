@@ -54,10 +54,11 @@
 }
 
 .corporate-policies-list-item .left-col h2{
-    font-size: var(--font-size-m);
+    font-size: var(--font-size-xl);
     font-weight: 500;
     line-height: 50px;
     color: var(--text-color);
+    letter-spacing: -0.5px;
 }
 
 .corporate-policies-list-item .right-col > div:first-child {
@@ -97,7 +98,7 @@
 
 @media (width <= 992px) {
     .corporatepolicies-wrapper{
-        margin: 28px 0;
+        margin: 32px 0;
     }
 
     .corporate-policies-list-item {
@@ -137,6 +138,7 @@
         font-size: var(--font-size-m);
         line-height: 34px;
         margin-bottom: 16px;
+        letter-spacing: -0.5px;
     }
 
     .corporate-policies-list-item .right-col {

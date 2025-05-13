@@ -40,7 +40,7 @@
 .exploremore-wrapper-container .exploremore-item .exploremore-caption{
   font-size: var(--font-size-m);
   font-weight: 400;
-  line-height: 50px; 
+  line-height: 40px;
   letter-spacing: -0.5px;
   color: var(--text-color);
 }
@@ -91,7 +91,7 @@
   .exploremore-wrapper-container .exploremore-item .exploremore-caption{
     font-size: 24px;
     font-weight: 400;
-    line-height: 42px; 
+    line-height: 34px; 
   }
 
   .exploremore-wrapper-container .exploremore-item .exploremore-link-container{
@@ -118,8 +118,8 @@
   }
 
   .exploremore-wrapper-container .exploremore-item .exploremore-caption{
-    font-size: var(--font-size-md);
-    line-height: 34px;
+    font-size: var(--font-size-sm);
+    line-height: 28px;
   }
 
   .exploremore-wrapper-container .exploremore-item .exploremore-link-container{

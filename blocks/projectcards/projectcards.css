@@ -127,7 +127,7 @@
 
   @media (width<=992px){
     .projectcards{
-      margin: 28px 0;
+      margin: 32px 0;
     }
     .projectcards.grey-background {
       padding: 28px 0 28px;
@@ -256,9 +256,6 @@
     height: auto;
     width: auto;
     display: block;
-    max-width: 106px;
-    max-height: 106px;
-    aspect-ratio: auto;
   }
 
   .certifications .project-card-title {
@@ -284,7 +281,7 @@
 
     .certifications .project-card-title {
       font-size: 16px;
-      line-height: 14px
+      line-height: 20px
     }
 
     .certifications .project-card-location {
@@ -308,7 +305,7 @@
     }
 
     .certifications .project-card-title {
-      line-height: 24px
+      line-height: 20px;
     }
 
     .certifications .project-card-location {

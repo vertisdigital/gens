@@ -33,7 +33,9 @@ p {
 }
 
 .project-title  {
-    font-size: var(--font-size-sm);
+    font-size: var(--font-size-m);
+    line-height: 40px;
+    letter-spacing: -0.5px;
 }
 
 .project-long-description,
@@ -63,12 +65,17 @@ p {
     cursor:pointer;
     padding:0;
     color: var(--primary-gold);
-    margin-top:30px
+    margin-top:30px;
+    line-height: 16px;
    }
 
 @media (width <= 992px)  {
+    .project-title  {
+        font-size: var(--font-size-md);
+        line-height: 34px;
+    }
     .projectslist-wrapper {
-        margin: 28px 0;
+        margin: 32px 0;
     }
     .projectslistitem {
         padding-top: 28px;
@@ -110,6 +117,7 @@ p {
        }
     .project-title  {
         font-size: var(--font-size-sm);
+        line-height: 28px;
     }
     .project-subtitle {
         font-size: var(--font-size-xs);
