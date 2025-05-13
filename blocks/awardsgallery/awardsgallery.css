@@ -20,6 +20,7 @@
     text-align: center;
     margin-bottom: 6px;
     line-height: 20px;
+    letter-spacing: 0;
 }
 
 .awardsgallery .award-year {
@@ -40,6 +41,7 @@
 }
 .awardsgallery .award-description p {
     margin-bottom: 0;
+    color: var(--text-color);
 }
 
 .awardsgallery .awardsgallery-grid {
@@ -67,7 +69,7 @@
     .awardsgallery .award-title {
         font-size: 18px;
         line-height: 24px;
-        letter-spacing: -0.5px;
+        letter-spacing: 0;
     }
 
     .awardsgallery .awardsgallery-image {
