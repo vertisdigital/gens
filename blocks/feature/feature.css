@@ -272,6 +272,7 @@ color: var(--body-text-color);
 
   .about-us-stats .about-us-right-content.image-container > div:nth-child(2) p{
     font-weight: 700;
+    color: var(--text-color);
   }
 
   .about-us-stats .about-us-right-content.image-container > div:first-child{
@@ -356,7 +357,7 @@ color: var(--body-text-color);
 
   .about-us-stats .about-us-right-content.image-container>div:nth-child(2) p{
     font-weight: 700;
-    color: var(--body-text-color);
+    color: var(--text-color);
   }
   
   .about-us-stats .about-us-right-content.text-container{
