@@ -136,9 +136,9 @@ a:any-link.factsheet-button {
  
 
    .row.tiles-container .image-tile>div>div:nth-child(2) p{
-    font-size: var(--font-size-xxs);
+    font-size: var(--font-size-xs);
     font-weight: 400;
-    line-height: 20px;
+    line-height: 18px;
   }
 
   .learn-button {
@@ -165,10 +165,6 @@ a:any-link.factsheet-button {
   .row.tiles-container > div {
     padding: 0 12px;
   }
-
-  .row.tiles-container .image-tile>div>div:nth-child(2) p{
-    line-height: 24px;
-  }
 }
 @media screen and (width < 992px) and (width >= 768px) {
   .row.tiles-container {
@@ -190,6 +186,7 @@ a:any-link.factsheet-button {
    .row.tiles-container .image-tile>div>div:nth-child(2) p{
     font-size: var(--font-size-xs);
     font-weight: 400;
+    line-height: 18px;
   }
 
   .learn-button {
