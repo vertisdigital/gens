@@ -12,7 +12,7 @@ let isHeaderFixed = false;
  * Updates header state based on scroll position
  * @param {Element} header Header element
  */
-function updateHeaderState(header, isClicked = false, clickedFrom = '') {
+function updateHeaderState(header, isClicked = false) {
   const scrollPosition = window.scrollY;
   const defaultLogo = header.querySelector('.default-logo');
   const scrollLogo = header.querySelector('.scroll-logo');
