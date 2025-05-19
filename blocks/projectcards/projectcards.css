@@ -17,7 +17,7 @@
     line-height: 24px;
     color: var(--text-color);
     margin-bottom: 16px;
-    letter-spacing: 0px;
+    letter-spacing: 0;
   }
 
   .projectcards .projectcards-heading {
@@ -101,7 +101,6 @@
     font-size: var(--font-size-xs);
     line-height: 24px;
     color: var(--primary-gold) !important;
-    text-decoration: none;
     font-weight: 500;
     transition: color 0.3s ease;
     background: none;
@@ -162,8 +161,7 @@
   .card-pair {
     width: 100%;
     display: flex;
-    flex-direction: row;
-    flex-wrap: wrap;
+    flex-flow: row wrap;
     flex: 1;
     min-width: 100%;
     padding: 0;
@@ -176,7 +174,7 @@
     }
 
     .projectcards.grey-background {
-      padding: 40px 0 40px;
+      padding: 40px 0;
     }
 
     .carousel-container {
@@ -247,7 +245,7 @@
     }
 
     .projectcards .project-card {
-      padding: 12px 12px !important;
+      padding: 12px !important;
     }
 
     .projectcards .project-card [data-aue-prop="image"] {
@@ -286,7 +284,7 @@
     }
 
     .projectcards.grey-background {
-      padding: 32px 0 32px;
+      padding: 32px 0;
     }
 
     .projectcards .project-card-title {
@@ -301,12 +299,6 @@
       line-height: 20px;
     }
 
-    .projectcards .projectcards-title{
-      font-size: var(--font-size-xs);
-      line-height: 20px;
-      margin-bottom: 12px;
-    }
-
     .projectcards .projectcards-header {
       margin-bottom: 26px;
     }
@@ -314,7 +306,7 @@
 
   /* CERTIFICATIONS VARIATION  */
   .certifications .projectcards-header {
-    margin-bottom: 42px;
+    margin-bottom: 26px;
   }
 
   .certifications .project-card [data-aue-prop="image"] {
@@ -340,10 +332,6 @@
 
   .certifications .project-card-location {
     color: var(--body-text-color);
-  }
-
-  .certifications .projectcards-header{
-      margin-bottom: 26px;
   }
 
   @media (width>=768px) {
