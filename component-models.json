@@ -1400,7 +1400,7 @@
       {
         "component": "custom-asset-namespace:custom-asset",
         "name": "image",
-        "label": "Image",
+        "label": "Media",
         "configUrl": "https://int--genting--wppopen.aem.live/tools/assets-selector/config.json"
       },
       {
@@ -1408,6 +1408,12 @@
         "name": "imageTitle",
         "label": "Alt Text",
         "valueType": "string"
+      },
+      {
+        "component": "boolean",
+        "label": "Autoplay",
+        "name": "reveal",
+        "valueType": "boolean"
       }
     ]
   },
