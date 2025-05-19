@@ -1,9 +1,95 @@
 {
-    "repoNames": [
-      "delivery-p144202-e1512622.adobeaemcloud.com"
-    ],    
-    "rails": false,
-    "aemTierType": "delivery",
-    "type": ["folder", "file", "images", "documents", "video"]
-    
-  }
+  "repoNames": [
+    "delivery-p144202-e1488374.adobeaemcloud.com"
+  ],
+  "rails": false,
+  "aemTierType": "delivery",
+  "filterSchema": [
+    {
+      "fields": [
+        {
+          "columns": 2,
+          "defaultValue": [
+            "image/jpeg",
+            "image/png",
+            "image/gif",
+            "image/webp",
+            "image/tiff",
+            "image/svg+xml",
+            "image/bmp",
+            "image/vnd.microsoft.icon",
+            "video/mp4",
+            "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
+            "application/vnd.openxmlformats-officedocument.presentationml.presentation",
+            "application/vnd.openxmlformats-officedocument.wordprocessingml.document",
+            "application/pdf"
+          ],
+          "element": "checkbox",
+          "name": "type",
+          "options": [
+            {
+              "label": "JPEG",
+              "value": "image/jpeg"
+            },
+            {
+              "label": "PNG",
+              "value": "image/png"
+            },
+            {
+              "label": "GIF",
+              "value": "image/gif"
+            },
+            {
+              "label": "WEBP",
+              "value": "image/webp"
+            },
+            {
+              "label": "TIFF",
+              "value": "image/tiff"
+            },
+            {
+              "label": "SVG",
+              "value": "image/svg+xml"
+            },
+            {
+              "label": "BMP",
+              "value": "image/bmp"
+            },
+            {
+              "label": "ICO",
+              "value": "image/vnd.microsoft.icon"
+            },
+            {
+              "label": "MP4",
+              "value": "video/mp4"
+            },
+            {
+                "label": "Sheets",
+                "value": "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"
+            },
+            {
+              "label": "Presentations",
+              "value": "application/vnd.openxmlformats-officedocument.presentationml.presentation"
+            },
+            {
+              "label": "Documents",
+              "value": "application/vnd.openxmlformats-officedocument.wordprocessingml.document"
+            },
+            {
+              "label": "PDF",
+              "value": "application/pdf"
+            },
+            {
+              "label": "Archives",
+              "value": "application/zip"
+            }
+          ]
+        }
+      ],
+      "groupKey": "FileTypeGroup",
+      "header": "File Type"
+    }
+  ],
+  "hideFilters": "true",
+  "useProdDomain": true
+}
