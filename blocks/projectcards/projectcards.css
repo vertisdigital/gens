@@ -305,12 +305,6 @@
       font-weight: 400;
       line-height: 20px;
     }
-
-    .projectcards .projectcards-title{
-      font-size: var(--font-size-xs);
-      line-height: 20px;
-      margin-bottom: 12px;
-    }
   }
 
   /* CERTIFICATIONS VARIATION  */
