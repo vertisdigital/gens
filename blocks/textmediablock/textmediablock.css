@@ -3,6 +3,9 @@
     margin: 45px 0;
   }
  
+  .textmediablock-container>div:first-child{
+  margin-bottom: 9px;
+  }
   [class*="text-media-block-heading-variation"] {
     margin-bottom: 0;
     padding-bottom: 36px;
@@ -132,7 +135,6 @@
     font-size: var(--font-size-l);
     line-height: 42px;
   }
-  
 } 
 @media (width<768px) {
   .custom-play-button {
@@ -147,7 +149,7 @@
   }
 
   .textmediablock-container>div:first-child{
-  margin-bottom: 34px;
+  margin-bottom: 18px
 }
 [class*="text-media-block-heading-variation"]  .textmediablock-container>div:first-child{
   margin-bottom: 0;
@@ -170,6 +172,10 @@
   .text-section p{
     font-size: var(--font-size-xxs);
     line-height: 20px;
+  }
+
+  .textmediablock-container>div[class*="textmediablock-title-only"] {
+    margin-bottom: -4px;
   }
 
 } 
