@@ -8,6 +8,32 @@ let ticking = false;
 let isHeaderFixed = false;
 
 /**
+ * Updates header state based on scroll position
+ * @param {Element} header Header element
+ */
+function updateHeaderState(header, isClicked = false) {
+  const scrollPosition = window.scrollY;
+  const defaultLogo = header.querySelector('.default-logo');
+  const scrollLogo = header.querySelector('.scroll-logo');
+  const isMegaMenuOpen = header.querySelector('.secondary-nav.active')
+  const headerSection = document.querySelector('.header')
+
+  if (defaultLogo && scrollLogo) {
+    if ((scrollPosition > 0 && !isHeaderFixed) || isClicked) {
+      headerSection.classList.add('fixed-header');
+      defaultLogo.style.display = 'none';
+      scrollLogo.style.display = 'block';
+      isHeaderFixed = true;
+    } else if (scrollPosition === 0 && isHeaderFixed && !isMegaMenuOpen) {
+      headerSection.classList.remove('fixed-header');
+      defaultLogo.style.display = 'block';
+      scrollLogo.style.display = 'none';
+      isHeaderFixed = false;
+    }
+  }
+}
+
+/**
  * Sets AEM data attributes
  * @param {Element} element Element to set attributes on
  * @param {Object} config Configuration object
@@ -92,8 +118,7 @@ function createNavItem(itemData) {
 
   titleDiv.appendChild(titleContent);
   navItem.appendChild(titleDiv);
-  if(detailedcaption.getAttribute('href'))
-    navItem.appendChild(detailedcaption);
+  if (detailedcaption.getAttribute('href')) { navItem.appendChild(detailedcaption); }
   navItem.appendChild(overviewLink);
 
   if (itemData.caption && itemData.captionTarget) {
@@ -228,7 +253,7 @@ function createHeaderStructure(block) {
 
   // Create search icon
   const searchWrapper = document.createElement('div');
-
+ 
   // Assemble the structure
   nav.append(logoWrapper, primaryNav, searchWrapper);
   column.appendChild(nav);
@@ -270,7 +295,7 @@ function initializeHeader(header) {
 
   // Handle hamburger click
   hamburger.addEventListener('click', () => {
-  // Toggle class first
+    // Toggle class first
     hamburger.classList.toggle('active');
     const primaryNav = header.querySelector('.primary-nav');
     primaryNav.classList.toggle('active');
@@ -280,10 +305,10 @@ function initializeHeader(header) {
       if (hamburger.classList.contains('active')) {
         hamburger.replaceChildren(closeIcon);
         document.body.classList.add('no-scroll');
+        updateHeaderState(header, true);
       } else {
         document.body.classList.remove('no-scroll');
         hamburger.replaceChildren(hamburgerIcon);
-
         // Close secondary navigation if it's open
         const activeItem = header.querySelector('.nav-item.active');
         const activeSecondary = header.querySelector('.secondary-nav.active');
@@ -291,6 +316,7 @@ function initializeHeader(header) {
         if (activeSecondary) activeSecondary.classList.remove('active');
         overlay.classList.remove('active');
         currentActive = null;
+        updateHeaderState(header);
       }
     }, 0);
   });
@@ -378,13 +404,18 @@ function initializeHeader(header) {
           const clonedLinks = originalLinks.cloneNode(true);
           emptyLinks.innerHTML = ''; // Clear previous links
           emptyLinks.append(...clonedLinks.children); // Append cloned children
+          secondaryNav.classList.toggle(activeClass);
+          overlay.classList.toggle(activeClass);
+          updateHeaderState(header, true);
         } else {
           // Clear links when closing
           emptyLinks.innerHTML = '';
+          secondaryNav.classList.toggle(activeClass);
+          overlay.classList.toggle(activeClass);
+          updateHeaderState(header, false, 'navLink');
         }
 
-        secondaryNav.classList.toggle(activeClass);
-        overlay.classList.toggle(activeClass);
+        
 
         currentActive = item.classList.contains(activeClass) ? item : null;
       });
@@ -406,6 +437,7 @@ function initializeHeader(header) {
       closeBtn.addEventListener('click', (e) => {
         e.stopPropagation();
         closeSecondary();
+        updateHeaderState(header);
       });
     }
   });
@@ -449,39 +481,14 @@ function initializeHeader(header) {
         hamburgerBtn.classList.remove('active');
       }
     }
-  
+
     // Check if the clicked element has a hash (#) in its href
-    const target = e.target;
-    if (target.href?.includes("#")) {
+    const { target } = e;
+    if (target.href?.includes('#')) {
       window.location.href = e.target.href; // Navigate to the correct section
-      window.location.reload()
-    } 
-  });
-  
-}
-
-/**
- * Updates header state based on scroll position
- * @param {Element} header Header element
- */
-function updateHeaderState(header) {
-  const scrollPosition = window.scrollY;
-  const defaultLogo = header.querySelector('.default-logo');
-  const scrollLogo = header.querySelector('.scroll-logo');
-
-  if (defaultLogo && scrollLogo) {
-    if (scrollPosition > 0 && !isHeaderFixed) {
-      header.classList.add('fixed-header');
-      defaultLogo.style.display = 'none';
-      scrollLogo.style.display = 'block';
-      isHeaderFixed = true;
-    } else if (scrollPosition === 0 && isHeaderFixed) {
-      header.classList.remove('fixed-header');
-      defaultLogo.style.display = 'block';
-      scrollLogo.style.display = 'none';
-      isHeaderFixed = false;
+      window.location.reload();
     }
-  }
+  });
 }
 
 /**
@@ -550,5 +557,6 @@ export default async function decorate(block) {
     document.querySelectorAll('.nav-item, .secondary-nav').forEach((el) => {
       el.classList.remove('active');
     });
+    updateHeaderState(block)
   });
 }

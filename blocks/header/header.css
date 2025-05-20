@@ -287,9 +287,8 @@ header .header{
   background: transparent;
 }
 
-.header.fixed-header{ 
+.header.fixed-header{
   background-color:var(--background-color);
-  transition: all 0.2s ease-in-out;
 }
 
 /* Header Layout */
@@ -366,7 +365,7 @@ header .header{
 
 /* Close button (desktop) */
 .header-inner-wrapper .close-btn {
-  display: none; /* Hidden by default */
+  display: block; /* Hidden by default */
   background: none;
   border: none;
   font-size: var(--font-size-xxs);
@@ -408,12 +407,12 @@ header .header{
 
 /* Show back button on tablet and mobile */
 @media (width <= 991px) {
-  .header-inner-wrapper .close-btn {
-    display: none;
-  }
-  
   .header-inner-wrapper .back-btn {
     display: flex;
+  }
+
+  .header.fixed-header{
+    transition: all 0.2s ease-in-out;
   }
 }
 
@@ -1031,7 +1030,7 @@ header .header{
 }
 .header-inner-wrapper .header-nav .primary-nav .nav-item .primary-menu-links {
   font-size: 14px;
-}
+  }
 }
 
 /* Sticky header */
@@ -1134,6 +1133,9 @@ header .header{
     font-size: var(--font-size-l);
     line-height: 42px;
     margin-bottom: 36px;
+  }
+  .header-inner-wrapper .secondary-nav .secondary-header .secondary-header-wrapper .close-btn{
+    display: none;
   }
 }
 
