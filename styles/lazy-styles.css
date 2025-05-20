@@ -325,7 +325,7 @@
 }
 @media(width >=1024px) {
     .tabs-container .textmediablock-wrapper {
-        margin: 68px 0;
+        margin: 34px 0;
     }
     .tabs-container .about-us-stats .about-us-right-content {
         display: flex;
