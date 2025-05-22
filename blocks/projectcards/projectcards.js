@@ -29,31 +29,6 @@ const nextCta = SvgIcon({
   size: '16px',
 });
 
-function handleDisableButton(block, currentCarousel) {
-  const prevButton = document.querySelectorAll('.carousel-prev')[currentCarousel];
-  const nextButton = document.querySelectorAll('.carousel-next')[currentCarousel];
-  const totalItems = block.querySelectorAll('.card-pair').length;
-
-  prevButton.innerHTML = '';
-
-  if (currentIndex[currentCarousel] > 0) {
-    prevButton.style.cursor = 'pointer';
-    prevButton.append(stringToHTML(prevCta));
-  } else {
-    prevButton.style.cursor = 'default';
-    prevButton.append(stringToHTML(prevDisableCta));
-  }
-
-  nextButton.innerHTML = '';
-  if (currentIndex[currentCarousel] < totalItems - 1) {
-    nextButton.style.cursor = 'pointer';
-    nextButton.append(stringToHTML(nextCta));
-  } else {
-    nextButton.style.cursor = 'default';
-    nextButton.append(stringToHTML(nextDisableCta));
-  }
-}
-
 function moveSlide(direction, block, currentCarousel) {
   const totalItems = block.querySelectorAll('.project-card').length;
   if (totalItems <= CAROUSEL_SIZE) {
@@ -62,18 +37,15 @@ function moveSlide(direction, block, currentCarousel) {
   const carouselContainer = block.querySelector('.carousel-container');
 
   currentIndex[currentCarousel] += direction;
-  document.dispatchEvent(new CustomEvent('currentIndexChanged', { detail: { currentIndex, currentCarousel } }));
-  handleDisableButton(block, currentCarousel);
 
-  if (currentIndex[currentCarousel] >= 0 && currentIndex[currentCarousel] <= totalItems) {
+  const maxIndex = Math.ceil(totalItems / CAROUSEL_SIZE) - 1;
     if (currentIndex[currentCarousel] < 0) {
-      currentIndex[currentCarousel] = totalItems;
-    } else if (currentIndex[currentCarousel] >= totalItems - 1) {
-      currentIndex[currentCarousel] = 0;
+      currentIndex[currentCarousel] = maxIndex; // Wrap to last item
+    } else if (currentIndex[currentCarousel] > maxIndex) {
+      currentIndex[currentCarousel] = 0; // Wrap to first item
     }
     const offset = -currentIndex[currentCarousel] * 100;
     carouselContainer.style.transform = `translateX(${offset}%)`;
-  }
 
   const cardHeight = block.querySelectorAll('.card-pair')[currentIndex[currentCarousel]].offsetHeight;
   carouselContainer.style.height = carouselContainer.style.height === `${cardHeight}px` ? '100%' : `${cardHeight}px`;
@@ -258,6 +230,15 @@ export default function decorate(block) {
     // After every 4 cards, append the card-pair div to the parent container
     if ((index + 1) % CAROUSEL_SIZE === 0 || index === projectCards.length - 1) {
       // Append the current card-pair (group of 4 cards) to the cardsGridContainer
+      if(index === projectCards.length - 1 && projectCards.length>4){
+        const elementExistInLastCardPair = cardPair.children;
+        const firstCardPairElements = cardsGridContainer.children[0].children;
+        const elementToPick = firstCardPairElements.length / elementExistInLastCardPair.length;
+
+        for(let i=0;i<elementToPick;i++){
+          cardPair.append(firstCardPairElements[i].cloneNode(true))
+        }
+      }
       cardsGridContainer.appendChild(cardPair);
       // Create a new card-pair container for the next group of 4 cards
       cardPair = document.createElement('div');
@@ -278,8 +259,7 @@ export default function decorate(block) {
   const nextButton = document.createElement('button');
   nextButton.setAttribute('class', 'carousel-next');
 
-  prevButton.append(stringToHTML(prevDisableCta));
-  prevButton.style.cursor = 'default';
+  prevButton.append(stringToHTML(prevCta));
 
   const totalCards = cardsGridContainer.querySelectorAll('.project-card').length
   const buttonGroup = document.createElement('div');
@@ -335,10 +315,6 @@ export default function decorate(block) {
     nextButton.append(stringToHTML(nextCta));
   }
 
-  document.addEventListener('currentIndexChanged', (e) => {
-    handleDisableButton(block, e.detail.currentCarousel);
-  });
-
   countCarousel += 1;
   for (let i = 0; i < countCarousel; i += 1) {
     currentIndex[i] = 0;
@@ -348,7 +324,7 @@ export default function decorate(block) {
     // Check if the event listener has already been added (using a custom data attribute or a class)
     if (!element.hasAttribute('data-listener-added')) {
       element.addEventListener('click', () => {
-        if (currentIndex[index] - 1 >= 0) { moveSlide(-1, block, index); }
+        moveSlide(-1, block, index);
       });
 
       // Mark that the listener has been added
@@ -361,7 +337,7 @@ export default function decorate(block) {
     if (!element.hasAttribute('data-listener-added')) {
       element.addEventListener('click', () => {
         const totalItems = block.querySelectorAll('.card-pair').length;
-        if (currentIndex[index] !== totalItems - 1) { moveSlide(1, block, index); }
+        moveSlide(1, block, index);
       });
 
       // Mark that the listener has been added
