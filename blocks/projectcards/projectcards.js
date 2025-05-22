@@ -136,12 +136,16 @@ export default function decorate(block) {
   let cardPair = document.createElement('div');
   cardPair.classList.add('card-pair');
 
-  projectCards.forEach((card, index) => {
+  const CAROUSEL_SIZE = 4; // Number of visible cards
+  const totalCards = projectCards.length;
+
+  // Step 1: Create actual card elements and store them in an array
+  const cardElements = Array.from(projectCards).map((card,index) => {
     const cardElement = document.createElement('div');
     cardElement.className = 'project-card col-xl-3 col-md-3 col-sm-2';
     moveInstrumentation(card, cardElement);
 
-    // Handle card image
+    // Handle image
     const imageLink = card.querySelector('a[href]');
     if (imageLink) {
       const imageContainer = document.createElement('div');
@@ -150,7 +154,8 @@ export default function decorate(block) {
       imageContainer.setAttribute('data-aue-type', 'image');
 
       const imageUrl = imageLink.getAttribute('href');
-      const imageAlt = card.querySelectorAll('a[href]')[1]?.getAttribute('title') || card.querySelector('[data-aue-prop="title"]')?.textContent || 'Project Image';
+      const imageAlt = card.querySelectorAll('a[href]')[1]?.getAttribute('title') ||
+        card.querySelector('[data-aue-prop="title"]')?.textContent || 'Project Image';
 
       const imageHtml = ImageComponent({
         src: imageUrl,
@@ -185,32 +190,24 @@ export default function decorate(block) {
       imageLink.remove();
     }
 
-    // Handle card content
+    // Handle content
     const cardContent = document.createElement('div');
     cardContent.className = 'project-card-content';
 
-    // Handle card title
-    const cardTitle = card.querySelector(
-      '[data-aue-prop="projectText"], .button-container .button',
-    );
+    const cardTitle = card.querySelector('[data-aue-prop="projectText"], .button-container .button');
     if (cardTitle) {
       const titleDiv = document.createElement('div');
       titleDiv.className = 'project-card-title';
       cardTitle.className = '';
-      // setting the link target
-      const linkTarget = card.querySelector(
-        '[data-aue-prop="projectTarget"], [data-gen-prop="feature-title"]',
-      )?.textContent || '_self';
+      const linkTarget = card.querySelector('[data-aue-prop="projectTarget"], [data-gen-prop="feature-title"]')?.textContent || '_self';
       cardTitle.setAttribute('target', linkTarget);
-
+      cardTitle.setAttribute('data', index);
       titleDiv.appendChild(cardTitle);
+      
       cardContent.appendChild(titleDiv);
     }
 
-    // Handle card location
-    const locationElement = card.querySelector(
-      '[data-aue-prop="location"], div:last-child',
-    );
+    const locationElement = card.querySelector('[data-aue-prop="location"], div:last-child');
     if (locationElement) {
       const locationDiv = document.createElement('div');
       locationDiv.setAttribute('data-aue-prop', 'location');
@@ -223,28 +220,53 @@ export default function decorate(block) {
     }
 
     cardElement.appendChild(cardContent);
-
-    // Append the cardElement to the card-pair div
-    cardPair.appendChild(cardElement);
-
-    // After every 4 cards, append the card-pair div to the parent container
-    if ((index + 1) % CAROUSEL_SIZE === 0 || index === projectCards.length - 1) {
-      // Append the current card-pair (group of 4 cards) to the cardsGridContainer
-      const elementExistInLastCardPair = cardPair.children;
-      if(index === projectCards.length - 1 && projectCards.length>4 && elementExistInLastCardPair.length<4){
-        const firstCardPairElements = cardsGridContainer.children[0].children;
-        const elementToPick = Math.abs(elementExistInLastCardPair.length-firstCardPairElements.length);
-
-        for(let i=0;i<elementToPick;i++){
-          cardPair.append(firstCardPairElements[i].cloneNode(true))
-        }
-      }
-      cardsGridContainer.appendChild(cardPair);
-      // Create a new card-pair container for the next group of 4 cards
-      cardPair = document.createElement('div');
-      cardPair.classList.add('card-pair');
-    }
+    return cardElement;
   });
+  console.log('cardElements: ', cardElements.length);
+
+
+  if (totalCards <= CAROUSEL_SIZE) {
+    const cardPair = document.createElement('div');
+    cardPair.className = 'card-pair';
+
+    for (let i = 0; i < totalCards; i++) {
+      const clonedCard = cardElements[i].cloneNode(true);
+      cardPair.appendChild(clonedCard);
+    }
+
+    cardsGridContainer.appendChild(cardPair);
+  } else {
+    const seenCombos = new Set();
+    let w = 0;
+
+    while (true) {
+      const startIndex = (w * CAROUSEL_SIZE) % totalCards;
+
+      const indexes = [];
+      for (let j = 0; j < CAROUSEL_SIZE; j++) {
+        indexes.push((startIndex + j) % totalCards);
+      }
+
+      const key = indexes.join(',');
+      if (seenCombos.has(key)) {
+        break; // 🔁 Already seen this combo, stop
+      }
+
+      seenCombos.add(key);
+
+      // Create card-pair and populate it
+      const cardPair = document.createElement('div');
+      cardPair.className = 'card-pair';
+
+      indexes.forEach((i) => {
+        const clonedCard = cardElements[i].cloneNode(true);
+        cardPair.appendChild(clonedCard);
+      });
+
+      cardsGridContainer.appendChild(cardPair);
+      w++;
+    }
+  }
 
   projectCardsContainer.appendChild(cardsGridContainer);
 
@@ -261,7 +283,6 @@ export default function decorate(block) {
 
   prevButton.append(stringToHTML(prevCta));
 
-  const totalCards = cardsGridContainer.querySelectorAll('.project-card').length
   const buttonGroup = document.createElement('div');
   buttonGroup.setAttribute('class', 'button-group');
 
