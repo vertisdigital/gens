@@ -230,10 +230,10 @@ export default function decorate(block) {
     // After every 4 cards, append the card-pair div to the parent container
     if ((index + 1) % CAROUSEL_SIZE === 0 || index === projectCards.length - 1) {
       // Append the current card-pair (group of 4 cards) to the cardsGridContainer
-      if(index === projectCards.length - 1 && projectCards.length>4){
-        const elementExistInLastCardPair = cardPair.children;
+      const elementExistInLastCardPair = cardPair.children;
+      if(index === projectCards.length - 1 && projectCards.length>4 && elementExistInLastCardPair.length<4){
         const firstCardPairElements = cardsGridContainer.children[0].children;
-        const elementToPick = firstCardPairElements.length / elementExistInLastCardPair.length;
+        const elementToPick = Math.abs(elementExistInLastCardPair.length-firstCardPairElements.length);
 
         for(let i=0;i<elementToPick;i++){
           cardPair.append(firstCardPairElements[i].cloneNode(true))
