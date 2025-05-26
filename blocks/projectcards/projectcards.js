@@ -143,7 +143,7 @@ export default function decorate(block) {
   }
 
   // Step 1: Create actual card elements and store them in an array
-  const cardElements = Array.from(projectCards).map((card, index) => {
+  const cardElements = Array.from(projectCards).map((card) => {
     const cardElement = document.createElement('div');
     cardElement.className = 'project-card col-xl-3 col-md-3 col-sm-2';
     moveInstrumentation(card, cardElement);
