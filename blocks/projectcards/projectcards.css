@@ -112,7 +112,18 @@
 
   .project-card-title a {
     color: var(--text-color);
-    text-decoration: none;
+    text-decoration: underline;
+  }
+  .project-card-title .button-container{
+    line-height: 0;
+  }
+  .project-card-title a.button{
+    background-color: unset;
+    color: var(--text-color);
+    padding: 0;
+    margin: 0;
+    line-height: 20px;
+    text-decoration: underline;
   }
 
   .projectcards.grey-background {
