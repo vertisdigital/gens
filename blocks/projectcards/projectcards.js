@@ -202,10 +202,15 @@ export default function decorate(block) {
       const titleDiv = document.createElement('div');
       titleDiv.className = 'project-card-title';
       cardTitle.className = '';
-      const linkTarget = card.querySelector('[data-aue-prop="projectTarget"], [data-gen-prop="feature-title"]')?.textContent || '_self';
-      cardTitle.setAttribute('target', linkTarget);
-      cardTitle.setAttribute('data', index);
-      titleDiv.appendChild(cardTitle);
+      if(cardTitle?.getAttribute('href') === '#') {
+        titleDiv.textContent = cardTitle?.textContent || '';
+      } else {
+        const linkTarget = card.querySelector('[data-aue-prop="projectTarget"], [data-gen-prop="feature-title"]')?.textContent || '_self';
+        cardTitle.setAttribute('target', linkTarget);
+        cardTitle.setAttribute('data', index);
+        titleDiv.appendChild(cardTitle);
+      }
+      
 
       cardContent.appendChild(titleDiv);
     }
