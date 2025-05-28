@@ -14,7 +14,7 @@ import {
   loadCSS,
 } from './aem.js';
 import processTabs from './autoblocks.js';
-import { redirectRouter } from '../shared-components/Utility.js';
+import { redirectRouter, controlLowerEnvironment } from '../shared-components/Utility.js';
 import { errorLogger as logger} from './logger.js';
 
 
@@ -82,8 +82,8 @@ function buildAutoBlocks(main) {
  */
 // eslint-disable-next-line import/prefer-default-export
 export function decorateMain(main, isExecute) {
-  redirectRouter()
-  
+  controlLowerEnvironment();
+  redirectRouter();
   decorateButtons(main);
   decorateIcons(main);
   decorateSections(main, isExecute);
