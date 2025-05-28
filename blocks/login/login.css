@@ -4,7 +4,6 @@
   background-color: var(--background-color);
   display: flex;
   align-items: center;
-  width:2000px;
   justify-content: center;
 }
 
@@ -174,6 +173,7 @@ main:has(.login)::before {
 @media (max-width: 575px) {
   .login .container {
     padding: 0 0.75rem;
+    width: 400px;
   }
   
   .login .login-container {
@@ -202,6 +202,7 @@ main:has(.login)::before {
 @media (min-width: 768px) {
   .login {
     padding: 3rem 0;
+    width:500px;
   }
   
   .login .container {
@@ -232,6 +233,7 @@ main:has(.login)::before {
 @media (min-width: 992px) {
   .login {
     padding: 4rem 0;
+    width:2000px;
   }
   
   .login .login-container {
