@@ -90,14 +90,15 @@ export function decorateMain(main, isExecute) {
   const isLoginPage = currentPath.includes('/login');
   
   // Skip decorative methods if on login page
- 
+  // if (!isLoginPage) {
+  //   console.log('Login page detected, skipping decorative methods');
+  //   return;
+  // }
   
   // Execute decorative methods only if not on login page
   decorateButtons(main);
   decorateIcons(main);
-  if (!isLoginPage) {
-    decorateSections(main, isExecute);
-  }
+  decorateSections(main, isExecute);
   decorateBlocks(main);
   buildAutoBlocks(main);
 }
