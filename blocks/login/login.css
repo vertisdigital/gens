@@ -2,10 +2,14 @@
 .login {
   padding: 2rem 0;
   background-color: var(--background-color);
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
 }
 
 .login .container {
   max-width: 100%;
+  width: 100%;
 }
 
 .login .row {
@@ -157,6 +161,22 @@
   cursor: not-allowed;
   transform: none;
   box-shadow: none;
+}
+
+/* Full viewport styles when header/footer are hidden */
+body:has(.login) {
+  overflow-x: hidden;
+}
+
+/* Ensure main content takes full height when login is active */
+main:has(.login) {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+}
+
+main:has(.login)::before {
+  display: none;
 }
 
 /* Responsive Design */

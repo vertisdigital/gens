@@ -1,8 +1,95 @@
 export default function decorate(block) {
-  if (!block || !block.children.length) return;
-
   const wrapper = block;
   const loginChildren = Array.from(block.children);
+
+  // Simple auth functions
+  function isAuthenticated() {
+    return sessionStorage.getItem('isAuthenticated') === 'true';
+  }
+
+  function setAuthenticated(status) {
+    if (status) {
+      sessionStorage.setItem('isAuthenticated', 'true');
+      sessionStorage.setItem('authTimestamp', Date.now().toString());
+    } else {
+      sessionStorage.removeItem('isAuthenticated');
+      sessionStorage.removeItem('authTimestamp');
+    }
+  }
+
+  function getRedirectUrl() {
+    // Check for stored referrer first
+    const storedReferrer = sessionStorage.getItem('loginReferrer');
+    if (storedReferrer) {
+      sessionStorage.removeItem('loginReferrer');
+      return storedReferrer;
+    }
+
+    // Use document.referrer if available and not login page
+    if (document.referrer && 
+        document.referrer !== window.location.href && 
+        !document.referrer.includes('/login')) {
+      return document.referrer;
+    }
+
+    // Fallback to /aboutus
+    return '/aboutus';
+  }
+
+  function storeReferrer() {
+    // Store current referrer if not already on login page
+    if (document.referrer && !document.referrer.includes('/login')) {
+      sessionStorage.setItem('loginReferrer', document.referrer);
+    }
+  }
+
+  // Check if already authenticated
+  if (isAuthenticated()) {
+    const redirectUrl = getRedirectUrl();
+    window.location.href = redirectUrl;
+    return;
+  }
+
+  // Store referrer for later use
+  storeReferrer();
+
+  // Hide header and footer when login loads
+  function hideHeaderFooter() {
+    const header = document.querySelector('header');
+    const footer = document.querySelector('footer');
+    
+    if (header) {
+      header.style.display = 'none';
+      header.setAttribute('data-login-hidden', 'true');
+    }
+    
+    if (footer) {
+      footer.style.display = 'none';
+      footer.setAttribute('data-login-hidden', 'true');
+    }
+  }
+
+  // Show header and footer when leaving login
+  function showHeaderFooter() {
+    const header = document.querySelector('header[data-login-hidden="true"]');
+    const footer = document.querySelector('footer[data-login-hidden="true"]');
+    
+    if (header) {
+      header.style.display = '';
+      header.removeAttribute('data-login-hidden');
+    }
+    
+    if (footer) {
+      footer.style.display = '';
+      footer.removeAttribute('data-login-hidden');
+    }
+  }
+
+  // Hide header and footer immediately
+  hideHeaderFooter();
+
+  // Show header and footer when page is about to unload
+  window.addEventListener('beforeunload', showHeaderFooter);
 
   // Create container with responsive classes
   const container = document.createElement('div');
@@ -175,8 +262,17 @@ export default function decorate(block) {
     const password = passwordInput.value.trim();
 
     if (authenticateUser(username, password)) {
-      // Success - redirect to /aboutus
-      window.location.href = '/aboutus';
+      // Set authentication in sessionStorage
+      setAuthenticated(true);
+      
+      // Show header and footer before redirect
+      showHeaderFooter();
+      
+      // Get redirect URL (referrer or fallback)
+      const redirectUrl = getRedirectUrl();
+      
+      // Success - redirect to referrer or fallback
+      window.location.href = redirectUrl;
     } else {
       // Show error message
       generalError.textContent = 'Invalid credentials. Please try again.';
@@ -213,4 +309,23 @@ export default function decorate(block) {
   setTimeout(() => {
     usernameInput.focus();
   }, 100);
+
+  // Cleanup function to show header/footer if component is destroyed
+  const observer = new MutationObserver((mutations) => {
+    mutations.forEach((mutation) => {
+      if (mutation.type === 'childList') {
+        mutation.removedNodes.forEach((node) => {
+          if (node === wrapper || (node.nodeType === Node.ELEMENT_NODE && node.contains && node.contains(wrapper))) {
+            showHeaderFooter();
+            observer.disconnect();
+          }
+        });
+      }
+    });
+  });
+
+  // Start observing for removal of the login block
+  if (wrapper.parentNode) {
+    observer.observe(wrapper.parentNode, { childList: true, subtree: true });
+  }
 } 
