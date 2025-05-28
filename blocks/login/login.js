@@ -100,7 +100,7 @@ export default function decorate(block) {
 
   // Center the login form
   const col = document.createElement('div');
-  col.className = 'col-xl-6 col-md-4 col-sm-4';
+  col.className = 'col-xl-12 col-md-8 col-sm-4';
 
   // Create login form container
   const loginContainer = document.createElement('div');
