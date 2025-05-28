@@ -36,7 +36,7 @@ export function isMobile() {
   return window.innerWidth < 768;
 };
 
-export function isAuthenticated() {
+export function controlLowerEnvironment() {
     // Authentication check - redirect to login if not authenticated and not already on login page
     const isAuthenticated = sessionStorage.getItem('isAuthenticated') === 'true';
     const currentPath = window.location.pathname;
