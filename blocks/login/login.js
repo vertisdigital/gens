@@ -309,23 +309,4 @@ export default function decorate(block) {
   setTimeout(() => {
     usernameInput.focus();
   }, 100);
-
-  // Cleanup function to show header/footer if component is destroyed
-  const observer = new MutationObserver((mutations) => {
-    mutations.forEach((mutation) => {
-      if (mutation.type === 'childList') {
-        mutation.removedNodes.forEach((node) => {
-          if (node === wrapper || (node.nodeType === Node.ELEMENT_NODE && node.contains && node.contains(wrapper))) {
-            showHeaderFooter();
-            observer.disconnect();
-          }
-        });
-      }
-    });
-  });
-
-  // Start observing for removal of the login block
-  if (wrapper.parentNode) {
-    observer.observe(wrapper.parentNode, { childList: true, subtree: true });
-  }
 } 
