@@ -82,20 +82,7 @@ function buildAutoBlocks(main) {
  */
 // eslint-disable-next-line import/prefer-default-export
 export function decorateMain(main, isExecute) {
-  // Always run authentication check first
-  redirectRouter();
-  
-  // Check if current page is login page
-  const currentPath = window.location.pathname;
-  const isLoginPage = currentPath.includes('/login');
-  
-  // Skip decorative methods if on login page
-  // if (!isLoginPage) {
-  //   console.log('Login page detected, skipping decorative methods');
-  //   return;
-  // }
-  
-  // Execute decorative methods only if not on login page
+  isAuthenticated();
   decorateButtons(main);
   decorateIcons(main);
   decorateSections(main, isExecute);
