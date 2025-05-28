@@ -176,16 +176,9 @@ main:has(.login)::before {
   }
 }
 
-@media (min-width: 576px) {
-  .login .login-column {
-    max-width: 450px;
-  }
-}
-
 @media (min-width: 768px) {
   .login {
     padding: 3rem 0;
-    width:500px;
   }
   
   .login .login-container {
@@ -212,19 +205,12 @@ main:has(.login)::before {
 @media (min-width: 992px) {
   .login {
     padding: 4rem 0;
-    width:2000px;
   }
   
   .login .login-container {
     padding: 3rem;
     max-width: 450px;
     margin: 0 auto;
-  }
-}
-
-@media (min-width: 1200px) {
-  .login .container {
-    max-width: 1140px;
   }
 }
 
