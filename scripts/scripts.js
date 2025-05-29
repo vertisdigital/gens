@@ -82,7 +82,10 @@ function buildAutoBlocks(main) {
  */
 // eslint-disable-next-line import/prefer-default-export
 export function decorateMain(main, isExecute) {
-  controlLowerEnvironment();
+  const isAuthorInstance = document.referrer.includes('canvas');
+  if (!isAuthorInstance) {
+    controlLowerEnvironment();
+  }
   redirectRouter();
   decorateButtons(main);
   decorateIcons(main);
