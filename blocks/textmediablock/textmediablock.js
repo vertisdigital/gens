@@ -1,5 +1,5 @@
 import ImageComponent from '../../shared-components/ImageComponent.js';
-import stringToHtml from '../../shared-components/Utility.js';
+import stringToHtml, { isIOSDevice } from '../../shared-components/Utility.js';
 
 // Function to fade out button smoothly
 function fadeOutButton(button) {
@@ -17,6 +17,7 @@ function fadeInButton(button) {
 function setupVideoFunctionality(autoPlay, mediaElement) {
   const video = mediaElement.querySelector('.mediablock-video');
   const playButton = mediaElement.querySelector('.custom-play-button');
+  let isVideoLoaded = false;
 
   if (!video || !playButton) return;
 
@@ -41,6 +42,12 @@ function setupVideoFunctionality(autoPlay, mediaElement) {
     fadeInButton(playButton);
   });
 
+  video.addEventListener('loadeddata', () => {
+    mediaElement.querySelector('.video-loader').style.display='none';
+    video.style.display = 'block';
+    mediaElement.querySelector('.custom-play-button').style.visibility='visible'
+  });
+
   // Pause video when out of viewport
   const observer = new IntersectionObserver(
     ([entry]) => {
@@ -49,16 +56,25 @@ function setupVideoFunctionality(autoPlay, mediaElement) {
         playButton.innerHTML = '▶';
         fadeInButton(playButton);
       } else if(entry.isIntersecting && autoPlay) {
+        if(!isVideoLoaded && !isIOSDevice()) {
+          video.load();
+          isVideoLoaded = true;
+        }
         playButton.innerHTML = '⏸';
         video.muted = true;
         video.play();
         fadeOutButton(playButton);
+      } else if(entry.isIntersecting) {
+        if(!isVideoLoaded && !isIOSDevice()) {
+          video.load();
+          isVideoLoaded = true;
+        }
       }
     },
     { threshold: 0.3 },
   );
 
-  observer.observe(video);
+  observer.observe(mediaElement);
 }
 
 // Function to handle media elements (Image/Video)
@@ -83,7 +99,8 @@ function handleMediaElement(mediaBlock) {
   if (isVideo) {
     mediaElement = stringToHtml(`
       <div class="custom-video-container">
-        <video class="mediablock-video" playsinline>
+      <div class="video-loader"></div>
+        <video class="mediablock-video" preload=${isIOSDevice()?"auto":"none"} playsinline autoplay=${isIOSDevice()?"true":"false"}>
           <source src="${mediaUrl}" type="video/mp4">
           Your browser does not support the video tag.
         </video>
@@ -115,6 +132,7 @@ function handleMediaElement(mediaBlock) {
 
   if (mediaElement) {
     linkElement.parentElement?.replaceChild(mediaElement, linkElement);
+    mediaBlock.children[1].style.display="none"
     if (isVideo) setupVideoFunctionality(autoPlay, mediaElement);
   }
 }

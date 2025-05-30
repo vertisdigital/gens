@@ -35,3 +35,8 @@ export function redirectRouter(){
 export function isMobile() {
   return window.innerWidth < 768;
 };
+
+export const isIOSDevice = () => {
+  return /iPhone/.test(navigator.userAgent) ||
+    (navigator.userAgent.includes("Mac") && "ontouchend" in document);
+}
