@@ -1137,6 +1137,10 @@ header .header{
   .header-inner-wrapper .secondary-nav .secondary-header .secondary-header-wrapper .close-btn{
     display: none;
   }
+
+  .header-inner-wrapper .header-nav .primary-nav .nav-item .primary-menu-links, .header-inner-wrapper .header-nav .primary-nav .nav-item .primary-menu-links a{
+    font-size: var(--font-size-xxs);
+  }
 }
 
 @media (width <= 768px) {
