@@ -36,6 +36,21 @@ export function isMobile() {
   return window.innerWidth < 768;
 };
 
+export function controlLowerEnvironment() {
+    // Authentication check - redirect to login if not authenticated and not already on login page
+    const isAuthenticated = sessionStorage.getItem('isAuthenticated') === 'true';
+    const currentPath = window.location.pathname;
+    
+    // If user is not authenticated and not already on login page, redirect to login
+    if (!isAuthenticated && !currentPath.includes('/login')) {
+      // Store current page for redirect after login
+      sessionStorage.setItem('loginReferrer', window.location.href);
+      console.log('User not authenticated, redirecting to login page');
+      window.location.href = '/login';
+      return;
+    }
+}
+
 export const isIOSDevice = () => {
   return /iPhone/.test(navigator.userAgent) ||
     (navigator.userAgent.includes("Mac") && "ontouchend" in document);

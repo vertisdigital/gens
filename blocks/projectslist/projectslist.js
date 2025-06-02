@@ -1,6 +1,7 @@
 import { moveInstrumentation } from '../../scripts/scripts.js';
 import ImageComponent from '../../shared-components/ImageComponent.js';
 import stringToHtml from '../../shared-components/Utility.js';
+import SvgIcon from "../../shared-components/SvgIcon.js";
 
 export default function decorate(block) {
   // Restructure the HTML for better semantics and accessibility
@@ -64,21 +65,62 @@ export default function decorate(block) {
         leftCol.appendChild(shortDescription);
       }
 
-      const projectCta = allDivElements[5];
-      projectCta.className = 'project-cta';
-      leftCol.appendChild(projectCta);
+      const projectCta = allDivElements[6];
+      const isDownloadable = allDivElements[8]?.textContent
+      const projectCtaLabel = allDivElements[5]
+      const projectLink = projectCta.querySelector('a')
+      const linkTag=document.createElement('a')
+      if (projectCtaLabel) {
+            linkTag.className = 'project-cta';
+        const link = allDivElements[9]?.querySelector('a')?.href
+        
+        if (isDownloadable === 'true') {
+          if (projectCtaLabel) {
+            linkTag.setAttribute('target', '_blank');
+            linkTag.setAttribute('href', link);
+          }
+        } else {
+          const target = allDivElements[10]?.textContent?.trim() || '_self';
 
+          if (projectCtaLabel) {
+            linkTag.setAttribute('target', target);
+            linkTag.setAttribute('href',projectLink?.href || "#")
+          }
+        }
+        if((isDownloadable==='true' && link) || (projectLink?.href && isDownloadable==='false')){
+          linkTag.innerHTML = projectCtaLabel?.textContent
+          projectCtaLabel.innerHTML=""
+          projectCtaLabel.append(linkTag)
+          leftCol.appendChild(projectCtaLabel);
+          
+        }
+        
+
+        const icon = allDivElements[6]?.textContent?.replace(/-/g, "")?.toLowerCase()?.trim()
+        if(icon?.length){
+          const ctaIcon = SvgIcon({
+            name: icon,
+            className: "corporate-policies-cta",
+            size: "16px",
+          });
+          const div = document.createElement('div')
+          if(projectCtaLabel){
+            linkTag.append(stringToHtml(ctaIcon)) 
+          }
+          leftCol.appendChild(div);
+        }
+      }
       // Create right column (description and contacts) - 60% on desktop and tablet
       const rightCol = document.createElement('div');
       rightCol.className = 'col-xl-6 col-md-3 col-sm-4 right-col';
 
-      const imageLink = allDivElements[4].querySelector('a');
+      const imageLink = allDivElements[4]?.querySelector('a');
 
       if (imageLink) {
         const imageUrl = imageLink.getAttribute('href');
         const picture = ImageComponent({
           src: imageUrl,
-          alt: allDivElements[4].querySelectorAll('a')[1]?.getAttribute('title')||'',
+          alt: allDivElements[4].querySelectorAll('a')[1]?.getAttribute('title') || '',
           className: 'proejctlisting-image',
           breakpoints: {
             mobile: {

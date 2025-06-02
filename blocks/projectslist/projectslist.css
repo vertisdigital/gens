@@ -5,7 +5,6 @@ p {
 .projectslistitem {
     padding-top: 36px;
     padding-bottom: 36px;
-    border-top: 1px solid var(--text-color);
     display: flex;
 }
 
@@ -60,14 +59,36 @@ p {
     padding-left: 18px;
 }
 
-.project-cta a.button:any-link{
+.project-cta {
     background:none;
     cursor:pointer;
     padding:0;
-    color: var(--primary-gold);
     margin-top:30px;
+    gap: 10px;
+    display: flex;
+    align-items: flex-start;
+    color: var(--primary-gold) !important;
     line-height: 16px;
-   }
+    text-decoration: underline !important;
+    font-weight: 600;
+}
+
+.download-link-item {
+    line-height: 1 !important;
+    background: none;
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    text-decoration: underline !important;
+    text-decoration-thickness: 1px !important;
+    font-size: var(--font-size-xs);
+    font-weight: 700;
+    line-height: 24px;
+    color: var(--primary-gold) !important;
+    padding: 0;
+    margin: 0;
+}
+
 
 @media (width <= 992px)  {
     .project-title  {
@@ -81,13 +102,13 @@ p {
         padding-top: 28px;
         padding-bottom: 28px;
     }
-    .project-cta a.button:any-link{
+    .project-cta {
         margin-top:24px;
         margin-bottom: 0;
-       }
+    }
 }
 
-@media (width <= 767px) {
+@media (width < 767px) {
     .projectslistitem {
         padding-top: 18px;
         padding-bottom: 18px;
@@ -111,7 +132,7 @@ p {
         padding-top: 18px;
         width: 100%;
     }
-    .project-cta a.button:any-link{
+    .project-cta {
         margin-top:20px;
         font-size: var(--font-size-xxs);
        }
