@@ -48,6 +48,8 @@ export default async function decorate(block) {
       ? `/${firstSegment}/footer`
       : `/footer`;
   }
+
+  console.log(footerPath);
   const fragment = await loadFragment(footerPath);
   if (fragment) {
     const section = document.createElement('section');
