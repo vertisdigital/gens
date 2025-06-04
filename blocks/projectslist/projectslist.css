@@ -6,6 +6,7 @@ p {
     padding-top: 36px;
     padding-bottom: 36px;
     display: flex;
+    border-top: 1px solid var(--text-color);
 }
 
 .projectslistitem picture {

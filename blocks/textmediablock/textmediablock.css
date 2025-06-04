@@ -98,7 +98,7 @@
   letter-spacing: -0.5px;
 }
 
-.textblock .text-section {
+.textblock .text-section:not(:empty) {
   flex: 0 0 calc(50% - 18px);
 }
 
