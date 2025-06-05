@@ -207,7 +207,7 @@ export default function decorate(block) {
   const submitButton = document.createElement('button');
   submitButton.type = 'submit';
   submitButton.className = 'login-button';
-  submitButton.textContent = 'Login';
+  submitButton.textContent = 'Submit';
 
   // Create general error message
   const generalError = document.createElement('div');
@@ -266,7 +266,7 @@ export default function decorate(block) {
 
   function authenticateUser(username, password) {
     // Check credentials
-    if (username === 'admin' && password === 'admin') {
+    if (username === 'gens-user' && password === '246810') {
       return true;
     }
     return false;
