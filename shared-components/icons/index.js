@@ -135,8 +135,8 @@ ceo:`<svg width="124" height="124" viewBox="0 0 124 124" fill="none" xmlns="http
 </svg>`,
   LeftArrow: `<svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 18 18" fill="none">
 <path d="M12.1081 1L4 9L12.1081 17L14 15.1333L7.78378 9L14 2.86667L12.1081 1Z" fill="#B29152"/>
-</svg>`
-  // Add other icons here as needed
+</svg>`,
+// Add other icons here as needed
 };
 
 /**

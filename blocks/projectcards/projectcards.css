@@ -82,7 +82,7 @@
     font-weight: 700;
     line-height: 20px;
     color: var(--text-color);
-    text-decoration: underline;
+    text-decoration: none;
   }
 
   .projectcards .project-card-location {
@@ -113,6 +113,10 @@
   .project-card-title a {
     color: var(--text-color);
     text-decoration: none;
+  }
+  
+  .projectcards .project-card-title a {
+    text-decoration: underline;
   }
 
   .projectcards.grey-background {
@@ -328,6 +332,9 @@
   .certifications .project-card-title {
     text-decoration: none;
     margin-bottom: 12px;
+  }
+  .certifications .project-card-title a {
+    text-decoration: none;
   }
 
   .certifications .project-card-location {
