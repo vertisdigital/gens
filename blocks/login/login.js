@@ -1,3 +1,6 @@
+import SvgIcon from '../../scripts/utilities.js';
+import stringToHtml from '../../shared-components/Utility.js';
+
 export default function decorate(block) {
   const wrapper = block;
   const loginChildren = Array.from(block.children);
@@ -110,10 +113,13 @@ export default function decorate(block) {
   const titleText = loginChildren[0]?.children[0]?.textContent?.trim() || 'Login';
   const descriptionText = loginChildren[1]?.children[0]?.textContent?.trim() || 'Please enter your credentials';
 
-  // Create title
-  const title = document.createElement('h2');
+  // Create title with logo instead of text
+  const title = document.createElement('div');
   title.className = 'login-title';
-  title.textContent = titleText;
+  
+  // Use SvgIcon utility with stringToHtml to get the Gentings logo
+  const logo = stringToHtml(SvgIcon({ name: 'GentingLogo', class: 'gentings-logo', size: '120px' }));
+  title.appendChild(logo);
 
   // Create description
   const description = document.createElement('p');
