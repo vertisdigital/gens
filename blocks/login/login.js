@@ -107,7 +107,6 @@ export default function decorate(block) {
   loginContainer.className = 'login-container';
 
   // Get title and description from the block content
-  const titleText = loginChildren[0]?.children[0]?.textContent?.trim() || 'Login';
   const descriptionText = loginChildren[1]?.children[0]?.textContent?.trim() || 'Please enter your credentials';
 
   // Create title with logo instead of text
