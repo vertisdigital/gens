@@ -1,4 +1,4 @@
-import SvgIcon from '../../scripts/utilities.js';
+import SvgIcon from '../../shared-components/Utility.js';
 import stringToHtml from '../../shared-components/Utility.js';
 
 export default function decorate(block) {
