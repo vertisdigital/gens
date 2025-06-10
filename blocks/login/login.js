@@ -265,7 +265,7 @@ export default function decorate(block) {
 
   function authenticateUser(username, password) {
     // Check credentials
-    if (username === 'gens-user' && password === '246810') {
+    if ((username === 'gens-user' && password === '246810') || (username === 'adobe-user' && password === '13579')) {
       return true;
     }
     return false;
