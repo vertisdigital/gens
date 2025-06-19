@@ -2,6 +2,7 @@ import { getMetadata } from '../../scripts/aem.js';
 import { loadFragment } from '../fragment/fragment.js';
 import SVGIcon from '../../shared-components/SvgIcon.js';
 import { isMobile } from '../../shared-components/Utility.js';
+import CookiePolicy from '../cookiepolicy/cookiepolicy.js';
 
 const handleAccordionToggle = (e, keyboardTrigger = false) => {
   if (e?.target?.classList?.contains('links-heading') || e?.target?.classList?.contains('footer-nav-title') || (keyboardTrigger && e?.target?.classList?.contains('collapsible-links'))) {
@@ -26,30 +27,14 @@ const handleAccordionToggle = (e, keyboardTrigger = false) => {
 export default async function decorate(block) {
   // load footer as fragment
   const footerMeta = getMetadata('footer');
-  //const footerPath = footerMeta ? new URL(footerMeta, window.location).pathname : '/footer';
-  let footerPath;
-  if (footerMeta) {
-    footerPath = new URL(footerMeta, window.location).pathname;
-  } else {
-    // Extract first path segment
-    const pathParts = window.location.pathname.split('/');
-    const firstSegment = pathParts[1];
-    console.log(firstSegment);
-
-    // List of supported language codes (same as nav)
-    const languageCodes = [
-      'en', 'ja', 'zh'
-    ];
-
-    // Determine footer path
-    footerPath = languageCodes.includes(firstSegment)
-      ? `/${firstSegment}/footer`
-      : `/footer`;
-  }
-
-  console.log(footerPath);
+  const footerPath = footerMeta ? new URL(footerMeta, window.location).pathname : '/footer';
   const fragment = await loadFragment(footerPath);
   if (fragment) {
+    const cookieMarkup = fragment?.querySelector('.cookiepolicy-container');
+    if(cookieMarkup) {
+      const cookiePolicy = new CookiePolicy(cookieMarkup.cloneNode(true));
+      cookiePolicy.constructMarkup();
+    }
     const section = document.createElement('section');
 
     // Create and build all the footer content

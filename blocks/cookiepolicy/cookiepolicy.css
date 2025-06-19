@@ -1,0 +1,100 @@
+/* add style for cookiepolicy */
+
+.cookiepolicy {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    z-index: 99;
+    padding-top: 20px;
+    padding-bottom: 24px;
+    background-color: var(--soft-ivory-blue);
+
+    @media (width>=768px) {
+        padding-top: 24px;
+    }
+
+    @media (width>=993px) {
+        padding-top: 32px;
+        padding-bottom: 32px;
+    }
+
+    .cookie-wrapper {
+        @media (width>=993px) {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+        }
+    }
+    .cookie-description {
+        font-size: var(--font-size-xxs);
+        line-height: 20px;
+        color: var(--text-color);
+        margin-bottom: 21px;
+        @media (width>=768px) {
+            font-size: var(--font-size-xs);
+            line-height: 24px;
+            margin-bottom: 26px;
+        }
+         @media (width>=993px) {
+            margin-bottom: 0;
+            max-width: 782px;
+            padding-right: 20px
+        }
+        a {
+            font-weight: 700;
+            color: var(--primary-gold);
+            text-decoration: underline;
+            @media (width>=768px) {
+                line-height: 24px;
+            }
+        }
+    }
+    .cookie-button-wrapper {
+        display: flex;
+        justify-content: space-between;
+        @media (width>=768px) {
+            justify-content: flex-end;
+        }
+    }
+    .accept-button,
+    .decline-button {
+        font-weight: 700;
+        font-size: var(--font-size-xxs);
+        line-height: 20px;
+        padding: 16px 0;
+        text-decoration: none;
+        width: 50%;
+        box-sizing: border-box;
+        @media (width>=768px) {
+            width: auto;
+            font-size: var(--font-size-xs);
+            padding: 14px 82px;
+        }
+        @media (width>=768px) {
+            padding: 14px 88.5px;
+        }
+    }
+    .decline-button {
+        background-color: transparent;
+        color: var(--bronze-brown);
+        border: 1px solid var(--bronze-brown);
+        margin-right: 12px;
+         @media (width>=768px) {
+            margin-right: 0;
+        }
+    }
+    .accept-button {
+        background-color: var(--bronze-brown);
+        color: var(--background-color);
+        border: 1px solid var(--bronze-brown);
+        margin-left: 12px;
+        @media (width>=768px) {
+            margin-left: 34px;
+        }
+    }
+}
+.cookiepolicy.hide {
+    display: none;
+ }
+ 
