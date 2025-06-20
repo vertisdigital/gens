@@ -48,9 +48,6 @@
   padding-bottom: 0;
 }
 
-.contactus.contactus-variation .contactus-top{
-  padding-bottom: 50px;
-}
 
 
 .contactus .enquiry-heading {
@@ -133,13 +130,19 @@
    
 }
 
+.contact-link,
+.contact-link:focus,
+.contact-link:hover {
+  background: transparent;
+}
+
 .contactus .contact-items .contact-link {
   font-family: var(--heading-font-family);
   font-size: 16px;
   font-weight: 700;
   line-height: 24px;
   color: var(--text-color);
-
+  text-decoration: none;
 }
 
 
@@ -152,8 +155,6 @@
 .contactus.contactus-variation .contactus-bottom{
   display: flex;
 }
-
-
 
 
 .contactus .contactus-bottom>div:last-child a{
@@ -173,6 +174,42 @@
   line-height:0;
 }
 
+.tooltip {
+  position: relative;
+  display: inline-block;
+}
+
+.tooltip .tooltiptext {
+  visibility: hidden;
+  width: max-content;
+  background-color: var(--dark-color);
+  color: var(--background-color);
+  text-align: center;
+  border-radius: 6px;
+  padding: 5px;
+  position: absolute;
+  z-index: 1;
+  bottom: 150%;
+  left: 20%;
+  opacity: 0;
+  transition: opacity 0.3s;
+  font-size: var(--font-size-xxs);
+}
+
+.tooltip .tooltiptext::after {
+  content: "";
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  margin-left: -5px;
+  border-width: 5px;
+  border-style: solid;
+  border-color: var(--dark-color) transparent transparent transparent;
+}
+
+.contactus.contactus-variation-nested-1-2 {
+    margin-top: 32px;
+}
 
 /* Tablet Layout  */
  @media (width >= 768px) and (width < 1024px) {
@@ -220,7 +257,7 @@
   .contactus .contact-items .contact-link {
     font-size: 16px;
     line-height: 24px;
-  
+    text-decoration: none;
   }
 
   .contactus .contactus-bottom{
@@ -343,17 +380,20 @@
     line-height: 14px;
   }
   
+  .contactus.contactus-variation-nested-1-2 {
+    margin-top: 24px;
+  }
 }
 
 @media (width >= 768px) {
   .contactus.block {
-    padding: 40px 0;
+    padding: 32px 0;
   }
 }
 
 @media (width >= 1024px) {
   .contactus.block {
-    padding: 80px 0;
+    padding: 45px 0;
   }
 
   .contactus .contactus-bottom>div:last-child>div:last-child{
@@ -364,4 +404,3 @@
     margin:0;
   }
 }
-
