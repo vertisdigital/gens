@@ -2,6 +2,7 @@ import { getMetadata } from '../../scripts/aem.js';
 import { loadFragment } from '../fragment/fragment.js';
 import SVGIcon from '../../shared-components/SvgIcon.js';
 import { isMobile } from '../../shared-components/Utility.js';
+import CookiePolicy from '../cookiepolicy/cookiepolicy.js';
 
 const handleAccordionToggle = (e, keyboardTrigger = false) => {
   if (e?.target?.classList?.contains('links-heading') || e?.target?.classList?.contains('footer-nav-title') || (keyboardTrigger && e?.target?.classList?.contains('collapsible-links'))) {
@@ -30,6 +31,11 @@ export default async function decorate(block) {
   const footerPath = footerMeta ? new URL(footerMeta, window.location).pathname : '/footer';
   const fragment = await loadFragment(footerPath);
   if (fragment) {
+    const cookieMarkup = fragment?.querySelector('.cookiepolicy-container');
+    if(cookieMarkup) {
+      const cookiePolicy = new CookiePolicy(cookieMarkup.cloneNode(true));
+      cookiePolicy.constructMarkup();
+    }
     const section = document.createElement('section');
 
     // Create and build all the footer content

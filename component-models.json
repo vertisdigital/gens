@@ -2147,5 +2147,38 @@
         ]
       }
     ]
+  },
+  {
+    "id": "cookiepolicy",
+    "fields": [
+      {
+        "component": "richtext",
+        "name": "cookiepolicydescription",
+        "label": "Cookie Policy Description",
+        "valueType": "string",
+        "validation": {
+          "maxLength": 2000,
+          "customErrorMsg": "Cookie Policy Description cannot exceed 2000 characters"
+        }
+      },
+      {
+        "component": "text",
+        "name": "declinecta",
+        "label": "Decline CTA Text",
+        "validation": {
+          "maxLength": 50,
+          "customErrorMsg": "First CTA Caption cannot exceed 50 characters"
+        }
+      },
+      {
+        "component": "text",
+        "name": "acceptcta",
+        "label": "Accept CTA Text",
+        "validation": {
+          "maxLength": 50,
+          "customErrorMsg": "Second CTA Caption cannot exceed 50 characters"
+        }
+      }
+    ]
   }
 ]

@@ -511,7 +511,25 @@ function handleScroll(header) {
  */
 export default async function decorate(block) {
   const navMeta = getMetadata('nav');
-  const navPath = navMeta ? new URL(navMeta, window.location).pathname : '/nav';
+  let navPath;
+
+  if (navMeta) {
+    navPath = new URL(navMeta, window.location).pathname;
+  } else {
+    // Extract first path segment
+    const pathParts = window.location.pathname.split('/');
+    const firstSegment = pathParts[1];
+
+    // List of supported language codes (you can customize this)
+    const languageCodes = [
+      'en', 'ja', 'zh'
+    ];
+
+    // Determine nav path
+    navPath = languageCodes.includes(firstSegment)
+      ? `/${firstSegment}/nav`
+      : `/nav`;
+  }
   const fragment = await loadFragment(navPath);
 
   if (fragment && true) {

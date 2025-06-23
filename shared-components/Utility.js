@@ -55,3 +55,16 @@ export const isIOSDevice = () => {
   return /iPhone/.test(navigator.userAgent) ||
     (navigator.userAgent.includes("Mac") && "ontouchend" in document);
 }
+
+export function getCookie(name) {
+  const cookies = document.cookie.split('; ');
+  for (let i = 0; i < cookies.length; i += 1) {
+    const parts = cookies[i].split('=');
+    const key = parts[0];
+    const value = parts.slice(1).join('=');
+    if (key === name) {
+      return decodeURIComponent(value);
+    }
+  }
+  return null;
+}

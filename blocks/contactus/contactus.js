@@ -3,6 +3,30 @@ import { moveInstrumentation } from '../../scripts/scripts.js';
 import ImageComponent from '../../shared-components/ImageComponent.js';
 import stringToHtml from '../../shared-components/Utility.js';
 import SvgIcon from '../../shared-components/SvgIcon.js';
+import { errorLogger as logger, infoLogger } from "../../scripts/logger.js";
+
+function fallbackCopyTextToClipboard(text) {
+  const textArea = document.createElement("textarea");
+  textArea.value = text;
+
+  textArea.style.position = "fixed";
+  textArea.style.top = 0;
+  textArea.style.left = 0;
+  textArea.style.opacity = 0;
+
+  document.body.appendChild(textArea);
+  textArea.focus();
+  textArea.select();
+
+  try {
+    const successful = document.execCommand('copy');
+    infoLogger.info('Fallback copy was ' + (successful ? 'successful' : 'unsuccessful'));
+  } catch (err) {
+    logger.error('Fallback copy failed: ', err);
+  }
+
+  document.body.removeChild(textArea);
+}
 
 export default function decorate(block) {
   if (!block || !block.children.length) return;
@@ -152,13 +176,21 @@ export default function decorate(block) {
     textElement.setAttribute('data-aue-type', 'text');
 
     if (linkType) {
-      const link = document.createElement('a');
-      link.className = 'contact-link';
-      link.href = `${linkType}:${text}`;
-      link.textContent = text;
-      link.setAttribute('aria-label', `${linkType === 'tel' ? 'Call us at' : 'Email us at'} ${text}`);
-      link.setAttribute('tabindex', '0');
-      textElement.append(link);
+      const clipBoard=document.createElement('div')
+      clipBoard.classList.add('tooltip')
+      
+      const clipSpan=document.createElement('span')
+      clipSpan.classList.add('tooltiptext')
+
+      const button = document.createElement('button');
+      button.className = 'contact-link';
+      button.textContent = text;
+      button.setAttribute('aria-label', `${linkType === 'tel' ? 'Call us at' : 'Email us at'} ${text}`);
+      
+      clipBoard.append(clipSpan)
+      clipBoard.append(button)
+
+      textElement.append(clipBoard);
     } else {
       textElement.textContent = text;
     }
@@ -254,6 +286,36 @@ export default function decorate(block) {
     container.append(enquiryChildren[1]);
   }
 
+  const buttons = container.querySelectorAll('.contact-link')
+  buttons.forEach((btn)=>{
+    btn.addEventListener("click", () => {
+      if (!document.hasFocus()) {
+        return;
+      }
+
+      navigator.clipboard
+        .writeText(btn.textContent.trim())
+        .then(() => {
+          const clipText=btn.parentElement.querySelector(".tooltiptext");
+          clipText.innerHTML = `Copied to clipboard`;
+          clipText.style.visibility = 'visible';
+          clipText.style.opacity = '1';
+
+          setTimeout(() => {
+            clipText.style.visibility = 'hidden';
+            clipText.style.opacity = '0';
+            clipText.innerHTML = '';
+          }, 2000);
+        })
+        .catch((err) => {
+          logger.error("Failed to copy: ", err);
+
+          // Optional fallback using older `execCommand` method
+          fallbackCopyTextToClipboard(btn.textContent.trim());
+        });
+    });
+  })
+  
   wrapper.innerHTML = '';
   wrapper.append(container);
 }
