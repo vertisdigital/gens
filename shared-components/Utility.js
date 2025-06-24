@@ -1,37 +1,41 @@
 function sanitizeHTMLString(str) {
-  if (!str) return '';
+  if (!str || typeof str !== 'string') return '';
 
-  // Create a temporary DOM element
   const tempDiv = document.createElement('div');
   tempDiv.innerHTML = str;
 
-  // Remove script tags and dangerous attributes
-  const dangerousTags = ['script', 'style', 'iframe', 'object', 'embed'];
-  const dangerousAttrs = ['onerror', 'onload', 'onclick', 'onmouseover', 'onfocus', 'srcdoc', 'data', 'formaction', 'xlink:href', 'javascript:', 'vbscript:'];
+  const blockedTags = ['script', 'iframe', 'object', 'embed', 'style'];
+  const blockedAttrs = [
+    'onerror', 'onload', 'onclick', 'onmouseover', 'onfocus', 'onmouseenter',
+    'srcdoc', 'formaction', 'xlink:href'
+  ];
+  const blockedProtocols = ['javascript:', 'vbscript:', 'data:'];
+  const urlAttributes = ['href', 'src', 'xlink:href', 'formaction'];
 
   // Remove dangerous elements
-  dangerousTags.forEach(tag => {
-    const elements = tempDiv.querySelectorAll(tag);
-    elements.forEach(el => el.remove());
+  blockedTags.forEach(tag => {
+    tempDiv.querySelectorAll(tag).forEach(el => el.remove());
   });
 
   // Sanitize attributes
-  const allElements = tempDiv.querySelectorAll('*');
-  allElements.forEach(el => {
+  const elements = tempDiv.querySelectorAll('*');
+  elements.forEach(el => {
     [...el.attributes].forEach(attr => {
       const name = attr.name.toLowerCase();
-      const value = attr.value.toLowerCase();
-      // Remove inline event handlers or JS URIs
-      if (
-        dangerousAttrs.some(danger =>
-          name.startsWith(danger) || value.includes(danger)
-        )
-      ) {
+      const value = attr.value.trim().toLowerCase();
+
+      const isBlockedAttr = blockedAttrs.includes(name);
+      const isBlockedProtocol =
+        urlAttributes.includes(name) &&
+        blockedProtocols.some(proto => value.startsWith(proto));
+
+      if (isBlockedAttr || isBlockedProtocol) {
         el.removeAttribute(attr.name);
       }
     });
   });
 
+  // Return cleaned HTML string
   return tempDiv.innerHTML;
 }
 
