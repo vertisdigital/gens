@@ -35,7 +35,7 @@ export default function decorate(block) {
       level: 2,
       className: 'enquiry-heading',
     });
-    const parsedHtml = stringToHtml(headingHtml);
+    const parsedHtml = stringToHTML(headingHtml);
     headingElement.appendChild(parsedHtml);
     // Add authoring attributes to heading
     const heading = headingElement.firstElementChild || '';
