@@ -1,9 +1,48 @@
-// convert string to HTML Element
+function sanitizeHTMLString(str) {
+  if (!str) return '';
+
+  // Create a temporary DOM element
+  const tempDiv = document.createElement('div');
+  tempDiv.innerHTML = str;
+
+  // Remove script tags and dangerous attributes
+  const dangerousTags = ['script', 'style', 'iframe', 'object', 'embed'];
+  const dangerousAttrs = ['onerror', 'onload', 'onclick', 'onmouseover', 'onfocus', 'srcdoc', 'data', 'formaction', 'xlink:href', 'javascript:', 'vbscript:'];
+
+  // Remove dangerous elements
+  dangerousTags.forEach(tag => {
+    const elements = tempDiv.querySelectorAll(tag);
+    elements.forEach(el => el.remove());
+  });
+
+  // Sanitize attributes
+  const allElements = tempDiv.querySelectorAll('*');
+  allElements.forEach(el => {
+    [...el.attributes].forEach(attr => {
+      const name = attr.name.toLowerCase();
+      const value = attr.value.toLowerCase();
+      // Remove inline event handlers or JS URIs
+      if (
+        dangerousAttrs.some(danger =>
+          name.startsWith(danger) || value.includes(danger)
+        )
+      ) {
+        el.removeAttribute(attr.name);
+      }
+    });
+  });
+
+  return tempDiv.innerHTML;
+}
+
+
 function stringToHTML(str) {
-  if(!str)
-    return '';
+  if (!str) return null;
+
+  const sanitizedStr = sanitizeHTMLString(str);
   const parser = new DOMParser();
-  const doc = parser.parseFromString(str, 'text/html');
+  const doc = parser.parseFromString(sanitizedStr, 'text/html');
+
   return doc.body.firstChild;
 }
 
