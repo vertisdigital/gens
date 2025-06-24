@@ -248,7 +248,7 @@ export default async function decorate(block) {
     bottomSection.className = 'mt-4';
 
     // Get bottom section content
-    const bottomContent = fragment.lastElementChild;
+    const bottomContent = fragment.children[2];
 
     if (bottomContent) {
       // Create columns container - renamed to avoid shadowing
