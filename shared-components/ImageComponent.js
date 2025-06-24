@@ -46,9 +46,9 @@ export default function ImageComponent({
         : `?width=${desktopWidth}${mobileHeight ? `&height=${desktopHeight}` : ''}`
     }`;
   } else {
-    updatedBreakpoints.desktop.src = `${updatedBreakpoints?.desktop?.src}/as/img.webp`;
-    updatedBreakpoints.tablet.src = `${updatedBreakpoints?.tablet?.src}/as/img.webp`;
-    updatedBreakpoints.mobile.src = `${updatedBreakpoints?.mobile?.src}/as/img.webp`;
+    updatedBreakpoints.desktop.src = `${src}/as/img.webp`;
+    updatedBreakpoints.tablet.src = `${src}/as/img.webp`;
+    updatedBreakpoints.mobile.src = `${src}/as/img.webp`;
   }
 
   return `
