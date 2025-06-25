@@ -478,11 +478,3 @@
     height: 725px;
   }
 }
-@media screen and (min-width: 993px) and (min-resolution: 1.5dppx),screen and (min-width: 993px) and (-webkit-min-device-pixel-ratio: 1.5) {
-  .hero-banner-container {
-    padding-top: 140px;
-  }
-  .hero-title {
-    line-height: 58px;
-  }
-}
