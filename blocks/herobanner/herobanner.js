@@ -16,22 +16,19 @@ export default function decorate(block) {
   const imageLink = block.querySelector('.herobanner-nested-1-1 a[href]');
   if (imageLink) {
     const imageUrl = imageLink.getAttribute('href');
-    const hasMultipleImages = block.querySelector('.herobanner-nested-1-2 p')?.textContent === 'true';
-    const tabletUrl = hasMultipleImages ? block.querySelector('.herobanner-nested-1-3 a[href]')?.getAttribute('href') : imageUrl;
-    const mobileUrl = hasMultipleImages ? block.querySelector('.herobanner-nested-1-4 a[href]')?.getAttribute('href') : imageUrl;
     const imageAlt = imageLink.getAttribute('title') || 'Hero Image';
     const imageHtml = ImageComponent({
       src: imageUrl,
       alt: imageAlt,
       className: 'hero-image',
-      asImageName: hasMultipleImages ? '':'hero.webp',
+      asImageName: 'hero.webp',
       breakpoints: {
         mobile: {
-          src: `${mobileUrl}`,
+          src: `${imageUrl}`,
           smartCrop : 'Small'
         },
         tablet: {
-          src: `${tabletUrl}`,
+          src: `${imageUrl}`,
           smartCrop : 'Medium'
         },
         desktop: {
@@ -54,7 +51,7 @@ export default function decorate(block) {
   const heroContent = document.createElement('div');
   heroContent.classList.add('hero-content', 'columns-container', 'container');
 
-  const headingElement = block.querySelector('[data-aue-prop="bannerheading"], .herobanner-nested-1-5 p');
+  const headingElement = block.querySelector('[data-aue-prop="bannerheading"], .herobanner-nested-1-2 p');
   if (headingElement) {
     const headingText = headingElement.textContent;
     const headingContainer = document.createElement('div');
@@ -70,7 +67,7 @@ export default function decorate(block) {
     headingElement.remove();
   }
 
-  const titleElement = block.querySelector('[data-aue-prop="bannertitle"], .herobanner-nested-1-6 p');
+  const titleElement = block.querySelector('[data-aue-prop="bannertitle"], .herobanner-nested-1-3 p');
   if (titleElement) {
     const titleText = titleElement.textContent;
     const titleContainer = document.createElement('div');
@@ -87,7 +84,7 @@ export default function decorate(block) {
   }
 
   const descElement = block.querySelector(
-    '[data-aue-prop="bannerdescription"], .herobanner-nested-1-7 p',
+    '[data-aue-prop="bannerdescription"], .herobanner-nested-1-4 p',
   );
   if (descElement) {
     const descriptionDiv = document.createElement('div');
@@ -99,7 +96,7 @@ export default function decorate(block) {
     descElement.remove();
   }
 
-  const arrowIconLink = block.children[7];
+  const arrowIconLink = block.children[4];
   if (arrowIconLink && arrowIconLink.querySelector('a') != null) {
     const arrowIconHtml = SvgIcon({
       name: 'arrow',
@@ -107,10 +104,8 @@ export default function decorate(block) {
       size: '24',
       color: '#B29152',
     });
-    const linkTarget = block.children[9]?.textContent?.trim() || '_self';
     const parsedHtml = stringToHTML(arrowIconHtml);
     arrowIconLink.querySelector('a').textContent = '';
-    arrowIconLink.querySelector('a')?.setAttribute('target',linkTarget);
     arrowIconLink.querySelector('a')?.append(parsedHtml);
     heroContent.appendChild(arrowIconLink);
   }
@@ -275,9 +270,8 @@ export default function decorate(block) {
     if (readMoreLabelElement) {
       const readMoreLabelText = readMoreLabelElement.textContent;
       const buttonContainer = itemDivs[4]?.querySelector('a');
-      const linkTarget = itemDivs[5]?.textContent || '_self';
       const href = buttonContainer?.getAttribute('href') ?? '/';
-      const readMoreLabelHtml = `<a class="news-link" href="${href}" target="${linkTarget}">${readMoreLabelText}</a>`;
+      const readMoreLabelHtml = `<a class="news-link" href="${href}">${readMoreLabelText}</a>`;
       const readMoreContainer = document.createElement('div');
       moveInstrumentation(itemDivs[3], readMoreContainer);
       readMoreContainer.insertAdjacentHTML('beforeend', readMoreLabelHtml);
