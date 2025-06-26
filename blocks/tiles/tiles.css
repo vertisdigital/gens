@@ -43,6 +43,7 @@
   text-decoration: underline;
   display: flex;
   gap: 16px;
+  line-height: 16px;
 }
 a:any-link.factsheet-button {
   text-decoration: underline;
@@ -107,6 +108,7 @@ a:any-link.factsheet-button {
   .factsheet-button {
     margin: 16px 0 0;
     font-size: var(--font-size-xxs);
+    line-height: 14px;
   }
 
  
