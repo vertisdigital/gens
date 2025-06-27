@@ -76,6 +76,14 @@
     line-height: 20px;
     padding-top: 16px;
 }
+.sustainabilitygovernance-wrapper .links-container {
+    display: flex;
+    justify-content: flex-end;
+}
+.sustainabilitygovernance-wrapper .links-container a {
+    display: flex;
+    align-items: center;
+}
 @media (width >= 768px) {
     .governance-section {
         margin-bottom: 45px;

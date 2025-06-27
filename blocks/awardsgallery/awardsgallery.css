@@ -60,6 +60,10 @@
 .awardsgallery picture {
     text-align: center;
 }
+.learn-more {
+    text-align: right;
+    margin: 24px 0;
+}
 
 @media (width >= 768px) {
     .awardsgallery .awardsgallery-card {

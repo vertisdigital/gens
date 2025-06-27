@@ -18,6 +18,26 @@
 .about-us-stats .about-us-right{
   padding: 0;
 }
+.about-us-stats .about-us-right .links-container {
+  text-align: right;
+}
+.about-us-left .links-container a{
+  display: flex;
+  align-items: center;
+  color: var(--primary-gold);
+  text-decoration: underline;
+  cursor: pointer;
+  padding-left: 0;
+  padding-right: 0;
+  font-size: var(--font-size-xxs);
+  font-weight: 700;
+  line-height: 20px;
+}
+.feature-wrapper .about-us-right-content p a {
+  color: var(--primary-gold);
+  text-decoration: underline;
+  cursor: pointer;
+}
 
 .about-us-left header{
   height: auto;
@@ -48,18 +68,6 @@
  line-height: 20px;
 }
 
-.about-us-left .links-container a{
-  display: flex;
-  align-items: center;
-  color: var(--primary-gold);
-  text-decoration: underline;
-  cursor: pointer;
-  padding-left: 0;
-  padding-right: 0;
-  font-size: var(--font-size-xxs);
-  font-weight: 700;
-  line-height: 20px;
-}
 
 .about-us-left .links-container a span{
   width: 16px;

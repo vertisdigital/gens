@@ -53,7 +53,8 @@ export default function decorate(block) {
 
   // Find all LinkFields and replace with arrow icons
   const linkField = block.querySelector('[data-aue-model="linkField"],[data-gen-model="linkField"]');
-  if (linkField) {
+  const isRightSectionLink = block?.classList?.contains('right-section-learnmore');
+  if (linkField && !isRightSectionLink) {
     const linkContainer = document.createElement('div');
     linkContainer.className = 'links-container';
     moveInstrumentation(linkField, linkContainer);
@@ -75,7 +76,7 @@ export default function decorate(block) {
       if (linkData.text || linkData.url) {
         const link = document.createElement('a');
         link.href = linkData.url || '#';
-        
+        link.target = linkData.target || '_self';
         // Handle special case for default AEM content
         if (linkData.text.startsWith('/') || linkData.text.startsWith('#')) {
           link.textContent = '';
@@ -127,8 +128,11 @@ export default function decorate(block) {
       const featureContainer = document.createElement('div');
       featureContainer.classList.add('about-us-right-content');
       moveInstrumentation(feature, featureContainer);
+      if(featureChildren[0]?.querySelector('[data-aue-prop="linkText"],[data-gen-prop="linkText"]') || feature?.getAttribute('data-gen-model') === 'linkField' ) {
+        return;
+      }
       // Handle image feature
-      const isImageExists = featureChildren[0].querySelector('a') ? true : false;
+      const isImageExists = featureChildren[0]?.querySelector('a') ? true : false;
       if (isImageExists) {
         const imageElement = featureChildren[0].querySelector('a');
         const imageContainer = document.createElement('div');
@@ -259,6 +263,65 @@ export default function decorate(block) {
 
     indices.appendChild(indexElement);
     aboutUsRightContent.appendChild(indices);
+  }
+  if (linkField && isRightSectionLink) {
+    const linkContainer = document.createElement('div');
+    linkContainer.className = 'links-container';
+    moveInstrumentation(linkField, linkContainer);
+
+    const linkDivs = Array.from(linkField.children);
+    // Ensure we have the expected structure (3 elements)
+    if (linkDivs.length === 3) {
+      // Get elements by index with proper type checking
+      const [linkTextDiv, iconDiv, targetDiv] = linkDivs;
+      
+      const linkData = {
+        text: linkTextDiv?.textContent?.trim(),
+        url: linkTextDiv?.querySelector('a')?.getAttribute('href'),
+        icon: iconDiv?.textContent?.trim()?.replace('-', ''),
+        target: targetDiv?.textContent?.trim(),
+        title: linkTextDiv?.querySelector('a')?.getAttribute('title')
+      };
+
+      if (linkData.text || linkData.url) {
+        const link = document.createElement('a');
+        link.href = linkData.url || '#';
+        link.target = linkData.target || '_self';
+        link.classList.add('global-learn-more');
+        // Handle special case for default AEM content
+        if (linkData.text.startsWith('/') || linkData.text.startsWith('#')) {
+          link.textContent = '';
+        } else {
+          link.textContent = linkData.text;
+        }
+
+        if (linkData.title) {
+          link.setAttribute('title', linkData.title);
+        }
+
+        // Add icon if specified
+        if (linkData.icon) {
+          const arrowSVG = SvgIcon({ 
+            name: linkData.icon, 
+            className: 'about-us-left-link', 
+            size: '24px' 
+          });
+          link.append(stringToHTML(arrowSVG));
+        }
+
+        moveInstrumentation(linkTextDiv.querySelector('a'), link);
+        linkContainer.appendChild(link);
+      }
+      
+      // Remove original elements after copying
+      linkTextDiv.remove();
+      iconDiv.remove();
+      targetDiv.remove();
+      
+      aboutUsRightContent.appendChild(linkContainer);
+    }
+    // Remove the original linkField container after processing
+    linkField.remove();
   }
   block.innerHTML = '';
   aboutUsStats.appendChild(aboutUsLeftContent);

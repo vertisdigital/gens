@@ -32,6 +32,14 @@
     position: relative;
     width: 100%;
 }
+.historymilestones-milestone .learn-more-link {
+    color: var(--primary-gold);
+    margin-top: 8px;
+    font-size: var(--font-size-xxs);;
+    line-height: 20px;
+    display: block;
+    text-decoration: underline;
+}
 .historymilestones-wrapper:not(:last-child) .historymilestones-milestones::after {
     content: "";
     background: var(--neutral-color);
