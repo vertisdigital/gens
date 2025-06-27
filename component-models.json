@@ -1342,12 +1342,26 @@
         "component": "aem-content",
         "name": "firstCta",
         "label": "CTA Link",
-        "linkTarget": "_blank",
         "validation": {
           "requiredErrorMsg": "CTA Link is mandatory",
           "rootPath": "/content/genting-singapore"
         }
       },
+      {
+        "component": "select",
+        "name": "firstCtaLinkTarget",
+        "label": "First CTA Target",
+        "options": [
+          {
+          "name": "Same Tab",
+          "value": "_self"
+          },
+          {
+          "name": "New Tab",
+          "value": "_blank"
+          }
+        ]
+       },
       {
         "component": "text",
         "name": "secondCtaCaption",
@@ -1361,11 +1375,25 @@
         "component": "aem-content",
         "name": "secondCta",
         "label": "CTA Link",
-        "linkTarget": "_blank",
         "validation": {
           "rootPath": "/content/genting-singapore"
         }
-      }
+      },
+      {
+        "component": "select",
+        "name": "secondCtaLinkTarget",
+        "label": "Second CTA Target",
+        "options": [
+          {
+          "name": "Same Tab",
+          "value": "_self"
+          },
+          {
+          "name": "New Tab",
+          "value": "_blank"
+          }
+        ]
+       }
     ]
   },
   {
