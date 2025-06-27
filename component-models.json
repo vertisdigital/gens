@@ -1323,14 +1323,77 @@
       {
         "component": "text",
         "name": "title",
-        "label": "Section Title",
-        "required": true,
+        "label": "Title",
         "validation": {
           "maxLength": 100,
-          "customErrorMsg": "Title cannot exceed 100 characters",
-          "requiredErrorMsg": "Title is mandatory"
+          "customErrorMsg": "Title cannot exceed 100 characters"
         }
-      } 
+      },
+      {
+        "component": "text",
+        "name": "firstCtaCaption",
+        "label": "First CTA Caption",
+        "validation": {
+          "maxLength": 50,
+          "customErrorMsg": "First CTA Caption cannot exceed 50 characters"
+        }
+      },
+      {
+        "component": "aem-content",
+        "name": "firstCta",
+        "label": "CTA Link",
+        "validation": {
+          "requiredErrorMsg": "CTA Link is mandatory",
+          "rootPath": "/content/genting-singapore"
+        }
+      },
+      {
+        "component": "select",
+        "name": "firstCtaLinkTarget",
+        "label": "First CTA Target",
+        "options": [
+          {
+          "name": "Same Tab",
+          "value": "_self"
+          },
+          {
+          "name": "New Tab",
+          "value": "_blank"
+          }
+        ]
+       },
+      {
+        "component": "text",
+        "name": "secondCtaCaption",
+        "label": "Second CTA Caption",
+        "validation": {
+          "maxLength": 50,
+          "customErrorMsg": "Second CTA Caption cannot exceed 50 characters"
+        }
+      },
+      {
+        "component": "aem-content",
+        "name": "secondCta",
+        "label": "CTA Link",
+        "validation": {
+          "rootPath": "/content/genting-singapore"
+        }
+      },
+      {
+        "component": "select",
+        "name": "secondCtaLinkTarget",
+        "label": "Second CTA Target",
+        "options": [
+          {
+          "name": "Same Tab",
+          "value": "_self"
+          },
+          {
+          "name": "New Tab",
+          "value": "_blank"
+          }
+        ]
+       }
     ]
   },
   {
