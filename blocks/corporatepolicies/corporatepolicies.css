@@ -3,7 +3,7 @@
 }
 
 .corporate-policies-list-item {
-    padding: 68px 0;
+    padding: 45px 0;
     border-bottom: 2px solid var(--body-text-color);
 }
 
@@ -102,7 +102,7 @@
     }
 
     .corporate-policies-list-item {
-        padding: 28px 0;
+        padding: 32px 0;
     }
 
     .corporate-policies-list-item .left-col h2{
@@ -121,7 +121,7 @@
     }
 
     .corporate-policies-list-item {
-        padding: 24px 0;
+        padding: 32px 0;
     }
 
     .corporate-policies-list-item>div:first-child{
