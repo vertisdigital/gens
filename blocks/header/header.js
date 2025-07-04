@@ -67,21 +67,6 @@ function createNavItem(itemData) {
   const titleContent = document.createElement('div');
   const detailedcaption = document.createElement('a');
 
-  // Check if this is the Contact menu item
-  // if (itemData.title === 'Contact' && itemData.links?.length === 1) {
-  //   // For Contact, create a direct link using the first link in the array
-  //   const contactLink = document.createElement('a');
-  //   contactLink.textContent = itemData.links[0].text;
-  //   contactLink.href = itemData.links[0].href;
-  //   contactLink.setAttribute('target', itemData.links[0].target || '_self');
-  //   titleContent.appendChild(contactLink);
-
-  //   // Skip creating submenu elements
-  //   titleDiv.appendChild(titleContent);
-  //   navItem.appendChild(titleDiv);
-  //   return navItem;
-  // }
-
   // Normal menu item handling
   if (itemData.title === 'CONTACT') {
     const contactLinkElement = document.createElement('a');

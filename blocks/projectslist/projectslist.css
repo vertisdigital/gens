@@ -30,6 +30,7 @@ p {
 .project-subtitle {
     color: var(--text-color);
     font-size: var(--font-size-s);
+    letter-spacing: -0.5px;
 }
 
 .project-title  {

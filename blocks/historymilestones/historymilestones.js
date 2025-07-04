@@ -56,11 +56,25 @@ export default function decorate(block) {
         <div class="historymilestones-milestones">
               ${milestones
     .map((milestone) => {
-      const [image, date, description] = milestone.children;
+      const [image, date, description, link, target] = milestone.children;
+      let learnMoreDiv = null;
+      if(link?.querySelector('a')) {
+        const url = link.querySelector('a')?.href;
+        const title = link.querySelector('a')?.textContent;
+        const linkTarget = target?.textContent?.trim() || '_self';
+        
+        learnMoreDiv=document.createElement('div');
+        learnMoreDiv.classList.add('learn-more');
+        learnMoreDiv.innerHTML=`
+        <a class="global-learn-more" href=${url} target=${linkTarget}>${title}</a>
+        `;
+      }
+
       milestone.innerHTML = `<div class="historymilestones-milestone">
                       <div class="historymilestones-image">${getImageHTMl(image)}</div>
                       <div class="historymilestones-date">${date.outerHTML}</div>
                       <div class="historymilestones-description">${description.outerHTML}</div>
+                      ${learnMoreDiv ? learnMoreDiv.outerHTML : ''}
                   </div>`;
       return milestone.outerHTML;
     })

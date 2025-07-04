@@ -6,7 +6,7 @@
     left: 0;
     right: 0;
     z-index: 99;
-    padding-top: 20px;
+    padding-top: 24px;
     padding-bottom: 24px;
     background-color: var(--soft-ivory-blue);
 
@@ -30,11 +30,10 @@
         font-size: var(--font-size-xxs);
         line-height: 20px;
         color: var(--text-color);
-        margin-bottom: 21px;
+        margin-bottom: 24px;
         @media (width>=768px) {
             font-size: var(--font-size-xs);
             line-height: 24px;
-            margin-bottom: 26px;
         }
          @media (width>=993px) {
             margin-bottom: 0;
@@ -90,7 +89,7 @@
         border: 1px solid var(--bronze-brown);
         margin-left: 12px;
         @media (width>=768px) {
-            margin-left: 34px;
+            margin-left: 32px;
         }
     }
 }

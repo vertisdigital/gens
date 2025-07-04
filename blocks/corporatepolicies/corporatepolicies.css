@@ -3,7 +3,7 @@
 }
 
 .corporate-policies-list-item {
-    padding: 68px 0;
+    padding: 45px 0;
     border-bottom: 2px solid var(--body-text-color);
 }
 
@@ -66,7 +66,6 @@
     font-weight: 400;
     line-height: 24px;
     color: var(--body-text-color);
-    margin-bottom: 24px;
 }
 
 .corporate-policies-list-item .right-col > div:nth-child(3) a{
@@ -81,7 +80,7 @@
     line-height: 24px;
     color: var(--primary-gold);
     padding: 0;
-    margin: 0;
+    margin: 24px 0 0;
 }
 
 .corporate-policies-cta-right .corporate-policies-list-item .right-col > div:nth-child(3){
@@ -102,7 +101,7 @@
     }
 
     .corporate-policies-list-item {
-        padding: 28px 0;
+        padding: 32px 0;
     }
 
     .corporate-policies-list-item .left-col h2{
@@ -121,7 +120,7 @@
     }
 
     .corporate-policies-list-item {
-        padding: 24px 0;
+        padding: 32px 0;
     }
 
     .corporate-policies-list-item>div:first-child{
@@ -147,19 +146,18 @@
     }
 
     .corporate-policies-list>div:last-child{
-        padding-bottom: 24px;
         padding-left: 0;
     }
 
     .corporate-policies-list-item .right-col > div:first-child {
         font-size: var(--font-size-xxs);
         line-height: 20px;
-        margin-bottom: 8px;
     }
 
     .corporate-policies-list-item .right-col > div:nth-child(3) a {
         font-size: var(--font-size-xxs);
         line-height: 20px;
+        margin-top: 8px;
     }
     .corporate-policies-list-item .right-col > div:nth-child(3) a > span:first-child {
         font-size: var(--font-size-xxs);        

@@ -1,9 +1,53 @@
-// convert string to HTML Element
+function sanitizeHTMLString(str) {
+  if (!str || typeof str !== 'string') return '';
+
+  const tempDiv = document.createElement('div');
+  tempDiv.innerHTML = str;
+
+  const blockedTags = ['script', 'iframe', 'object', 'embed', 'style'];
+  const blockedAttrs = [
+    'onerror', 'onload', 'onclick', 'onmouseover', 'onfocus', 'onmouseenter',
+    'srcdoc', 'formaction', 'xlink:href'
+  ];
+// eslint-disable-next-line no-script-url
+  const blockedProtocols = ['javascript:', 'vbscript:', 'data:'];
+  const urlAttributes = ['href', 'src', 'xlink:href', 'formaction'];
+
+  // Remove dangerous elements
+  blockedTags.forEach(tag => {
+    tempDiv.querySelectorAll(tag).forEach(el => el.remove());
+  });
+
+  // Sanitize attributes
+  const elements = tempDiv.querySelectorAll('*');
+  elements.forEach(el => {
+    [...el.attributes].forEach(attr => {
+      const name = attr.name.toLowerCase();
+      const value = attr.value.trim().toLowerCase();
+
+      const isBlockedAttr = blockedAttrs.includes(name);
+      const isBlockedProtocol =
+        urlAttributes.includes(name) &&
+        blockedProtocols.some(proto => value.startsWith(proto));
+
+      if (isBlockedAttr || isBlockedProtocol) {
+        el.removeAttribute(attr.name);
+      }
+    });
+  });
+
+  // Return cleaned HTML string
+  return tempDiv.innerHTML;
+}
+
+
 function stringToHTML(str) {
-  if(!str)
-    return '';
+  if (!str) return null;
+
+  const sanitizedStr = sanitizeHTMLString(str);
   const parser = new DOMParser();
-  const doc = parser.parseFromString(str, 'text/html');
+  const doc = parser.parseFromString(sanitizedStr, 'text/html');
+
   return doc.body.firstChild;
 }
 
