@@ -107,7 +107,7 @@
 .tabs-container .about-us-stats .about-us-right-content {
     border-top: 1px solid var(--text-color);
     align-items: flex-start;
-    padding-top: 16px;
+    padding-top: 18px;
     gap: 0;
 }
 
@@ -201,8 +201,8 @@
     }
 
     .tabs-container .about-us-stats .about-us-right-content {
-        margin-bottom: 16px;
-        padding-top: 16px;
+        margin-bottom: 18px;
+        padding-top: 18px;
     }
 
     .tabs-container .about-us-stats .about-us-right-content:first-child>div:last-child{
@@ -259,7 +259,7 @@
 
     .tabs-container .about-us-stats .about-us-right-content {
         padding-top: 18px;
-        margin-bottom: 40px;
+        margin-bottom: 18px;
     }
     .tabs-container .about-us-stats .about-us-right-content p {
         line-height: 20px;

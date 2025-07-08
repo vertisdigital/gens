@@ -26,7 +26,7 @@ export default function decorate(block) {
       const leftCol = document.createElement('div');
       leftCol.className = 'col-xl-6 col-md-3 col-sm-4 left-col';
 
-      const allDivElements = project.children;
+      const allDivElements = [...project.children];
 
       const titleText = allDivElements[0];
       if (titleText) {
@@ -104,7 +104,7 @@ export default function decorate(block) {
             size: "16px",
           });
           const div = document.createElement('div')
-          if(projectCtaLabel){
+          if(projectCtaLabel && stringToHtml(ctaIcon)){
             linkTag.append(stringToHtml(ctaIcon)) 
           }
           leftCol.appendChild(div);
