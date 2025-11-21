@@ -32,9 +32,10 @@
     font-weight: 400;
     line-height: 24px;
     color: var(--body-text-color);
-    border-bottom: 1px solid var(--text-color);
-    padding-bottom: 20px;
-    margin-bottom: 50px;
+    margin-bottom: 45;
+}
+.herobanner-container .statistics-wrapper:nth-child(2) .statistics-description-wrapper {
+    padding: 0 0 60px;
 }
 
 .statistics-description-wrapper .hide {
@@ -43,7 +44,7 @@
 
 .statistics-container button {
     display: block;
-    font-size: var(--font-size-xs);
+    font-size: var(--font-size-xxs);
     font-weight: 700;
     line-height: 24px;
     text-decoration-line: underline;
@@ -64,14 +65,14 @@
 }
 
 .statistics .statistic-item {
-    font-size: var(--font-size-xxxl);
+    font-size: var(--font-size-xgl);
     font-weight: 400;
-    line-height: 80px;
+    line-height: 64px;
     color: var(--primary-gold);
 }
 
 .statistics.statistics-financial-variation .statistic-item {
-    font-size: 4.375rem;
+    font-size: 4rem;
 }
 
 .statistics .statistic-item sup, .statistics .statistic-item sub {
@@ -84,10 +85,21 @@
     line-height: 24px;
     color: var(--body-text-color);
 }
+.statistics .text-container p{
+    margin-bottom: 24px;
+}
+.statistics .text-container p:last-child{
+    margin-bottom: 0;
+}
 
 .statistics-wrapper .statistics.block {
     margin-top: -68px;
     position: relative;
+    margin-bottom: 45px;
+}
+
+.statistics-wrapper .statistics.block.margin-top-none {
+    margin-top: 0;
 }
 
 
@@ -108,15 +120,21 @@
     color: var(--text-color);
 }
 
-.statistics-wrapper .statistics.block::before {
+.herobanner-container .statistics-wrapper:nth-child(2) .statistics.block::before {
     content: '';
     background: var(--background-color);
     position: absolute;
-    inset: -70px 0 0;
+    inset: -50px 0 0;
     width: 100%;
     max-width: 1280px;
     margin: 0 auto;
     z-index: -1;
+    box-shadow: 4px 4px 20px rgba(0, 0, 0, 0.05);
+}
+
+
+.herobanner-container .statistics-wrapper:nth-child(2) .statistics .statistics-row:last-child {
+    padding-bottom: 60px;
 }
 
 .statistics-wrapper .statistics.block.statistics-variation::before{
@@ -147,10 +165,8 @@
     margin-bottom: 12px;
 }
 
- 
-
 @media (width <= 1280px) {
-    .statistics-wrapper .statistics.block::before {
+    .herobanner-container .statistics-wrapper:nth-child(2) .statistics.block::before {
         left: 22px;
         right: 22px;
         width: auto;
@@ -160,7 +176,8 @@
 
 @media (width <= 1024px) {
     .statistics-wrapper .statistics.block {
-        margin-top: -46px;
+        margin-top: -90px;
+        margin-bottom: 32px;
     }
 
     .statistics-wrapper .statistics.block.statistics-variation{
@@ -182,32 +199,33 @@
     }
     
 
-    .statistics-wrapper .statistics.block::before {
-        top: -22px;
+    .herobanner-container .statistics-wrapper:nth-child(2) .statistics.block::before {
+        top: -32px;
     }
 
-    .statistics-wrapper .statistics.block.statistics-variation::before {
+    .herobanner-container .statistics-wrapper:nth-child(2) .statistics.block.statistics-variation::before {
         top: 0;
     }
-
-
   
 }
 
 @media (width<=992px) {
     .statistics-description-wrapper {
-        padding: 40px 0;
-         margin-bottom: 40px;
-
+         margin-bottom: 28px;
+    }
+    .herobanner-container .statistics-wrapper:nth-child(2) .statistics-description-wrapper {
+        padding: 0 0 32px;
     }
     
     .statistics .statistics-description-wrapper h3, .statistics .statistics-title {
         font-size: var(--font-size-l);
+        margin-bottom: 12px;
+        line-height: 42px;
     }
 
     .statistics .statistic-item {
-        font-size: var(--font-size-xxl);
         line-height: 64px;
+        font-size: var(--font-size-xgl);
     }
 
     .statistics .statistics-row {
@@ -224,6 +242,9 @@
         padding-bottom: 40px;
         margin-bottom: 40px;
     }
+    .herobanner-container .statistics-wrapper:nth-child(2) .statistics>.statistics-title {
+        min-height: 32px;
+    }
 
     .statistics .statistics-row .feature-item {
         padding-left: 12px;
@@ -234,16 +255,40 @@
         font-size:var(--font-size-s);
         line-height:32px;
     }
+
+    .herobanner-container .statistics-wrapper:nth-child(2) .statistics .statistics-row:last-child {
+        padding-bottom: 32px;
+    }
 }
 
 @media (width<768px) {
     .statistics-description-wrapper {
+        margin-bottom: 28px;
+        font-size: var(--font-size-xxs);
         padding: 28px 0;
         margin-bottom: 28px;
     }
+    .statistics-description-wrapper p {
+        line-height: 20px;
+    }
+    .herobanner-container .statistics-wrapper:nth-child(2) .statistics-description-wrapper {
+        padding: 0 0 24px;
+    }
+    .statistics .text-container {
+        font-size: var(--font-size-xxs);
+        letter-spacing: 1px;
+        line-height: 20px;
+    }
+
+    .statistics-description-wrapper .description-text-container{
+        font-size: var(--font-size-xxs);
+        line-height: 20px;
+        letter-spacing: 0px;
+     }
 
     .statistics .statistics-description-wrapper h3 {
         font-size: var(--font-size-m);
+        line-height: 34px;
     }
 
     .statistics .statistics-row {
@@ -263,12 +308,15 @@
     }
 
     .statistics .statistic-item {
-        font-size: var(--font-size-xl);
+        font-size: var(--font-size-ml);
         line-height: 48px;
     }
-
+    .statistics.statistics-financial-variation .statistic-item {
+        font-size: var(--font-size-ml);
+    }
     .statistics-wrapper .statistics.block {
         margin-top: -54px;
+        margin-bottom: 24px;
     }
 
     .statistics-wrapper .statistics.block.statistics-variation {
@@ -295,7 +343,7 @@
         line-height:28px;
     }
 
-    .statistics-wrapper .statistics.block::before {
+    .herobanner-container .statistics-wrapper:nth-child(2) .statistics.block::before {
         left: 10px;
         right: 10px;
     }
@@ -303,13 +351,16 @@
     .statistics.block.statistics-variation .statistics-title {
         margin-bottom: 8px;
     }
-    
+    .herobanner-container .statistics-wrapper:nth-child(2) .statistics .statistics-row:last-child {
+        padding-bottom: 24px;
+    }   
 }
+
 @media (width>=1200px) {
-    .statistics-wrapper .statistics.block::before {
+    .herobanner-container .statistics-wrapper:nth-child(2) .statistics.block::before {
         max-width: none;
         width: auto;
-    left: 100px;
+        left: 100px;
         right: 100px;
     }
 }

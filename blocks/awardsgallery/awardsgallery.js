@@ -14,7 +14,12 @@ export default function decorate(block) {
   cardsGridContainer.className = 'awardsgallery-grid row';
   awardsGalleryContainer.appendChild(cardsGridContainer);
   const awardsGalleryCards = block.children || [];
+  let learnMoreElement=null;
   [...awardsGalleryCards]?.forEach((card) => {
+    if (card.getAttribute('data-gen-model') === "linkField" || card.getAttribute('data-aue-model') === "linkField"){
+      learnMoreElement=card;
+      return;
+    }
     const cardElement = document.createElement('div');
     cardElement.className = 'awardsgallery-card col-xl-4 col-lg-4 col-md-3 col-sm-2';
     moveInstrumentation(card, cardElement);
@@ -79,4 +84,17 @@ export default function decorate(block) {
   // Clear original block content and append new structure
   block.textContent = '';
   block.appendChild(awardsGalleryContainer);
+  if(learnMoreElement){
+    const link = learnMoreElement.querySelector('a')?.href
+    const title = learnMoreElement.querySelector('a')?.textContent
+    const target = learnMoreElement?.children[2]?.textContent
+    
+    const learnMoreDiv=document.createElement('div')
+    moveInstrumentation(learnMoreElement, learnMoreDiv);
+    learnMoreDiv.classList.add('learn-more')
+    learnMoreDiv.innerHTML=`
+    <a class="global-learn-more" href=${link} target=${target}>${title}</a>
+    `;
+    awardsGalleryContainer.appendChild(learnMoreDiv)
+  }
 }

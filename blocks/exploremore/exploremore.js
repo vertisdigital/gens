@@ -20,7 +20,7 @@ export default function decorate(block) {
   const allDivElements = block.children;
   const titleElement = allDivElements[0];
   const firstCtaElement = allDivElements[1].querySelector('p');
-  const secondCtaElement = allDivElements[3].querySelector('p');
+  const secondCtaElement = allDivElements[4].querySelector('p');
 
   const allLinks = exploreMoreContainer.querySelectorAll('a');
   const firstCtaHrefElement = allLinks?.[0];
@@ -33,11 +33,13 @@ export default function decorate(block) {
   const firstCtaCaption = firstCtaElement?.textContent?.trim() || '';
   const firstCtaAttributes = extractAttributes(firstCtaElement);
   const firstCtaHref = firstCtaHrefElement?.getAttribute('href') || '#';
+  const firstCtaTarget = allDivElements[3]?.textContent?.trim() || "_self";
   const firstCtaHrefAttributes = extractAttributes(firstCtaHrefElement);
 
   const secondCtaCaption = secondCtaElement?.textContent?.trim() || '';
   const secondCtaAttributes = extractAttributes(secondCtaElement);
   const secondCtaHref = secondCtaHrefElement?.getAttribute('href') || '#';
+  const secondCtaTarget = allDivElements[6]?.textContent?.trim() || "_self";
   const secondCtaHrefAttributes = extractAttributes(secondCtaHrefElement);
 
   // SVG forward icon
@@ -56,7 +58,7 @@ export default function decorate(block) {
               <div class="col-xl-6 col-md-3 col-sm-4 exploremore-item ">
                   <div class="exploremore-caption" ${firstCtaAttributes}>${firstCtaCaption}</div>
                   <div class="exploremore-link-container">
-                      <a href="${firstCtaHref}" class="exploremore-link exploremore-first" ${firstCtaHrefAttributes}>
+                      <a href="${firstCtaHref}" target="${firstCtaTarget}" class="exploremore-link exploremore-first" title=${firstCtaCaption || ''} ${firstCtaHrefAttributes}>
                         ${forwardArrow}
                       </a>
                   </div>
@@ -64,7 +66,7 @@ export default function decorate(block) {
               <div class="col-xl-6 col-md-3 col-sm-4 exploremore-item">
                   <div class="exploremore-caption" ${secondCtaAttributes}>${secondCtaCaption}</div>
                   <div class="exploremore-link-container">
-                      <a href="${secondCtaHref}" class="exploremore-link exploremore-second" ${secondCtaHrefAttributes}>
+                      <a href="${secondCtaHref}" target="${secondCtaTarget}" class="exploremore-link exploremore-second" title=${secondCtaCaption || ''} ${secondCtaHrefAttributes}>
                         ${forwardArrow}
                       </a>
                   </div>

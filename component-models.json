@@ -7,7 +7,7 @@
         "valueType": "string",
         "name": "image",
         "label": "image",
-        "configUrl": "https://main--genting-prod--wppopen.aem.live/tools/assets-selector/config.json",
+        "configUrl": "https://uat--genting-stage--wppopen.aem.live/tools/assets-selector/config.json",
         "multi": false,
         "validation": {
           "rootPath": "/content/dam/genting-singapore"
@@ -152,19 +152,6 @@
     "id": "tabs",
     "fields": [
       {
-        "component": "multiselect",
-        "name": "classes",
-        "value": "",
-        "label": "Style Classes",
-        "valueType": "string",
-        "options": [
-          {
-            "name": "Tab",
-            "value": "tab"
-          }
-        ]
-      },
-      {
         "component": "text",
         "name": "tabtitle",
         "label": "Tab Title",
@@ -172,7 +159,13 @@
           "maxLength": 50,
           "customErrorMsg": "Tab Title cannot exceed 50 characters"
         }
-      }
+      },
+      {
+        "component": "boolean",
+        "label": "Active Tab",
+        "name": "active",
+        "valueType": "boolean"
+      } 
     ]
   },
   {
@@ -183,7 +176,7 @@
         "valueType": "string",
         "name": "image",
         "label": "Image",
-        "configUrl": "https://main--genting-prod--wppopen.aem.live/tools/assets-selector/config.json",
+        "configUrl": "https://uat--genting-stage--wppopen.aem.live/tools/assets-selector/config.json",
         "multi": false
       },
       {
@@ -232,7 +225,7 @@
         "valueType": "string",
         "name": "bannerimage",
         "label": "Banner Image",
-        "configUrl": "https://main--genting-prod--wppopen.aem.live/tools/assets-selector/config.json",
+        "configUrl": "https://uat--genting-stage--wppopen.aem.live/tools/assets-selector/config.json",
         "multi": false,
         "validation": {
           "rootPath": "/content/dam/genting-singapore"
@@ -328,7 +321,7 @@
         "component": "custom-asset-namespace:custom-asset",
         "name": "image",
         "label": "Carousel Image",
-        "configUrl": "https://main--genting-prod--wppopen.aem.live/tools/assets-selector/config.json",
+        "configUrl": "https://uat--genting-stage--wppopen.aem.live/tools/assets-selector/config.json",
         "valueType": "string",
         "validation": {
           "rootPath": "/content/dam/genting-singapore"
@@ -429,7 +422,7 @@
         "valueType": "string",
         "name": "feature-icon",
         "label": "Icon",
-        "configUrl": "https://main--genting-prod--wppopen.aem.live/tools/assets-selector/config.json",
+        "configUrl": "https://uat--genting-stage--wppopen.aem.live/tools/assets-selector/config.json",
         "multi": false
       },
       {
@@ -605,7 +598,7 @@
         "valueType": "string",
         "name": "linkImage",
         "label": "Link Image",
-        "configUrl": "https://main--genting-prod--wppopen.aem.live/tools/assets-selector/config.json",
+        "configUrl": "https://uat--genting-stage--wppopen.aem.live/tools/assets-selector/config.json",
         "multi": false
       },
       {
@@ -679,7 +672,7 @@
         "component": "custom-asset-namespace:custom-asset",
         "name": "image",
         "label": "Background Image",
-        "configUrl": "https://main--genting-prod--wppopen.aem.live/tools/assets-selector/config.json",
+        "configUrl": "https://uat--genting-stage--wppopen.aem.live/tools/assets-selector/config.json",
         "multi": false,
         "title": "Image",
         "validation": {
@@ -804,7 +797,7 @@
         "component": "custom-asset-namespace:custom-asset",
         "name": "image",
         "label": "Project Image",
-        "configUrl": "https://main--genting-prod--wppopen.aem.live/tools/assets-selector/config.json",
+        "configUrl": "https://uat--genting-stage--wppopen.aem.live/tools/assets-selector/config.json",
         "multi": false,
         "validation": {
           "rootPath": "/content/dam/genting-singapore"
@@ -888,8 +881,8 @@
         "label": "Description",
         "valueType": "string",
         "validation": {
-          "maxLength": 300,
-          "customErrorMsg": "Description cannot exceed 300 characters"
+          "maxLength": 400,
+          "customErrorMsg": "Description cannot exceed 400 characters"
         }
       },
       {
@@ -901,7 +894,7 @@
         "component": "custom-asset-namespace:custom-asset",
         "name": "phoneIcon",
         "label": "Phone Icon",
-        "configUrl": "https://main--genting-prod--wppopen.aem.live/tools/assets-selector/config.json",
+        "configUrl": "https://uat--genting-stage--wppopen.aem.live/tools/assets-selector/config.json",
         "multi": false
       },
       {
@@ -945,7 +938,7 @@
             "component": "custom-asset-namespace:custom-asset",
             "name": "emailIcon1",
             "label": "Email Icon",
-            "configUrl": "https://main--genting-prod--wppopen.aem.live/tools/assets-selector/config.json",
+            "configUrl": "https://uat--genting-stage--wppopen.aem.live/tools/assets-selector/config.json",
             "multi": false
           },
           {
@@ -986,7 +979,7 @@
             "component": "custom-asset-namespace:custom-asset",
             "name": "emailIcon2",
             "label": "Email Icon",
-            "configUrl": "https://main--genting-prod--wppopen.aem.live/tools/assets-selector/config.json",
+            "configUrl": "https://uat--genting-stage--wppopen.aem.live/tools/assets-selector/config.json",
             "multi": false
           },
           {
@@ -1027,7 +1020,7 @@
             "component": "custom-asset-namespace:custom-asset",
             "name": "emailIcon3",
             "label": "Email Icon",
-            "configUrl": "https://main--genting-prod--wppopen.aem.live/tools/assets-selector/config.json",
+            "configUrl": "https://uat--genting-stage--wppopen.aem.live/tools/assets-selector/config.json",
             "multi": false
           },
           {
@@ -1058,7 +1051,7 @@
         "component": "custom-asset-namespace:custom-asset",
         "name": "addressIcon",
         "label": "Address Icon",
-        "configUrl": "https://main--genting-prod--wppopen.aem.live/tools/assets-selector/config.json",
+        "configUrl": "https://uat--genting-stage--wppopen.aem.live/tools/assets-selector/config.json",
         "multi": false
       },
       {
@@ -1178,7 +1171,7 @@
         "component": "custom-asset-namespace:custom-asset",
         "name": "image",
         "label": "Image",
-        "configUrl": "https://main--genting-prod--wppopen.aem.live/tools/assets-selector/config.json",
+        "configUrl": "https://uat--genting-stage--wppopen.aem.live/tools/assets-selector/config.json",
         "multi": false
       },
       {
@@ -1199,7 +1192,7 @@
         "label": "File Path",
         "name": "filepath",
         "valueType": "string",
-        "configUrl": "https://main--genting-prod--wppopen.aem.live/tools/assets-selector/config.json",
+        "configUrl": "https://uat--genting-stage--wppopen.aem.live/tools/assets-selector/config.json",
         "multi": false,
         "condition": {
           "===": [
@@ -1293,7 +1286,7 @@
         "component": "custom-asset-namespace:custom-asset",
         "name": "image",
         "label": "Image",
-        "configUrl": "https://main--genting-prod--wppopen.aem.live/tools/assets-selector/config.json",
+        "configUrl": "https://uat--genting-stage--wppopen.aem.live/tools/assets-selector/config.json",
         "multi": false
       },
       {
@@ -1349,12 +1342,26 @@
         "component": "aem-content",
         "name": "firstCta",
         "label": "CTA Link",
-        "linkTarget": "_blank",
         "validation": {
           "requiredErrorMsg": "CTA Link is mandatory",
           "rootPath": "/content/genting-singapore"
         }
       },
+      {
+        "component": "select",
+        "name": "firstCtaLinkTarget",
+        "label": "First CTA Target",
+        "options": [
+          {
+          "name": "Same Tab",
+          "value": "_self"
+          },
+          {
+          "name": "New Tab",
+          "value": "_blank"
+          }
+        ]
+       },
       {
         "component": "text",
         "name": "secondCtaCaption",
@@ -1368,11 +1375,25 @@
         "component": "aem-content",
         "name": "secondCta",
         "label": "CTA Link",
-        "linkTarget": "_blank",
         "validation": {
           "rootPath": "/content/genting-singapore"
         }
-      }
+      },
+      {
+        "component": "select",
+        "name": "secondCtaLinkTarget",
+        "label": "Second CTA Target",
+        "options": [
+          {
+          "name": "Same Tab",
+          "value": "_self"
+          },
+          {
+          "name": "New Tab",
+          "value": "_blank"
+          }
+        ]
+       }
     ]
   },
   {
@@ -1408,13 +1429,19 @@
         "component": "custom-asset-namespace:custom-asset",
         "name": "image",
         "label": "Image",
-        "configUrl": "https://main--genting-prod--wppopen.aem.live/tools/assets-selector/config.json"
+        "configUrl": "https://uat--genting-stage--wppopen.aem.live/tools/assets-selector/config.json"
       },
       {
         "component": "text",
         "name": "imageTitle",
         "label": "Alt Text",
         "valueType": "string"
+      },
+      {
+        "component": "boolean",
+        "label": "Autoplay",
+        "name": "reveal",
+        "valueType": "boolean"
       }
     ]
   },
@@ -1462,7 +1489,7 @@
         "component": "custom-asset-namespace:custom-asset",
         "name": "image",
         "label": "Image",
-        "configUrl": "https://main--genting-prod--wppopen.aem.live/tools/assets-selector/config.json",
+        "configUrl": "https://uat--genting-stage--wppopen.aem.live/tools/assets-selector/config.json",
         "multi": false
       },
       {
@@ -1472,27 +1499,30 @@
         "valueType": "string"
       },
       {
+        "component": "text",
+        "name": "ctaLabel",
+        "label": "CTA Label"
+      },
+      {
         "component": "aem-content",
-        "name": "link",
-        "label": "Link",
+        "name": "ctaLink",
+        "label": "CTA Link",
+        "condition": {
+          "===": [
+            {
+              "var": "reveal"
+            },
+            false
+          ]
+        },
         "validation": {
           "rootPath": "/content/genting-singapore"
         }
       },
       {
-        "component": "text",
-        "name": "linkText",
-        "label": "Text"
-      },
-      {
-        "component": "text",
-        "name": "linkTitle",
-        "label": "Title"
-      },
-      {
         "component": "select",
-        "name": "linkSvgIcon",
-        "label": "Link SVG Icon",
+        "name": "ctaSvgIcon",
+        "label": "CTA SVG Icon",
         "options": [
           {
             "name": "Select",
@@ -1513,6 +1543,51 @@
           {
             "name": "North East Arrow",
             "value": "north-east-arrow"
+          }
+        ]
+      },
+      {
+        "component": "boolean",
+        "label": "File Download?",
+        "name": "reveal",
+        "valueType": "boolean"
+      },
+      {
+        "component": "custom-asset-namespace:custom-asset",
+        "label": "File Path",
+        "name": "filepath",
+        "valueType": "string",
+        "configUrl": "https://uat--genting-stage--wppopen.aem.live/tools/assets-selector/config.json",
+        "multi": false,
+        "condition": {
+          "===": [
+            {
+              "var": "reveal"
+            },
+            true
+          ]
+        }
+      },
+      {
+        "component": "select",
+        "name": "ctaLinkTarget",
+        "label": "Target",
+        "condition": {
+          "===": [
+            {
+              "var": "reveal"
+            },
+            false
+          ]
+        },
+        "options": [
+          {
+            "name": "Same Tab",
+            "value": "_self"
+          },
+          {
+            "name": "New Tab",
+            "value": "_blank"
           }
         ]
       }
@@ -1659,7 +1734,7 @@
         "component": "custom-asset-namespace:custom-asset",
         "name": "awardimage",
         "label": "Award Image",
-        "configUrl": "https://main--genting-prod--wppopen.aem.live/tools/assets-selector/config.json",
+        "configUrl": "https://uat--genting-stage--wppopen.aem.live/tools/assets-selector/config.json",
         "multi": false,
         "validation": {
           "rootPath": "/content/dam/genting-singapore"
@@ -1727,7 +1802,7 @@
         "component": "custom-asset-namespace:custom-asset",
         "name": "image",
         "label": "Image",
-        "configUrl": "https://main--genting-prod--wppopen.aem.live/tools/assets-selector/config.json",
+        "configUrl": "https://uat--genting-stage--wppopen.aem.live/tools/assets-selector/config.json",
         "multi": false
       },
       {
@@ -1935,7 +2010,7 @@
         "label": "File Path",
         "name": "filepath",
         "valueType": "string",
-        "configUrl": "https://main--genting-prod--wppopen.aem.live/tools/assets-selector/config.json",
+        "configUrl": "https://uat--genting-stage--wppopen.aem.live/tools/assets-selector/config.json",
         "multi": false,
         "condition": {
           "===": [
@@ -2023,7 +2098,7 @@
         "component": "custom-asset-namespace:custom-asset",
         "name": "image",
         "label": "Image",
-        "configUrl": "https://main--genting-prod--wppopen.aem.live/tools/assets-selector/config.json",
+        "configUrl": "https://uat--genting-stage--wppopen.aem.live/tools/assets-selector/config.json",
         "multi": false,
         "validation": {
           "required": true,
@@ -2098,6 +2173,39 @@
             "value": "corporate-policies-cta-right"
           }
         ]
+      }
+    ]
+  },
+  {
+    "id": "cookiepolicy",
+    "fields": [
+      {
+        "component": "richtext",
+        "name": "cookiepolicydescription",
+        "label": "Cookie Policy Description",
+        "valueType": "string",
+        "validation": {
+          "maxLength": 2000,
+          "customErrorMsg": "Cookie Policy Description cannot exceed 2000 characters"
+        }
+      },
+      {
+        "component": "text",
+        "name": "declinecta",
+        "label": "Decline CTA Text",
+        "validation": {
+          "maxLength": 50,
+          "customErrorMsg": "First CTA Caption cannot exceed 50 characters"
+        }
+      },
+      {
+        "component": "text",
+        "name": "acceptcta",
+        "label": "Accept CTA Text",
+        "validation": {
+          "maxLength": 50,
+          "customErrorMsg": "Second CTA Caption cannot exceed 50 characters"
+        }
       }
     ]
   }

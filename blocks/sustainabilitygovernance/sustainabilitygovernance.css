@@ -46,13 +46,11 @@
 .governance-card:last-child::after {
     display: none;
 }
-.governance-img {
-    width: 80px;
-}
+
 .governance-img img,
 .governance-img svg {
     display: block;
-    width: 100%;
+    aspect-ratio: 1/1;
 }
 .governance-content-title {
     color: var(--text-color);
@@ -78,9 +76,17 @@
     line-height: 20px;
     padding-top: 16px;
 }
+.sustainabilitygovernance-wrapper .links-container {
+    display: flex;
+    justify-content: flex-end;
+}
+.sustainabilitygovernance-wrapper .links-container a {
+    display: flex;
+    align-items: center;
+}
 @media (width >= 768px) {
     .governance-section {
-        margin-bottom: 80px;
+        margin-bottom: 45px;
     }
     .governance-title {
         font-size: 32px;
@@ -104,10 +110,7 @@
         top: calc(100% + 37px);
         left: calc(50% - 5px);
     }
-    .governance-img,
-    .governance-img svg {
-        width: 124px;
-    }
+    
     .governance-content {
         flex: 1;
     }

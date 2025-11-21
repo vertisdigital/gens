@@ -1,6 +1,24 @@
 import { getMetadata } from '../../scripts/aem.js';
 import { loadFragment } from '../fragment/fragment.js';
 import SVGIcon from '../../shared-components/SvgIcon.js';
+import { isMobile } from '../../shared-components/Utility.js';
+import CookiePolicy from '../cookiepolicy/cookiepolicy.js';
+
+const handleAccordionToggle = (e, keyboardTrigger = false) => {
+  if (e?.target?.classList?.contains('links-heading') || e?.target?.classList?.contains('footer-nav-title') || (keyboardTrigger && e?.target?.classList?.contains('collapsible-links'))) {
+    const currentActive = document.querySelector('.collapsible-links.active');
+    if (currentActive !== e.currentTarget) {
+      currentActive?.classList?.remove('active');
+      currentActive?.setAttribute('aria-expanded', 'false');
+      e.currentTarget.classList.add('active');
+      e.currentTarget?.setAttribute('aria-expanded', 'true');
+      return;
+    }
+    const isActive = e.currentTarget.classList.contains('active');
+    e.currentTarget.classList.toggle('active');
+    e.currentTarget?.setAttribute('aria-expanded', !isActive);
+  }
+};
 
 /**
  * loads and decorates the footer
@@ -8,10 +26,35 @@ import SVGIcon from '../../shared-components/SvgIcon.js';
  */
 export default async function decorate(block) {
   // load footer as fragment
+  console.log('footer-03July-2:41pmIST');
   const footerMeta = getMetadata('footer');
-  const footerPath = footerMeta ? new URL(footerMeta, window.location).pathname : '/footer';
+  //const footerPath = footerMeta ? new URL(footerMeta, window.location).pathname : '/footer';
+  let footerPath;
+  if (footerMeta) {
+    footerPath = new URL(footerMeta, window.location).pathname;
+  } else {
+    // Extract first path segment
+    const pathParts = window.location.pathname.split('/');
+    const firstSegment = pathParts[1];
+    console.log(firstSegment);
+
+    // List of supported language codes (same as nav)
+    const languageCodes = [
+      'en', 'ja', 'zh'
+    ];
+
+    // Determine footer path
+    footerPath = languageCodes.includes(firstSegment)
+      ? `/${firstSegment}/footer`
+      : `/footer`;
+  }
   const fragment = await loadFragment(footerPath);
   if (fragment) {
+    const cookieMarkup = fragment?.querySelector('.cookiepolicy-container');
+    if(cookieMarkup) {
+      const cookiePolicy = new CookiePolicy(cookieMarkup.cloneNode(true));
+      cookiePolicy.constructMarkup();
+    }
     const section = document.createElement('section');
 
     // Create and build all the footer content
@@ -134,7 +177,16 @@ export default async function decorate(block) {
     // Create columns dynamically based on navigation sections
     const navColumns = navigationLinks.map(() => {
       const col = document.createElement('div');
-      col.className = 'col-xl-4 col-md-3 col-sm-4';
+      col.className = 'col-xl-4 col-md-3 col-sm-4 collapsible-links';
+      if (isMobile()) {
+        col.setAttribute('tabindex', '0');
+        col.addEventListener('click', (e) => handleAccordionToggle(e));
+        col.addEventListener('keydown', (e) => {
+          if (e.key === 'Enter' || e.key === ' ') {
+            handleAccordionToggle(e, true);
+          }
+        });
+      }
       return col;
     });
 
@@ -144,28 +196,36 @@ export default async function decorate(block) {
         const nav = document.createElement('nav');
 
         // Get section title - first div contains the title
-        const titleContainer = linkSection.children[1];
+        const titleContainer = isMobile() ? linkSection.children[0] : linkSection.children[1];
         const titleElement = titleContainer?.querySelector('p');
         const titleTarget = linkSection.children[2]?.textContent?.trim() || '_self';
         if (titleElement) {
           // Create heading element for title
-          const heading = titleElement.querySelector('a');
-          heading.className = 'footer-nav-title';
-          heading.target = titleTarget;
-          nav.appendChild(heading);
+          const headingContainer = document.createElement('div');
+          headingContainer.className = 'links-heading';
+          let headingElement = null;
+          if (isMobile()) {
+            headingElement = document.createElement('h2');
+            headingElement.textContent = titleElement?.textContent || '';
+          } else {
+            headingElement = titleElement.querySelector('a');
+            headingElement.textContent = linkSection.children[0]?.textContent;
+            headingElement.target = titleTarget;
+          }
+          headingElement.className = 'footer-nav-title';
+          headingContainer.appendChild(headingElement);
+          nav.appendChild(headingContainer);
           nav.setAttribute('aria-label', titleElement.textContent);
         }
 
         // Get all link items - every div with a button-container
-        const linkItems = Array.from(linkSection.children).filter(div =>
-          div.querySelector('.button-container')
-        );
+        const linkItems = Array.from(linkSection.children).filter((div) => div.querySelector('.button-container'));
 
         if (linkItems.length > 0) {
           linkItems.forEach((linkItem) => {
             const linkContainer = document.createElement('div');
             linkContainer.setAttribute('data-link-model', 'links');
-
+            linkContainer.className = 'footer-links';
             // Get the button container and link
             const buttonContainer = linkItem.querySelector('.button-container');
             const anchor = buttonContainer?.querySelector('a');
@@ -208,7 +268,7 @@ export default async function decorate(block) {
     bottomSection.className = 'mt-4';
 
     // Get bottom section content
-    const bottomContent = fragment.lastElementChild;
+    const bottomContent = fragment.children[2];
 
     if (bottomContent) {
       // Create columns container - renamed to avoid shadowing
@@ -228,7 +288,11 @@ export default async function decorate(block) {
 
       // Add text content - looking for the copyright text in the default-content-wrapper
       const textContent = bottomContent.querySelector('.default-content-wrapper');
+      
       if (textContent) {
+        const pTag = textContent.querySelector('p')
+        pTag.classList.remove('-row')
+        pTag.classList.add('footer-row')
         const textDiv = document.createElement('div');
         textDiv.className = 'copywrite';
         textDiv.setAttribute('data-richtext-prop', 'text');
@@ -244,9 +308,7 @@ export default async function decorate(block) {
       // Process link fields - get all divs containing button-container
       const linksBlock = bottomContent.querySelector('.links.block');
       if (linksBlock) {
-        const linkItems = Array.from(linksBlock.children).filter(div =>
-          div.querySelector('.button-container')
-        );
+        const linkItems = Array.from(linksBlock.children).filter((div) => div.querySelector('.button-container'));
 
         linkItems.forEach((linkItem) => {
           // Create link field container
@@ -295,7 +357,7 @@ export default async function decorate(block) {
 
     // Update the handleLayout function
     const handleLayout = () => {
-      const isDesktop = window.innerWidth >= 992;
+      const isDesktop = window.innerWidth > 1024;
       const existingRightSection = mainContainer.querySelector('.right-section');
 
       if (isDesktop) {
@@ -352,6 +414,7 @@ export default async function decorate(block) {
           columnsContainer.appendChild(col);
         });
         mainContainer.appendChild(columnsContainer);
+        mainContainer.insertBefore(logoWrapper, mainContainer.firstChild)
       }
 
       // Re-append bottom section after layout changes

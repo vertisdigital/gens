@@ -4,9 +4,14 @@ p {
 
 .projectslistitem {
     padding-top: 36px;
-    padding-bottom: 30px;
-    border-top: 1px solid var(--text-color);
+    padding-bottom: 36px;
     display: flex;
+    border-top: 1px solid var(--text-color);
+}
+
+.projectslistitem picture {
+    display: block;
+    line-height: 0;
 }
 
 .projectslistitem:last-child {
@@ -25,10 +30,13 @@ p {
 .project-subtitle {
     color: var(--text-color);
     font-size: var(--font-size-s);
+    letter-spacing: -0.5px;
 }
 
 .project-title  {
     font-size: var(--font-size-m);
+    line-height: 40px;
+    letter-spacing: -0.5px;
 }
 
 .project-long-description,
@@ -38,6 +46,10 @@ p {
 .project-short-description  {
    margin-top: 40px;
 }
+
+.project-short-description:empty  {
+    margin-top: 0;
+ }
 
 .project-long-description {
     margin-top: 12px;
@@ -49,36 +61,60 @@ p {
     padding-left: 18px;
 }
 
-.project-cta a.button:any-link{
+.project-cta {
     background:none;
     cursor:pointer;
     padding:0;
-    color: var(--primary-gold);
-    margin-top:30px
-   }
+    margin-top:30px;
+    gap: 10px;
+    display: flex;
+    align-items: flex-start;
+    color: var(--primary-gold) !important;
+    line-height: 16px;
+    text-decoration: underline !important;
+    font-weight: 600;
+}
+
+.download-link-item {
+    line-height: 1 !important;
+    background: none;
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    text-decoration: underline !important;
+    text-decoration-thickness: 1px !important;
+    font-size: var(--font-size-xs);
+    font-weight: 700;
+    line-height: 24px;
+    color: var(--primary-gold) !important;
+    padding: 0;
+    margin: 0;
+}
+
 
 @media (width <= 992px)  {
-    .projectslistitem {
-        padding-top: 24px;
-        padding-bottom: 40px;
+    .project-title  {
+        font-size: var(--font-size-md);
+        line-height: 34px;
     }
-    .project-cta a.button:any-link{
-        margin-top:24px
-       }
+    .projectslist-wrapper {
+        margin: 32px 0;
+    }
+    .projectslistitem {
+        padding-top: 28px;
+        padding-bottom: 28px;
+    }
+    .project-cta {
+        margin-top:24px;
+        margin-bottom: 0;
+    }
 }
 
-
-
-
-@media (width <= 769px) {
+@media (width < 767px) {
     .projectslistitem {
         padding-top: 18px;
-        padding-bottom: 16px;
-    }
-}
-
-@media (width <= 767px) {
-    .projectslistitem {
+        padding-bottom: 18px;
+        border-top: 1px solid var(--text-color);
         display: block;
     }
     .projectslistitem .left-col, .projectslistitem .right-col {
@@ -98,9 +134,17 @@ p {
         padding-top: 18px;
         width: 100%;
     }
-    .project-cta a.button:any-link{
-        margin-top:20px
+    .project-cta {
+        margin-top:20px;
+        font-size: var(--font-size-xxs);
        }
+    .project-title  {
+        font-size: var(--font-size-sm);
+        line-height: 28px;
+    }
+    .project-subtitle {
+        font-size: var(--font-size-xs);
+    }
 }
 
 @media (width <= 426px) {
@@ -118,7 +162,7 @@ p {
     }
 }
 
-@media (width>=993px) {
+@media (width>=993) {
     .projectslist-wrapper {
         margin: 45px 0;
     }

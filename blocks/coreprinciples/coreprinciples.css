@@ -34,7 +34,7 @@
     row-gap: 36px;
 }
 
-.coreprinciples > div {
+.coreprinciples .container {
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -74,7 +74,7 @@
 .coreprinciples .coreprinciples-card-title {
     font-size: var(--font-size-s);
     font-weight: 600;
-    line-height: 24px;
+    line-height: 28px;
     margin-bottom: 10px;
     margin-top: 0;
     color: var(--text-color);
@@ -91,22 +91,61 @@
     font-weight: 400;
     line-height: 24px;
     color: var(--body-text-color);
+    width: 100%;
 }
+
+.core-principle-single-card{
+    display: flex !important;
+    flex-direction: row !important;
+    justify-content: center;
+    align-items: center;
+    gap: 68px;
+    padding: 68px !important;
+}
+
+.core-principle-single-card-line{
+    border: solid 2px var(--primary-gold);
+    width: 80px;
+    margin-bottom: 32px;
+}
+
+.icon-single-wrapper{
+    padding: 0 !important;
+    margin: 0 !important;
+}
+.coreprinciples .links-container {
+    display: flex;
+    align-self: flex-end;
+    margin-top: 60px;
+}
+.coreprinciples .links-container a {
+    display: flex;
+    align-items: center;
+}
+.coreprinciples .core-principles-link {
+    margin-bottom: 0;
+    align-items: center;
+    padding: 0;
+    font-size: var(--font-size-xs);
+    height: 16px;
+}
+
 @media (width <= 1199px) {
     .coreprinciples .coreprinciples .container::after {
         width: 100%;
     }
-}
-@media (width <= 992px) {
-    .coreprinciples .icon-wrapper {
-        padding: 36px 10px;
-    }
-
     .coreprinciples .row {
         justify-content: left;
         margin-left: -12px;
         margin-right: -12px;
         row-gap: 24px;
+        width: auto;
+    }
+}
+@media (width <= 992px) {
+    .coreprinciples .icon-wrapper {
+        padding: 36px 10px;
+        margin-bottom: 0;
     }
 
     .coreprinciples .icon-wrapper picture {
@@ -116,6 +155,7 @@
 
     .coreprinciples .coreprinciples-card-title {
         font-size: 18px;
+        line-height: 24px;
     }
 
     .principles-item, .principles-item:first-child, .principles-item:last-child {
@@ -126,19 +166,12 @@
         padding: 0 0 28px;
         margin-top: 28px;
     }
+    .coreprinciples .links-container {
+        margin-top: 48px;
+    }
 
     .coreprinciples .coreprinciples .container::after {
         transform: translateY(28px);
-    }
-
-    .row .principles-item:nth-child(1), .row .principles-item:nth-child(3){
-        margin-left: -12px;
-    }
-
-    .row .principles-item:nth-child(2) {
-        margin-left: 12px;
-        padding-right: 0;
-        padding-left: 24px;
     }
 }
 @media (width < 768px) {
@@ -154,6 +187,9 @@
     .coreprinciples .icon-wrapper {
         padding: 28px 10px;
         margin-bottom: 10px;
+    }
+    .coreprinciples .links-container {
+        margin-top: 40px;
     }
 
     .coreprinciples .icon-wrapper picture {

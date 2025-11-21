@@ -21,10 +21,6 @@
     height: 100%;
 }
 
-.boardofdirectors .director-card:hover {
-    transform: translateY(-5px);
-}
-
 .boardofdirectors .director-card .toggle-off {
     display: none;
 }
@@ -59,6 +55,7 @@
     margin-bottom: 8px;
     height: auto;
     opacity: 1;
+    aspect-ratio: 16/9;
 }
 
 .boardofdirectors .director-info {

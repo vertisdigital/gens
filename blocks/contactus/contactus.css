@@ -22,6 +22,7 @@
   font-weight: 400;
   line-height: 40px;
   color: var(--text-color);
+  letter-spacing: -0.5px;
 }
 
 .contactus .contactus-bottom>div:last-child{
@@ -47,9 +48,6 @@
   padding-bottom: 0;
 }
 
-.contactus.contactus-variation .contactus-top{
-  padding-bottom: 50px;
-}
 
 
 .contactus .enquiry-heading {
@@ -132,13 +130,19 @@
    
 }
 
+.contact-link,
+.contact-link:focus,
+.contact-link:hover {
+  background: transparent;
+}
+
 .contactus .contact-items .contact-link {
   font-family: var(--heading-font-family);
   font-size: 16px;
   font-weight: 700;
   line-height: 24px;
   color: var(--text-color);
-
+  text-decoration: none;
 }
 
 
@@ -153,15 +157,13 @@
 }
 
 
-
-
 .contactus .contactus-bottom>div:last-child a{
-  background-color: var(--primary-gold);
+  background-color: var(--bronze-brown);
   color: var(--background-color);
   padding: 14px 30px;
   font-size: 16px;
   font-weight: 700;
-  line-height: 24px;
+  line-height: 16px;
   text-decoration: none;
   display:flex;
   align-items:center;
@@ -172,11 +174,52 @@
   line-height:0;
 }
 
+.tooltip {
+  position: relative;
+  display: inline-block;
+}
+
+.tooltip .tooltiptext {
+  visibility: hidden;
+  width: max-content;
+  background-color: var(--dark-color);
+  color: var(--background-color);
+  text-align: center;
+  border-radius: 6px;
+  padding: 5px;
+  position: absolute;
+  z-index: 1;
+  bottom: 150%;
+  left: 20%;
+  opacity: 0;
+  transition: opacity 0.3s;
+  font-size: var(--font-size-xxs);
+}
+
+.tooltip .tooltiptext::after {
+  content: "";
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  margin-left: -5px;
+  border-width: 5px;
+  border-style: solid;
+  border-color: var(--dark-color) transparent transparent transparent;
+}
+
+.contactus.contactus-variation-nested-1-2 {
+    margin-top: 32px;
+}
 
 /* Tablet Layout  */
  @media (width >= 768px) and (width < 1024px) {
-  .contactus .contactus-top{
-    padding-bottom: 40px;
+
+  .contactus .row>div:first-child{
+    padding-right: 12px; 
+  }
+  
+  .contactus .row>div:last-child{
+    padding-left: 12px;   
   }
 
   .contactus .enquiry-heading {
@@ -214,7 +257,7 @@
   .contactus .contact-items .contact-link {
     font-size: 16px;
     line-height: 24px;
-  
+    text-decoration: none;
   }
 
   .contactus .contactus-bottom{
@@ -222,9 +265,9 @@
   }
 
   .contactus.contactus-variation .contactus-bottom>div:first-child{
-    font-size: 28px;
+    font-size: var(--font-size-md);
     font-weight: 400;
-    line-height: 40px;
+    line-height: 34px;
     color: var(--text-color);
   }
 
@@ -244,10 +287,6 @@
     padding: 0;
   }
 
-  .contactus .contactus-top{
-    padding-bottom: 28px;
-  }
-
   .contactus .row>div:first-child{
     padding-right: 0;
   
@@ -260,14 +299,16 @@
  
 
   .contactus .enquiry-heading {
-    font-size: 28px;
-    line-height: 34px; 
+    font-size: var(--font-size-m);
+    line-height: 34px;
     margin: 0;
     margin-bottom: 18px;
   }
   
   .contactus .enquiry-description{
     margin-bottom: 18px;
+    font-size: var(--font-size-xxs);
+    line-height: 20px;
   }
   
   .contactus .enquiry-description p{
@@ -322,25 +363,37 @@
   }
 
   .contactus .contactus-bottom>div:first-child p {
-    font-size: 22px;
+    font-size: var(--font-size-sm);
+    letter-spacing: -0.5px;
+    line-height: 28px;
   }
 
   .contactus.contactus-variation .contactus-bottom>div:last-child{
     flex-direction: column;
     row-gap: 18px;
   }
+  .contactus.contactus-variation .contactus-bottom>div:last-child>div:first-child p{
+    font-size: var(--font-size-xxs);
+  }
+  .contactus .contactus-bottom>div:last-child a{
+    font-size: var(--font-size-xxs);
+    line-height: 14px;
+  }
   
+  .contactus.contactus-variation-nested-1-2 {
+    margin-top: 24px;
+  }
 }
 
 @media (width >= 768px) {
   .contactus.block {
-    padding: 40px 0;
+    padding: 32px 0;
   }
 }
 
 @media (width >= 1024px) {
   .contactus.block {
-    padding: 80px 0;
+    padding: 45px 0;
   }
 
   .contactus .contactus-bottom>div:last-child>div:last-child{
@@ -351,4 +404,3 @@
     margin:0;
   }
 }
-
