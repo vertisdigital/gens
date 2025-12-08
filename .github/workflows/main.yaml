@@ -1,6 +1,9 @@
 name: Build
 on: [push]
 
+permissions:
+  contents: write
+
 jobs:
   build:
     runs-on: ubuntu-latest
@@ -17,29 +20,32 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - name: Checkout code
-      uses: actions/checkout@v2
+      uses: actions/checkout@v4
+      with:
+        persist-credentials: true
+        fetch-depth: 0
+
     - name: Set environment variables
       run: |
-        # Extract branch name from github.ref
         BRANCH_NAME=${GITHUB_REF#refs/heads/}
         
-        # Set specific URLs for uat and main branches, use branch name for others
-         if [ "$BRANCH_NAME" == "uat" ]; then
+        if [ "$BRANCH_NAME" == "uat" ]; then
           echo "CONFIG_URL=https://uat--genting-stage--wppopen.aem.live/tools/assets-selector/config.json" >> $GITHUB_ENV
         elif [ "$BRANCH_NAME" == "main" ]; then
           echo "CONFIG_URL=https://main--genting-prod--wppopen.aem.live/tools/assets-selector/config.json" >> $GITHUB_ENV
         else
           echo "CONFIG_URL=https://${BRANCH_NAME}--genting--wppopen.aem.live/tools/assets-selector/config.json" >> $GITHUB_ENV
         fi
+
     - name: Update config URL
       run: |
         sed -i "s|\"configUrl\": \".*\"|\"configUrl\": \"${CONFIG_URL}\"|" component-models.json
+
     - name: Commit changes
       run: |
-        git config --global user.name "vertishuy"
-        git config --global user.email "huy@vertis.digital"
-        
-        # Check if there are changes to commit
+        git config --global user.name "github-actions[bot]"
+        git config --global user.email "github-actions[bot]@users.noreply.github.com"
+
         if [[ -n "$(git status --porcelain component-models.json)" ]]; then
           echo "Changes detected in component-models.json, committing..."
           git add component-models.json
@@ -53,31 +59,32 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - name: Checkout code
-      uses: actions/checkout@v2
+      uses: actions/checkout@v4
+      with:
+        persist-credentials: true
+        fetch-depth: 0
+
     - name: Update Adobe Launch script URL
       run: |
-        # Extract branch name from github.ref 
         BRANCH_NAME=${GITHUB_REF#refs/heads/}
         
-        # Set Adobe Launch script URL based on branch
         if [ "$BRANCH_NAME" == "main" ]; then
           LAUNCH_URL="https://assets.adobedtm.com/9a26c7c29956/9d78c9fea2b9/launch-82eb0a5e0018.min.js"
         else
           LAUNCH_URL="https://assets.adobedtm.com/9a26c7c29956/9d78c9fea2b9/launch-c830de7b55b7-development.min.js"
         fi
         
-        # Update the URL in delayed.js
         sed -i "s|adobeLaunchScript.src = '.*'|adobeLaunchScript.src = '${LAUNCH_URL}'|" scripts/delayed.js
+
     - name: Commit changes
       run: |
-        git config --global user.name "vertishuy"
-        git config --global user.email "huy@vertis.digital"
-        
-        # Check if there are changes to commit
-        if [[ -n "$(git status --porcelain scripts/delayed.js)" ]]; then
+        git config --global user.name "github-actions[bot]"
+        git config --global user.email "github-actions[bot]@users.noreply.github.com"
+
+        if [[ -n "$(git.status --porcelain scripts/delayed.js)" ]]; then
           echo "Changes detected in delayed.js, committing..."
           git add scripts/delayed.js
-          git commit -m "Update Adobe Launch script URL for ${{ github.ref_name }} branch"
+          git.commit -m "Update Adobe Launch script URL for ${{ github.ref_name }} branch"
           git push
         else
           echo "No changes to delayed.js, skipping commit"
