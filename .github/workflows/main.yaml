@@ -36,8 +36,8 @@ jobs:
         sed -i "s|\"configUrl\": \".*\"|\"configUrl\": \"${CONFIG_URL}\"|" component-models.json
     - name: Commit changes
       run: |
-        git config --global user.name "josephogilvy"
-        git config --global user.email "joseph.ambrose@ogilvy.com"
+        git config --global user.name "vertishuy"
+        git config --global user.email "huy@vertis.digital"
         
         # Check if there are changes to commit
         if [[ -n "$(git status --porcelain component-models.json)" ]]; then
@@ -71,7 +71,7 @@ jobs:
     - name: Commit changes
       run: |
         git config --global user.name "vertishuy"
-        git config --global user.email "vertishuy@vertis.digital"
+        git config --global user.email "huy@vertis.digital"
         
         # Check if there are changes to commit
         if [[ -n "$(git status --porcelain scripts/delayed.js)" ]]; then
