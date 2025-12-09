@@ -1,5 +1,5 @@
 mountpoints:
   /:
-    url: "https://author-p144202-e1512622.adobeaemcloud.com/bin/franklin.delivery/wppopen/genting-stagesss/uat"
+    url: "https://author-p144202-e1512622.adobeaemcloud.com/bin/franklin.delivery/wppopen/genting-stage/uat"
     type: "markup"
     suffix: ".html"
