@@ -475,3 +475,16 @@
     height: 725px;
   }
 }
+
+.hero-search-suggest {
+  margin-top: 24px;
+  display: flex;
+  justify-content: center;
+}
+
+.hero-search-input {
+  width: 100%;
+  max-width: 420px;
+  padding: 12px 14px;
+  font-size: 16px;
+}

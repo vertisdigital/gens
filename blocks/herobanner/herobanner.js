@@ -180,6 +180,56 @@ export default function decorate(block) {
     });
   }
 
+  function createHeroSearchSuggest() {
+    const PUBLISH_BASE = 'https://publish-p144202-e1488374.adobeaemcloud.com';
+
+    const wrapper = document.createElement('div');
+    wrapper.className = 'hero-search-suggest';
+
+    const input = document.createElement('input');
+    input.type = 'text';
+    input.placeholder = 'Search';
+    input.className = 'hero-search-input';
+
+    wrapper.appendChild(input);
+
+    let debounceTimer;
+
+    input.addEventListener('input', (e) => {
+      const q = e.target.value.trim();
+      clearTimeout(debounceTimer);
+
+      debounceTimer = setTimeout(async () => {
+        if (q.length < 2) return;
+
+        try {
+          const res = await fetch(
+            `${PUBLISH_BASE}/bin/suggest?q=${encodeURIComponent(q)}&limit=3`,
+            {
+              method: 'GET',
+              credentials: 'include',
+            }
+          );
+
+          if (!res.ok) {
+            console.error('Suggest API error:', res.status);
+            return;
+          }
+
+          const data = await res.json();
+          console.log('Suggest result:', data);
+
+        } catch (err) {
+          console.error('Suggest fetch failed', err);
+        }
+      }, 500);
+    });
+
+    return wrapper;
+  }
+
+
+
   function moveCarousel(moveForward, manual) {
     if (carouselItems.length > 1) {
       if (currentIndex === carouselItems.length - 1 && moveForward && manual) {
@@ -412,6 +462,9 @@ export default function decorate(block) {
   carouselItems.forEach((item) => {
     item.remove();
   });
+
+  const searchSuggest = createHeroSearchSuggest();
+  heroContainer.appendChild(searchSuggest);
 
   block.textContent = '';
   block.appendChild(heroContainer);
