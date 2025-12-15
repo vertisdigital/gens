@@ -181,7 +181,7 @@ export default function decorate(block) {
   }
 
   function createHeroSearchSuggest() {
-    const PUBLISH_BASE = 'https://publish-p144202-e1488374.adobeaemcloud.com';
+    const PUBLISH_BASE = 'https://author-p144202-e1488374.adobeaemcloud.com';
 
     const wrapper = document.createElement('div');
     wrapper.className = 'hero-search-suggest';
