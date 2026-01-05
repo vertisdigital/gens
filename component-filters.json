@@ -30,7 +30,8 @@
       "awardsgallery",
       "sustainabilitygovernance",
       "corporatepolicies",
-      "statistics"
+      "statistics",
+      "typography"
     ]
   },
   {
@@ -115,7 +116,8 @@
     "id": "listing",
     "components": [
       "listitem",
-      "linkField"
+      "linkField",
+      "typography"
       ]
   },
   {
