@@ -58,6 +58,83 @@ Usage Example:
   --soft-ivory-blue: #FBF6E9;
   --neutral-color:#9E9E9E;
 
+  /* Primary Colours */
+  /* Base */
+  --base-black: #000000;
+  --base-white: #ffffff;
+  --base-transparent: #ffffff 0%;
+
+  /* Neutral scale */
+  --neutral-50:  #F7FAFA;
+  --neutral-100: #F1F3F3;
+  --neutral-200: #E8EBEB;
+  --neutral-300: #D9DBDB;
+  --neutral-400: #B5B7B7;
+  --neutral-500: #959898;
+  --neutral-600: #6D6F6F;
+  --neutral-700: #5A5C5C;
+  --neutral-800: #3B3D3D;
+  --neutral-900: #1B1D1D;
+
+  /* Error (red) scale */
+  --error-50:  #FFEBEE;
+  --error-100: #FFCDD2;
+  --error-200: #EF9A9A;
+  --error-300: #E57373;
+  --error-400: #EF5350;
+  --error-500: #F44336;
+  --error-600: #E53935;
+  --error-700: #D32F2F;
+  --error-800: #C62828;
+  --error-900: #B71C1C;
+
+  /* Warning (yellow/orange) scale */
+  --warning-50:  #FAF2E1;
+  --warning-100: #F4DEB3;
+  --warning-200: #DBC481;
+  --warning-300: #EDCA82;
+  --warning-400: #E3A52E;
+  --warning-500: #E09714;
+  --warning-600: #DC8C0F;
+  --warning-700: #D67D08;
+  --warning-800: #D06F03;
+  --warning-900: #C65900;
+
+  /* Success (green) scale */
+  --success-50:  #E8F5E9;
+  --success-100: #C8E6C9;
+  --success-200: #A5D6A7;
+  --success-300: #81C784;
+  --success-400: #66BB6A;
+  --success-500: #4CAF50;
+  --success-600: #43A047;
+  --success-700: #388E3C;
+  --success-800: #2E7D32;
+  --success-900: #1B5E20;
+
+  /* Primary (blue) scale */
+  --primary-50:  #DFEFFF;
+  --primary-100: #BDD6E7;
+  --primary-200: #9CB8CD;
+  --primary-300: #7A9BB3;
+  --primary-400: #6085A0;
+  --primary-500: #46718D;
+  --primary-600: #39637D;
+  --primary-700: #2B5066;
+  --primary-800: #1D3D51;
+  --primary-900: #0A293A;
+
+  /* Secondary (warm/gold) scale */
+  --secondary-50:  #FEF9E9;
+  --secondary-100: #FCF0C7;
+  --secondary-200: #F9E8A4;
+  --secondary-300: #F5DE83;
+  --secondary-400: #F1D76C;
+  --secondary-500: #EDD157;
+  --secondary-600: #DDC052;
+  --secondary-700: #C8AB4B;
+  --secondary-800: #B29546;
+  --secondary-900: #8D713E;
 
   /* fonts */
   --body-font-family: 'DM Sans', sans-serif;
@@ -77,6 +154,58 @@ Usage Example:
 
   /* nav height */
   --nav-height: 50px;
+
+  /* Design tokens - text, border, foreground, background aliases */
+  /* Text colours */
+  --text-body: var(--neutral-800);
+  --text-primary: var(--primary-800);
+  --text-secondary: var(--secondary-700);
+  --text-tertiary: var(--secondary-900);
+  --text-white: var(--base-white);
+  --text-black: var(--base-black);
+  --text-placeholder: var(--neutral-500);
+  --text-disabled: var(--neutral-400);
+  --text-success: var(--success-700);
+  --text-danger: var(--error-700);
+  --text-warning: var(--warning-700);
+
+  /* Border colours */
+  --border-primary: var(--primary-800);
+  --border-secondary: var(--secondary-700);
+  --border-tertiary: var(--secondary-900);
+  --border-dark: var(--neutral-800);
+  --border-light: var(--neutral-100);
+  --border-base: var(--neutral-200);
+  --border-disabled: var(--neutral-300);
+  --border-success: var(--success-700);
+  --border-danger: var(--error-700);
+  --border-warning: var(--warning-700);
+
+  /* Foreground colours (fg-) */
+  --fg-dark: var(--neutral-800);
+  --fg-primary: var(--primary-800);
+  --fg-secondary: var(--secondary-700);
+  --fg-tertiary: var(--secondary-900);
+  --fg-divider: var(--neutral-300);
+  --fg-disabled: var(--neutral-400);
+  --fg-white: var(--base-white);
+  --fg-black: var(--base-black);
+  --fg-success: var(--success-700);
+  --fg-danger: var(--error-700);
+  --fg-warning: var(--warning-700);
+
+  /* Background colours (bg-) */
+  --bg-white: var(--base-white);
+  --bg-primary: var(--primary-800);
+  --bg-secondary: var(--secondary-700);
+  --bg-tertiary: var(--secondary-900);
+  --bg-disabled: var(--neutral-200);
+  --bg-success: var(--success-700);
+  --bg-success-soft: var(--success-50);
+  --bg-danger: var(--error-700);
+  --bg-danger-soft: var(--error-50);
+  --bg-warning: var(--warning-700);
+  --bg-warning-soft: var(--warning-50);
 
 }
 
