@@ -17,7 +17,7 @@
               }
             }
           }
-        }, 
+        },  
         {
           "title": "Tabs",
           "id": "tabs",
@@ -50,6 +50,22 @@
                   "name": "AwardsGallery",
                   "filter": "awardsgallery",
                   "model": "awardsgallery"
+                }
+              }
+            }
+          }
+        },
+        {
+          "title": "Search Result",
+          "id": "searchresult",
+          "plugins": {
+            "xwalk": {
+              "page": {
+                "resourceType": "core/franklin/components/block/v1/block",
+                "template": {
+                  "name": "SearchResult",
+                  "filter": "searchresult",
+                  "model": "searchresult"
                 }
               }
             }
@@ -792,5 +808,6 @@
         }
       ]
     }
+    
   ]
 }
