@@ -2,6 +2,8 @@ import { getMetadata } from '../../scripts/aem.js';
 import { loadFragment } from '../fragment/fragment.js';
 import SvgIcon from '../../shared-components/SvgIcon.js';
 import stringToHtml from '../../shared-components/Utility.js';
+import { highlight, shortenURL } from '../searchresult/searchresult.js';
+
 
 // Add these variables at the top level of the file
 let ticking = false;
@@ -92,7 +94,7 @@ function createNavItem(itemData) {
 
   titleDiv.appendChild(titleContent);
   navItem.appendChild(titleDiv);
-  if(detailedcaption.getAttribute('href'))
+  if (detailedcaption.getAttribute('href'))
     navItem.appendChild(detailedcaption);
   navItem.appendChild(overviewLink);
 
@@ -228,6 +230,25 @@ function createHeaderStructure(block) {
 
   // Create search icon
   const searchWrapper = document.createElement('div');
+  const searchBtn = document.createElement('button');
+  searchBtn.className = 'search-btn';
+  searchWrapper.appendChild(searchBtn);
+  const searchSuggestionBox = document.createElement('div');
+  searchSuggestionBox.className = 'search-suggestion-box';
+  const searchBox = document.createElement('div');
+  searchBox.className = 'search-box';
+  const searchInput = document.createElement('input');
+  searchInput.type = 'text';
+  searchInput.className = 'search-input';
+  searchInput.placeholder = 'Search';
+  const searchBtn2 = document.createElement('button');
+  searchBtn2.className = 'suggestion-search-btn';
+  searchBox.append(searchInput, searchBtn2);
+  const searchSuggestions = document.createElement('div');
+  searchSuggestions.className = 'search-suggestions';
+  searchSuggestionBox.append(searchBox, searchSuggestions);
+
+  document.querySelector('.header-wrapper').appendChild(searchSuggestionBox);
 
   // Assemble the structure
   nav.append(logoWrapper, primaryNav, searchWrapper);
@@ -237,6 +258,56 @@ function createHeaderStructure(block) {
   section.appendChild(columnsWrapper);
 
   return section;
+}
+
+function loadSearchSuggest(keyword) {
+  const PUBLISH_BASE = 'https://publish-p144202-e1488374.adobeaemcloud.com';
+
+  let debounceTimer;
+  clearTimeout(debounceTimer);
+
+  debounceTimer = setTimeout(async () => {
+    if (keyword.length < 2) return;
+
+    try {
+      const res = await fetch(
+        `${PUBLISH_BASE}/content/genting-singapore/jcr:content.suggest.json?q=${encodeURIComponent(keyword)}`,
+        {
+          method: 'GET',
+          credentials: 'include',
+        }
+      );
+
+      if (!res.ok) {
+        console.error('Suggest API error:', res.status);
+        return;
+      }
+
+      const data = await res.json();
+      console.log('Suggest result:', data);
+      const suggestions = document.querySelector('.header-wrapper .search-suggestions');
+      suggestions.innerHTML = '';
+      data.forEach((item) => {
+        const suggestion = document.createElement('a');
+        suggestion.className = 'suggestion-item';
+        suggestion.href = shortenURL(item.path);
+        const hl = highlight(item.highlight, keyword);
+        suggestion.innerHTML = hl;
+        suggestions.appendChild(suggestion);
+      });
+
+    } catch (err) {
+      console.error('Suggest fetch failed', err);
+    }
+  }, 500);
+}
+
+function triggerSearchPage(e) {
+  const q = e.trim();
+  if (!q) return;
+
+  const target = `/en/searchresults?q=${encodeURIComponent(q)}`;
+  window.location.href = target;
 }
 
 /**
@@ -270,7 +341,7 @@ function initializeHeader(header) {
 
   // Handle hamburger click
   hamburger.addEventListener('click', () => {
-  // Toggle class first
+    // Toggle class first
     hamburger.classList.toggle('active');
     const primaryNav = header.querySelector('.primary-nav');
     primaryNav.classList.toggle('active');
@@ -410,6 +481,38 @@ function initializeHeader(header) {
     }
   });
 
+  const searchBtn = header.querySelector('.search-btn');
+
+  searchBtn.addEventListener('click', function () {
+    const searchSuggestionBox = document.querySelector('.search-suggestion-box');
+    if (!searchSuggestionBox.classList.contains('active')) {
+      searchSuggestionBox.classList.add('active');
+    }
+    else {
+      searchSuggestionBox.classList.remove('active');
+    }
+  });
+
+  const searchInput = document.querySelector('.search-input');
+  const searchBtnSuggestion = document.querySelector('.suggestion-search-btn');
+
+  searchInput.addEventListener('input', (e) => {
+    loadSearchSuggest(e.target.value.trim());
+  })
+
+  searchInput.addEventListener('keydown', (e) => {
+    if (e.key === 'Enter') {
+      e.preventDefault();
+
+      triggerSearchPage(e.target.value)
+    }
+  });
+
+  searchBtnSuggestion.addEventListener('click', function () {
+    console.log(searchInput)
+    triggerSearchPage(searchInput.value)
+  });
+
   // Close menu when clicking overlay
   overlay.addEventListener('click', () => {
     const activeItem = header.querySelector('.nav-item.active');
@@ -449,15 +552,14 @@ function initializeHeader(header) {
         hamburgerBtn.classList.remove('active');
       }
     }
-  
+
     // Check if the clicked element has a hash (#) in its href
     const target = e.target;
     if (target.href?.includes("#")) {
       window.location.href = e.target.href; // Navigate to the correct section
       window.location.reload()
-    } 
+    }
   });
-  
 }
 
 /**

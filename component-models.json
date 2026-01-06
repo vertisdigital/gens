@@ -148,6 +148,21 @@
       }
     ]
   },
+    {
+    "id": "searchresult",
+    "fields": [
+      {
+        "component": "text",
+        "name": "title",
+        "label": "Section Title",
+        "validation": {
+          "maxLength": 35,
+          "required": true,
+          "customErrorMsg": "Section title is required and cannot exceed 35 characters"
+        }
+      }
+    ]
+  },
   {
     "id": "tabs",
     "fields": [
