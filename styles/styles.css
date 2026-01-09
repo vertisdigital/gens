@@ -62,6 +62,8 @@ Usage Example:
   /* fonts */
   --body-font-family: 'DM Sans', sans-serif;
   --heading-font-family: 'DM Sans', sans-serif;
+  --typography-font-family-font-body: "Instrument Sans Variable";
+  --typography-font-family-font-title: "Inter", system-ui, sans-serif;
 
   /* base font size */
   --base-font-size: 16px;
