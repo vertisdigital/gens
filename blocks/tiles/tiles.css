@@ -13,7 +13,7 @@
 }
 .row.tiles-container > .image-tile > div {
   background-color: var(--text-color);
-  padding: 20px;
+  padding: 80px;
   display: flex;
   flex-direction: column;
   justify-content: end;
@@ -63,37 +63,71 @@ a:any-link.factsheet-button {
     color: var(--body-text-color)
   }
 .row.tiles-container .image-tile>div>div:first-child p {
-  font-size: var(--font-size-s);
-  font-weight: 600;
-  line-height: 24px;
+  font-family: var(--typography-font-family-font-title, "Inter");
+  font-size: var(--font-size-l);
+  font-weight: 400;
+  line-height: 48px;
   color: var(--background-color);
-  margin-bottom: 12px
+  margin-bottom: 12px;
+  
 }
 .row.tiles-container .image-tile>div>div:nth-child(2) p {
+  font-family: var(--typography-font-family-font-body, "Instrument Sans");
   font-size: var(--font-size-xs);
   font-weight: 400;
   line-height: 24px;
-  color: var(--light-grey);
+  color: var(--background-color);
+}
+
+.row.tiles-container .image-tile>div>div:nth-child(2) p.has-picture {
   margin-bottom: 36px;
 }
+
+.row.tiles-container .image-tile>div>div:nth-child(2) p.no-picture {
+  margin-bottom: 0;
+  margin-right: 72px;
+}
+
+/* When div:nth-child(2) p has has-picture class, style div:nth-child(3) */
+.row.tiles-container .image-tile>div>div:nth-child(3).has-picture {
+  margin-bottom: 48px;
+}
+
 .learn-button{
   position: absolute;
-  bottom: 24px;
-  right: 44px;
-  text-decoration: underline !important;
-  font-weight: 600;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 48px;
+  height: 48px;
+  padding: 16px;
+  border: 2px solid var(--primary-default-fg);
+  border-radius: 9999px;
+  background: transparent;
+  text-decoration: none !important;
+  font-weight: 400;
   color: var(--background-color) !important;
+  transition: all 0.2s ease;
 }
+
+.learn-button .icon-wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 24px;
+  height: 24px;
+  padding: 5px;
+}
+
 .tiles-wrapper {
   margin: 24px 0;
 }
-.row.tiles-container {
+/* .row.tiles-container {
   row-gap: 28px;
-}
+} */
 .tiles-container .learn-button {
-  bottom: 20px;
-  right: 20px;
-  font-size: var(--font-size-xs);
+  bottom: 80px;
+  right: 80px;
 }
 
 @media screen and (width < 768px) {
@@ -103,7 +137,10 @@ a:any-link.factsheet-button {
     font-size: var(--font-size-xxs);
   }
 
- 
+  .row.tiles-container > .image-tile > div {
+    padding: 24px;
+    height: 563px;
+  }
   
   .row.tiles-container .no-image-tile>div>div:first-child p {
     font-size: var(--font-size-m);
@@ -126,23 +163,34 @@ a:any-link.factsheet-button {
     line-height: 20px;
   }
 
- 
-
    .row.tiles-container .image-tile>div>div:nth-child(2) p{
     font-size: var(--font-size-xxs);
     font-weight: 400;
     line-height: 20px;
-    margin-bottom: 28px;
+    margin-bottom: 56px;
+  }
+
+  .row.tiles-container .image-tile>div>div:nth-child(2) p.has-picture {
+    margin-bottom: 56px;
+  }
+  
+  .row.tiles-container .image-tile>div>div:nth-child(2) p.no-picture {
+    margin-bottom: 56px;
+  }
+
+  .row.tiles-container .image-tile>div>div:nth-child(3).has-picture {
+    margin-bottom: 32px;
   }
 
   .learn-button {
-    bottom: 16px;
-    right: 24px;
+    width: 32px;
+    height: 32px;
+    padding: 8px;
   }
 
   .tiles-container .learn-button {
-    font-size: var(--font-size-xs);
-    right: 20px;
+    left: 24px;
+    bottom: 24px;
   }
 }
 @media (width >= 768px) {
@@ -151,18 +199,23 @@ a:any-link.factsheet-button {
   }
 
   .row.tiles-container {
-    row-gap: 36px;
+   /*  row-gap: 36px; */
     margin-left: -18px;
     margin-right: -18px;
   }
 
-  .row.tiles-container > div {
+  /* .row.tiles-container > div {
     padding: 0 18px;
-  }
+  } */
 }
 @media screen and (width < 992px) and (width >= 768px) {
   .row.tiles-container {
     padding: 0 !important;
+  }
+
+  .row.tiles-container > .image-tile > div {
+    padding: 40px;
+    min-height: 432px;
   }
 
   .row.tiles-container .image-tile>div>div:first-child p{
@@ -185,6 +238,9 @@ a:any-link.factsheet-button {
   .learn-button {
     bottom: 16px;
     right: 40px;
+    width: 48px;
+    height: 48px;
+    padding: 16px;
   }
 
   .factsheet-button {
@@ -192,6 +248,7 @@ a:any-link.factsheet-button {
   }
 
   .tiles-container .learn-button {
+    bottom: 40px;
     right: 40px;
   }
 }
@@ -205,16 +262,17 @@ a:any-link.factsheet-button {
   }
 
   .row.tiles-container {
-    row-gap: 48px;
+    /* row-gap: 48px; */
     margin-left: -24px;
     margin-right: -24px;
   }
 
-  .row.tiles-container > div {
+  /* .row.tiles-container > div {
     padding: 0 24px;
-  }
+  } */
 
   .row.tiles-container > .image-tile > div {
     min-height: 472px;
+    height: 720px;
   }
 }
