@@ -33,6 +33,12 @@
     max-width: 14px;
   }
 
+  .content-wrapper .arrow-link-wrapper svg {
+    width: 16px;
+    height: 16px;
+    color: #8d713e;
+  }
+
   .arrow-link-wrapper span svg{
     color: var(--primary-gold);
   }
@@ -475,12 +481,6 @@
   background: transparent;
   cursor: pointer;
   flex-shrink: 0;
-}
-
-.content-wrapper .arrow-link-wrapper svg {
-  width: 16px;
-  height: 16px;
-  color: #8d713e;
 }
 
 .content-wrapper .arrow-link-wrapper .left-arrow-icon {
