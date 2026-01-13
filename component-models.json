@@ -246,8 +246,28 @@
         "component": "custom-asset-namespace:custom-asset",
         "valueType": "string",
         "name": "bannerimage",
-        "label": "Banner Image",
+        "label": "Banner Image (Desktop)",
         "configUrl": "https://gsr26-masthead--gens--vertisdigital.aem.live/tools/assets-selector/config.json",
+        "multi": false,
+        "validation": {
+          "rootPath": "/content/dam/genting-singapore"
+        }
+      },
+      {
+        "component": "custom-asset-namespace:custom-asset",
+        "valueType": "string",
+        "name": "bannerimageTablet",
+        "label": "Banner Image (Tablet)",
+        "multi": false,
+        "validation": {
+          "rootPath": "/content/dam/genting-singapore"
+        }
+      },
+      {
+        "component": "custom-asset-namespace:custom-asset",
+        "valueType": "string",
+        "name": "bannerimageMobile",
+        "label": "Banner Image (Mobile)",
         "multi": false,
         "validation": {
           "rootPath": "/content/dam/genting-singapore"
@@ -258,6 +278,28 @@
         "name": "bannerimageTitle",
         "label": "Alt Text",
         "valueType": "string"
+      },
+      {
+        "component": "text",
+        "name": "bannerFontColor",
+        "label": "Font Colour",
+        "value": "#FFFFFF",
+        "description": "Enter hex color (e.g. #FFFFFF). Default is white."
+      },
+      {
+        "component": "checkbox",
+        "name": "enableGradient",
+        "label": "Enable Image Gradient",
+        "value": true
+      },
+      {
+        "component": "text",
+        "name": "indicatortext",
+        "label": "Scroll Indicator Text",
+        "validation": {
+          "maxLength": 50,
+          "customErrorMsg": "Scroll text cannot exceed 50 characters"
+        }
       },
       {
         "component": "text",
