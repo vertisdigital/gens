@@ -1,6 +1,5 @@
 import Heading from '../../shared-components/Heading.js';
 import ImageComponent from '../../shared-components/ImageComponent.js';
-import SvgIcon from '../../shared-components/SvgIcon.js';
 import stringToHTML from '../../shared-components/Utility.js';
 import { moveInstrumentation } from '../../scripts/scripts.js';
 
