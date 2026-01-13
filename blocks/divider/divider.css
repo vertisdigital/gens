@@ -1,0 +1,81 @@
+/* Default divider - simple border */k,
+.divider {
+  width: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+.divider .divider-element {
+  width: 100%;
+  background: var(--border-base-color);
+  height: 1px;
+}
+
+/* Divider Brand - styled divider with decorative elements */
+.divider-brand {
+  width: 100%;
+  height: 64px;
+  position: relative;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.divider-brand .divider-element {
+  position: absolute;
+  /* top: 50%; */
+  left: 0;
+  right: 0;
+  /* transform: translateY(-50%); */
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding: 16px 0;
+  background: white;
+}
+
+/* Divider brand lines */
+.divider-brand .divider-line {
+  flex: 1 1 0;
+  height: 1px;
+  background-color: var(--fg-tertiary-color);
+  min-width: 0;
+}
+
+/* Divider icon container */
+.divider-brand .divider-icon-container {
+  flex-shrink: 0;
+  width: 40px;
+  height: 40px;
+  padding: 4px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--fg-tertiary-color);
+}
+
+/* Desktop styles for divider-brand */
+@media (width > 1024px) {
+  .divider-brand .divider-element {
+    padding-left: 80px;
+    padding-right: 80px;
+  }
+}
+
+/* Tablet styles for divider-brand */
+@media (width >= 768px) and (width <= 1024px) {
+  .divider-brand .divider-element {
+    padding-left: 40px;
+    padding-right: 40px;
+  }
+}
+
+/* Mobile styles for divider-brand - dashed lines */
+@media (width < 768px) {
+  .divider-brand .divider-element {
+    padding-left: 24px;
+    padding-right: 24px;
+  }
+}
