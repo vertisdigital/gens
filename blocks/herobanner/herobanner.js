@@ -13,14 +13,16 @@ export default function decorate(block) {
     heroContainer.className = 'hero-banner-container';
   }
 
-  const imageLink = block.querySelector('.herobanner-nested-1-1 a[href]');
+  const imageLink =
+    block.querySelector('a[data-aue-model="bannerimage"][href]') ||
+    block.querySelector('.herobanner-nested-1-1 a[href]');
   if (imageLink) {
     const imageUrl = imageLink.getAttribute('href');
     const imageAlt = imageLink.getAttribute('title') || 'Hero Image';
     const imageHtml = ImageComponent({
       src: imageUrl,
       alt: imageAlt,
-      className: 'hero-image',
+      className: 'hero-image hero-image-desktop',
       asImageName: 'hero.webp',
       breakpoints: {
         mobile: {
@@ -47,6 +49,63 @@ export default function decorate(block) {
     heroContainer.appendChild(imageContainer);
     imageLink.remove();
   }
+
+  const tabletImageLink = block.querySelector('[data-aue-prop="bannerimageTablet"] a[href]');
+  if (tabletImageLink) {
+    const imageUrl = tabletImageLink.getAttribute('href');
+    const imageAlt = tabletImageLink.getAttribute('title') || 'Hero Image';
+
+    const imageHtml = ImageComponent({
+      src: imageUrl,
+      alt: imageAlt,
+      className: 'hero-image hero-image-tablet',
+      lazy: false,
+    });
+
+    const imageContainer = document.createElement('div');
+    moveInstrumentation(tabletImageLink, imageContainer);
+    imageContainer.setAttribute('data-aue-model', 'bannerimageTablet');
+    imageContainer.setAttribute('data-aue-label', 'Banner Image (Tablet)');
+    imageContainer.insertAdjacentHTML('beforeend', imageHtml);
+    heroContainer.appendChild(imageContainer);
+    tabletImageLink.remove();
+  }
+
+  const mobileImageLink = block.querySelector('[data-aue-prop="bannerimageMobile"] a[href]');
+  if (mobileImageLink) {
+    const imageUrl = mobileImageLink.getAttribute('href');
+    const imageAlt = mobileImageLink.getAttribute('title') || 'Hero Image';
+
+    const imageHtml = ImageComponent({
+      src: imageUrl,
+      alt: imageAlt,
+      className: 'hero-image hero-image-mobile',
+      lazy: false,
+    });
+
+    const imageContainer = document.createElement('div');
+    moveInstrumentation(mobileImageLink, imageContainer);
+    imageContainer.setAttribute('data-aue-model', 'bannerimageMobile');
+    imageContainer.setAttribute('data-aue-label', 'Banner Image (Mobile)');
+    imageContainer.insertAdjacentHTML('beforeend', imageHtml);
+    heroContainer.appendChild(imageContainer);
+    mobileImageLink.remove();
+  }
+
+  const fontColorEl = block.querySelector('[data-aue-prop="bannerFontColor"]');
+
+  if (fontColorEl?.textContent) {
+    heroContainer.style.setProperty(
+      '--hero-text-color',
+      fontColorEl.textContent.trim()
+    );
+    fontColorEl.remove();
+  }
+
+  const gradientEl = block.querySelector('[data-aue-prop="enableGradient"]');
+  const enableGradient = !gradientEl || gradientEl.textContent.trim() !== 'false';
+  heroContainer.classList.add(enableGradient ? 'hero-has-gradient' : 'hero-no-gradient');
+  gradientEl?.remove();
 
   const heroContent = document.createElement('div');
   heroContent.classList.add('hero-content', 'columns-container', 'container');
@@ -394,6 +453,22 @@ export default function decorate(block) {
   rightIcon.addEventListener('click', () => {
     moveCarousel(true, true);
   });
+
+  const scrollHintTextEl = block.querySelector('[data-aue-prop="indicatortext"]');
+  const scrollText = scrollHintTextEl?.textContent?.trim();
+
+  if (scrollText) {
+    const scrollHint = document.createElement('div');
+    scrollHint.className = 'masthead-scroll-hint';
+    scrollHint.innerHTML = `
+    <span>${scrollText}</span>
+    ${SvgIcon({ name: 'chevrondown', size: '16', className: 'scroll-icon' })}
+  `;
+    heroContainer.appendChild(scrollHint);
+  }
+
+  scrollHintTextEl?.remove();
+
 
   carouselContainer.appendChild(carouselWrapper);
   if (carouselItems.length) {
