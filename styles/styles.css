@@ -43,7 +43,7 @@ Usage Example:
   --background-color: #fff;
   --light-color: #F9F9F9;
   --dark-color: #505050;
-  --text-color: #000;
+  --text-color: #3B3D3D;
   --body-text-color: #666;
   --link-color: #236097;
   --link-hover-color: #236097;
@@ -59,9 +59,11 @@ Usage Example:
   --neutral-color:#9E9E9E;
 
 
+
+
   /* fonts */
-  --body-font-family: 'DM Sans', sans-serif;
-  --heading-font-family: 'DM Sans', sans-serif;
+  --body-font-family: "Inter", sans-serif;
+  --heading-font-family: "Inter", sans-serif;
   --typography-font-family-font-body: "Instrument Sans Variable";
   --typography-font-family-font-title: "Inter", system-ui, sans-serif;
 
@@ -79,6 +81,87 @@ Usage Example:
 
   /* nav height */
   --nav-height: 50px;
+
+  
+
+  /* Text Colors */
+  --color-text-body: #3b3d3d;
+  --color-text-primary: #1d3d51;
+  --color-text-secondary: #c8ab4b;
+  --color-text-tertiary: #8d713e;
+  --color-text-white: #ffffff;
+  --color-text-black: #000000;
+  --color-text-placeholder: #959898;
+  --color-text-disabled: #959898;
+  --color-text-success: #388e3c;
+  --color-text-danger: #d32f2f;
+  --color-text-warning: #d67d08;
+
+  /* Border Colors */
+  --color-border-primary: #1d3d51;
+  --color-border-secondary: #c8ab4b;
+  --color-border-tertiary: #8d713e;
+  --color-border-dark: #3b3d3d;
+  --color-border-light: #f1f3f3;
+  --color-border-base: #e8ebeb;
+  --color-border-disabled: #d9dbdb;
+  --color-border-success: #388e3c;
+  --color-border-danger: #d32f2f;
+  --color-border-warning: #d67d08;
+
+  /* Foreground Colors */
+  --color-fg-dark: #3b3d3d;
+  --color-fg-primary: #1d3d51;
+  --color-fg-secondary: #c8ab4b;
+  --color-fg-tertiary: #8d713e;
+  --color-fg-divider: #d9dbdb;
+  --color-fg-disabled: #b5b7b7;
+  --color-fg-white: #ffffff;
+  --color-fg-black: #000000;
+  --color-fg-success: #388e3c;
+  --color-fg-danger: #d32f2f;
+  --color-fg-warning: #d67d08;
+
+  /* Background Colors */
+  --color-bg-white: #ffffff;
+  --color-bg-primary: #1d3d51;
+  --color-bg-secondary: #c8ab4b;
+  --color-bg-tertiary: #8d713e;
+  --color-bg-disabled: #e8ebeb;
+  --color-bg-success: #388e3c;
+  --color-bg-success-soft: #e8f5e9;
+  --color-bg-danger: #d32f2f;
+  --color-bg-danger-soft: #ffebee;
+  --color-bg-warning: #d67d08;
+  --color-bg-warning-soft: #faf2e1;
+
+  /* Neutral Colors (referenced in design tokens) */
+  --color-neutral-100: #f1f3f3;
+  --color-neutral-200: #e8ebeb;
+  --color-neutral-300: #d9dbdb;
+  --color-neutral-400: #b5b7b7;
+  --color-neutral-500: #959898;
+  --color-neutral-600: #959898;
+  --color-neutral-800: #3b3d3d;
+
+  /* Primary Colors (referenced in design tokens) */
+  --color-primary-800: #1d3d51;
+
+  /* Secondary Colors (referenced in design tokens) */
+  --color-secondary-700: #c8ab4b;
+  --color-secondary-900: #8d713e;
+
+  /* Green Colors (referenced in design tokens) */
+  --color-green-050: #e8f5e9;
+  --color-green-700: #388e3c;
+
+  /* Red Colors (referenced in design tokens) */
+  --color-red-050: #ffebee;
+  --color-red-700: #d32f2f;
+
+  /* Yellow Colors (referenced in design tokens) */
+  --color-yellow-050: #faf2e1;
+  --color-yellow-700: #d67d08;
 
 }
 
