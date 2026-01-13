@@ -39,7 +39,7 @@
     color: #8d713e;
   }
 
-  .arrow-link-wrapper span svg{
+  .listing .content-wrapper .arrow-link-wrapper span svg{
     color: var(--primary-gold);
   }
 
