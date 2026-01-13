@@ -1,4 +1,4 @@
-/* Default divider - simple border */k,
+/* Default divider - simple border */
 .divider {
   width: 100%;
   margin: 0;
@@ -33,7 +33,7 @@
   align-items: center;
   gap: 16px;
   padding: 16px 0;
-  background: white;
+  background: #fff;
 }
 
 /* Divider brand lines */
