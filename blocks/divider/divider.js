@@ -5,7 +5,7 @@ import { getIcon } from '../../shared-components/icons/index.js';/**
 export default function decorate(block) {
   // Read dividerType from component model
   // Try multiple selectors to find dividerType in both authoring and publishing mode
-  const dividerTypeEl = block.querySelector('[data-aue-prop="dividerType"]')
+  const dividerTypeEl = block.querySelector('[data-aue-prop="dividertype"]')
     || block.querySelector('[data-gen-prop="dividerType"]')
     || (block.children[0]?.textContent?.trim() ? block.children[0] : null);
   
