@@ -10,12 +10,22 @@
   aspect-ratio: 320 / 133; */
   position: relative;
   width: 100%;
-  min-height: 100vh;
   padding: 0;
   margin: 0;
   display: flex;
   align-items: center;
   overflow: hidden;
+}
+
+/* Apply min-height only in publishing/EDS view, not in authoring */
+/* Check if not inside an authoring context (no data-aue-resource on ancestor) */
+.hero-banner-container:not([data-aue-resource]) {
+  min-height: 100vh;
+}
+
+body:not([data-aue-resource]) .hero-banner-container,
+html:not([data-aue-resource]) .hero-banner-container {
+  min-height: 100vh;
 }
 .hero-text-white {
   --hero-text-color: #ffffff;
@@ -93,7 +103,22 @@
   left: 50%;
   transform: translateX(-50%);
   z-index: 2;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
   text-align: center;
+  font-size: var(--font-size-xxs);
+  color: var(--hero-text-color);
+}
+
+.masthead-scroll-hint .scroll-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.masthead-scroll-hint .scroll-text {
   font-size: var(--font-size-xxs);
   color: var(--hero-text-color);
 }
