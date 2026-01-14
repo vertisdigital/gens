@@ -18,13 +18,25 @@
 }
 
 /* Apply min-height only in publishing/EDS view, not in authoring */
-/* Check if not inside an authoring context (no data-aue-resource on ancestor) */
-.hero-banner-container:not([data-aue-resource]) {
+/* Order selectors from least specific to most specific */
+
+/* Override: Remove min-height in authoring mode (least specific first) */
+[data-aue-resource] .hero-banner-container {
+  min-height: auto !important;
+}
+
+body[data-aue-resource] .hero-banner-container {
+  min-height: auto !important;
+}
+
+/* Apply min-height in publishing mode (increasing specificity) */
+body:not([data-aue-resource]) .hero-banner-container,
+html:not([data-aue-resource]) body .hero-banner-container {
   min-height: 100vh;
 }
 
-body:not([data-aue-resource]) .hero-banner-container,
-html:not([data-aue-resource]) .hero-banner-container {
+/* Most specific: container without authoring attributes */
+.hero-banner-container:not([data-aue-resource]):not([data-aue-prop]) {
   min-height: 100vh;
 }
 .hero-text-white {
@@ -136,7 +148,7 @@ html:not([data-aue-resource]) .hero-banner-container {
   font-weight: 400;
   margin: 0 0 12px;
   max-width: 750px;
-  color: var(--background-color);
+  color: var(--hero-text-color);
   text-shadow: 0 2px 4px rgb(0 0 0 / 30%);
   padding-left: 0;
   line-height: 66px;
@@ -144,7 +156,7 @@ html:not([data-aue-resource]) .hero-banner-container {
 
 .hero-heading {
   font-weight: 400;
-  color: var(--background-color);
+  color: var(--hero-text-color);
   text-shadow: 0 2px 4px rgb(0 0 0 / 30%);
   padding-left: 0;
   margin-bottom: 12px;
@@ -156,7 +168,7 @@ html:not([data-aue-resource]) .hero-banner-container {
   line-height: 24px;
   max-width: 638px;
   text-align: left;
-  color: var(--light-grey);
+  color: var(--hero-text-color);
   margin: 0;
   text-shadow: 0 1px 2px rgb(0 0 0 / 30%);
   padding-left: 0;

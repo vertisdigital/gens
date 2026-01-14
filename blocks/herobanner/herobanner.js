@@ -6,12 +6,22 @@ import { moveInstrumentation } from '../../scripts/scripts.js';
 
 
 export default function decorate(block) {
-  let heroContainer = block.querySelector('.hero-banner-container');
-
-  if (!heroContainer) {
-    heroContainer = document.createElement('div');
-    heroContainer.className = 'hero-banner-container';
+  // Always create a new heroContainer to avoid issues when block is cleared
+  // If one exists, we'll process its content but create a fresh container
+  const existingHeroContainer = block.querySelector('.hero-banner-container');
+  const heroContainer = document.createElement('div');
+  heroContainer.className = 'hero-banner-container';
+  
+  // If there's an existing container, copy its style properties
+  if (existingHeroContainer) {
+    const existingStyle = existingHeroContainer.style.cssText;
+    if (existingStyle) {
+      heroContainer.style.cssText = existingStyle;
+    }
   }
+
+  // Get block children early for use in fallback selectors
+  const blockChildren = Array.from(block.children);
 
   const imageLink =
     block.querySelector('a[data-aue-model="bannerimage"][href]') ||
@@ -92,70 +102,140 @@ export default function decorate(block) {
     mobileImageLink.remove();
   }
 
-  const fontColorEl = block.querySelector('[data-aue-prop="bannerFontColor"]');
+  // Try multiple selectors to find font color in both authoring and publishing mode
+  const fontColorEl = block.querySelector('[data-aue-prop="bannerFontColor"], [data-gen-prop="bannerFontColor"]')
+    || block.querySelector('.herobanner-nested-1-7 p')
+    || block.querySelector('.herobanner-nested-1-7')
+    || (blockChildren[6]?.querySelector('p') ? blockChildren[6] : null);
 
-  if (fontColorEl?.textContent) {
-    heroContainer.style.setProperty(
-      '--hero-text-color',
-      fontColorEl.textContent.trim()
-    );
-    fontColorEl.remove();
+  if (fontColorEl) {
+    const fontColorP = fontColorEl.querySelector('p') || fontColorEl;
+    const fontColor = fontColorP?.textContent?.trim();
+    if (fontColor) {
+      heroContainer.style.setProperty('--hero-text-color', fontColor);
+    }
+    // Only remove if it's not the block itself
+    if (fontColorEl.parentNode === block || fontColorEl.parentNode?.parentNode === block) {
+      fontColorEl.remove();
+    }
   }
 
-  const gradientEl = block.querySelector('[data-aue-prop="enableGradient"]');
-  const enableGradient = !gradientEl || gradientEl.textContent.trim() !== 'false';
+  // Try multiple selectors to find gradient toggle in both authoring and publishing mode
+  const gradientEl = block.querySelector('[data-aue-prop="enableGradient"], [data-gen-prop="enableGradient"]')
+    || block.querySelector('.herobanner-nested-1-8 p')
+    || block.querySelector('.herobanner-nested-1-8')
+    || (blockChildren[7]?.querySelector('p') ? blockChildren[7] : null);
+
+  // Get text from p tag if it exists, otherwise from the element itself
+  const gradientP = gradientEl?.querySelector('p') || gradientEl;
+  const gradientValue = gradientP?.textContent?.trim();
+  const enableGradient = !gradientEl || gradientValue !== 'false';
   heroContainer.classList.add(enableGradient ? 'hero-has-gradient' : 'hero-no-gradient');
-  gradientEl?.remove();
+  
+  // Only remove if it's not the block itself
+  if (gradientEl && (
+    gradientEl.parentNode === block
+    || gradientEl.parentNode?.parentNode === block
+  )) {
+    gradientEl.remove();
+  }
 
   const heroContent = document.createElement('div');
   heroContent.classList.add('hero-content', 'columns-container', 'container');
 
-  const headingElement = block.querySelector('[data-aue-prop="bannerheading"], .herobanner-nested-1-2 p');
+  // Try multiple selectors to find elements in both authoring and publishing mode
+  // Check block children directly as fallback (blockChildren already defined above)
+  
+  const headingElement = block.querySelector(
+    '[data-aue-prop="bannerheading"], [data-gen-prop="bannerheading"]',
+  ) 
+    || block.querySelector('.herobanner-nested-1-2 p') 
+    || block.querySelector('.herobanner-nested-1-2')
+    || (blockChildren[1]?.querySelector('p') ? blockChildren[1] : null);
+    
   if (headingElement) {
-    const headingText = headingElement.textContent;
-    const headingContainer = document.createElement('div');
-    // Copy data attributes from source element
-    moveInstrumentation(headingContainer, headingElement);
-    const headingHtml = Heading({
-      level: 5,
-      text: headingText,
-      className: 'hero-heading',
-    });
-    headingContainer.insertAdjacentHTML('beforeend', headingHtml);
-    heroContent.append(headingContainer);
-    headingElement.remove();
+    // Get text from p tag if it exists, otherwise from the element itself
+    const headingP = headingElement.querySelector('p') || headingElement;
+    const headingText = headingP.textContent?.trim();
+    if (headingText) {
+      const headingContainer = document.createElement('div');
+      // Copy data attributes from source element
+      moveInstrumentation(headingElement, headingContainer);
+      const headingHtml = Heading({
+        level: 5,
+        text: headingText,
+        className: 'hero-heading',
+      });
+      headingContainer.insertAdjacentHTML('beforeend', headingHtml);
+      heroContent.append(headingContainer);
+    }
+    // Only remove if it's not the block itself
+    if (headingElement.parentNode === block || headingElement.parentNode?.parentNode === block) {
+      headingElement.remove();
+    }
   }
 
-  const titleElement = block.querySelector('[data-aue-prop="bannertitle"], .herobanner-nested-1-3 p');
+  const titleElement = block.querySelector(
+    '[data-aue-prop="bannertitle"], [data-gen-prop="bannertitle"]',
+  )
+    || block.querySelector('.herobanner-nested-1-3 p')
+    || block.querySelector('.herobanner-nested-1-3')
+    || (blockChildren[2]?.querySelector('p') ? blockChildren[2] : null);
+    
   if (titleElement) {
-    const titleText = titleElement.textContent;
-    const titleContainer = document.createElement('div');
-    // Copy data attributes from source element
-    moveInstrumentation(titleElement, titleContainer);
-    const headingHtml = Heading({
-      level: 2,
-      text: titleText,
-      className: 'hero-title',
-    });
-    titleContainer.insertAdjacentHTML('beforeend', headingHtml);
-    heroContent.append(titleContainer);
-    titleElement.remove();
+    // Get text from p tag if it exists, otherwise from the element itself
+    const titleP = titleElement.querySelector('p') || titleElement;
+    const titleText = titleP.textContent?.trim();
+    if (titleText) {
+      const titleContainer = document.createElement('div');
+      // Copy data attributes from source element
+      moveInstrumentation(titleElement, titleContainer);
+      const headingHtml = Heading({
+        level: 2,
+        text: titleText,
+        className: 'hero-title',
+      });
+      titleContainer.insertAdjacentHTML('beforeend', headingHtml);
+      heroContent.append(titleContainer);
+    }
+    // Only remove if it's not the block itself
+    if (titleElement.parentNode === block || titleElement.parentNode?.parentNode === block) {
+      titleElement.remove();
+    }
   }
 
   const descElement = block.querySelector(
-    '[data-aue-prop="bannerdescription"], .herobanner-nested-1-4 p',
-  );
+    '[data-aue-prop="bannerdescription"], [data-gen-prop="bannerdescription"]',
+  )
+    || block.querySelector('.herobanner-nested-1-4 p')
+    || block.querySelector('.herobanner-nested-1-4')
+    || (blockChildren[3]?.querySelector('p') ? blockChildren[3] : null);
+    
   if (descElement) {
-    const descriptionDiv = document.createElement('div');
-    descriptionDiv.className = 'hero-description';
-    // Copy data attributes from source element
-    moveInstrumentation(descElement, descriptionDiv);
-    descriptionDiv.textContent = descElement.textContent;
-    heroContent.appendChild(descriptionDiv);
-    descElement.remove();
+    // Get text from p tag if it exists, otherwise from the element itself
+    const descP = descElement.querySelector('p') || descElement;
+    const descriptionText = descP.textContent?.trim();
+    if (descriptionText) {
+      const descriptionDiv = document.createElement('div');
+      descriptionDiv.className = 'hero-description';
+      // Copy data attributes from source element
+      moveInstrumentation(descElement, descriptionDiv);
+      descriptionDiv.textContent = descriptionText;
+      heroContent.appendChild(descriptionDiv);
+    }
+    // Only remove if it's not the block itself
+    if (descElement.parentNode === block || descElement.parentNode?.parentNode === block) {
+      descElement.remove();
+    }
   }
 
-  const arrowIconLink = block.children[4];
+  // Try multiple selectors to find CTA button in both authoring and publishing mode
+  const arrowIconLink = block.querySelector('[data-aue-prop="ctabutton"], [data-gen-prop="ctabutton"]')
+    || block.querySelector('.herobanner-nested-1-10 a')
+    || block.querySelector('.herobanner-nested-1-10')
+    || block.children[10]
+    || (blockChildren[9]?.querySelector('a') ? blockChildren[9] : null);
+    
   if (arrowIconLink && arrowIconLink.querySelector('a') != null) {
     const arrowIconHtml = SvgIcon({
       name: 'arrow',
@@ -212,13 +292,23 @@ export default function decorate(block) {
     size: '6',
   });
 
+  // Try multiple selectors to find scroll interval in both authoring and publishing mode
   const scrollIntervalDiv = block.querySelector(
-    '[data-aue-prop="scrollInterval"], .herobanner-nested-1-6 p',
-  );
+    '[data-aue-prop="scrollInterval"], [data-gen-prop="scrollInterval"]',
+  )
+    || block.querySelector('.herobanner-nested-1-13 p')
+    || block.querySelector('.herobanner-nested-1-13')
+    || (blockChildren[12]?.querySelector('p') ? blockChildren[12] : null)
+    || (blockChildren[13]?.querySelector('p') ? blockChildren[13] : null);
 
-  let scrollInterval = 3000;
+  let scrollInterval = 5000; // Default to 5 seconds instead of 3
   if (scrollIntervalDiv) {
-    scrollInterval = parseInt(scrollIntervalDiv.textContent, 10) * 1000;
+    // Get text from p tag if it exists, otherwise from the element itself
+    const intervalP = scrollIntervalDiv.querySelector('p') || scrollIntervalDiv;
+    const intervalValue = parseInt(intervalP.textContent, 10);
+    if (intervalValue && intervalValue > 0) {
+      scrollInterval = intervalValue * 1000;
+    }
   }
 
   const navigations = document.createElement('div');
@@ -454,20 +544,43 @@ export default function decorate(block) {
     moveCarousel(true, true);
   });
 
-  const scrollHintTextEl = block.querySelector('[data-aue-prop="indicatortext"]');
-  const scrollText = scrollHintTextEl?.textContent?.trim();
+  // Try multiple selectors to find scroll indicator text in both authoring and publishing mode
+  // Get block children again in case they've changed
+  const currentBlockChildren = Array.from(block.children);
+  const scrollHintTextEl = block.querySelector(
+    '[data-aue-prop="indicatortext"], [data-gen-prop="indicatortext"]',
+  )
+    || block.querySelector('.herobanner-nested-1-9 p')
+    || block.querySelector('.herobanner-nested-1-9')
+    || (currentBlockChildren[8]?.querySelector('p') ? currentBlockChildren[8] : null)
+    || (currentBlockChildren[9]?.querySelector('p') ? currentBlockChildren[9] : null);
+    
+  // Get text from p tag if it exists, otherwise from the element itself
+  const scrollP = scrollHintTextEl?.querySelector('p') || scrollHintTextEl;
+  const scrollText = scrollP?.textContent?.trim();
 
   if (scrollText) {
     const scrollHint = document.createElement('div');
     scrollHint.className = 'masthead-scroll-hint';
+    const scrollIcon = SvgIcon({
+      name: 'scroll-down',
+      size: '24',
+      className: 'scroll-icon',
+    });
     scrollHint.innerHTML = `
-    ${SvgIcon({ name: 'scroll-down', size: '24', className: 'scroll-icon' })}
+    ${scrollIcon}
     <span class="scroll-text">${scrollText}</span>
   `;
     heroContainer.appendChild(scrollHint);
   }
 
-  scrollHintTextEl?.remove();
+  // Only remove if it's not the block itself
+  if (scrollHintTextEl && (
+    scrollHintTextEl.parentNode === block
+    || scrollHintTextEl.parentNode?.parentNode === block
+  )) {
+    scrollHintTextEl.remove();
+  }
 
 
   carouselContainer.appendChild(carouselWrapper);
@@ -481,8 +594,12 @@ export default function decorate(block) {
   const carouselItemsAll = heroContainer.querySelectorAll('.carousel-item');
 
   // Check if we're not in author instance before setting up auto-scroll
-  const isAuthorInstance = document.getElementById('OverlayBlockingElement');
-  if (carouselItemsAll.length > 0 && !isAuthorInstance) {
+  // Check for authoring mode: URL contains 'author' or block has data-aue-resource
+  const isAuthorInstance = window.location.href.indexOf('author') !== -1 
+    || block.closest('[data-aue-resource]') !== null
+    || document.querySelector('[data-aue-resource]') !== null;
+  
+  if (carouselItemsAll.length > 0 && !isAuthorInstance && scrollInterval > 0) {
     setInterval(() => {
       moveCarousel(true, false);
     }, scrollInterval);
@@ -492,6 +609,16 @@ export default function decorate(block) {
     item.remove();
   });
 
-  block.textContent = '';
+  // Clear block and append heroContainer
+  // Remove all existing children first, but preserve heroContainer if it exists
+  const existingContainer = block.querySelector('.hero-banner-container');
+  if (existingContainer && existingContainer.parentNode === block) {
+    existingContainer.remove();
+  }
+  
+  // Remove all remaining children
+  while (block.firstChild) {
+    block.removeChild(block.firstChild);
+  }
   block.appendChild(heroContainer);
 }
