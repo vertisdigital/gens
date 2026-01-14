@@ -1,8 +1,9 @@
 .statistics .statistics-row {
     padding-bottom: 25px;
-    row-gap: 36px;
-    margin-left: -18px;
-    margin-right: -18px;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 24px;
+    row-gap: 64px;
 }
 
 .statistics.statistics-financial-variation .statistics-row {
@@ -14,8 +15,9 @@
 }
 
 .statistics .statistics-row .feature-item {
-    padding-left: 18px;
-    padding-right: 18px;
+    padding-top: 20px;
+    padding-right: 24px;
+    border-top: 1px solid var(--color-border-base);
 }
 
 .statistics-container .feature-wrapper .about-us-right-content{
@@ -64,14 +66,14 @@
 }
 
 .statistics .statistic-item {
-    font-size: var(--font-size-xxxl);
+    font-size: 64px;
     font-weight: 400;
     line-height: 80px;
-    color: var(--primary-gold);
+    color: var(--color-text-tertiary);
 }
 
 .statistics.statistics-financial-variation .statistic-item {
-    font-size: 4.375rem;
+    font-size: 64px;
 }
 
 .statistics .statistic-item sup, .statistics .statistic-item sub {
@@ -79,10 +81,10 @@
 }
 
 .statistics .text-container {
-    font-size: var(--font-size-xs);
+    font-size: 24px;
     font-weight: 400;
-    line-height: 24px;
-    color: var(--body-text-color);
+    line-height: 40px;
+    color: var(--color-text-body);
 }
 
 .statistics-wrapper .statistics.block {
@@ -194,7 +196,7 @@
   
 }
 
-@media (width<=992px) {
+@media (width<=1024px) {
     .statistics-description-wrapper {
         padding: 40px 0;
          margin-bottom: 40px;
@@ -206,18 +208,16 @@
     }
 
     .statistics .statistic-item {
-        font-size: var(--font-size-xxl);
-        line-height: 64px;
+        font-size: 56px;
+        line-height: 72px;
     }
 
     .statistics .statistics-row {
-        row-gap: 24px;
-        margin-left: -12px;
-        margin-right: -12px;
+        row-gap: 40px;
     }
 
     .statistics.statistics-financial-variation .statistics-row {
-        row-gap: 36px;
+        row-gap: 40px;
     }
 
     .statistics.statistics-financial-variation .statistics-title {
@@ -247,15 +247,14 @@
     }
 
     .statistics .statistics-row {
-        row-gap: 18px;
-        margin-left: 0;
-        margin-right: 0;
+        flex-direction: column;
+        display: flex;
+        gap: 24px;
     }
 
     .statistics.statistics-financial-variation .statistics-row {
-        row-gap: 28px;
+        row-gap: 24px;
     }
-    
 
     .statistics .statistics-row .feature-item {
         padding-left: 0;
@@ -263,8 +262,8 @@
     }
 
     .statistics .statistic-item {
-        font-size: var(--font-size-xl);
-        line-height: 48px;
+        font-size: 64px;
+        line-height: 80px;
     }
 
     .statistics-wrapper .statistics.block {
