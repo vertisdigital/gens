@@ -47,7 +47,7 @@
 
 /* DM Sans Font */
 
-@font-face {
+/* @font-face {
     font-family: "DM Sans";
     font-style: normal;
     font-weight: 400;
@@ -77,7 +77,9 @@
     font-weight: 700;
     font-display: swap;
     src: url("../fonts/dmSans-bold.woff2") format("woff2");
-}
+} */
+
+@import url('https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap');
 
 @font-face {
   font-family: 'Instrument Sans Variable';

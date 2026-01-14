@@ -309,6 +309,51 @@
         }
       },
       {
+        "component": "custom-asset-namespace:custom-asset",
+        "valueType": "string",
+        "name": "bannerimageTablet",
+        "label": "Banner Image (Tablet)",
+        "configUrl": "https://dev--gens--vertisdigital.aem.live/tools/assets-selector/config.json",
+        "multi": false,
+        "validation": {
+          "rootPath": "/content/dam/genting-singapore"
+        }
+      },
+      {
+        "component": "custom-asset-namespace:custom-asset",
+        "valueType": "string",
+        "name": "bannerimageMobile",
+        "label": "Banner Image (Mobile)",
+        "configUrl": "https://dev--gens--vertisdigital.aem.live/tools/assets-selector/config.json",
+        "multi": false,
+        "validation": {
+          "rootPath": "/content/dam/genting-singapore"
+        }
+      },
+      {
+        "component": "text",
+        "name": "bannerFontColor",
+        "label": "Font Colour",
+        "value": "#FFFFFF",
+        "description": "Enter hex color (e.g. #FFFFFF). Default is white."
+      },
+      {
+        "component": "boolean",
+        "name": "enableGradient",
+        "label": "Enable Image Gradient",
+        "valueType": "boolean",
+        "value": true
+      },
+      {
+        "component": "text",
+        "name": "indicatortext",
+        "label": "Scroll Indicator Text",
+        "validation": {
+          "maxLength": 50,
+          "customErrorMsg": "Scroll text cannot exceed 50 characters"
+        }
+      },
+      {
         "component": "aem-content",
         "valueType": "string",
         "name": "ctabutton",

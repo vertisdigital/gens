@@ -1,12 +1,71 @@
 .hero-banner-container {
-  position: relative;
+  --hero-text-color: #ffffff;
+  /* position: relative;
   width: 100%;
   color: var(--background-color);
   overflow: hidden;
   padding-top:225px;
   padding-bottom: 150px;
   margin-bottom: 45px;
-  aspect-ratio: 320 / 133;
+  aspect-ratio: 320 / 133; */
+  position: relative;
+  width: 100%;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  align-items: center;
+  overflow: hidden;
+}
+
+/* Apply min-height only in publishing/EDS view, not in authoring */
+/* Order selectors from least specific to most specific */
+
+/* Override: Remove min-height in authoring mode (least specific first) */
+[data-aue-resource] .hero-banner-container {
+  min-height: auto !important;
+}
+
+body[data-aue-resource] .hero-banner-container {
+  min-height: auto !important;
+}
+
+/* Apply min-height in publishing mode (increasing specificity) */
+body:not([data-aue-resource]) .hero-banner-container,
+html:not([data-aue-resource]) body .hero-banner-container {
+  min-height: 100vh;
+}
+
+/* Most specific: container without authoring attributes */
+.hero-banner-container:not([data-aue-resource]):not([data-aue-prop]) {
+  min-height: 100vh;
+}
+.hero-text-white {
+  --hero-text-color: #ffffff;
+}
+
+.hero-text-dark {
+  --hero-text-color: #0b1c26;
+}
+.hero-heading,
+.hero-title,
+.hero-description,
+.hero-banner-container .button-container a {
+  color: var(--hero-text-color);
+}
+.hero-banner-container.hero-has-gradient::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    180deg,
+    rgba(0,0,0,0.45) 0%,
+    rgba(0,0,0,0.15) 45%,
+    rgba(0,0,0,0.6) 100%
+  );
+  z-index: 1;
+}
+.hero-banner-container.hero-no-gradient::before {
+  display: none;
 }
 .hero-banner-container.hero-carousal-variation {
   padding-bottom: 210px;
@@ -17,12 +76,63 @@
 }
 
 .hero-image {
-  position: absolute;
+  /* position: absolute;
   top: 0;
   left: 0;
   width: 100%;
-  height: auto;
-  z-index: -1;
+  height: auto;*/
+  z-index: -1; 
+   position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+.hero-image-tablet,
+.hero-image-mobile {
+  display: none;
+}
+@media (max-width: 991px) {
+  .hero-image-tablet {
+    display: block;
+  }
+  .hero-image-desktop {
+    display: none;
+  }
+}
+
+@media (max-width: 767px) {
+  .hero-image-mobile {
+    display: block;
+  }
+  .hero-image-tablet {
+    display: none;
+  }
+}
+.masthead-scroll-hint {
+  position: absolute;
+  bottom: 32px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  text-align: center;
+  font-size: var(--font-size-xxs);
+  color: var(--hero-text-color);
+}
+
+.masthead-scroll-hint .scroll-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.masthead-scroll-hint .scroll-text {
+  font-size: var(--font-size-xxs);
+  color: var(--hero-text-color);
 }
 
 .news-link-container img {
@@ -38,7 +148,7 @@
   font-weight: 400;
   margin: 0 0 12px;
   max-width: 750px;
-  color: var(--background-color);
+  color: var(--hero-text-color);
   text-shadow: 0 2px 4px rgb(0 0 0 / 30%);
   padding-left: 0;
   line-height: 66px;
@@ -46,7 +156,7 @@
 
 .hero-heading {
   font-weight: 400;
-  color: var(--background-color);
+  color: var(--hero-text-color);
   text-shadow: 0 2px 4px rgb(0 0 0 / 30%);
   padding-left: 0;
   margin-bottom: 12px;
@@ -58,7 +168,7 @@
   line-height: 24px;
   max-width: 638px;
   text-align: left;
-  color: var(--light-grey);
+  color: var(--hero-text-color);
   margin: 0;
   text-shadow: 0 1px 2px rgb(0 0 0 / 30%);
   padding-left: 0;
