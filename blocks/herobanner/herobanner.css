@@ -19,9 +19,12 @@
 
 /* Apply min-height only in publishing/EDS view, not in authoring */
 /* Check if not inside an authoring context (no data-aue-resource on ancestor) */
-body:not([data-aue-resource]) .hero-banner-container,
-html:not([data-aue-resource]) .hero-banner-container,
 .hero-banner-container:not([data-aue-resource]) {
+  min-height: 100vh;
+}
+
+body:not([data-aue-resource]) .hero-banner-container,
+html:not([data-aue-resource]) .hero-banner-container {
   min-height: 100vh;
 }
 .hero-text-white {
