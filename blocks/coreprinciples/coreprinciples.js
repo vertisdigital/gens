@@ -25,7 +25,7 @@ export default function decorate(block) {
   container.className = 'container';
 
   const row = document.createElement('div');
-  row.className = 'row';
+  row.className = 'coreprinciples-container';
 
   // Convert each item to use proper semantic structure
   const items = [...coreBlock.querySelectorAll('[data-aue-model="coreprinciple"], [data-gen-model="featureItem"]')];
@@ -33,7 +33,7 @@ export default function decorate(block) {
   items.forEach((item) => {
     // Add responsive column classes as per requirements
     const col = document.createElement('div');
-    col.className = 'col-xl-4 col-md-3 col-sm-4 principles-item';
+    col.className = 'principles-item';
 
     // Get the icon URL and alt text from anchor
     const iconLink = item.querySelector('a');
