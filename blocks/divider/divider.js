@@ -3,33 +3,35 @@ import { getIcon } from '../../shared-components/icons/index.js';/**
  * @param {Element} block The divider block element
  */
 export default function decorate(block) {
-  // Read className prop from block content
-  // The className prop is typically in the first child's text content
-  let className = ''; // Default class name
+  // Read dividerType from component model
+  // Try multiple selectors to find dividerType in both authoring and publishing mode
+  const dividerTypeEl = block.querySelector('[data-aue-prop="dividerType"]')
+    || block.querySelector('[data-gen-prop="dividerType"]')
+    || (block.children[0]?.textContent?.trim() ? block.children[0] : null);
   
-  // Check if there's a className prop in the block content
-  if (block.children.length > 0) {
-    const firstChild = block.children[0];
-    const classNameText = firstChild.textContent?.trim().toLowerCase();
+  let dividerType = ''; // Default value
+  
+  if (dividerTypeEl) {
+    // Get value from data attribute element or text content
+    const dividerTypeValue = dividerTypeEl.textContent?.trim() || dividerTypeEl.getAttribute('value') || '';
     
-    // Check if className prop is specified
-    if (classNameText === 'divider-brand' || classNameText === 'dividerbrand') {
-      className = 'divider-brand';
-      // Remove the className prop element
-      firstChild.remove();
-    } else if (firstChild.textContent?.trim()) {
-      // If there's text but not divider-brand, keep default and remove it
-      firstChild.remove();
+    if (dividerTypeValue === 'divider-brand' || dividerTypeValue.toLowerCase() === 'divider-brand') {
+      dividerType = 'divider-brand';
+    }
+    
+    // Remove the element after reading the value
+    if (dividerTypeEl.parentNode === block || dividerTypeEl.parentNode?.parentNode === block) {
+      dividerTypeEl.remove();
     }
   }
   
   // Apply the className to the block
-  block.className = `divider ${className}`;
+  block.className = `divider ${dividerType}`;
   
   // Clear any remaining content
   block.textContent = '';
   
-  if (className === 'divider-brand') {
+  if (dividerType === 'divider-brand') {
     // Create divider-brand structure: container with lines and central icon
     const dividerElement = document.createElement('div');
     dividerElement.className = 'divider-element';

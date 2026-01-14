@@ -148,6 +148,28 @@
       }
     ]
   },
+  {
+    "id": "divider",
+    "fields": [
+      {
+        "component": "select",
+        "name": "dividerType",
+        "label": "Divider Type",
+        "valueType": "string",
+        "value": "",
+        "options": [
+          {
+            "name": "Default",
+            "value": ""
+          },
+          {
+            "name": "Divider Brand",
+            "value": "divider-brand"
+          }
+        ]
+      }
+    ]
+  },
     {
     "id": "searchresult",
     "fields": [
