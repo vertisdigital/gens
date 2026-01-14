@@ -6,7 +6,7 @@ export default function decorate(block) {
   // Read dividerType from component model
   // Try multiple selectors to find dividerType in both authoring and publishing mode
   const dividerTypeEl = block.querySelector('[data-aue-prop="dividertype"]')
-    || block.querySelector('[data-gen-prop="dividerType"]')
+    || block.querySelector('[data-gen-prop="dividertype"]')
     || (block.children[0]?.textContent?.trim() ? block.children[0] : null);
   
   let dividerType = ''; // Default value
