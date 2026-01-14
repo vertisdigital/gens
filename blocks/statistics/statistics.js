@@ -33,15 +33,12 @@ export default function decorate(block) {
       : blockChilden.slice(3);
 
     const featureContainer = document.createElement('div');
-    featureContainer.className = 'row statistics-row';
+    featureContainer.className = 'statistics-row';
 
     featureItems.forEach((featureItem) => {
       featureContainer.appendChild(featureItem);
       featureItem.classList.add(
-        'col-xl-4',
-        'col-md-3',
-        'col-sm-4',
-        'feature-item',
+        'feature-item'
       );
       featureItem.children[1]?.classList.add('statistic-item');
       featureItem.children[2]?.classList.add('text-container');
