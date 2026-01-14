@@ -23,29 +23,34 @@ export default function decorate(block) {
   // Get block children early for use in fallback selectors
   const blockChildren = Array.from(block.children);
 
-  const imageLink =
-    block.querySelector('a[data-aue-model="bannerimage"][href]') ||
-    block.querySelector('.herobanner-nested-1-1 a[href]');
+  // Desktop image (also used as fallback for tablet and mobile)
+  let desktopImageUrl = null;
+  let desktopImageAlt = 'Hero Image';
+
+  const imageLink = block.querySelector('a[data-aue-model="bannerimage"][href]')
+    || block.querySelector('.herobanner-nested-1-1 a[href]');
+
   if (imageLink) {
-    const imageUrl = imageLink.getAttribute('href');
-    const imageAlt = imageLink.getAttribute('title') || 'Hero Image';
+    desktopImageUrl = imageLink.getAttribute('href');
+    desktopImageAlt = imageLink.getAttribute('title') || 'Hero Image';
+
     const imageHtml = ImageComponent({
-      src: imageUrl,
-      alt: imageAlt,
+      src: desktopImageUrl,
+      alt: desktopImageAlt,
       className: 'hero-image hero-image-desktop',
       asImageName: 'hero.webp',
       breakpoints: {
         mobile: {
-          src: `${imageUrl}`,
-          smartCrop : 'Small'
+          src: `${desktopImageUrl}`,
+          smartCrop: 'Small',
         },
         tablet: {
-          src: `${imageUrl}`,
-          smartCrop : 'Medium'
+          src: `${desktopImageUrl}`,
+          smartCrop: 'Medium',
         },
         desktop: {
-          src: `${imageUrl}`,
-          smartCrop : 'Desktop'
+          src: `${desktopImageUrl}`,
+          smartCrop: 'Desktop',
         },
       },
       lazy: false,
@@ -60,46 +65,102 @@ export default function decorate(block) {
     imageLink.remove();
   }
 
+  // Tablet image – falls back to desktop image if tablet-specific image is not set
   const tabletImageLink = block.querySelector('[data-aue-prop="bannerimageTablet"] a[href]');
-  if (tabletImageLink) {
-    const imageUrl = tabletImageLink.getAttribute('href');
-    const imageAlt = tabletImageLink.getAttribute('title') || 'Hero Image';
+  let tabletImageUrl = null;
+  let tabletImageAlt = 'Hero Image';
 
+  if (tabletImageLink) {
+    tabletImageUrl = tabletImageLink.getAttribute('href');
+    tabletImageAlt = tabletImageLink.getAttribute('title') || 'Hero Image';
+  } else if (desktopImageUrl) {
+    tabletImageUrl = desktopImageUrl;
+    tabletImageAlt = desktopImageAlt;
+  }
+
+  if (tabletImageUrl) {
     const imageHtml = ImageComponent({
-      src: imageUrl,
-      alt: imageAlt,
+      src: tabletImageUrl,
+      alt: tabletImageAlt,
       className: 'hero-image hero-image-tablet',
+      asImageName: 'hero.webp',
+      breakpoints: {
+        mobile: {
+          src: `${tabletImageUrl}`,
+          smartCrop: 'Small',
+        },
+        tablet: {
+          src: `${tabletImageUrl}`,
+          smartCrop: 'Medium',
+        },
+        desktop: {
+          src: `${tabletImageUrl}`,
+          smartCrop: 'Desktop',
+        },
+      },
       lazy: false,
     });
 
     const imageContainer = document.createElement('div');
-    moveInstrumentation(tabletImageLink, imageContainer);
+    if (tabletImageLink) {
+      moveInstrumentation(tabletImageLink, imageContainer);
+    }
     imageContainer.setAttribute('data-aue-model', 'bannerimageTablet');
     imageContainer.setAttribute('data-aue-label', 'Banner Image (Tablet)');
     imageContainer.insertAdjacentHTML('beforeend', imageHtml);
     heroContainer.appendChild(imageContainer);
-    tabletImageLink.remove();
+    if (tabletImageLink) {
+      tabletImageLink.remove();
+    }
   }
 
+  // Mobile image – falls back to desktop image if mobile-specific image is not set
   const mobileImageLink = block.querySelector('[data-aue-prop="bannerimageMobile"] a[href]');
-  if (mobileImageLink) {
-    const imageUrl = mobileImageLink.getAttribute('href');
-    const imageAlt = mobileImageLink.getAttribute('title') || 'Hero Image';
+  let mobileImageUrl = null;
+  let mobileImageAlt = 'Hero Image';
 
+  if (mobileImageLink) {
+    mobileImageUrl = mobileImageLink.getAttribute('href');
+    mobileImageAlt = mobileImageLink.getAttribute('title') || 'Hero Image';
+  } else if (desktopImageUrl) {
+    mobileImageUrl = desktopImageUrl;
+    mobileImageAlt = desktopImageAlt;
+  }
+
+  if (mobileImageUrl) {
     const imageHtml = ImageComponent({
-      src: imageUrl,
-      alt: imageAlt,
+      src: mobileImageUrl,
+      alt: mobileImageAlt,
       className: 'hero-image hero-image-mobile',
+      asImageName: 'hero.webp',
+      breakpoints: {
+        mobile: {
+          src: `${mobileImageUrl}`,
+          smartCrop: 'Small',
+        },
+        tablet: {
+          src: `${mobileImageUrl}`,
+          smartCrop: 'Medium',
+        },
+        desktop: {
+          src: `${mobileImageUrl}`,
+          smartCrop: 'Desktop',
+        },
+      },
       lazy: false,
     });
 
     const imageContainer = document.createElement('div');
-    moveInstrumentation(mobileImageLink, imageContainer);
+    if (mobileImageLink) {
+      moveInstrumentation(mobileImageLink, imageContainer);
+    }
     imageContainer.setAttribute('data-aue-model', 'bannerimageMobile');
     imageContainer.setAttribute('data-aue-label', 'Banner Image (Mobile)');
     imageContainer.insertAdjacentHTML('beforeend', imageHtml);
     heroContainer.appendChild(imageContainer);
-    mobileImageLink.remove();
+    if (mobileImageLink) {
+      mobileImageLink.remove();
+    }
   }
 
   // Try multiple selectors to find font color in both authoring and publishing mode
