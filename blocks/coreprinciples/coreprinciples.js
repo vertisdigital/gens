@@ -82,8 +82,17 @@ export default function decorate(block) {
       }
     }
 
+    const contentWrapper = document.createElement('div');
+    contentWrapper.className = 'content-wrapper';
+
     // Convert title to h3 with preserved authoring attributes
     const allDivElements = item.querySelectorAll('div');
+
+    const titleImage = allDivElements[0];
+    if (titleImage !== null) {
+      contentWrapper.appendChild(titleImage);
+    }
+    
     const title = allDivElements[1];
     if (title !== null) {
       const h3 = document.createElement('h3');
@@ -96,6 +105,7 @@ export default function decorate(block) {
         h3.setAttribute(attr.name, attr.value);
       });
       title.replaceWith(h3);
+      contentWrapper.appendChild(h3);
     }
 
     // Preserve description data-aue attributes
@@ -105,14 +115,17 @@ export default function decorate(block) {
       descAttributes.forEach((attr) => {
         description.setAttribute(attr.name, attr.value);
       });
+      contentWrapper.appendChild(description);
     }
 
     // Clean up original icon link
     iconLink?.parentElement.remove();
 
-    // Insert icon wrapper at start
-    item.insertBefore(iconWrapper, item.firstChild);
-
+    // Clear item and rebuild structure
+    item.innerHTML = '';
+    item.appendChild(iconWrapper);
+    item.appendChild(contentWrapper);
+    
     // Wrap item in column and add to row
     col.appendChild(item.cloneNode(true));
     row.appendChild(col);
