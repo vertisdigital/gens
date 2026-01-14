@@ -461,8 +461,8 @@ export default function decorate(block) {
     const scrollHint = document.createElement('div');
     scrollHint.className = 'masthead-scroll-hint';
     scrollHint.innerHTML = `
-    <span>${scrollText}</span>
-    ${SvgIcon({ name: 'chevrondown', size: '16', className: 'scroll-icon' })}
+    ${SvgIcon({ name: 'scroll-down', size: '24', className: 'scroll-icon' })}
+    <span class="scroll-text">${scrollText}</span>
   `;
     heroContainer.appendChild(scrollHint);
   }

@@ -287,9 +287,10 @@
         "description": "Enter hex color (e.g. #FFFFFF). Default is white."
       },
       {
-        "component": "checkbox",
+        "component": "boolean",
         "name": "enableGradient",
         "label": "Enable Image Gradient",
+        "valueType": "boolean",
         "value": true
       },
       {
