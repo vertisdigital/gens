@@ -8,6 +8,39 @@ import { moveInstrumentation } from '../../scripts/scripts.js';
  * @param {Element} block The herobanner block element
  */
 export default function decorate(block) {
+  // Get block children early for use in fallback selectors
+  const blockChildren = Array.from(block.children);
+  
+  // Read featureclass from component model
+  // Try multiple selectors to find featureclass in both authoring and publishing mode
+  const featureClassEl = block.querySelector('[data-aue-prop="featureclass"]')
+    || block.querySelector('[data-gen-prop="featureclass"]')
+    || block.querySelector('.feature-nested-1-3 p')
+    || block.querySelector('.feature-nested-1-3')
+    || (blockChildren[3]?.querySelector('p') ? blockChildren[3] : null)
+    || (blockChildren[3]?.textContent?.trim() ? blockChildren[3] : null);
+  
+  let featureClass = '';
+  
+  if (featureClassEl) {
+    // Get value from p tag if it exists, otherwise from the element itself
+    const featureClassP = featureClassEl.querySelector('p') || featureClassEl;
+    const featureClassValue = featureClassP?.textContent?.trim() || '';
+    
+    if (featureClassValue === 'with-images-four-col') {
+      featureClass = 'with-images-four-col';
+    }
+    
+    // Only remove if it's not the block itself
+    if (featureClassEl.parentNode === block || featureClassEl.parentNode?.parentNode === block) {
+      featureClassEl.remove();
+    }
+  }
+  
+  block.classList.add('feature', 'feature-row', 'block');
+  if (featureClass) {
+    block.classList.add(featureClass);
+  }
 
   const container = document.createElement('div');
 

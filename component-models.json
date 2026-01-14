@@ -148,6 +148,28 @@
       }
     ]
   },
+  {
+    "id": "divider",
+    "fields": [
+      {
+        "component": "select",
+        "name": "dividertype",
+        "label": "Divider Type",
+        "valueType": "string",
+        "value": "",
+        "options": [
+          {
+            "name": "Default",
+            "value": ""
+          },
+          {
+            "name": "Divider Brand",
+            "value": "divider-brand"
+          }
+        ]
+      }
+    ]
+  },
     {
     "id": "searchresult",
     "fields": [
@@ -478,6 +500,23 @@
           "maxLength": 500,
           "customErrorMsg": "Description cannot exceed 500 characters"
         }
+      },
+      {
+        "component": "select",
+        "name": "featureclass",
+        "label": "Feature Class",
+        "valueType": "string",
+        "value": "",
+        "options": [
+          {
+            "name": "Default",
+            "value": ""
+          },
+          {
+            "name": "With Images Four Col",
+            "value": "with-images-four-col"
+          }
+        ]
       }
     ]
   },

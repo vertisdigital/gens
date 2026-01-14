@@ -200,7 +200,7 @@ const renderResults = (block, q, results, currentPage, total, totalPages) => {
   if (total === 0) {
     block.innerHTML = `
       <div class="searchresult-empty">
-        <div class="searchresult-empty-illustration"><img src="../../icons/no-result-found.png"/>"</div>
+        <div class="searchresult-empty-illustration"><img src="../../icons/no-result-found.png"/></div>
 
         <h3>No results found for ‘${q}’.</h3>
         <p>Please try again or connect with our representative.</p>
