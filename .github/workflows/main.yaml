@@ -34,7 +34,7 @@ jobs:
         elif [ "$BRANCH_NAME" == "main" ]; then
           echo "CONFIG_URL=https://main--gens-prod--vertisdigital.aem.page/tools/assets-selector/config.json" >> $GITHUB_ENV
         else
-          echo "CONFIG_URL=https://${BRANCH_NAME}--gens--vertisdigital.aem.page/tools/assets-selector/config.json" >> $GITHUB_ENV
+          echo "CONFIG_URL=https://dev--gens--vertisdigital.aem.page/tools/assets-selector/config.json" >> $GITHUB_ENV
         fi
 
     - name: Update config URL
