@@ -562,6 +562,60 @@
     ]
   },
   {
+    "id": "sectionheader",
+    "fields": [
+      {
+        "component": "text",
+        "name": "label",
+        "label": "Label",
+        "description": "Label cannot exceed 24 characters, recommended to keep it 10-20 characters",
+        "validation": {
+          "maxLength": 24,
+          "customErrorMsg": "Label cannot exceed 24 characters, recommended to keep it 10-20 characters"
+        }
+      },
+      {
+        "component": "text",
+        "name": "title",
+        "label": "Title",
+        "description": "Title cannot exceed 80 characters, recommended to keep it 40-60 characters",
+        "validation": {
+          "maxLength": 80,
+          "customErrorMsg": "Title cannot exceed 80 characters, recommended to keep it 40-60 characters"
+        }
+      },
+      {
+        "component": "richtext",
+        "name": "description",
+        "value": "",
+        "label": "Description",
+        "description": "Description cannot exceed 180 characters, recommended to keep it 80-120 characters",
+        "valueType": "string",
+        "validation": {
+          "maxLength": 180,
+          "customErrorMsg": "Description cannot exceed 180 characters, recommended to keep it 80-120 characters"
+        }
+      },
+      {
+        "component": "select",
+        "name": "sectiionheaderclass",
+        "label": "Section Header Variant",
+        "valueType": "string",
+        "value": "",
+        "options": [
+          {
+            "name": "Vertical",
+            "value": ""
+          },
+          {
+            "name": "Horizontal",
+            "value": "horizontal"
+          }
+        ]
+      }
+    ]
+  },
+  {
     "id": "linkField",
     "fields": [
       {

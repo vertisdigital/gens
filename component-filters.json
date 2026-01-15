@@ -33,7 +33,15 @@
       "statistics",
       "searchresult",
       "divider",
-      "text"
+      "text",
+      "columns",
+      "sectionheader"
+    ]
+  },
+  {
+    "id": "sectionheader",
+    "components": [
+      "linkField"
     ]
   },
   {
@@ -78,7 +86,8 @@
       "textsection",
       "textmediablock",
       "linkField",
-      "projectslist"
+      "projectslist",
+      "text"
     ]
   },
   {
