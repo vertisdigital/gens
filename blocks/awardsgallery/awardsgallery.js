@@ -1,5 +1,6 @@
 import { moveInstrumentation } from '../../scripts/scripts.js';
 import ImageComponent from '../../shared-components/ImageComponent.js';
+import SvgIcon from '../../shared-components/SvgIcon.js';
 
 export default function decorate(block) {
   // Create main container
@@ -9,6 +10,7 @@ export default function decorate(block) {
     awardsGalleryContainer.className = 'awardsgallery-container container';
     moveInstrumentation(block, awardsGalleryContainer);
   }
+
   // Create cards grid container
   const cardsGridContainer = document.createElement('div');
   cardsGridContainer.className = 'awardsgallery-grid row';
@@ -16,7 +18,7 @@ export default function decorate(block) {
   const awardsGalleryCards = block.children || [];
   [...awardsGalleryCards]?.forEach((card) => {
     const cardElement = document.createElement('div');
-    cardElement.className = 'awardsgallery-card col-xl-4 col-lg-4 col-md-3 col-sm-2';
+    cardElement.className = 'awardsgallery-card';
     moveInstrumentation(card, cardElement);
 
     const imageLink = card.querySelector('a[href]');
@@ -76,6 +78,55 @@ export default function decorate(block) {
     cardElement.appendChild(cardContent);
     cardsGridContainer.appendChild(cardElement);
   });
+
+
+  // ----- create carousel buttons -----
+  const prevBtn = document.createElement('button');
+  const nextBtn = document.createElement('button');
+
+  prevBtn.className = 'awardsgallery-arrow prev';
+  nextBtn.className = 'awardsgallery-arrow next';
+
+  prevBtn.setAttribute('aria-label', 'Previous');
+  nextBtn.setAttribute('aria-label', 'Next');
+
+  // Add circular button with arrow SVG
+  const nextArrowIcon = SvgIcon({
+    name: 'chevronRight',
+    size: '24'
+  });
+
+  const preArrowIcon = SvgIcon({
+    name: 'chevronLeft',
+    size: '24'
+  });
+
+  prevBtn.innerHTML = preArrowIcon;
+  nextBtn.innerHTML = nextArrowIcon;
+
+  awardsGalleryContainer.appendChild(prevBtn);
+  awardsGalleryContainer.appendChild(nextBtn);
+
+
+  // Scroll logic
+  const scrollAmount = () =>
+    cardsGridContainer.querySelector('.awardsgallery-card')?.offsetWidth +
+    24;
+
+  prevBtn.addEventListener('click', () => {
+    cardsGridContainer.scrollBy({
+      left: -scrollAmount(),
+      behavior: 'smooth',
+    });
+  });
+
+  nextBtn.addEventListener('click', () => {
+    cardsGridContainer.scrollBy({
+      left: scrollAmount(),
+      behavior: 'smooth',
+    });
+  });
+
   // Clear original block content and append new structure
   block.textContent = '';
   block.appendChild(awardsGalleryContainer);

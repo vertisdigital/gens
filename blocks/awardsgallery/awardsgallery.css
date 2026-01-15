@@ -1,8 +1,15 @@
+.awardsgallery {
+    position: relative;
+    background: var(--color-bg-white);
+}
+
 .awardsgallery .awardsgallery-card {
    display: flex;
    flex-direction: column;
    align-items: center;
    background: var(--color-bg-white);
+   flex: 0 0 calc((100% - 48px) / 3);
+   scroll-snap-align: center;
 }
 
 .awardsgallery .awardsgallery-image {
@@ -50,23 +57,95 @@
 }
 
 .awardsgallery .awardsgallery-grid {
-    justify-content: center;
-    padding: 40px 0;
+    padding: 40px 64px;
+    display: flex;
+    flex-wrap: nowrap;           
+    overflow-x: auto;
+    scroll-behavior: smooth;
+    scrollbar-width: none;
+    scroll-snap-type: x mandatory;
+    gap: 24px;
 }
+
+.awardsgallery .awardsgallery-grid::-webkit-scrollbar {
+    display: none;
+  }
+
 .awardsgallery picture {
     text-align: center;
 }
 
-@media (width >= 768px) {
+.awardsgallery-arrow {
+    display: flex;
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    background: var(--color-bg-white);
+    border: 2px solid var(--color-border-tertiary);
+    color: var(--color-border-tertiary);
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    z-index: 2;
+    transition: all 0.2s ease;
+  }
+
+  .awardsgallery-arrow:hover {
+    border: 2px solid var(--color-border-secondary);
+    color: var(--color-border-secondary);
+    background: none;
+  }
+
+  .awardsgallery-arrow:focus {
+    border: 2px solid var(--color-border-secondary-pressed);
+    color: var(--color-border-secondary-pressed);
+    background: none;
+  }
+
+  .awardsgallery-arrow:disabled {
+    border: 2px solid var( --color-border-disabled);
+    color: var( --color-border-disabled);
+    background: none;
+    cursor: not-allowed;
+    pointer-events: none;
+  }
+
+  .awardsgallery-arrow .icon-wrapper {
+    display: flex;
+  }
+  
+  .awardsgallery-arrow.prev {
+    left: 0;
+  }
+  
+  .awardsgallery-arrow.next {
+    right: 0;
+  }
+
+@media (width < 768px) {
+    
+    .awardsgallery .awardsgallery-card {
+        flex: 0 0 100%;
+    }
+}
+
+  /* tablet styles */
+@media (width <= 1024px) and (width >= 768px) {
 
     .awardsgallery .awardsgallery-image img {
         max-width: 160px;
     }
 
-    .awardsgallery .awardsgallery-content * {
-        margin-bottom: 6px;
+    .awardsgallery .awardsgallery-card {
+        flex: 0 0 100%;
+        flex-direction: unset;
     }
 }
+
+
 
 @media (width >= 993px) {
     .awardsgallery .awardsgallery-card {
@@ -77,3 +156,4 @@
         margin-bottom: 8px;
     }
 }
+
