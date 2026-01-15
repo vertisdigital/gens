@@ -57,7 +57,7 @@
 }
 
 .awardsgallery .awardsgallery-grid {
-    padding: 40px 64px;
+    padding: 40px 0;
     display: flex;
     flex-wrap: nowrap;           
     overflow-x: auto;
@@ -65,6 +65,7 @@
     scrollbar-width: none;
     scroll-snap-type: x mandatory;
     gap: 24px;
+    margin: 0 72px;
 }
 
 .awardsgallery .awardsgallery-grid::-webkit-scrollbar {
@@ -126,9 +127,23 @@
   }
 
 @media (width < 768px) {
+
+    .awardsgallery .awardsgallery-grid {
+        margin: 0 56px;
+    }
     
     .awardsgallery .awardsgallery-card {
         flex: 0 0 100%;
+    }
+
+    .awardsgallery-arrow {
+        width: 32px;
+        height: 32px;
+    }
+
+    .icon-wrapper svg {
+        width: 16px;
+        height: 16px;
     }
 }
 
