@@ -236,18 +236,56 @@
     "id": "columns",
     "fields": [
       {
-        "component": "text",
-        "valueType": "number",
-        "name": "columns",
-        "value": "",
-        "label": "Columns"
+        "component": "select",
+        "name": "variant",
+        "label": "Layout Variant",
+        "valueType": "string",
+        "value": "single",
+        "options": [
+          {
+            "name": "Single (Default)",
+            "value": "single"
+          },
+          {
+            "name": "Multi Column",
+            "value": "multi"
+          }
+        ]
       },
       {
         "component": "text",
+        "name": "columns",
+        "label": "Columns",
         "valueType": "number",
+        "description": "Number of columns (Multi variant only)"
+      },
+      {
+        "component": "text",
         "name": "rows",
-        "value": "",
-        "label": "Rows"
+        "label": "Rows",
+        "valueType": "number",
+        "description": "Maximum number of rows (optional, Multi variant only)"
+      },
+      {
+        "component": "boolean",
+        "name": "showIcon",
+        "label": "Show Branded Icon",
+        "value": true,
+        "description": "Single variant only"
+      },
+      {
+        "component": "color",
+        "name": "backgroundColor",
+        "label": "Background Color",
+        "valueType": "string",
+        "description": "Section background color"
+      },
+      {
+        "component": "color",
+        "name": "textColor",
+        "label": "Text Color",
+        "valueType": "string",
+        "description": "Text color for headings and body"
       }
     ]
   },
