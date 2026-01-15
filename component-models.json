@@ -170,7 +170,7 @@
       }
     ]
   },
-    {
+  {
     "id": "searchresult",
     "fields": [
       {
@@ -257,14 +257,24 @@
         "name": "columns",
         "label": "Columns",
         "valueType": "number",
-        "description": "Number of columns (Multi variant only)"
+        "description": "Number of columns (Multi variant only)",
+        "condition": {
+          "field": "variant",
+          "operator": "equals",
+          "value": "multi"
+        }
       },
       {
         "component": "text",
         "name": "rows",
         "label": "Rows",
         "valueType": "number",
-        "description": "Maximum number of rows (optional, Multi variant only)"
+        "description": "Maximum number of rows (optional, Multi variant only)",
+        "condition": {
+          "field": "variant",
+          "operator": "equals",
+          "value": "multi"
+        }
       },
       {
         "component": "boolean",
@@ -274,18 +284,72 @@
         "description": "Single variant only"
       },
       {
-        "component": "color",
+        "component": "select",
         "name": "backgroundColor",
         "label": "Background Color",
         "valueType": "string",
-        "description": "Section background color"
+        "options": [
+          {
+            "name": "Default",
+            "value": ""
+          },
+          {
+            "name": "Brand Dark",
+            "value": "bg-primary"
+          },
+          {
+            "name": "Light",
+            "value": "bg-light"
+          },
+          {
+            "name": "White",
+            "value": "bg-white"
+          },
+          {
+            "name": "Transparent",
+            "value": "bg-transparent"
+          }
+        ]
       },
       {
-        "component": "color",
+        "component": "select",
         "name": "textColor",
         "label": "Text Color",
         "valueType": "string",
-        "description": "Text color for headings and body"
+        "options": [
+          {
+            "name": "Text / Black",
+            "value": "text-black"
+          },
+          {
+            "name": "Text / Body",
+            "value": "text-body"
+          },
+          {
+            "name": "Text / Secondary",
+            "value": "text-secondary"
+          },
+          {
+            "name": "Text / Tertiary",
+            "value": "text-tertiary"
+          },
+          {
+            "name": "Text / White",
+            "value": "text-white"
+          },
+          {
+            "name": "Foreground / Primary",
+            "value": "fg-primary"
+          },
+          {
+            "name": "Foreground / Secondary",
+            "value": "fg-secondary"
+          },
+          {
+            "name": "Foreground / Tertiary",
+            "value": "fg-tertiary"
+          }
+        ]
       }
     ]
   },
@@ -1865,7 +1929,7 @@
       {
         "component": "text",
         "name": "awardyear",
-        "label": "Award Year" 
+        "label": "Award Year"
       },
       {
         "component": "text",
@@ -2062,7 +2126,7 @@
           "maxLength": 2000,
           "customErrorMsg": "Description cannot exceed 2000 characters"
         }
-      },      
+      },
       {
         "component": "text",
         "name": "ctaLabel",
@@ -2071,7 +2135,7 @@
           "maxLength": 30,
           "customErrorMsg": "CTA text cannot exceed 30 characters"
         }
-      },      
+      },
       {
         "component": "aem-content",
         "name": "ctaLink",
