@@ -206,14 +206,6 @@
         line-height: 24px;
     }
 
-    .coreprinciples .row {
-        flex-direction: column;
-        margin-left: -9px;
-        margin-right: -9px;
-        row-gap: 24px;
-        gap: 24px;
-    }
-
     .principles-item,
     .principles-item:first-child,
     .principles-item:last-child {
