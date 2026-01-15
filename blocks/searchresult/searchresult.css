@@ -4,11 +4,46 @@
 
 .search-suggestion-box {
   display: flex !important;
-  padding-top: 111px !important;
+  padding: var(--spacing-6, 24px) var(--spacing-20, 160px) !important;
+  padding-top: 135px !important;
+  background: var(--colour-neutral-100, #F1F3F3) !important;
+}
+
+.searchresult-title a {
+  color: var(--colours-text-text-primary, #1D3D51);
+
+  /* H6/Bold */
+  font-family: var(--typography-font-family-font-title, "Inter");
+  font-size: var(--typography-font-size-text-sm, 24px);
+  font-style: normal;
+  font-weight: 700;
+  line-height: var(--typography-font-line-height-leading-4, 40px);
+  /* 166.667% */
+  letter-spacing: var(--typography-font-spacing-tracking-normal, 0);
+}
+
+.search-suggestion-box .search-suggestions a{
+  color: var(--colours-text-text-primary, #1D3D51) !important;
+  width: 100% !important;
+}
+
+.search-suggestion-box .search-box {
+  width: 846px !important;
+  max-width: 100% !important;
+  border-bottom: 1px solid var(--colours-border-border-dark, #3B3D3D) !important;
+}
+
+.search-suggestion-box .search-box .suggestion-search-btn {
+  filter: invert(1);
+}
+
+.search-suggestion-box .search-box input {
+  color: var(--colours-text-text-body, #3B3D3D) !important;
 }
 
 .search-suggestion-box .search-suggestions {
-  padding: 0 !important;
+  width: 846px !important;
+  max-width: 100%;
 }
 
 .searchresult-wrapper {
@@ -70,19 +105,6 @@
   align-items: flex-start;
   gap: var(--spacing-2, 8px);
   align-self: stretch;
-}
-
-.searchresult-title a {
-  color: var(--colours-text-text-primary, #1D3D51);
-
-  /* H6/Bold */
-  font-family: var(--typography-font-family-font-title, "Inter");
-  font-size: var(--typography-font-size-text-sm, 24px);
-  font-style: normal;
-  font-weight: 700;
-  line-height: var(--typography-font-line-height-leading-4, 40px);
-  /* 166.667% */
-  letter-spacing: var(--typography-font-spacing-tracking-normal, 0);
 }
 
 .searchresult-title a:hover {
@@ -263,6 +285,27 @@
   letter-spacing: var(--typography-font-spacing-tracking-normal, 0);
 }
 
+@media (max-width: 1180px) {
+  .searchresult-wrapper {
+    display: flex;
+    padding: var(--spacing-16, 64px) var(--spacing-10, 40px);
+    justify-content: center;
+    align-items: center;
+    gap: var(--spacing-25, 10px);
+    align-self: stretch;
+  }
+
+  .search-suggestion-box {
+    display: flex !important;
+    padding-left: var(--spacing-10, 40px) !important;
+    padding-right: var(--spacing-10, 40px) !important;
+    justify-content: center;
+    align-items: center;
+    gap: var(--spacing-25, 10px);
+    align-self: stretch;
+  }
+}
+
 @media (min-width: 768px) {
   .searchresult-wrapper .pagination-mobilephone {
     display: none;
@@ -270,6 +313,11 @@
 }
 
 @media (max-width: 767px) {
+  .search-suggestion-box {
+    padding-left: var(--spacing-10, 24px) !important;
+    padding-right: var(--spacing-10, 24px) !important;
+    padding-top: 111px !important;
+  }
   .searchresult-wrapper {
     padding: var(--spacing-10, 40px) var(--spacing-6, 24px);
     padding-top: 40px;

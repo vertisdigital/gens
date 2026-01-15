@@ -272,7 +272,12 @@ function loadSearchSuggest(keyword) {
   clearTimeout(debounceTimer);
 
   debounceTimer = setTimeout(async () => {
-    if (keyword.length < 2) return;
+    const suggestions = document.querySelector('.search-suggestions');
+    
+    if (keyword.length < 2) {
+      suggestions.classList.remove('active');
+      return;
+    }
 
     try {
       const res = await fetch(
@@ -289,17 +294,22 @@ function loadSearchSuggest(keyword) {
       }
 
       const data = await res.json();
-      console.log('Suggest result:', data);
-      const suggestions = document.querySelector('.search-suggestions');
-      suggestions.innerHTML = '';
-      data.forEach((item) => {
-        const suggestion = document.createElement('a');
-        suggestion.className = 'suggestion-item';
-        suggestion.href = shortenURL(item.path);
-        const hl = highlight(item.highlight, keyword);
-        suggestion.innerHTML = hl;
-        suggestions.appendChild(suggestion);
-      });
+      if (data.length) {
+        console.log('Suggest result:', data);
+        suggestions.classList.add('active');
+        suggestions.innerHTML = '';
+        data.forEach((item) => {
+          const suggestion = document.createElement('a');
+          suggestion.className = 'suggestion-item';
+          suggestion.href = shortenURL(item.path);
+          const hl = highlight(item.highlight, keyword);
+          suggestion.innerHTML = hl;
+          suggestions.appendChild(suggestion);
+        });
+      }
+      else {
+         suggestions.classList.remove('active');
+      }
 
     } catch (err) {
       console.error('Suggest fetch failed', err);

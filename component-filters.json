@@ -31,7 +31,17 @@
       "sustainabilitygovernance",
       "corporatepolicies",
       "statistics",
-      "searchresult"
+      "searchresult",
+      "divider",
+      "text",
+      "columns",
+      "sectionheader"
+    ]
+  },
+  {
+    "id": "sectionheader",
+    "components": [
+      "linkField"
     ]
   },
   {
@@ -76,7 +86,8 @@
       "textsection",
       "textmediablock",
       "linkField",
-      "projectslist"
+      "projectslist",
+      "text"
     ]
   },
   {
