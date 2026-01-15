@@ -11,7 +11,7 @@ export default function decorate(block) {
   const existingHeroContainer = block.querySelector('.hero-banner-container');
   const heroContainer = document.createElement('div');
   heroContainer.className = 'hero-banner-container';
-  
+
   // If there's an existing container, copy its style properties
   if (existingHeroContainer) {
     const existingStyle = existingHeroContainer.style.cssText;
@@ -19,37 +19,50 @@ export default function decorate(block) {
       heroContainer.style.cssText = existingStyle;
     }
   }
+function getAssetLink(rootBlock, modelName, nestedSelector) {
+  return (
+    rootBlock.querySelector(`[data-aue-model="${modelName}"] a[href]`)
+    || rootBlock.querySelector(`${nestedSelector} a[href]`)
+  );
+}
+
 
   // Get block children early for use in fallback selectors
   const blockChildren = Array.from(block.children);
 
   // Desktop image (also used as fallback for tablet and mobile)
-  let desktopImageUrl = null;
-  let desktopImageAlt = 'Hero Image';
+    function renderHeroImage({
+      block: rootBlock,
+      heroContainer: container,
+      modelName,
+      nestedSelector,
+      className,
+      label,
+    })  {
+    const linkEl = getAssetLink(rootBlock, modelName, nestedSelector);
+    if (!linkEl) return null;
 
-  const imageLink = block.querySelector('a[data-aue-model="bannerimage"][href]')
-    || block.querySelector('.herobanner-nested-1-1 a[href]');
+    const src = linkEl.getAttribute('href');
+    if (!src) return null;
 
-  if (imageLink) {
-    desktopImageUrl = imageLink.getAttribute('href');
-    desktopImageAlt = imageLink.getAttribute('title') || 'Hero Image';
+    const alt = linkEl.getAttribute('title') || 'Hero Image';
 
     const imageHtml = ImageComponent({
-      src: desktopImageUrl,
-      alt: desktopImageAlt,
-      className: 'hero-image hero-image-desktop',
+      src,
+      alt,
+      className,
       asImageName: 'hero.webp',
       breakpoints: {
         mobile: {
-          src: `${desktopImageUrl}`,
+          src,
           smartCrop: 'Small',
         },
         tablet: {
-          src: `${desktopImageUrl}`,
+          src,
           smartCrop: 'Medium',
         },
         desktop: {
-          src: `${desktopImageUrl}`,
+          src,
           smartCrop: 'Desktop',
         },
       },
@@ -57,111 +70,46 @@ export default function decorate(block) {
     });
 
     const imageContainer = document.createElement('div');
-    // Copy data attributes from parent element if they exist
-    imageContainer.setAttribute('data-aue-model', 'bannerimage');
-    imageContainer.setAttribute('data-aue-label', 'Banner Image');
+    moveInstrumentation(linkEl, imageContainer);
+
+    imageContainer.setAttribute('data-aue-model', modelName);
+    imageContainer.setAttribute('data-aue-label', label);
     imageContainer.insertAdjacentHTML('beforeend', imageHtml);
-    heroContainer.appendChild(imageContainer);
-    imageLink.remove();
+
+    container.appendChild(imageContainer);
+    linkEl.remove();
+
+    return { src, alt };
   }
+  // Render hero images
+  renderHeroImage({
+    block,
+    heroContainer,
+    modelName: 'bannerimage',
+    nestedSelector: '.herobanner-nested-1-1',
+    className: 'hero-image hero-image-desktop',
+    label: 'Banner Image',
+  });
 
-  // Tablet image – falls back to desktop image if tablet-specific image is not set
-  const tabletImageLink = block.querySelector('[data-aue-prop="bannerimageTablet"] a[href]');
-  let tabletImageUrl = null;
-  let tabletImageAlt = 'Hero Image';
+  renderHeroImage({
+    block,
+    heroContainer,
+    modelName: 'bannerimageTablet',
+    nestedSelector: '.herobanner-nested-1-5',
+    className: 'hero-image hero-image-tablet',
+    label: 'Banner Image (Tablet)',
+  });
 
-  if (tabletImageLink) {
-    tabletImageUrl = tabletImageLink.getAttribute('href');
-    tabletImageAlt = tabletImageLink.getAttribute('title') || 'Hero Image';
-  } else if (desktopImageUrl) {
-    tabletImageUrl = desktopImageUrl;
-    tabletImageAlt = desktopImageAlt;
-  }
+  renderHeroImage({
+    block,
+    heroContainer,
+    modelName: 'bannerimageMobile',
+    nestedSelector: '.herobanner-nested-1-6',
+    className: 'hero-image hero-image-mobile',
+    label: 'Banner Image (Mobile)',
+  });
 
-  if (tabletImageUrl) {
-    const imageHtml = ImageComponent({
-      src: tabletImageUrl,
-      alt: tabletImageAlt,
-      className: 'hero-image hero-image-tablet',
-      asImageName: 'hero.webp',
-      breakpoints: {
-        mobile: {
-          src: `${tabletImageUrl}`,
-          smartCrop: 'Small',
-        },
-        tablet: {
-          src: `${tabletImageUrl}`,
-          smartCrop: 'Medium',
-        },
-        desktop: {
-          src: `${tabletImageUrl}`,
-          smartCrop: 'Desktop',
-        },
-      },
-      lazy: false,
-    });
 
-    const imageContainer = document.createElement('div');
-    if (tabletImageLink) {
-      moveInstrumentation(tabletImageLink, imageContainer);
-    }
-    imageContainer.setAttribute('data-aue-model', 'bannerimageTablet');
-    imageContainer.setAttribute('data-aue-label', 'Banner Image (Tablet)');
-    imageContainer.insertAdjacentHTML('beforeend', imageHtml);
-    heroContainer.appendChild(imageContainer);
-    if (tabletImageLink) {
-      tabletImageLink.remove();
-    }
-  }
-
-  // Mobile image – falls back to desktop image if mobile-specific image is not set
-  const mobileImageLink = block.querySelector('[data-aue-prop="bannerimageMobile"] a[href]');
-  let mobileImageUrl = null;
-  let mobileImageAlt = 'Hero Image';
-
-  if (mobileImageLink) {
-    mobileImageUrl = mobileImageLink.getAttribute('href');
-    mobileImageAlt = mobileImageLink.getAttribute('title') || 'Hero Image';
-  } else if (desktopImageUrl) {
-    mobileImageUrl = desktopImageUrl;
-    mobileImageAlt = desktopImageAlt;
-  }
-
-  if (mobileImageUrl) {
-    const imageHtml = ImageComponent({
-      src: mobileImageUrl,
-      alt: mobileImageAlt,
-      className: 'hero-image hero-image-mobile',
-      asImageName: 'hero.webp',
-      breakpoints: {
-        mobile: {
-          src: `${mobileImageUrl}`,
-          smartCrop: 'Small',
-        },
-        tablet: {
-          src: `${mobileImageUrl}`,
-          smartCrop: 'Medium',
-        },
-        desktop: {
-          src: `${mobileImageUrl}`,
-          smartCrop: 'Desktop',
-        },
-      },
-      lazy: false,
-    });
-
-    const imageContainer = document.createElement('div');
-    if (mobileImageLink) {
-      moveInstrumentation(mobileImageLink, imageContainer);
-    }
-    imageContainer.setAttribute('data-aue-model', 'bannerimageMobile');
-    imageContainer.setAttribute('data-aue-label', 'Banner Image (Mobile)');
-    imageContainer.insertAdjacentHTML('beforeend', imageHtml);
-    heroContainer.appendChild(imageContainer);
-    if (mobileImageLink) {
-      mobileImageLink.remove();
-    }
-  }
 
   // Try multiple selectors to find font color in both authoring and publishing mode
   const fontColorEl = block.querySelector('[data-aue-prop="bannerFontColor"], [data-gen-prop="bannerFontColor"]')
@@ -192,7 +140,7 @@ export default function decorate(block) {
   const gradientValue = gradientP?.textContent?.trim();
   const enableGradient = !gradientEl || gradientValue !== 'false';
   heroContainer.classList.add(enableGradient ? 'hero-has-gradient' : 'hero-no-gradient');
-  
+
   // Only remove if it's not the block itself
   if (gradientEl && (
     gradientEl.parentNode === block
@@ -206,14 +154,14 @@ export default function decorate(block) {
 
   // Try multiple selectors to find elements in both authoring and publishing mode
   // Check block children directly as fallback (blockChildren already defined above)
-  
+
   const headingElement = block.querySelector(
     '[data-aue-prop="bannerheading"], [data-gen-prop="bannerheading"]',
-  ) 
-    || block.querySelector('.herobanner-nested-1-2 p') 
+  )
+    || block.querySelector('.herobanner-nested-1-2 p')
     || block.querySelector('.herobanner-nested-1-2')
     || (blockChildren[1]?.querySelector('p') ? blockChildren[1] : null);
-    
+
   if (headingElement) {
     // Get text from p tag if it exists, otherwise from the element itself
     const headingP = headingElement.querySelector('p') || headingElement;
@@ -242,7 +190,7 @@ export default function decorate(block) {
     || block.querySelector('.herobanner-nested-1-3 p')
     || block.querySelector('.herobanner-nested-1-3')
     || (blockChildren[2]?.querySelector('p') ? blockChildren[2] : null);
-    
+
   if (titleElement) {
     // Get text from p tag if it exists, otherwise from the element itself
     const titleP = titleElement.querySelector('p') || titleElement;
@@ -271,7 +219,7 @@ export default function decorate(block) {
     || block.querySelector('.herobanner-nested-1-4 p')
     || block.querySelector('.herobanner-nested-1-4')
     || (blockChildren[3]?.querySelector('p') ? blockChildren[3] : null);
-    
+
   if (descElement) {
     // Get text from p tag if it exists, otherwise from the element itself
     const descP = descElement.querySelector('p') || descElement;
@@ -296,7 +244,7 @@ export default function decorate(block) {
     || block.querySelector('.herobanner-nested-1-10')
     || block.children[10]
     || (blockChildren[9]?.querySelector('a') ? blockChildren[9] : null);
-    
+
   if (arrowIconLink && arrowIconLink.querySelector('a') != null) {
     const arrowIconHtml = SvgIcon({
       name: 'arrow',
@@ -507,9 +455,9 @@ export default function decorate(block) {
         alt: 'Chevron Left (1) Icon',
         className: 'first-svg-icon', // You can customize the class name if needed
         breakpoints: {
-          mobile: {src: firstIconLink.getAttribute('href') },
-          tablet: {src: firstIconLink.getAttribute('href') },
-          desktop: {src: firstIconLink.getAttribute('href') },
+          mobile: { src: firstIconLink.getAttribute('href') },
+          tablet: { src: firstIconLink.getAttribute('href') },
+          desktop: { src: firstIconLink.getAttribute('href') },
         },
         lazy: false,
       });
@@ -520,9 +468,9 @@ export default function decorate(block) {
         alt: 'Chevron Left Icon',
         className: 'second-svg-icon', // You can customize the class name if needed
         breakpoints: {
-          mobile: {  src: secondIconLink.getAttribute('href') },
+          mobile: { src: secondIconLink.getAttribute('href') },
           tablet: { src: secondIconLink.getAttribute('href') },
-          desktop: {src: secondIconLink.getAttribute('href') },
+          desktop: { src: secondIconLink.getAttribute('href') },
         },
         lazy: false,
       });
@@ -566,7 +514,7 @@ export default function decorate(block) {
           lazy: false,
         });
 
-    
+
         newsLetterImage.insertAdjacentHTML('beforeend', imgHtml);
         moveInstrumentation(itemDivs[2], newsLetterImage);
         aTag.remove();
@@ -615,7 +563,7 @@ export default function decorate(block) {
     || block.querySelector('.herobanner-nested-1-9')
     || (currentBlockChildren[8]?.querySelector('p') ? currentBlockChildren[8] : null)
     || (currentBlockChildren[9]?.querySelector('p') ? currentBlockChildren[9] : null);
-    
+
   // Get text from p tag if it exists, otherwise from the element itself
   const scrollP = scrollHintTextEl?.querySelector('p') || scrollHintTextEl;
   const scrollText = scrollP?.textContent?.trim();
@@ -656,10 +604,10 @@ export default function decorate(block) {
 
   // Check if we're not in author instance before setting up auto-scroll
   // Check for authoring mode: URL contains 'author' or block has data-aue-resource
-  const isAuthorInstance = window.location.href.indexOf('author') !== -1 
+  const isAuthorInstance = window.location.href.indexOf('author') !== -1
     || block.closest('[data-aue-resource]') !== null
     || document.querySelector('[data-aue-resource]') !== null;
-  
+
   if (carouselItemsAll.length > 0 && !isAuthorInstance && scrollInterval > 0) {
     setInterval(() => {
       moveCarousel(true, false);
@@ -676,7 +624,7 @@ export default function decorate(block) {
   if (existingContainer && existingContainer.parentNode === block) {
     existingContainer.remove();
   }
-  
+
   // Remove all remaining children
   while (block.firstChild) {
     block.removeChild(block.firstChild);

@@ -1,6 +1,6 @@
+/* Core Principles Component */
 .coreprinciples {
-    padding: 0 0 45px;
-    margin-top: 45px;
+    margin-top: 64px;
 }
 
 .coreprinciples .coreprinciples {
@@ -14,24 +14,15 @@
     height: 1px;
     background: var(--text-color);
     margin: 0 auto;
-    transform: translateY(45px);
+    transform: translateY(80px);
 }
+
 .coreprinciples.coreprinciples-no-border .container::after{
     display: none;
 }
 
-#remove-border-bottom .container::after{
+#remove-border-bottom .container::after {
     display: none;
-}
-
-.coreprinciples .row {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    margin-left: -18px;
-    margin-right: -18px;
-    width: 100%; 
-    row-gap: 36px;
 }
 
 .coreprinciples > div {
@@ -40,98 +31,126 @@
     align-items: center;
 }
 
+.coreprinciples .coreprinciples-container {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    width: 100%;
+    gap: 24px;
+}
+
+.principles-item {
+    padding: 0;
+}
+
 .principles-item > div {
-    background-color: #f7f7f7;
-    padding: 16px;
+    background-color: var(--primary-default-fg);
+    padding: 24px;
     display: flex;
     flex-direction: column;
-    height: 100%; /* Fills parent height */
+    height: 100%;
+    border-radius: 8px;
 }
+
 .principles-item > div:first-child {
-    padding: 20px;
+    padding: 24px;
 }
 
 .coreprinciples .icon-wrapper {
-    margin-bottom: 1.5rem;
+    margin-bottom: 40px;
     display: flex;
     align-items: center;
     justify-content: center;
-    padding: 48px 10px;
+    padding: 0;
     align-self: stretch;
+    width: 64px;
+    height: 64px;
+    flex-shrink: 0;
 }
 
 .coreprinciples .icon-wrapper picture {
-    width: 124px;
-    height: 124px;
-}
-
-.coreprinciples .icon-wrapper svg {
-    width: 100%;
-    height: 100%;
-    fill: rgb(196 163 98);
+    width: 64px;
+    height: 64px;
+    color: var(--color-fg-tertiary);
 }
 
 .coreprinciples .coreprinciples-card-title {
-    font-size: var(--font-size-s);
-    font-weight: 600;
-    line-height: 24px;
-    margin-bottom: 10px;
+    font-family: var(--typography-font-family-font-title);
+    font-size: 36px;
+    font-weight: 400;
+    line-height: 56px;
+    margin-bottom: 24px;
     margin-top: 0;
-    color: var(--text-color);
+    color: var(--color-text-body);
 }
 
-.coreprinciples [data-aue-prop="description"], .coreprinciples div:last-child p {
-    font-size: var(--font-size-xs);
-    line-height: 24px;
-    color: var(--body-text-color);
-}
-
-.coreprinciples [data-richtext-prop="description"], .coreprinciples div:last-child p {
+.coreprinciples [data-aue-prop="description"],
+.coreprinciples div:last-child p {
+    font-family: var(--typography-font-family-font-body);
     font-size: var(--font-size-xs);
     font-weight: 400;
     line-height: 24px;
-    color: var(--body-text-color);
+    color: var(--color-text-body);
+    margin: 0;
 }
-@media (width <= 1199px) {
-    .coreprinciples .coreprinciples .container::after {
-        width: 100%;
-    }
+
+.coreprinciples [data-richtext-prop="description"],
+.coreprinciples div:last-child p {
+    font-family: var(--typography-font-family-font-body);
+    font-size: var(--font-size-xs);
+    font-weight: 400;
+    line-height: 24px;
+    color: var(--color-text-body);
+    margin: 0;
 }
-@media (width <= 992px) {
-    .coreprinciples .icon-wrapper {
-        padding: 36px 10px;
+
+
+
+/* Tablet styles (768px - 1199px) */
+@media (width >= 768px) and (width < 1200px) {
+    .coreprinciples .coreprinciples-container {
+        display: flex;
+        flex-direction: column;
     }
 
-    .coreprinciples .row {
-        justify-content: left;
-        margin-left: -12px;
-        margin-right: -12px;
-        row-gap: 24px;
+    .coreprinciples .icon-wrapper {
+        padding: 0;
+        margin-bottom: 0;
+        align-self: center;
     }
 
     .coreprinciples .icon-wrapper picture {
-        width: 80px;
-        height: 80px;
+        width: 64px;
+        height: 64px;
+    }
+
+    .principles-item .content-wrapper {
+        display: flex;
+        flex-direction: column;
     }
 
     .coreprinciples .coreprinciples-card-title {
-        font-size: 18px;
+        font-size: var(--font-size-l);
+        line-height: 48px;
+        margin-bottom: 16px;
     }
 
-    .principles-item, .principles-item:first-child, .principles-item:last-child {
-        padding: 0 12px;
+    .principles-item > div {
+        flex-direction: row;
+        gap: 32px;
+        padding: 24px;
+        align-items: center;
     }
 
     .coreprinciples {
-        padding: 0 0 28px;
-        margin-top: 28px;
+        margin-top: 40px;
     }
 
     .coreprinciples .coreprinciples .container::after {
-        transform: translateY(28px);
+        transform: translateY(64px);
     }
 
-    .row .principles-item:nth-child(1), .row .principles-item:nth-child(3){
+    .row .principles-item:nth-child(1),
+    .row .principles-item:nth-child(3) {
         margin-left: -12px;
     }
 
@@ -141,19 +160,27 @@
         padding-left: 24px;
     }
 }
+
+/* Mobile styles (< 768px) */
 @media (width < 768px) {
     .coreprinciples {
-        padding: 0 0 24px;
-        margin-top: 24px
+        margin-top: 24px;
+    }
+
+    .coreprinciples .coreprinciples-container {
+        display: flex;
+        flex-direction: column;
     }
 
     .coreprinciples .coreprinciples .container::after {
         display: none;
     }
-    
+
     .coreprinciples .icon-wrapper {
-        padding: 28px 10px;
-        margin-bottom: 10px;
+        padding: 0;
+        margin-bottom: 24px;
+        width: 64px;
+        height: 64px;
     }
 
     .coreprinciples .icon-wrapper picture {
@@ -162,48 +189,42 @@
     }
 
     .coreprinciples .coreprinciples-card-title {
-        font-size: var(--font-size-xs);
-        line-height: 20px;
+        font-size: 24px;
+        line-height: 40px;
         margin-bottom: 8px;
     }
 
-    .coreprinciples [data-aue-prop="description"], .coreprinciples div:last-child p {
-        font-size: var(--font-size-xxs);
-        line-height: 20px;
+    .coreprinciples [data-aue-prop="description"],
+    .coreprinciples div:last-child p {
+        font-size: var(--font-size-xs);
+        line-height: 24px;
     }
 
-    .coreprinciples [data-richtext-prop="description"], .coreprinciples div:last-child p {
-        font-size: var(--font-size-xxs);
-        line-height: 20px;
+    .coreprinciples [data-richtext-prop="description"],
+    .coreprinciples div:last-child p {
+        font-size: var(--font-size-xs);
+        line-height: 24px;
     }
 
-    .coreprinciples .row {
-        margin-left: -9px;
-        margin-right: -9px;
-        row-gap: 18px;
+    .principles-item,
+    .principles-item:first-child,
+    .principles-item:last-child {
+        padding: 0;
     }
 
-    .principles-item, .principles-item:first-child, .principles-item:last-child {
-        padding: 0px;
-    }
-    
-    .principles-item > div{
-        padding: 12px;
+    .principles-item > div {
+        flex-direction: column;
+        padding: 24px;
     }
 
-    .row .principles-item:nth-child(1), .row .principles-item:nth-child(3){
-        margin-left: 0px;
+    .row .principles-item:nth-child(1),
+    .row .principles-item:nth-child(3) {
+        margin-left: 0;
     }
 
     .row .principles-item:nth-child(2) {
-        margin-left: 0px;
+        margin-left: 0;
         padding-right: 0;
-        padding-left: 0px;
-    }
-}
-
-@media (width>=1200px){
-    .principles-item > div{
-        padding: 20px;
+        padding-left: 0;
     }
 }

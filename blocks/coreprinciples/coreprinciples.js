@@ -25,7 +25,7 @@ export default function decorate(block) {
   container.className = 'container';
 
   const row = document.createElement('div');
-  row.className = 'row';
+  row.className = 'coreprinciples-container';
 
   // Convert each item to use proper semantic structure
   const items = [...coreBlock.querySelectorAll('[data-aue-model="coreprinciple"], [data-gen-model="featureItem"]')];
@@ -33,7 +33,7 @@ export default function decorate(block) {
   items.forEach((item) => {
     // Add responsive column classes as per requirements
     const col = document.createElement('div');
-    col.className = 'col-xl-4 col-md-3 col-sm-4 principles-item';
+    col.className = 'principles-item';
 
     // Get the icon URL and alt text from anchor
     const iconLink = item.querySelector('a');
@@ -82,8 +82,17 @@ export default function decorate(block) {
       }
     }
 
+    const contentWrapper = document.createElement('div');
+    contentWrapper.className = 'content-wrapper';
+
     // Convert title to h3 with preserved authoring attributes
     const allDivElements = item.querySelectorAll('div');
+
+    const titleImage = allDivElements[0];
+    if (titleImage !== null) {
+      contentWrapper.appendChild(titleImage);
+    }
+    
     const title = allDivElements[1];
     if (title !== null) {
       const h3 = document.createElement('h3');
@@ -96,6 +105,7 @@ export default function decorate(block) {
         h3.setAttribute(attr.name, attr.value);
       });
       title.replaceWith(h3);
+      contentWrapper.appendChild(h3);
     }
 
     // Preserve description data-aue attributes
@@ -105,14 +115,17 @@ export default function decorate(block) {
       descAttributes.forEach((attr) => {
         description.setAttribute(attr.name, attr.value);
       });
+      contentWrapper.appendChild(description);
     }
 
     // Clean up original icon link
     iconLink?.parentElement.remove();
 
-    // Insert icon wrapper at start
-    item.insertBefore(iconWrapper, item.firstChild);
-
+    // Clear item and rebuild structure
+    item.innerHTML = '';
+    item.appendChild(iconWrapper);
+    item.appendChild(contentWrapper);
+    
     // Wrap item in column and add to row
     col.appendChild(item.cloneNode(true));
     row.appendChild(col);
