@@ -107,6 +107,11 @@
   letter-spacing: var(--typography-font-spacing-tracking-normal, 0);
 }
 
+.search-suggestion-box .search-suggestions a{
+  color: var(--colours-text-text-primary, #1D3D51) !important;
+  width: 100% !important;
+}
+
 .searchresult-title a:hover {
   text-decoration: underline;
 }
