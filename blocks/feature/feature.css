@@ -596,9 +596,6 @@ color: var(--body-text-color);
 
   .with-images-four-col .about-us-stats .about-us-right{
     padding-bottom: 40px;
-  }
-
-  .with-images-four-col .about-us-stats .about-us-right {
     grid-template-columns: repeat(2, 1fr);
     gap: 24px;
   }
@@ -622,9 +619,6 @@ color: var(--body-text-color);
 
   .with-images-four-col .about-us-stats .about-us-right{
     padding-bottom: 24px;
-  }
-
-  .with-images-four-col .about-us-stats .about-us-right {
     grid-template-columns: 1fr;
     gap: 24px;
   }
