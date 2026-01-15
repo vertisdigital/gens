@@ -1,7 +1,7 @@
 // Collection of SVG icons as template strings
 export const icons = {
   arrow: `<svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-    <path d="M12 4L10.59 5.41L16.17 11H4V13H16.17L10.59 18.59L12 20L20 12L12 4Z" fill="currentColor"/>
+    <path d="M12 4L10.59 5.41L16.17 11H4V13H16.17L10.59 18.59L12 20L20 12L12 4Z" fill="#B29152"/>
   </svg>`,
   leftarrow: `<svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 14 14" fill="none">
   <path d="M5.87788 11.76L0.0400391 6.00002L5.87788 0.240021L7.24004 1.58402L2.76436 6.00002L7.24004 10.416L5.87788 11.76Z" fill="#B29152"/>

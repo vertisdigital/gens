@@ -46,8 +46,6 @@ export default async function decorate(block) {
     footerPath = languageCodes.includes(firstSegment)
       ? `/${firstSegment}/footer`
       : `/footer`;
-
-    console.log(footerPath)
   }
   const fragment = await loadFragment(footerPath);
   if (fragment) {
@@ -165,8 +163,6 @@ export default async function decorate(block) {
 
     // Add logo column to columns container
     columnsContainer.appendChild(logoColumn);
-
-    console.log(columnsContainer)
 
     const navFragment = fragment.children[1];
 
@@ -293,7 +289,6 @@ export default async function decorate(block) {
 
     // Get bottom section content
     const bottomContent = fragment.children[2];
-    console.log(bottomContent)
 
     if (bottomContent) {
       // Create columns container - renamed to avoid shadowing
