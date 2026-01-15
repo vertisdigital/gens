@@ -1,6 +1,7 @@
 import ImageComponent from "../../shared-components/ImageComponent.js";
 import stringToHTML from "../../shared-components/Utility.js";
 import { moveInstrumentation } from '../../scripts/scripts.js';
+import SvgIcon from '../../shared-components/SvgIcon.js';
 
 
 const getGroups = (updatedChildren) => {
@@ -68,7 +69,35 @@ export default function decorate(block) {
       activeCard?.classList?.remove('active');
       activeContent?.classList?.remove('active');
       card.classList.add('active');
-      content.innerHTML = info.innerHTML;
+      const contentWrapper = content.querySelector('.board-director-content');
+      if (contentWrapper) {
+        // Get title from description-wrapper p
+        const titleP = card.querySelector('.description-wrapper p');
+        const titleText = titleP ? titleP.textContent : '';
+        
+        // Get name from director-info h3
+        const nameH3 = card.querySelector('.director-info h3');
+        const nameText = nameH3 ? nameH3.textContent : '';
+        
+        // Create two p tags at the top
+        const titleParagraph = document.createElement('p');
+        titleParagraph.textContent = titleText;
+        
+        const nameParagraph = document.createElement('p');
+        nameParagraph.textContent = nameText;
+        
+        // Clear existing content and add new paragraphs first
+        contentWrapper.innerHTML = '';
+        contentWrapper.appendChild(titleParagraph);
+        contentWrapper.appendChild(nameParagraph);
+        
+        // Then add the director content
+        const contentDiv = document.createElement('div');
+        contentDiv.innerHTML = info.innerHTML;
+        contentWrapper.appendChild(contentDiv);
+      } else {
+        content.innerHTML = info.innerHTML;
+      }
       content.classList.add('active');
     }
   }
@@ -78,7 +107,16 @@ export default function decorate(block) {
     card.className = 'director-card';
 
     // Create image element
-   const imgURL = director.imageUrl;;
+    const imgURL = director.imageUrl;
+
+    card.style.backgroundImage = `url("${imgURL}")`;
+    card.style.backgroundSize = 'cover';
+    card.style.backgroundPosition = 'center';
+    card.style.backgroundRepeat = 'no-repeat';
+   
+
+
+
     const picture = ImageComponent({
       src: imgURL,
       alt: director.name,
@@ -103,7 +141,12 @@ export default function decorate(block) {
       lazy: true,
     });
 
-   
+    const arrowIcon = SvgIcon({
+      name: 'arrowright',
+      size: '14',
+      color: 'var(--color-border-secondary)'
+    });
+
     // Create info container
     const info = document.createElement('div');
     info.className = 'director-info';
@@ -112,8 +155,7 @@ export default function decorate(block) {
               <div class="description-wrapper">
                 <p>${director.title}</p>
                 <div class="toggle-button">
-                    <button class="toggle-on">+</button>
-                    <button class="toggle-off">-</button>
+                    <button class="toggle-on">${arrowIcon}</button>
                 </div>
               </div>
           `;
@@ -125,10 +167,10 @@ export default function decorate(block) {
     content.style.display = 'none';
 
     // Assemble the card
-    if (picture) {
+    /* if (picture) {
       const imageElement = stringToHTML(picture);
       card.appendChild(imageElement);
-    }
+    } */
     card.appendChild(info);
     containerDiv.appendChild(card);
     containerDiv.appendChild(content);
@@ -169,6 +211,35 @@ export default function decorate(block) {
       wrapper.classList.add('wrapper', 'row');
       const directorInfo = document.createElement('div');
       directorInfo.classList.add('board-director-info');
+      
+      // Add toggle button at top right
+      const toggleButtonDiv = document.createElement('div');
+      toggleButtonDiv.classList.add('toggle-button');
+      const toggleOffButton = document.createElement('button');
+      toggleOffButton.classList.add('toggle-off');
+      const closeIcon = SvgIcon({
+        name: 'close',
+        className: '',
+        size: '24',
+        color: 'var(--color-text-black)'
+      });
+
+      toggleOffButton.innerHTML = closeIcon;
+      toggleOffButton.addEventListener('click', (e) => {
+        e.stopPropagation();
+        const activeCard = document.querySelector('.director-card.active');
+        const activeContent = document.querySelector('.board-director-info.active');
+        if (activeCard) activeCard.classList.remove('active');
+        if (activeContent) activeContent.classList.remove('active');
+      });
+      toggleButtonDiv.appendChild(toggleOffButton);
+      directorInfo.appendChild(toggleButtonDiv);
+      
+      // Create content wrapper to preserve toggle button when content is set
+      const contentWrapper = document.createElement('div');
+      contentWrapper.classList.add('board-director-content');
+      directorInfo.appendChild(contentWrapper);
+      
       segmentWrapper.appendChild(wrapper);
       group?.forEach((child) => wrapper.appendChild(child));
       row.appendChild(segmentWrapper);
