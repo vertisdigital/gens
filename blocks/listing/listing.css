@@ -264,10 +264,6 @@
 
 }
 
-.listing-wrapper {
-  position: relative;
-}
-
 .listing.grey-background {
   background: none;
 }
@@ -499,10 +495,6 @@
   display: none;
 }
 
-.without-images-right-column {
-  margin-top: 0;
-}
-
 .without-images-row .row {
   border-top: none;
   margin-bottom: 0;
@@ -568,6 +560,7 @@
   .without-images-right-column {
     flex: 0 0 50%;
     width: 50%;
+    margin-top: 0;
   }
 
   /* Left column - first title (main heading) */
@@ -630,6 +623,7 @@
   }
 
 .listing-wrapper{
+  position: relative;
   padding: 80px 0;
 
   @media (width >= 768px) and (width < 993px) {
