@@ -80,52 +80,93 @@ export default function decorate(block) {
   });
 
 
-  // ----- create carousel buttons -----
-  const prevBtn = document.createElement('button');
-  const nextBtn = document.createElement('button');
+  // Count items in awardsgallery-grid
+  const cards = cardsGridContainer.querySelectorAll('.awardsgallery-card');
+  const cardCount = cards.length;
 
-  prevBtn.className = 'awardsgallery-arrow prev';
-  nextBtn.className = 'awardsgallery-arrow next';
+  // Only show arrows if there are more than 3 items (4 or more)
+  if (cardCount > 3) {
+    // ----- create carousel buttons -----
+    const prevBtn = document.createElement('button');
+    const nextBtn = document.createElement('button');
 
-  prevBtn.setAttribute('aria-label', 'Previous');
-  nextBtn.setAttribute('aria-label', 'Next');
+    prevBtn.className = 'awardsgallery-arrow prev';
+    nextBtn.className = 'awardsgallery-arrow next';
 
-  // Add circular button with arrow SVG
-  const nextArrowIcon = SvgIcon({
-    name: 'chevronRight',
-    size: '24'
-  });
+    prevBtn.setAttribute('aria-label', 'Previous');
+    nextBtn.setAttribute('aria-label', 'Next');
 
-  const preArrowIcon = SvgIcon({
-    name: 'chevronLeft',
-    size: '24'
-  });
-
-  prevBtn.innerHTML = preArrowIcon;
-  nextBtn.innerHTML = nextArrowIcon;
-
-  awardsGalleryContainer.appendChild(prevBtn);
-  awardsGalleryContainer.appendChild(nextBtn);
-
-
-  // Scroll logic
-  const scrollAmount = () =>
-    cardsGridContainer.querySelector('.awardsgallery-card')?.offsetWidth +
-    24;
-
-  prevBtn.addEventListener('click', () => {
-    cardsGridContainer.scrollBy({
-      left: -scrollAmount(),
-      behavior: 'smooth',
+    // Add circular button with arrow SVG
+    const nextArrowIcon = SvgIcon({
+      name: 'chevronRight',
+      size: '24'
     });
-  });
 
-  nextBtn.addEventListener('click', () => {
-    cardsGridContainer.scrollBy({
-      left: scrollAmount(),
-      behavior: 'smooth',
+    const preArrowIcon = SvgIcon({
+      name: 'chevronLeft',
+      size: '24'
     });
-  });
+
+    prevBtn.innerHTML = preArrowIcon;
+    nextBtn.innerHTML = nextArrowIcon;
+
+    awardsGalleryContainer.appendChild(prevBtn);
+    awardsGalleryContainer.appendChild(nextBtn);
+
+    // Function to update button states based on scroll position
+    const updateButtonStates = () => {
+      const scrollLeft = cardsGridContainer.scrollLeft;
+      const scrollWidth = cardsGridContainer.scrollWidth;
+      const clientWidth = cardsGridContainer.clientWidth;
+      const scrollThreshold = 1; // Small threshold for comparison
+
+      // Disable prev button if at the start
+      if (scrollLeft <= scrollThreshold) {
+        prevBtn.disabled = true;
+        prevBtn.setAttribute('aria-disabled', 'true');
+      } else {
+        prevBtn.disabled = false;
+        prevBtn.setAttribute('aria-disabled', 'false');
+      }
+
+      // Disable next button if at the end
+      if (scrollLeft + clientWidth >= scrollWidth - scrollThreshold) {
+        nextBtn.disabled = true;
+        nextBtn.setAttribute('aria-disabled', 'true');
+      } else {
+        nextBtn.disabled = false;
+        nextBtn.setAttribute('aria-disabled', 'false');
+      }
+    };
+
+    // Initial button state
+    updateButtonStates();
+
+    // Scroll logic
+    const scrollAmount = () =>
+      cardsGridContainer.querySelector('.awardsgallery-card')?.offsetWidth +
+      24;
+
+    prevBtn.addEventListener('click', () => {
+      cardsGridContainer.scrollBy({
+        left: -scrollAmount(),
+        behavior: 'smooth',
+      });
+    });
+
+    nextBtn.addEventListener('click', () => {
+      cardsGridContainer.scrollBy({
+        left: scrollAmount(),
+        behavior: 'smooth',
+      });
+    });
+
+    // Update button states on scroll
+    cardsGridContainer.addEventListener('scroll', updateButtonStates);
+
+    // Update button states on window resize
+    window.addEventListener('resize', updateButtonStates);
+  }
 
   // Clear original block content and append new structure
   block.textContent = '';
