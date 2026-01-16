@@ -353,6 +353,7 @@
     .footer .copywrite-right {
         grid-template-columns: repeat(2, auto);
         row-gap: 10px;
+        flex-direction: column-reverse !important;
     }
 
     .footer .mt-4 .footer-bottom-links .copywrite-right, .footer .mt-4 .footer-bottom-links .copywrite-left {
