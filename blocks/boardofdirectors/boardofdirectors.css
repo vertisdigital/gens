@@ -1,6 +1,6 @@
 .boardofdirectors .board-director-info {
     display: none;
-    background-color: #F8F8F8;
+    background-color: var(--primary-default-fg);
     padding: 24px;
     margin-top: 24px;
     font-size: 16px;
