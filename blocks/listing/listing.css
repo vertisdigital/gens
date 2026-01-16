@@ -64,6 +64,12 @@
   }
 
   /* List item styles */
+  .without-images-row .row {
+    border-top: none;
+    margin-bottom: 0;
+    padding: 0;
+  }
+
   [data-aue-model="listitem"] .row, [data-gen-model="listitem"] .row {
     border-top: 1px solid var(--text-color);
   }
@@ -493,12 +499,6 @@
 
 .without-images-row [data-gen-model="linkField"] {
   display: none;
-}
-
-.without-images-row .row {
-  border-top: none;
-  margin-bottom: 0;
-  padding: 0;
 }
 
 .without-images-row .content-wrapper {
