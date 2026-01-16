@@ -325,6 +325,16 @@
   margin-top: 0;
 }
 
+.without-images-right-column [data-gen-model="listitem"] [data-gen-prop="title"] {
+  font-size: 24px !important;
+  line-height: 40px;
+  font-weight: 400;
+  color: #3B3D3D !important;
+  margin: 0;
+  padding-right: 0;
+  flex: 1;
+}
+
 .listing-wrapper .listing [data-aue-prop="heading"], .listing-wrapper .listing [data-gen-prop="heading"], .listing > div:nth-child(2) [data-gen-prop="title"] {
   font-size: var(--font-size-m);
   font-weight: 400;
@@ -382,6 +392,10 @@
   margin-top: 0;
   margin-bottom: 0;
   padding-right: 0;
+}
+
+.without-images-right-column [data-gen-prop="description"] {
+  display: none;
 }
 
 .listing-wrapper .listing [data-aue-model="listitem"] [data-aue-prop="description"], .listing-wrapper .listing [data-gen-model="listitem"] [data-gen-prop="description"] {
@@ -617,13 +631,7 @@
     gap: 16px;
   }
 
-  /* Right column - hide description, show title as main text */
-  .without-images-right-column [data-gen-prop="description"] {
-    display: none;
-  }
-
-  .listing-wrapper .listing .without-images-right-column [data-gen-model="listitem"] [data-gen-prop="title"],
-  .without-images-right-column [data-gen-model="listitem"] [data-gen-prop="title"] {
+  .listing-wrapper .listing .without-images-right-column [data-gen-model="listitem"] [data-gen-prop="title"] {
     font-size: 24px !important;
     line-height: 40px;
     font-weight: 400;
