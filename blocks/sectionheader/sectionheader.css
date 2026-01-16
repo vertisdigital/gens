@@ -110,9 +110,17 @@
     display: inline-flex;
 }
 
+.section-header-cta-icon .icon-wrapper {
+    position: relative;
+}
+
 .section-header-cta svg {
     width: 20px;
     height: 20px;
+    top: 50%;
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%) translateY(-50%);
 }
 
 .section-header-cta:hover {
