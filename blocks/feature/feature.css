@@ -233,7 +233,6 @@ color: var(--body-text-color);
   .feature-wrapper .about-us-stats{
     margin: 64px 0 0;
     gap: 40px;
-    padding: 0 40px;
   }
 
   .about-us-stats .about-us-left{
