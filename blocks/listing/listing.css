@@ -668,6 +668,22 @@
     padding-top: 0;
   }
 
+  /* Right column - list items */
+  .without-images-right-column [data-gen-model="listitem"] {
+    margin-bottom: 24px;
+  }
+
+  .without-images-right-column [data-gen-model="listitem"]:last-child {
+    margin-bottom: 0;
+  }
+
+  .without-images-right-column [data-gen-model="listitem"] [data-gen-prop="title"] {
+    font-size: 20px !important;
+    line-height: 32px;
+    font-weight: 400;
+    color: #3B3D3D !important;
+  }
+
   /* Left column - first title (main heading) */
   .without-images-left-column > div:first-child [data-gen-prop="title"] {
     font-size: 32px;
@@ -687,17 +703,7 @@
     margin-bottom: 0;
   }
 
-  /* Right column - list items */
-  .without-images-right-column [data-gen-model="listitem"] {
-    margin-bottom: 24px;
-  }
-
-  .without-images-right-column [data-gen-model="listitem"]:last-child {
-    margin-bottom: 0;
-  }
-
-  .listing-wrapper .listing .without-images-right-column [data-gen-model="listitem"] [data-gen-prop="title"],
-  .without-images-right-column [data-gen-model="listitem"] [data-gen-prop="title"] {
+  .listing-wrapper .listing .without-images-right-column [data-gen-model="listitem"] [data-gen-prop="title"] {
     font-size: 20px !important;
     line-height: 32px;
     font-weight: 400;
@@ -733,6 +739,22 @@
     padding-top: 0;
   }
 
+  /* Right column - list items */
+  .without-images-right-column [data-gen-model="listitem"] {
+    margin-bottom: 20px;
+  }
+
+  .without-images-right-column [data-gen-model="listitem"]:last-child {
+    margin-bottom: 0;
+  }
+
+  .without-images-right-column [data-gen-model="listitem"] [data-gen-prop="title"] {
+    font-size: 16px !important;
+    line-height: 24px;
+    font-weight: 400;
+    color: #3B3D3D !important;
+  }
+
   /* Left column - first title (main heading) */
   .without-images-left-column > div:first-child [data-gen-prop="title"] {
     font-size: 24px;
@@ -751,17 +773,7 @@
     margin-bottom: 0;
   }
 
-  /* Right column - list items */
-  .without-images-right-column [data-gen-model="listitem"] {
-    margin-bottom: 20px;
-  }
-
-  .without-images-right-column [data-gen-model="listitem"]:last-child {
-    margin-bottom: 0;
-  }
-
-  .listing-wrapper .listing .without-images-right-column [data-gen-model="listitem"] [data-gen-prop="title"],
-  .without-images-right-column [data-gen-model="listitem"] [data-gen-prop="title"] {
+  .listing-wrapper .listing .without-images-right-column [data-gen-model="listitem"] [data-gen-prop="title"] {
     font-size: 16px !important;
     line-height: 24px;
     font-weight: 400;
