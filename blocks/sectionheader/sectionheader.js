@@ -5,16 +5,17 @@ import { moveInstrumentation } from '../../scripts/scripts.js';
 
 export default function decorate(block) {
     block.classList.add('section-header', 'block');
-    const nested = block.querySelectorAll('[class^="sectionheader-nested-1-"]');
-
+    const nested = block.querySelectorAll('[class^="sectionheader-nested-"]');
     const labelEl = nested[0]?.querySelector('p') || null;
     const titleEl = nested[1]?.querySelector('p') || null;
     const descEl = nested[2]?.querySelector('p') || null;
     const variantEl =
-        block.querySelector('[data-aue-prop="sectiionheaderclass"]') ||
-        block.querySelector('[data-gen-prop="sectiionheaderclass"]') ||
-        Array.from(block.querySelectorAll('[class^="sectionheader-nested-1-"]'))
-            .find(el => el.textContent?.trim() === 'horizontal');
+        block.querySelector('[data-aue-prop="sectionheaderclass"]') ||
+        block.querySelector('[data-gen-prop="sectionheaderclass"]') ||
+        Array.from(
+            block.querySelectorAll('[class^="sectionheader-nested-"]')
+        ).find(el => el.textContent?.trim() === 'horizontal');
+
 
     const variant =
         variantEl?.textContent?.trim() === 'horizontal'
@@ -67,9 +68,9 @@ export default function decorate(block) {
     /* ---------- CTA ---------- */
     let ctaNode = null;
 
-    const linkField = block.querySelector(
-        '[data-aue-model="linkField"], [data-gen-model="linkField"]'
-    );
+    const linkField = Array.from(
+        block.querySelectorAll('[data-aue-model="linkField"], [data-gen-model="linkField"]')
+    )[0] || null;
 
     if (linkField) {
         const linkDivs = Array.from(linkField.children);

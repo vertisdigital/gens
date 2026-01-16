@@ -1,8 +1,14 @@
 /* Default divider - simple border */
+.divider-wrapper {
+  width: 100%;
+}
 .divider {
   width: 100%;
-  margin: 0;
-  padding: 0;
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: 160px;
+  padding-right: 160px;
+  max-width: 1920px;
 }
 
 .divider .divider-element {
@@ -21,6 +27,11 @@
   display: flex;
   align-items: center;
   justify-content: center;
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: 160px;
+  padding-right: 160px;
+  max-width: 1920px;
 }
 
 .divider-brand .divider-element {
@@ -59,8 +70,8 @@
 /* Desktop styles for divider-brand */
 @media (width > 1024px) {
   .divider-brand .divider-element {
-    padding-left: 80px;
-    padding-right: 80px;
+    padding-left: 160px;
+    padding-right: 160px;
   }
 }
 
