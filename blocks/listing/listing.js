@@ -162,4 +162,56 @@ export default function decorate(block) {
       block.appendChild(linkField);
     }
   }
+
+  // Handle 2-column layout for without-images variation
+  if (isListingWithoutImage) {
+    const blockChildren = Array.from(block.children);
+    
+    // Get first 2 title elements (usually first 2 children that have title but not listitem)
+    const firstTwoTitles = [];
+    const remainingElements = [];
+    
+    blockChildren.forEach((child) => {
+      const hasTitle = child.querySelector('[data-gen-prop="title"], [data-aue-prop="title"]');
+      const hasListItem = child.querySelector('[data-gen-model="listitem"], [data-aue-model="listitem"]') || 
+                          (child.hasAttribute('data-gen-model') && child.getAttribute('data-gen-model') === 'listitem') ||
+                          (child.hasAttribute('data-aue-model') && child.getAttribute('data-aue-model') === 'listitem');
+      const isLinkField = (child.hasAttribute('data-gen-model') && child.getAttribute('data-gen-model') === 'linkField') ||
+                          (child.hasAttribute('data-aue-model') && child.getAttribute('data-aue-model') === 'linkField');
+      
+      if (hasTitle && !hasListItem && !isLinkField && firstTwoTitles.length < 2) {
+        firstTwoTitles.push(child);
+      } else {
+        remainingElements.push(child);
+      }
+    });
+
+    // Create left column wrapper for titles
+    if (firstTwoTitles.length > 0) {
+      const leftColumn = document.createElement('div');
+      leftColumn.classList.add('without-images-left-column');
+      
+      firstTwoTitles.forEach(titleElement => {
+        leftColumn.appendChild(titleElement);
+      });
+
+      // Create right column wrapper for list items and linkField
+      const rightColumn = document.createElement('div');
+      rightColumn.classList.add('without-images-right-column');
+      
+      remainingElements.forEach(element => {
+        rightColumn.appendChild(element);
+      });
+
+      // Create row wrapper
+      const rowWrapper = document.createElement('div');
+      rowWrapper.classList.add('without-images-row');
+      rowWrapper.appendChild(leftColumn);
+      rowWrapper.appendChild(rightColumn);
+
+      // Clear block and add new structure
+      block.innerHTML = '';
+      block.appendChild(rowWrapper);
+    }
+  }
 }
