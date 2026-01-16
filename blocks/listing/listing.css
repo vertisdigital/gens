@@ -586,7 +586,7 @@
 }
 
 /* Desktop Design */
-
+@media (width >= 993px) {
   .without-images-left-column {
     flex: 0 0 50%;
     width: 50%;
@@ -597,15 +597,6 @@
     flex: 0 0 50%;
     width: 50%;
     margin-top: 0;
-  }
-
-  /* Left column - first title (main heading) - override base styles */
-  .without-images-left-column > div:first-child [data-gen-prop="title"] {
-    font-size: 36px;
-    line-height: 56px;
-    font-weight: 400;
-    color: #3B3D3D;
-    margin-bottom: 24px;
   }
 
   /* Right column - list items */
@@ -636,6 +627,7 @@
     margin-top: 0;
     margin-left: 16px;
   }
+}
 
 .listing-wrapper{
   position: relative;
