@@ -489,17 +489,14 @@
 .without-images-row {
   border-top: none;
   display: flex;
-  flex-direction: column;
   gap: 0;
   width: 100%;
+  flex-direction: row;
+  align-items: flex-start;
 }
 
 .without-images-row [data-gen-model="linkField"] {
   display: none;
-}
-
-.without-images-left-column {
-  margin-bottom: 0;
 }
 
 .without-images-right-column {
@@ -562,14 +559,10 @@
 
 /* Desktop Design */
 
-  .without-images-row {
-    flex-direction: row;
-    align-items: flex-start;
-  }
-
   .without-images-left-column {
     flex: 0 0 50%;
     width: 50%;
+    margin-bottom: 0;
   }
 
   .without-images-right-column {
