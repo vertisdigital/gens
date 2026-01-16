@@ -111,6 +111,7 @@ Usage Example:
   --color-border-success: #388e3c;
   --color-border-danger: #d32f2f;
   --color-border-warning: #d67d08;
+  --color-border-secondary-pressed: #B29546;
 
   /* Foreground Colors */
   --color-fg-dark: #3b3d3d;
