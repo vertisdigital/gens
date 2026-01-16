@@ -202,49 +202,59 @@ export default function decorate(block) {
     });
 
     const groups = getGroups(updatedChildren);
+    console.log('groups', groups);
 
-    // Create wrappers and append them
-    groups.forEach((group) => {
-      const segmentWrapper = document.createElement('div');
-      segmentWrapper.classList.add('segment-wrapper');
-      const wrapper = document.createElement('div');
-      wrapper.classList.add('wrapper', 'row');
-      const directorInfo = document.createElement('div');
-      directorInfo.classList.add('board-director-info');
-      
-      // Add toggle button at top right
-      const toggleButtonDiv = document.createElement('div');
-      toggleButtonDiv.classList.add('toggle-button');
-      const toggleOffButton = document.createElement('button');
-      toggleOffButton.classList.add('toggle-off');
-      const closeIcon = SvgIcon({
-        name: 'close',
-        className: '',
-        size: '24',
-        color: 'var(--color-text-black)'
-      });
+    // Create a single segment-wrapper
+    const segmentWrapper = document.createElement('div');
+    segmentWrapper.classList.add('segment-wrapper');
 
-      toggleOffButton.innerHTML = closeIcon;
-      toggleOffButton.addEventListener('click', (e) => {
-        e.stopPropagation();
-        const activeCard = document.querySelector('.director-card.active');
-        const activeContent = document.querySelector('.board-director-info.active');
-        if (activeCard) activeCard.classList.remove('active');
-        if (activeContent) activeContent.classList.remove('active');
-      });
-      toggleButtonDiv.appendChild(toggleOffButton);
-      directorInfo.appendChild(toggleButtonDiv);
-      
-      // Create content wrapper to preserve toggle button when content is set
-      const contentWrapper = document.createElement('div');
-      contentWrapper.classList.add('board-director-content');
-      directorInfo.appendChild(contentWrapper);
-      
-      segmentWrapper.appendChild(wrapper);
-      group?.forEach((child) => wrapper.appendChild(child));
-      row.appendChild(segmentWrapper);
-      segmentWrapper.appendChild(directorInfo);
+    // Create a single wrapper for all groups
+    const wrapper = document.createElement('div');
+    wrapper.classList.add('wrapper', 'row');
+
+    // Create a single board-director-info
+    const directorInfo = document.createElement('div');
+    directorInfo.classList.add('board-director-info');
+    
+    // Add toggle button at top right
+    const toggleButtonDiv = document.createElement('div');
+    toggleButtonDiv.classList.add('toggle-button');
+    const toggleOffButton = document.createElement('button');
+    toggleOffButton.classList.add('toggle-off');
+    const closeIcon = SvgIcon({
+      name: 'close',
+      className: '',
+      size: '24',
+      color: 'var(--color-text-black)'
     });
+
+    toggleOffButton.innerHTML = closeIcon;
+    toggleOffButton.addEventListener('click', (e) => {
+      e.stopPropagation();
+      const activeCard = document.querySelector('.director-card.active');
+      const activeContent = document.querySelector('.board-director-info.active');
+      if (activeCard) activeCard.classList.remove('active');
+      if (activeContent) activeContent.classList.remove('active');
+    });
+    toggleButtonDiv.appendChild(toggleOffButton);
+    directorInfo.appendChild(toggleButtonDiv);
+    
+    // Create content wrapper to preserve toggle button when content is set
+    const contentWrapper = document.createElement('div');
+    contentWrapper.classList.add('board-director-content');
+    directorInfo.appendChild(contentWrapper);
+
+    // Append all groups' cards to the single wrapper
+    groups.forEach((group) => {
+      group?.forEach((child) => wrapper.appendChild(child));
+    });
+
+    // Append wrapper and directorInfo to segmentWrapper
+    segmentWrapper.appendChild(wrapper);
+    segmentWrapper.appendChild(directorInfo);
+
+    // Append the single segmentWrapper to row
+    row.appendChild(segmentWrapper);
 
     // Replace original content
     container.appendChild(row);
