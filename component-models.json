@@ -170,7 +170,7 @@
       }
     ]
   },
-    {
+  {
     "id": "searchresult",
     "fields": [
       {
@@ -236,18 +236,120 @@
     "id": "columns",
     "fields": [
       {
-        "component": "text",
-        "valueType": "number",
-        "name": "columns",
-        "value": "",
-        "label": "Columns"
+        "component": "select",
+        "name": "variant",
+        "label": "Layout Variant",
+        "valueType": "string",
+        "value": "single",
+        "options": [
+          {
+            "name": "Single (Default)",
+            "value": "single"
+          },
+          {
+            "name": "Multi Column",
+            "value": "multi"
+          }
+        ]
       },
       {
         "component": "text",
+        "name": "columns",
+        "label": "Columns",
         "valueType": "number",
+        "description": "Number of columns (Multi variant only)",
+        "condition": {
+          "field": "variant",
+          "operator": "equals",
+          "value": "multi"
+        }
+      },
+      {
+        "component": "text",
         "name": "rows",
-        "value": "",
-        "label": "Rows"
+        "label": "Rows",
+        "valueType": "number",
+        "description": "Maximum number of rows (optional, Multi variant only)",
+        "condition": {
+          "field": "variant",
+          "operator": "equals",
+          "value": "multi"
+        }
+      },
+      {
+        "component": "boolean",
+        "name": "showIcon",
+        "label": "Show Branded Icon",
+        "value": true,
+        "description": "Single variant only"
+      },
+      {
+        "component": "select",
+        "name": "backgroundColor",
+        "label": "Background Color",
+        "valueType": "string",
+        "options": [
+          {
+            "name": "Default",
+            "value": ""
+          },
+          {
+            "name": "Brand Dark",
+            "value": "bg-primary"
+          },
+          {
+            "name": "Light",
+            "value": "bg-light"
+          },
+          {
+            "name": "White",
+            "value": "bg-white"
+          },
+          {
+            "name": "Transparent",
+            "value": "bg-transparent"
+          }
+        ]
+      },
+      {
+        "component": "select",
+        "name": "textColor",
+        "label": "Text Color",
+        "valueType": "string",
+        "options": [
+          {
+            "name": "Text / Black",
+            "value": "text-black"
+          },
+          {
+            "name": "Text / Body",
+            "value": "text-body"
+          },
+          {
+            "name": "Text / Secondary",
+            "value": "text-secondary"
+          },
+          {
+            "name": "Text / Tertiary",
+            "value": "text-tertiary"
+          },
+          {
+            "name": "Text / White",
+            "value": "text-white"
+          },
+          {
+            "name": "Foreground / Primary",
+            "value": "fg-primary"
+          },
+          {
+            "name": "Foreground / Secondary",
+            "value": "fg-secondary"
+          },
+          {
+            "name": "Foreground / Tertiary",
+            "value": "fg-tertiary"
+          }
+        ]
       }
     ]
   },
@@ -558,6 +660,60 @@
           "maxLength": 100,
           "customErrorMsg": "Text should be between 5 and 100 characters"
         }
+      }
+    ]
+  },
+  {
+    "id": "sectionheader",
+    "fields": [
+      {
+        "component": "text",
+        "name": "label",
+        "label": "Label",
+        "description": "Label cannot exceed 24 characters, recommended to keep it 10-20 characters",
+        "validation": {
+          "maxLength": 24,
+          "customErrorMsg": "Label cannot exceed 24 characters, recommended to keep it 10-20 characters"
+        }
+      },
+      {
+        "component": "text",
+        "name": "title",
+        "label": "Title",
+        "description": "Title cannot exceed 80 characters, recommended to keep it 40-60 characters",
+        "validation": {
+          "maxLength": 80,
+          "customErrorMsg": "Title cannot exceed 80 characters, recommended to keep it 40-60 characters"
+        }
+      },
+      {
+        "component": "richtext",
+        "name": "description",
+        "value": "",
+        "label": "Description",
+        "description": "Description cannot exceed 180 characters, recommended to keep it 80-120 characters",
+        "valueType": "string",
+        "validation": {
+          "maxLength": 180,
+          "customErrorMsg": "Description cannot exceed 180 characters, recommended to keep it 80-120 characters"
+        }
+      },
+      {
+        "component": "select",
+        "name": "sectiionheaderclass",
+        "label": "Section Header Variant",
+        "valueType": "string",
+        "value": "",
+        "options": [
+          {
+            "name": "Vertical",
+            "value": ""
+          },
+          {
+            "name": "Horizontal",
+            "value": "horizontal"
+          }
+        ]
       }
     ]
   },
@@ -1773,7 +1929,7 @@
       {
         "component": "text",
         "name": "awardyear",
-        "label": "Award Year" 
+        "label": "Award Year"
       },
       {
         "component": "text",
@@ -1970,7 +2126,7 @@
           "maxLength": 2000,
           "customErrorMsg": "Description cannot exceed 2000 characters"
         }
-      },      
+      },
       {
         "component": "text",
         "name": "ctaLabel",
@@ -1979,7 +2135,7 @@
           "maxLength": 30,
           "customErrorMsg": "CTA text cannot exceed 30 characters"
         }
-      },      
+      },
       {
         "component": "aem-content",
         "name": "ctaLink",
