@@ -593,16 +593,6 @@
     margin-bottom: 32px;
   }
 
-  .listing-wrapper .listing .without-images-right-column [data-gen-model="listitem"]:last-child,
-  .without-images-right-column [data-gen-model="listitem"]:last-child {
-    margin-bottom: 0 !important;
-  }
-
-  .listing-wrapper .listing .without-images-right-column [data-gen-model="listitem"]:last-child .row,
-  .without-images-right-column [data-gen-model="listitem"]:last-child .row {
-    margin-bottom: 0 !important;
-  }
-
   .without-images-right-column .row {
     margin-bottom: 0;
     border-top: none;
