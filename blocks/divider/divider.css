@@ -76,7 +76,7 @@
 }
 
 /* Tablet styles for divider-brand */
-@media (width >= 768px) and (width <= 1024px) {
+@media (width >= 768px) and (width <= 1200px) {
   .divider-brand .divider-element {
     padding-left: 40px;
     padding-right: 40px;
