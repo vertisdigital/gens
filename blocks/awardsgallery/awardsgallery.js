@@ -143,9 +143,10 @@ export default function decorate(block) {
     updateButtonStates();
 
     // Scroll logic
-    const scrollAmount = () =>
-      cardsGridContainer.querySelector('.awardsgallery-card')?.offsetWidth +
-      24;
+    const scrollAmount = () => {
+      const card = cardsGridContainer.querySelector('.awardsgallery-card');
+      return (card?.offsetWidth || 0) + 24;
+    };
 
     prevBtn.addEventListener('click', () => {
       cardsGridContainer.scrollBy({
