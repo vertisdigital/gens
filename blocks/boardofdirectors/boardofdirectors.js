@@ -1,4 +1,3 @@
-import ImageComponent from "../../shared-components/ImageComponent.js";
 import { moveInstrumentation } from '../../scripts/scripts.js';
 import SvgIcon from '../../shared-components/SvgIcon.js';
 
