@@ -7,7 +7,6 @@ import stringToHTML from '../../shared-components/Utility.js';
  */
 export default function decorate(block) {
   // Add container wrappers for each breakpoint
-  block.classList.add('container');
 
   // Create row wrapper
   const row = document.createElement('div');
@@ -135,6 +134,14 @@ export default function decorate(block) {
       }
     }
   });
+
+  // Check if there's only one image-tile in tiles-container
+  const imageTiles = row.querySelectorAll('.image-tile');
+  if (imageTiles.length === 1 && row.children.length === 1) {
+    const singleImageTile = imageTiles[0];
+    singleImageTile.classList.remove('col-sm-4', 'col-md-6', 'col-xl-6');
+    singleImageTile.classList.add('w-100');
+  }
 
   block.textContent = '';
 

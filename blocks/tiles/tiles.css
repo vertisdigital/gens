@@ -93,6 +93,10 @@ a:any-link.factsheet-button {
   margin-bottom: 48px;
 }
 
+.tiles-container .image-tile.w-100 {
+  width: 100%;
+}
+
 .learn-button{
   position: absolute;
   display: flex;
@@ -117,10 +121,6 @@ a:any-link.factsheet-button {
   width: 24px;
   height: 24px;
   padding: 5px;
-}
-
-.tiles-wrapper {
-  margin: 24px 0;
 }
 
 .tiles-container .learn-button {
@@ -191,9 +191,6 @@ a:any-link.factsheet-button {
 }
 
 @media screen and (width <= 1024px) and (width >= 768px) {
-  .tiles-wrapper {
-    margin: 40px 0;
-  }
 
   .row.tiles-container {
     padding: 0 !important;
@@ -240,18 +237,6 @@ a:any-link.factsheet-button {
 }
 
 @media (width > 1024px) {
-  .tiles-wrapper {
-    margin: 64px 0;
-  }
-
-  .tile-all-image-variation {
-    margin: 64px 0;
-  }
-
-  .row.tiles-container {
-    margin-left: -24px;
-    margin-right: -24px;
-  }
 
   .row.tiles-container > .image-tile > div {
     min-height: 720px;
