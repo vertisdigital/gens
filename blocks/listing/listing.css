@@ -608,15 +608,6 @@
     margin-bottom: 24px;
   }
 
-  /* Left column - second title (subtitle) */
-  .without-images-left-column > div:nth-child(2) [data-gen-prop="title"] {
-    font-size: 24px;
-    line-height: 40px;
-    font-weight: 400;
-    color: #3B3D3D;
-    margin-bottom: 0;
-  }
-
   /* Right column - list items */
   .without-images-right-column [data-gen-model="listitem"] {
     margin-bottom: 32px;
