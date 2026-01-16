@@ -1,5 +1,4 @@
 import ImageComponent from "../../shared-components/ImageComponent.js";
-import stringToHTML from "../../shared-components/Utility.js";
 import { moveInstrumentation } from '../../scripts/scripts.js';
 import SvgIcon from '../../shared-components/SvgIcon.js';
 
@@ -113,33 +112,6 @@ export default function decorate(block) {
     card.style.backgroundSize = 'cover';
     card.style.backgroundPosition = 'center';
     card.style.backgroundRepeat = 'no-repeat';
-   
-
-
-
-    const picture = ImageComponent({
-      src: imgURL,
-      alt: director.name,
-      className: 'director-card',
-      breakpoints: {
-        mobile: {
-          width: 768,
-          src: `${imgURL}`,
-          imgWidth: 360
-        },
-        tablet: {
-          width: 1024,
-          src: `${imgURL}`,
-          imgWidth: 360
-        },
-        desktop: {
-          width: 1920,
-          src: `${imgURL}`,
-          imgWidth: 360
-        },
-      },
-      lazy: true,
-    });
 
     const arrowIcon = SvgIcon({
       name: 'arrowright',
