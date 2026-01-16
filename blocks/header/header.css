@@ -915,6 +915,7 @@ header .header {
     background-color: var(--whisper-gray);
     overflow-y: scroll;
     height: 100vh;
+    margin-top: -1px;
   }
 
   .header-inner-wrapper .header-nav .primary-nav.active {
