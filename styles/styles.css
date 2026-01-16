@@ -905,7 +905,7 @@ main {
   position: relative;
 }
 
-main::before {
+/* main::before {
   content: '';
   background: url("../icons/genting-page-mobile-bg.jpg") repeat-y;
   background-position: center top;
@@ -934,7 +934,7 @@ main::before {
     background-position: center top;
     background-size: 100%;
   }
-}
+} */
 
 .grey-background{
   background-color: var(--light-grey);
