@@ -554,7 +554,6 @@ html:not([data-aue-resource]) body .hero-banner-container {
   .hero-banner-container.hero-carousal-variation  {
     padding-left: 0;
     position: relative;
-    margin-bottom: 24px;
   }
   .hero-banner-container.hero-carousal-variation {
     height: 654px;

@@ -63,6 +63,88 @@
     ]
   },
   {
+    "id": "textblock",
+    "fields": [
+      {
+        "component": "richtext",
+        "name": "text",
+        "value": "",
+        "label": "Text",
+        "valueType": "string"
+      },
+      {
+        "component": "select",
+        "name": "align",
+        "label": "Text Alignment",
+        "options": [
+          {
+            "name": "Left",
+            "value": "textblock-left"
+          },
+          {
+            "name": "Center",
+            "value": "textblock-center"
+          },
+          {
+            "name": "Right",
+            "value": "textblock-right"
+          }
+        ]
+      },
+      {
+        "component": "select",
+        "name": "color",
+        "label": "Text Color",
+        "options": [
+          {
+            "name": "Default",
+            "value": ""
+          },
+          {
+            "name": "Text / Black",
+            "value": "textblock-black"
+          },
+          {
+            "name": "Text / Body",
+            "value": "textblock-body"
+          },
+          {
+            "name": "Text / Secondary",
+            "value": "textblock-secondary"
+          },
+          {
+            "name": "Text / Tertiary",
+            "value": "textblock-tertiary"
+          },
+          {
+            "name": "Text / White",
+            "value": "textblock-white"
+          },
+          {
+            "name": "Foreground / Primary",
+            "value": "textblock-fg-primary"
+          },
+          {
+            "name": "Foreground / Secondary",
+            "value": "textblock-fg-secondary"
+          },
+          {
+            "name": "Foreground / Tertiary",
+            "value": "textblock-fg-tertiary"
+          },
+          {
+            "name": "Foreground / Disabled",
+            "value": "textblock-fg-disabled"
+          },
+          {
+            "name": "Neutral / 050",
+            "value": "textblock-neutral-050"
+          }
+        ]
+      }
+    ]
+  },
+  {
     "id": "button",
     "fields": [
       {
@@ -235,119 +317,45 @@
   {
     "id": "columns",
     "fields": [
-      {
-        "component": "select",
-        "name": "variant",
-        "label": "Layout Variant",
-        "valueType": "string",
-        "value": "single",
-        "options": [
-          {
-            "name": "Single (Default)",
-            "value": "single"
-          },
-          {
-            "name": "Multi Column",
-            "value": "multi"
-          }
-        ]
-      },
-      {
-        "component": "text",
+            {
+        "component": "number",
         "name": "columns",
         "label": "Columns",
         "valueType": "number",
-        "description": "Number of columns (Multi variant only)",
-        "condition": {
-          "field": "variant",
-          "operator": "equals",
-          "value": "multi"
-        }
+        "description": "Number of columns"
       },
       {
-        "component": "text",
+        "component": "number",
         "name": "rows",
         "label": "Rows",
         "valueType": "number",
-        "description": "Maximum number of rows (optional, Multi variant only)",
-        "condition": {
-          "field": "variant",
-          "operator": "equals",
-          "value": "multi"
-        }
+        "description": "Maximum number of rows (optional)"
       },
       {
-        "component": "boolean",
-        "name": "showIcon",
-        "label": "Show Branded Icon",
-        "value": true,
-        "description": "Single variant only"
-      },
-      {
-        "component": "select",
-        "name": "backgroundColor",
-        "label": "Background Color",
+        "component": "multiselect",
+        "name": "classes",
+        "label": "Columns Options",
         "valueType": "string",
         "options": [
           {
-            "name": "Default",
-            "value": ""
+            "name": "Show Branded Icon",
+            "value": "has-icon"
           },
           {
-            "name": "Brand Dark",
+            "name": "Background: Brand Dark",
             "value": "bg-primary"
           },
           {
-            "name": "Light",
+            "name": "Background: Light",
             "value": "bg-light"
           },
           {
-            "name": "White",
+            "name": "Background: White",
             "value": "bg-white"
           },
           {
-            "name": "Transparent",
+            "name": "Background: Transparent",
             "value": "bg-transparent"
-          }
-        ]
-      },
-      {
-        "component": "select",
-        "name": "textColor",
-        "label": "Text Color",
-        "valueType": "string",
-        "options": [
-          {
-            "name": "Text / Black",
-            "value": "text-black"
-          },
-          {
-            "name": "Text / Body",
-            "value": "text-body"
-          },
-          {
-            "name": "Text / Secondary",
-            "value": "text-secondary"
-          },
-          {
-            "name": "Text / Tertiary",
-            "value": "text-tertiary"
-          },
-          {
-            "name": "Text / White",
-            "value": "text-white"
-          },
-          {
-            "name": "Foreground / Primary",
-            "value": "fg-primary"
-          },
-          {
-            "name": "Foreground / Secondary",
-            "value": "fg-secondary"
-          },
-          {
-            "name": "Foreground / Tertiary",
-            "value": "fg-tertiary"
           }
         ]
       }
