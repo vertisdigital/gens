@@ -108,6 +108,11 @@
     background: linear-gradient(to top, rgba(0, 0, 0, 0.6) 0%, rgba(0, 0, 0, 0) 100%);
   }
 
+  .project-card-title a{
+    color: var(--text-color);
+    text-decoration: none;
+  }
+
   .projectcards .project-card-title {
     font-size: 32px;
     font-weight: 400;
@@ -156,11 +161,6 @@
 
   .projectcards .view-all-link:hover {
     color: var(--primary-gold);
-  }
-
-  .project-card-title a{
-    color: var(--text-color);
-    text-decoration: none;
   }
   
   .projectcards ul {
@@ -211,7 +211,6 @@
     .projectcards .projectcards-grid {
       box-sizing: border-box;
       margin-bottom: 42px;
-      row-gap: 0;
       margin-left: 0;
       margin-right: 0;
       width: 100%;
@@ -305,7 +304,6 @@
       
       .projectcards .projectcards-grid {
         margin-bottom: 0;
-        row-gap: 0;
         margin-left: 0;
         margin-right: 0;
         width: 100%;
