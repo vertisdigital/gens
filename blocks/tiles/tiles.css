@@ -6,6 +6,9 @@
   overflow: hidden;
   padding: 0;
 }
+.col-sm-4.col-md-6.col-xl-6.image-tile {
+    aspect-ratio: 1 / 1;
+}
 .tiles.block > div {
   background-color: var(--background-color);
   color: var(--text-color) !important;
@@ -95,6 +98,7 @@ a:any-link.factsheet-button {
 
 .tiles-container .image-tile.w-100 {
   width: 100%;
+  min-height: 813px;
 }
 
 .learn-button{
