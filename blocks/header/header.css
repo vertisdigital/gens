@@ -1380,6 +1380,14 @@ header .header {
    ========================================================= */
 
 @media (min-width: 768px) and (max-width: 1199px) {
+  .fixed-header.header .primary-menu-links-heading{
+    color: unset;
+  }
+
+  .fixed-header.header .primary-menu-links-heading svg {
+    filter: invert(1);
+  }
+  
   .header nav {
     height: auto;
     padding: var(--spacing-6, 24px) var(--spacing-10, 40px);

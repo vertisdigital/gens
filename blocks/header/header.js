@@ -1,6 +1,6 @@
 import { getMetadata } from '../../scripts/aem.js';
 import { loadFragment } from '../fragment/fragment.js';
-import SVGIcon from '../../shared-components/SVGIcon.js';
+import SVGIcon from '../../shared-components/SvgIcon.js';
 import stringToHtml from '../../shared-components/Utility.js';
 import { highlight, shortenURL, resolveSearchBasePath } from '../searchresult/searchresult.js';
 
