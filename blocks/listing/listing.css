@@ -567,6 +567,7 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
+  flex-direction: row;
 }
 
 .without-images-row .arrow-link-wrapper {
