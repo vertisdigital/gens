@@ -153,15 +153,21 @@ export default function decorate(block) {
       const cardTitle = card.querySelector(
         '[data-aue-prop="projectText"], .button-container .button',
       );
+      let titleHref = '';
+      let linkTarget = '_self';
+      
       if (cardTitle) {
-        const titleDiv = document.createElement('div');
-        titleDiv.className = 'project-card-title';
-        cardTitle.className = '';
+        // Extract href from cardTitle (anchor tag)
+        titleHref = cardTitle.getAttribute('href') || '';
         // setting the link target
-        const linkTarget = card.querySelector(
+        linkTarget = card.querySelector(
           '[data-aue-prop="projectTarget"], [data-gen-prop="feature-title"]',
         )?.textContent || '_self';
         cardTitle.setAttribute('target', linkTarget);
+
+        const titleDiv = document.createElement('div');
+        titleDiv.className = 'project-card-title';
+        cardTitle.className = '';
 
         titleDiv.appendChild(cardTitle);
         cardContent.appendChild(titleDiv);
@@ -176,8 +182,12 @@ export default function decorate(block) {
         locationElement.remove();
       }
 
-      // Add SVG CTA button (arrow icon on the right)
-      const ctaButton = document.createElement('div');
+      // Add SVG CTA button (arrow icon on the right) with same href as title
+      const ctaButton = document.createElement('a');
+      if (titleHref) {
+        ctaButton.setAttribute('href', titleHref);
+        ctaButton.setAttribute('target', linkTarget);
+      }
       ctaButton.className = 'project-card-cta';
       ctaButton.innerHTML = `
         <svg width="48" height="48" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
