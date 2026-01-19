@@ -150,8 +150,6 @@ html:not([data-aue-resource]) body .hero-banner-container {
 .masthead-scroll-hint {
   position: absolute;
   bottom: var(--masthead-scroll-bottom);
-  left: 50%;
-  transform: translateX(-50%);
   z-index: 2;
   display: flex;
   flex-direction: column;
@@ -161,6 +159,7 @@ html:not([data-aue-resource]) body .hero-banner-container {
   text-align: center;
   font-size: var(--font-size-xxs);
   color: var(--hero-text-color);
+  width: 100%;
 }
 
 .masthead-scroll-hint .scroll-icon {
