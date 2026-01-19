@@ -1,20 +1,21 @@
 /* =========================
    BASE
 ========================= */
-.footer-wrapper {
-    background: url("../../icons/genting-page-desktop-bg-1440.jpg") repeat-y;
-    background-position: center top;
-    background-size: 100%;
-}
 .footer {
-    
-    background-color: var(--bronze-brown);
-    color: var(--background-color);
-    padding-top: 68px;
-    padding-bottom: 44px;
+  position: relative;
+  color: var(--background-color);
+  padding-top: 68px;
+  padding-bottom: 44px;
+  overflow: hidden;
 
+  background: var(--bronze-brown)
 }
 
+
+.footer > * {
+  position: relative;
+  z-index: 2;
+}
 
 .footer .top-container {
     display: flex;
@@ -68,11 +69,12 @@
     font-size: 14px;
     font-weight: 400;
     line-height: 24px;
-    color: var(--soft-ivory);
+    color: #FFF;
     margin-bottom: 30px;
     overflow-wrap: anywhere;
     max-width: 50%;
     margin-top: 0;
+    font-family: var(--typography-font-family-font-body, "Instrument Sans");
 }
 
 .footer .footer-row {
@@ -148,6 +150,8 @@
     font-weight: 400;
     line-height: 24px;
     margin-bottom: 6px;
+    color: #FFF;
+    font-family: var(--typography-font-family-font-body, "Instrument Sans");
 }
 
 /* =========================
@@ -157,7 +161,8 @@
     font-size: var(--font-size-xs);
     font-weight: 400;
     line-height: 24px;
-    color: var(--soft-ivory);
+    color: #FFF;
+    font-family: var(--typography-font-family-font-body, "Instrument Sans");
 }
 
 .footer .mt-4 .copywrite a {
@@ -457,4 +462,19 @@
 
 .footer [data-aue-prop="linkTarget"] {
     display: none;
+}
+.footer::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+
+  background: url("../../icons/Pattern.png") repeat-x;
+  background-position: top;
+  background-size: cover;
+  transform: rotate(180deg);
+}
+
+.grey-background{
+  background-color: var(--light-grey);
 }
