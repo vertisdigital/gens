@@ -9,7 +9,12 @@ function initTextLazyFadeIn() {
     em,
     .button,
     .image-container,
-    .section-header-right
+    .section-header-right,
+    .scroll-text,
+    .hero-description,
+    .masthead-scroll-hint,
+    .projectcards-header-right,
+    .learn-button
   `;
 
   const elements = document.querySelectorAll(TEXT_SELECTORS);
