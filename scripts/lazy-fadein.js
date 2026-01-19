@@ -13,7 +13,8 @@ function initTextLazyFadeIn() {
     .scroll-text,
     .hero-description,
     .masthead-scroll-hint,
-    .projectcards-header-right
+    .projectcards-header-right,
+    .learn-button
   `;
 
   const elements = document.querySelectorAll(TEXT_SELECTORS);
