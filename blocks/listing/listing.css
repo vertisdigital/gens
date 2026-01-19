@@ -633,6 +633,10 @@
 .listing-wrapper{
   position: relative;
   padding: 80px 0;
+  background-image: url('../../icons/Pattern.png');
+  background-repeat: repeat;
+  background-position: center;
+  background-size: auto;
 
   @media (width >= 768px) and (width < 993px) {
     padding: 64px 0;
