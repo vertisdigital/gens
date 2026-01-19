@@ -16,6 +16,8 @@ import {
 import processTabs from './autoblocks.js';
 import { redirectRouter } from '../shared-components/Utility.js';
 import { errorLogger as logger} from './logger.js';
+import initLazyFadeIn from './lazy-fadein.js';
+
 
 
 /**
@@ -149,6 +151,7 @@ async function loadPage() {
   await loadEager(document);
   await loadLazy(document);
   loadDelayed();
+  initLazyFadeIn();
 }
 
 loadPage();
