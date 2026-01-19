@@ -23,6 +23,8 @@ function renderBrandedIcon(block) {
 
   const iconWrapper = document.createElement('div');
   iconWrapper.className = 'columns-branded-icon';
+  iconWrapper.setAttribute('data-animation', 'fade-in-up');
+  iconWrapper.setAttribute('data-animation-delay', '200');
   iconWrapper.innerHTML = SvgIcon({ name: 'brandRings' });
 
   block.prepend(iconWrapper);
@@ -57,4 +59,11 @@ export default function decorate(block) {
   if (block.classList.contains('has-icon')) {
     renderBrandedIcon(block);
   }
+
+  // Add animation to .bg-primary divs within columns
+  const bgPrimaryDivs = block.querySelectorAll('.bg-primary');
+  bgPrimaryDivs.forEach((div) => {
+    div.setAttribute('data-animation', 'fade-in-up');
+    div.setAttribute('data-animation-delay', '200');
+  });
 }

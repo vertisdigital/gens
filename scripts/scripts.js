@@ -16,6 +16,7 @@ import {
 import processTabs from './autoblocks.js';
 import { redirectRouter } from '../shared-components/Utility.js';
 import { errorLogger as logger} from './logger.js';
+import { loadAnimations } from './animations.js';
 
 
 /**
@@ -132,7 +133,11 @@ async function loadLazy(doc) {
 
   loadCSS(`${window.hlx.codeBasePath}/styles/lazy-styles.css`);
   loadCSS(`${window.hlx.codeBasePath}/styles/text.css`);
+  loadCSS(`${window.hlx.codeBasePath}/styles/animations.css`);
   loadFonts();
+  
+  // Initialize scroll animations
+  loadAnimations();
 }
 
 /**

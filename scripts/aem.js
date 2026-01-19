@@ -891,6 +891,15 @@ async function loadSection(section, loadCallback) {
     if (loadCallback) await loadCallback(section);
     section.dataset.sectionStatus = 'loaded';
     section.style.display = null;
+    
+    // Initialize animations for dynamically loaded content
+    try {
+      const { initScrollAnimationsForContainer } = await import('./animations.js');
+      initScrollAnimationsForContainer(section);
+    } catch (error) {
+      // Animation system not critical, fail silently
+      logger.error('Failed to load animations', error);
+    }
   }
 }
 

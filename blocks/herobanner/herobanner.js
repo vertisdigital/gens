@@ -205,6 +205,12 @@ function getAssetLink(rootBlock, modelName, nestedSelector) {
         className: 'hero-title',
       });
       titleContainer.insertAdjacentHTML('beforeend', headingHtml);
+      // Add animation attribute to the hero-title element
+      const heroTitleElement = titleContainer.querySelector('.hero-title');
+      if (heroTitleElement) {
+        heroTitleElement.setAttribute('data-animation', 'fade-in-up');
+        heroTitleElement.setAttribute('data-animation-delay', '200');
+      }
       heroContent.append(titleContainer);
     }
     // Only remove if it's not the block itself
