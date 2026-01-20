@@ -7,10 +7,8 @@
   padding-top: 68px;
   padding-bottom: 44px;
   overflow: hidden;
-
   background: var(--bronze-brown)
 }
-
 
 .footer > * {
   position: relative;
@@ -230,13 +228,13 @@
    ACCORDION VISIBILITY
 ========================= */
 @media (min-width: 993px) {
-    .accordion-arrow {
+    .footer .accordion-arrow {
         display: none;
     }
 }
 
 @media (width >=768px) {
-    .col-md-3 {
+    .footer .col-md-3 {
         flex: unset;
         width: unset;
     }
@@ -473,8 +471,4 @@
   background-position: top;
   background-size: cover;
   transform: rotate(180deg);
-}
-
-.grey-background{
-  background-color: var(--light-grey);
 }
