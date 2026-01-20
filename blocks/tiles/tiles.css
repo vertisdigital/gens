@@ -214,6 +214,7 @@ a:any-link.factsheet-button {
   }
 
   .row.tiles-container .image-tile>div>div:nth-child(2) p.no-picture {
+    margin-bottom: 56px;
     margin-right: 0;
   }
 }
@@ -262,10 +263,6 @@ a:any-link.factsheet-button {
     bottom: 40px;
     right: 40px;
   }
-}
-
-.tiles-container .image-tile.w-100 {
-  width: 100%;
 }
 
 @media (width > 1024px) {
