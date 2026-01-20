@@ -10,16 +10,15 @@
     display: flex;
     margin-bottom: 42px;
     align-items: flex-start;
+    gap: 40px;
   }
 
   .projectcards .projectcards-header-left {
-    flex: 0 0 50%;
-    width: 50%;
+    flex: 1;
   }
 
   .projectcards .projectcards-header-right {
-    flex: 0 0 50%;
-    width: 50%;
+    flex: 1;
   }
 
   .projectcards .projectcards-title {

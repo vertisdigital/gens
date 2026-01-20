@@ -551,7 +551,7 @@
 .without-images-row {
   border-top: none;
   display: flex;
-  gap: 0;
+  gap: 24px;
   width: 100%;
   flex-direction: row;
   align-items: flex-start;
@@ -589,20 +589,18 @@
 /* Desktop Design */
 @media (width >= 993px) {
   .without-images-left-column {
-    flex: 0 0 50%;
-    width: 50%;
+    flex: 1;
     margin-bottom: 0;
   }
 
   .without-images-right-column {
-    flex: 0 0 50%;
-    width: 50%;
+    flex: 1;
     margin-top: 0;
   }
 
   /* Right column - list items */
   .without-images-right-column [data-gen-model="listitem"] {
-    margin-bottom: 32px;
+    margin-bottom: 24px;
   }
 
   .without-images-right-column .content-wrapper {
@@ -635,7 +633,7 @@
   padding: 80px 0;
   background-image: url('../../icons/Pattern.png');
   background-repeat: repeat;
-  background-position: center;
+  background-position: center bottom;
   background-size: auto;
 
   @media (width >= 768px) and (width < 993px) {
@@ -686,7 +684,7 @@
     line-height: 48px;
     font-weight: 400;
     color: #3B3D3D;
-    margin-bottom: 24px;
+    margin-bottom: 32px;
     margin-top: 0;
   }
 
