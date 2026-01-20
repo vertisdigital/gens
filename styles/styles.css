@@ -712,7 +712,7 @@ main .section.highlight {
   .container-md,
   .container-sm,
   .container {
-    max-width: 1199px;
+    max-width: 1440px;
   }
 }
 
@@ -721,9 +721,9 @@ main .section.highlight {
   .container-md,
   .container-sm,
   .container {
-    padding-right: 160px;
-    padding-left: 160px;
-    max-width: 1920px;
+    padding-right: 80px;
+    padding-left: 80px;
+    max-width: 1440px;
   }
 
   .row {
