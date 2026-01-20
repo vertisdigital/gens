@@ -192,6 +192,7 @@ a:any-link.factsheet-button {
   
   .row.tiles-container .image-tile>div>div:nth-child(2) p.no-picture {
     margin-bottom: 56px;
+    margin-right: 0;
   }
 
   .row.tiles-container .image-tile>div>div:nth-child(3).has-picture {
@@ -211,11 +212,6 @@ a:any-link.factsheet-button {
 
   .row.tiles-container .image-tile.w-100>div>div:first-child p {
     width: 70%;
-  }
-
-  .row.tiles-container .image-tile>div>div:nth-child(2) p.no-picture {
-    margin-bottom: 56px;
-    margin-right: 0;
   }
 }
 
