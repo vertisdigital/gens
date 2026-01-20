@@ -69,7 +69,8 @@ a:any-link.factsheet-button {
   font-weight: 400;
   line-height: 48px;
   color: var(--background-color);
-  margin-bottom: 12px;
+  margin-bottom: 16px;
+  width: 50%;
   
 }
 .row.tiles-container .image-tile>div>div:nth-child(2) p {
@@ -87,6 +88,7 @@ a:any-link.factsheet-button {
 .row.tiles-container .image-tile>div>div:nth-child(2) p.no-picture {
   margin-bottom: 0;
   margin-right: 72px;
+  margin-top: 0;
 }
 
 /* When div:nth-child(2) p has has-picture class, style div:nth-child(3) */
@@ -111,7 +113,6 @@ a:any-link.factsheet-button {
   background: transparent;
   text-decoration: none !important;
   font-weight: 400;
-  color: var(--background-color) !important;
   transition: all 0.2s ease;
 }
 
@@ -127,6 +128,24 @@ a:any-link.factsheet-button {
 .tiles-container .learn-button {
   bottom: 80px;
   right: 80px;
+}
+
+.tiles-container .learn-button:hover .icon-wrapper {
+  color: var(--color-text-secondary) !important;
+}
+
+.tiles-container .learn-button:focus .icon-wrapper {
+  color: var(--color-border-secondary-pressed) !important;
+}
+
+.tiles-container .learn-button:hover {
+  color: var(--color-text-secondary);
+  border-color: var(--color-text-secondary);
+}
+
+.tiles-container .learn-button:focus {
+  color: var(--color-border-secondary-pressed);
+  border-color: var(--color-border-secondary-pressed);
 }
 
 @media screen and (width < 768px) {
@@ -149,9 +168,9 @@ a:any-link.factsheet-button {
   }
  
   .row.tiles-container .image-tile>div>div:first-child p {
-    font-size: var(--font-size-xs);
-    line-height: 20px;
-    font-weight: 700;
+    font-size: 24px;
+    line-height: 40px;
+    width: 70%;
   }
  
   .row.tiles-container .no-image-tile>div>div:nth-child(2) p {
@@ -189,6 +208,14 @@ a:any-link.factsheet-button {
     left: 24px;
     bottom: 24px;
   }
+
+  .row.tiles-container .image-tile.w-100>div>div:first-child p {
+    width: 70%;
+  }
+
+  .row.tiles-container .image-tile>div>div:nth-child(2) p.no-picture {
+    margin-right: 0;
+  }
 }
 
 @media screen and (width <= 1024px) and (width >= 768px) {
@@ -203,9 +230,8 @@ a:any-link.factsheet-button {
   }
 
   .row.tiles-container .image-tile>div>div:first-child p{
-    font-size: 18px;
-    line-height: 24px;
-    font-weight: 700;
+    font-size: 24px;
+    line-height: 40px;
   }
 
   .row.tiles-container .no-image-tile>div>div:first-child p {
@@ -216,7 +242,8 @@ a:any-link.factsheet-button {
     font-size: var(--font-size-xs);
     font-weight: 400;
     line-height: 24px;
-    margin-bottom: 34px;
+    margin-bottom: 0;
+    width: 50%;
   }
 
   .learn-button {
@@ -240,17 +267,24 @@ a:any-link.factsheet-button {
 .tiles-container .image-tile.w-100 {
   width: 100%;
 }
+
 @media (width > 1024px) {
   .col-sm-4.col-md-6.col-xl-6.image-tile {
     aspect-ratio: 1 / 1;
   }
-    .tiles-container .image-tile.w-100 {
-      min-height: 813px;
-    }
+  .tiles-container .image-tile.w-100 {
+    min-height: 813px;
+  }
   .tiles-container .image-tile.w-100 > div > div {
-    width: 40%;
+    width: calc(100%/2 - 152px);
+  }
+  .row.tiles-container .image-tile.w-100>div>div:first-child p {
+    width: 80%;
   }
   .tiles-container .image-tile.w-100 > div > a {
-    right: 55%;
+    right: calc(100%/2 + 80px);
+  }
+  .row.tiles-container .image-tile.w-100>div>div:nth-child(2) p.no-picture {
+    margin-right: 0;
   }
 }

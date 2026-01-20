@@ -1499,6 +1499,20 @@
         "component": "text",
         "name": "ctaCaption",
         "label": "CTA Caption"
+      },
+      {
+        "component": "custom-asset-namespace:custom-asset",
+        "name": "imageTablet",
+        "label": "Image (Tablet)",
+        "configUrl": "https://dev--gens--vertisdigital.aem.page/tools/assets-selector/config.json",
+        "multi": false
+      },
+      {
+        "component": "custom-asset-namespace:custom-asset",
+        "name": "imageMobile",
+        "label": "Image (Mobile)",
+        "configUrl": "https://dev--gens--vertisdigital.aem.page/tools/assets-selector/config.json",
+        "multi": false
       }
     ]
   },
