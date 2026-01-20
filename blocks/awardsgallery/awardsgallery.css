@@ -1,14 +1,24 @@
+.awardsgallery {
+    position: relative;
+    background: var(--color-bg-white);
+}
+
 .awardsgallery .awardsgallery-card {
-    margin-bottom: 15px;
+   display: flex;
+   flex-direction: column;
+   align-items: center;
+   background: var(--color-bg-white);
+   flex: 0 0 calc((100% - 48px) / 3);
+   scroll-snap-align: center;
 }
 
 .awardsgallery .awardsgallery-image {
     display: flex;
     align-items: center;
     justify-content: center;
-    border: 1px solid var(--light-grey);
-    height: 162px;
-    margin-bottom: 10px;
+    height: 193px;
+    width: 193px;
+    margin-bottom: 16px;
 }
 
 .awardsgallery .awardsgallery-image img {
@@ -21,76 +31,144 @@
 }
 
 .awardsgallery .award-year {
-    color: var(--primary-gold);
+    color: var(--color-text-tertiary);
+    font-family: var(--typography-font-family-font-body);
     font-size: 16px;
-    font-weight: 600;
+    line-height: 24px;
+    font-weight: 400;
+    margin-bottom: 4px;
 }
 
 .awardsgallery .award-title {
     color: var(--text-color);
+    font-family: var(--typography-font-family-font-body);
     font-size: 16px;
-    font-weight: 600;
+    line-height: 24px;
+    font-weight: 700;
+    margin-bottom: 4px;
 }
 
 .awardsgallery .award-description {
-    font-size: 14px;
+    font-family: var(--typography-font-family-font-body);
+    font-size: 16px;
+    line-height: 24px;
+    font-weight: 400;
+    margin-bottom: 4px;
 }
 
 .awardsgallery .awardsgallery-grid {
-    justify-content: center;
+    padding: 40px 0;
+    display: flex;
+    flex-wrap: nowrap;           
+    overflow-x: auto;
+    scroll-behavior: smooth;
+    scrollbar-width: none;
+    scroll-snap-type: x mandatory;
+    gap: 24px;
+    margin: 0 72px;
 }
+
+.awardsgallery .awardsgallery-grid::-webkit-scrollbar {
+    display: none;
+  }
+
 .awardsgallery picture {
     text-align: center;
 }
 
-@media (width >= 768px) {
-    .awardsgallery .award-title {
-        font-size: 18px;
+.awardsgallery-arrow {
+    display: flex;
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    background: var(--color-bg-white);
+    border: 2px solid var(--color-border-tertiary);
+    color: var(--color-border-tertiary);
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    z-index: 2;
+    transition: all 0.2s ease;
+  }
+
+  .awardsgallery-arrow:hover {
+    border: 2px solid var(--color-border-secondary);
+    color: var(--color-border-secondary);
+    background: none;
+  }
+
+  .awardsgallery-arrow:focus {
+    border: 2px solid var(--color-border-secondary-pressed);
+    color: var(--color-border-secondary-pressed);
+    background: none;
+  }
+
+  .awardsgallery-arrow:disabled {
+    border: 2px solid var( --color-border-disabled);
+    color: var( --color-border-disabled);
+    background: none;
+    cursor: not-allowed;
+    pointer-events: none;
+  }
+
+  .awardsgallery-arrow .icon-wrapper {
+    display: flex;
+  }
+  
+  .awardsgallery-arrow.prev {
+    left: 0;
+  }
+  
+  .awardsgallery-arrow.next {
+    right: 0;
+  }
+
+@media (width < 768px) {
+
+    .awardsgallery .awardsgallery-grid {
+        margin: 0 56px;
+    }
+    
+    .awardsgallery .awardsgallery-card {
+        flex: 0 0 100%;
     }
 
-    .awardsgallery .awardsgallery-image {
-        margin-bottom: 15px;
-        height: 360px;
+    .awardsgallery-arrow {
+        width: 32px;
+        height: 32px;
     }
+
+    .icon-wrapper svg {
+        width: 16px;
+        height: 16px;
+    }
+}
+
+  /* tablet styles */
+@media (width <= 1024px) and (width >= 768px) {
 
     .awardsgallery .awardsgallery-image img {
         max-width: 160px;
     }
 
-    .awardsgallery .awardsgallery-content * {
-        margin-bottom: 6px;
-    }
-    
-    .awardsgallery .award-year {
-        font-size: 18px;
-    }
-
-    
-    .awardsgallery .award-description {
-        font-size: 16px;
+    .awardsgallery .awardsgallery-card {
+        flex: 0 0 100%;
+        flex-direction: unset;
     }
 }
+
+
 
 @media (width >= 993px) {
     .awardsgallery .awardsgallery-card {
         padding: 0 18px;
     }
 
-    .awardsgallery .awardsgallery-image {
-        margin-bottom: 20px;
-        height: 350px;
-    }
-
     .awardsgallery .awardsgallery-content * {
         margin-bottom: 8px;
     }
-    
-    .awardsgallery .award-year {
-        font-size: 20px;
-        margin-bottom: 12px;
-    }
-
-    .awardsgallery .award-title {
-        font-size: 20px;
-    }
 }
+

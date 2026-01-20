@@ -1,8 +1,38 @@
 
 /* About-Us CSS */
+.feature-wrapper {
+  background-image: url('../../icons/Pattern.png');
+  background-repeat: repeat-x;
+  background-position: center bottom;
+  background-size: auto;
+  margin-top: 80px;
+  padding: 0 0 80px 0;
+}
+
+.feature-wrapper:has(> .with-images-four-col:first-child) {
+  background: none;
+  background-image: none;
+  margin-top: 0;
+  padding: 0;
+}
+
+@media (width >= 768px) and (width < 1024px) {
+  .feature-wrapper {
+    margin-top: 64px;
+    padding: 0 064px 0;
+  }
+}
+
+@media (width < 768px) {
+  .feature-wrapper {
+    margin-top: 40px;
+    padding: 0 0 40px 0;
+  }
+}
+
 .feature-wrapper .about-us-stats{
   display: flex;
-  margin: 36px 0 18px;
+  /* margin: 36px 0 18px; */
   flex-direction: column;
   gap: 64px;
 }
@@ -231,9 +261,8 @@ color: var(--body-text-color);
 /* Responsive design */
 @media  (width >= 768px) {
   .feature-wrapper .about-us-stats{
-    margin: 64px 0 0;
+    /* margin: 64px 0 0; */
     gap: 40px;
-    padding: 0 40px;
   }
 
   .about-us-stats .about-us-left{
@@ -329,7 +358,7 @@ color: var(--body-text-color);
 
 @media  (width >= 1024px) {
   .feature-wrapper .about-us-stats {
-    margin: 80px 0;
+    /* margin: 80px 0; */
     gap: 64px;
   }
 
@@ -435,7 +464,7 @@ color: var(--body-text-color);
 @media (width < 768px) {
   .feature-wrapper .about-us-stats {
     gap: 24px;
-    margin: 40px 0 0;
+    /* margin: 40px 0 0; */
   }
 
   .statistics-container.feature-container .feature-wrapper::before {
@@ -512,7 +541,19 @@ color: var(--body-text-color);
 
 .with-images-four-col{
   background: #FAF2E1;
-  padding: 1px 0;
+  padding: 80px 0;
+}
+
+@media (width >= 768px) and (width < 1024px) {
+  .with-images-four-col{
+    padding: 64px 0;
+  }
+}
+
+@media (width < 768px) {
+  .with-images-four-col{
+    padding: 40px 0;
+  }
 }
 
 /* Second variation styles - with-images-four-col */
@@ -530,7 +571,7 @@ color: var(--body-text-color);
 }
 
 .with-images-four-col .about-us-stats .about-us-left {
-  padding: 40px 0;
+  padding: 0;
   margin-bottom: 0;
 }
 
@@ -591,7 +632,7 @@ color: var(--body-text-color);
 /* Tablet Design */
 @media (width >= 768px) and (width < 1024px) {
   .with-images-four-col .about-us-stats .about-us-left {
-    padding: 40px 0;
+    padding: 0 0;
   }
 
   .with-images-four-col .about-us-stats .about-us-right{
@@ -614,7 +655,7 @@ color: var(--body-text-color);
 /* Mobile Design */
 @media (width < 768px) {
   .with-images-four-col .about-us-stats .about-us-left {
-    padding: 24px 0;
+    padding: 0 0;
   }
 
   .with-images-four-col .about-us-stats .about-us-right{
@@ -651,7 +692,7 @@ color: var(--body-text-color);
 /* Desktop Design */
 @media (width >= 1024px) {
   .with-images-four-col .about-us-stats .about-us-left {
-    padding: 45px 0;
+    padding: 0 0;
   }
 
   .with-images-four-col .about-us-stats .about-us-right {

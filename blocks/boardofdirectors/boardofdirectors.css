@@ -1,56 +1,111 @@
 .boardofdirectors .board-director-info {
     display: none;
-    background-color: #F8F8F8;
-    padding: 18px;
-    margin-top: 18px;
-    font-size: 14px;
-    line-height: 20px;
-    color: var(--body-text-color);
+    background-color: var(--primary-default-fg);
+    padding: 24px;
+    margin-top: 24px;
+    font-size: 16px;
+    line-height: 24px;
+    color: var(--color-text-body);
+    font-family: var(--typography-font-family-font-body);
+    font-weight: 400;
+    position: relative;
 }
 
+.boardofdirectors .board-director-info .toggle-button {
+    display: flex;
+    justify-content: flex-end;
+    margin-bottom: 24px;
+}
+
+.boardofdirectors .director-card .toggle-off {
+    display: none;
+}
+
+.boardofdirectors .board-director-info .toggle-button .toggle-off {
+    background: none;
+    border: none;
+    font-weight: normal;
+    font-size: 30px;
+    color: var(--primary-gold);
+    line-height: 16px;
+    cursor: pointer;
+    padding: 0;
+    margin: 0;
+}
+
+.boardofdirectors .board-director-info .board-director-content {
+    padding-right: 50px; /* Space for toggle button */
+}
 
 .boardofdirectors .board-director-info.active {
     display: block;
 }
 
+.boardofdirectors .director-info p {
+    margin: 0;
+    color: var(--color-text-white);
+    font-size: 16px;
+    line-height: 24px;
+    font-weight: 400;
+    font-family: var(--typography-font-family-font-body);
+    text-align: left;
+}
+
+.boardofdirectors .board-director-info.active .board-director-content > p:first-child {
+    font-size: 14px;
+    color: var(--color-text-tertiary);
+    line-height: 24px;
+    font-family: var(--typography-font-family-font-body);
+    font-weight: 400;
+    text-transform: uppercase;
+}
+
+.boardofdirectors .board-director-info.active .board-director-content > p:nth-child(2) {
+    font-size: 36px;
+    color: var(--color-text-body);
+    line-height: 56px;
+    margin-bottom: 16px;
+}
+
 .boardofdirectors .director-card {
     cursor: pointer;
     transition: transform 0.3s ease;
-    background: var(--background-color);
     overflow: hidden;
-    height: 100%;
+    height: 617px;
+    width: auto;
+    padding: 40px;
 }
 
 .boardofdirectors .director-card:hover {
     transform: translateY(-5px);
 }
 
-.boardofdirectors .director-card .toggle-off {
-    display: none;
+.boardofdirectors .director-card .toggle-on {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 48px;
+  height: 48px;
+  padding: 16px;
+  border: 2px solid var(--color-border-secondary);
+  border-radius: 9999px;
+  background: transparent;
+  color: var(--color-border-secondary);
+  transition: all 0.2s ease;
 }
 
-.boardofdirectors .director-card .toggle-on, 
-.boardofdirectors .director-card .toggle-off {
-    background: none;
-    font-weight: normal;
-    font-size: 30px;
-    color: var(--primary-gold);
-    line-height: 16px;
+.boardofdirectors .icon-wrapper {
+    display: flex;
 }
 
-.boardofdirectors .director-card.active .toggle-on {
-    display: none;
-}
 
-.boardofdirectors .director-card.active .toggle-off {
-    display: block;
-}
+
 
 
 .boardofdirectors .description-wrapper {
     display: flex;
-    justify-content: space-between;
-    align-items: center;
+    flex-direction: column;
+    gap: 16px;
 }
 
 .boardofdirectors .director-card img {
@@ -61,36 +116,26 @@
     opacity: 1;
 }
 
-.boardofdirectors .director-info {
-    text-align: center;
-}
-
 .boardofdirectors .director-info h3 {
-    margin: 0 0 5px;
-    font-size: 14px;
-    line-height: 20px;
-    color: var(--text-color);
-    font-weight: 700;
-    text-align: left;
-}
-
-.boardofdirectors .director-info p {
-    margin: 0;
-    color: var(--body-text-color);;
-    font-size: 14px;
-    line-height: 20px;
+    margin: 0 0 4px;
+    font-size: 24px;
+    line-height: 40px;
+    color: var(--color-text-white);
+    font-weight: 400;
     text-align: left;
 }
 
 .boardofdirectors .segment-wrapper .wrapper{
     display: flex;
+    flex-wrap: wrap;
     justify-content: center;
     box-sizing: border-box;
+    row-gap: 37px;
 }
 
 .boardofdirectors .segment-wrapper .wrapper>div {
-    padding-left: 18px;
-    padding-right: 18px;
+    padding-left: 12px;
+    padding-right: 12px;
 }
 
 .boardofdirectors .segment-wrapper .wrapper>div:first-child {
@@ -104,13 +149,40 @@
 .boardofdirectors .segment-wrapper {
     margin-bottom: 25px;
 }
+@media (width < 768px) {
+    .boardofdirectors .board-director-info .board-director-content {
+        padding-right: 0;
+    }
 
-@media (width >= 768px) {
+    .boardofdirectors .board-director-info {
+        padding: 40px 24px;
+    }
+
+    .boardofdirectors .director-card{
+        height: 491px;
+    }
+
+    .boardofdirectors .segment-wrapper .wrapper>div{
+        padding-left: 0;
+        padding-right: 0;
+    }
+
+    .boardofdirectors .segment-wrapper .wrapper{
+        row-gap: 24px;
+    }
+
+    .boardofdirectors .board-director-info.active .board-director-content > p:nth-child(2) {
+        font-size: 24px;
+        line-height: 40px;
+    }
+}
+
+@media (width >= 768px) and (width <= 1024px) {
     .boardofdirectors .director-card img {
         margin-bottom: 10px;
     }
 
-    .boardofdirectors .director-info h3,.boardofdirectors .director-info p,.boardofdirectors .board-director-info {
+    .boardofdirectors .director-info h3,.boardofdirectors .director-info p{
         font-size: 16px;
         line-height: 24px;
     }
@@ -120,13 +192,37 @@
     }
 
     .boardofdirectors .board-director-info {
-        padding: 24px;
+        padding: 40px;
         margin-top: 24px;
     }
 
     .boardofdirectors .segment-wrapper {
         margin-bottom: 37px;
     }
+
+    .boardofdirectors .board-director-info.active .board-director-content > p:nth-child(2) {
+        font-size: 32px;
+        color: var(--color-text-body);
+        line-height: 48px;
+        margin-bottom: 16px;
+    }
+
+    .boardofdirectors .director-card{
+        height: 498px;
+    }
+
+    .boardofdirectors .segment-wrapper .wrapper>div:nth-child(2){
+    padding-right: 0;
+    }
+
+    .boardofdirectors .segment-wrapper .wrapper>div:nth-child(3){
+        padding-left: 0;
+        }
+
+    .boardofdirectors .segment-wrapper .wrapper>div:last-child{
+        padding-right: 0;
+    }
+
 }
 
 @media (width >= 993px) {
@@ -137,9 +233,9 @@
     }
 
     .boardofdirectors .board-director-info {
-        padding: 36px;
-        margin-top: 36px;
-        margin-bottom: 47px;
+        padding: 80px;
+        margin-top: 24px;
+        margin-bottom: 80px;
     }
 
     .boardofdirectors .segment-wrapper {
@@ -147,19 +243,18 @@
     }
 
     .boardofdirectors .segment-wrapper .wrapper>div:first-child {
-        padding-left: 18px;
+        padding-left: 12px;
     }
 
     .boardofdirectors .segment-wrapper .wrapper>div:last-child {
-        padding-right: 18px;
+        padding-right: 12px;
     }
 
     .boardofdirectors .segment-wrapper .wrapper{
-        margin-left: -18px;
-        margin-right: -18px;
+        margin-left: -12px;
+        margin-right: -12px;
     }
+   
 
-    .boardofdirectors .director-card {
-        height: auto;
-    }
+  
 }

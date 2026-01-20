@@ -33,9 +33,10 @@
       "statistics",
       "searchresult",
       "divider",
-      "text",
+      "textblock",
       "columns",
-      "sectionheader"
+      "sectionheader",
+      "column"
     ]
   },
   {
@@ -87,7 +88,7 @@
       "textmediablock",
       "linkField",
       "projectslist",
-      "text"
+      "textblock"
     ]
   },
   {
@@ -219,6 +220,23 @@
     "id": "boardofdirectors",
     "components": [
       "director"
+    ]
+  },
+  {
+    "id": "richtext",
+    "features": [
+      "bold",
+      "italic",
+      "underline",
+      "strikethrough",
+      "alignment-left",
+      "alignment-center",
+      "alignment-right",
+      "alignment-justify",
+      "unorderedList",
+      "orderedList",
+      "link",
+      "unlink"
     ]
   }
 ]

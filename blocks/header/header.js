@@ -1,6 +1,6 @@
 import { getMetadata } from '../../scripts/aem.js';
 import { loadFragment } from '../fragment/fragment.js';
-import SvgIcon from '../../shared-components/SvgIcon.js';
+import SVGIcon from '../../shared-components/SvgIcon.js';
 import stringToHtml from '../../shared-components/Utility.js';
 import { highlight, shortenURL, resolveSearchBasePath } from '../searchresult/searchresult.js';
 
@@ -41,6 +41,7 @@ function createNavItem(itemData) {
   const titleDiv = document.createElement('div');
   titleDiv.className = 'primary-menu-links';
   const titleContent = document.createElement('div');
+  titleContent.className = 'primary-menu-links-heading';
   const detailedcaption = document.createElement('a');
 
   // Check if this is the Contact menu item
@@ -92,7 +93,23 @@ function createNavItem(itemData) {
   overviewLink.href = itemData.overviewLinkHref;
   overviewLink.setAttribute('target', itemData.overviewLinkTarget);
 
+  const upArrow = SVGIcon({
+    name: 'arrowUp'
+  });
+
+  // ADD accordion arrow (mobile only via CSS)
+  const arrow = document.createElement('span');
+  arrow.className = 'header-accordion-arrow';
+  // Convert SVG string to DOM element if needed
+  if (typeof upArrow === 'string') {
+    arrow.innerHTML = upArrow;
+  } else if (upArrow instanceof Node) {
+    arrow.appendChild(upArrow);
+  }
+
+  titleContent.appendChild(arrow);
   titleDiv.appendChild(titleContent);
+  
   navItem.appendChild(titleDiv);
   if (detailedcaption.getAttribute('href'))
     navItem.appendChild(detailedcaption);
@@ -344,8 +361,8 @@ function initializeHeader(header) {
   hamburger.className = 'hamburger';
 
   // Create SVG icons
-  const hamburgerIcon = stringToHtml(SvgIcon({ name: 'hamburger', class: 'hamburger-icon', size: '30px' }));
-  const closeIcon = stringToHtml(SvgIcon({ name: 'close', class: 'close-icon', size: '30px' }));
+  const hamburgerIcon = stringToHtml(SVGIcon({ name: 'hamburger', class: 'hamburger-icon', size: '30px' }));
+  const closeIcon = stringToHtml(SVGIcon({ name: 'close', class: 'close-icon', size: '30px' }));
 
   // Set the initial icon
   hamburger.appendChild(hamburgerIcon);
@@ -404,7 +421,7 @@ function initializeHeader(header) {
       const closeBtn = document.createElement('button');
       closeBtn.className = 'close-btn';
       closeBtn.setAttribute('aria-label', 'Close menu');
-      const closeBtnIcon = SvgIcon({ name: 'close', className: 'close-icon', size: 18 });
+      const closeBtnIcon = SVGIcon({ name: 'close', className: 'close-icon', size: 18 });
       closeBtn.innerHTML = closeBtnIcon;
 
       const heading = document.createElement('a');

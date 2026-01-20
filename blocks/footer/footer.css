@@ -1,20 +1,19 @@
 /* =========================
    BASE
 ========================= */
-.footer-wrapper {
-    background: url("../../icons/genting-page-desktop-bg-1440.jpg") repeat-y;
-    background-position: center top;
-    background-size: 100%;
-}
 .footer {
-    
-    background-color: var(--bronze-brown);
-    color: var(--background-color);
-    padding-top: 68px;
-    padding-bottom: 44px;
-
+  position: relative;
+  color: var(--background-color);
+  padding-top: 68px;
+  padding-bottom: 44px;
+  overflow: hidden;
+  background: var(--bronze-brown)
 }
 
+.footer > * {
+  position: relative;
+  z-index: 2;
+}
 
 .footer .top-container {
     display: flex;
@@ -65,14 +64,19 @@
 }
 
 .footer .footer-description {
-    font-size: var(--font-size-xs);
+    font-size: 14px;
     font-weight: 400;
     line-height: 24px;
-    color: var(--soft-ivory);
+    color: #FFF;
     margin-bottom: 30px;
     overflow-wrap: anywhere;
     max-width: 50%;
     margin-top: 0;
+    font-family: var(--typography-font-family-font-body, "Instrument Sans");
+}
+
+.footer .footer-row {
+    font-size: 12px;
 }
 
 .footer .social-icons {
@@ -140,10 +144,12 @@
 /* SHARED LINK STYLE */
 .footer .left-section .button-container a,
 .footer .footer-bottom-links .button-container a {
-    font-size: var(--font-size-xs);
+    font-size: 14px;
     font-weight: 400;
     line-height: 24px;
     margin-bottom: 6px;
+    color: #FFF;
+    font-family: var(--typography-font-family-font-body, "Instrument Sans");
 }
 
 /* =========================
@@ -153,7 +159,8 @@
     font-size: var(--font-size-xs);
     font-weight: 400;
     line-height: 24px;
-    color: var(--soft-ivory);
+    color: #FFF;
+    font-family: var(--typography-font-family-font-body, "Instrument Sans");
 }
 
 .footer .mt-4 .copywrite a {
@@ -221,13 +228,13 @@
    ACCORDION VISIBILITY
 ========================= */
 @media (min-width: 993px) {
-    .accordion-arrow {
+    .footer .accordion-arrow {
         display: none;
     }
 }
 
 @media (width >=768px) {
-    .col-md-3 {
+    .footer .col-md-3 {
         flex: unset;
         width: unset;
     }
@@ -306,6 +313,10 @@
         display: block;
     }
 
+    .footer .left-section .collapsible-links.active .footer-links a{
+        font-size: 14px;
+    }
+
     .footer .left-section .collapsible-links.active .accordion-arrow {
         transform: rotate(0);
     }
@@ -353,6 +364,7 @@
     .footer .copywrite-right {
         grid-template-columns: repeat(2, auto);
         row-gap: 10px;
+        flex-direction: column-reverse !important;
     }
 
     .footer .mt-4 .footer-bottom-links .copywrite-right, .footer .mt-4 .footer-bottom-links .copywrite-left {
@@ -448,4 +460,15 @@
 
 .footer [data-aue-prop="linkTarget"] {
     display: none;
+}
+.footer::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+
+  background: url("../../icons/Pattern.png") repeat-x;
+  background-position: top;
+  background-size: cover;
+  transform: rotate(180deg);
 }

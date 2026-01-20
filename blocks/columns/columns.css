@@ -1,33 +1,81 @@
-.columns > div {
+/* ================================
+   Columns base (BLOCK ONLY)
+   ================================ */
+.columns.columns-block.block {
+  position: relative;
+  padding: 80px 160px;
+}
+
+/* row */
+.columns.columns-block.block > .columns.columns-row {
   display: flex;
   flex-direction: column;
 }
 
-.columns img {
+/* col */
+.columns.columns-block.block .columns.columns-col {
   width: 100%;
 }
 
-.columns > div > div {
-  order: 1;
-}
-
-.columns > div > .columns-img-col {
-  order: 0;
-}
-
-.columns > div > .columns-img-col img {
+/* image helper */
+.columns.columns-block.block .columns.columns-img-col img {
   display: block;
+  width: 100%;
 }
 
+/* ================================
+   Desktop: multi-column only
+   ================================ */
 @media (width >= 900px) {
-  .columns > div {
-    align-items: center;
-    flex-direction: unset;
+  .columns.columns-block.block:not(.columns-1-cols) > .columns.columns-row {
+    flex-direction: row;
     gap: 24px;
+    align-items: center;
   }
 
-  .columns > div > div {
+  .columns.columns-block.block:not(.columns-1-cols) .columns.columns-col {
     flex: 1;
-    order: unset;
+  }
+}
+
+/* ================================
+   Branded icon
+   ================================ */
+.columns.columns-block.block > .columns-branded-icon {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 24px;
+  color: var(--color-fg-secondary);
+}
+
+/* ================================
+   Background variants
+   ================================ */
+.columns.columns-block.block.bg-primary {
+  background-color: var(--color-bg-primary);
+}
+
+.columns.columns-block.block.bg-light {
+  background-color: var(--color-bg-white);
+}
+
+.columns.columns-block.block.bg-white {
+  background-color: #fff;
+}
+
+.columns.columns-block.block.bg-transparent {
+  background-color: transparent;
+}
+
+
+@media (width <= 1200px) {
+  .columns.columns-block.block {
+    padding: 40px;
+  }
+}
+
+@media (width <= 768px) {
+  .columns.columns-block.block {
+    padding: 24px;
   }
 }

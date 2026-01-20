@@ -96,8 +96,8 @@ html:not([data-aue-resource]) body .hero-banner-container {
   inset: 0;
   background: linear-gradient(
     180deg,
-    rgba(0,0,0,0.45) 0%,
-    rgba(0,0,0,0.15) 45%,
+    rgba(0,0,0,0) 0%,
+    rgba(0,0,0,0.15) 80%,
     rgba(0,0,0,0.6) 100%
   );
   z-index: 1;
@@ -150,8 +150,6 @@ html:not([data-aue-resource]) body .hero-banner-container {
 .masthead-scroll-hint {
   position: absolute;
   bottom: var(--masthead-scroll-bottom);
-  left: 50%;
-  transform: translateX(-50%);
   z-index: 2;
   display: flex;
   flex-direction: column;
@@ -161,6 +159,7 @@ html:not([data-aue-resource]) body .hero-banner-container {
   text-align: center;
   font-size: var(--font-size-xxs);
   color: var(--hero-text-color);
+  width: 100%;
 }
 
 .masthead-scroll-hint .scroll-icon {
@@ -554,7 +553,6 @@ html:not([data-aue-resource]) body .hero-banner-container {
   .hero-banner-container.hero-carousal-variation  {
     padding-left: 0;
     position: relative;
-    margin-bottom: 24px;
   }
   .hero-banner-container.hero-carousal-variation {
     height: 654px;

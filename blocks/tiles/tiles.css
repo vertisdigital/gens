@@ -6,6 +6,7 @@
   overflow: hidden;
   padding: 0;
 }
+
 .tiles.block > div {
   background-color: var(--background-color);
   color: var(--text-color) !important;
@@ -236,9 +237,20 @@ a:any-link.factsheet-button {
   }
 }
 
+.tiles-container .image-tile.w-100 {
+  width: 100%;
+}
 @media (width > 1024px) {
-
-  .row.tiles-container > .image-tile > div {
-    min-height: 720px;
+  .col-sm-4.col-md-6.col-xl-6.image-tile {
+    aspect-ratio: 1 / 1;
+  }
+    .tiles-container .image-tile.w-100 {
+      min-height: 813px;
+    }
+  .tiles-container .image-tile.w-100 > div > div {
+    width: 40%;
+  }
+  .tiles-container .image-tile.w-100 > div > a {
+    right: 55%;
   }
 }

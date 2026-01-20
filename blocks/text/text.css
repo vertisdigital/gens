@@ -1,0 +1,201 @@
+/* =========================================================
+   Textblock – Base
+   ========================================================= */
+
+.textblock {
+  width: 100%;
+  margin-left: auto;
+  margin-right: auto;
+  color: var(--color-text-body);
+}
+
+/* =========================================================
+   RESET – all content inherits color from wrapper
+   ========================================================= */
+
+.textblock :is(
+  p,
+  span,
+  strong,
+  em,
+  b,
+  i,
+  u,
+  s,
+  small,
+  code,
+  pre,
+  blockquote,
+  figcaption,
+  li,
+  a,
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6
+) {
+  color: inherit;
+}
+
+/* =========================================================
+   Alignment (MODEL ONLY)
+   ========================================================= */
+
+.textblock.textblock-left {
+  text-align: left;
+}
+
+.textblock.textblock-center {
+  text-align: center;
+}
+
+.textblock.textblock-right {
+  text-align: right;
+}
+
+/* =========================================================
+   Text colors (MODEL ONLY)
+   ========================================================= */
+
+.textblock.textblock-black {
+  color: var(--color-text-black);
+}
+
+.textblock.textblock-body {
+  color: var(--color-text-body);
+}
+
+.textblock.textblock-secondary {
+  color: var(--color-text-secondary);
+}
+
+.textblock.textblock-tertiary {
+  color: var(--color-text-tertiary);
+}
+
+.textblock.textblock-white {
+  color: var(--color-text-white);
+}
+
+/* =========================================================
+   Foreground colors (MODEL ONLY)
+   ========================================================= */
+
+.textblock.textblock-fg-primary {
+  color: var(--color-fg-primary);
+}
+
+.textblock.textblock-fg-secondary {
+  color: var(--color-fg-secondary);
+}
+
+.textblock.textblock-fg-tertiary {
+  color: var(--color-fg-tertiary);
+}
+
+.textblock.textblock-fg-disabled {
+  color: var(--color-fg-disabled);
+}
+
+/* =========================================================
+   Neutral colors (MODEL ONLY)
+   ========================================================= */
+
+.textblock.textblock-neutral-050 {
+  color: var(--color-neutral-050);
+}
+
+/* =========================================================
+   Links
+   ========================================================= */
+
+.textblock a:any-link {
+  color: currentColor;
+  text-decoration-color: currentColor;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 0.15em;
+}
+
+.textblock a:hover {
+  opacity: 0.85;
+}
+
+/* =========================================================
+   Lists
+   ========================================================= */
+
+.textblock ul,
+.textblock ol {
+  padding-left: 1.25em;
+}
+
+.textblock li {
+  margin-bottom: 0.5em;
+}
+
+/* =========================================================
+   Headings spacing
+   ========================================================= */
+
+.textblock h1,
+.textblock h2,
+.textblock h3,
+.textblock h4,
+.textblock h5,
+.textblock h6 {
+  margin-top: 0;
+  margin-bottom: 0.5em;
+}
+
+/* =========================================================
+   Paragraph spacing
+   ========================================================= */
+
+.textblock p {
+  margin-top: 0;
+  margin-bottom: 1em;
+}
+
+/* =========================================================
+   Blockquote
+   ========================================================= */
+
+.textblock blockquote {
+  margin: 1.5em 0;
+  padding-left: 1em;
+  border-left: 4px solid currentColor;
+  opacity: 0.9;
+}
+
+/* =========================================================
+   Code
+   ========================================================= */
+
+.textblock code,
+.textblock pre {
+  font-size: var(--font-size-xxxs);
+  background-color: var(--light-color);
+}
+
+.textblock pre {
+  padding: 16px;
+  border-radius: 8px;
+  overflow-x: auto;
+  white-space: pre;
+}
+
+@media (width >= 567px) {
+  .textblock code,
+  .textblock pre {
+    font-size: var(--font-size-xxs);
+  }
+}
+
+@media (width >= 900px) {
+  .textblock code,
+  .textblock pre {
+    font-size: var(--font-size-xs);
+  }
+}

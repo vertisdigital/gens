@@ -111,6 +111,7 @@ Usage Example:
   --color-border-success: #388e3c;
   --color-border-danger: #d32f2f;
   --color-border-warning: #d67d08;
+  --color-border-secondary-pressed: #B29546;
 
   /* Foreground Colors */
   --color-fg-dark: #3b3d3d;
@@ -906,14 +907,14 @@ main {
 
 main::before {
   content: '';
-  background: url("../icons/genting-page-mobile-bg.jpg") repeat-y;
+  /* background: url("../icons/genting-page-mobile-bg.jpg") repeat-y; */
   background-position: center top;
   background-size: 100%;
   position: absolute;
   inset: 0;
   z-index: -1;
 }
-@media (width >= 768px) {
+/* @media (width >= 768px) {
   main::before {
     background: url("../icons/genting-page-tablet-bg.jpg") repeat-y;
     background-position: center top;
@@ -938,4 +939,33 @@ main::before {
 .grey-background{
   background-color: var(--light-grey);
 }
+
+/* =========================================================
+   Text-only lazy fade-in
+   ========================================================= */
+
+.text-fade-in {
+  opacity: 0;
+  transform: translateY(100px);
+  transition:
+    opacity 0.5s ease-out,
+    transform 0.5s ease-out;
+  will-change: opacity, transform;
+}
+
+.text-fade-in.is-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Reduce motion */
+@media (prefers-reduced-motion: reduce) {
+  .text-fade-in {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+}
+
+
 
