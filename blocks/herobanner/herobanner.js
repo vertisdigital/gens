@@ -200,7 +200,7 @@ function getAssetLink(rootBlock, modelName, nestedSelector) {
       // Copy data attributes from source element
       moveInstrumentation(titleElement, titleContainer);
       const headingHtml = Heading({
-        level: 2,
+        level: 1,
         text: titleText,
         className: 'hero-title',
       });

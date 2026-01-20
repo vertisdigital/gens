@@ -5,7 +5,8 @@
 .sectionheader {
     width: 100%;
     max-width: 1920px;
-    padding: 80px 160px 64px;
+    padding-top: 80px;
+    padding-bottom: 64px;
     margin: auto;
 }
 
@@ -159,26 +160,14 @@
     justify-content: center;
     align-items: flex-start;
     gap: var(--spacing-6, 24px);
-    flex: 0 0 50%;
+    flex: 0 0 45%;
 }
 
 /* ===============================
    Responsive – Container
 ================================ */
 
-@media (min-width: 768px) and  (max-width: 1200px) {
-    .sectionheader {
-        padding-left: 40px;
-        padding-right: 40px;
-    }
-}
-
-@media (max-width: 768px) {
-    .sectionheader {
-        padding-left: 24px;
-        padding-right: 24px;
-    }
-    
+@media (max-width: 768px) {    
     .sectionheader.section-header.horizontal .section-header-wrapper {
         flex-direction: column;
         gap: 24px;

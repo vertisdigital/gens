@@ -225,13 +225,6 @@ const renderResults = (block, q, results, currentPage, total, totalPages) => {
             <div class="searchresult-title">
               <a href="${shortenURL(item.path)}">${item.title}</a>
               <p class="searchresult-info">
-                ${item.publishDate
-            ? `<span class="searchresult-date">${formatDate(
-              new Date(item.publishDate).toLocaleDateString()
-            )}</span>`
-            : ""
-          }
-                ${item.publishDate && item.highlight ? "<span> - </span>" : ""}
                 ${item.highlight
             ? `<span class="searchresult-desc">${highlight(
               item.highlight,

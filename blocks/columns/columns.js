@@ -30,10 +30,12 @@ function renderBrandedIcon(block) {
 
 export default function decorate(block) {
   block.classList.add('columns-block');
+  block.classList.add('container');
   const rows = Array.from(block.children)
     .filter((el) => !el.classList.contains('columns-branded-icon'));
 
   block.classList.add(`columns-${rows.length}-cols`);
+  block.classList.add(`columns-cols`);
 
   rows.forEach((row) => {
     row.classList.add('columns-row');

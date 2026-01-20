@@ -4,7 +4,7 @@ import SVGIcon from '../../shared-components/SvgIcon.js';
 import { moveInstrumentation } from '../../scripts/scripts.js';
 
 export default function decorate(block) {
-    block.classList.add('section-header', 'block');
+    block.classList.add('section-header', 'block', 'container');
     const nested = block.querySelectorAll('[class^="sectionheader-nested-"]');
     const labelEl = nested[0]?.querySelector('p') || null;
     const titleEl = nested[1]?.querySelector('p') || null;

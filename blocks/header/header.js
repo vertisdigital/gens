@@ -114,6 +114,13 @@ function createNavItem(itemData) {
   if (detailedcaption.getAttribute('href'))
     navItem.appendChild(detailedcaption);
   navItem.appendChild(overviewLink);
+  if (itemData.links && itemData.links[0]) {
+    const overviewDescription = document.createElement('div');
+    overviewDescription.className = 'overview-description display-none';
+    overviewDescription.textContent = itemData.links[0].text || '';
+    overviewLink.setAttribute('text', overviewDescription.textContent);
+    navItem.appendChild(overviewDescription);
+  }
 
   if (itemData.caption && itemData.captionTarget) {
     navItem.dataset.captionText = itemData.caption.textContent?.trim() || '';
@@ -183,20 +190,12 @@ function createHeaderStructure(block) {
   // Get both logo images from fragment
   const images = block.querySelectorAll('picture');
   const defaultLogo = images[0];
-  const scrollLogo = images[1];
 
   // Add both logos with appropriate classes
   if (defaultLogo) {
     const defaultLogoWrapper = defaultLogo.cloneNode(true);
     defaultLogoWrapper.classList.add('default-logo');
     logoWrapper.appendChild(defaultLogoWrapper);
-  }
-
-  if (scrollLogo) {
-    const scrollLogoWrapper = scrollLogo.cloneNode(true);
-    scrollLogoWrapper.classList.add('scroll-logo');
-    scrollLogoWrapper.style.display = 'none'; // Initially hidden
-    logoWrapper.appendChild(scrollLogoWrapper);
   }
 
   // Create primary navigation
@@ -216,7 +215,6 @@ function createHeaderStructure(block) {
     const overviewLinkHref = (title !== 'CONTACT'
       ? overviewLink?.getAttribute('href')
       : sections[1]?.querySelector('a')?.getAttribute('href'));
-
     // Create nav item object
     return createNavItem({
       title,
@@ -342,6 +340,7 @@ function triggerSearchPage(e) {
   window.location.href = target;
 }
 
+
 /**
  * Initialize header interactions
  * @param {Element} header The header element
@@ -397,6 +396,7 @@ function initializeHeader(header) {
       }
     }, 0);
   });
+  
 
   navItems.forEach((item) => {
     const linksDiv = item.querySelector('.links');
@@ -408,6 +408,7 @@ function initializeHeader(header) {
     const originalLinks = item.querySelector('.nav-links');
 
     if (originalLinks) {
+      const originalDescription = linksDiv?.querySelector('.overview-description').textContent || '';
       // Create empty secondary nav structure
       const secondaryNav = document.createElement('div');
       secondaryNav.className = 'secondary-nav';
@@ -430,6 +431,27 @@ function initializeHeader(header) {
       heading.href = detailedCaptionLink;
       heading.setAttribute('target', detailedCaptionTarget);
 
+      const description = document.createElement('div');
+      description.className = 'secondary-header-description';
+      description.textContent = originalDescription || '';
+
+      const cta = document.createElement('a');
+      cta.className = 'secondary-header-cta button';
+      cta.href = detailedCaptionLink;
+      cta.setAttribute('target', detailedCaptionTarget);
+
+      const iconWrapper = document.createElement('span');
+      iconWrapper.className = 'secondary-header-cta-icon';
+
+      const svg = SVGIcon({ name: 'arrowRightWhite', size: 24 });
+      if (typeof svg === 'string') {
+        iconWrapper.innerHTML = svg;
+      } else {
+        iconWrapper.appendChild(svg);
+      }
+
+      cta.appendChild(iconWrapper);
+
       // Wrapper for secondaryHeader and linksContainer
       const secondaryNavWrapper = document.createElement('div');
       secondaryNavWrapper.className = 'container';
@@ -440,7 +462,7 @@ function initializeHeader(header) {
 
       const headerCol = document.createElement('div');
       headerCol.className = 'secondary-header-wrapper col-12 col-md-6 col-sm-4';
-      headerCol.append(backBtn, heading, closeBtn);
+      headerCol.append(backBtn, heading, description, cta, closeBtn);
       secondaryHeader.appendChild(headerCol);
 
       const linksContainer = document.createElement('div');
@@ -458,39 +480,44 @@ function initializeHeader(header) {
       secondaryNav.append(secondaryNavWrapper);
       header.appendChild(secondaryNav);
 
+      secondaryNav.classList.add('header-hover-zone');
       // Handle click on nav item - Clone links here
-      item.addEventListener('click', (e) => {
-        e.preventDefault();
+      const hoverZone = document.querySelector('.header-hover-zone');
 
+      item.addEventListener('mouseenter', () => {
+        document.querySelector('.search-suggestion-box').classList.remove(activeClass);
+        document.querySelectorAll('.secondary-nav').forEach(navigation => navigation.classList.remove(activeClass));
         if (currentActive && currentActive !== item) {
-          // Close currently active menu
           currentActive.classList.remove(activeClass);
-          const activeSecondary = header.querySelector('.secondary-nav.active');
-          if (activeSecondary) {
-            activeSecondary.classList.remove(activeClass);
-            // Clear links when closing
-            activeSecondary.querySelector('.nav-links').innerHTML = '';
-          }
-        }
-
-        // Toggle current item
-        item.classList.toggle(activeClass);
-
-        if (item.classList.contains(activeClass)) {
-          // Clone and append links only when opening
-          const clonedLinks = originalLinks.cloneNode(true);
-          emptyLinks.innerHTML = ''; // Clear previous links
-          emptyLinks.append(...clonedLinks.children); // Append cloned children
-        } else {
-          // Clear links when closing
+          overlay.classList.remove(activeClass);
           emptyLinks.innerHTML = '';
         }
 
-        secondaryNav.classList.toggle(activeClass);
-        overlay.classList.toggle(activeClass);
+        item.classList.add(activeClass);
 
-        currentActive = item.classList.contains(activeClass) ? item : null;
+        const clonedLinks = originalLinks.cloneNode(true);
+        emptyLinks.innerHTML = '';
+        emptyLinks.append(...clonedLinks.children);
+
+        secondaryNav.classList.add(activeClass);
+        overlay.classList.add(activeClass);
+
+        currentActive = item;
       });
+
+      document.addEventListener('pointermove', (e) => {
+        if (!hoverZone.contains(e.target)) {
+          if (!currentActive) return;
+          
+          currentActive.classList.remove(activeClass);
+          document.querySelectorAll('.secondary-nav').forEach(navigation => navigation.classList.remove(activeClass));
+          overlay.classList.remove(activeClass);
+          emptyLinks.innerHTML = '';
+          currentActive = null;
+
+        }
+      });
+
 
       // Handle back/close buttons
       const closeSecondary = () => {
@@ -514,15 +541,29 @@ function initializeHeader(header) {
   });
 
   const searchBtn = header.querySelector('.search-btn');
+  const searchSuggestionBox = document.querySelector('.search-suggestion-box');
 
   searchBtn.addEventListener('click', function () {
-    const searchSuggestionBox = document.querySelector('.search-suggestion-box');
     if (!searchSuggestionBox.classList.contains('active')) {
+      document.querySelectorAll('.secondary-nav').forEach(navigation => navigation.classList.remove(activeClass));
       searchSuggestionBox.classList.add('active');
     }
     else {
       searchSuggestionBox.classList.remove('active');
     }
+  });
+
+  const observer = new MutationObserver(() => {
+    if (searchSuggestionBox.classList.contains('active')) {
+      searchBtn.classList.add('close-search-btn');
+    } else {
+      searchBtn.classList.remove('close-search-btn');
+    }
+  });
+
+  observer.observe(searchSuggestionBox, {
+    attributes: true,
+    attributeFilter: ['class'],
   });
 
   const searchInput = document.querySelector('.search-input');
@@ -541,7 +582,6 @@ function initializeHeader(header) {
   });
 
   searchBtnSuggestion.addEventListener('click', function () {
-    console.log(searchInput)
     triggerSearchPage(searchInput.value)
   });
 
@@ -601,18 +641,13 @@ function initializeHeader(header) {
 function updateHeaderState(header) {
   const scrollPosition = window.scrollY;
   const defaultLogo = header.querySelector('.default-logo');
-  const scrollLogo = header.querySelector('.scroll-logo');
 
-  if (defaultLogo && scrollLogo) {
+  if (defaultLogo) {
     if (scrollPosition > 0 && !isHeaderFixed) {
       header.classList.add('fixed-header');
-      defaultLogo.style.display = 'none';
-      scrollLogo.style.display = 'block';
       isHeaderFixed = true;
     } else if (scrollPosition === 0 && isHeaderFixed) {
       header.classList.remove('fixed-header');
-      defaultLogo.style.display = 'block';
-      scrollLogo.style.display = 'none';
       isHeaderFixed = false;
     }
   }
@@ -638,13 +673,33 @@ function handleScroll(header) {
  */
 export default async function decorate(block) {
   const navMeta = getMetadata('nav');
-  const navPath = navMeta ? new URL(navMeta, window.location).pathname : '/nav';
+  let navPath;
+
+  if (navMeta) {
+    navPath = new URL(navMeta, window.location).pathname;
+  } else {
+    // Extract first path segment
+    const pathParts = window.location.pathname.split('/');
+    const firstSegment = pathParts[1];
+
+    // List of supported language codes (you can customize this)
+    const languageCodes = [
+      'en', 'ja', 'zh'
+    ];
+
+    // Determine nav path
+    navPath = languageCodes.includes(firstSegment)
+      ? `/${firstSegment}/nav`
+      : `/nav`;
+  }
   const fragment = await loadFragment(navPath);
 
   if (fragment && true) {
     const header = createHeaderStructure(fragment);
+    console.log('Loaded header from fragment:', header);
     block.innerHTML = '';
     block.appendChild(header);
+    block.classList.add('header-hover-zone');
 
     // Initialize header functionality
     initializeHeader(header);

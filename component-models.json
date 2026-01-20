@@ -789,11 +789,7 @@
         "component": "text",
         "name": "linkTitle",
         "label": "Title",
-        "description": "Maximum allowed characters are 50 to support multiple variations/views, however author to decide the best view",
-        "validation": {
-          "maxLength": 50,
-          "customErrorMsg": "Maximum allowed characters are 50 to support multiple variations/views, however author to decide the best view"
-        }
+        "description": "Maximum allowed characters are 50 to support multiple variations/views, however author to decide the best view"
       },
       {
         "component": "select",

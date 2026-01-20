@@ -38,6 +38,10 @@ function initTextLazyFadeIn() {
     if (el.closest('header')) return;
     if (el.closest('.header')) return;
 
+    // 👉 ignore search
+    if (el.closest('.searchresult')) return;
+    if (el.closest('.pagination')) return;
+
     if (!el.textContent.trim()) return;
 
     if (el.closest('.text-fade-in')) return;
