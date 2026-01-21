@@ -132,6 +132,11 @@
   width: 48px;
   height: 48px;
   display: block;
+  transition: all 0.3s ease;
+}
+
+.about-us-left .links-container a:hover svg.about-us-link-button path {
+  stroke: #C8AB4B;
 }
 
 .about-us-left .links-container a span{
