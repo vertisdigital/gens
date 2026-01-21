@@ -950,14 +950,6 @@ header .header {
   width: 100%;
 }
 
-.header-inner-wrapper .secondary-nav .secondary-header-links .nav-links li .button-container a:hover::after {
-  content: '';
-  background: url(../../icons/right-arrow.svg) no-repeat center;
-  width: 18px;
-  height: 18px;
-  display: inline-block;
-}
-
 @media(width<=1340px) {
   .header-inner-wrapper .header-nav .primary-nav {
     column-gap: 2px;
