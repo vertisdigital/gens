@@ -76,11 +76,8 @@ export default function decorate(block) {
           tile.style.setProperty('--bg-image-mobile', `var(--bg-image-tablet, var(--bg-image-desktop))`);
         }
         
-        // Don't set inline background-image, let CSS handle it via media queries
-        tile.style.backgroundPosition = 'center';
-        tile.style.backgroundImage = 'var(--bg-image-desktop)';
-        tile.style.backgroundSize = 'cover';
-        tile.style.backgroundRepeat = 'no-repeat';
+        // Add class for styling instead of inline styles
+        tile.classList.add('tiles-nested-image');
         col.classList.add('image-tile');
         
         // Remove original links
