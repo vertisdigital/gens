@@ -32,7 +32,7 @@
 }
 .tiles.block > .image-tile {
   color: var(--background-color);
-  object-fit: cover
+  object-fit: cover;
 }
 .tiles.block > div > * {
   position: relative;
@@ -69,7 +69,7 @@ a:any-link.factsheet-button {
     line-height: 24px;
     font-weight: 400;
     margin-bottom: 24px;
-    color: var(--body-text-color)
+    color: var(--body-text-color);
   }
 .row.tiles-container .image-tile>div>div:first-child p {
   font-family: var(--typography-font-family-font-title, "Inter");
