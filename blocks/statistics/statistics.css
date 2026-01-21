@@ -1,5 +1,4 @@
 .statistics .statistics-row {
-    padding-bottom: 25px;
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     gap: 24px;
@@ -70,6 +69,7 @@
     font-weight: 400;
     line-height: 80px;
     color: var(--color-text-tertiary);
+    margin-bottom: 16px;
 }
 
 .statistics.statistics-financial-variation .statistic-item {
@@ -81,6 +81,7 @@
 }
 
 .statistics .text-container {
+    font-family: var(--typography-font-family-font-body);
     font-size: 24px;
     font-weight: 400;
     line-height: 40px;
@@ -89,8 +90,12 @@
 
 .statistics-wrapper .statistics.block {
     margin-top: 80px;
-    margin-bottom: 80px;
+    padding-bottom: 80px;
     position: relative;
+    background-image: url(../../icons/Pattern.png);
+    background-repeat: no-repeat;
+    background-position: center top 30px;
+    background-size: cover;
 }
 
 
@@ -163,8 +168,9 @@
 
 @media (width <= 1024px) {
     .statistics-wrapper .statistics.block {
-        margin-top: 40px;
-        margin-bottom: 40px;
+        margin-top: 64px;
+        padding-bottom: 64px;
+        background-position: center top 120px;
     }
 
     .statistics-wrapper .statistics.block.statistics-variation{
@@ -275,7 +281,9 @@
 
     .statistics-wrapper .statistics.block {
         margin-top: 40px;
-        margin-bottom: 40px;
+        padding-bottom: 40px;
+        background-position: center bottom;
+        background-size: auto;
     }
 
     .statistics-wrapper .statistics.block.statistics-variation {
@@ -310,12 +318,6 @@
     .statistics.block.statistics-variation .statistics-title {
         margin-bottom: 8px;
     }
-
-    .statistics .text-container {
-        font-size: 16px;
-        line-height: 24px;
-    }
-    
 }
 @media (width>=1200px) {
     .statistics-wrapper .statistics.block::before {
