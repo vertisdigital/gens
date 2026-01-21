@@ -42,6 +42,8 @@ function initTextLazyFadeIn() {
     if (el.closest('.searchresult')) return;
     if (el.closest('.pagination')) return;
 
+    if (el.closest('.masthead-scroll-hint')) return;
+
     if (!el.textContent.trim()) return;
 
     if (el.closest('.text-fade-in')) return;

@@ -581,6 +581,20 @@ function getAssetLink(rootBlock, modelName, nestedSelector) {
     <span class="scroll-text">${scrollText}</span>
   `;
     heroContainer.appendChild(scrollHint);
+    const icon = heroContainer.querySelector('.scroll-icon');
+
+    setInterval(() => {
+      icon.classList.add('is-fading');
+      icon.classList.remove('is-visible');
+
+      setTimeout(() => {
+        icon.classList.remove('is-fading');
+      }, 450);
+
+      setTimeout(() => {
+        icon.classList.add('is-visible');
+      }, 900);
+    }, 3000);
   }
 
   // Only remove if it's not the block itself
