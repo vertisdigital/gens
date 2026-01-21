@@ -34,19 +34,6 @@
     max-width: 14px;
   }
 
-  .content-wrapper .arrow-link-wrapper svg {
-    width: 16px;
-    height: 16px;
-    fill: #8d713e;
-    color: #8d713e;
-    transition: all 0.3s ease;
-  }
-
-  .content-wrapper .arrow-link-wrapper:hover svg {
-    fill: #C8AB4B;
-    color: #C8AB4B;
-  }
-
   [data-aue-model="linkField"] a .icon-wrapper svg, [data-gen-model="linkField"] a .icon-wrapper svg {
     width: 14px;
     height: 14px;
@@ -55,9 +42,12 @@
     transition: all 0.3s ease;
   }
 
-  [data-aue-model="linkField"] a:hover .icon-wrapper svg, [data-gen-model="linkField"] a:hover .icon-wrapper svg {
-    fill: #C8AB4B;
-    color: #C8AB4B;
+  .content-wrapper .arrow-link-wrapper svg {
+    width: 16px;
+    height: 16px;
+    fill: #8d713e;
+    color: #8d713e;
+    transition: all 0.3s ease;
   }
 
   .without-images-row .arrow-link-wrapper svg {
@@ -65,6 +55,16 @@
     height: 24px;
     fill: #8D713E;
     transition: all 0.3s ease;
+  }
+
+  [data-aue-model="linkField"] a:hover .icon-wrapper svg, [data-gen-model="linkField"] a:hover .icon-wrapper svg {
+    fill: #C8AB4B;
+    color: #C8AB4B;
+  }
+
+  .content-wrapper .arrow-link-wrapper:hover svg {
+    fill: #C8AB4B;
+    color: #C8AB4B;
   }
 
   .without-images-row .arrow-link-wrapper:hover svg {
