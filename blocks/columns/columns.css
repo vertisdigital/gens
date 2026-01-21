@@ -93,8 +93,6 @@
    ================================ */
 .columns-wrapper:has(.columns-block.block.bg-primary) {
   background-color: var(--color-bg-primary);
-  border-top: 1px solid var(--colours-border-border-base, #E8EBEB);
-  border-bottom: 1px solid var(--colours-border-border-base, #E8EBEB);
 }
 
 .columns-wrapper:has(.columns.columns-block.block.bg-light) {

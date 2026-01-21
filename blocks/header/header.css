@@ -346,6 +346,30 @@ header .header {
   cursor: pointer;
 }
 
+.header-inner-wrapper .nav-item.active .primary-menu-links-heading {
+  color: var(--primary-gold);
+}
+
+.header-inner-wrapper .nav-item .primary-menu-links-heading .header-accordion-arrow .icon-wrapper {
+  width: 14px;
+  display: block;
+}
+
+.header-inner-wrapper .nav-item.active .primary-menu-links-heading .header-accordion-arrow {
+  transform: rotate(180deg);
+  width: 14px;
+}
+
+.header-inner-wrapper .nav-item.active .primary-menu-links-heading svg{
+  filter: brightness(0) saturate(100%)
+        invert(63%)
+        sepia(22%)
+        saturate(718%)
+        hue-rotate(7deg)
+        brightness(93%)
+        contrast(88%);
+}
+
 /* Active State */
 .header-inner-wrapper .nav-item.active .primary-menu-links,
 .header-inner-wrapper .nav-item.active .primary-menu-links a {
@@ -393,6 +417,10 @@ header .header {
   font-size: var(--font-size-xxs);
   margin: 0;
   color: var(--text-color);
+}
+
+.header-inner-wrapper .secondary-header .secondary-header-wrapper .secondary-header-title {
+  pointer-events: none;
 }
 
 /* Close button (desktop) */
@@ -724,16 +752,6 @@ header .header {
   position: relative;
 }
 
-.header-inner-wrapper .header-nav .primary-nav .nav-item.active::before {
-  content: '';
-  position: absolute;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background: var(--primary-gold);
-  height: 2px;
-}
-
 .header-inner-wrapper .header-nav .primary-nav .nav-item .primary-menu-links,
 .header-inner-wrapper .header-nav .primary-nav .nav-item .primary-menu-links a {
   text-align: center;
@@ -820,6 +838,15 @@ header .header {
     display: block;
     font-size: 14px;
     margin-top: 16px;
+}
+.header-inner-wrapper .secondary-nav .secondary-header .secondary-header-wrapper a.secondary-header-cta:hover svg{
+  filter: brightness(0) saturate(100%)
+          invert(63%)
+          sepia(22%)
+          saturate(718%)
+          hue-rotate(7deg)
+          brightness(93%)
+          contrast(88%);
 }
 
 .header-inner-wrapper .secondary-nav .secondary-header .secondary-header-wrapper a.secondary-header-cta .icon-wrapper {
