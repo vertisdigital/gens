@@ -585,7 +585,7 @@ function getAssetLink(rootBlock, modelName, nestedSelector) {
 
     let firstRun = true;
 
-    function runAnimation() {
+    const runAnimation = () => {
       if (firstRun) {
         icon.classList.add('is-visible');
         firstRun = false;
