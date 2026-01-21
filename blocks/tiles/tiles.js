@@ -32,7 +32,7 @@ export default function decorate(block) {
       );
       if (imageLink) {
         // Set as background
-        tile.style.backgroundImage = `url(${imageLink}/as/tiles.webp?width=850)`;
+        tile.style.backgroundImage = `linear-gradient(180deg, rgba(0, 0, 0, 0) 45.51%, #000 117.9%), url(${imageLink}/as/tiles.webp?width=850)`;
         tile.style.backgroundPosition = 'center';
         tile.style.backgroundSize = 'cover';
         tile.style.backgroundRepeat = 'no-repeat';
@@ -80,6 +80,8 @@ export default function decorate(block) {
         }
       }
 
+     
+
       const ctaCaption = childrens[6];
       if (buttonContainer && buttonContainer.textContent.trim() !== '' && ctaCaption !== null) {
         const ctaLink = document.createElement('a');
@@ -96,10 +98,15 @@ export default function decorate(block) {
         ctaLink.appendChild(stringToHTML(arrowIcon));
         ctaCaption.parentNode.replaceChild(ctaLink, ctaCaption);
       }
+      if (thirdChild && !hasPicture) {
+        thirdChild.remove();
+      }
 
       if (buttonContainer) {
         buttonContainer.remove();
+        childrens[4].remove();
       }
+      
       if (ctaCaption) {
         ctaCaption.remove();
       }
@@ -128,6 +135,7 @@ export default function decorate(block) {
       }
       if (buttonContainer) {
         buttonContainer.remove();
+        childrens[5].remove();
       }
       if (ctaCaption) {
         ctaCaption.remove();
