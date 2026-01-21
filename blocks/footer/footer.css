@@ -4,10 +4,15 @@
 .footer {
   position: relative;
   color: var(--background-color);
-  padding-top: 68px;
-  padding-bottom: 44px;
+  padding-top: 40px;
+  padding-bottom: 64px;
   overflow: hidden;
   background: var(--bronze-brown)
+}
+.footer .footer-child-element {
+    gap: 40px;
+    display: flex;
+    flex-direction: column;
 }
 
 .footer > * {
@@ -48,6 +53,7 @@
     gap: var(--spacing-6, 24px);
     align-self: stretch;
     border-bottom: 1px solid var(--background-color);
+    padding-bottom: 40px;
 }
 
 .footer .footer-logo {
@@ -68,7 +74,6 @@
     font-weight: 400;
     line-height: 24px;
     color: #FFF;
-    margin-bottom: 30px;
     overflow-wrap: anywhere;
     max-width: 50%;
     margin-top: 0;
@@ -106,10 +111,6 @@
 /* =========================
    LEFT SECTION (DESKTOP)
 ========================= */
-.footer .mt-4 {
-    padding-top: 35px;
-}
-
 .footer .left-section {
     width: 100%;
 }
@@ -118,6 +119,7 @@
     display: flex;
     flex-wrap: nowrap;
     align-items: flex-start;
+    gap: 24px;
 }
 
 .footer .left-section .row>.collapsible-links {
@@ -126,10 +128,6 @@
     box-sizing: border-box;
     padding-left: 0 !important;
     padding-right: 0 !important;
-}
-
-.footer nav {
-    margin-bottom: 24px;
 }
 
 .footer .left-section .footer-nav-title {
@@ -215,12 +213,13 @@
 
 .footer .mt-4 .footer-bottom-links .row .copywrite-right .copywrite-group a {
     font-family: var(--typography-font-family-font-body, "Instrument Sans");
-    font-size: var(--typography-font-size-text-xs, 14px);
+    font-size: var(--typography-font-size-text-xss, 12px);
     line-height: var(--typography-font-line-height-leading-3, 24px);
 }
 
 .footer .mt-4 .footer-bottom-links .row .copywrite-right .copywrite-group:nth-child(2) a {
     color: var(--colours-text-text-white, #FFF);
+    font-size: var(--typography-font-size-text-xs, 14px);
     font-weight: 700;
 }
 

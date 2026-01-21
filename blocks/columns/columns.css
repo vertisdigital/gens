@@ -3,7 +3,34 @@
    ================================ */
 .columns.columns-block.block {
   position: relative;
-  padding: 80px 160px;
+  padding-top: 80px;
+  padding-bottom: 80px;
+  gap: 64px;
+}
+.columns.columns-block.block.columns-cols {
+  display: flex;
+  flex-direction: column;
+  gap: 64px;
+}
+
+
+.columns .textblock h1,
+.columns .textblock h2,
+.columns .textblock h3,
+.columns .textblock h4,
+.columns .textblock h5,
+.columns .textblock h6 {
+  margin-top: 0;
+  margin-bottom: 0;
+}
+
+/* =========================================================
+   Paragraph spacing
+   ========================================================= */
+
+.columns.textblock p {
+  margin-top: 0;
+  margin-bottom: 0;
 }
 
 /* row */
@@ -44,26 +71,25 @@
 .columns.columns-block.block > .columns-branded-icon {
   display: flex;
   justify-content: center;
-  margin-bottom: 24px;
   color: var(--color-fg-secondary);
 }
 
 /* ================================
    Background variants
    ================================ */
-.columns.columns-block.block.bg-primary {
+.columns-wrapper:has(.columns-block.block.bg-primary) {
   background-color: var(--color-bg-primary);
 }
 
-.columns.columns-block.block.bg-light {
+.columns-wrapper:has(.columns.columns-block.block.bg-light) {
   background-color: var(--color-bg-white);
 }
 
-.columns.columns-block.block.bg-white {
+.columns-wrapper:has(.columns.columns-block.block.bg-white) {
   background-color: #fff;
 }
 
-.columns.columns-block.block.bg-transparent {
+.columns-wrapper:has(.columns.columns-block.block.bg-transparent) {
   background-color: transparent;
 }
 
