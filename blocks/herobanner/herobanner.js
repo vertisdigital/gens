@@ -583,7 +583,15 @@ function getAssetLink(rootBlock, modelName, nestedSelector) {
     heroContainer.appendChild(scrollHint);
     const icon = heroContainer.querySelector('.scroll-icon');
 
-    setInterval(() => {
+    let firstRun = true;
+
+    function runAnimation() {
+      if (firstRun) {
+        icon.classList.add('is-visible');
+        firstRun = false;
+        return;
+      }
+
       icon.classList.add('is-fading');
       icon.classList.remove('is-visible');
 
@@ -594,7 +602,10 @@ function getAssetLink(rootBlock, modelName, nestedSelector) {
       setTimeout(() => {
         icon.classList.add('is-visible');
       }, 900);
-    }, 3000);
+    }
+
+    runAnimation();
+    setInterval(runAnimation, 2500);
   }
 
   // Only remove if it's not the block itself
