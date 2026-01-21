@@ -639,6 +639,10 @@ function initializeHeader(header) {
         .forEach(i => i.classList.remove(activeClass));
       document.querySelectorAll('.secondary-nav.active')
         .forEach(n => n.classList.remove(activeClass));
+      document.querySelectorAll('.primary-nav.active')
+        .forEach(n => n.classList.remove(activeClass));
+      document.querySelectorAll('.hamburger.active')
+        .forEach(n => n.classList.remove(activeClass));
       overlay.classList.remove(activeClass);
       currentActive = null;
       header.classList.remove('mobile-menu-open');

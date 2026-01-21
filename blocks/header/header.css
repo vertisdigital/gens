@@ -441,6 +441,7 @@ header .header {
   left: 0;
   background: var(--colours-background-bg-primary, #1D3D51);
   color: #FFF;
+  border-top: 1px solid #FFF;
 }
 
 .header-inner-wrapper .mobile-subnav .secondary-nav.active {
