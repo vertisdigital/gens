@@ -8,6 +8,7 @@ import { highlight, shortenURL, resolveSearchBasePath } from '../searchresult/se
 // Add these variables at the top level of the file
 let ticking = false;
 let isHeaderFixed = false;
+const isMobileViewport = () => window.innerWidth <= 767;
 
 /**
  * Sets AEM data attributes
@@ -340,6 +341,26 @@ function triggerSearchPage(e) {
   window.location.href = target;
 }
 
+function createMobileAccordionFromSecondary(secondaryNav, originalLinks) {
+  const accordion = document.createElement('div');
+  accordion.className = 'mobile-subnav';
+
+  const cloned = secondaryNav.cloneNode(true);
+  cloned.classList.add('active');
+  cloned.classList.remove('header-hover-zone');
+
+  cloned.querySelector('.close-btn')?.remove();
+
+  const targetUl = cloned.querySelector('.nav-links');
+  if (targetUl) {
+    targetUl.innerHTML = '';
+    const freshLinks = originalLinks.cloneNode(true);
+    targetUl.append(...freshLinks.children);
+  }
+
+  accordion.appendChild(cloned);
+  return accordion;
+}
 
 /**
  * Initialize header interactions
@@ -376,6 +397,7 @@ function initializeHeader(header) {
     hamburger.classList.toggle('active');
     const primaryNav = header.querySelector('.primary-nav');
     primaryNav.classList.toggle('active');
+    header.classList.add('mobile-menu-open');
 
     // Use setTimeout to ensure class toggle happens before icon change
     setTimeout(() => {
@@ -383,6 +405,7 @@ function initializeHeader(header) {
         hamburger.replaceChildren(closeIcon);
         document.body.classList.add('no-scroll');
       } else {
+        header.classList.remove('mobile-menu-open');
         document.body.classList.remove('no-scroll');
         hamburger.replaceChildren(hamburgerIcon);
 
@@ -412,11 +435,6 @@ function initializeHeader(header) {
       // Create empty secondary nav structure
       const secondaryNav = document.createElement('div');
       secondaryNav.className = 'secondary-nav';
-
-      // Create back button (mobile/tablet)
-      const backBtn = document.createElement('button');
-      backBtn.className = 'back-btn';
-      backBtn.textContent = 'Back';
 
       // Create close button (desktop)
       const closeBtn = document.createElement('button');
@@ -462,7 +480,7 @@ function initializeHeader(header) {
 
       const headerCol = document.createElement('div');
       headerCol.className = 'secondary-header-wrapper col-12 col-md-6 col-sm-4';
-      headerCol.append(backBtn, heading, description, cta, closeBtn);
+      headerCol.append(heading, description, cta, closeBtn);
       secondaryHeader.appendChild(headerCol);
 
       const linksContainer = document.createElement('div');
@@ -480,11 +498,44 @@ function initializeHeader(header) {
       secondaryNav.append(secondaryNavWrapper);
       header.appendChild(secondaryNav);
 
+      const headingItem = item.querySelector('.primary-menu-links-heading');
+
+      headingItem?.addEventListener('click', (e) => {
+        if (!isMobileViewport()) return;
+
+        e.preventDefault();
+        e.stopPropagation();
+
+        const isOpen = item.classList.contains('active');
+
+        header.querySelectorAll('.nav-item.active').forEach(i => {
+          if (i !== item) {
+            i.classList.remove('active');
+            i.querySelector('.mobile-subnav')?.remove();
+          }
+        });
+
+        if (isOpen) {
+          item.classList.remove('active');
+          item.querySelector('.mobile-subnav')?.remove();
+          return;
+        }
+
+        item.classList.add('active');
+
+        const accordion = createMobileAccordionFromSecondary(
+          secondaryNav,
+          originalLinks
+        );
+        item.appendChild(accordion);
+      });
+
       secondaryNav.classList.add('header-hover-zone');
       // Handle click on nav item - Clone links here
       const hoverZone = document.querySelector('.header-hover-zone');
 
       item.addEventListener('mouseenter', () => {
+        if (isMobileViewport()) return;
         document.querySelector('.search-suggestion-box').classList.remove(activeClass);
         document.querySelectorAll('.secondary-nav').forEach(navigation => navigation.classList.remove(activeClass));
         if (currentActive && currentActive !== item) {
@@ -506,6 +557,8 @@ function initializeHeader(header) {
       });
 
       document.addEventListener('pointermove', (e) => {
+        if (isMobileViewport()) return;
+
         if (!hoverZone.contains(e.target)) {
           if (!currentActive) return;
           
@@ -527,11 +580,6 @@ function initializeHeader(header) {
         emptyLinks.innerHTML = ''; // Clear links
         currentActive = null;
       };
-
-      backBtn.addEventListener('click', (e) => {
-        e.stopPropagation();
-        closeSecondary();
-      });
 
       closeBtn.addEventListener('click', (e) => {
         e.stopPropagation();
@@ -583,6 +631,18 @@ function initializeHeader(header) {
 
   searchBtnSuggestion.addEventListener('click', function () {
     triggerSearchPage(searchInput.value)
+  });
+
+  window.addEventListener('resize', () => {
+    if (isMobileViewport()) {
+      document.querySelectorAll('.nav-item.active')
+        .forEach(i => i.classList.remove(activeClass));
+      document.querySelectorAll('.secondary-nav.active')
+        .forEach(n => n.classList.remove(activeClass));
+      overlay.classList.remove(activeClass);
+      currentActive = null;
+      header.classList.remove('mobile-menu-open');
+    }
   });
 
   // Close menu when clicking overlay
