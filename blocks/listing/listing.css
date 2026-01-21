@@ -57,11 +57,6 @@
     transition: all 0.3s ease;
   }
 
-  [data-aue-model="linkField"] a:hover .icon-wrapper svg, [data-gen-model="linkField"] a:hover .icon-wrapper svg {
-    fill: #C8AB4B;
-    color: #C8AB4B;
-  }
-
   .content-wrapper .arrow-link-wrapper:hover svg {
     fill: #C8AB4B;
     color: #C8AB4B;
@@ -69,6 +64,11 @@
 
   .without-images-row .arrow-link-wrapper:hover svg {
     fill: #C8AB4B;
+  }
+
+  [data-aue-model="linkField"] a:hover .icon-wrapper svg, [data-gen-model="linkField"] a:hover .icon-wrapper svg {
+    fill: #C8AB4B;
+    color: #C8AB4B;
   }
 
   /* Header styles */
