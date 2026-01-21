@@ -34,17 +34,17 @@
     max-width: 14px;
   }
 
-  [data-aue-model="linkField"] a .icon-wrapper svg, [data-gen-model="linkField"] a .icon-wrapper svg {
-    width: 14px;
-    height: 14px;
+  .content-wrapper .arrow-link-wrapper svg {
+    width: 16px;
+    height: 16px;
     fill: #8d713e;
     color: #8d713e;
     transition: all 0.3s ease;
   }
 
-  .content-wrapper .arrow-link-wrapper svg {
-    width: 16px;
-    height: 16px;
+  [data-aue-model="linkField"] a .icon-wrapper svg, [data-gen-model="linkField"] a .icon-wrapper svg {
+    width: 14px;
+    height: 14px;
     fill: #8d713e;
     color: #8d713e;
     transition: all 0.3s ease;
