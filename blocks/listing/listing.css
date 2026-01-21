@@ -42,18 +42,18 @@
     transition: all 0.3s ease;
   }
 
+  .without-images-row .arrow-link-wrapper svg {
+    width: 24px;
+    height: 24px;
+    fill: #8D713E;
+    transition: all 0.3s ease;
+  }
+
   [data-aue-model="linkField"] a .icon-wrapper svg, [data-gen-model="linkField"] a .icon-wrapper svg {
     width: 14px;
     height: 14px;
     fill: #8d713e;
     color: #8d713e;
-    transition: all 0.3s ease;
-  }
-
-  .without-images-row .arrow-link-wrapper svg {
-    width: 24px;
-    height: 24px;
-    fill: #8D713E;
     transition: all 0.3s ease;
   }
 
