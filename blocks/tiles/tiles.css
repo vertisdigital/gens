@@ -87,6 +87,11 @@ a:any-link.factsheet-button {
   font-weight: 400;
   line-height: 24px;
   color: var(--background-color);
+  width: 70%;
+}
+
+.row.tiles-container .image-tile.w-100>div>div:nth-child(2) p {
+  width: 75%;
 }
 
 .row.tiles-container .image-tile>div>div:nth-child(2) p.has-picture {
@@ -196,6 +201,11 @@ a:any-link.factsheet-button {
     font-weight: 400;
     line-height: 20px;
     margin-bottom: 56px;
+    width: 100%;
+  }
+
+  .row.tiles-container .image-tile.w-100>div>div:nth-child(2) p{
+    width: 100%;
   }
 
   .row.tiles-container .image-tile>div>div:nth-child(2) p.has-picture {
@@ -256,6 +266,10 @@ a:any-link.factsheet-button {
     font-weight: 400;
     line-height: 24px;
     margin-bottom: 0;
+    width: 50%;
+  }
+
+  .row.tiles-container .image-tile.w-100>div>div:nth-child(2) p {
     width: 50%;
   }
 
