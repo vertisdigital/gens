@@ -1,28 +1,19 @@
 /* Core Principles Component */
+.coreprinciples-wrapper {
+    background-image: url(../../icons/Pattern.png);
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+}
+
 .coreprinciples {
     margin-top: 64px;
+    padding-bottom: 80px;
 }
 
 .coreprinciples .coreprinciples {
     padding: 0;
     position: relative;
-}
-
-.coreprinciples .coreprinciples .container::after {
-    content: '';
-    width: 100%;
-    height: 1px;
-    background: var(--text-color);
-    margin: 0 auto;
-    transform: translateY(80px);
-}
-
-.coreprinciples.coreprinciples-no-border .container::after{
-    display: none;
-}
-
-#remove-border-bottom .container::after {
-    display: none;
 }
 
 .coreprinciples > div {
@@ -49,10 +40,6 @@
     flex-direction: column;
     height: 100%;
     border-radius: 8px;
-}
-
-.principles-item > div:first-child {
-    padding: 24px;
 }
 
 .coreprinciples .icon-wrapper {
@@ -143,6 +130,7 @@
 
     .coreprinciples {
         margin-top: 40px;
+        padding-bottom: 64px;
     }
 
     .coreprinciples .coreprinciples .container::after {
@@ -165,6 +153,7 @@
 @media (width < 768px) {
     .coreprinciples {
         margin-top: 24px;
+        padding-bottom: 40px;
     }
 
     .coreprinciples .coreprinciples-container {
