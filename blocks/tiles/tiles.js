@@ -30,19 +30,66 @@ export default function decorate(block) {
       const imageLink = tile.querySelector(
         'a[href*="/content/dam/"][href$=".png"], a[href*="delivery-"]',
       );
-      if (imageLink) {
-        // Set as background
-        tile.style.backgroundImage = `linear-gradient(180deg, rgba(0, 0, 0, 0) 45.51%, #000 117.9%), url(${imageLink}/as/tiles.webp?width=850)`;
-        tile.style.backgroundPosition = 'center';
-        tile.style.backgroundSize = 'cover';
-        tile.style.backgroundRepeat = 'no-repeat';
-        col.classList.add('image-tile');
-        // Remove original link
-        imageLink.remove();
-      }
-
+      
       // Handle CTA link
       const childrens = tile.children;
+      
+      // Get last two divs for tablet and mobile images
+      const childrenArray = Array.from(childrens);
+      const lastTwoDivs = childrenArray.slice(-2);
+      let tabletImageLink = null;
+      let mobileImageLink = null;
+      
+      if (lastTwoDivs.length >= 2) {
+        // Second to last div - tablet image
+        const tabletLink = lastTwoDivs[0].querySelector('a[href*="/content/dam/"][href$=".png"], a[href*="delivery-"]');
+        if (tabletLink) {
+          tabletImageLink = tabletLink.href;
+        }
+        // Last div - mobile image
+        const mobileLink = lastTwoDivs[1].querySelector('a[href*="/content/dam/"][href$=".png"], a[href*="delivery-"]');
+        if (mobileLink) {
+          mobileImageLink = mobileLink.href;
+        }
+      }
+      
+      if (imageLink) {
+        // Set desktop background image
+        const desktopImageUrl = `${imageLink.href}/as/tiles.webp?width=850`;
+        tile.style.setProperty('--bg-image-desktop', `linear-gradient(180deg, rgba(0, 0, 0, 0) 45.51%, #000 117.9%), url(${desktopImageUrl})`);
+        
+        // Set tablet background image if available
+        if (tabletImageLink) {
+          const tabletImageUrl = `${tabletImageLink}/as/tiles.webp?width=850`;
+          tile.style.setProperty('--bg-image-tablet', `linear-gradient(180deg, rgba(0, 0, 0, 0) 45.51%, #000 117.9%), url(${tabletImageUrl})`);
+        } else {
+          // Fallback to desktop image if tablet image not available
+          tile.style.setProperty('--bg-image-tablet', `var(--bg-image-desktop)`);
+        }
+        
+        // Set mobile background image if available
+        if (mobileImageLink) {
+          const mobileImageUrl = `${mobileImageLink}/as/tiles.webp?width=850`;
+          tile.style.setProperty('--bg-image-mobile', `linear-gradient(180deg, rgba(0, 0, 0, 0) 45.51%, #000 117.9%), url(${mobileImageUrl})`);
+        } else {
+          // Fallback to tablet or desktop image if mobile image not available
+          tile.style.setProperty('--bg-image-mobile', `var(--bg-image-tablet, var(--bg-image-desktop))`);
+        }
+        
+        // Add class for styling instead of inline styles
+        tile.classList.add('tiles-nested-image');
+        col.classList.add('image-tile');
+        
+        // Remove original links
+        imageLink.remove();
+        if (tabletImageLink) {
+          lastTwoDivs[0].remove();
+        }
+        if (mobileImageLink) {
+          lastTwoDivs[1].remove();
+        }
+      }
+      
       const buttonContainer = childrens[5].querySelector('a');
       childrens[3].textContent = '';
 
