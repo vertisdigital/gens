@@ -38,17 +38,32 @@
     width: 24px;
     height: 24px;
     fill: #8D713E;
+    transition: all 0.3s ease;
+  }
+
+  .without-images-row .arrow-link-wrapper:hover svg {
+    fill: #C8AB4B;
   }
 
   .content-wrapper .arrow-link-wrapper svg {
     width: 16px;
     height: 16px;
     color: #8d713e;
+    transition: all 0.3s ease;
+  }
+
+  .content-wrapper .arrow-link-wrapper:hover svg {
+    color: #C8AB4B;
   }
 
   [data-aue-model="linkField"] a .icon-wrapper svg, [data-gen-model="linkField"] a .icon-wrapper svg {
     width: 14px;
     height: 14px;
+    transition: all 0.3s ease;
+  }
+
+  [data-aue-model="linkField"] a:hover .icon-wrapper svg, [data-gen-model="linkField"] a:hover .icon-wrapper svg {
+    color: #C8AB4B;
   }
 
   /* Header styles */
@@ -534,16 +549,21 @@
   background: transparent;
   cursor: pointer;
   flex-shrink: 0;
+  transition: border-color 0.3s ease;
 }
 
 .content-wrapper .arrow-link-wrapper .left-arrow-icon {
   fill: #8d713e;
-  transition: transform 0.3s ease;
+  transition: fill 0.3s ease;
   display: flex;
 }
 
 .content-wrapper .arrow-link-wrapper:hover .left-arrow-icon {
-  transform: translateX(2px);
+  fill: #C8AB4B;
+}
+
+.content-wrapper .arrow-link-wrapper:hover {
+  border-color: #C8AB4B;
 }
 
 
@@ -582,8 +602,11 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  flex-shrink: 0;
-  margin-left: 16px;
+  transition: all 0.3s ease;
+}
+
+.without-images-row .arrow-link-wrapper:hover {
+  border-color: #C8AB4B;
 }
 
 /* Desktop Design */
@@ -713,6 +736,11 @@
   .without-images-right-column .arrow-link-wrapper svg {
     width: 20px;
     height: 20px;
+    transition: all 0.3s ease;
+  }
+
+  .without-images-right-column .arrow-link-wrapper:hover svg {
+    fill: #C8AB4B;
   }
 }
 
@@ -783,5 +811,10 @@
   .without-images-right-column .arrow-link-wrapper svg {
     width: 18px;
     height: 18px;
+    transition: all 0.3s ease;
+  }
+
+  .without-images-right-column .arrow-link-wrapper:hover svg {
+    fill: #C8AB4B;
   }
 }
