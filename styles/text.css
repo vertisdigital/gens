@@ -196,6 +196,34 @@
   white-space: pre;
 }
 
+@media (width <= 1199px) {
+  .columns .textblock h2 {
+    font-size: var(--typography-font-size-text-xl, 36px);
+    line-height: var(--typography-font-line-height-leading-7, 56px); /* 157.143% */
+    letter-spacing: var(--typography-font-spacing-tracking-normal, 0);
+  }
+
+  .columns .textblock h6 {
+    font-size: var(--typography-font-size-text-base, 16px);
+    line-height: var(--typography-font-line-height-leading-3, 24px); /* 150% */
+    letter-spacing: var(--typography-font-spacing-tracking-normal, 0);
+  }
+}
+
+@media (width <= 767px) {
+  .columns .textblock h2 {
+    font-size: var(--typography-font-size-text-m, 28px);
+    line-height: var(--typography-font-line-height-leading-5, 44px); /* 157.143% */
+    letter-spacing: var(--typography-font-spacing-tracking-normal, 0);
+  }
+
+  .columns .textblock h6 {
+    font-size: var(--typography-font-size-text-base, 16px);
+    line-height: var(--typography-font-line-height-leading-3, 24px); /* 150% */
+    letter-spacing: var(--typography-font-spacing-tracking-normal, 0);
+  }
+}
+
 @media (width >= 567px) {
   .textblock code,
   .textblock pre {

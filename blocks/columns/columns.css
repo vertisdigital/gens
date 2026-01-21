@@ -24,6 +24,15 @@
   margin-bottom: 0;
 }
 
+.columns .textblock h2 {
+  line-height: 72px;
+}
+
+.columns .textblock h6 {
+  line-height: 40px;
+}
+
+
 /* =========================================================
    Paragraph spacing
    ========================================================= */
@@ -74,11 +83,18 @@
   color: var(--color-fg-secondary);
 }
 
+.columns.columns-block.block > .columns-branded-icon svg {
+  width: 32px;
+  height: 32px;
+}
+
 /* ================================
    Background variants
    ================================ */
 .columns-wrapper:has(.columns-block.block.bg-primary) {
   background-color: var(--color-bg-primary);
+  border-top: 1px solid var(--colours-border-border-base, #E8EBEB);
+  border-bottom: 1px solid var(--colours-border-border-base, #E8EBEB);
 }
 
 .columns-wrapper:has(.columns.columns-block.block.bg-light) {
@@ -97,6 +113,9 @@
 @media (width <= 1200px) {
   .columns.columns-block.block {
     padding: 40px;
+  }
+  .columns.columns-block.block.columns-cols {
+    gap: 24px;
   }
 }
 
