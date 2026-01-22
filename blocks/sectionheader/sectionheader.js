@@ -5,6 +5,7 @@ import { moveInstrumentation } from '../../scripts/scripts.js';
 
 export default function decorate(block) {
     block.classList.add('section-header', 'block', 'container');
+    block.classList.add('fade-item');
     const nested = block.querySelectorAll('[class^="sectionheader-nested-"]');
     const labelEl = nested[0]?.querySelector('p') || null;
     const titleEl = nested[1]?.querySelector('p') || null;

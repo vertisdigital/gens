@@ -2,6 +2,7 @@ import SvgIcon from "../../shared-components/SvgIcon.js";
 import Heading from "../../shared-components/Heading.js";
 
 export default function decorate(block) {
+  block.classList.add('fade-item');
   // Store all child elements before modifying the block
   const allChildElements = Array.from(block.children);
 

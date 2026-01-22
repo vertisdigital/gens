@@ -3,6 +3,7 @@ import Heading from '../../shared-components/Heading.js';
 import stringToHTML from '../../shared-components/Utility.js';
 
 export default function decorate(block) {
+  block.classList.add('fade-item');
   const blockChilden = [].slice.call(block.children);
   const isStaticFinanicialVariation = block.classList.contains(
     'statistics-financial-variation',

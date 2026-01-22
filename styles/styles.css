@@ -941,10 +941,10 @@ main::before {
 }
 
 /* =========================================================
-   Text-only lazy fade-in
+   lazy fade-in
    ========================================================= */
 
-.text-fade-in {
+.cmp-fade-up {
   opacity: 0;
   transform: translateY(100px);
   transition:
@@ -953,14 +953,14 @@ main::before {
   will-change: opacity, transform;
 }
 
-.text-fade-in.is-visible {
+.cmp-fade-up.is-visible {
   opacity: 1;
   transform: translateY(0);
 }
 
 /* Reduce motion */
 @media (prefers-reduced-motion: reduce) {
-  .text-fade-in {
+  .cmp-fade-up {
     opacity: 1;
     transform: none;
     transition: none;

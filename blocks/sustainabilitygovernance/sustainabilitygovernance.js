@@ -2,6 +2,7 @@ import { moveInstrumentation } from "../../scripts/scripts.js";
 import { getIcon } from "../../shared-components/icons/index.js";
 
 export default function decorate(block) {
+    block.classList.add('fade-item');
     const [title, ...cards] = [...block.children];
 
     // Create the main governance section container

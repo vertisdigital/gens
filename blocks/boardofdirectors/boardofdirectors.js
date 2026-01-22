@@ -38,6 +38,7 @@ const getGroups = (updatedChildren) => {
 };
 
 export default function decorate(block) {
+  block.classList.add('fade-item');
   const directors = [];
 
   function processDirectorElement(element) {

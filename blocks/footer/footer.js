@@ -24,6 +24,7 @@ const handleAccordionToggle = (e, keyboardTrigger = false) => {
  * @param {Element} block The footer block element
  */
 export default async function decorate(block) {
+  block.classList.add('fade-item');
   // load footer as fragment
   console.log('footer-03July-2:41pmIST');
   const footerMeta = getMetadata('footer');

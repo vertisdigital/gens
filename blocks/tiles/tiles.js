@@ -6,6 +6,7 @@ import stringToHTML from '../../shared-components/Utility.js';
  * @param {Element} block The tiles block element
  */
 export default function decorate(block) {
+  block.classList.add('fade-item');
   // Add container wrappers for each breakpoint
 
   // Create row wrapper

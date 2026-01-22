@@ -3,6 +3,7 @@ import ImageComponent from '../../shared-components/ImageComponent.js';
 import SvgIcon from '../../shared-components/SvgIcon.js';
 
 export default function decorate(block) {
+  block.classList.add('fade-item');
   // Create main container
   let awardsGalleryContainer = block.querySelector('.awardsgallery-container');
   if (!awardsGalleryContainer) {

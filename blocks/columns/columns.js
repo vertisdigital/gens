@@ -29,7 +29,7 @@ function renderBrandedIcon(block) {
 }
 
 export default function decorate(block) {
-  block.classList.add('columns-block');
+  block.classList.add('columns-block', 'fade-item');
   block.classList.add('container');
   const rows = Array.from(block.children)
     .filter((el) => !el.classList.contains('columns-branded-icon'));

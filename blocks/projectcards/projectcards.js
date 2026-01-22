@@ -5,6 +5,7 @@ import { moveInstrumentation } from '../../scripts/scripts.js';
 export default function decorate(block) {
   // Remove grey-background classes if present
   block.classList.remove('grey-background', 'grey-background-row');
+  block.classList.add('fade-item');
   
   // Create main container
   let projectCardsContainer = block.querySelector('.projectcards-container');

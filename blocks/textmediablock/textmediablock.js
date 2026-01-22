@@ -42,6 +42,7 @@ function handleImageElement(mediaBlock) {
   }
 }
 export default function decorate(block) {
+  block.classList.add('fade-item');
   block.className = 'container textmediablock-container';
 
   // Determine block variation by checking first child

@@ -338,6 +338,7 @@ const bindPagination = (block, q) => {
 };
 
 export default async function decorate(block) {
+  block.classList.add('fade-item');
   const params = new URLSearchParams(window.location.search);
   const q = params.get("q");
 

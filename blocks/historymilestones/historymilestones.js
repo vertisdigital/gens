@@ -43,6 +43,7 @@ function getImageHTMl(image) {
 }
 
 export default function decorate(block) {
+  block.classList.add('fade-item');
   // first element is year, second element is year description and the rest are milestones
   const [year, yearText, ...milestones] = block.children;
 

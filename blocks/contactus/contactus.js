@@ -6,6 +6,7 @@ import SvgIcon from '../../shared-components/SvgIcon.js';
 
 export default function decorate(block) {
   if (!block || !block.children.length) return;
+  block.classList.add('fade-item');
 
   const wrapper = block;
   const enquiryChildren = Array.from(block.children);

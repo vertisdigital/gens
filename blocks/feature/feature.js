@@ -8,6 +8,7 @@ import { moveInstrumentation } from '../../scripts/scripts.js';
  * @param {Element} block The herobanner block element
  */
 export default function decorate(block) {
+  block.classList.add('fade-item');
   // Get block children early for use in fallback selectors
   const blockChildren = Array.from(block.children);
   

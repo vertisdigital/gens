@@ -1,23 +1,8 @@
 function initTextLazyFadeIn() {
-  const TEXT_SELECTORS = `
-    h1, h2, h3, h4, h5, h6,
-    p,
-    li,
-    a,
-    span,
-    strong,
-    em,
-    .button,
-    .image-container,
-    .section-header-right,
-    .scroll-text,
-    .hero-description,
-    .masthead-scroll-hint,
-    .projectcards-header-right,
-    .learn-button
-  `;
+  const COMPONENT_SELECTOR = '.fade-item';
 
-  const elements = document.querySelectorAll(TEXT_SELECTORS);
+  const elements = document.querySelectorAll(COMPONENT_SELECTOR);
+  if (!elements.length) return;
 
   const observer = new IntersectionObserver(
     (entries, obs) => {
@@ -37,18 +22,10 @@ function initTextLazyFadeIn() {
   elements.forEach((el) => {
     if (el.closest('header')) return;
     if (el.closest('.header')) return;
-
-    // 👉 ignore search
     if (el.closest('.searchresult')) return;
     if (el.closest('.pagination')) return;
 
-    if (el.closest('.masthead-scroll-hint')) return;
-
-    if (!el.textContent.trim()) return;
-
-    if (el.closest('.text-fade-in')) return;
-
-    el.classList.add('text-fade-in');
+    el.classList.add('cmp-fade-up');
     observer.observe(el);
   });
 }

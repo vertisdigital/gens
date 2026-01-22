@@ -5,6 +5,7 @@ export default function decorate(block) {
   // Get the inner block that has the coreprinciples class
   const coreBlock = block;
   if (!coreBlock) return;
+  block.classList.add('fade-item');
 
   // Add container classes for responsive layout
   const wrapper = document.createElement('div');

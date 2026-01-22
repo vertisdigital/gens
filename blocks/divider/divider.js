@@ -27,7 +27,7 @@ export default function decorate(block) {
   
   // Apply the className to the block
   block.className = `divider ${dividerType}`;
-  block.classList.add('container');
+  block.classList.add('container', 'fade-item');
   
   // Clear any remaining content
   block.textContent = '';

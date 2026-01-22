@@ -3,6 +3,7 @@ import ImageComponent from '../../shared-components/ImageComponent.js';
 import stringToHtml from '../../shared-components/Utility.js';
 
 export default function decorate(block) {
+  block.classList.add('fade-item');
   // Restructure the HTML for better semantics and accessibility
   const wrapper = block.closest('.projectslist') || block;
 

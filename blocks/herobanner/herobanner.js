@@ -6,6 +6,7 @@ import { moveInstrumentation } from '../../scripts/scripts.js';
 
 
 export default function decorate(block) {
+  block.classList.add('fade-item');
   // Always create a new heroContainer to avoid issues when block is cleared
   // If one exists, we'll process its content but create a fresh container
   const existingHeroContainer = block.querySelector('.hero-banner-container');
