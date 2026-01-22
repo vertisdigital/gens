@@ -13,6 +13,28 @@
     justify-content: flex-end;
   }
 
+  [data-aue-model="linkField"] a, [data-gen-model="linkField"] a {
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 24px;
+    text-align: end;
+    color: #8d713e;
+    cursor: pointer;
+    text-decoration: none;
+    background: none;
+    padding: 0;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 0;
+  }
+
+  [data-aue-model="linkField"] a .icon-wrapper, [data-gen-model="linkField"] a .icon-wrapper {
+    display: flex;
+    max-width: 14px;
+  }
+
+
   /* Header styles */
   [data-aue-prop="title"], [data-gen-prop="title"] {
     color: var(--text-color);
@@ -522,13 +544,24 @@
 
   .listing-wrapper .listing .without-images-right-column [data-gen-model="listitem"] [data-gen-prop="title"] {
     font-size: 24px !important;
-    line-height: 40px;
+    line-height: 48px;
     font-weight: 400;
     color: #3B3D3D !important;
     margin: 0;
     padding-right: 0;
     flex: 1;
   }
+}
+
+.content-wrapper .arrow-link-wrapper {
+  position: absolute;
+  right: 0;
+  top: 50%;
+  transform: translateY(-44%);
+  bottom: auto;
+  border-radius: 50%;
+  background: transparent;
+  cursor: pointer;
 }
 
 .listing-wrapper{
@@ -546,6 +579,11 @@
   @media (width < 768px) {
     padding: 40px 0;
   }
+}
+
+.listing-wrapper:not(:has(.without-images)) {
+  background: none;
+  background-image: none;
 }
 
 /* Tablet Design */
@@ -602,7 +640,7 @@
 
   .listing-wrapper .listing .without-images-right-column [data-gen-model="listitem"] [data-gen-prop="title"] {
     font-size: 20px !important;
-    line-height: 32px;
+    line-height: 48px;
     font-weight: 400;
     color: #3B3D3D !important;
   }
@@ -662,7 +700,7 @@
 
   .listing-wrapper .listing .without-images-right-column [data-gen-model="listitem"] [data-gen-prop="title"] {
     font-size: 16px !important;
-    line-height: 24px;
+    line-height: 32px;
     font-weight: 400;
     color: #3B3D3D !important;
   }
