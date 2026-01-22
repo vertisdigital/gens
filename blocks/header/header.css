@@ -1414,7 +1414,7 @@ header .header {
   }
   .header-inner-wrapper .secondary-header-links .nav-links {
     display: grid !important;
-    grid-template-columns: repeat(3, minmax(212px, 1fr));  
+    grid-template-columns: repeat(3, minmax(228px, 1fr));  
   }
 }
 
