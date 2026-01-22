@@ -591,6 +591,10 @@ header .header {
     margin-left: -50%;
   }
 
+  .header-inner-wrapper .secondary-nav.active {
+    border-top: none;
+  }
+
   .header-inner-wrapper .hamburger-icon {
     width: 24px;
     height: 2px;
