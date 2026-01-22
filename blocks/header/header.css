@@ -474,7 +474,7 @@ header .header {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  width: 23%;
+  width: 25%;
 }
 
 .header-inner-wrapper .secondary-header .secondary-header-wrapper a {
@@ -1412,6 +1412,10 @@ header .header {
   :root {
     --search-box-padding: 40px;
   }
+  .header-inner-wrapper .secondary-header-links .nav-links {
+    display: grid !important;
+    grid-template-columns: repeat(3, minmax(212px, 1fr));  
+  }
 }
 
 @media (min-width: 1280px) {
@@ -1571,6 +1575,7 @@ header .header {
     flex: 1 1 auto;
     justify-content: space-between;
     align-items: baseline;
+    max-width: 95%;
   }
 
   .header-inner-wrapper .header-nav .search-btn,
@@ -1579,5 +1584,7 @@ header .header {
     order: 3;
     flex: 0 0 auto;
     align-self: center;
+    position: absolute;
+    right: 10px;
   }
 }

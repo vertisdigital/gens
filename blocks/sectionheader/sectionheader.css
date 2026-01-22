@@ -41,8 +41,8 @@
 /* Mobile */
 @media (max-width: 767px) {
     .section-header-title {
-        font-size: var(--typography-font-size-text-sm, 24px);
-        line-height: var(--typography-font-line-height-leading-4, 40px);
+        font-size: var(--typography-font-size-text-m, 28px);
+        line-height: var(--typography-font-line-height-leading-5, 44px); /* 157.143% */
     }
 }
 
@@ -181,17 +181,26 @@
    Responsive – Container
 ================================ */
 
-@media (max-width: 768px) {    
+@media (max-width: 768px) {   
+    .section-header {
+        padding-top: 40px;
+        padding-bottom: 24px;
+    } 
+    .section-header-cta {
+        width: 32px;
+        height: 32px;
+    }
+    .section-header-cta svg{
+        width: 9.33px;
+        height: 9.33px;
+    }
     .sectionheader.section-header.horizontal .section-header-wrapper {
         flex-direction: column;
-        gap: 24px;
+        gap: 16px;
     }
 
     .sectionheader.section-header.horizontal .section-header-right {
         max-width: 100%;
-    }
-
-    .section-header-cta {
-        margin-top: 16px;
+        gap: 16px;
     }
 }
