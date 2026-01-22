@@ -31,7 +31,6 @@
   flex-direction: column;
   justify-content: end;
   width: 100%;
-  min-height: 314px;
   position: relative;
   aspect-ratio: 16 / 9;
 }
