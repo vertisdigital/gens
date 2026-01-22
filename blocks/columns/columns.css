@@ -1,6 +1,13 @@
 /* ================================
    Columns base (BLOCK ONLY)
    ================================ */
+@media (width >= 2560px) {
+  .columns-wrapper {
+    max-width: 2560px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+}
 .columns.columns-block.block {
   position: relative;
   padding-top: 80px;
