@@ -115,6 +115,7 @@
     position: relative;
 }
 
+
 .section-header-cta svg {
     width: 20px;
     height: 20px;
@@ -125,7 +126,11 @@
 }
 
 .section-header-cta:hover {
-    background-color: rgba(141, 113, 62, 0.08);
+    border: 2px solid var(--button-icon-button-iconbtn-secondary-default-border, #C8AB4B);
+}
+
+.section-header-cta:hover path{
+    stroke: #C8AB4B;
 }
 
 /* ===============================
