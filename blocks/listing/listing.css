@@ -34,42 +34,6 @@
     max-width: 14px;
   }
 
-  .content-wrapper .arrow-link-wrapper svg {
-    width: 16px;
-    height: 16px;
-    fill: #8d713e;
-    color: #8d713e;
-    transition: all 0.3s ease;
-  }
-
-  .without-images-row .arrow-link-wrapper svg {
-    width: 24px;
-    height: 24px;
-    fill: #8D713E;
-    transition: all 0.3s ease;
-  }
-
-  [data-aue-model="linkField"] a .icon-wrapper svg, [data-gen-model="linkField"] a .icon-wrapper svg {
-    width: 14px;
-    height: 14px;
-    fill: #8d713e;
-    color: #8d713e;
-    transition: all 0.3s ease;
-  }
-
-  .content-wrapper .arrow-link-wrapper:hover svg {
-    fill: #C8AB4B;
-    color: #C8AB4B;
-  }
-
-  .without-images-row .arrow-link-wrapper:hover svg {
-    fill: #C8AB4B;
-  }
-
-  [data-aue-model="linkField"] a:hover .icon-wrapper svg, [data-gen-model="linkField"] a:hover .icon-wrapper svg {
-    fill: #C8AB4B;
-    color: #C8AB4B;
-  }
 
   /* Header styles */
   [data-aue-prop="title"], [data-gen-prop="title"] {
@@ -140,23 +104,6 @@
     color: var(--text-color);
   }
 
-  .arrow-link-wrapper {
-    width: 24px;
-    height: 24px;
-    position: absolute;
-    right: 0;
-    bottom: 36px;
-    cursor: pointer;
-    color: var(--primary-gold);
-  }
-
-  .arrow-link-wrapper a span {
-    width: 100%;
-    height: 100%;
-    padding: 0;
-    color: var(--primary-gold);
-
-  }
 
 
   /* Tablet Design */
@@ -292,12 +239,11 @@
       color: #3B3D3D;
     }
 
-    .listing-wrapper .listing [data-aue-model="listitem"] .content-wrapper .arrow-link-wrapper {
-      position: static;
-      transform: none;
-      margin-top: 16px;
-      align-self: flex-start;
+    .arrow-link-wrapper svg {
+      width: 32px;
+      height: 32px;
     }
+
   }
 
 }
@@ -538,33 +484,13 @@
   margin-bottom: 0;
 }
 
-.content-wrapper .arrow-link-wrapper {
-  position: absolute;
-  right: 0;
-  top: 50%;
-  transform: translateY(-50%);
-  width: 30px;
-  height: 30px;
-  bottom: auto;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  border: 1px solid #8d713e;
-  border-radius: 50%;
-  background: transparent;
-  cursor: pointer;
-  flex-shrink: 0;
-  transition: border-color 0.3s ease;
+/* Arrow link wrapper SVG hover styles */
+.arrow-link-wrapper svg {
+  transition: all 0.3s ease;
 }
 
-.content-wrapper .arrow-link-wrapper .left-arrow-icon {
-  fill: #8d713e;
-  transition: fill 0.3s ease;
-  display: flex;
-}
-
-.content-wrapper .arrow-link-wrapper:hover .left-arrow-icon {
-  fill: #C8AB4B;
+.arrow-link-wrapper:hover svg path {
+  stroke: #C8AB4B;
 }
 
 /* Without images variation styles */
@@ -588,29 +514,6 @@
   align-items: center;
   justify-content: space-between;
   flex-direction: row;
-}
-
-.without-images-row .arrow-link-wrapper {
-  position: static;
-  transform: none;
-  margin-top: 0;
-  align-self: center;
-  width: 40px;
-  height: 40px;
-  border-radius: 50%;
-  border: 1px solid #8D713E;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  transition: all 0.3s ease;
-}
-
-.without-images-row .arrow-link-wrapper:hover {
-  border-color: #C8AB4B;
-}
-
-.content-wrapper .arrow-link-wrapper:hover {
-  border-color: #C8AB4B;
 }
 
 /* Desktop Design */
@@ -641,18 +544,24 @@
 
   .listing-wrapper .listing .without-images-right-column [data-gen-model="listitem"] [data-gen-prop="title"] {
     font-size: 24px !important;
-    line-height: 40px;
+    line-height: 48px;
     font-weight: 400;
     color: #3B3D3D !important;
     margin: 0;
     padding-right: 0;
     flex: 1;
   }
+}
 
-  .without-images-right-column .arrow-link-wrapper {
-    margin-top: 0;
-    margin-left: 16px;
-  }
+.content-wrapper .arrow-link-wrapper {
+  position: absolute;
+  right: 0;
+  top: 50%;
+  transform: translateY(-44%);
+  bottom: auto;
+  border-radius: 50%;
+  background: transparent;
+  cursor: pointer;
 }
 
 .listing-wrapper{
@@ -670,6 +579,11 @@
   @media (width < 768px) {
     padding: 40px 0;
   }
+}
+
+.listing-wrapper:not(:has(.without-images)) {
+  background: none;
+  background-image: none;
 }
 
 /* Tablet Design */
@@ -726,26 +640,11 @@
 
   .listing-wrapper .listing .without-images-right-column [data-gen-model="listitem"] [data-gen-prop="title"] {
     font-size: 20px !important;
-    line-height: 32px;
+    line-height: 48px;
     font-weight: 400;
     color: #3B3D3D !important;
   }
 
-  .without-images-right-column .arrow-link-wrapper {
-    width: 32px;
-    height: 32px;
-    margin-left: 16px;
-  }
-
-  .without-images-right-column .arrow-link-wrapper svg {
-    width: 20px;
-    height: 20px;
-    transition: all 0.3s ease;
-  }
-
-  .without-images-right-column .arrow-link-wrapper:hover svg {
-    fill: #C8AB4B;
-  }
 }
 
 /* Mobile Design */
@@ -801,24 +700,13 @@
 
   .listing-wrapper .listing .without-images-right-column [data-gen-model="listitem"] [data-gen-prop="title"] {
     font-size: 16px !important;
-    line-height: 24px;
+    line-height: 32px;
     font-weight: 400;
     color: #3B3D3D !important;
   }
 
-  .without-images-right-column .arrow-link-wrapper {
+  .arrow-link-wrapper svg {
     width: 32px;
     height: 32px;
-    margin-left: 12px;
-  }
-
-  .without-images-right-column .arrow-link-wrapper svg {
-    width: 18px;
-    height: 18px;
-    transition: all 0.3s ease;
-  }
-
-  .without-images-right-column .arrow-link-wrapper:hover svg {
-    fill: #C8AB4B;
   }
 }
