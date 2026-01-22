@@ -114,7 +114,7 @@ export default function decorate(block) {
                     const iconWrapper = document.createElement('span');
                     iconWrapper.className = 'section-header-cta-icon';
 
-                    const svg = SVGIcon({ name: iconName, size: 24 });
+                    const svg = SVGIcon({ name: 'arrowright', size: 14 });
                     if (typeof svg === 'string') {
                         iconWrapper.innerHTML = svg;
                     } else {

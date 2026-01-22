@@ -117,12 +117,17 @@
 
 
 .section-header-cta svg {
-    width: 20px;
-    height: 20px;
+    /* width: 20px;
+    height: 20px; */
     top: 50%;
     position: absolute;
     left: 50%;
     transform: translateX(-50%) translateY(-50%);
+    fill: #8D713E;
+}
+
+.section-header-cta svg path {
+    fill: #8D713E;
 }
 
 .section-header-cta:hover {
@@ -131,6 +136,10 @@
 
 .section-header-cta:hover path{
     stroke: #C8AB4B;
+}
+
+.section-header-cta:hover svg {
+    fill: #C8AB4B;
 }
 
 /* ===============================
