@@ -54,6 +54,7 @@
     align-self: stretch;
     border-bottom: 1px solid var(--background-color);
     padding-bottom: 40px;
+    width: 100%;
 }
 
 .footer .footer-logo {
