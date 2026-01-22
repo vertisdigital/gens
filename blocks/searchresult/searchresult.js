@@ -109,36 +109,6 @@ const renderPagination = (currentPage, totalPages) => {
   `;
 };
 
-const renderPaginationMobile = (currentPage, totalPages) => {
-  if (totalPages <= 1) return "";
-
-  return `
-    <nav class="pagination pagination-mobilephone">
-      ${currentPage > 1
-      ? `<button class="pagination-prev" data-page="${currentPage - 1}">
-              ${getIcon("arrowleftLargeWhite")}
-            </button>`
-      : `<span class="pagination-prev disabled">
-              ${getIcon("arrowleftLarge")}
-            </span>`
-    }
-
-      <span class="pagination-mobile-label">
-        Page ${currentPage} of ${totalPages}
-      </span>
-
-      ${currentPage < totalPages
-      ? `<button class="pagination-next" data-page="${currentPage + 1}">
-              ${getIcon("arrowrightLargeWhite")}
-            </button>`
-      : `<span class="pagination-next disabled">
-              ${getIcon("arrowrightLarge")}
-            </span>`
-    }
-    </nav>
-  `;
-};
-
 export const formatDate = (dateStr) => {
   if (!dateStr) return "";
 
@@ -244,7 +214,6 @@ const renderResults = (block, q, results, currentPage, total, totalPages) => {
     </ul>
 
     ${renderPagination(currentPage, totalPages)}
-    ${renderPaginationMobile(currentPage, totalPages)}
   `;
 };
 
