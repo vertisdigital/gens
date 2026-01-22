@@ -29,6 +29,7 @@
   width: 100%;
   min-height: 314px;
   position: relative;
+  aspect-ratio: 16 / 9;
 }
 .tiles.block > .image-tile {
   color: var(--background-color);
@@ -58,6 +59,12 @@ a:any-link.factsheet-button {
   display: flex;
   align-items: center;
 }
+
+.row.tiles-container {
+  max-width: 2560px;
+  margin: 0 auto;
+}
+
 .row.tiles-container .no-image-tile>div>div:first-child p {
     font-size: var(--font-size-xl);
     line-height: 50px;
