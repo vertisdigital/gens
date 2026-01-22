@@ -189,7 +189,7 @@
   line-height: var(--typography-font-line-height-leading-3, 24px);
   /* 150% */
   letter-spacing: var(--typography-font-spacing-tracking-normal, 0);
-  background-color: transparent !important;
+  background-color: #8D713E !important;
   text-decoration: none !important;
   font-size: 0;
   border-radius: var(--border-border-radius-rounded-full, 9999px);
@@ -207,8 +207,13 @@
   left: 50%;
   top: 50%;
   transform: translate(-50%, -50%);
+  color: white;
 }
 
+.searchresult-wrapper .pagination .pagination-next>span path,
+.searchresult-wrapper .pagination .pagination-prev>span path {
+  fill: white;
+}
 .searchresult-wrapper .pagination .pagination-page {
   display: flex;
   padding: var(--spacing-2, 8px);
