@@ -116,7 +116,9 @@
   color: #6b7280;
   margin-bottom: 8px;
 }
-
+.searchresult-info {
+  margin: 0;
+}
 .searchresult-info span {
   color: var(--colours-text-text-body, #3B3D3D);
 
