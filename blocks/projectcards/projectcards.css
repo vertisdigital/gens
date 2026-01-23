@@ -276,9 +276,6 @@
   }
 
   @media (width <= 767px) {
-      .projectcards{
-        margin: 40px 0;
-      }
 
       .projectcards .projectcards-header {
         flex-direction: column;
