@@ -38,44 +38,7 @@
     letter-spacing: var(--typography-font-spacing-tracking-normal, 0);
 }
 
-/* Mobile */
-@media (width < 768px) {
-    .sectionheader {
-        padding-top: 40px;
-        padding-bottom: 24px;
-    }
 
-    .section-header-title {
-        font-size: var(--typography-font-size-text-m, 28px);
-        line-height: var(--typography-font-line-height-leading-5, 44px); /* 157.143% */
-    }
-}
-
-/* Tablet */
-@media (width >= 768px) and (width <= 1024px) {
-    .sectionheader {
-        padding-top: 64px;
-        padding-bottom: 40px;
-
-    }
-    .section-header-title {
-        font-size: var(--typography-font-size-text-lg, 32px);
-        line-height: var(--typography-font-line-height-leading-6, 48px);
-    }
-
-    .sectionheader.section-header.horizontal .section-header-wrapper {
-        gap: 24px;
-        flex-direction: column;
-    }
-}
-
-/* Desktop */
-@media (width > 1024px) {
-    .section-header-title {
-        font-size: var(--typography-font-size-text-xl, 36px);
-        line-height: var(--typography-font-line-height-leading-7, 56px);
-    }
-}
 
 /* ===============================
    Description
@@ -214,5 +177,44 @@
     .sectionheader.section-header.horizontal .section-header-right {
         max-width: 100%;
         gap: 16px;
+    }
+}
+
+/* Mobile */
+@media (width < 768px) {
+    .sectionheader {
+        padding-top: 40px;
+        padding-bottom: 24px;
+    }
+
+    .section-header-title {
+        font-size: var(--typography-font-size-text-m, 28px);
+        line-height: var(--typography-font-line-height-leading-5, 44px); /* 157.143% */
+    }
+}
+
+/* Tablet */
+@media (width >= 768px) and (width <= 1024px) {
+    .sectionheader {
+        padding-top: 64px;
+        padding-bottom: 40px;
+
+    }
+    .section-header-title {
+        font-size: var(--typography-font-size-text-lg, 32px);
+        line-height: var(--typography-font-line-height-leading-6, 48px);
+    }
+
+    .sectionheader.section-header.horizontal .section-header-wrapper {
+        gap: 24px;
+        flex-direction: column;
+    }
+}
+
+/* Desktop */
+@media (width > 1024px) {
+    .section-header-title {
+        font-size: var(--typography-font-size-text-xl, 36px);
+        line-height: var(--typography-font-line-height-leading-7, 56px);
     }
 }
