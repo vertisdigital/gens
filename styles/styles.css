@@ -578,8 +578,8 @@ main .section.highlight {
   .container-sm,
   .container {
     max-width: 991px;
-    padding-right: 44px;
-    padding-left: 44px;
+    padding-right: 40px;
+    padding-left: 40px;
   }
 
   .row {

@@ -84,6 +84,7 @@ a:any-link.factsheet-button {
   color: var(--background-color);
   margin-bottom: 16px;
   width: 52%;
+  max-width: 300px;
   
 }
 .row.tiles-container .image-tile>div>div:nth-child(2) p {
@@ -93,6 +94,7 @@ a:any-link.factsheet-button {
   line-height: 24px;
   color: var(--background-color);
   width: 70%;
+  max-width: 500px;
 }
 
 .row.tiles-container .image-tile.w-100>div>div:nth-child(2) p {
@@ -174,7 +176,7 @@ a:any-link.factsheet-button {
   }
 
   .row.tiles-container > .image-tile > div {
-    padding: 24px;
+    padding: 40px 24px;
     min-height: 563px;
   }
 
@@ -234,7 +236,7 @@ a:any-link.factsheet-button {
 
   .tiles-container .learn-button {
     left: 24px;
-    bottom: 24px;
+    bottom: 40px;
   }
 
   .row.tiles-container .image-tile.w-100>div>div:first-child p {
@@ -249,7 +251,7 @@ a:any-link.factsheet-button {
   }
 
   .row.tiles-container > .image-tile > div {
-    padding: 40px 40px 64px 40px;
+    padding: 64px 40px 64px 40px;
     min-height: 432px;
   }
 
@@ -312,6 +314,7 @@ a:any-link.factsheet-button {
   }
   .row.tiles-container .image-tile.w-100>div>div:first-child p {
     width: 80%;
+    max-width: 400px;
   }
   .tiles-container .image-tile.w-100 > div > a {
     right: calc(100%/2 + 80px);
