@@ -709,7 +709,7 @@ header .header {
   }
 
   .header-inner-wrapper .secondary-nav .secondary-header-links {
-    padding-top: 24px !important
+    padding-top: 16px !important
   }
 }
 
@@ -1302,7 +1302,7 @@ header .header {
 
 @media (width <=767px) {
   .header-inner-wrapper .nav-item .links>div:first-child {
-    padding: 24px 0;
+    padding: 16px 0;
   }
 
   .header-inner-wrapper .nav-item .links>div:nth-child(4) a {
@@ -1535,7 +1535,7 @@ header .header {
 @media (min-width: 768px) and (max-width: 1199px) {
   .header nav {
     height: auto;
-    padding: var(--spacing-6, 24px) var(--spacing-10, 40px);
+    padding: var(--spacing-6, 24px) var(--spacing-10, 24px);
   }
 
   .secondary-nav>.container {
@@ -1547,7 +1547,7 @@ header .header {
     justify-content: space-between;
     align-items: center;
     width: 100%;
-    padding-bottom: 24px;
+    padding-bottom: 16px;
     border-bottom: 1px solid var(--colours-border-border-base, #E8EBEB);
   }
 
@@ -1592,5 +1592,16 @@ header .header {
     align-self: center;
     position: absolute;
     right: 10px;
+  }
+
+  .header .primary-menu-links-heading {
+    font-size: 14px;
+  }
+  .header .col-md-6{
+    width: auto;
+  }
+
+  .header-inner-wrapper .secondary-nav .secondary-header-links .nav-links li .button-container{
+    margin-bottom: 0;
   }
 }

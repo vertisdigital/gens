@@ -314,6 +314,10 @@ color: var(--body-text-color);
     margin-bottom: 0;
   }
 
+  .about-us-left .about-us-left-sub-heading p{
+    margin: 0;
+  }
+
   .about-us-left .links-container a{
     font-size: var(--font-size-xs);
     line-height: 24px;
@@ -447,7 +451,7 @@ color: var(--body-text-color);
   .about-us-stats .about-us-right-content.text-container{
     padding-top: 20px;
     margin-bottom: 0;
-    border-top: 1px solid var(--colours-border-border-base, #E8EBEB);
+    border-top: 1px solid #E8EBEB;
     padding-right: 24px;
   }
 }
