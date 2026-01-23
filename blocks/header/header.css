@@ -52,7 +52,6 @@ header.header-wrapper {
   z-index: 99;
   right: 0;
   left: 0;
-  border-bottom: 1px solid var(--colours-border-border-base, #E8EBEB);
   background: var(--colours-alpha-alpha-primary-70, rgba(29, 61, 81, 0.70));
 }
 
@@ -331,6 +330,7 @@ header nav .nav-tools {
 header .header {
   position: relative;
   background: transparent;
+  border-bottom: 1px solid var(--colours-border-border-base, #E8EBEB);
 }
 
 .header.fixed-header {
