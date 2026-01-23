@@ -435,7 +435,7 @@ header .header {
   transform: translateY(-10px);
   transition: all 0.3s ease;
   box-shadow: 0 4px 6px rgb(0 0 0 / 10%);
-  padding: 42px 0;
+  padding: 40px 0;
 }
 
 
@@ -1547,7 +1547,7 @@ header .header {
     justify-content: space-between;
     align-items: center;
     width: 100%;
-    padding-bottom: 16px;
+    padding-bottom: 24px;
     border-bottom: 1px solid var(--colours-border-border-base, #E8EBEB);
   }
 
@@ -1592,6 +1592,7 @@ header .header {
     align-self: center;
     position: absolute;
     right: 10px;
+    bottom: 11px;
   }
 
   .header .primary-menu-links-heading {

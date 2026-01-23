@@ -330,6 +330,7 @@ color: var(--body-text-color);
   .about-us-stats .about-us-right-content.text-container{
     margin-bottom: 0;
     padding-top: 16px;
+    border-top: 1px solid #E8EBEB;
   }
 
   .about-us-stats .about-us-right-content{
@@ -682,7 +683,7 @@ color: var(--body-text-color);
   }
 
   .with-images-four-col .about-us-stats .about-us-right-content {
-    padding: 16px;
+    padding: 24px;
     flex-direction: row;
     align-items: center;
     gap: 16px;
