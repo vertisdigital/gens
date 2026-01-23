@@ -127,7 +127,7 @@
     color: #FFF;
     text-decoration: none;
     margin: 0;
-    padding-right: 40px;
+    max-width: 250px;
   }
 
   .projectcards .project-card-title a {
