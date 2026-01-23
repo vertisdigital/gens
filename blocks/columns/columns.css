@@ -126,6 +126,6 @@
 
 @media (width < 768px) {
   .columns.columns-block.block {
-    padding: 24px;
+    padding: 40px 24px;
   }
 }
