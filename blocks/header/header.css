@@ -709,7 +709,7 @@ header .header {
   }
 
   .header-inner-wrapper .secondary-nav .secondary-header-links {
-    padding-top: 24px !important
+    padding-top: 16px !important
   }
 }
 
@@ -1302,7 +1302,7 @@ header .header {
 
 @media (width <=767px) {
   .header-inner-wrapper .nav-item .links>div:first-child {
-    padding: 24px 0;
+    padding: 16px 0;
   }
 
   .header-inner-wrapper .nav-item .links>div:nth-child(4) a {
