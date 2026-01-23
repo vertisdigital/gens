@@ -472,7 +472,6 @@
 .footer::before {
   content: '';
   position: absolute;
-  top:0;
   inset: 0;
   z-index: 1;
   transform: rotate(180deg);
