@@ -373,6 +373,9 @@
     .footer .mt-4 .footer-bottom-links .copywrite-right .copywrite-group {
         gap: var(--spacing-6, 24px);
     }
+    .footer .footer-description{
+        margin-bottom: 40px;
+    }
     .footer .footer-description,
     .footer nav a,
     .footer .mt-4 .copywrite,
@@ -389,12 +392,16 @@
     }
 
     .footer nav {
-        margin-bottom: 40px;
+        margin-bottom: 24px;
     }
 
     .footer .left-section .collapsible-links nav {
         display: block;
         width: 100%;
+    }
+
+    .footer .left-section .links-heading{
+        align-items: flex-start;
     }
 
     .footer .left-section .accordion-arrow svg {
@@ -408,8 +415,9 @@
         width: 100%;
     }
 
-    .footer .footer-child-element .row>div:first-child {
-        margin-bottom: 12px;
+    .footer .left-section .footer-nav-title{
+        margin-top: 0;
+        margin-bottom: 16px;
     }
 
     .footer {
@@ -464,11 +472,12 @@
 .footer::before {
   content: '';
   position: absolute;
+  top:0;
   inset: 0;
   z-index: 1;
-
-  background: url("../../icons/Pattern.png") repeat-x;
-  background-position: top;
-  background-size: cover;
   transform: rotate(180deg);
+    background: url("../../icons/Pattern.png");
+    background-repeat: repeat-x;
+    background-position: bottom center;
+    background-size: auto;
 }
