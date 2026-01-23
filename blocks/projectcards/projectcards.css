@@ -182,7 +182,7 @@
 
   @media (width >= 768px) and (width <= 992px) {
     .projectcards {
-      margin: 64px 0;
+      margin: 64px 0 0;
     }
 
     .projectcards .projectcards-header {
@@ -243,7 +243,7 @@
 
     .projectcards .project-card [data-aue-prop="image"]{
       position: relative;
-      aspect-ratio: 360 / 540;
+      aspect-ratio: 1 / 1;
       width: 100%;
       margin-bottom: 0;
     }
@@ -270,7 +270,7 @@
   @media (width <= 834px) {
     .projectcards .project-card [data-aue-prop="image"]{
       position: relative;
-      aspect-ratio: 360 / 540;
+      aspect-ratio: 1 / 1;
       width: 100%;
     }
   }
