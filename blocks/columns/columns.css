@@ -117,15 +117,15 @@
 
 @media (width <= 1200px) {
   .columns.columns-block.block {
-    padding: 40px;
+    padding: 64px 40px;
   }
   .columns.columns-block.block.columns-cols {
     gap: 24px;
   }
 }
 
-@media (width <= 768px) {
+@media (width < 768px) {
   .columns.columns-block.block {
-    padding: 24px;
+    padding: 40px 24px;
   }
 }

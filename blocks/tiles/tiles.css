@@ -249,7 +249,7 @@ a:any-link.factsheet-button {
   }
 
   .row.tiles-container > .image-tile > div {
-    padding: 40px;
+    padding: 40px 40px 64px 40px;
     min-height: 432px;
   }
 
@@ -295,7 +295,7 @@ a:any-link.factsheet-button {
   }
 
   .tiles-container .learn-button {
-    bottom: 40px;
+    bottom: 64px;
     right: 40px;
   }
 }
