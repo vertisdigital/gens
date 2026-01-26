@@ -14,7 +14,6 @@ export default function decorate(block) {
   const enquirySecondChild = enquiryChildren[1]?.children || [];
 
   const container = document.createElement('div');
-  container.className = 'container';
 
   const row = document.createElement('div');
   row.className = 'row contactus-top';
@@ -195,6 +194,7 @@ export default function decorate(block) {
 
   if (enquiryChildren[0]) {
     enquiryChildren[0].innerHTML = '';
+    enquiryChildren[0].classList.add('container');
     enquiryChildren[0].append(row);
     container.append(enquiryChildren[0]);
   }
@@ -218,12 +218,6 @@ export default function decorate(block) {
   }
 
   const viewJobCTAName = enquirySecondChild[4]?.cloneNode(true)?.textContent?.trim().replace(/-/g, '').toLowerCase() || '';
-  const northEastArrow = SvgIcon({
-    name: viewJobCTAName,
-    className: 'contactus-bottom-cta',
-    size: 12,
-    color: 'currentColor',
-  });
 
   const targetElement = enquirySecondChild[2];
   const nextTarget = enquirySecondChild[3];
@@ -237,11 +231,6 @@ export default function decorate(block) {
       if (nextTargetText) {
         anchorElement.target = nextTargetText;
       } 
-    // Append SVG only if `northEastArrow` is valid
-      const svgElement = typeof northEastArrow === 'string' ? stringToHtml(northEastArrow) : northEastArrow;
-      if (svgElement) {
-        anchorElement.appendChild(svgElement);
-      }
     }
 
     // Clone and append `targetElement` to `rightCol2`
@@ -251,10 +240,11 @@ export default function decorate(block) {
   row2.append(rightCol2);
   if (enquiryChildren[1]) {
     enquiryChildren[1].innerHTML = '';
+    enquiryChildren[1].classList.add('container');
     enquiryChildren[1].append(row2);
     container.append(enquiryChildren[1]);
   }
-
+  
   wrapper.innerHTML = '';
   wrapper.append(container);
 }
