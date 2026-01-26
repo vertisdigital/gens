@@ -581,10 +581,6 @@ header .header {
 }
 
 @media (width <=767px) {
-  .header-inner-wrapper .header-nav .logo-wrapper picture {
-    margin-left: -50%;
-  }
-
   .header-inner-wrapper .secondary-nav.active {
     border-top: none;
   }
@@ -777,6 +773,8 @@ header .header {
 .header-inner-wrapper .header-nav .logo-wrapper picture {
   width: 100%;
   height: 100%;
+  display: flex;
+  align-items: center;
 }
 
 .header-inner-wrapper .header-nav .logo-wrapper picture img {
@@ -1040,14 +1038,6 @@ header .header {
     padding: 24px 0;
   }
 
-  .header-inner-wrapper .header-nav .logo-wrapper {
-    max-width: 140px;
-    max-height: 42px;
-    position: absolute;
-    left: 50%;
-    transform: translateX(-50%);
-  }
-
   .header-inner-wrapper .header-nav .hamburger {
     display: block;
     width: auto;
@@ -1131,12 +1121,11 @@ header .header {
 
 @media(width<768px) {
   .header-inner-wrapper>div:first-child {
-    padding: 20px 0;
+    padding: 24px 0;
   }
 
   .header-inner-wrapper .header-nav .logo-wrapper {
-    max-width: 124px;
-    max-height: 34px;
+    max-width: 158px;
   }
 
   .header-inner-wrapper .header-nav .primary-nav {
