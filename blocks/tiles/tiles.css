@@ -244,7 +244,7 @@ a:any-link.factsheet-button {
   }
 }
 
-@media screen and (width < 1367px) and (width >= 768px) {
+@media screen and (width < 1181px) and (width >= 768px) {
 
   .row.tiles-container {
     padding: 0 !important;
@@ -302,7 +302,7 @@ a:any-link.factsheet-button {
   }
 }
 
-@media (width > 1367px) {
+@media (width > 1180px) {
   .col-sm-4.col-md-6.col-xl-6.image-tile {
     aspect-ratio: 1 / 1;
   }
