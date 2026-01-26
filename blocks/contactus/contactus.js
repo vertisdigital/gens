@@ -2,7 +2,6 @@ import Heading from '../../shared-components/Heading.js';
 import { moveInstrumentation } from '../../scripts/scripts.js';
 import ImageComponent from '../../shared-components/ImageComponent.js';
 import stringToHtml from '../../shared-components/Utility.js';
-import SvgIcon from '../../shared-components/SvgIcon.js';
 
 export default function decorate(block) {
   if (!block || !block.children.length) return;
@@ -216,8 +215,6 @@ export default function decorate(block) {
   if (enquirySecondChild[1]) {
     rightCol2.append(enquirySecondChild[1].cloneNode(true));
   }
-
-  const viewJobCTAName = enquirySecondChild[4]?.cloneNode(true)?.textContent?.trim().replace(/-/g, '').toLowerCase() || '';
 
   const targetElement = enquirySecondChild[2];
   const nextTarget = enquirySecondChild[3];
