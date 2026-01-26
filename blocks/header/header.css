@@ -75,12 +75,6 @@ header nav {
   font-family: var(--body-font-family);
 }
 
-header .icon-wrapper {
-  padding: 0 !important;
-  width: 30px;
-  height: 24px;
-}
-
 header nav[aria-expanded='true'] {
   grid-template:
     'hamburger brand' var(--nav-height) 'sections sections' 1fr
@@ -900,9 +894,12 @@ header .header {
   border-radius: var(--border-border-radius-rounded-full, 9999px);
   border: 2px solid var(--colours-foreground-fg-white, #FFF);
   position: relative;
-  display: block;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   font-size: 14px;
-  margin-top: 16px;
+  margin-top: 8px;
+  padding: 8px;
 }
 
 .header-inner-wrapper .secondary-nav .secondary-header .secondary-header-wrapper a.secondary-header-cta:hover svg {
@@ -910,9 +907,9 @@ header .header {
 }
 
 .header-inner-wrapper .secondary-nav .secondary-header .secondary-header-wrapper a.secondary-header-cta .icon-wrapper {
-  height: 32px;
-  width: 32px;
-  display: block;
+  height: 24px;
+  width: 24px;
+  display: flex;
 }
 
 .header-inner-wrapper .secondary-nav .secondary-header .secondary-header-wrapper a.secondary-header-cta svg {
@@ -989,7 +986,7 @@ header .header {
   /* color: var(--text-color); */
   font-size: var(--font-size-xs);
   font-weight: 400;
-  line-height: 30px;
+  line-height: 32px;
   padding: 0;
   transition: text-decoration 0.3s ease-in-out;
   border-radius: 0;
@@ -1107,7 +1104,7 @@ header .header {
   .header-inner-wrapper .secondary-nav .secondary-header .secondary-header-wrapper a {
     font-size: 1.125rem;
     line-height: 28px;
-    margin-bottom: 36px;
+    margin-bottom: 24px;
   }
 
   .header-inner-wrapper .secondary-nav .secondary-header .secondary-header-wrapper a::after {
