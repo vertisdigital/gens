@@ -239,6 +239,12 @@ a:any-link.factsheet-button {
     bottom: 40px;
   }
 
+  .learn-button .icon-wrapper {
+    width: 16px;
+    height: 16px;
+    padding: 3px;
+  }
+
   .row.tiles-container .image-tile.w-100>div>div:first-child p {
     width: 70%;
   }
