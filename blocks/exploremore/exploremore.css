@@ -1,51 +1,67 @@
-.exploremore-container{
+.exploremore-container {
   background-color: var(--whisper-gray);
   padding: 45px 0;
-} 
-
-.exploremore .exploremore-wrapper-container .exploremore-title{
-  font-size: var(--font-size-xl);
-  font-weight: 500;
-  line-height: 50px;
-  letter-spacing: -0.5px;
-  color: var(--text-color);
-  margin-bottom: 80px;
 }
 
-.exploremore-wrapper-container .exploremore-links{
+.exploremore .exploremore-wrapper-container .exploremore-title {
+  color: var(--colours-text-text-body, #3B3D3D);
+  font-family: var(--typography-font-family-font-title, "Inter");
+  font-size: var(--typography-font-size-text-xl, 36px);
+  font-style: normal;
+  font-weight: 400;
+  line-height: var(--typography-font-line-height-leading-7, 56px);
+  letter-spacing: var(--typography-font-spacing-tracking-normal, 0);
+  width: 30%;
+  margin: 0;
+}
+
+.exploremore-wrapper-container {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--spacing-6, 24px);
+}
+
+.exploremore-wrapper-container .exploremore-links {
   display: flex;
   flex-wrap: wrap;
   align-items: center;
   justify-content: space-between;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  gap: 24px;
+  width: 70%;
 }
 
-.exploremore-wrapper-container .exploremore-item{
-   width: 49%;
-   padding: 0;
-   padding-top: 20px;
-   border-top: 1px solid var(--text-color);
-   display: flex;
-   justify-content: space-between;
-   align-items: center;
+.exploremore-wrapper-container .exploremore-item {
+  width: 49%;
+  padding: 0;
+  display: flex;
+  align-items: center;
+  width: 100%;
+  justify-content: space-between;
 }
 
-.exploremore-wrapper-container .exploremore-item:first-child{
+.exploremore-wrapper-container .exploremore-item:first-child {
   padding-left: 0;
 }
 
-.exploremore-wrapper-container .exploremore-item:last-child{
+.exploremore-wrapper-container .exploremore-item:last-child {
   padding-right: 0;
 }
 
-.exploremore-wrapper-container .exploremore-item .exploremore-caption{
-  font-size: var(--font-size-m);
+.exploremore-wrapper-container .exploremore-item .exploremore-caption {
+  color: var(--colours-text-text-body, #3B3D3D);
+  font-family: var(--typography-font-family-font-title, "Inter");
+  font-size: var(--typography-font-size-text-sm, 24px);
+  font-style: normal;
   font-weight: 400;
-  line-height: 50px; 
-  letter-spacing: -0.5px;
-  color: var(--text-color);
+  line-height: var(--typography-font-line-height-leading-4, 40px);
+  letter-spacing: var(--typography-font-spacing-tracking-normal, 0);
+  margin: 0;
 }
 
-.exploremore-wrapper-container .exploremore-item .exploremore-link-container{
+.exploremore-wrapper-container .exploremore-item .exploremore-link-container {
   padding: 4px;
   display: flex;
   align-items: center;
@@ -56,8 +72,8 @@
   display: flex;
 }
 
-.exploremore-wrapper-container .exploremore-item .exploremore-link-container a .icon-wrapper{
-  color:  var(--primary-gold);
+.exploremore-wrapper-container .exploremore-item .exploremore-link-container a .icon-wrapper {
+  color: var(--primary-gold);
   padding-top: 0;
   display: flex;
   align-items: center;
@@ -70,58 +86,94 @@
   height: 100%;
 }
 
-@media(width<=992px){
-  .exploremore-container{
+@media(width<=992px) {
+  .exploremore-container {
     padding: 40px 0;
-  } 
-
-  .exploremore .exploremore-wrapper-container .exploremore-title{
-    font-size: var(--font-size-l);
-    font-weight: 500;
-    line-height: 42px;
-    margin-bottom: 40px;
   }
 
-  .exploremore-wrapper-container .exploremore-item{
-     width: 48%;
-     padding-top: 12px;
+  .exploremore-wrapper-container {
+    flex-direction: column;
   }
 
-  .exploremore-wrapper-container .exploremore-item .exploremore-caption{
-    font-size: 24px;
+  .exploremore-wrapper-container .exploremore-links {
+    width: 100%;
+    gap: 12px;
+  }
+
+  .exploremore .exploremore-wrapper-container .exploremore-title {
+    color: var(--colours-text-text-body, #3B3D3D);
+    font-family: var(--typography-font-family-font-title, Inter);
+    font-size: var(--typography-font-size-text-xl, 36px);
+    font-style: normal;
     font-weight: 400;
-    line-height: 42px; 
+    line-height: var(--typography-font-line-height-leading-7, 56px);
+    letter-spacing: var(--typography-font-spacing-tracking-normal, 0);
+    width: 100%;
   }
 
-  .exploremore-wrapper-container .exploremore-item .exploremore-link-container{
-    padding: 12px;
+  .exploremore-wrapper-container .exploremore-item {
+    width: 100%;
+    align-items: center;
+  }
+
+  .exploremore-wrapper-container .exploremore-item .exploremore-caption {
+    color: var(--colours-text-text-body, #3B3D3D);
+    font-family: var(--typography-font-family-font-title, Inter);
+    font-size: var(--typography-font-size-text-sm, 24px);
+    font-style: normal;
+    font-weight: 400;
+    line-height: var(--typography-font-line-height-leading-4, 40px);
+    letter-spacing: var(--typography-font-spacing-tracking-normal, 0);
+  }
+
+  .exploremore-wrapper-container .exploremore-item .exploremore-link-container {
+    padding: 12px 0 12px;
   }
 }
 
-@media(width<768px){
-  .exploremore-container{
+@media(width<768px) {
+  .exploremore-container {
     padding: 32px 0;
-  } 
-
-  .exploremore .exploremore-wrapper-container .exploremore-title{
-    font-size: var(--font-size-m);
-    line-height: 34px;
-    margin-bottom: 32px;
   }
 
-  .exploremore-wrapper-container .exploremore-item{
-     width: 100%;
-     padding: 0;
-     margin-bottom: 18px;
+  .exploremore-wrapper-container .exploremore-links {
+    width: 100%;
+    gap: 8px;
   }
 
-  .exploremore-wrapper-container .exploremore-item .exploremore-caption{
-    font-size: 22px;
-    line-height: 34px; 
+  .exploremore .exploremore-wrapper-container .exploremore-title {
+    color: var(--colours-text-text-body, #3B3D3D);
+    font-family: var(--typography-font-family-font-title, "Inter");
+    font-size: var(--typography-font-size-text-m, 28px);
+    font-style: normal;
+    font-weight: 400;
+    line-height: var(--typography-font-line-height-leading-5, 44px);
+    letter-spacing: var(--typography-font-spacing-tracking-normal, 0);
+    width: 100%;
   }
 
-  .exploremore-wrapper-container .exploremore-item .exploremore-link-container{
-    padding: 10px;
+  .exploremore-wrapper-container .exploremore-item {
+    width: 100%;
+    padding: 0;
+  }
+
+  .exploremore-wrapper-container .exploremore-item .exploremore-caption {
+    color: var(--colours-text-text-body, #3B3D3D);
+    font-family: var(--typography-font-family-font-body, "Instrument Sans");
+    font-size: var(--typography-font-size-text-base, 16px);
+    font-style: normal;
+    font-weight: 400;
+    line-height: var(--typography-font-line-height-leading-3, 24px);
+    letter-spacing: var(--typography-font-spacing-tracking-normal, 0);
+  }
+
+  .exploremore-wrapper-container .exploremore-item .exploremore-link-container {
+    padding: 8px;
+  }
+
+  .exploremore-wrapper-container .exploremore-item .exploremore-link-container svg {
+    width: 32px;
+    height: 32px;
   }
 
 }
