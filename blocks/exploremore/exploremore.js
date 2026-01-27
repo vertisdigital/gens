@@ -1,4 +1,3 @@
-import SvgIcon from '../../shared-components/SvgIcon.js';
 /**
 * Loads and decorates the Hero Banner
 * @param {Element} block The herobanner block element
