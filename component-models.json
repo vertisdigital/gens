@@ -625,6 +625,10 @@
           {
             "name": "With Images Four Col",
             "value": "with-images-four-col"
+          },
+                    {
+            "name": "With Vertical List",
+            "value": "with-vertical-list"
           }
         ]
       }
