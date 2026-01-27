@@ -1,0 +1,82 @@
+/* Award Listing Component */
+/* Award Listing Item */
+.awardlisting .awardlisting-item {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  padding: 80px 0;
+}
+
+/* Award Item Title */
+.awardlisting .awardlisting-item-title {
+  font-family: var(--typography-font-family-font-title, "Inter", system-ui, sans-serif);
+  font-size: 24px;
+  font-weight: 400;
+  line-height: 40px;
+  color: var(--color-text-tertiary, #8d713e);
+  margin: 0;
+}
+
+/* Award Tile Wrapper */
+.awardlisting .award-tile-wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+/* Award Tile */
+.awardlisting .award-tile {
+  display: flex;
+  gap: 16px;
+  align-items: flex-start;
+}
+
+/* Year Column */
+.awardlisting .awardlisting-year {
+  font-family: var(--typography-font-family-font-body, "Instrument Sans Variable", sans-serif);
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 24px;
+  color: var(--color-text-body, #3b3d3d);
+  margin: 0;
+  width: 200px;
+  flex-shrink: 0;
+}
+
+/* Description Column */
+.awardlisting .awardlisting-description {
+  font-family: var(--typography-font-family-font-body, "Instrument Sans Variable", sans-serif);
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 24px;
+  color: var(--color-text-body, #3b3d3d);
+  margin: 0;
+  flex: 1;
+}
+
+@media screen and (width < 1181px) and (width >= 768px) {
+    .awardlisting .awardlisting-item{
+        padding: 64px 0;
+    }
+}
+
+/* Responsive adjustments */
+@media (width < 768px) {
+    .awardlisting .awardlisting-item{
+        gap: 24px;
+        padding: 40px 0;
+    }
+
+    .awardlisting .award-tile-wrapper {
+        gap: 24px;
+    }
+
+    .awardlisting .award-tile {
+        gap: 24px;
+    }
+  
+    .awardlisting .awardlisting-year {
+        width: 152px;
+    }
+}
+

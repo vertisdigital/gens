@@ -36,7 +36,8 @@
       "textblock",
       "columns",
       "sectionheader",
-      "column"
+      "column",
+      "awardlisting"
     ]
   },
   {
@@ -57,6 +58,7 @@
       "boardofdirectors",
       "iframe",
       "corporatepolicies",
+      "awardlisting",
       "tiles"
     ]
   },
@@ -239,6 +241,13 @@
       "orderedList",
       "link",
       "unlink"
+    ]
+  },
+  {
+    "id": "awardlisting",
+    "components": [
+      "awardlistingitem",
+      "awardtile"
     ]
   }
 ]
