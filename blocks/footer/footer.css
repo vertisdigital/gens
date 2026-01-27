@@ -151,10 +151,6 @@
     text-decoration: underline;
 }
 
-.footer .copywrite-right .copywrite-links .button-container a {
-    white-space: nowrap;
-}
-
 /* SHARED LINK STYLE */
 .footer .left-section .button-container a,
 .footer .footer-bottom-links .button-container a {
@@ -164,6 +160,10 @@
     margin-bottom: 6px;
     color: #FFF;
     font-family: var(--typography-font-family-font-body, "Instrument Sans");
+}
+
+.footer .copywrite-right .copywrite-links .button-container a {
+    white-space: nowrap;
 }
 
 .footer .left-section .row>.collapsible-links nav .links-heading a {
