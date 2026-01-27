@@ -823,10 +823,6 @@ header .header {
   letter-spacing: var(--typography-font-spacing-tracking-normal, 0);
 }
 
-.header-inner-wrapper .header-nav .primary-nav .nav-item .primary-menu-links:hover,
-.header-inner-wrapper .header-nav .primary-nav .nav-item .primary-menu-links:hover a {
-  color: var(--primary-gold);
-}
 
 .header-inner-wrapper .header-nav .primary-nav .nav-item.active .primary-menu-links,
 .header-inner-wrapper .header-nav .primary-nav .nav-item.active .primary-menu-links a {
@@ -1004,6 +1000,11 @@ header .header {
     justify-content: space-between;
     align-items: center;
     width: 100%;
+  }
+
+  .header-inner-wrapper .header-nav .primary-nav .nav-item .primary-menu-links:hover,
+  .header-inner-wrapper .header-nav .primary-nav .nav-item .primary-menu-links:hover a {
+    color: var(--primary-gold);
   }
 }
 
