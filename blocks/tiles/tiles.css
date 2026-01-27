@@ -1,3 +1,11 @@
+.tab-wrapper:has(.tiles-wrapper) .tiles-wrapper {
+  width: 100vw;
+  max-width: 2560px;
+  position: relative;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
 .row.tiles-container {
   max-width: 2560px;
   margin: 0 auto;
