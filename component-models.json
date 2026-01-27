@@ -2373,5 +2373,44 @@
         ]
       }
     ]
+  },
+  {
+    "id": "awardtile",
+    "fields": [
+      {
+        "component": "text",
+        "name": "awardyear",
+        "label": "Year",
+        "valueType": "string",
+        "validation": {
+          "maxLength": 100,
+          "customErrorMsg": "Year cannot exceed 100 characters"
+        }
+      },
+      {
+        "component": "text",
+        "name": "awarddescription",
+        "label": "Award Description",
+        "valueType": "string",
+        "validation": {
+          "maxLength": 100,
+          "customErrorMsg": "Award Description cannot exceed 100 characters"
+        }
+      }
+    ]
+  },
+  {
+    "id": "awardlistingitem",
+    "fields": [
+      {
+        "component": "text",
+        "name": "heading",
+        "label": "Title",
+        "validation": {
+          "maxLength": 100,
+          "customErrorMsg": "Title cannot exceed 100 characters"
+        }
+      }
+    ]
   }
 ]
