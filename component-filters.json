@@ -246,7 +246,12 @@
   {
     "id": "awardlisting",
     "components": [
-      "awardlistingitem",
+      "awardlistingitem"
+    ]
+  },
+  {
+    "id": "awardlistingitem",
+    "components": [
       "awardtile"
     ]
   }
