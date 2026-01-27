@@ -129,7 +129,7 @@ export default async function decorate(block) {
         // Create SVG icon based on the title text (assuming we have an SVGIcon function)
         const svgElement = SVGIcon({
           name: titleText, // Using the title text (twitter, linkedin, youtube) as icon name
-          size: 18,
+          size: 'auto',
           className: 'social-icon',
         });
 

@@ -5,7 +5,7 @@ function normalizeTextblockTokens(col) {
   if (!container) return;
 
   const paragraphs = Array.from(
-    container.querySelectorAll(':scope > p')
+    container.querySelectorAll(':scope p')
   );
 
   paragraphs.forEach((p) => {
