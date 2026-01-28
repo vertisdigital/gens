@@ -1,6 +1,7 @@
 import { moveInstrumentation } from '../../scripts/scripts.js';
 import ImageComponent from '../../shared-components/ImageComponent.js';
 import stringToHtml from '../../shared-components/Utility.js';
+import SvgIcon from '../../shared-components/SvgIcon.js';
 
 export default function decorate(block) {
   block.classList.add('fade-item');
@@ -9,7 +10,8 @@ export default function decorate(block) {
 
   // Create single container with all responsive classes
   const container = document.createElement('div');
-  container.className = 'container';
+  const gridView = block.classList.contains('grid-view') ? 'grid-view' : 'list-view';
+  container.className = `container ${gridView}`;
   moveInstrumentation(wrapper, container);
 
   const projectsContainer = wrapper.querySelector(
@@ -67,6 +69,22 @@ export default function decorate(block) {
 
       const projectCta = allDivElements[5];
       projectCta.className = 'project-cta';
+      
+      // Add arrowIcon to the button/link in projectCta
+      const buttonLink = projectCta.querySelector('a');
+      if (buttonLink) {
+        buttonLink.classList.add('button');
+        // Create circular icon button with arrow icon
+        const arrowIcon = SvgIcon({
+          name: 'arrowright',
+          className: 'learn-button-icon',
+          size: '14',
+          color: 'var(--color-text-tertiary)',
+        });
+        buttonLink.innerHTML = '';
+        buttonLink.appendChild(stringToHtml(arrowIcon));
+      }
+      
       leftCol.appendChild(projectCta);
 
       // Create right column (description and contacts) - 60% on desktop and tablet

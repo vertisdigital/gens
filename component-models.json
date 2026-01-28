@@ -2416,5 +2416,26 @@
         }
       }
     ]
+  },
+  {
+    "id": "projectslist",
+    "fields": [
+      {
+        "component": "select",
+        "name": "classes",
+        "label": "Display Options",
+        "valueType": "string",
+        "options": [
+          {
+            "name": "Grid View",
+            "value": "grid-view"
+          },
+          {
+            "name": "List View",
+            "value": "list-view"
+          }
+        ]
+      }
+    ]
   }
 ]

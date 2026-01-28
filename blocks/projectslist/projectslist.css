@@ -2,11 +2,23 @@ p {
     margin: 0;
 }
 
+.projectslist .grid-view {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 24px;
+}
+
 .projectslistitem {
     padding-top: 36px;
     padding-bottom: 30px;
-    border-top: 1px solid var(--text-color);
     display: flex;
+    align-items: center;
+}
+
+.projectslist .grid-view .projectslistitem {
+    flex-direction: column;
+    padding-top: 0;
+    border-top: none;
 }
 
 .projectslistitem:last-child {
@@ -18,7 +30,39 @@ p {
 }
 
 .right-col {
-    padding-left: 15px;
+    display: flex;
+    justify-content: flex-end;
+}
+ 
+.projectslist .grid-view .projectslistitem .left-col {
+    padding-right: 0;
+    width: 100%;
+    order: 2;
+}
+
+.projectslist .grid-view .projectslistitem .right-col {
+    padding-left: 0;
+    width: 100%;
+    order: 1;
+}
+
+.projectslist .projectslistitem .project-image {
+    width: 81%;
+}
+
+.projectslist .projectslistitem .project-image img {
+    aspect-ratio: 1/1;
+    min-width: 519px;
+}
+
+.projectslist .grid-view .projectslistitem .project-image {
+    width: 100%;
+}
+
+.projectslist .grid-view .projectslistitem .project-image img {
+    aspect-ratio: 411/231;
+    min-width: 0;
+    margin-bottom: 24px;
 }
 
 .project-title,
@@ -28,58 +72,111 @@ p {
 }
 
 .project-title  {
-    font-size: var(--font-size-m);
+    font-size: 36px;
+    line-height: 56px;
 }
 
 .project-long-description,
 .project-short-description  {
-    font-size: var(--font-size-xxs);
+    font-size: 16px;
+    line-height: 24px;
+    font-family: var(--typography-font-family-font-body);
 }
 .project-short-description  {
-   margin-top: 40px;
+   margin-top: 24px;
 }
 
 .project-long-description {
-    margin-top: 12px;
-    font-size: var(--font-size-xs);
-    line-height: 24px;
+    margin-top: 16px;
 }
 
 .project-long-description ul{
     padding-left: 18px;
 }
 
-.project-cta a.button:any-link{
-    background:none;
-    cursor:pointer;
-    padding:0;
-    color: var(--primary-gold);
-    margin-top:30px
-   }
+.project-cta {
+    position: relative;
+}
 
-@media (width <= 992px)  {
+.project-cta a.button:any-link{
+    position: absolute;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 48px;
+    height: 48px;
+    padding: 16px;
+    border: 2px solid var(--color-border-tertiary);
+    border-radius: 9999px;
+    background: transparent;
+    text-decoration: none !important;
+    font-weight: 400;
+    transition: all 0.2s ease;
+    cursor: pointer;
+    margin: 24px 0 0 0;
+}
+
+.project-cta a.button .icon-wrapper {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 24px;
+    height: 24px;
+    padding: 5px;
+}
+
+.project-cta a.button:hover .icon-wrapper {
+    color: var(--color-text-secondary) !important;
+}
+
+.project-cta a.button:focus .icon-wrapper {
+    color: var(--color-border-secondary-pressed) !important;
+}
+
+.project-cta a.button:hover {
+    color: var(--color-text-secondary);
+    border-color: var(--color-text-secondary);
+}
+
+.project-cta a.button:focus {
+    color: var(--color-border-secondary-pressed);
+    border-color: var(--color-border-secondary-pressed);
+}
+
+.projectslist .grid-view .projectslistitem .project-title{
+    font-size: 28px;
+    line-height: 44px;
+}
+
+@media (width < 1181px)  {
+    .projectslist .projectslist-container {
+        display: flex;
+        flex-direction: column;
+    }
+
     .projectslistitem {
         padding-top: 24px;
         padding-bottom: 40px;
     }
     .project-cta a.button:any-link{
-        margin-top:24px
-       }
-}
-
-
-
-
-@media (width <= 769px) {
-    .projectslistitem {
-        padding-top: 18px;
-        padding-bottom: 16px;
+        margin-top: 24px;
+        width: 48px;
+        height: 48px;
+        padding: 16px;
+    }
+    
+    .project-cta a.button .icon-wrapper {
+        width: 24px;
+        height: 24px;
+        padding: 5px;
     }
 }
 
-@media (width <= 767px) {
+@media (width < 768px) {
     .projectslistitem {
         display: block;
+        padding-top: 18px;
+        padding-bottom: 16px;
     }
     .projectslistitem .left-col, .projectslistitem .right-col {
         padding: 0;
@@ -99,11 +196,20 @@ p {
         width: 100%;
     }
     .project-cta a.button:any-link{
-        margin-top:20px
-       }
+        margin-top: 20px;
+        width: 32px;
+        height: 32px;
+        padding: 8px;
+    }
+    
+    .project-cta a.button .icon-wrapper {
+        width: 16px;
+        height: 16px;
+        padding: 3px;
+    }
 }
 
-@media (width <= 426px) {
+/* @media (width <= 426px) {
     .projectslistitem {
         display: grid;
         padding-top: 15px;
@@ -122,4 +228,4 @@ p {
     .projectslist-wrapper {
         margin: 45px 0;
     }
-}
+} */
