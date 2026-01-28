@@ -48,6 +48,17 @@ function getInitialActiveTab() {
   return 0; // Default to first tab
 }
 
+function activateFromHash(tabs, panels) {
+  const anchor = window.location.hash.replace('#', '');
+  if (!anchor) return false;
+
+  const index = tabs.findIndex(tab => tab.id === anchor);
+  if (index === -1) return false;
+
+  updateTabStates(tabs, panels, index, true);
+  return true;
+}
+
 /**
  * Creates individual tab elements
  * @param {Element} section The section to create tab from
@@ -56,6 +67,7 @@ function getInitialActiveTab() {
  */
 function createTabElement(section, index) {
   const titleText = section.getAttribute('data-tabtitle');
+  const tabID = section.getAttribute('data-tabid');
   const initialActiveIndex = getInitialActiveTab();
 
   const tabTitle = document.createElement('div');
@@ -64,6 +76,7 @@ function createTabElement(section, index) {
   tabTitle.setAttribute('role', 'tab');
   tabTitle.setAttribute('data-tab-index', index);
   tabTitle.setAttribute('tabindex', '0');
+  tabTitle.id = tabID;
   if (index === initialActiveIndex) tabTitle.classList.add('active');
 
   const tabPanel = section.cloneNode(true);
@@ -72,6 +85,7 @@ function createTabElement(section, index) {
   tabPanel.setAttribute('data-block-status', 'loaded');
   tabPanel.setAttribute('role', 'tabpanel');
   tabPanel.setAttribute('data-tab-index', index);
+  tabPanel.id = 'panel-' + tabID;
   tabPanel.classList.toggle('active', index === initialActiveIndex);
 
   return { tabTitle, tabPanel };
@@ -176,15 +190,18 @@ function addTabFunctionality({ tabs, panels, container }) {
 
   // Handle URL hash changes
   window.addEventListener('hashchange', () => {
-    const newIndex = getInitialActiveTab();
-    updateTabStates([...tabNav.children], [...container.querySelector('.tab-wrapper').children], newIndex, true);
+    activateFromHash(
+      [...tabNav.children],
+      [...container.querySelector('.tab-wrapper').children]
+    );
   });
 
   // Handle initial page load hash after a short delay to ensure DOM is ready
   setTimeout(() => {
-    const initialIndex = getInitialActiveTab();
-    const isScroll = window.location.hash !== '';
-    updateTabStates([...tabNav.children], [...container.querySelector('.tab-wrapper').children], initialIndex, isScroll);
+    const handled = activateFromHash(tabs, panels);
+    if (!handled) {
+      updateTabStates(tabs, panels, 0, false);
+    }
   }, 1000); // Slightly after the container display timeout
 
   tabNav.addEventListener('click', (e) => {
