@@ -3,8 +3,8 @@
     display: flex;
     flex-direction: column;
     gap: 16px;
-    padding-top: 32px;
-    padding-bottom: 32px;
+    padding-top: 32px !important;
+    padding-bottom: 32px !important;
   }
   
   /* Award Listing Wrapper */
@@ -16,7 +16,7 @@
   
   /* Award Item Title */
   .awardlisting .awardlisting-item-title {
-    font-family: var(--typography-font-family-font-title, "Inter", system-ui, sans-serif);
+    font-family: var(--typography-font-family-font-body);
     font-size: 24px;
     font-weight: 400;
     line-height: 40px;
@@ -63,8 +63,13 @@
   
   @media screen and (width < 1181px) and (width >= 768px) {
     .awardlisting.block {
-      padding-top: 20px;
-      padding-bottom: 20px;
+      padding-top: 20px !important;
+      padding-bottom: 20px !important;
+    }
+
+    .awardlisting .awardlisting-item-title {
+        font-size: 16px;
+        line-height: 24px;
     }
   }
   
@@ -72,12 +77,13 @@
   @media (width < 768px) {
     .awardlisting.block {
       gap: 24px;
-      padding-top: 12px;
-      padding-bottom: 12px;
+      padding-top: 12px !important;
+      padding-bottom: 12px !important;
     }
-  
-    .awardlisting .award-tile-wrapper {
-      gap: 24px;
+
+    .awardlisting .awardlisting-item-title {
+        font-size: 16px;
+        line-height: 24px;
     }
   
     .awardlisting .award-tile {
@@ -87,4 +93,6 @@
     .awardlisting .awardlisting-year {
       width: 152px;
     }
+
+    
   }
