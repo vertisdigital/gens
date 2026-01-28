@@ -30,8 +30,6 @@ export default function decorate(block) {
 
     if (featureClassValue === 'with-images-four-col') {
       featureClass = 'with-images-four-col';
-    } else if (featureClassValue === 'with-vertical-list') {
-      featureClass = 'with-vertical-list';
     }
 
     // Only remove if it's not the block itself
