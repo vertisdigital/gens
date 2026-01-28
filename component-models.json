@@ -291,6 +291,11 @@
           "maxLength": 50,
           "customErrorMsg": "Tab Title cannot exceed 50 characters"
         }
+      },
+      {
+        "component": "text",
+        "name": "tabid",
+        "label": "Tab ID"
       }
     ]
   },
