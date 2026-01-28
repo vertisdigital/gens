@@ -3,7 +3,10 @@ import stringToHTML from '../../shared-components/Utility.js';
 import SVGIcon from '../../shared-components/SvgIcon.js';
 import { moveInstrumentation } from '../../scripts/scripts.js';
 
-export default function decorate(block) {
+export default function decorate(block) { 
+    const isAuthoring =
+        !!block.querySelector('[data-aue-model], [data-aue-prop]');
+
     block.classList.add('section-header', 'block', 'container');
     block.classList.add('fade-item');
     const nested = block.querySelectorAll('[class^="sectionheader-nested-"]');
@@ -129,7 +132,7 @@ export default function decorate(block) {
             }
         }
 
-        linkField.remove();
+        !isAuthoring && linkField.remove();
     }
 
     /* ---------- ASSEMBLE ---------- */
@@ -145,6 +148,9 @@ export default function decorate(block) {
         if (descriptionNode) left.appendChild(descriptionNode);
         wrapper.appendChild(left);
         if (ctaNode) wrapper.appendChild(ctaNode);
+    }
+    if (isAuthoring) {
+        return;
     }
 
     block.innerHTML = '';
