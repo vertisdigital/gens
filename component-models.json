@@ -291,6 +291,11 @@
           "maxLength": 50,
           "customErrorMsg": "Tab Title cannot exceed 50 characters"
         }
+      },
+      {
+        "component": "text",
+        "name": "tabid",
+        "label": "Tab ID"
       }
     ]
   },
@@ -2414,6 +2419,27 @@
           "maxLength": 100,
           "customErrorMsg": "Title cannot exceed 100 characters"
         }
+      }
+    ]
+  },
+  {
+    "id": "projectslist",
+    "fields": [
+      {
+        "component": "select",
+        "name": "classes",
+        "label": "Display Options",
+        "valueType": "string",
+        "options": [
+          {
+            "name": "Grid View",
+            "value": "grid-view"
+          },
+          {
+            "name": "List View",
+            "value": "list-view"
+          }
+        ]
       }
     ]
   }

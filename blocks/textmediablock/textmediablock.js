@@ -43,7 +43,7 @@ function handleImageElement(mediaBlock) {
 }
 export default function decorate(block) {
   block.classList.add('fade-item');
-  block.className = 'container textmediablock-container';
+  block.className = 'textmediablock-container';
 
   // Determine block variation by checking first child
   const firstChild = block.children[0];
@@ -56,7 +56,7 @@ export default function decorate(block) {
     // Add classes to text section
     const textSection = block.children[1];
     if (textSection) {
-      textSection.classList.add('textblock');
+      textSection.classList.add('container', 'textblock');
       textSection.children[0]?.classList.add('heading');
       textSection.children[1]?.classList.add('text-section');
     }
@@ -65,7 +65,7 @@ export default function decorate(block) {
     const textSection = firstChild;
     const imageSection = block.children[1];
 
-    textSection.classList.add('textblock');
+    textSection.classList.add('container', 'textblock');
     textSection.children[0]?.classList.add('heading');
     textSection.children[1]?.classList.add('text-section');
 

@@ -16,8 +16,8 @@ export default function decorate(block) {
   // Try multiple selectors to find featureclass in both authoring and publishing mode
   const featureClassEl = block.querySelector('[data-aue-prop="featureclass"]')
     || block.querySelector('[data-gen-prop="featureclass"]')
-    || block.querySelector('.feature-nested-1-3 p')
-    || block.querySelector('.feature-nested-1-3')
+    || block.querySelector('.feature-nested-1-4 p')
+    || block.querySelector('.feature-nested-1-4')
     || (blockChildren[3]?.querySelector('p') ? blockChildren[3] : null)
     || (blockChildren[3]?.textContent?.trim() ? blockChildren[3] : null);
 
@@ -27,10 +27,8 @@ export default function decorate(block) {
     // Get value from p tag if it exists, otherwise from the element itself
     const featureClassP = featureClassEl.querySelector('p') || featureClassEl;
     const featureClassValue = featureClassP?.textContent?.trim() || '';
-
-    if (featureClassValue === 'with-images-four-col') {
-      featureClass = 'with-images-four-col';
-    }
+    
+    featureClass = featureClassValue;
 
     // Only remove if it's not the block itself
     if (featureClassEl.parentNode === block || featureClassEl.parentNode?.parentNode === block) {
