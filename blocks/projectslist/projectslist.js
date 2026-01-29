@@ -11,7 +11,7 @@ export default function decorate(block) {
   // Create single container with all responsive classes
   const container = document.createElement('div');
   const gridView = block.classList.contains('grid-view') ? 'grid-view' : 'list-view';
-  container.className = `container ${gridView}`;
+  container.className = gridView === 'grid-view' ? `container ${gridView}` : `${gridView}`;
   moveInstrumentation(wrapper, container);
 
   const projectsContainer = wrapper.querySelector(
@@ -21,7 +21,8 @@ export default function decorate(block) {
   Array.from(projectsContainer.children).forEach((project, index) => {
     if (project.children[0].textContent !== '') {
       const projectContainer = document.createElement('div');
-      projectContainer.className =  (index % 2 === 1) ? 'odd-projectslistitem projectslistitem' : 'projectslistitem';
+      const baseClasses = (index % 2 === 1) ? 'odd-projectslistitem projectslistitem' : 'projectslistitem';
+      projectContainer.className = gridView === 'grid-view' ? baseClasses : `container ${baseClasses}`;
       moveInstrumentation(project, projectContainer);
 
       // Create left column (heading) - 40% on desktop and tablet

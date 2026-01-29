@@ -1,3 +1,18 @@
+.tab-wrapper:has(.projectslist-wrapper) .projectslist-wrapper {
+    width: 100vw;
+    max-width: 2560px;
+    position: relative;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+.tab-panel {
+    .list-view .container {
+        padding: 80px;
+        max-width: 1920px;
+    }
+}
+
 p {
     margin: 0;
 }
@@ -8,25 +23,27 @@ p {
     gap: 24px;
 }
 
-.odd-projectslistitem {
-    background-color: var(--primary-default-fg);
-}
-
 .projectslistitem {
     padding-top: 36px;
     padding-bottom: 30px;
     display: flex;
     align-items: center;
+    background-color: var(--primary-default-fg);
+}
+
+.odd-projectslistitem {
+    background-color: var(--color-bg-white);
 }
 
 .projectslist .grid-view .projectslistitem {
     flex-direction: column;
     padding-top: 0;
     border-top: none;
+    background-color: var(--color-bg-white);
 }
 
-.projectslist .grid-view .odd-projectslistitem {
-    background-color: unset;
+.projectslist .grid-view .projectslistitem.odd-projectslistitem {
+    background-color: var(--color-bg-white);
 }
 
 .left-col {
@@ -144,6 +161,13 @@ p {
 }
 
 @media (width < 1181px) and (width >= 768px)  {
+    .tab-panel {
+        .list-view .container {
+            padding: 64px;
+            max-width: 1440px;
+        }
+    }
+
     .projectslist .grid-view {
         display: flex;
         flex-direction: column;
@@ -200,6 +224,13 @@ p {
 }
 
 @media (width < 768px) {
+    .tab-panel {
+        .list-view .container {
+            padding: 24px;
+            max-width: 767px;
+        }
+    }
+
     .projectslist .grid-view {
         display: flex;
         flex-direction: column;
