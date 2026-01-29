@@ -132,7 +132,9 @@ export default function decorate(block) {
             }
         }
 
-        !isAuthoring && linkField.remove();
+        if (!isAuthoring) {
+            linkField.remove();
+        }
     }
 
     /* ---------- ASSEMBLE ---------- */
