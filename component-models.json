@@ -449,7 +449,7 @@
         "component": "aem-content",
         "valueType": "string",
         "name": "ctabutton",
-        "label": "CTA Link",
+        "label": "CTA Link 1",
         "multi": false,
         "validation": {
           "rootPath": "/content/genting-singapore"
@@ -458,12 +458,32 @@
       {
         "component": "text",
         "name": "ctabuttonText",
-        "label": "CTA Text"
+        "label": "CTA Text 1"
       },
       {
         "component": "text",
         "name": "ctabuttonTitle",
-        "label": "CTA Title"
+        "label": "CTA Title 1"
+      },
+      {
+        "component": "aem-content",
+        "valueType": "string",
+        "name": "ctabutton2",
+        "label": "CTA Link 2",
+        "multi": false,
+        "validation": {
+          "rootPath": "/content/genting-singapore"
+        }
+      },
+      {
+        "component": "text",
+        "name": "ctabuttonText2",
+        "label": "CTA Text 2"
+      },
+      {
+        "component": "text",
+        "name": "ctabuttonTitle2",
+        "label": "CTA Title 2"
       },
       {
         "component": "number",
@@ -477,7 +497,7 @@
       }
     ]
   },
-    {
+  {
     "id": "masthead",
     "fields": [
       {
