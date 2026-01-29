@@ -8,6 +8,19 @@
     position: relative;
 }
 
+
+.historymilestones-nav-years {
+    display: flex;
+    flex-wrap: nowrap;
+    gap: 8px;
+    justify-content: flex-start;
+    flex: 1;
+    overflow-x: auto;
+    overflow-y: hidden;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: thin;
+}
+
 .timeline .historymilestones-nav-years {
     display: flex;
     flex-direction: row;
@@ -41,18 +54,6 @@
     gap: 16px;
     margin-bottom: 32px;
     flex-wrap: wrap;
-}
-
-.historymilestones-nav-years {
-    display: flex;
-    flex-wrap: nowrap;
-    gap: 8px;
-    justify-content: flex-start;
-    flex: 1;
-    overflow-x: auto;
-    overflow-y: hidden;
-    -webkit-overflow-scrolling: touch;
-    scrollbar-width: thin;
 }
 
 .historymilestones-nav-btn {
