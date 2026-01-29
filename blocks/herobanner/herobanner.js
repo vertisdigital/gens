@@ -241,7 +241,7 @@ export default function decorate(block) {
 
   let scrollInterval = 3000;
   if (scrollIntervalDiv) {
-    scrollInterval = parseInt(scrollIntervalDiv.textContent, 10) * 100000;
+    scrollInterval = parseInt(scrollIntervalDiv.textContent, 10) * 1000;
   }
 
   const navigations = document.createElement('div');
