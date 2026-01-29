@@ -446,29 +446,6 @@
         }
       },
       {
-        "component": "text",
-        "name": "bannerFontColor",
-        "label": "Font Colour",
-        "value": "#FFFFFF",
-        "description": "Enter hex color (e.g. #FFFFFF). Default is white."
-      },
-      {
-        "component": "boolean",
-        "name": "enableGradient",
-        "label": "Enable Image Gradient",
-        "valueType": "boolean",
-        "value": true
-      },
-      {
-        "component": "text",
-        "name": "indicatortext",
-        "label": "Scroll Indicator Text",
-        "validation": {
-          "maxLength": 50,
-          "customErrorMsg": "Scroll text cannot exceed 50 characters"
-        }
-      },
-      {
         "component": "aem-content",
         "valueType": "string",
         "name": "ctabutton",
@@ -496,6 +473,76 @@
         "description": "Interval in seconds",
         "validation": {
           "customErrorMsg": "Please enter a valid number"
+        }
+      }
+    ]
+  },
+    {
+    "id": "masthead",
+    "fields": [
+      {
+        "component": "custom-asset-namespace:custom-asset",
+        "valueType": "string",
+        "name": "mastheadimage",
+        "label": "Masthead Image",
+        "configUrl": "https://dev--gens--vertisdigital.aem.page/tools/assets-selector/config.json",
+        "multi": false,
+        "validation": {
+          "rootPath": "/content/dam/genting-singapore"
+        }
+      },
+      {
+        "component": "custom-asset-namespace:custom-asset",
+        "valueType": "string",
+        "name": "mastheadimageTablet",
+        "label": "Banner Image (Tablet)",
+        "configUrl": "https://dev--gens--vertisdigital.aem.page/tools/assets-selector/config.json",
+        "multi": false,
+        "validation": {
+          "rootPath": "/content/dam/genting-singapore"
+        }
+      },
+      {
+        "component": "custom-asset-namespace:custom-asset",
+        "valueType": "string",
+        "name": "mastheadimageMobile",
+        "label": "Masthead Image (Mobile)",
+        "configUrl": "https://dev--gens--vertisdigital.aem.page/tools/assets-selector/config.json",
+        "multi": false,
+        "validation": {
+          "rootPath": "/content/dam/genting-singapore"
+        }
+      },
+      {
+        "component": "text",
+        "name": "mastheadfontcolor",
+        "label": "Font Colour",
+        "value": "#FFFFFF",
+        "description": "Enter hex color (e.g. #FFFFFF). Default is white."
+      },
+      {
+        "component": "text",
+        "name": "mastheadtitle",
+        "label": "Masthead Title",
+        "validation": {
+          "maxLength": 100,
+          "customErrorMsg": "Masthead Title cannot exceed 100 characters"
+        }
+      },
+      {
+        "component": "boolean",
+        "name": "enablegradient",
+        "label": "Enable Image Gradient",
+        "valueType": "boolean",
+        "value": true
+      },
+      {
+        "component": "text",
+        "name": "indicatortext",
+        "label": "Scroll Indicator Text",
+        "validation": {
+          "maxLength": 50,
+          "customErrorMsg": "Scroll text cannot exceed 50 characters"
         }
       }
     ]

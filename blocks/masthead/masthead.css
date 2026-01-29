@@ -1,0 +1,310 @@
+.masthead-container:not(:has(.masthead-container)) {
+  --masthead-text-color: #ffffff;
+  --masthead-scroll-bottom: 80px;
+  --masthead-title-scroll-gap: var(--spacing-32, 128px);
+  --masthead-scroll-hint-height: 48px;
+  position: relative;
+  width: 100%;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  align-items: center;
+  overflow: hidden;
+}
+
+@media (width >= 2560px) {
+  .masthead-container:not(:has(.masthead-container)) {
+    max-width: 2560px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+}
+
+/* Apply min-height only in publishing/EDS view, not in authoring */
+/* Order selectors from least specific to most specific */
+
+/* Override: Remove min-height in authoring mode (least specific first) */
+[data-aue-resource] .masthead-container:not(:has(.masthead-container)) {
+  min-height: auto !important;
+  height: clamp(360px, 50vh, 560px);
+}
+
+body[data-aue-resource] .masthead-container:not(:has(.masthead-container)) {
+  min-height: auto !important;
+  height: clamp(360px, 50vh, 560px);
+}
+
+/* Apply min-height in publishing mode (increasing specificity) */
+body:not([data-aue-resource]) .masthead-container:not(:has(.masthead-container)),
+html:not([data-aue-resource]) body .masthead-container:not(:has(.masthead-container)) {
+  min-height: 100vh;
+}
+
+/* Most specific: container without authoring attributes */
+.masthead-container:not(:has(.masthead-container)):not([data-aue-resource]):not([data-aue-prop]) {
+  min-height: 100vh;
+}
+.masthead-heading,
+.masthead-title,
+.masthead-description,
+.masthead-container:not(:has(.masthead-container)) .button-container a {
+  color: var(--masthead-text-color);
+}
+
+.masthead-content {
+  position: absolute;
+  bottom: calc(
+    var(--masthead-scroll-bottom)
+    + var(--masthead-scroll-hint-height)
+    + var(--masthead-title-scroll-gap)
+  );
+  left: 0;
+  right: 0;
+  z-index: 2;
+  width: 100%;
+  max-width: 1920px;
+  margin-left: auto;
+  margin-right: auto;
+  box-sizing: border-box;
+}
+
+
+.masthead-content .container {
+  max-width: 100%;
+  padding: 0;
+  margin: 0;
+}
+.masthead-container:not(:has(.masthead-container)).masthead-has-gradient::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background:
+    linear-gradient(
+      180deg,
+      rgba(80, 130, 142, 0.55) 0%,
+      rgba(0, 37, 55, 0.35) 25%,
+      rgba(0, 37, 55, 0.0) 75%
+    );
+  z-index: 1;
+}
+.masthead-container:not(:has(.masthead-container)).masthead-has-gradient::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    180deg,
+    rgba(0,0,0,0) 0%,
+    rgba(0,0,0,0.15) 80%,
+    rgba(0,0,0,0.6) 100%
+  );
+  z-index: 1;
+}
+.masthead-container:not(:has(.masthead-container)).masthead-no-gradient::before {
+  display: none;
+}
+.masthead-container:not(:has(.masthead-container)).masthead-carousal-variation {
+  padding-bottom: 210px;
+}
+
+.masthead-container:not(:has(.masthead-container)) img {
+  width: 100%;
+}
+
+.masthead-image {
+  z-index: -1; 
+   position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+.masthead-image-tablet,
+.masthead-image-mobile {
+  display: none;
+}
+@media (max-width: 991px) {
+  .masthead-image-tablet {
+    display: block;
+  }
+  .masthead-image-desktop {
+    display: none;
+  }
+}
+
+@media (max-width: 767px) {
+  .masthead-image-mobile {
+    display: block;
+  }
+  .masthead-image-tablet {
+    display: none;
+  }
+}
+.masthead-scroll-hint {
+  position: absolute;
+  bottom: var(--masthead-scroll-bottom);
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  height: var(--masthead-scroll-hint-height);
+  text-align: center;
+  font-size: var(--font-size-xxs);
+  color: var(--masthead-text-color);
+  width: 100%;
+}
+
+.masthead-scroll-hint .scroll-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 24px;
+  height: 24px;
+  flex-shrink: 0;
+
+  opacity: 0;
+  transform: translateY(-20px);
+  transition:
+    opacity 0.4s ease,
+    transform 0.4s ease;
+}
+
+.masthead-scroll-hint .scroll-icon.is-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* fade out only */
+.masthead-scroll-hint .scroll-icon.is-fading {
+  opacity: 0;
+  transform: translateY(0);
+}
+
+.masthead-scroll-hint .scroll-text {
+  color: var(--masthead-text-color);
+  text-align: center;
+  font-family: var(--typography-font-family-font-body, "Instrument Sans");
+  font-size: var(--typography-font-size-text-xxs, 12px);
+  font-style: normal;
+  font-weight: 400;
+  line-height: var(--typography-font-line-height-leading-2, 16px);
+  letter-spacing: var(--typography-font-spacing-tracking-normal, 0);
+}
+
+.masthead-container:not(:has(.masthead-container)).masthead-carousal-variation img {
+  height: 100%;
+}
+
+.masthead-title {
+  color: var(--masthead-text-color);
+  font-family: var(--typography-font-family-font-title, Inter);
+  font-size: var(--typography-font-size-text-4xl, 72px);
+  font-style: normal;
+  font-weight: 400;
+  line-height: var(--typography-font-line-height-leading-10, 88px);
+  letter-spacing: var(--typography-font-spacing-tracking-normal, 0);
+  margin: 0;
+  max-width: 957px;
+  text-shadow: 0 2px 4px rgb(0 0 0 / 30%);
+  padding-left: 0;
+}
+
+/* Responsive adjustments */
+@media (width <= 1199px) {
+
+  /* iPad Pro landscape (~1180px) should use tablet title styles */
+  .masthead-title {
+    font-family: var(--typography-font-family-font-title, Inter);
+    font-size: var(--typography-font-size-text-xl, 36px);
+    font-style: normal;
+    font-weight: 400;
+    line-height: var(--typography-font-line-height-leading-7, 56px);
+    letter-spacing: var(--typography-font-spacing-tracking-normal, 0);
+  }
+
+  .masthead-container:not(:has(.masthead-container)) {
+    --masthead-scroll-bottom: 40px;
+    --masthead-title-scroll-gap: var(--spacing-6, 24px);
+  }
+}
+
+@media (width <= 991px) {
+  /* .masthead-container:not(:has(.masthead-container)) img {
+    object-fit: cover;
+  } */
+  .masthead-content {
+    position: absolute;
+    left: 0;
+    right: 0;
+    max-width: 991px;
+    margin-left: auto;
+    margin-right: auto;
+    box-sizing: border-box;
+  }
+  
+  .masthead-title {
+    margin-bottom: 10px;
+    max-width: 640px;
+  }
+}
+
+@media (width <= 396px) and ((width > 366px)) {
+  .masthead-arrow-icon {
+    margin-bottom: 10px;  
+  }
+}
+
+@media (width <= 366px) {
+  .masthead-arrow-icon {
+    margin-bottom: 50px;  
+  }
+}
+
+@media (width <= 361px) {
+  .masthead-arrow-icon {
+    margin-bottom: 80px;  
+  }
+}
+
+
+@media (width <= 992px) {
+  .masthead-arrow-icon {
+    padding: 12px;
+  }
+  .masthead-container:not(:has(.masthead-container)) {
+    aspect-ratio: 52 / 45;
+  }
+
+}
+
+/* Ensure responsive layout */
+@media (width <= 767px) { 
+  .masthead-container:not(:has(.masthead-container)) {
+    aspect-ratio: 13 / 18;
+    --masthead-title-scroll-gap: var(--spacing-10, 40px);
+  }
+
+  .masthead-content {
+    position: absolute;
+    left: 0;
+    right: 0;
+    padding-left: 24px;
+    padding-right: 24px;
+    max-width: 767px;
+    margin-left: auto;
+    margin-right: auto;
+    box-sizing: border-box;
+  }
+  
+  .masthead-title {
+    color: var(--masthead-text-color);
+    font-family: var(--typography-font-family-font-title, Inter);
+    font-size: var(--typography-font-size-text-m, 28px);
+    font-style: normal;
+    font-weight: 400;
+    line-height: var(--typography-font-line-height-leading-5, 44px);
+    letter-spacing: var(--typography-font-spacing-tracking-normal, 0);
+    margin-bottom: 8px;
+    max-width: 480px;
+  }
+}
