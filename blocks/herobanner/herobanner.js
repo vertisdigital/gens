@@ -4,6 +4,47 @@ import SvgIcon from '../../shared-components/SvgIcon.js';
 import stringToHTML from '../../shared-components/Utility.js';
 import { moveInstrumentation } from '../../scripts/scripts.js';
 
+function decorateCTAWithCircle(linkEl, options = {}) {
+  if (!linkEl || linkEl.dataset.decorated === 'true') return;
+  linkEl.dataset.decorated = 'true';
+
+  const {
+    before = true,
+    after = true,
+  } = options;
+
+  const text = linkEl.textContent.trim();
+  linkEl.textContent = '';
+
+  if (before) {
+    linkEl.appendChild(
+      stringToHTML(
+        SvgIcon({
+          name: 'circlecta',
+          className: 'cta-circle-icon before',
+          size: '16',
+        }),
+      ),
+    );
+  }
+
+  const textSpan = document.createElement('span');
+  textSpan.className = 'cta-text';
+  textSpan.textContent = text;
+  linkEl.appendChild(textSpan);
+
+  if (after) {
+    linkEl.appendChild(
+      stringToHTML(
+        SvgIcon({
+          name: 'circlecta',
+          className: 'cta-circle-icon after',
+          size: '16',
+        }),
+      ),
+    );
+  }
+}
 
 export default function decorate(block) {
   let heroContainer = block.querySelector('.hero-banner-container');
@@ -25,15 +66,15 @@ export default function decorate(block) {
       breakpoints: {
         mobile: {
           src: `${imageUrl}`,
-          smartCrop : 'Small'
+          smartCrop: 'Small'
         },
         tablet: {
           src: `${imageUrl}`,
-          smartCrop : 'Medium'
+          smartCrop: 'Medium'
         },
         desktop: {
           src: `${imageUrl}`,
-          smartCrop : 'Desktop'
+          smartCrop: 'Desktop'
         },
       },
       lazy: false,
@@ -96,19 +137,60 @@ export default function decorate(block) {
     descElement.remove();
   }
 
-  const arrowIconLink = block.children[4];
-  if (arrowIconLink && arrowIconLink.querySelector('a') != null) {
-    const arrowIconHtml = SvgIcon({
-      name: 'arrow',
-      className: 'hero-arrow-icon',
-      size: '24',
-      color: '#B29152',
-    });
-    const parsedHtml = stringToHTML(arrowIconHtml);
-    arrowIconLink.querySelector('a').textContent = '';
-    arrowIconLink.querySelector('a')?.append(parsedHtml);
-    heroContent.appendChild(arrowIconLink);
+  const cta1El = block.querySelector('[data-aue-prop="ctabutton"], .herobanner-nested-1-5');
+  const cta2El = block.querySelector('[data-aue-prop="ctabutton2"], .herobanner-nested-1-6');
+
+  const hasCTA =
+    (cta1El && cta1El.querySelector('a')) ||
+    (cta2El && cta2El.querySelector('a'));
+
+  if (hasCTA) {
+    let ctaWrapper = heroContainer.querySelector('.hero-cta-wrapper');
+    if (!ctaWrapper) {
+      ctaWrapper = document.createElement('div');
+      ctaWrapper.className = 'hero-cta-wrapper';
+
+      const ctaGroup = document.createElement('div');
+      ctaGroup.className = 'hero-cta-group';
+
+      ctaWrapper.appendChild(ctaGroup);
+      heroContent.appendChild(ctaWrapper);
+    }
+
+    const ctaGroup = ctaWrapper.querySelector('.hero-cta-group');
+
+    if (cta1El && cta1El.querySelector('a')) {
+      cta1El.classList.add('hero-cta', 'primary');
+
+      const link = cta1El.querySelector('a');
+
+      // CTA 1: text nằm sẵn trong <a> → chỉ decorate
+      decorateCTAWithCircle(link, { before: true, after: true });
+
+      ctaGroup.appendChild(cta1El);
+    }
+
+    if (cta2El && cta2El.querySelector('a')) {
+      cta2El.classList.add('hero-cta', 'secondary');
+
+      const link = cta2El.querySelector('a');
+
+      // 1️⃣ LẤY TEXT RIÊNG
+      const cta2TextEl = block.querySelector(
+        '[data-aue-prop="ctabuttonText2"], .herobanner-nested-1-7 p'
+      );
+
+      if (cta2TextEl) {
+        link.textContent = cta2TextEl.textContent.trim();
+      }
+
+      // 2️⃣ DECORATE SAU KHI SET TEXT
+      decorateCTAWithCircle(link, { before: true, after: true });
+
+      ctaGroup.appendChild(cta2El);
+    }
   }
+
   heroContainer.appendChild(heroContent);
   const carouselItems = block.querySelectorAll(
     '[data-aue-model="bannercarousel"],[data-gen-model="featureItem"]',
@@ -128,12 +210,12 @@ export default function decorate(block) {
 
   // arrow navigations
   const leftArrow = SvgIcon({
-    name: 'leftarrow',
+    name: 'leftarrowwhite',
     className: 'arrow-link',
     size: '12',
   });
   const rightArrow = SvgIcon({
-    name: 'rightarrow',
+    name: 'rightarrowwhite',
     className: 'arrow-link',
     size: '12',
   });
@@ -154,12 +236,12 @@ export default function decorate(block) {
   });
 
   const scrollIntervalDiv = block.querySelector(
-    '[data-aue-prop="scrollInterval"], .herobanner-nested-1-6 p',
+    '[data-aue-prop="scrollInterval"], .herobanner-nested-1-9 p',
   );
 
   let scrollInterval = 3000;
   if (scrollIntervalDiv) {
-    scrollInterval = parseInt(scrollIntervalDiv.textContent, 10) * 1000;
+    scrollInterval = parseInt(scrollIntervalDiv.textContent, 10) * 100000;
   }
 
   const navigations = document.createElement('div');
@@ -293,9 +375,9 @@ export default function decorate(block) {
         alt: 'Chevron Left (1) Icon',
         className: 'first-svg-icon', // You can customize the class name if needed
         breakpoints: {
-          mobile: {src: firstIconLink.getAttribute('href') },
-          tablet: {src: firstIconLink.getAttribute('href') },
-          desktop: {src: firstIconLink.getAttribute('href') },
+          mobile: { src: firstIconLink.getAttribute('href') },
+          tablet: { src: firstIconLink.getAttribute('href') },
+          desktop: { src: firstIconLink.getAttribute('href') },
         },
         lazy: false,
       });
@@ -306,9 +388,9 @@ export default function decorate(block) {
         alt: 'Chevron Left Icon',
         className: 'second-svg-icon', // You can customize the class name if needed
         breakpoints: {
-          mobile: {  src: secondIconLink.getAttribute('href') },
+          mobile: { src: secondIconLink.getAttribute('href') },
           tablet: { src: secondIconLink.getAttribute('href') },
-          desktop: {src: secondIconLink.getAttribute('href') },
+          desktop: { src: secondIconLink.getAttribute('href') },
         },
         lazy: false,
       });
@@ -352,7 +434,7 @@ export default function decorate(block) {
           lazy: false,
         });
 
-    
+
         newsLetterImage.insertAdjacentHTML('beforeend', imgHtml);
         moveInstrumentation(itemDivs[2], newsLetterImage);
         aTag.remove();
@@ -366,7 +448,13 @@ export default function decorate(block) {
   leftIcon.classList.add('left-carousel-arrow');
   rightIcon.classList.add('right-carousel-arrow');
 
-  navigations.appendChild(leftIcon);
+  const leftRightArrow = document.createElement('div');
+  leftRightArrow.classList.add('leftright-arrow');
+  leftRightArrow.appendChild(leftIcon);
+  leftRightArrow.appendChild(rightIcon);
+
+
+  // carouselContainer.appendChild(leftIcon);
   for (let i = 0; i < carouselItems.length; i += 1) {
     const ellipseEl = stringToHTML(ellipse);
     if (i === 0) {
@@ -375,7 +463,6 @@ export default function decorate(block) {
     }
     navigations.appendChild(ellipseEl);
   }
-  navigations.appendChild(rightIcon);
 
   leftIcon.appendChild(stringToHTML(leftArrowDisabled));
   if (carouselItems.length === 1) {
@@ -383,6 +470,7 @@ export default function decorate(block) {
   } else {
     rightIcon.appendChild(stringToHTML(rightArrow));
   }
+  carouselContainer.appendChild(leftRightArrow);
 
   leftIcon.addEventListener('click', () => {
     moveCarousel(false, true);
@@ -395,7 +483,7 @@ export default function decorate(block) {
   if (carouselItems.length) {
     heroContainer.appendChild(carouselContainer);
     if (carouselItems.length > 1) {
-      heroContainer.appendChild(navigations);
+      carouselContainer.appendChild(navigations);
     }
   }
 
