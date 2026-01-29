@@ -612,6 +612,20 @@ color: #3B3D3D
   text-align: left;
 }
 
+
+.feature-wrapper .with-vertical-list .about-us-stats .about-us-right-content > div {
+  width: 100%;
+}
+
+.feature-wrapper .with-vertical-list .about-us-stats .about-us-right-content > div p {
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 24px;
+  font-family: var(--body-font-family, 'Inter', sans-serif);
+  color: var(--color-text-tertiary, #8d713e);
+  margin: 0;
+}
+
 .with-images-four-col .about-us-stats .about-us-right-content.image-container > div:first-child {
   width: 64px;
   height: 64px;
@@ -788,19 +802,6 @@ color: #3B3D3D
 .feature-wrapper .with-vertical-list .about-us-stats .about-us-right-content:last-child {
   border-bottom: none;
   padding-bottom: 0;
-}
-
-.feature-wrapper .with-vertical-list .about-us-stats .about-us-right-content > div {
-  width: 100%;
-}
-
-.feature-wrapper .with-vertical-list .about-us-stats .about-us-right-content > div p {
-  font-size: 16px;
-  font-weight: 400;
-  line-height: 24px;
-  font-family: var(--body-font-family, 'Inter', sans-serif);
-  color: var(--color-text-tertiary, #8d713e);
-  margin: 0;
 }
 
 /* Tablet Design */
