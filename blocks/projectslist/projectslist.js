@@ -1,6 +1,7 @@
 import { moveInstrumentation } from '../../scripts/scripts.js';
 import ImageComponent from '../../shared-components/ImageComponent.js';
 import stringToHtml from '../../shared-components/Utility.js';
+import SvgIcon from '../../shared-components/SvgIcon.js';
 
 export default function decorate(block) {
   block.classList.add('fade-item');
@@ -9,17 +10,19 @@ export default function decorate(block) {
 
   // Create single container with all responsive classes
   const container = document.createElement('div');
-  container.className = 'container';
+  const gridView = block.classList.contains('grid-view') ? 'grid-view' : 'list-view';
+  container.className = gridView === 'grid-view' ? `container ${gridView}` : `${gridView}`;
   moveInstrumentation(wrapper, container);
 
   const projectsContainer = wrapper.querySelector(
     '[data-aue-model="projectslist"], [data-gen-model="projectslist"]',
   ) || wrapper;
 
-  Array.from(projectsContainer.children).forEach((project) => {
+  Array.from(projectsContainer.children).forEach((project, index) => {
     if (project.children[0].textContent !== '') {
       const projectContainer = document.createElement('div');
-      projectContainer.className = 'projectslistitem';
+      const baseClasses = (index % 2 === 1) ? 'odd-projectslistitem projectslistitem' : 'projectslistitem';
+      projectContainer.className = gridView === 'grid-view' ? baseClasses : `container ${baseClasses}`;
       moveInstrumentation(project, projectContainer);
 
       // Create left column (heading) - 40% on desktop and tablet
@@ -38,7 +41,7 @@ export default function decorate(block) {
       }
 
       const subtitleText = allDivElements[1];
-      if (subtitleText) {
+      if (subtitleText.innerHTML.trim() !== '') {
         const subtitle = document.createElement('p');
         subtitle.className = 'project-subtitle';
         moveInstrumentation(subtitleText, subtitle);
@@ -57,7 +60,7 @@ export default function decorate(block) {
 
       const shortDescriptionText = allDivElements[3];
 
-      if (shortDescriptionText) {
+      if (shortDescriptionText.innerHTML.trim() !== '') {
         const shortDescription = document.createElement('p');
         shortDescription.className = 'project-short-description';
         moveInstrumentation(shortDescriptionText, shortDescription);
@@ -67,6 +70,22 @@ export default function decorate(block) {
 
       const projectCta = allDivElements[5];
       projectCta.className = 'project-cta';
+      
+      // Add arrowIcon to the button/link in projectCta
+      const buttonLink = projectCta.querySelector('a');
+      if (buttonLink) {
+        buttonLink.classList.add('button');
+        // Create circular icon button with arrow icon
+        const arrowIcon = SvgIcon({
+          name: 'arrowright',
+          className: 'learn-button-icon',
+          size: '14',
+          color: 'var(--color-text-tertiary)',
+        });
+        buttonLink.innerHTML = '';
+        buttonLink.appendChild(stringToHtml(arrowIcon));
+      }
+      
       leftCol.appendChild(projectCta);
 
       // Create right column (description and contacts) - 60% on desktop and tablet

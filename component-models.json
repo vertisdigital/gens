@@ -424,9 +424,75 @@
         }
       },
       {
+        "component": "aem-content",
+        "valueType": "string",
+        "name": "ctabutton",
+        "label": "CTA Link 1",
+        "multi": false,
+        "validation": {
+          "rootPath": "/content/genting-singapore"
+        }
+      },
+      {
+        "component": "text",
+        "name": "ctabuttonText",
+        "label": "CTA Text 1"
+      },
+      {
+        "component": "text",
+        "name": "ctabuttonTitle",
+        "label": "CTA Title 1"
+      },
+      {
+        "component": "aem-content",
+        "valueType": "string",
+        "name": "ctabutton2",
+        "label": "CTA Link 2",
+        "multi": false,
+        "validation": {
+          "rootPath": "/content/genting-singapore"
+        }
+      },
+      {
+        "component": "text",
+        "name": "ctabuttonText2",
+        "label": "CTA Text 2"
+      },
+      {
+        "component": "text",
+        "name": "ctabuttonTitle2",
+        "label": "CTA Title 2"
+      },
+      {
+        "component": "number",
+        "name": "scrollInterval",
+        "label": "Scroll Interval",
+        "value": 5,
+        "description": "Interval in seconds",
+        "validation": {
+          "customErrorMsg": "Please enter a valid number"
+        }
+      }
+    ]
+  },
+  {
+    "id": "masthead",
+    "fields": [
+      {
         "component": "custom-asset-namespace:custom-asset",
         "valueType": "string",
-        "name": "bannerimageTablet",
+        "name": "mastheadimage",
+        "label": "Masthead Image",
+        "configUrl": "https://dev--gens--vertisdigital.aem.page/tools/assets-selector/config.json",
+        "multi": false,
+        "validation": {
+          "rootPath": "/content/dam/genting-singapore"
+        }
+      },
+      {
+        "component": "custom-asset-namespace:custom-asset",
+        "valueType": "string",
+        "name": "mastheadimageTablet",
         "label": "Banner Image (Tablet)",
         "configUrl": "https://dev--gens--vertisdigital.aem.page/tools/assets-selector/config.json",
         "multi": false,
@@ -437,8 +503,8 @@
       {
         "component": "custom-asset-namespace:custom-asset",
         "valueType": "string",
-        "name": "bannerimageMobile",
-        "label": "Banner Image (Mobile)",
+        "name": "mastheadimageMobile",
+        "label": "Masthead Image (Mobile)",
         "configUrl": "https://dev--gens--vertisdigital.aem.page/tools/assets-selector/config.json",
         "multi": false,
         "validation": {
@@ -447,14 +513,23 @@
       },
       {
         "component": "text",
-        "name": "bannerFontColor",
+        "name": "mastheadfontcolor",
         "label": "Font Colour",
         "value": "#FFFFFF",
         "description": "Enter hex color (e.g. #FFFFFF). Default is white."
       },
       {
+        "component": "text",
+        "name": "mastheadtitle",
+        "label": "Masthead Title",
+        "validation": {
+          "maxLength": 100,
+          "customErrorMsg": "Masthead Title cannot exceed 100 characters"
+        }
+      },
+      {
         "component": "boolean",
-        "name": "enableGradient",
+        "name": "enablegradient",
         "label": "Enable Image Gradient",
         "valueType": "boolean",
         "value": true
@@ -466,36 +541,6 @@
         "validation": {
           "maxLength": 50,
           "customErrorMsg": "Scroll text cannot exceed 50 characters"
-        }
-      },
-      {
-        "component": "aem-content",
-        "valueType": "string",
-        "name": "ctabutton",
-        "label": "CTA Link",
-        "multi": false,
-        "validation": {
-          "rootPath": "/content/genting-singapore"
-        }
-      },
-      {
-        "component": "text",
-        "name": "ctabuttonText",
-        "label": "CTA Text"
-      },
-      {
-        "component": "text",
-        "name": "ctabuttonTitle",
-        "label": "CTA Title"
-      },
-      {
-        "component": "number",
-        "name": "scrollInterval",
-        "label": "Scroll Interval",
-        "value": 5,
-        "description": "Interval in seconds",
-        "validation": {
-          "customErrorMsg": "Please enter a valid number"
         }
       }
     ]
@@ -2419,6 +2464,27 @@
           "maxLength": 100,
           "customErrorMsg": "Title cannot exceed 100 characters"
         }
+      }
+    ]
+  },
+  {
+    "id": "projectslist",
+    "fields": [
+      {
+        "component": "select",
+        "name": "classes",
+        "label": "Display Options",
+        "valueType": "string",
+        "options": [
+          {
+            "name": "Grid View",
+            "value": "grid-view"
+          },
+          {
+            "name": "List View",
+            "value": "list-view"
+          }
+        ]
       }
     ]
   }
