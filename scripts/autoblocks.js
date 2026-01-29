@@ -48,17 +48,6 @@ function getInitialActiveTab() {
   return 0; // Default to first tab
 }
 
-function activateFromHash(tabs, panels) {
-  const anchor = window.location.hash.replace('#', '');
-  if (!anchor) return false;
-
-  const index = tabs.findIndex(tab => tab.id === anchor);
-  if (index === -1) return false;
-
-  updateTabStates(tabs, panels, index, true);
-  return true;
-}
-
 /**
  * Creates individual tab elements
  * @param {Element} section The section to create tab from
@@ -169,6 +158,17 @@ function updateTabStates(tabs, panels, activeIndex, shouldScroll = true) {
       scrollToTabs(container);
     }
   }
+}
+
+function activateFromHash(tabs, panels) {
+  const anchor = window.location.hash.replace('#', '');
+  if (!anchor) return false;
+
+  const index = tabs.findIndex(tab => tab.id === anchor);
+  if (index === -1) return false;
+
+  updateTabStates(tabs, panels, index, true);
+  return true;
 }
 
 /**

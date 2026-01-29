@@ -11,7 +11,7 @@ export default function decorate(block) {
   block.classList.add('fade-item');
   // Get block children early for use in fallback selectors
   const blockChildren = Array.from(block.children);
-  
+
   // Read featureclass from component model
   // Try multiple selectors to find featureclass in both authoring and publishing mode
   const featureClassEl = block.querySelector('[data-aue-prop="featureclass"]')
@@ -20,9 +20,9 @@ export default function decorate(block) {
     || block.querySelector('.feature-nested-1-4')
     || (blockChildren[3]?.querySelector('p') ? blockChildren[3] : null)
     || (blockChildren[3]?.textContent?.trim() ? blockChildren[3] : null);
-  
+
   let featureClass = '';
-  
+
   if (featureClassEl) {
     // Get value from p tag if it exists, otherwise from the element itself
     const featureClassP = featureClassEl.querySelector('p') || featureClassEl;
@@ -35,7 +35,7 @@ export default function decorate(block) {
       featureClassEl.remove();
     }
   }
-  
+
   block.classList.add('feature', 'feature-row', 'block');
   if (featureClass) {
     block.classList.add(featureClass);
@@ -51,17 +51,17 @@ export default function decorate(block) {
   // About-Us left container - 2 column layout
   const aboutUsLeftContent = document.createElement('div');
   aboutUsLeftContent.classList.add('about-us-left');
-  
+
   // Left column container (title + heading)
   const leftColumn = document.createElement('div');
   leftColumn.classList.add('about-us-left-column');
-  
+
   // Right column container (sub-heading + links)
   const rightColumn = document.createElement('div');
   rightColumn.classList.add('about-us-right-column');
-  
+
   const blockchildren = block.children;
-  
+
   // Find the title - goes to left column
   const titleElement = blockchildren[0].children[0];
   if (titleElement && titleElement.textContent.trim() !== '') {
@@ -107,7 +107,7 @@ export default function decorate(block) {
     if (linkDivs.length === 3) {
       // Get elements by index with proper type checking
       const [linkTextDiv, iconDiv, targetDiv] = linkDivs;
-      
+
       const linkData = {
         text: linkTextDiv?.textContent?.trim(),
         url: linkTextDiv?.querySelector('a')?.getAttribute('href'),
@@ -119,7 +119,7 @@ export default function decorate(block) {
       if (linkData.text || linkData.url) {
         const link = document.createElement('a');
         link.href = linkData.url || '#';
-        
+
         // Handle special case for default AEM content
         if (linkData.text && (linkData.text.startsWith('/') || linkData.text.startsWith('#'))) {
           link.textContent = '';
@@ -136,7 +136,7 @@ export default function decorate(block) {
           <path d="M24 1C36.7025 1 47 11.2975 47 24C47 36.7025 36.7025 47 24 47C11.2975 47 1 36.7025 1 24C1 11.2975 11.2975 1 24 1Z" stroke="#8D713E" stroke-width="2"/>
           <path d="M24.165 17.1323C24.3732 16.9453 24.6974 16.9581 24.8896 17.1606L30.7275 23.3218C31.0905 23.7048 31.0905 24.2961 30.7275 24.6792L24.8896 30.8393C24.6974 31.0421 24.3733 31.0549 24.165 30.8677C23.9569 30.6804 23.9437 30.3645 24.1357 30.1616L29.499 24.5005H17.5C17.2239 24.5005 17.0001 24.2765 17 24.0005C17 23.7243 17.2239 23.5005 17.5 23.5005H29.499L24.1357 17.8393C23.9435 17.6364 23.9568 17.3196 24.165 17.1323Z" fill="#8D713E"/>
         </svg>`;
-        
+
         // Remove text content and replace with SVG button
         link.textContent = '';
         link.append(stringToHTML(buttonSvg));
@@ -144,18 +144,18 @@ export default function decorate(block) {
         moveInstrumentation(linkTextDiv.querySelector('a'), link);
         linkContainer.appendChild(link);
       }
-      
+
       // Remove original elements after copying
       linkTextDiv.remove();
       iconDiv.remove();
       targetDiv.remove();
-      
+
       rightColumn.appendChild(linkContainer);
     }
     // Remove the original linkField container after processing
     linkField.remove();
   }
-  
+
   // Append columns to left container
   aboutUsLeftContent.appendChild(leftColumn);
   aboutUsLeftContent.appendChild(rightColumn);
@@ -170,7 +170,7 @@ export default function decorate(block) {
     featureItems.forEach((feature) => {
       const featureChildren = feature.children;
       // checking and validating the feature item structure, as we need to get 4 children
-      
+
       // Create feature item container
       const featureContainer = document.createElement('div');
       featureContainer.classList.add('about-us-right-content');
