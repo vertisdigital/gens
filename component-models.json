@@ -424,28 +424,6 @@
         }
       },
       {
-        "component": "custom-asset-namespace:custom-asset",
-        "valueType": "string",
-        "name": "bannerimageTablet",
-        "label": "Banner Image (Tablet)",
-        "configUrl": "https://dev--gens--vertisdigital.aem.page/tools/assets-selector/config.json",
-        "multi": false,
-        "validation": {
-          "rootPath": "/content/dam/genting-singapore"
-        }
-      },
-      {
-        "component": "custom-asset-namespace:custom-asset",
-        "valueType": "string",
-        "name": "bannerimageMobile",
-        "label": "Banner Image (Mobile)",
-        "configUrl": "https://dev--gens--vertisdigital.aem.page/tools/assets-selector/config.json",
-        "multi": false,
-        "validation": {
-          "rootPath": "/content/dam/genting-singapore"
-        }
-      },
-      {
         "component": "aem-content",
         "valueType": "string",
         "name": "ctabutton",
