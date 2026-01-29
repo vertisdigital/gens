@@ -18,10 +18,10 @@ export default function decorate(block) {
     '[data-aue-model="projectslist"], [data-gen-model="projectslist"]',
   ) || wrapper;
 
-  Array.from(projectsContainer.children).forEach((project) => {
+  Array.from(projectsContainer.children).forEach((project, index) => {
     if (project.children[0].textContent !== '') {
       const projectContainer = document.createElement('div');
-      projectContainer.className = 'projectslistitem';
+      projectContainer.className =  (index % 2 === 1) ? 'odd-projectslistitem projectslistitem' : 'projectslistitem';
       moveInstrumentation(project, projectContainer);
 
       // Create left column (heading) - 40% on desktop and tablet
@@ -40,7 +40,7 @@ export default function decorate(block) {
       }
 
       const subtitleText = allDivElements[1];
-      if (subtitleText) {
+      if (subtitleText.innerHTML.trim() !== '') {
         const subtitle = document.createElement('p');
         subtitle.className = 'project-subtitle';
         moveInstrumentation(subtitleText, subtitle);
@@ -59,7 +59,7 @@ export default function decorate(block) {
 
       const shortDescriptionText = allDivElements[3];
 
-      if (shortDescriptionText) {
+      if (shortDescriptionText.innerHTML.trim() !== '') {
         const shortDescription = document.createElement('p');
         shortDescription.className = 'project-short-description';
         moveInstrumentation(shortDescriptionText, shortDescription);
