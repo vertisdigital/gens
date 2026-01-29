@@ -197,7 +197,7 @@ html:not([data-aue-resource]) body .masthead-container:not(:has(.masthead-contai
 
 .masthead-title {
   color: var(--masthead-text-color);
-  font-family: var(--typography-font-family-font-title, Inter);
+  font-family: var(--typography-font-family-font-title, "Inter");
   font-size: var(--typography-font-size-text-4xl, 72px);
   font-style: normal;
   font-weight: 400;
@@ -207,6 +207,14 @@ html:not([data-aue-resource]) body .masthead-container:not(:has(.masthead-contai
   max-width: 957px;
   text-shadow: 0 2px 4px rgb(0 0 0 / 30%);
   padding-left: 0;
+}
+
+@media (width >=1200px) {
+  .masthead-title {
+    position: absolute;
+    top: 42%;
+    transform: translateY(-50%);
+  }
 }
 
 /* Responsive adjustments */
@@ -272,7 +280,7 @@ html:not([data-aue-resource]) body .masthead-container:not(:has(.masthead-contai
     padding: 12px;
   }
   .masthead-container:not(:has(.masthead-container)) {
-    aspect-ratio: 52 / 45;
+    /* aspect-ratio: 52 / 45; */
   }
 
 }
@@ -280,7 +288,7 @@ html:not([data-aue-resource]) body .masthead-container:not(:has(.masthead-contai
 /* Ensure responsive layout */
 @media (width <= 767px) { 
   .masthead-container:not(:has(.masthead-container)) {
-    aspect-ratio: 13 / 18;
+    /* aspect-ratio: 13 / 18; */
     --masthead-title-scroll-gap: var(--spacing-10, 40px);
   }
 
