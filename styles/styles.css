@@ -10,7 +10,7 @@
  * governing permissions and limitations under the License.
  */
 
-/* 
+/*
 Breakpoints & Container Widths:
 -------------------------------------------------------------------------------------
 |  Breakpoint  |  Class infix  |  Dimensions   |     Container (max-width)          |
@@ -20,7 +20,7 @@ Breakpoints & Container Widths:
 |    Large       |    -lg-     |    ≥ 990px    |     1199px                         |
 |    Extra large |    -xl-     |    ≥ 1200px   |     1440px                        |
 -------------------------------------------------------------------------------------
- 
+
 Grid System Properties:
 -------------------------------------------------------------------------------------
 |  Property          |  Value                                                       |
@@ -29,7 +29,7 @@ Grid System Properties:
 |  # of columns      |  Mobile 4, Tablet 6, Desktop 12                                                         |
 |  Gutter width     |  -                                                                               |
 -------------------------------------------------------------------------------------
- 
+
 Usage Example:
 <div class="container">
   <div class="row">
@@ -85,7 +85,7 @@ Usage Example:
   /* nav height */
   --nav-height: 50px;
 
-  
+
 
   /* Text Colors */
   --color-text-body: #3b3d3d;
@@ -278,27 +278,27 @@ h6 {
   h1 {
     font-size: 2.81rem;
   }
-  
+
   h2 {
     font-size: 2.25rem;
   }
-  
+
   h3 {
     font-size: var(--font-size-m);
   }
-  
+
   h4 {
     font-size: 1.375rem;
   }
-  
+
   h5 {
     font-size: var(--font-size-s);
   }
-  
+
   h6 {
     font-size: 1.5rem;
   }
-  
+
 }
 
 p,
@@ -396,7 +396,7 @@ a.button:hover,
 a.button:focus,
 button:hover,
 button:focus {
-  background-color: var(--link-hover-color);
+  background-color: none;
   cursor: pointer;
 }
 
