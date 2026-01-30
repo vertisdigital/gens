@@ -328,6 +328,7 @@
     align-items: center;
     gap: var(--spacing-25, 10px);
     align-self: stretch;
+    padding-top: 180px !important;
   }
 }
 

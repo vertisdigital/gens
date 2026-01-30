@@ -179,6 +179,8 @@ const renderResults = (block, q, results, currentPage, total, totalPages) => {
     return;
   }
 
+  const endpoint = "https://publish-p144202-e1488374.adobeaemcloud.com";
+
   const from = total === 0 ? 0 : (currentPage - 1) * PAGE_SIZE + 1;
   const to = Math.min(currentPage * PAGE_SIZE, total);
 
@@ -193,10 +195,12 @@ const renderResults = (block, q, results, currentPage, total, totalPages) => {
         (item) => `
           <li class="searchresult-item">
             <div class="searchresult-title">
-              <a href="${shortenURL(item.path)}">${item.title}</a>
+              <a href="${item.path.endsWith('.pdf') ? endpoint + item.path : shortenURL(
+            item.path
+          )}">${item.title}</a>
               <p class="searchresult-info">
-                ${item.highlight
-            ? `<span class="searchresult-desc">${highlight(
+                ${item.highlight || (item.path.endsWith('.pdf') && item.highlight === '')
+            ? `<span class="searchresult-desc">${item.path.endsWith('.pdf') && item.highlight === '' ? 'Match found in document content' : highlight(
               item.highlight,
               q
             )}</span>`
@@ -204,7 +208,7 @@ const renderResults = (block, q, results, currentPage, total, totalPages) => {
           }
               </p>
             </div>
-            <a class="searchresult-link" href="${shortenURL(
+            <a class="searchresult-link" href="${item.path.endsWith('.pdf') ? endpoint + item.path : shortenURL(
             item.path
           )}">Read More</a>
           </li>

@@ -290,7 +290,7 @@ function loadSearchSuggest(keyword) {
   debounceTimer = setTimeout(async () => {
     const suggestions = document.querySelector('.search-suggestions');
     
-    if (keyword.length < 2) {
+    if (keyword.length < 3) {
       suggestions.classList.remove('active');
       return;
     }
@@ -317,7 +317,7 @@ function loadSearchSuggest(keyword) {
         data.forEach((item) => {
           const suggestion = document.createElement('a');
           suggestion.className = 'suggestion-item';
-          suggestion.href = shortenURL(item.path);
+          suggestion.href = item.path.endsWith('.pdf') ? PUBLISH_BASE + item.path : shortenURL(item.path);
           const hl = highlight(item.highlight, keyword);
           suggestion.innerHTML = hl;
           suggestions.appendChild(suggestion);
