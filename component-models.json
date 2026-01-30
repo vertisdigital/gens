@@ -2080,16 +2080,10 @@
       },
       {
         "component": "aem-content",
-        "name": "ctaLink",
+        "valueType": "string",
+        "name": "ctabutton",
         "label": "CTA Link",
-        "condition": {
-          "===": [
-            {
-              "var": "reveal"
-            },
-            false
-          ]
-        },
+        "multi": false,
         "validation": {
           "rootPath": "/content/genting-singapore"
         }
