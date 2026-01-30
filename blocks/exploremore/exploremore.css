@@ -1,17 +1,20 @@
 .exploremore-container {
-  background-color: var(--whisper-gray);
-  padding: 45px 0;
+  background: #F7FAFA;
+  padding: 80px 0;
 }
 
 .exploremore .exploremore-wrapper-container .exploremore-title {
-  color: var(--colours-text-text-body, #3B3D3D);
-  font-family: var(--typography-font-family-font-title, "Inter");
+  width: 30%;
+}
+
+.exploremore .exploremore-wrapper-container .exploremore-title h3 {
+  color: var(--colours-text-text-body, #3B3D3D) !important;
+  font-family: var(--typography-font-family-font-title, "Inter") !important;
   font-size: var(--typography-font-size-text-xl, 36px);
   font-style: normal;
   font-weight: 400;
   line-height: var(--typography-font-line-height-leading-7, 56px);
   letter-spacing: var(--typography-font-spacing-tracking-normal, 0);
-  width: 30%;
   margin: 0;
 }
 
@@ -29,7 +32,7 @@
   flex-direction: column;
   justify-content: center;
   align-items: flex-start;
-  gap: 24px;
+  /* gap: 24px; */
   width: 70%;
 }
 
@@ -40,14 +43,22 @@
   align-items: center;
   width: 100%;
   justify-content: space-between;
+  border-bottom: var(--spacing-px, 1px) solid var(--colours-border-border-base, #E8EBEB);
+  padding-bottom: 24px;
 }
 
 .exploremore-wrapper-container .exploremore-item:first-child {
   padding-left: 0;
 }
 
+.exploremore-wrapper-container .exploremore-item:not(:first-child) {
+  padding-top: 24px;
+}
+
 .exploremore-wrapper-container .exploremore-item:last-child {
   padding-right: 0;
+  border-bottom: none;
+  padding-bottom: 0;
 }
 
 .exploremore-wrapper-container .exploremore-item .exploremore-caption {
@@ -72,6 +83,10 @@
   display: flex;
 }
 
+.exploremore-wrapper-container .exploremore-item .exploremore-link-container a:hover path {
+  stroke: #C8AB4B;
+}
+
 .exploremore-wrapper-container .exploremore-item .exploremore-link-container a .icon-wrapper {
   color: var(--primary-gold);
   padding-top: 0;
@@ -86,7 +101,14 @@
   height: 100%;
 }
 
-@media(width<=992px) {
+@media(width > 1199px) {
+  .exploremore .exploremore-wrapper-container .exploremore-title h3 {
+    line-height: 48px;
+    width: 60%;
+  }
+}
+
+@media(width<=1199px) {
   .exploremore-container {
     padding: 40px 0;
   }
@@ -97,18 +119,20 @@
 
   .exploremore-wrapper-container .exploremore-links {
     width: 100%;
-    gap: 12px;
   }
 
   .exploremore .exploremore-wrapper-container .exploremore-title {
-    color: var(--colours-text-text-body, #3B3D3D);
-    font-family: var(--typography-font-family-font-title, Inter);
-    font-size: var(--typography-font-size-text-xl, 36px);
+    width: 100%;
+  }
+  
+  .exploremore .exploremore-wrapper-container .exploremore-title h3 {
+    color: var(--colours-text-text-body, #3B3D3D) !important;
+    font-family: var(--typography-font-family-font-title, "Inter") !important;
+    font-size: var(--typography-font-size-text-xl, 36px) !important;
     font-style: normal;
     font-weight: 400;
     line-height: var(--typography-font-line-height-leading-7, 56px);
     letter-spacing: var(--typography-font-spacing-tracking-normal, 0);
-    width: 100%;
   }
 
   .exploremore-wrapper-container .exploremore-item {
@@ -138,23 +162,32 @@
 
   .exploremore-wrapper-container .exploremore-links {
     width: 100%;
-    gap: 8px;
   }
 
-  .exploremore .exploremore-wrapper-container .exploremore-title {
-    color: var(--colours-text-text-body, #3B3D3D);
-    font-family: var(--typography-font-family-font-title, "Inter");
-    font-size: var(--typography-font-size-text-m, 28px);
+  .exploremore .exploremore-wrapper-container .exploremore-title h3{
+    color: var(--colours-text-text-body, #3B3D3D) !important;
+
+    /* H5/Regular */
+    font-family: var(--typography-font-family-font-title, "Inter") !important;
+    font-size: var(--typography-font-size-text-m, 28px) !important;
     font-style: normal;
     font-weight: 400;
-    line-height: var(--typography-font-line-height-leading-5, 44px);
+    line-height: var(--typography-font-line-height-leading-5, 44px); /* 157.143% */
     letter-spacing: var(--typography-font-spacing-tracking-normal, 0);
-    width: 100%;
   }
 
   .exploremore-wrapper-container .exploremore-item {
     width: 100%;
     padding: 0;
+    padding-bottom: 16px;
+  }
+
+  .exploremore-wrapper-container .exploremore-item:not(:first-child) {
+    padding-top: 16px;
+  }
+
+  .exploremore-wrapper-container .exploremore-item:last-child {
+    padding-bottom: 0;
   }
 
   .exploremore-wrapper-container .exploremore-item .exploremore-caption {

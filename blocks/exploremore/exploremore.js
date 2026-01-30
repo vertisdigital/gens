@@ -51,7 +51,9 @@ export default function decorate(block) {
   // Create new structure with href inside a separate div
   exploreMoreContainer.innerHTML = `
       <div class="exploremore-wrapper-container container">
-          <h3 class="exploremore-title" ${titleAttributes}>${title}</h3>
+          <div class="exploremore-title" >
+            <h3 ${titleAttributes}>${title}</h3>
+          </div>
           <div class="row exploremore-links">
               <div class="col-xl-6 col-md-3 col-sm-4 exploremore-item ">
                   <h6 class="exploremore-caption" ${firstCtaAttributes}>${firstCtaCaption}</h6>
