@@ -225,7 +225,7 @@
 
 @media(width<768px) {
     .tabs-header {
-        margin-bottom: 36px;
+        margin-bottom: 24px;
     }
 
     .tab-title {
