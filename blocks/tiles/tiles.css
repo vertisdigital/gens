@@ -303,22 +303,23 @@ a:any-link.factsheet-button {
     max-width: 350px;
   }
 
-  .row.tiles-container .image-tile.w-100>div>div:first-child p{
-    width: 52%;
-    max-width: 300px;
-  }
-
   .row.tiles-container .no-image-tile>div>div:first-child p {
     font-size: var(--font-size-l);
   }
-
-   .row.tiles-container .image-tile>div>div:nth-child(2) p{
+  
+  .row.tiles-container .image-tile>div>div:nth-child(2) p{
     font-size: var(--font-size-xs);
     font-weight: 400;
     line-height: 24px;
     margin-bottom: 0;
     width: 50%;
   }
+
+  .row.tiles-container .image-tile.w-100>div>div:first-child p{
+    width: 52%;
+    max-width: 300px;
+  }
+
 
   .row.tiles-container .image-tile.w-100>div>div:nth-child(2) p {
     width: 50%;
