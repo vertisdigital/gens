@@ -15,10 +15,12 @@ export default function decorate(block) {
         .map((child) => {
           child.classList.add("row", "corporate-policies-list-item");
           const children = Array.from(child.children);
-
-          // Handle heading replacement
+          
           let firstChildHtml = "";
+          let subtitleHtml = "";
+          
           if (children.length > 0) {
+            // Handle heading replacement
             const firstChildText = children[0].textContent?.trim();
             const headingHtml = Heading({
               level: 2,
@@ -26,6 +28,12 @@ export default function decorate(block) {
               className: "corporate-policies-heading",
             });
             firstChildHtml = children[0].outerHTML.replace(/<p[^>]*>.*?<\/p>/, headingHtml);
+            
+            // handle subtitle replacement
+            if (children[8]?.textContent?.trim()) {
+              children[8]?.classList.add("corporate-policies-subtitle");
+              subtitleHtml = children[8]?.outerHTML;
+            }
           }
 
           let remainingChildren = "";
@@ -97,6 +105,7 @@ export default function decorate(block) {
             child.innerHTML,
             `
               <div class="col-xl-6 col-lg-6 col-md-3 col-sm-4 col-xs-4 left-col">
+                ${subtitleHtml}
                 ${firstChildHtml}
               </div>
               <div class="col-xl-6 col-lg-6 col-md-3 col-sm-4 col-xs-4 right-col">

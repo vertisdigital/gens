@@ -175,14 +175,6 @@
     margin-left: 15px;
 }
 
- 
-@media (width <=1024px) {
-    .tabs-container .projectslist {
-        margin-top: 56px;
-    }
-
-}
-
 @media(width<=992px) {
    
 
@@ -233,7 +225,7 @@
 
 @media(width<768px) {
     .tabs-header {
-        margin-bottom: 36px;
+        margin-bottom: 24px;
     }
 
     .tab-title {
