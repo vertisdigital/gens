@@ -7,6 +7,8 @@
 
   min-height: 813px;
   display: flex;
+  max-width: 2560px;
+  margin: auto;
 }
 
 .hero-banner-container::after {
@@ -14,14 +16,12 @@
   content: '';
   inset: 0;
   pointer-events: none;
-  background: linear-gradient(
-    360deg,
-    rgba(0, 0, 0, 0.65) 0%,
-    rgba(0, 0, 0, 0.45) 25%,
-    rgba(0, 0, 0, 0.25) 45%,
-    rgba(0, 0, 0, 0.1) 65%,
-    rgba(0, 0, 0, 0) 85%
-  );
+  background: linear-gradient(360deg,
+      rgba(0, 0, 0, 0.65) 0%,
+      rgba(0, 0, 0, 0.45) 25%,
+      rgba(0, 0, 0, 0.25) 45%,
+      rgba(0, 0, 0, 0.1) 65%,
+      rgba(0, 0, 0, 0) 85%);
   z-index: -1;
 }
 
@@ -39,14 +39,10 @@
   bottom: 80px;
 }
 
-@media (width >= 1200px) {
+@media (width >=1200px) {
   .hero-banner-container.hero-carousal-variation .hero-content {
-      width: min(50%, calc(100% - 700px));
-    }
-}
-
-.hero-banner-container img {
-  width: 100%;
+    width: min(50%, calc(100% - 700px));
+  }
 }
 
 .hero-image {
@@ -56,6 +52,11 @@
   width: 100%;
   height: auto;
   z-index: -1;
+      object-fit: cover;
+    /* width: auto; */
+    max-width: none;
+    height: 100%;
+    /* width: revert-layer; */
 }
 
 .news-link-container img {
@@ -63,7 +64,9 @@
 }
 
 .hero-banner-container.hero-carousal-variation img {
-  height: 100%;
+  /* height: 100%; */
+  width: auto;
+  object-fit: cover;
 }
 
 .hero-title {
@@ -219,9 +222,7 @@
 
 .ellipse {
   flex: 0 0 auto;
-  /* 👈 KHÓA FLEX */
   width: 8px;
-  /* DOT */
   height: 8px;
   background: #DBDBDB;
   border-radius: 50%;
@@ -436,16 +437,29 @@
     object-fit: cover;
   } */
   .hero-title {
-    font-size: 48px;
-    line-height: 56px;
-    margin-bottom: 10px;
-    letter-spacing: -0.5px;
+    color: var(--colours-text-text-white, #FFF);
+
+    /* H3/Regular */
+    font-family: var(--typography-font-family-font-title, Inter);
+    font-size: var(--typography-font-size-text-xl, 36px);
+    font-style: normal;
+    font-weight: 400;
+    line-height: var(--typography-font-line-height-leading-7, 56px);
+    /* 155.556% */
+    letter-spacing: var(--typography-font-spacing-tracking-normal, 0);
   }
 
   .hero-description {
-    font-size: var(--font-size-xs);
-    line-height: 24px;
-    margin-bottom: 10px;
+    color: var(--colours-text-text-white, #FFF);
+
+    /* Body 1/Bold */
+    font-family: var(--typography-font-family-font-body, "Instrument Sans");
+    font-size: var(--typography-font-size-text-base, 16px);
+    font-style: normal;
+    font-weight: 700;
+    line-height: var(--typography-font-line-height-leading-3, 24px);
+    /* 150% */
+    letter-spacing: var(--typography-font-spacing-tracking-normal, 0);
   }
 
   .news-title {
@@ -495,8 +509,8 @@
 
   .hero-banner-container,
   .hero-banner-container.hero-carousal-variation {
-    padding: 185px 20px 195px;
-    padding-left: 0;
+    /* padding: 185px 20px 195px;
+    padding-left: 0; */
   }
 }
 
@@ -505,6 +519,7 @@
   .leftright-arrow {
     bottom: 16px;
   }
+
   .hero-banner-container.hero-carousal-variation .hero-content {
     bottom: 0;
     padding-bottom: calc(220px + 64px);
@@ -645,5 +660,52 @@
 @media(width >=410px) and (width < 500px) {
   .hero-banner-container.hero-carousal-variation {
     height: 725px;
+  }
+}
+
+@media (width <=767px) {
+  .hero-banner-container .hero-cta-group {
+    flex-direction: column;
+  }
+
+  .hero-banner-container .hero-cta-group .hero-cta,
+  .hero-banner-container .hero-cta-group .hero-cta .button-container {
+    width: 100%;
+  }
+
+  .hero-banner-container .hero-cta-group .hero-cta a {
+    display: flex;
+    padding: var(--spacing-2, 8px) var(--spacing-3, 12px);
+    justify-content: center;
+    align-items: center;
+    gap: var(--spacing-2, 8px);
+    align-self: stretch;
+    width: 100%;
+  }
+
+  .hero-title {
+    color: var(--colours-text-text-white, #FFF);
+
+    /* H5/Regular */
+    font-family: var(--typography-font-family-font-title, Inter);
+    font-size: var(--typography-font-size-text-m, 28px);
+    font-style: normal;
+    font-weight: 400;
+    line-height: var(--typography-font-line-height-leading-5, 44px);
+    /* 157.143% */
+    letter-spacing: var(--typography-font-spacing-tracking-normal, 0);
+  }
+
+  .hero-description {
+    color: var(--colours-text-text-white, #FFF);
+
+    /* Body 1/Bold */
+    font-family: var(--typography-font-family-font-body, "Instrument Sans");
+    font-size: var(--typography-font-size-text-base, 16px);
+    font-style: normal;
+    font-weight: 700;
+    line-height: var(--typography-font-line-height-leading-3, 24px);
+    /* 150% */
+    letter-spacing: var(--typography-font-spacing-tracking-normal, 0);
   }
 }

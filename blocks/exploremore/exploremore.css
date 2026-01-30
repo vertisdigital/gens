@@ -1,6 +1,8 @@
 .exploremore-container {
   background: #F7FAFA;
   padding: 80px 0;
+  max-width: 2560px;
+  margin: auto;
 }
 
 .exploremore .exploremore-wrapper-container .exploremore-title {
