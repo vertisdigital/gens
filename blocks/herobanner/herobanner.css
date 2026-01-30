@@ -5,9 +5,24 @@
   overflow: hidden;
   padding-bottom: var(--spacing-20, 80px);
 
-  aspect-ratio: 320 / 133;
   min-height: 813px;
   display: flex;
+}
+
+.hero-banner-container::after {
+  position: absolute;
+  content: '';
+  inset: 0;
+  pointer-events: none;
+  background: linear-gradient(
+    360deg,
+    rgba(0, 0, 0, 0.65) 0%,
+    rgba(0, 0, 0, 0.45) 25%,
+    rgba(0, 0, 0, 0.25) 45%,
+    rgba(0, 0, 0, 0.1) 65%,
+    rgba(0, 0, 0, 0) 85%
+  );
+  z-index: -1;
 }
 
 .hero-banner-container .hero-content {
@@ -18,8 +33,16 @@
 }
 
 .hero-banner-container.hero-carousal-variation .hero-content {
-  /* padding-bottom: 210px; */
-  /* width: 50%; */
+  height: auto;
+  position: absolute;
+  left: 0;
+  bottom: 80px;
+}
+
+@media (width >= 1200px) {
+  .hero-banner-container.hero-carousal-variation .hero-content {
+      width: min(50%, calc(100% - 700px));
+    }
 }
 
 .hero-banner-container img {
@@ -407,7 +430,7 @@
 }
 
 /* Responsive adjustments */
-@media (width <=991px) {
+@media (width <=1199px) {
 
   /* .hero-banner-container img {
     object-fit: cover;
@@ -465,13 +488,9 @@
 }
 
 
-@media (width <=992px) {
+@media (width <=1199px) {
   .hero-arrow-icon {
     padding: 12px;
-  }
-
-  .hero-banner-container {
-    aspect-ratio: 52 / 45;
   }
 
   .hero-banner-container,
@@ -482,13 +501,20 @@
 }
 
 /* Ensure responsive layout */
-@media (width <=767px) {
-  .hero-banner-container {
-    aspect-ratio: 13 / 18;
+@media (width <=1199px) {
+  .leftright-arrow {
+    bottom: 16px;
+  }
+  .hero-banner-container.hero-carousal-variation .hero-content {
+    bottom: 0;
+    padding-bottom: calc(220px + 64px);
   }
 
   .hero-banner-container.hero-carousal-variation img {
-    height: auto;
+    /* height: auto; */
+    width: auto;
+    object-fit: cover;
+
   }
 
   .hero-banner-container,
@@ -525,6 +551,8 @@
 
   .hero-banner-carousal {
     left: 0;
+    margin-bottom: 0;
+    width: 100%;
   }
 
   .news-title {
@@ -542,20 +570,22 @@
 
   .carousel-item {
     gap: 24px;
-    padding: 18px 24px;
     text-align: center;
     align-items: flex-start;
   }
 
 
   .carousel-image {
-    width: auto;
-    height: auto;
+    width: 193px;
   }
 
   .carousel-wrapper {
     width: 100% !important;
-    height: 134px;
+    height: 220px;
+  }
+
+  .carousel-wrapper .carousel-item {
+    width: 100%;
   }
 
   .carousel-content {
@@ -571,8 +601,9 @@
   .navigation-arrows {
     gap: 3px;
     padding-right: 5px;
-    bottom: 18px;
+    bottom: calc(16px + 48px / 2);
     right: 148px;
+    transform: translateY(50%);
   }
 
   .left-carousel-arrow {
