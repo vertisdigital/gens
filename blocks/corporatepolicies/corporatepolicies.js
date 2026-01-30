@@ -31,9 +31,11 @@ export default function decorate(block) {
           let remainingChildren = "";
           let ctaIcon = "";
 
+
           if (children.length > 2) {
             const checkDownloadLink = children[5]?.textContent?.trim();
             const lastChild = children[4];
+            
             // If checkDownloadLink is 'false', use the last element (index 6), otherwise use index 3
             const linkElement = checkDownloadLink === 'true' ? children[6] : children[3];
             const lastThirdChild = children[2]; // Third-last element

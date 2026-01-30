@@ -1,10 +1,13 @@
 .corporatepolicies-wrapper{
-    margin: 45px 0;
+    padding: 80px 0;
+    background-image: url(../../icons/Pattern.png);
+    background-repeat: no-repeat;
+    background-position: center bottom -100px;
+    background-size: cover;
 }
 
 .corporate-policies-list-item {
-    padding: 68px 0;
-    border-bottom: 2px solid var(--body-text-color);
+    padding: 40px 0;
 }
 
 .corporate-policies-list-item ul, .corporate-policies-list-item ul li, .corporate-policies-list-item ul p{
@@ -30,22 +33,17 @@
 }
 
 .corporate-policies-list-item>div:first-child{
-    padding-right: 18px;
+    padding-right: 12px;
 
 }
 
 .corporate-policies-list-item>div:last-child{
-    padding-left: 18px;
+    padding-left: 12px;
 
 }
 
 .corporate-policies-list>div:first-child{
     padding-top: 0;
-}
-
-.corporate-policies-list>div:last-child{
-    padding-bottom: 80px;
-    border: none;
 }
 
 .corporate-policies-border-bottom .corporate-policies-list>div:last-child{
@@ -55,16 +53,29 @@
 
 
 .corporate-policies-list-item .left-col h2{
-    font-size: var(--font-size-xl);
-    font-weight: 500;
-    line-height: 50px;
+    font-size: 36px;
+    font-weight: 400;
+    line-height: 56px;
     color: var(--text-color);
+    margin: 0;
+    width: 50%;
+}
+
+.corporate-policies-list-item .right-col {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+}
+
+.corporate-policies-list-item .right-col .button-container {
+    display: flex;
 }
 
 .corporate-policies-list-item .right-col > div:first-child {
-    font-size: var(--font-size-xs);
+    font-size: 24px;
+    font-family: var(--typography-font-family-font-body);
     font-weight: 400;
-    line-height: 24px;
+    line-height: 40px;
     color: var(--body-text-color);
     margin-bottom: 24px;
 }
@@ -74,12 +85,12 @@
     display: inline-flex;
     align-items: center;
     gap: 10px;
-    text-decoration: underline;
-    text-decoration-thickness: 1px;
+    text-decoration: none;
     font-size: var(--font-size-xs);
-    font-weight: 700;
+    font-family: var(--typography-font-family-font-body);
+    font-weight: 500;
     line-height: 24px;
-    color: var(--primary-gold);
+    color: var(--color-text-tertiary);
     padding: 0;
     margin: 0;
 }
@@ -94,6 +105,12 @@
 
 .corporate-policies-list-item .right-col > div:nth-child(3) a > span:first-child {
     line-height: 1;
+}
+
+.tab-panel.corporatepolicies-container .corporatepolicies-wrapper {
+    padding-top: 32px;
+    padding-bottom: 64px;
+    background-image: none;
 }
 
 @media (width <= 992px) {
