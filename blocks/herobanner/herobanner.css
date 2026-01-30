@@ -507,6 +507,10 @@
     padding: 12px;
   }
 
+  .hero-banner-container {
+    padding-bottom: 64px;
+  }
+
   .hero-banner-container,
   .hero-banner-container.hero-carousal-variation {
     /* padding: 185px 20px 195px;
