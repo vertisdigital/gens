@@ -255,6 +255,7 @@
     height: 48px;
     flex-shrink: 0;
     transition: opacity 0.2s ease;
+    position: relative;
 }
 
 .historymilestones-cta:hover {
@@ -270,6 +271,7 @@
 .historymilestones-cta:hover svg path {
     stroke: #C8AB4B;
 }
+
 .historymilestones-container .loadmore-wrapper {
     position: relative;
     margin-top: -24px;

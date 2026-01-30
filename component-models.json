@@ -2077,6 +2077,22 @@
           "maxLength": 100,
           "customErrorMsg": "Description cannot exceed 100 characters"
         }
+      },
+      {
+        "component": "aem-content",
+        "name": "ctaLink",
+        "label": "CTA Link",
+        "condition": {
+          "===": [
+            {
+              "var": "reveal"
+            },
+            false
+          ]
+        },
+        "validation": {
+          "rootPath": "/content/genting-singapore"
+        }
       }
     ]
   },
