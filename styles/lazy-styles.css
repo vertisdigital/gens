@@ -19,7 +19,7 @@
     flex-wrap: nowrap;
     width: 100%;
     overflow-x: auto;
-    margin-bottom: 36px;
+    margin-bottom: 32px;
     position: relative;
 }
 
@@ -289,9 +289,6 @@
     .tabs-container .about-us-stats .about-us-right-content .statistic p:first-child {
         font-size: var(--font-size-l);
         line-height: 32px;
-    }
-    .tab-panel.corporatepolicies-container .corporatepolicies-wrapper {
-        margin: 34px 0;
     }
 }
 @media(width >=1024px) {
