@@ -19,13 +19,14 @@
     width: 100%;
     overflow-x: auto;
     margin-bottom: 32px;
+    margin-top: 40px;
     position: relative;
 }
 
 .tab-title {
     position: relative;
     text-align: center;
-    padding: 24px 40px;
+    padding: 24px 0;
     color: var(--text-color);
     font-size: 24px;
     font-weight: 400;
@@ -33,7 +34,6 @@
     border-bottom: 1px solid var(--color-border-base);
     cursor: pointer;
     flex: 1 1;
-    min-width: 248px;
 }
 
 .tab-title.active {
@@ -163,8 +163,8 @@
 
 @media(width >= 768px) and (width < 1181px) {
     .tab-title {
-        padding: 16px 40px;
-        min-width: 347px;
+        padding: 16px 0;
+        min-width: 300px;
     }
 
     .tabs-container .about-us-stats .about-us-right-content {
@@ -209,13 +209,15 @@
 
 @media(width<768px) {
     .tabs-header {
+        margin-top: 20px;
         margin-bottom: 24px;
     }
 
     .tab-title {
         font-size: 16px;
         line-height: 24px;
-        padding: 24px 0;
+        padding: 8px 0;
+        min-width: 200px;
     }
 
     .tabs-container .about-us-stats {
