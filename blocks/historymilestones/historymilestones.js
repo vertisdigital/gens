@@ -143,7 +143,6 @@ function initHistoryMilestonesSlider(block) {
   yearsContainer.className = 'historymilestones-nav-years';
 
   /* ---------- core slide function ---------- */
-
   const goToSlide = function (index) {
     let targetIndex = index;
 
@@ -161,7 +160,6 @@ function initHistoryMilestonesSlider(block) {
   };
 
   /* ---------- year buttons ---------- */
-
   yearButtons = wrappers.map((wrapper, index) => {
     const yearEls = wrapper.querySelectorAll('p[data-gen-prop="title"]');
     let label = `Slide ${index + 1}`;
@@ -230,7 +228,7 @@ export default function decorate(block) {
       <div class="historymilestones-milestones">
         ${milestones
           .map((milestone) => {
-            const [image, date, description, cta] = milestone.children;
+            const [image, date, description] = milestone.children;
             
             const ctaSvg = `
               <svg width="48" height="48" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg" class="about-us-link-button">

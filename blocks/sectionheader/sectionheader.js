@@ -86,7 +86,6 @@ export default function decorate(block) {
             if (linkEl) {
                 const href = linkEl.getAttribute('href');
                 const title = linkEl.getAttribute('title');
-                const text = linkEl.textContent?.trim();
                 const iconName = iconDiv?.textContent?.trim()?.replace('-', '');
                 const target = targetDiv?.textContent?.trim();
 
