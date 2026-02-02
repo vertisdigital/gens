@@ -182,7 +182,7 @@ p {
 
     .projectslist .projectslistitem {
         flex-direction: column;
-        padding: 64px 0;
+        padding: 64px 40px;
     }
 
     .projectslistitem .left-col, .projectslistitem .right-col {
