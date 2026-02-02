@@ -2311,6 +2311,15 @@
             "value": "_blank"
           }
         ]
+      },
+      {
+        "component": "text",
+        "name": "subtitle",
+        "label": "Policy Subtitle",
+        "validation": {
+          "maxLength": 100,          
+          "customErrorMsg": "Policy subtitle cannot exceed 100 characters"
+        }
       }
     ]
   },
