@@ -106,13 +106,6 @@ export default function decorate(block) {
                     cta.setAttribute('title', title);
                 }
 
-                if (text && text !== '#') {
-                    const span = document.createElement('span');
-                    span.className = 'section-header-cta-text';
-                    span.textContent = text;
-                    cta.appendChild(span);
-                }
-
                 if (iconName) {
                     const iconWrapper = document.createElement('span');
                     iconWrapper.className = 'section-header-cta-icon';

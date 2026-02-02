@@ -125,6 +125,12 @@ export default function decorate(block) {
           }
         } else {
           descriptionParagraph.classList.add('no-picture');
+          if (descriptionParagraph.innerHTML.length < 100) {
+            descriptionParagraph.classList.add('w-50');
+          }
+          if (!buttonContainer) {
+            descriptionParagraph.classList.add('no-margin');
+          }
         }
       }
 

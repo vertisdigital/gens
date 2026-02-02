@@ -75,6 +75,8 @@ p {
 .projectslist .projectslistitem .project-image img {
     aspect-ratio: 1 / 1;
     min-width: 519px;
+    object-fit: cover;
+    object-position: center;
 }
 
 .projectslist .grid-view .projectslistitem .project-image {
