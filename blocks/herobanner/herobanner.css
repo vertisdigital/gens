@@ -10,8 +10,7 @@
   max-width: 2560px;
   margin: auto;
 }
-
-.hero-banner-container::after {
+.hero-banner-container.hero-banner-has-gradient::after {
   position: absolute;
   content: '';
   inset: 0;
@@ -22,7 +21,7 @@
       rgba(0, 0, 0, 0.25) 45%,
       rgba(0, 0, 0, 0.1) 65%,
       rgba(0, 0, 0, 0) 85%);
-  z-index: -1;
+  z-index: 1;
 }
 
 .hero-banner-container .hero-content {
@@ -30,6 +29,7 @@
   justify-content: end;
   flex-direction: column;
   gap: var(--spacing-4, 16px);
+  z-index: 2;
 }
 
 .hero-banner-container.hero-carousal-variation .hero-content {
@@ -51,7 +51,7 @@
   left: 0;
   width: 100%;
   height: auto;
-  z-index: -1;
+  z-index: 0;
       object-fit: cover;
     /* width: auto; */
     max-width: none;
@@ -441,7 +441,7 @@
 
     /* H3/Regular */
     font-family: var(--typography-font-family-font-title, Inter);
-    font-size: var(--typography-font-size-text-xl, 36px);
+    font-size: var(--typography-font-size-text-xl, 36px) !important;
     font-style: normal;
     font-weight: 400;
     line-height: var(--typography-font-line-height-leading-7, 56px);
@@ -522,6 +522,10 @@
 @media (width <=1199px) {
   .leftright-arrow {
     bottom: 16px;
+  }
+
+  .hero-carousal-variation .hero-content {
+    padding-bottom: 118px;
   }
 
   .hero-banner-container.hero-carousal-variation .hero-content {
@@ -655,10 +659,6 @@
   .right-carousel-arrow {
     margin-top: -2px;
   }
-
-  .hero-carousal-variation .hero-content {
-    padding-bottom: 118px;
-  }
 }
 
 @media(width >=410px) and (width < 500px) {
@@ -668,6 +668,11 @@
 }
 
 @media (width <=767px) {
+  .hero-banner-container {
+    aspect-ratio: 2 / 3;
+    min-height: unset;
+    padding-bottom: 40px;
+  }
   .hero-banner-container .hero-cta-group {
     flex-direction: column;
   }

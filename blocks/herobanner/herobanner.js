@@ -54,6 +54,25 @@ export default function decorate(block) {
     heroContainer.className = 'hero-banner-container';
   }
 
+  // Try multiple selectors to find gradient toggle in both authoring and publishing mode
+  const gradientEl = block.querySelector('[data-aue-prop="enablegradient"], [data-gen-prop="enablegradient"]')
+    || block.querySelector('.herobanner-nested-1-10 p')
+    || block.querySelector('.herobanner-nested-1-10');
+
+  // Get text from p tag if it exists, otherwise from the element itself
+  const gradientP = gradientEl?.querySelector('p') || gradientEl;
+  const gradientValue = gradientP?.textContent?.trim();
+  const enablegradient = !gradientEl || gradientValue !== 'false';
+  heroContainer.classList.add(enablegradient ? 'hero-banner-has-gradient' : 'hero-banner-no-gradient');
+
+  // Only remove if it's not the block itself
+  if (gradientEl && (
+    gradientEl.parentNode === block
+    || gradientEl.parentNode?.parentNode === block
+  )) {
+    gradientEl.remove();
+  }
+
   const imageLink = block.querySelector('.herobanner-nested-1-1 a[href]');
   if (imageLink) {
     const imageUrl = imageLink.getAttribute('href');

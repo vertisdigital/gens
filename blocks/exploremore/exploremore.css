@@ -1,12 +1,8 @@
-.exploremore-container {
+.exploremore-wrapper {
   background: #F7FAFA;
   padding: 80px 0;
   max-width: 2560px;
   margin: auto;
-}
-
-.exploremore .exploremore-wrapper-container .exploremore-title {
-  width: 30%;
 }
 
 .exploremore .exploremore-wrapper-container .exploremore-title h3 {
@@ -34,8 +30,6 @@
   flex-direction: column;
   justify-content: center;
   align-items: flex-start;
-  /* gap: 24px; */
-  width: 70%;
 }
 
 .exploremore-wrapper-container .exploremore-item {
@@ -60,7 +54,6 @@
 .exploremore-wrapper-container .exploremore-item:last-child {
   padding-right: 0;
   border-bottom: none;
-  padding-bottom: 0;
 }
 
 .exploremore-wrapper-container .exploremore-item .exploremore-caption {
@@ -75,7 +68,6 @@
 }
 
 .exploremore-wrapper-container .exploremore-item .exploremore-link-container {
-  padding: 4px;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -104,14 +96,19 @@
 }
 
 @media(width > 1199px) {
+  .exploremore .exploremore-wrapper-container .exploremore-title {
+    width: 411px;
+  }
   .exploremore .exploremore-wrapper-container .exploremore-title h3 {
-    line-height: 48px;
     width: 60%;
+  }
+  .exploremore-wrapper-container .exploremore-links {
+    width: calc(100% - 411px - 24px);
   }
 }
 
 @media(width<=1199px) {
-  .exploremore-container {
+  .exploremore-wrapper {
     padding: 40px 0;
   }
 
@@ -151,14 +148,10 @@
     line-height: var(--typography-font-line-height-leading-4, 40px);
     letter-spacing: var(--typography-font-spacing-tracking-normal, 0);
   }
-
-  .exploremore-wrapper-container .exploremore-item .exploremore-link-container {
-    padding: 12px 0 12px;
-  }
 }
 
 @media(width<768px) {
-  .exploremore-container {
+  .exploremore-wrapper {
     padding: 32px 0;
   }
 
@@ -188,10 +181,6 @@
     padding-top: 16px;
   }
 
-  .exploremore-wrapper-container .exploremore-item:last-child {
-    padding-bottom: 0;
-  }
-
   .exploremore-wrapper-container .exploremore-item .exploremore-caption {
     color: var(--colours-text-text-body, #3B3D3D);
     font-family: var(--typography-font-family-font-body, "Instrument Sans");
@@ -200,10 +189,6 @@
     font-weight: 400;
     line-height: var(--typography-font-line-height-leading-3, 24px);
     letter-spacing: var(--typography-font-spacing-tracking-normal, 0);
-  }
-
-  .exploremore-wrapper-container .exploremore-item .exploremore-link-container {
-    padding: 8px;
   }
 
   .exploremore-wrapper-container .exploremore-item .exploremore-link-container svg {
