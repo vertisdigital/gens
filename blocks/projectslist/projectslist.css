@@ -163,7 +163,7 @@ p {
 @media (width < 1181px) and (width >= 768px)  {
     .tab-panel {
         .list-view .container {
-            padding: 64px;
+            padding: 64px 40px;
             max-width: 1440px;
         }
     }
@@ -226,7 +226,7 @@ p {
 @media (width < 768px) {
     .tab-panel {
         .list-view .container {
-            padding: 24px;
+            padding: 40px 24px;
             max-width: 767px;
         }
     }
