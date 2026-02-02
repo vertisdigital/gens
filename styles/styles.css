@@ -44,7 +44,7 @@ Usage Example:
   --light-color: #F9F9F9;
   --dark-color: #505050;
   --text-color: #3B3D3D;
-  --body-text-color: #666;
+  --body-text-color: #3b3d3d;
   --link-color: #236097;
   --link-hover-color: #236097;
   --midnight-blue: #0D2C48;
@@ -195,7 +195,7 @@ Usage Example:
 body {
   margin: 0;
   background-color: var(--background-color);
-  color: var(--body-text-color);
+  color: var(--text-color);
   font-family: var(--body-font-family);
   font-size: var(--base-font-size);
   line-height: 1.5;
