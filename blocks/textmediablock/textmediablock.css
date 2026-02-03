@@ -60,6 +60,11 @@
     color: var(--body-text-color);
   }
 
+  p[data-gen-prop="description"] {
+    margin-top: 0;
+    margin-bottom: 0;
+  }
+
   /* Tablet and up: Grid layout */
   @media (width<=992px) {
     .textmediablock-wrapper {
