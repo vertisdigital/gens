@@ -1,4 +1,3 @@
-
 /* About-Us CSS */
 .feature-wrapper {
   background-image: url('../../icons/Pattern.png');
@@ -9,7 +8,7 @@
   padding: 0 0 80px 0;
 }
 
-@media (width >= 2560px) {
+@media (width >=2560px) {
   .feature-wrapper {
     max-width: 2560px;
     margin-left: auto;
@@ -24,7 +23,7 @@
   padding: 0;
 }
 
-@media (width >= 768px) and (width < 1024px) {
+@media (width >=768px) and (width < 1024px) {
   .feature-wrapper {
     margin-top: 64px;
     padding: 0 0 64px 0;
@@ -38,7 +37,7 @@
   }
 }
 
-.feature-wrapper .about-us-stats{
+.feature-wrapper .about-us-stats {
   display: flex;
   /* margin: 36px 0 18px; */
   flex-direction: column;
@@ -50,7 +49,7 @@
 }
 
 /* About-us left container start */
-.about-us-stats .about-us-left{
+.about-us-stats .about-us-left {
   padding: 0;
   margin-bottom: 0;
   display: flex;
@@ -58,18 +57,18 @@
   align-items: flex-start;
 }
 
-.about-us-stats .about-us-right{
+.about-us-stats .about-us-right {
   padding: 0;
   display: grid;
   grid-template-columns: 1fr;
   gap: 0;
 }
 
-.about-us-left header{
+.about-us-left header {
   height: auto;
 }
 
-.about-us-left .about-us-left-title{
+.about-us-left .about-us-left-title {
   font-family: var(--body-font-family, 'Inter', sans-serif);
   font-size: 14px;
   font-weight: 400;
@@ -80,7 +79,7 @@
   letter-spacing: 0;
 }
 
-.about-us-left h2.about-us-left-heading{
+.about-us-left h2.about-us-left-heading {
   font-family: var(--heading-font-family, 'Inter', sans-serif);
   font-size: 36px;
   font-weight: 400;
@@ -107,7 +106,7 @@
   justify-content: center;
 }
 
-.about-us-left .about-us-left-sub-heading{
+.about-us-left .about-us-left-sub-heading {
   margin: 0;
   font-family: var(--heading-font-family, 'Inter', sans-serif);
   font-size: 24px;
@@ -122,7 +121,7 @@
   align-items: center;
 }
 
-.about-us-left .links-container a{
+.about-us-left .links-container a {
   display: inline-flex;
   align-items: center;
   justify-content: center;
@@ -136,7 +135,7 @@
   flex-shrink: 0;
 }
 
-.about-us-left .links-container a svg.about-us-link-button{
+.about-us-left .links-container a svg.about-us-link-button {
   width: 48px;
   height: 48px;
   display: block;
@@ -147,49 +146,49 @@
   stroke: #C8AB4B;
 }
 
-.about-us-left .links-container a span{
+.about-us-left .links-container a span {
   display: none;
 }
 
-.about-us-stats .about-us-right-content{
+.about-us-stats .about-us-right-content {
   display: flex;
   flex-direction: column;
   align-items: flex-start;
   margin-bottom: 0;
 }
 
-.about-us-stats .about-us-right-content:last-child{
+.about-us-stats .about-us-right-content:last-child {
   margin-bottom: 0;
 }
 
-.about-us-stats .about-us-right-content.image-container>div:first-child{
+.about-us-stats .about-us-right-content.image-container>div:first-child {
   width: 56px;
   height: 56px;
 }
 
-.about-us-stats .about-us-right-content.image-container>div:first-child picture{
+.about-us-stats .about-us-right-content.image-container>div:first-child picture {
   width: 100%;
   height: 100%;
 
 }
 
-.about-us-stats .about-us-right-content.image-container>div:first-child picture img{
+.about-us-stats .about-us-right-content.image-container>div:first-child picture img {
   width: 100%;
   height: 100%;
 }
 
-.about-us-stats .about-us-right-content.image-container.text-container :last-child{
+.about-us-stats .about-us-right-content.image-container.text-container :last-child {
   font-weight: 700;
 }
 
-.about-us-stats .about-us-right-content.text-container{
+.about-us-stats .about-us-right-content.text-container {
   align-items: flex-start;
   padding-top: 16px;
   margin-bottom: 0;
 }
 
 
-.about-us-stats .about-us-right-content .statistic{
+.about-us-stats .about-us-right-content .statistic {
   color: var(--color-text-tertiary, #8d713e);
   font-size: 64px;
   font-weight: 400;
@@ -197,7 +196,7 @@
 
 }
 
-.about-us-stats .about-us-right-content.text-container .statistic{
+.about-us-stats .about-us-right-content.text-container .statistic {
   gap: 4px;
   display: flex;
   align-items: center;
@@ -206,21 +205,21 @@
 
 }
 
-.about-us-stats .about-us-right-content .statistic *:first-child{
-  color:var(--color-text-tertiary, #8d713e) !important;
-  font-size:  64px;
+.about-us-stats .about-us-right-content .statistic *:first-child {
+  color: var(--color-text-tertiary, #8d713e) !important;
+  font-size: 64px;
   font-weight: 400;
   line-height: 80px;
 }
 
-.about-us-stats .about-us-right-content .statistic *:nth-child(2){
-  color:var(--color-text-tertiary, #8d713e) !important;
+.about-us-stats .about-us-right-content .statistic *:nth-child(2) {
+  color: var(--color-text-tertiary, #8d713e) !important;
   font-size: 24px;
   line-height: 40px;
   font-weight: 400;
 }
 
-.about-us-stats .about-us-right-content p{
+.about-us-stats .about-us-right-content p {
   padding: 0;
   margin: 0;
   color: var(--text-color);
@@ -229,9 +228,10 @@
   line-height: 40px;
 }
 
-.about-us-stats .about-us-right-content.text-container p{
-color: #3B3D3D
+.about-us-stats .about-us-right-content.text-container p {
+  color: #3B3D3D
 }
+
 .about-us-stats .about-us-right-content.text-container:last-child {
   margin-bottom: 0;
 }
@@ -272,13 +272,13 @@ color: #3B3D3D
 }
 
 /* Responsive design */
-@media  (width >= 768px) {
-  .feature-wrapper .about-us-stats{
+@media (width >=768px) {
+  .feature-wrapper .about-us-stats {
     /* margin: 64px 0 0; */
     gap: 40px;
   }
 
-  .about-us-stats .about-us-left{
+  .about-us-stats .about-us-left {
     margin-bottom: 0;
     flex-direction: column;
     gap: 24px;
@@ -292,55 +292,57 @@ color: #3B3D3D
     width: 100%;
   }
 
-  .about-us-stats .about-us-right{
+  .about-us-stats .about-us-right {
     grid-template-columns: repeat(3, 1fr);
     gap: 24px;
   }
 
-  .about-us-left .about-us-left-title{
+  .about-us-left .about-us-left-title {
     font-size: 14px;
     line-height: 24px;
   }
 
-  .about-us-left h2.about-us-left-heading{
+  .about-us-left h2.about-us-left-heading {
     margin-bottom: 0;
     font-size: 32px;
     line-height: 48px;
   }
 
-  .about-us-left .about-us-left-sub-heading{
+  .about-us-left .about-us-left-sub-heading {
     font-size: 24px;
     line-height: 40px;
     margin-bottom: 0;
   }
 
-  .about-us-left .about-us-left-sub-heading p{
+  .about-us-left .about-us-left-sub-heading p {
     margin: 0;
   }
 
-  .about-us-left .links-container a{
+  .about-us-left .links-container a {
     font-size: var(--font-size-xs);
     line-height: 24px;
   }
 
-  .about-us-left a.button{
+  .about-us-left a.button {
     padding: 12px 0;
   }
 
-  .about-us-stats .about-us-right-content.text-container{
+  .about-us-stats .about-us-right-content.text-container {
     margin-bottom: 0;
     padding-top: 16px;
     border-top: 1px solid #E8EBEB;
   }
 
-  .about-us-stats .about-us-right-content{
+  .about-us-stats .about-us-right-content {
     margin-bottom: 0;
   }
-  .about-us-stats .about-us-right-content .statistic{
+
+  .about-us-stats .about-us-right-content .statistic {
     font-size: 56px;
     line-height: 72px;
   }
-  .about-us-stats .about-us-right-content>div:nth-child(2) p{
+
+  .about-us-stats .about-us-right-content>div:nth-child(2) p {
     font-size: 16px;
     font-weight: 400;
     line-height: 24px;
@@ -353,45 +355,45 @@ color: #3B3D3D
     font-family: var(--body-font-family, 'Inter', sans-serif);
   }
 
-  .about-us-stats .about-us-right-content.image-container > div:nth-child(2) p{
+  .about-us-stats .about-us-right-content.image-container>div:nth-child(2) p {
     font-weight: 700;
   }
 
-  .about-us-stats .about-us-right-content.image-container > div:first-child{
+  .about-us-stats .about-us-right-content.image-container>div:first-child {
     width: 72px;
     height: 72px;
   }
 
-  .about-us-stats .about-us-right-content .statistic *:first-child{
-    font-size:  56px;
+  .about-us-stats .about-us-right-content .statistic *:first-child {
+    font-size: 56px;
     line-height: 72px;
   }
 
-  .about-us-stats .about-us-right-content .statistic *:nth-child(2){
+  .about-us-stats .about-us-right-content .statistic *:nth-child(2) {
     font-size: 24px;
     line-height: 40px;
   }
 
 }
 
-@media  (width >= 1024px) {
+@media (width >=1024px) {
   .feature-wrapper .about-us-stats {
     /* margin: 80px 0; */
     gap: 64px;
   }
 
-  .about-us-stats .about-us-left{
+  .about-us-stats .about-us-left {
     margin-bottom: 0;
     flex-direction: row;
     gap: 32px;
   }
 
-  .about-us-stats .about-us-right{
+  .about-us-stats .about-us-right {
     grid-template-columns: repeat(3, 1fr);
     gap: 24px;
   }
 
-  .about-us-left .about-us-left-title{
+  .about-us-left .about-us-left-title {
     font-size: 14px;
     font-weight: 400;
     line-height: 24px;
@@ -403,76 +405,80 @@ color: #3B3D3D
     margin-bottom: 0;
   }
 
-  .about-us-left .about-us-left-sub-heading{
+  .about-us-left .about-us-left-sub-heading {
     font-size: 24px;
     line-height: 40px;
     margin-bottom: 0;
   }
 
-  .about-us-left .links-container a{
+  .about-us-left .links-container a {
     font-size: var(--font-size-xs);
     line-height: 24px;
   }
 
-  .about-us-left a.button{
+  .about-us-left a.button {
     padding: 0;
   }
 
-  .about-us-stats .about-us-right-content{
+  .about-us-stats .about-us-right-content {
     column-gap: 20px;
   }
 
-  .about-us-stats .about-us-right-content.image-container>div:first-child{
+  .about-us-stats .about-us-right-content.image-container>div:first-child {
     width: 100px;
     height: 100px;
   }
 
 
-  .about-us-stats .about-us-right-content .statistic *:first-child{
+  .about-us-stats .about-us-right-content .statistic *:first-child {
     font-size: 64px;
     line-height: 80px;
   }
 
-  .about-us-stats .about-us-right-content .statistic *:nth-child(2){
+  .about-us-stats .about-us-right-content .statistic *:nth-child(2) {
     font-size: 24px;
     line-height: 40px;
     font-weight: 400;
   }
 
-  .about-us-stats .about-us-right-content>div:nth-child(2) p{
+  .about-us-stats .about-us-right-content>div:nth-child(2) p {
     font-size: 24px;
     line-height: 40px;
     font-weight: 400;
   }
 
-  .about-us-stats .about-us-right-content.image-container>div:nth-child(2) p{
+  .about-us-stats .about-us-right-content.image-container>div:nth-child(2) p {
     font-weight: 700;
   }
 
-  .about-us-stats .about-us-right-content.text-container{
+  .about-us-stats .about-us-right-content.text-container {
     padding-top: 20px;
     margin-bottom: 0;
     border-top: 1px solid #E8EBEB;
     padding-right: 24px;
   }
 }
-@media (width <= 1023px) {
-  .statistics-container .feature-wrapper .about-us-left, .statistics-container .feature-wrapper .about-us-right {
+
+@media (width <=1023px) {
+
+  .statistics-container .feature-wrapper .about-us-left,
+  .statistics-container .feature-wrapper .about-us-right {
     width: 100%;
     padding: 0;
   }
 }
-@media (width <= 1280px) {
+
+@media (width <=1280px) {
   .statistics-container.feature-container .feature-wrapper::before {
-      left: 22px;
-      right: 22px;
-      width: auto;
-      max-width: inherit;
-      transform: none;
+    left: 22px;
+    right: 22px;
+    width: auto;
+    max-width: inherit;
+    transform: none;
   }
 }
 
-@media (width <= 992px) {
+@media (width <=992px) {
   .statistics-container.feature-container .feature-wrapper::before {
     top: -40px;
     height: calc(100% + 40px);
@@ -492,7 +498,7 @@ color: #3B3D3D
     height: calc(100% + 28px);
   }
 
-  .about-us-left h2.about-us-left-heading{
+  .about-us-left h2.about-us-left-heading {
     font-size: 24px;
     line-height: 40px;
   }
@@ -557,19 +563,19 @@ color: #3B3D3D
   }
 }
 
-.with-images-four-col{
+.with-images-four-col {
   background: #FAF2E1;
   padding: 80px 0;
 }
 
-@media (width >= 768px) and (width < 1024px) {
-  .with-images-four-col{
+@media (width >=768px) and (width < 1024px) {
+  .with-images-four-col {
     padding: 64px 0;
   }
 }
 
 @media (width < 768px) {
-  .with-images-four-col{
+  .with-images-four-col {
     padding: 40px 0;
   }
 }
@@ -582,6 +588,7 @@ color: #3B3D3D
 .with-images-four-col .about-us-left h2.about-us-left-heading {
   color: #8D713E;
 }
+
 .with-images-four-col .feature-wrapper .about-us-stats {
   margin: 0;
   gap: 0;
@@ -613,11 +620,11 @@ color: #3B3D3D
 }
 
 
-.feature-wrapper .with-vertical-list .about-us-stats .about-us-right-content > div {
+.feature-wrapper .with-vertical-list .about-us-stats .about-us-right-content>div {
   width: 100%;
 }
 
-.feature-wrapper .with-vertical-list .about-us-stats .about-us-right-content > div p {
+.feature-wrapper .with-vertical-list .about-us-stats .about-us-right-content>div p {
   font-size: 16px;
   font-weight: 400;
   line-height: 24px;
@@ -626,7 +633,7 @@ color: #3B3D3D
   margin: 0;
 }
 
-.with-images-four-col .about-us-stats .about-us-right-content.image-container > div:first-child {
+.with-images-four-col .about-us-stats .about-us-right-content.image-container>div:first-child {
   width: 64px;
   height: 64px;
   margin-bottom: 16px;
@@ -636,7 +643,7 @@ color: #3B3D3D
   justify-content: flex-start;
 }
 
-.with-images-four-col .about-us-stats .about-us-right-content.image-container > div:first-child picture {
+.with-images-four-col .about-us-stats .about-us-right-content.image-container>div:first-child picture {
   width: 100%;
   height: 100%;
   display: flex;
@@ -644,14 +651,14 @@ color: #3B3D3D
   justify-content: center;
 }
 
-.with-images-four-col .about-us-stats .about-us-right-content.image-container > div:first-child picture img {
+.with-images-four-col .about-us-stats .about-us-right-content.image-container>div:first-child picture img {
   width: 100%;
   height: 100%;
   object-fit: contain;
   border-radius: 0;
 }
 
-.with-images-four-col .about-us-stats .about-us-right-content.image-container > div:nth-child(2) p {
+.with-images-four-col .about-us-stats .about-us-right-content.image-container>div:nth-child(2) p {
   font-size: 32px;
   font-weight: 400;
   line-height: 48px;
@@ -662,23 +669,23 @@ color: #3B3D3D
 }
 
 /* Tablet Design */
-@media (width >= 768px) and (width < 1024px) {
+@media (width >=768px) and (width < 1024px) {
   .with-images-four-col .about-us-stats .about-us-left {
     padding: 0 0;
   }
 
-  .with-images-four-col .about-us-stats .about-us-right{
+  .with-images-four-col .about-us-stats .about-us-right {
     padding-bottom: 40px;
     grid-template-columns: repeat(2, 1fr);
     gap: 24px;
   }
 
-  .with-images-four-col .about-us-stats .about-us-right-content.image-container > div:first-child {
+  .with-images-four-col .about-us-stats .about-us-right-content.image-container>div:first-child {
     width: 64px;
     height: 64px;
   }
 
-  .with-images-four-col .about-us-stats .about-us-right-content.image-container > div:nth-child(2) p {
+  .with-images-four-col .about-us-stats .about-us-right-content.image-container>div:nth-child(2) p {
     font-size: 32px;
     line-height: 48px;
   }
@@ -690,7 +697,7 @@ color: #3B3D3D
     padding: 0 0;
   }
 
-  .with-images-four-col .about-us-stats .about-us-right{
+  .with-images-four-col .about-us-stats .about-us-right {
     padding-bottom: 24px;
     grid-template-columns: 1fr;
     gap: 24px;
@@ -703,18 +710,18 @@ color: #3B3D3D
     gap: 16px;
   }
 
-  .with-images-four-col .about-us-stats .about-us-right-content.image-container > div:first-child {
+  .with-images-four-col .about-us-stats .about-us-right-content.image-container>div:first-child {
     width: 64px;
     height: 64px;
     margin-bottom: 0;
     flex-shrink: 0;
   }
 
-  .with-images-four-col .about-us-stats .about-us-right-content.image-container > div:nth-child(2) {
+  .with-images-four-col .about-us-stats .about-us-right-content.image-container>div:nth-child(2) {
     flex: 1;
   }
 
-  .with-images-four-col .about-us-stats .about-us-right-content.image-container > div:nth-child(2) p {
+  .with-images-four-col .about-us-stats .about-us-right-content.image-container>div:nth-child(2) p {
     font-size: 16px;
     line-height: 24px;
     margin: 0;
@@ -724,7 +731,7 @@ color: #3B3D3D
 }
 
 /* Desktop Design */
-@media (width >= 1024px) {
+@media (width >=1024px) {
   .with-images-four-col .about-us-stats .about-us-left {
     padding: 0 0;
   }
@@ -734,12 +741,12 @@ color: #3B3D3D
     gap: 24px;
   }
 
-  .with-images-four-col .about-us-stats .about-us-right-content.image-container > div:first-child {
+  .with-images-four-col .about-us-stats .about-us-right-content.image-container>div:first-child {
     width: 64px;
     height: 64px;
   }
 
-  .with-images-four-col .about-us-stats .about-us-right-content.image-container > div:nth-child(2) p {
+  .with-images-four-col .about-us-stats .about-us-right-content.image-container>div:nth-child(2) p {
     font-size: 32px;
     line-height: 48px;
   }
@@ -752,11 +759,11 @@ color: #3B3D3D
   align-items: flex-start;
 }
 
-.feature-wrapper .with-vertical-list .about-us-left-column{
+.feature-wrapper .with-vertical-list .about-us-left-column {
   position: absolute;
 }
 
-.feature-wrapper .with-vertical-list .about-us-right-column{
+.feature-wrapper .with-vertical-list .about-us-right-column {
   padding-top: 88px;
 }
 
@@ -805,13 +812,13 @@ color: #3B3D3D
 }
 
 /* Tablet Design */
-@media (width >= 768px) and (width < 1024px) {
+@media (width >=768px) and (width < 1024px) {
   .feature-wrapper .with-vertical-list .about-us-stats {
     gap: 64px;
     flex-direction: column;
   }
 
-  .feature-wrapper .with-vertical-list .about-us-right-column{
+  .feature-wrapper .with-vertical-list .about-us-right-column {
     padding-top: 72px;
   }
 
@@ -828,7 +835,7 @@ color: #3B3D3D
     padding-bottom: 0;
   }
 
-  .feature-wrapper .with-vertical-list .about-us-stats .about-us-right-content > div p {
+  .feature-wrapper .with-vertical-list .about-us-stats .about-us-right-content>div p {
     font-size: 16px;
     line-height: 24px;
     color: var(--color-text-tertiary, #8d713e);
@@ -842,7 +849,7 @@ color: #3B3D3D
     gap: 40px;
   }
 
-  .feature-wrapper .with-vertical-list .about-us-right-column{
+  .feature-wrapper .with-vertical-list .about-us-right-column {
     padding-top: 56px;
   }
 
@@ -859,7 +866,7 @@ color: #3B3D3D
     padding-bottom: 0;
   }
 
-  .feature-wrapper .with-vertical-list .about-us-stats .about-us-right-content > div p {
+  .feature-wrapper .with-vertical-list .about-us-stats .about-us-right-content>div p {
     font-size: 16px;
     line-height: 24px;
     color: var(--color-text-tertiary, #8d713e);
@@ -867,7 +874,7 @@ color: #3B3D3D
 }
 
 /* Desktop Design */
-@media (width >= 1024px) {
+@media (width >=1024px) {
   .feature-wrapper .with-vertical-list .about-us-stats {
     gap: 80px;
   }
@@ -884,8 +891,8 @@ color: #3B3D3D
     padding-bottom: 0;
   }
 
-  .feature-wrapper .with-vertical-list .about-us-stats .about-us-right-content > div p {
-    font-size: 16px;
+  .feature-wrapper .with-vertical-list .about-us-stats .about-us-right-content>div p {
+    font-size: 24px;
     line-height: 24px;
     color: var(--color-text-tertiary, #8d713e);
   }
