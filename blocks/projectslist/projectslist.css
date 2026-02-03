@@ -69,6 +69,8 @@ p {
 
 .projectslist .projectslistitem .project-image {
     width: 81%;
+    display: flex;
+    justify-content: flex-end;
 }
 
 .projectslist .projectslistitem .project-image img {
