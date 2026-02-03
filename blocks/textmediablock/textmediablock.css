@@ -1,10 +1,17 @@
-.textmediablock-container {
-  /* .textmediablock-wrapper{
-    margin: 45px 0;
-  } */
+.textmediablock-wrapper{
+ 
+  .textmediablock-container {
+    display: flex;
+    flex-direction: column;
+    gap: 64px;
+  }
 
-  .textmediablock-container>div:first-child {
-    margin-bottom: 36px
+  .textmediablock-container>div:nth-child(2) {
+    margin-bottom: 80px;
+  }
+
+  .textmediablock-container>div>div>p {
+    margin:0;
   }
 
   [class*="text-media-block-heading-variation"] {
