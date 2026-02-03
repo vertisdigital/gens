@@ -322,7 +322,7 @@
   {
     "id": "columns",
     "fields": [
-            {
+      {
         "component": "number",
         "name": "columns",
         "label": "Columns",
@@ -683,7 +683,7 @@
             "name": "With Images Four Col",
             "value": "with-images-four-col"
           },
-                    {
+          {
             "name": "With Vertical List",
             "value": "with-vertical-list"
           }
@@ -2324,7 +2324,7 @@
         "name": "subtitle",
         "label": "Policy Subtitle",
         "validation": {
-          "maxLength": 100,          
+          "maxLength": 100,
           "customErrorMsg": "Policy subtitle cannot exceed 100 characters"
         }
       }
@@ -2509,6 +2509,27 @@
           {
             "name": "List View",
             "value": "list-view"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "tiles",
+    "fields": [
+      {
+        "component": "select",
+        "name": "classes",
+        "label": "Style Options",
+        "valueType": "string",
+        "options": [
+          {
+            "name": "Default",
+            "value": ""
+          },
+          {
+            "name": "Open as Modal",
+            "value": "open-as-modal"
           }
         ]
       }
