@@ -56,6 +56,7 @@ export default function decorate(block) {
   function toggleDirector(director, containerDiv) {
     const card = containerDiv.querySelector('.director-card');
     const segment = card.parentElement.parentElement.parentElement;
+    const wrapper = segment.querySelector('.wrapper');
     const content = segment.querySelector('.board-director-info');
     const info = containerDiv.querySelector('.director-content');
     const activeCard = document.querySelector('.director-card.active');
@@ -68,6 +69,70 @@ export default function decorate(block) {
       activeCard?.classList?.remove('active');
       activeContent?.classList?.remove('active');
       card.classList.add('active');
+      
+      // Find the index of the clicked card within the wrapper
+      const allCards = Array.from(wrapper.querySelectorAll('.director-card'));
+      const allCardContainers = Array.from(wrapper.children).filter(child => 
+        child.querySelector('.director-card')
+      );
+      const cardIndex = allCards.indexOf(card);
+      const totalCards = allCards.length;
+      const windowWidth = window.innerWidth;
+      
+      // Remove board-director-info from current position
+      if (content.parentElement) {
+        content.parentElement.removeChild(content);
+      }
+      
+      // Position board-director-info based on breakpoint and card index
+      if (windowWidth < 768) {
+        // Mobile: Insert immediately after the clicked card's container
+        const cardContainer = containerDiv;
+        if (cardContainer.nextSibling) {
+          wrapper.insertBefore(content, cardContainer.nextSibling);
+        } else {
+          wrapper.appendChild(content);
+        }
+      } else if (windowWidth >= 768 && windowWidth < 1181) {
+        // Tablet: For 1st or 2nd active card, insert before 3rd card; for 3rd or 4th, append to bottom
+        if (cardIndex >= 0 && cardIndex <= 1) {
+          // For 1st or 2nd card: insert before the 3rd card
+          const thirdCardContainer = allCardContainers[2];
+          if (thirdCardContainer) {
+            wrapper.insertBefore(content, thirdCardContainer);
+          } else {
+            wrapper.appendChild(content);
+          }
+        } else {
+          // For 3rd or 4th active card: append to bottom of wrapper
+          wrapper.appendChild(content);
+        }
+      } else {
+        // Desktop (width >= 1181px): For 1st/2nd/3rd, insert before 4th card; for last, append to bottom
+        if (totalCards > 3) {
+          if (cardIndex >= 0 && cardIndex <= 2) {
+            // For 1st, 2nd, or 3rd card: insert before the 4th card
+            const fourthCardContainer = allCardContainers[3];
+            if (fourthCardContainer) {
+              wrapper.insertBefore(content, fourthCardContainer);
+            } else {
+              wrapper.appendChild(content);
+            }
+          } else {
+            // For the last card (4th or later): append to bottom of wrapper
+            wrapper.appendChild(content);
+          }
+        } else {
+          // If there are 3 or fewer cards: insert after the card's container
+          const cardContainer = containerDiv;
+          if (cardContainer.nextSibling) {
+            wrapper.insertBefore(content, cardContainer.nextSibling);
+          } else {
+            wrapper.appendChild(content);
+          }
+        }
+      }
+      
       const contentWrapper = content.querySelector('.board-director-content');
       if (contentWrapper) {
         // Get title from description-wrapper p
@@ -221,8 +286,9 @@ export default function decorate(block) {
       group?.forEach((child) => wrapper.appendChild(child));
     });
 
-    // Append wrapper and directorInfo to segmentWrapper
+    // Append wrapper to segmentWrapper (directorInfo will be positioned dynamically)
     segmentWrapper.appendChild(wrapper);
+    // Store directorInfo in segmentWrapper but don't append it yet - it will be positioned when a card is clicked
     segmentWrapper.appendChild(directorInfo);
 
     // Append the single segmentWrapper to row

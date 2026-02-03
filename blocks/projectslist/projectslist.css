@@ -24,8 +24,8 @@ p {
 }
 
 .projectslistitem {
-    padding-top: 36px;
-    padding-bottom: 30px;
+    padding-top: 80px;
+    padding-bottom: 80px;
     display: flex;
     align-items: center;
     background-color: var(--primary-default-fg);
@@ -53,7 +53,6 @@ p {
 .right-col {
     display: flex;
     justify-content: flex-end;
-
 }
 
 .projectslist .grid-view .projectslistitem .left-col {
@@ -162,6 +161,11 @@ p {
     line-height: 44px;
 }
 
+.projectslist .grid-view .projectslistitem .project-long-description,
+.projectslist .grid-view .projectslistitem .project-short-description  {
+    margin-top: 16px;
+}
+
 @media (width < 1181px) and (width >= 768px)  {
     .tab-panel {
         .list-view .container {
@@ -173,6 +177,7 @@ p {
     .projectslist .grid-view {
         display: flex;
         flex-direction: column;
+        gap: 40px;
     }
 
     .projectslist .projectslist-container {
@@ -185,6 +190,10 @@ p {
         padding: 64px 40px;
     }
 
+    .projectslist .grid-view .projectslistitem {
+        padding: 0;
+    }
+
     .projectslistitem .left-col, .projectslistitem .right-col {
         padding: 0;
         width: 100%;
@@ -195,10 +204,19 @@ p {
         padding-top: 24px;
     }
 
+    .projectslist .grid-view .projectslistitem .project-image {
+        padding-top: 0;
+    }
+
+
     .projectslist .projectslistitem .project-image img {
         aspect-ratio: 688 / 387;
         min-width: 0;
         width: 100%;
+    }
+
+    .projectslist .grid-view .projectslistitem .project-image img {
+        margin-bottom: 16px;
     }
 
     .projectslist .projectslistitem .project-title {   
@@ -243,6 +261,10 @@ p {
         padding: 40px 24px;
     }
 
+    .projectslist .grid-view .projectslistitem {
+        padding: 0;
+    }
+
     .projectslistitem .left-col, .projectslistitem .right-col {
         padding: 0;
         width: 100%;
@@ -253,8 +275,16 @@ p {
         width: 100%;
     }
 
+    .projectslist .grid-view .projectslistitem .project-image {
+        padding-top: 0;
+    }
+
     .projectslist .projectslistitem .project-image img {
         min-width: 327px;
+    }
+
+    .projectslist .grid-view .projectslistitem .project-image img {
+        margin-bottom: 16px;
     }
 
     .projectslist .projectslistitem .project-title {   
