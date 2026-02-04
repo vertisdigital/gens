@@ -378,7 +378,7 @@
   color: #3B3D3D !important;
   margin-top: 0;
   margin-bottom: 0;
-  padding-right: 20%;
+  padding-right: 72px;
 }
 
 @media (width >= 768px) and (width < 1181px) {
@@ -587,14 +587,6 @@
   background-repeat: repeat;
   background-position: center bottom;
   background-size: auto;
-
-  /* @media (width >= 768px) and (width < 993px) {
-    padding: 64px 0;
-  } */
-
- /*  @media (width < 768px) {
-    padding: 40px 0;
-  } */
 }
 
 .listing-wrapper:not(:has(.without-images)) {
@@ -696,6 +688,10 @@
     color: #3B3D3D !important;
   }
 
+  .listing-wrapper .listing [data-aue-model="listitem"] [data-aue-prop="description"], .listing-wrapper .listing [data-gen-model="listitem"] [data-gen-prop="description"] {
+    padding-right: 40px;
+  }
+
   /* Left column - first title (main heading) */
   .without-images-left-column > div:first-child [data-gen-prop="title"] {
     font-size: 24px;
@@ -727,81 +723,7 @@
   }
 }
 
-/* Award Listing Component */
-/* Award Listing Item */
-.awardlisting .awardlisting-item {
-  display: flex;
-  flex-direction: column;
-  gap: 16px;
-  padding: 32px 0;
-}
 
-/* Award Item Title */
-.awardlisting .awardlisting-item-title {
-  font-family: var(--typography-font-family-font-title, "Inter", system-ui, sans-serif);
-  font-size: 24px;
-  font-weight: 400;
-  line-height: 40px;
-  color: var(--color-text-tertiary, #8d713e);
-  margin: 0;
-}
-
-/* Award Tile Wrapper */
-.awardlisting .award-tile-wrapper {
-  display: flex;
-  flex-direction: column;
-  gap: 16px;
-}
-
-/* Award Tile */
-.awardlisting .award-tile {
-  display: flex;
-  gap: 16px;
-  align-items: flex-start;
-}
-
-/* Year Column */
-.awardlisting .awardlisting-year {
-  font-family: var(--typography-font-family-font-body, "Instrument Sans Variable", sans-serif);
-  font-size: 14px;
-  font-weight: 400;
-  line-height: 24px;
-  color: var(--color-text-body, #3b3d3d);
-  margin: 0;
-  width: 200px;
-  flex-shrink: 0;
-}
-
-/* Description Column */
-.awardlisting .awardlisting-description {
-  font-family: var(--typography-font-family-font-body, "Instrument Sans Variable", sans-serif);
-  font-size: 14px;
-  font-weight: 400;
-  line-height: 24px;
-  color: var(--color-text-body, #3b3d3d);
-  margin: 0;
-  flex: 1;
-}
-
-/* Responsive adjustments */
-@media (width < 768px) {
-    .awardlisting .awardlisting-item{
-        gap: 24px;
-        padding: 40px 0;
-    }
-
-    .awardlisting .award-tile-wrapper {
-        gap: 24px;
-    }
-
-    .awardlisting .award-tile {
-        gap: 24px;
-    }
-  
-    .awardlisting .awardlisting-year {
-        width: 152px;
-    }
-}
 
 
 
