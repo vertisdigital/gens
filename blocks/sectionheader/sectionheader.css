@@ -6,7 +6,7 @@
     width: 100%;
     max-width: 1920px;
     padding-top: 80px;
-    padding-bottom: 80px;
+    padding-bottom: 64px;
     margin: auto;
 }
 
@@ -49,12 +49,12 @@
     color: var(--colours-text-text-body, #3B3D3D);
     font-weight: 400;
     letter-spacing: var(--typography-font-spacing-tracking-normal, 0);
+    font-family: var(--typography-font-family-font-body, "Instrument Sans");
 }
 
 /* Mobile */
 @media (max-width: 767px) {
     .section-header-description {
-        font-family: var(--typography-font-family-font-body, "Instrument Sans");
         font-size: var(--typography-font-size-text-base, 16px);
         line-height: var(--typography-font-line-height-leading-3, 24px);
     }
@@ -63,7 +63,6 @@
 /* Tablet & Desktop */
 @media (min-width: 768px) {
     .section-header-description {
-        font-family: var(--typography-font-family-font-title, Inter);
         font-size: var(--typography-font-size-text-sm, 24px);
         line-height: var(--typography-font-line-height-leading-4, 40px);
     }
@@ -194,10 +193,10 @@
 }
 
 /* Tablet */
-@media (width >= 768px) and (width <= 1024px) {
+@media (width >= 768px) and (width < 1181px) {
     .sectionheader {
         padding-top:64px;
-        padding-bottom: 64px;
+        padding-bottom: 40px;
     }
     .section-header-title {
         font-size: var(--typography-font-size-text-lg, 32px);
