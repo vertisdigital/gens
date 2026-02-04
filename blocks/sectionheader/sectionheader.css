@@ -193,10 +193,10 @@
 }
 
 /* Tablet */
-@media (width >= 768px) and (width <= 1024px) {
+@media (width >= 768px) and (width < 1181px) {
     .sectionheader {
         padding-top:64px;
-        padding-bottom: 64px;
+        padding-bottom: 40px;
     }
     .section-header-title {
         font-size: var(--typography-font-size-text-lg, 32px);
