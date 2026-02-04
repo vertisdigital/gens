@@ -110,7 +110,7 @@ function createNavItem(itemData) {
 
   titleContent.appendChild(arrow);
   titleDiv.appendChild(titleContent);
-  
+
   navItem.appendChild(titleDiv);
   if (detailedcaption.getAttribute('href'))
     navItem.appendChild(detailedcaption);
@@ -289,7 +289,7 @@ function loadSearchSuggest(keyword) {
 
   debounceTimer = setTimeout(async () => {
     const suggestions = document.querySelector('.search-suggestions');
-    
+
     if (keyword.length < 3) {
       suggestions.classList.remove('active');
       return;
@@ -324,7 +324,7 @@ function loadSearchSuggest(keyword) {
         });
       }
       else {
-         suggestions.classList.remove('active');
+        suggestions.classList.remove('active');
       }
 
     } catch (err) {
@@ -419,7 +419,7 @@ function initializeHeader(header) {
       }
     }, 0);
   });
-  
+
 
   navItems.forEach((item) => {
     const linksDiv = item.querySelector('.links');
@@ -470,6 +470,10 @@ function initializeHeader(header) {
 
       cta.appendChild(iconWrapper);
 
+      const titleWrapper = document.createElement('div');
+      titleWrapper.className = 'secondary-header-title-wrapper';
+      titleWrapper.append(heading, cta);
+
       // Wrapper for secondaryHeader and linksContainer
       const secondaryNavWrapper = document.createElement('div');
       secondaryNavWrapper.className = 'container';
@@ -480,7 +484,13 @@ function initializeHeader(header) {
 
       const headerCol = document.createElement('div');
       headerCol.className = 'secondary-header-wrapper col-12 col-md-6 col-sm-4';
-      headerCol.append(heading, description, cta, closeBtn);
+      headerCol.append(titleWrapper);
+
+      if (description.textContent.trim() !== heading.textContent.trim()) {
+        headerCol.append(description);
+      }
+
+      headerCol.append(closeBtn);
       secondaryHeader.appendChild(headerCol);
 
       const linksContainer = document.createElement('div');
@@ -561,7 +571,7 @@ function initializeHeader(header) {
 
         if (!hoverZone.contains(e.target)) {
           if (!currentActive) return;
-          
+
           currentActive.classList.remove(activeClass);
           document.querySelectorAll('.secondary-nav').forEach(navigation => navigation.classList.remove(activeClass));
           overlay.classList.remove(activeClass);

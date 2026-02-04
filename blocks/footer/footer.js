@@ -174,15 +174,6 @@ export default async function decorate(block) {
     const navColumns = navigationLinks.map(() => {
       const col = document.createElement('div');
       col.className = 'collapsible-links';
-      if (isMobile()) {
-        col.setAttribute('tabindex', '0');
-        col.addEventListener('click', (e) => handleAccordionToggle(e));
-        col.addEventListener('keydown', (e) => {
-          if (e.key === 'Enter' || e.key === ' ') {
-            handleAccordionToggle(e, true);
-          }
-        });
-      }
       return col;
     });
 
@@ -196,7 +187,7 @@ export default async function decorate(block) {
         const nav = document.createElement('nav');
 
         // Get section title - first div contains the title
-        const titleContainer = isMobile() ? linkSection.children[0] : linkSection.children[1];
+        const titleContainer = linkSection.children[1];
         const titleElement = titleContainer?.querySelector('p');
         const titleTarget = linkSection.children[2]?.textContent?.trim() || '_self';
         if (titleElement) {
@@ -204,21 +195,17 @@ export default async function decorate(block) {
           const headingContainer = document.createElement('div');
           headingContainer.className = 'links-heading';
           let headingElement = null;
-          if (isMobile()) {
-            headingElement = document.createElement('h2');
-            headingElement.textContent = titleElement?.textContent || '';
-            headingElement.className = 'footer-nav-title';
-          } else {
-            headingElement = titleElement.querySelector('a');
-            if (!headingElement) {
-              // If no anchor found, create one
-              headingElement = document.createElement('a');
-              headingElement.href = linkSection.children[0]?.querySelector('a')?.href || '#';
-            }
-            headingElement.textContent = linkSection.children[0]?.textContent || titleElement?.textContent || '';
-            headingElement.target = titleTarget;
-            headingElement.className = 'footer-nav-title';
+
+          headingElement = titleElement.querySelector('a');
+          if (!headingElement) {
+            // If no anchor found, create one
+            headingElement = document.createElement('a');
+            headingElement.href = linkSection.children[0]?.querySelector('a')?.href || '#';
           }
+          headingElement.textContent = linkSection.children[0]?.textContent || titleElement?.textContent || '';
+          headingElement.target = titleTarget;
+          headingElement.className = 'footer-nav-title';
+
           if (headingElement) {
             headingContainer.appendChild(headingElement);
 
@@ -236,7 +223,6 @@ export default async function decorate(block) {
             nav.appendChild(headingContainer);
             nav.setAttribute('aria-label', titleElement.textContent || headingElement.textContent);
           }
-
         }
 
         // Get all link items - every div with a button-container
@@ -391,61 +377,50 @@ export default async function decorate(block) {
       const isDesktop = window.innerWidth > 1024;
       const existingRightSection = mainContainer.querySelector('.right-section');
 
-      if (isDesktop || !isDesktop) {
-        if (!existingRightSection) {
-          // If we have cloned sections, reuse them
-          if (clonedRightSection && clonedLeftSection) {
-            const topContainer = document.createElement('div');
-            topContainer.className = 'top-container';
-            topContainer.appendChild(clonedRightSection.cloneNode(true));
-            topContainer.appendChild(clonedLeftSection.cloneNode(true));
-            mainContainer.innerHTML = '';
-            mainContainer.appendChild(topContainer);
-          } else {
-            // Create right and left sections for desktop
-            const topContainer = document.createElement('div');
-            topContainer.className = 'top-container';
+      if (!existingRightSection) {
+        // If we have cloned sections, reuse them
+        if (clonedRightSection && clonedLeftSection) {
+          const topContainer = document.createElement('div');
+          topContainer.className = 'top-container';
+          topContainer.appendChild(clonedRightSection.cloneNode(true));
+          topContainer.appendChild(clonedLeftSection.cloneNode(true));
+          mainContainer.innerHTML = '';
+          mainContainer.appendChild(topContainer);
+        } else {
+          // Create right and left sections for desktop
+          const topContainer = document.createElement('div');
+          topContainer.className = 'top-container';
 
-            const rightSection = document.createElement('div');
-            rightSection.className = 'right-section';
-            const rightRow = document.createElement('div');
-            rightRow.className = 'row';
+          const rightSection = document.createElement('div');
+          rightSection.className = 'right-section';
+          const rightRow = document.createElement('div');
+          rightRow.className = 'row';
 
-            const leftSection = document.createElement('div');
-            leftSection.className = 'left-section';
-            const leftRow = document.createElement('div');
-            leftRow.className = 'row';
+          const leftSection = document.createElement('div');
+          leftSection.className = 'left-section';
+          const leftRow = document.createElement('div');
+          leftRow.className = 'row';
 
-            // Move logo column to right section's row
-            rightRow.appendChild(logoColumn);
-            rightSection.appendChild(rightRow);
+          // Move logo column to right section's row
+          rightRow.appendChild(logoColumn);
+          rightSection.appendChild(rightRow);
 
-            // Move nav columns to left section's row
-            navColumns.forEach((col) => {
-              leftRow.appendChild(col);
-            });
-            leftSection.appendChild(leftRow);
+          // Move nav columns to left section's row
+          navColumns.forEach((col) => {
+            leftRow.appendChild(col);
+          });
+          leftSection.appendChild(leftRow);
 
-            // Store cloned versions for future use
-            clonedRightSection = rightSection.cloneNode(true);
-            clonedLeftSection = leftSection.cloneNode(true);
+          // Store cloned versions for future use
+          clonedRightSection = rightSection.cloneNode(true);
+          clonedLeftSection = leftSection.cloneNode(true);
 
-            // Add sections to main container
-            topContainer.appendChild(rightSection);
-            topContainer.appendChild(leftSection);
-            mainContainer.innerHTML = '';
-            mainContainer.appendChild(topContainer);
-          }
+          // Add sections to main container
+          topContainer.appendChild(rightSection);
+          topContainer.appendChild(leftSection);
+          mainContainer.innerHTML = '';
+          mainContainer.appendChild(topContainer);
         }
-      } else {
-        // Mobile layout
-        mainContainer.innerHTML = '';
-        columnsContainer.appendChild(logoColumn);
-        navColumns.forEach((col) => {
-          columnsContainer.appendChild(col);
-        });
-        mainContainer.appendChild(columnsContainer);
-        mainContainer.insertBefore(logoWrapper, mainContainer.firstChild)
       }
 
       // Re-append bottom section after layout changes (only if it has content)

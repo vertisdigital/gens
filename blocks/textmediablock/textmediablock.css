@@ -68,6 +68,11 @@
     font-family: var(--typography-font-family-font-body);
   }
 
+  p[data-gen-prop="description"] {
+    margin-top: 0;
+    margin-bottom: 0;
+  }
+
   /* Tablet and up: Grid layout */
   @media (width >=768px) and (width <1181px) {
     

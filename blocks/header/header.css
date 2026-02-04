@@ -490,6 +490,27 @@ header .header {
   pointer-events: none;
 }
 
+.header-inner-wrapper .secondary-header-title-wrapper {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.header-inner-wrapper .secondary-header-cta {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+  border: none;
+  background: transparent;
+  width: auto;
+  height: auto;
+}
+
+.header-inner-wrapper .secondary-header-description {
+  margin-top: 4px;
+}
+
 /* Close button (desktop) */
 .header-inner-wrapper .close-btn {
   display: none;
@@ -894,7 +915,6 @@ header .header {
   align-items: center;
   justify-content: center;
   font-size: 14px;
-  margin-top: 8px;
   padding: 8px;
 }
 
@@ -1323,6 +1343,7 @@ header .header {
   .secondary-nav>.container {
     display: flex;
     gap: 24px;
+    align-items: flex-start;
   }
 
   .header-inner-wrapper .secondary-nav {
