@@ -90,7 +90,7 @@
 
   [data-aue-model="listitem"] .row>div:not(:first-child),
   [data-gen-model="listitem"] .row>div:not(:first-child) {
-    padding-left: 36px;
+    padding-left: 24px;
   }
 
   [data-aue-model="listitem"] .row [class*="col-"]:nth-child(2),

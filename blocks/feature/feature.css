@@ -846,7 +846,7 @@
 @media (width < 768px) {
   .feature-wrapper .with-vertical-list .about-us-stats {
     flex-direction: column;
-    gap: 40px;
+    gap: 24px;
   }
 
   .feature-wrapper .with-vertical-list .about-us-right-column {
