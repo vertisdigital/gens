@@ -4,7 +4,7 @@
 
 .sectionheader {
     width: 100%;
-    max-width: 1920px;
+    max-width: 2560px;
     padding-top: 80px;
     padding-bottom: 64px;
     margin: auto;
@@ -111,7 +111,7 @@
     border: 2px solid var(--button-icon-button-iconbtn-secondary-default-border, #C8AB4B);
 }
 
-.section-header-cta:hover path{
+.section-header-cta:hover path {
     stroke: #C8AB4B;
 }
 
@@ -158,16 +158,18 @@
    Responsive – Container
 ================================ */
 
-@media (width < 768px) {   
-    
+@media (width < 768px) {
+
     .section-header-cta {
         width: 32px;
         height: 32px;
     }
-    .section-header-cta svg{
+
+    .section-header-cta svg {
         width: 9.33px;
         height: 9.33px;
     }
+
     .sectionheader.section-header.horizontal .section-header-wrapper {
         flex-direction: column;
         gap: 16px;
@@ -188,16 +190,18 @@
 
     .section-header-title {
         font-size: var(--typography-font-size-text-m, 28px);
-        line-height: var(--typography-font-line-height-leading-5, 44px); /* 157.143% */
+        line-height: var(--typography-font-line-height-leading-5, 44px);
+        /* 157.143% */
     }
 }
 
 /* Tablet */
-@media (width >= 768px) and (width < 1181px) {
+@media (width >=768px) and (width < 1181px) {
     .sectionheader {
-        padding-top:64px;
+        padding-top: 64px;
         padding-bottom: 40px;
     }
+
     .section-header-title {
         font-size: var(--typography-font-size-text-lg, 32px);
         line-height: var(--typography-font-line-height-leading-6, 48px);
