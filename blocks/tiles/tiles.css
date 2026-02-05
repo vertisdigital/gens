@@ -1,3 +1,189 @@
+/* Modal Styles */
+.tiles-modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.8);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 9999;
+}
+
+.tiles-modal-content {
+  background-color: #fff;
+  width: 90vw;
+  max-width: 1100px;
+  /* Wider to match image aspect ratio if needed */
+  max-height: 90vh;
+  /* Allow scrolling if content is tall */
+  overflow-y: auto;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+}
+
+.tiles-modal-close {
+  position: absolute;
+  top: 24px;
+  right: 24px;
+  cursor: pointer;
+  z-index: 10;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.tiles-modal-body {
+  display: flex;
+  flex-direction: column;
+  padding: 40px 56px;
+  /* Large padding as per design aesthetics */
+}
+
+.modal-image-container {
+  width: 100%;
+  margin-bottom: 40px;
+  aspect-ratio: 16 / 9;
+}
+
+.modal-image-container img {
+  aspect-ratio: 16 / 9;
+  width: 100%;
+  height: auto;
+  display: block;
+  object-fit: cover;
+}
+
+.modal-text-container {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.modal-title {
+  color: var(--colours-text-text-body, #3B3D3D);
+
+  /* H5/Regular */
+  font-family: var(--typography-font-family-font-title, "Inter");
+  font-size: var(--typography-font-size-text-m, 28px);
+  font-style: normal;
+  font-weight: 400;
+  line-height: var(--typography-font-line-height-leading-5, 44px);
+  /* 157.143% */
+  letter-spacing: var(--typography-font-spacing-tracking-normal, 0);
+  margin: 0;
+}
+
+.modal-description {
+  color: var(--colours-text-text-body, #3B3D3D);
+
+  /* Body 1/Regular */
+  font-family: var(--typography-font-family-font-body, "Instrument Sans");
+  font-size: var(--typography-font-size-text-base, 16px);
+  font-style: normal;
+  font-weight: 400;
+  line-height: var(--typography-font-line-height-leading-3, 24px);
+  /* 150% */
+  letter-spacing: var(--typography-font-spacing-tracking-normal, 0);
+}
+
+.modal-download-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  color: #8D713E;
+  /* Gold color */
+  font-weight: 400;
+  text-decoration: none;
+  font-family: var(--typography-font-family-font-body, "Instrument Sans");
+  font-size: 16px;
+  width: fit-content;
+  margin-top: 6px;
+}
+
+.modal-download-link>span {
+  color: var(--button-text-link-btn-textlink-default-fg, #8D713E);
+  text-align: center;
+
+  /* Body 1/Medium */
+  font-family: var(--typography-font-family-font-body, "Instrument Sans");
+  font-size: var(--typography-font-size-text-base, 16px);
+  font-style: normal;
+  font-weight: 500;
+  line-height: var(--typography-font-line-height-leading-3, 24px);
+  /* 150% */
+  letter-spacing: var(--typography-font-spacing-tracking-normal, 0);
+  text-decoration: none;
+}
+
+.modal-download-link:hover {
+  text-decoration: underline;
+}
+
+.modal-download-link .icon-wrapper {
+  display: flex;
+  align-items: center;
+}
+
+@media (max-width: 1199px) {
+  .tiles-modal-body {
+    padding: 40px;
+  }
+
+  .tiles-modal-close {
+    top: 16px;
+    right: 16px;
+  }
+
+  .modal-image-container {
+    margin-bottom: 24px;
+  }
+}
+
+@media (max-width: 767px) {
+  .tiles-modal-body {
+    padding: 40px 24px;
+  }
+
+  .tiles-modal-close {
+    top: 8px;
+    right: 8px;
+  }
+
+  .modal-title {
+    font-size: var(--typography-font-size-text-sm, 24px);
+    font-weight: 400;
+    line-height: var(--typography-font-line-height-leading-4, 40px);
+    /* 166.667% */
+    letter-spacing: var(--typography-font-spacing-tracking-normal, 0);
+  }
+
+  .modal-description {
+    font-size: var(--typography-font-size-text-base, 16px);
+    font-weight: 400;
+    line-height: var(--typography-font-line-height-leading-3, 24px);
+    /* 150% */
+    letter-spacing: var(--typography-font-spacing-tracking-normal, 0);
+  }
+
+  .modal-download-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    color: #8D713E;
+    /* Gold color */
+    font-weight: 400;
+    text-decoration: none;
+    font-family: var(--typography-font-family-font-body, "Instrument Sans");
+    font-size: 16px;
+    width: fit-content;
+    margin-top: 6px;
+  }
+}
+
 .row.tiles-container {
   max-width: 2560px;
   margin: 0 auto;
@@ -396,192 +582,7 @@ a:any-link.factsheet-button {
   }
 }
 
-/* Modal Styles */
-/* Modal Styles */
-.tiles-modal-overlay {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100vw;
-  height: 100vh;
-  background-color: rgba(0, 0, 0, 0.8);
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  z-index: 9999;
-}
 
-.tiles-modal-content {
-  background-color: #fff;
-  width: 90vw;
-  max-width: 1100px;
-  /* Wider to match image aspect ratio if needed */
-  max-height: 90vh;
-  /* Allow scrolling if content is tall */
-  overflow-y: auto;
-  position: relative;
-  display: flex;
-  flex-direction: column;
-}
-
-.tiles-modal-close {
-  position: absolute;
-  top: 24px;
-  right: 24px;
-  cursor: pointer;
-  z-index: 10;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.tiles-modal-body {
-  display: flex;
-  flex-direction: column;
-  padding: 40px 56px;
-  /* Large padding as per design aesthetics */
-}
-
-.modal-image-container {
-  width: 100%;
-  margin-bottom: 40px;
-  aspect-ratio: 16 / 9;
-}
-
-.modal-image-container img {
-  aspect-ratio: 16 / 9;
-  width: 100%;
-  height: auto;
-  display: block;
-  object-fit: cover;
-}
-
-.modal-text-container {
-  display: flex;
-  flex-direction: column;
-  gap: 16px;
-}
-
-.modal-title {
-  color: var(--colours-text-text-body, #3B3D3D);
-
-  /* H5/Regular */
-  font-family: var(--typography-font-family-font-title, "Inter");
-  font-size: var(--typography-font-size-text-m, 28px);
-  font-style: normal;
-  font-weight: 400;
-  line-height: var(--typography-font-line-height-leading-5, 44px);
-  /* 157.143% */
-  letter-spacing: var(--typography-font-spacing-tracking-normal, 0);
-  margin: 0;
-}
-
-.modal-description {
-  color: var(--colours-text-text-body, #3B3D3D);
-
-  /* Body 1/Regular */
-  font-family: var(--typography-font-family-font-body, "Instrument Sans");
-  font-size: var(--typography-font-size-text-base, 16px);
-  font-style: normal;
-  font-weight: 400;
-  line-height: var(--typography-font-line-height-leading-3, 24px);
-  /* 150% */
-  letter-spacing: var(--typography-font-spacing-tracking-normal, 0);
-}
-
-.modal-download-link {
-  display: inline-flex;
-  align-items: center;
-  gap: 8px;
-  color: #8D713E;
-  /* Gold color */
-  font-weight: 400;
-  text-decoration: none;
-  font-family: var(--typography-font-family-font-body, "Instrument Sans");
-  font-size: 16px;
-  width: fit-content;
-  margin-top: 6px;
-}
-
-.modal-download-link>span {
-  color: var(--button-text-link-btn-textlink-default-fg, #8D713E);
-  text-align: center;
-
-  /* Body 1/Medium */
-  font-family: var(--typography-font-family-font-body, "Instrument Sans");
-  font-size: var(--typography-font-size-text-base, 16px);
-  font-style: normal;
-  font-weight: 500;
-  line-height: var(--typography-font-line-height-leading-3, 24px);
-  /* 150% */
-  letter-spacing: var(--typography-font-spacing-tracking-normal, 0);
-  text-decoration: none;
-}
-
-.modal-download-link:hover {
-  text-decoration: underline;
-}
-
-.modal-download-link .icon-wrapper {
-  display: flex;
-  align-items: center;
-}
-
-@media (max-width: 1199px) {
-  .tiles-modal-body {
-    padding: 40px;
-  }
-
-  .tiles-modal-close {
-    top: 16px;
-    right: 16px;
-  }
-
-  .modal-image-container {
-    margin-bottom: 24px;
-  }
-}
-
-@media (max-width: 767px) {
-  .tiles-modal-body {
-    padding: 40px 24px;
-  }
-
-  .tiles-modal-close {
-    top: 8px;
-    right: 8px;
-  }
-
-  .modal-title {
-    font-size: var(--typography-font-size-text-sm, 24px);
-    font-weight: 400;
-    line-height: var(--typography-font-line-height-leading-4, 40px);
-    /* 166.667% */
-    letter-spacing: var(--typography-font-spacing-tracking-normal, 0);
-  }
-
-  .modal-description {
-    font-size: var(--typography-font-size-text-base, 16px);
-    font-weight: 400;
-    line-height: var(--typography-font-line-height-leading-3, 24px);
-    /* 150% */
-    letter-spacing: var(--typography-font-spacing-tracking-normal, 0);
-  }
-
-  .modal-download-link {
-    display: inline-flex;
-    align-items: center;
-    gap: 8px;
-    color: #8D713E;
-    /* Gold color */
-    font-weight: 400;
-    text-decoration: none;
-    font-family: var(--typography-font-family-font-body, "Instrument Sans");
-    font-size: 16px;
-    width: fit-content;
-    margin-top: 6px;
-  }
-}
 
 /* wrapper overrides */
 .tiles-wrapper:has(.open-as-modal):not(:first-child) {
