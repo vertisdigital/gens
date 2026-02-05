@@ -17,11 +17,17 @@ function openModal(data) {
 
   const content = document.createElement('div');
   content.className = 'tiles-modal-content';
-  content.style.marginBottom = '0'; // Reset styling
 
   const closeBtn = document.createElement('span');
   closeBtn.className = 'tiles-modal-close';
-  closeBtn.innerHTML = '&times';
+  const closeIcon = SvgIcon({
+    name: 'close',
+    className: 'close-icon',
+    size: '24',
+    color: '#000',
+  });
+  closeBtn.innerHTML = stringToHTML(closeIcon).outerHTML;
+
   closeBtn.onclick = () => {
     document.body.removeChild(overlay);
     document.body.style.overflow = '';
@@ -29,18 +35,15 @@ function openModal(data) {
 
   const body = document.createElement('div');
   body.className = 'tiles-modal-body';
-  body.style.display = 'flex';
-  body.style.flexDirection = 'column';
-  body.style.gap = '20px';
 
   // Modal Content Structure
   if (data.image) {
+    const imgContainer = document.createElement('div');
+    imgContainer.className = 'modal-image-container';
     const img = document.createElement('img');
     img.src = data.image;
-    img.style.width = '100%';
-    img.style.height = 'auto';
-    img.style.borderRadius = '4px';
-    body.appendChild(img);
+    imgContainer.appendChild(img);
+    body.appendChild(imgContainer);
   }
 
   const textContainer = document.createElement('div');
@@ -48,18 +51,15 @@ function openModal(data) {
 
   if (data.title) {
     const title = document.createElement('h3');
+    title.className = 'modal-title';
     title.textContent = data.title;
-    title.style.marginBottom = '10px';
-    // Basic styling matching brand if possible, or generic
-    title.style.color = '#333';
     textContainer.appendChild(title);
   }
 
   if (data.description) {
     const desc = document.createElement('div');
+    desc.className = 'modal-description';
     desc.innerHTML = data.description;
-    desc.style.color = '#666';
-    desc.style.marginBottom = '20px';
     textContainer.appendChild(desc);
   }
 
@@ -67,14 +67,24 @@ function openModal(data) {
     const link = document.createElement('a');
     link.href = data.filepath;
     link.target = '_blank';
-    link.textContent = data.downloadText || 'Download';
-    link.style.display = 'inline-block';
-    link.style.marginTop = '10px';
-    link.className = 'button primary'; // Use global button class if available
-    // Fallback styling
-    link.style.textDecoration = 'none';
-    link.style.color = 'var(--primary-gold, #c6a87c)';
-    link.style.fontWeight = 'bold';
+    link.className = 'modal-download-link';
+
+    // Create text span
+    const textSpan = document.createElement('span');
+    textSpan.textContent = 'Download';
+    link.appendChild(textSpan);
+
+    // Add download icon
+    const downloadIcon = SvgIcon({
+      name: 'downloadGold',
+      className: 'download-icon',
+      size: '24',
+      color: '#8D713E',
+    });
+
+    if (downloadIcon) {
+      link.appendChild(stringToHTML(downloadIcon));
+    }
 
     textContainer.appendChild(link);
   }
