@@ -112,7 +112,7 @@ export default function decorate(block) {
   heroContent.classList.add('hero-content', 'columns-container', 'container');
 
   const headingElement = block.querySelector('[data-aue-prop="bannerheading"], .herobanner-nested-1-2 p');
-  if (headingElement) {
+  if (headingElement && headingElement.textContent.trim()) {
     const headingText = headingElement.textContent;
     const headingContainer = document.createElement('div');
     // Copy data attributes from source element
@@ -128,7 +128,7 @@ export default function decorate(block) {
   }
 
   const titleElement = block.querySelector('[data-aue-prop="bannertitle"], .herobanner-nested-1-3 p');
-  if (titleElement) {
+  if (titleElement && titleElement.textContent.trim()) {
     const titleText = titleElement.textContent;
     const titleContainer = document.createElement('div');
     // Copy data attributes from source element
@@ -146,7 +146,7 @@ export default function decorate(block) {
   const descElement = block.querySelector(
     '[data-aue-prop="bannerdescription"], .herobanner-nested-1-4 p',
   );
-  if (descElement) {
+  if (descElement && descElement.textContent.trim()) {
     const descriptionDiv = document.createElement('div');
     descriptionDiv.className = 'hero-description';
     // Copy data attributes from source element
@@ -160,8 +160,8 @@ export default function decorate(block) {
   const cta2El = block.querySelector('[data-aue-prop="ctabutton2"], .herobanner-nested-1-6');
 
   const hasCTA =
-    (cta1El && cta1El.querySelector('a')) ||
-    (cta2El && cta2El.querySelector('a'));
+    (cta1El && cta1El.querySelector('a') && cta1El.querySelector('a').textContent.trim()) ||
+    (cta2El && cta2El.querySelector('a') && cta2El.querySelector('a').textContent.trim());
 
   if (hasCTA) {
     let ctaWrapper = heroContainer.querySelector('.hero-cta-wrapper');
@@ -178,7 +178,7 @@ export default function decorate(block) {
 
     const ctaGroup = ctaWrapper.querySelector('.hero-cta-group');
 
-    if (cta1El && cta1El.querySelector('a')) {
+    if (cta1El && cta1El.querySelector('a') && cta1El.querySelector('a').textContent.trim()) {
       cta1El.classList.add('hero-cta', 'primary');
 
       const link = cta1El.querySelector('a');
@@ -199,14 +199,16 @@ export default function decorate(block) {
         '[data-aue-prop="ctabuttonText2"], .herobanner-nested-1-7 p'
       );
 
-      if (cta2TextEl) {
+      if (cta2TextEl && cta2TextEl.textContent.trim()) {
         link.textContent = cta2TextEl.textContent.trim();
       }
 
-      // 2️⃣ DECORATE SAU KHI SET TEXT
-      decorateCTAWithCircle(link, { before: true, after: true });
+      if (link.textContent.trim()) {
+        // 2️⃣ DECORATE SAU KHI SET TEXT
+        decorateCTAWithCircle(link, { before: true, after: true });
 
-      ctaGroup.appendChild(cta2El);
+        ctaGroup.appendChild(cta2El);
+      }
     }
   }
 
@@ -343,7 +345,7 @@ export default function decorate(block) {
     const itemDivs = item.querySelectorAll('div');
 
     const carouselTitleElement = itemDivs[0].querySelector('p');
-    if (carouselTitleElement) {
+    if (carouselTitleElement && carouselTitleElement.textContent.trim()) {
       const titleText = carouselTitleElement.textContent;
       const titleHtml = `<p class="news-title">${titleText}</p>`;
       const titleContainer = document.createElement('div');
@@ -355,7 +357,7 @@ export default function decorate(block) {
 
     // Extract and append the description
     const descriptionElement = itemDivs[1].querySelector('p');
-    if (descriptionElement) {
+    if (descriptionElement && descriptionElement.textContent.trim()) {
       const descriptionText = descriptionElement.textContent;
       const descriptionHtml = `<p class="news-description">${descriptionText}</p>`;
       const descContainer = document.createElement('div');
@@ -368,7 +370,7 @@ export default function decorate(block) {
     // Extract and append the "Read More" label
     const readMoreLabelElement = itemDivs[3].querySelector('p');
 
-    if (readMoreLabelElement) {
+    if (readMoreLabelElement && readMoreLabelElement.textContent.trim()) {
       const readMoreLabelText = readMoreLabelElement.textContent;
       const buttonContainer = itemDivs[4]?.querySelector('a');
       const href = buttonContainer?.getAttribute('href') ?? '/';
