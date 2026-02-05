@@ -175,6 +175,13 @@
   /* 150% */
   letter-spacing: var(--typography-font-spacing-tracking-normal, 0);
   border: 1px solid var(--button-primary-btn-primary-default-bg-hover, #C8AB4B);
+  transition: all 0.3s ease;
+}
+
+.hero-banner-container .hero-cta-group .hero-cta a:hover {
+  background: var(--colours-text-text-white, #FFF);
+  color: var(--button-primary-btn-primary-default-bg-hover, #C8AB4B);
+  border-color: var(--button-primary-btn-primary-default-bg-hover, #C8AB4B);
 }
 
 .hero-banner-container .hero-cta-group .hero-cta.primary a span {
@@ -184,7 +191,19 @@
 .hero-banner-container .hero-cta-group .hero-cta.secondary a {
   background: transparent;
   color: var(--button-secondary-btn-secondary-default-hover-fg, #C8AB4B);
+  transition: all 0.3s ease;
 }
+
+.hero-banner-container .hero-cta-group .hero-cta.secondary a:hover {
+  background: var(--button-primary-btn-primary-default-bg-hover, #C8AB4B);
+  color: var(--colours-text-text-body, #3B3D3D);
+  border-color: var(--button-primary-btn-primary-default-bg-hover, #C8AB4B);
+}
+
+.hero-banner-container .hero-cta-group .hero-cta.secondary a span {
+  color: inherit;
+}
+
 
 .hero-arrow-icon {
   cursor: pointer;
