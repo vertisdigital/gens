@@ -832,8 +832,8 @@
   }
 
   .feature-wrapper .with-vertical-list .about-us-stats .about-us-right-content>div p {
-    font-size: 16px;
-    line-height: 24px;
+    font-size: 24px;
+    line-height: 40px;
     color: var(--color-text-tertiary, #8d713e);
   }
 }
