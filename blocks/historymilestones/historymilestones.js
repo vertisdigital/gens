@@ -229,7 +229,7 @@ export default function decorate(block) {
         ${milestones
           .map((milestone) => {
             const [image, date, description] = milestone.children;
-            
+
             const ctaSvg = `
               <svg width="48" height="48" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg" class="about-us-link-button">
           <path d="M24 1C36.7025 1 47 11.2975 47 24C47 36.7025 36.7025 47 24 47C11.2975 47 1 36.7025 1 24C1 11.2975 11.2975 1 24 1Z" stroke="#8D713E" stroke-width="2"/>
