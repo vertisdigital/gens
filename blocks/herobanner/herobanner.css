@@ -41,8 +41,16 @@
 }
 
 @media (width >=1200px) {
+  .hero-banner-container .hero-content>div {
+    width: 60%
+  }
+
   .hero-banner-container.hero-carousal-variation .hero-content {
     width: min(50%, calc(100% - 700px));
+  }
+
+  .hero-banner-container.hero-carousal-variation .hero-content>div {
+    width: unset;
   }
 }
 
