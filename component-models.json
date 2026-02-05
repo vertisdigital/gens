@@ -141,6 +141,21 @@
             "value": "textblock-neutral-050"
           }
         ]
+      },
+      {
+        "component": "multiselect",
+        "name": "style",
+        "label": "Style",
+        "options": [
+          {
+            "name": "Default",
+            "value": ""
+          },
+          {
+            "name": "Full width with padding",
+            "value": "full-width-with-padding"
+          }
+        ]
       }
     ]
   },
