@@ -85,11 +85,17 @@
 }
 
 .hero-heading {
-  font-weight: 400;
-  color: var(--background-color);
-  text-shadow: 0 2px 4px rgb(0 0 0 / 30%);
-  padding-left: 0;
-  margin-bottom: 12px;
+  color: var(--colours-text-text-white, #FFF);
+
+  /* Body 1/Bold */
+  font-family: var(--typography-font-family-font-body, "Instrument Sans");
+  font-size: var(--typography-font-size-text-base, 16px);
+  font-style: normal;
+  font-weight: 700;
+  line-height: var(--typography-font-line-height-leading-3, 24px);
+  /* 150% */
+  letter-spacing: var(--typography-font-spacing-tracking-normal, 0);
+  margin: 0;
 }
 
 .hero-description {
@@ -448,6 +454,7 @@
     line-height: var(--typography-font-line-height-leading-7, 56px);
     /* 155.556% */
     letter-spacing: var(--typography-font-spacing-tracking-normal, 0);
+    margin: 0;
   }
 
   .hero-description {
@@ -473,10 +480,6 @@
 
   .arrow-link svg {
     margin: 0 3px;
-  }
-
-  .hero-heading {
-    margin-bottom: 10px;
   }
 
   .navigation-arrows {
@@ -521,6 +524,14 @@
 
 /* Ensure responsive layout */
 @media (width <=1199px) {
+  .hero-heading {
+    font-size: var(--typography-font-size-text-base, 16px);
+    font-weight: 700;
+    line-height: var(--typography-font-line-height-leading-3, 24px);
+    letter-spacing: var(--typography-font-spacing-tracking-normal, 0);
+    margin: 0;
+  }
+
   .leftright-arrow {
     bottom: 16px;
   }
@@ -553,17 +564,6 @@
 
   .hero-arrow-icon {
     padding: 10px;
-  }
-
-  .hero-title {
-    font-size: var(--font-size-l);
-    margin-bottom: 8px;
-    line-height: 44px;
-  }
-
-  .hero-heading {
-    font-size: var(--font-size-xs);
-    margin-bottom: 8px;
   }
 
   .hero-description {
@@ -675,6 +675,14 @@
     padding-bottom: 40px;
   }
 
+  .hero-heading {
+    font-size: var(--typography-font-size-text-base, 16px);
+    font-weight: 700;
+    line-height: var(--typography-font-line-height-leading-3, 24px);
+    letter-spacing: var(--typography-font-spacing-tracking-normal, 0);
+    margin: 0;
+  }
+
   .hero-banner-container .hero-cta-group {
     flex-direction: column;
   }
@@ -699,12 +707,13 @@
 
     /* H5/Regular */
     font-family: var(--typography-font-family-font-title, Inter);
-    font-size: var(--typography-font-size-text-m, 28px);
+    font-size: var(--typography-font-size-text-m, 28px) !important;
     font-style: normal;
     font-weight: 400;
     line-height: var(--typography-font-line-height-leading-5, 44px);
     /* 157.143% */
     letter-spacing: var(--typography-font-spacing-tracking-normal, 0);
+    margin: 0;
   }
 
   .hero-description {
