@@ -10,6 +10,7 @@ export default function decorate(block) {
 
   if (isFullWidth && isFullWidth.textContent?.trim() === 'full-width-with-padding') {
     block.classList.add('container', 'full-width-with-padding');
+    isFullWidth.remove();
   }
 
   // =========================

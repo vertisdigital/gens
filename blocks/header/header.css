@@ -477,7 +477,7 @@ header .header {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  width: 25%;
+  width: clamp(25%, 35%, 35%);
 }
 
 .header-inner-wrapper .secondary-header .secondary-header-wrapper a {
