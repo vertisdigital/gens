@@ -183,7 +183,7 @@ export default function decorate(block) {
 
       const link = cta1El.querySelector('a');
 
-      // CTA 1: text nằm sẵn trong <a> → chỉ decorate
+
       decorateCTAWithCircle(link, { before: true, after: true });
 
       ctaGroup.appendChild(cta1El);
@@ -194,7 +194,7 @@ export default function decorate(block) {
 
       const link = cta2El.querySelector('a');
 
-      // 1️⃣ LẤY TEXT RIÊNG
+
       const cta2TextEl = block.querySelector(
         '[data-aue-prop="ctabuttonText2"], .herobanner-nested-1-7 p'
       );
@@ -204,7 +204,7 @@ export default function decorate(block) {
       }
 
       if (link.textContent.trim()) {
-        // 2️⃣ DECORATE SAU KHI SET TEXT
+
         decorateCTAWithCircle(link, { before: true, after: true });
 
         ctaGroup.appendChild(cta2El);
