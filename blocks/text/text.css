@@ -148,8 +148,8 @@
 .textblock h4,
 .textblock h5,
 .textblock h6 {
-  margin-top: 0;
-  margin-bottom: 0.5em;
+  margin-top: 0.3em;
+  margin-bottom: 0.3em;
 }
 
 /* =========================================================
