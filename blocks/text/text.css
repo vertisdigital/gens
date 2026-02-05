@@ -9,12 +9,16 @@
   color: var(--color-text-body);
 }
 
+.textblock.full-width-with-padding {
+  padding-top: 80px;
+  padding-bottom: 80px;
+}
+
 /* =========================================================
    RESET – all content inherits color from wrapper
    ========================================================= */
 
-.textblock :is(
-  p,
+.textblock :is(p,
   span,
   strong,
   em,
@@ -34,8 +38,7 @@
   h3,
   h4,
   h5,
-  h6
-) {
+  h6) {
   color: inherit;
 }
 
@@ -186,16 +189,32 @@
   white-space: pre;
 }
 
-@media (width >= 567px) {
+@media (width >=567px) {
+
   .textblock code,
   .textblock pre {
     font-size: var(--font-size-xxs);
   }
 }
 
-@media (width >= 900px) {
+@media (width >=900px) {
+
   .textblock code,
   .textblock pre {
     font-size: var(--font-size-xs);
+  }
+}
+
+@media (width <=1199px) {
+  .textblock.full-width-with-padding {
+    padding-top: 64px;
+    padding-bottom: 64px;
+  }
+}
+
+@media (width <=767px) {
+  .textblock.full-width-with-padding {
+    padding-top: 40px;
+    padding-bottom: 40px;
   }
 }

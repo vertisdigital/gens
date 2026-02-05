@@ -3,6 +3,15 @@ export default function decorate(block) {
 
   const children = Array.from(block.children);
 
+  const isFullWidth = block.querySelector('[data-aue-prop="style"]')
+    || block.querySelector('[data-gen-prop="style"]')
+    || children[3]?.querySelector('p')
+    || children[3];;
+
+  if (isFullWidth && isFullWidth.textContent?.trim() === 'full-width-with-padding') {
+    block.classList.add('container', 'full-width-with-padding');
+  }
+
   // =========================
   // ALIGN
   // =========================
