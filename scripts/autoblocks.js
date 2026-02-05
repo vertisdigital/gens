@@ -7,7 +7,7 @@ import { errorLogger as logger } from "./logger.js";
  * @returns {Object|null} The created container elements or null
  */
 function createTabStructure(main) {
-  
+
   const tabElements = main.querySelectorAll('div[data-tabtitle]');
   if (tabElements.length === 0) {
     //console.warn('[Tab System] No tab elements found.');
@@ -56,7 +56,14 @@ function getInitialActiveTab() {
  */
 function createTabElement(section, index) {
   const titleText = section.getAttribute('data-tabtitle');
-  const tabID = section.getAttribute('data-tabid');
+  let tabID = section.getAttribute('data-tabid');
+  if (!tabID) {
+    if (titleText) {
+      tabID = titleText.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/(^-|-$)/g, '');
+    } else {
+      tabID = `tab-${index}`;
+    }
+  }
   const initialActiveIndex = getInitialActiveTab();
 
   const tabTitle = document.createElement('div');
@@ -135,18 +142,18 @@ function updateTabStates(tabs, panels, activeIndex, shouldScroll = true) {
   tabs.forEach((tab) => tab.classList.remove('active'));
   tabs[activeIndex].classList.add('active');
 
-    const tabsContainer = document.querySelector('.tab-nav');
-    const tabWidth = tabs[activeIndex].offsetWidth;
-    const containerWidth = tabsContainer.offsetWidth;
-    const tabPosition = tabs[activeIndex].offsetLeft;
+  const tabsContainer = document.querySelector('.tab-nav');
+  const tabWidth = tabs[activeIndex].offsetWidth;
+  const containerWidth = tabsContainer.offsetWidth;
+  const tabPosition = tabs[activeIndex].offsetLeft;
 
-    const centerOffset = tabPosition - (containerWidth - tabWidth) / 2;
-    
-    tabsContainer.scrollTo({
-      left: centerOffset,
-      behavior: 'smooth'
-    });
-  
+  const centerOffset = tabPosition - (containerWidth - tabWidth) / 2;
+
+  tabsContainer.scrollTo({
+    left: centerOffset,
+    behavior: 'smooth'
+  });
+
   // Update panels
   panels.forEach((panel) => panel.classList.remove('active'));
   panels[activeIndex].classList.add('active');
