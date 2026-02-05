@@ -472,8 +472,8 @@
 
   .listing-wrapper .listing [data-aue-model="listitem"] [data-aue-prop="description"],
   .listing-wrapper .listing [data-gen-model="listitem"] [data-gen-prop="description"] {
-    font-size: 16px;
-    line-height: 24px;
+    font-size: 24px;
+    line-height: 40px;
     margin-top: 0;
     font-weight: 400;
     padding-right: 64px;
@@ -521,8 +521,8 @@
 
   .listing-wrapper .listing [data-aue-model="listitem"] [data-aue-prop="description"],
   .listing-wrapper .listing [data-gen-model="listitem"] [data-gen-prop="description"] {
-    font-size: 16px;
-    line-height: 24px;
+    font-size: 24px;
+    line-height: 40px;
     margin-top: 0;
     font-weight: 400;
   }
