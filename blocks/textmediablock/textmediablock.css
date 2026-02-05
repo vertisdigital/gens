@@ -13,6 +13,14 @@
     margin-bottom: 80px;
   }
 
+  .text-section p {
+    font-size: 24px;
+    font-weight: 400;
+    line-height: 40px;
+    color: var(--body-text-color);
+    font-family: var(--typography-font-family-font-body);
+  }
+
   .textmediablock-container>div>div>p {
     margin: 0;
   }
@@ -63,13 +71,7 @@
     flex: 0 0 calc(50% - 18px);
   }
 
-  .text-section p {
-    font-size: 24px;
-    font-weight: 400;
-    line-height: 40px;
-    color: var(--body-text-color);
-    font-family: var(--typography-font-family-font-body);
-  }
+
 
   p[data-gen-prop="description"] {
     margin-top: 0;

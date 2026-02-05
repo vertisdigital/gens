@@ -20,23 +20,48 @@
     margin-bottom: 24px;
 }
 
+.boardofdirectors .director-card .toggle-on {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 48px;
+    height: 48px;
+    padding: 16px;
+    border: 2px solid var(--color-border-secondary);
+    border-radius: 9999px;
+    background: transparent;
+    color: var(--color-border-secondary);
+    transition: all 0.2s ease;
+    margin: 0;
+}
+
+.boardofdirectors .icon-wrapper {
+    display: flex;
+}
+
+.boardofdirectors .description-wrapper {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
 .boardofdirectors .director-card .toggle-on:hover .icon-wrapper {
     color: var(--color-text-white) !important;
-  }
-  
-  .boardofdirectors .director-card .toggle-on:focus .icon-wrapper {
+}
+
+.boardofdirectors .director-card .toggle-on:focus .icon-wrapper {
     color: var(--color-text-white) !important;
-  }
-  
-  .boardofdirectors .director-card .toggle-on:hover {
+}
+
+.boardofdirectors .director-card .toggle-on:hover {
     color: var(--color-text-white);
     border-color: var(--color-text-white);
-  }
-  
-  .boardofdirectors .director-card .toggle-on:focus {
+}
+
+.boardofdirectors .director-card .toggle-on:focus {
     color: var(--color-text-white);
     border-color: var(--color-text-white);
-  }
+}
 
 .boardofdirectors .director-card .toggle-off {
     display: none;
@@ -55,7 +80,8 @@
 }
 
 .boardofdirectors .board-director-info .board-director-content {
-    padding-right: 50px; /* Space for toggle button */
+    padding-right: 50px;
+    /* Space for toggle button */
 }
 
 .boardofdirectors .board-director-info.active {
@@ -72,7 +98,7 @@
     text-align: left;
 }
 
-.boardofdirectors .board-director-info.active .board-director-content > p:first-child {
+.boardofdirectors .board-director-info.active .board-director-content>p:first-child {
     font-size: 14px;
     color: var(--color-text-tertiary);
     line-height: 24px;
@@ -83,7 +109,7 @@
     margin-bottom: 4px;
 }
 
-.boardofdirectors .board-director-info.active .board-director-content > p:nth-child(2) {
+.boardofdirectors .board-director-info.active .board-director-content>p:nth-child(2) {
     font-size: 36px;
     color: var(--color-text-body);
     line-height: 56px;
@@ -109,30 +135,6 @@
     transform: translateY(-5px);
 }
 
-.boardofdirectors .director-card .toggle-on {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 48px;
-  height: 48px;
-  padding: 16px;
-  border: 2px solid var(--color-border-secondary);
-  border-radius: 9999px;
-  background: transparent;
-  color: var(--color-border-secondary);
-  transition: all 0.2s ease;
-  margin: 0;
-}
-
-.boardofdirectors .icon-wrapper {
-    display: flex;
-}
-
-.boardofdirectors .description-wrapper {
-    display: flex;
-    flex-direction: column;
-    gap: 16px;
-}
 
 .boardofdirectors .director-card img {
     width: 100%;
@@ -152,7 +154,7 @@
     text-transform: capitalize;
 }
 
-.boardofdirectors .segment-wrapper .wrapper{
+.boardofdirectors .segment-wrapper .wrapper {
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
@@ -177,6 +179,7 @@
 .boardofdirectors .segment-wrapper {
     margin-bottom: 64px;
 }
+
 @media (width < 768px) {
     .boardofdirectors-container {
         margin: 40px 0;
@@ -190,31 +193,31 @@
         padding: 40px 24px !important;
     }
 
-    .boardofdirectors .director-card{
+    .boardofdirectors .director-card {
         min-height: 491px;
         padding: 24px;
     }
-    
+
     .boardofdirectors .segment-wrapper {
         margin-bottom: 24px;
     }
 
-    .boardofdirectors .segment-wrapper .wrapper>div{
+    .boardofdirectors .segment-wrapper .wrapper>div {
         padding-left: 0;
         padding-right: 0;
     }
 
-    .boardofdirectors .segment-wrapper .wrapper{
+    .boardofdirectors .segment-wrapper .wrapper {
         row-gap: 24px;
     }
 
-    .boardofdirectors .board-director-info.active .board-director-content > p:nth-child(2) {
+    .boardofdirectors .board-director-info.active .board-director-content>p:nth-child(2) {
         font-size: 24px;
         line-height: 40px;
     }
 }
 
-@media (width >= 768px) and (width < 1181px) {
+@media (width >=768px) and (width < 1181px) {
     .boardofdirectors-container {
         margin: 64px 0;
     }
@@ -231,25 +234,25 @@
         margin-bottom: 40px;
     }
 
-    .boardofdirectors .board-director-info.active .board-director-content > p:nth-child(2) {
+    .boardofdirectors .board-director-info.active .board-director-content>p:nth-child(2) {
         font-size: 32px;
         color: var(--color-text-body);
         line-height: 48px;
         margin-bottom: 16px;
     }
 
-    .boardofdirectors .director-card{
+    .boardofdirectors .director-card {
         padding: 24px;
         width: 100%;
         min-height: 498px;
     }
 
-    .boardofdirectors .segment-wrapper .wrapper{
+    .boardofdirectors .segment-wrapper .wrapper {
         row-gap: 24px;
         column-gap: 24px;
     }
 
-   
+
 
     .boardofdirectors .segment-wrapper .wrapper>div:not(.board-director-info) {
         padding: 0;
@@ -258,8 +261,7 @@
 
     .boardofdirectors .segment-wrapper .wrapper>div:nth-child(3):not(.board-director-info),
     .boardofdirectors .segment-wrapper .wrapper>div:nth-child(4):not(.board-director-info),
-    .boardofdirectors .segment-wrapper .wrapper>div:nth-child(5):not(.board-director-info)
-    {
+    .boardofdirectors .segment-wrapper .wrapper>div:nth-child(5):not(.board-director-info) {
         margin-top: 16px;
     }
 
@@ -277,7 +279,7 @@
         margin: 24px 12px 0;
     }
 
-/*     .boardofdirectors .segment-wrapper {
+    /*     .boardofdirectors .segment-wrapper {
         margin-bottom: 64px;
     } */
 
@@ -289,7 +291,7 @@
         padding-right: 12px;
     }
 
-    .boardofdirectors .segment-wrapper .wrapper{
+    .boardofdirectors .segment-wrapper .wrapper {
         margin-left: -12px;
         margin-right: -12px;
     }
@@ -298,7 +300,7 @@
     .boardofdirectors .segment-wrapper .wrapper>div:nth-child(5):not(.board-director-info) {
         margin-top: 64px;
     }
-   
 
-  
+
+
 }
