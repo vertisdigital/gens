@@ -9,11 +9,6 @@
   color: var(--color-text-body);
 }
 
-.textblock.full-width-with-padding {
-  padding-top: 80px;
-  padding-bottom: 80px;
-}
-
 /* =========================================================
    RESET – all content inherits color from wrapper
    ========================================================= */
@@ -40,7 +35,17 @@
   h5,
   h6) {
   color: inherit;
+
+  /* H2/Regular */
+  font-family: var(--typography-font-family-font-title, "Inter");
+  font-style: normal;
+  letter-spacing: var(--typography-font-spacing-tracking-normal, 0);
 }
+
+.textblock h2 {
+  font-size: 56px;
+}
+
 
 /* =========================================================
    Alignment (MODEL ONLY)
@@ -189,6 +194,38 @@
   white-space: pre;
 }
 
+@media (width <=1199px) {
+  .columns .textblock h2 {
+    font-size: var(--typography-font-size-text-xl, 36px);
+    line-height: var(--typography-font-line-height-leading-7, 56px);
+    /* 157.143% */
+    letter-spacing: var(--typography-font-spacing-tracking-normal, 0);
+  }
+
+  .columns .textblock h6 {
+    font-size: var(--typography-font-size-text-base, 16px);
+    line-height: var(--typography-font-line-height-leading-3, 24px);
+    /* 150% */
+    letter-spacing: var(--typography-font-spacing-tracking-normal, 0);
+  }
+}
+
+@media (width <=767px) {
+  .columns .textblock h2 {
+    font-size: var(--typography-font-size-text-m, 28px);
+    line-height: var(--typography-font-line-height-leading-5, 44px);
+    /* 157.143% */
+    letter-spacing: var(--typography-font-spacing-tracking-normal, 0);
+  }
+
+  .columns .textblock h6 {
+    font-size: var(--typography-font-size-text-base, 16px);
+    line-height: var(--typography-font-line-height-leading-3, 24px);
+    /* 150% */
+    letter-spacing: var(--typography-font-spacing-tracking-normal, 0);
+  }
+}
+
 @media (width >=567px) {
 
   .textblock code,
@@ -202,19 +239,5 @@
   .textblock code,
   .textblock pre {
     font-size: var(--font-size-xs);
-  }
-}
-
-@media (width <=1199px) {
-  .textblock.full-width-with-padding {
-    padding-top: 64px;
-    padding-bottom: 64px;
-  }
-}
-
-@media (width <=767px) {
-  .textblock.full-width-with-padding {
-    padding-top: 40px;
-    padding-bottom: 40px;
   }
 }
