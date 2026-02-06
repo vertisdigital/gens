@@ -139,7 +139,7 @@
     /* List item styles */
 
 
-/*     [data-aue-model="listitem"] .row [class*="col-"],
+    /*     [data-aue-model="listitem"] .row [class*="col-"],
     [data-gen-model="listitem"] .row [class*="col-"] {
       padding: 24px 0;
     } */
@@ -186,7 +186,7 @@
       gap: 1rem;
     }
 
- /*    [data-aue-model="listitem"] .row [class*="col-"],
+    /*    [data-aue-model="listitem"] .row [class*="col-"],
     [data-gen-model="listitem"] .row [class*="col-"] {
       padding: 18px 0;
     } */
@@ -289,7 +289,7 @@
   margin-top: 48px;
 }
 
-.listing-wrapper .listing.grey-background {
+.listing-wrapper>.listing {
   padding-top: 40px;
   padding-bottom: 40px;
 }
@@ -378,14 +378,15 @@
   margin-bottom: 0;
 }
 
-.listing-wrapper .listing [data-gen-model="listitem"] .row > div:first-child img {
+.listing-wrapper .listing [data-gen-model="listitem"] .row>div:first-child img {
   aspect-ratio: 85 / 48;
   object-fit: cover;
   object-position: center;
   width: 100%;
 }
 
-.listing-wrapper .listing [data-aue-model="listitem"] [data-aue-prop="title"], .listing-wrapper .listing [data-gen-model="listitem"] [data-gen-prop="title"] {
+.listing-wrapper .listing [data-aue-model="listitem"] [data-aue-prop="title"],
+.listing-wrapper .listing [data-gen-model="listitem"] [data-gen-prop="title"] {
   font-size: 14px;
   line-height: 24px;
   font-weight: 400;
@@ -418,9 +419,9 @@
   padding-right: 72px;
 }
 
-@media (width >= 768px) and (width < 1181px) {
+@media (width >=768px) and (width < 1181px) {
 
-  .listing-wrapper .listing.grey-background {
+  .listing-wrapper>.listing {
     padding-top: 64px;
     padding-bottom: 64px;
   }
@@ -440,8 +441,7 @@
     margin-bottom: 28px;
   }
 
-  .listing-wrapper .listing [data-gen-model="listitem"] .row
-  {
+  .listing-wrapper .listing [data-gen-model="listitem"] .row {
     margin-bottom: 40px;
   }
 
@@ -449,7 +449,7 @@
     margin-bottom: 0;
   }
 
-  .listing-wrapper .listing [data-gen-model="listitem"] .row > div:first-child img {
+  .listing-wrapper .listing [data-gen-model="listitem"] .row>div:first-child img {
     aspect-ratio: 1/1;
     object-fit: cover;
     object-position: center;
@@ -462,7 +462,8 @@
     padding: 12px 0;
   }
 
-  .listing-wrapper .listing [data-aue-model="listitem"] [data-aue-prop="title"], .listing-wrapper .listing [data-gen-model="listitem"] [data-gen-prop="title"] {
+  .listing-wrapper .listing [data-aue-model="listitem"] [data-aue-prop="title"],
+  .listing-wrapper .listing [data-gen-model="listitem"] [data-gen-prop="title"] {
     font-size: 14px;
     line-height: 24px;
     margin-bottom: 0;
@@ -491,7 +492,7 @@
 
 @media (width > 1181px) {
 
-  .listing-wrapper .listing.grey-background {
+  .listing-wrapper>.listing {
     padding-top: 80px;
     padding-bottom: 80px;
   }
@@ -630,7 +631,6 @@
 
 .listing-wrapper {
   position: relative;
-  padding: 0;
   background-image: url('../../icons/Pattern.png');
   background-repeat: repeat;
   background-position: center bottom;
@@ -746,7 +746,8 @@
     padding: 8px 0;
   }
 
-  .listing-wrapper .listing [data-aue-model="listitem"] [data-aue-prop="description"], .listing-wrapper .listing [data-gen-model="listitem"] [data-gen-prop="description"] {
+  .listing-wrapper .listing [data-aue-model="listitem"] [data-aue-prop="description"],
+  .listing-wrapper .listing [data-gen-model="listitem"] [data-gen-prop="description"] {
     padding-right: 40px;
     font-size: 16px;
     line-height: 24px;
@@ -786,8 +787,3 @@
     height: 32px;
   }
 }
-
-
-
-
-
