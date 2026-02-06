@@ -143,6 +143,8 @@ function initHistoryMilestonesSlider(block) {
   const yearsContainer = document.createElement('div');
   yearsContainer.className = 'historymilestones-nav-years';
 
+
+
   /* ---------- core slide function ---------- */
   const goToSlide = function (index) {
     let targetIndex = index;
@@ -158,6 +160,9 @@ function initHistoryMilestonesSlider(block) {
     yearButtons[targetIndex].classList.add('is-active');
 
     activeIndex = targetIndex;
+
+    // Sync mobile select
+    select.value = activeIndex;
   };
 
   /* ---------- year buttons ---------- */
@@ -212,6 +217,39 @@ function initHistoryMilestonesSlider(block) {
   nextButton.addEventListener('click', () => {
     goToSlide(activeIndex + 1);
   });
+
+  /* ---------- mobile navigation ---------- */
+  const mobileNav = document.createElement('div');
+  mobileNav.className = 'historymilestones-mobile-nav';
+
+  const mobileLabel = document.createElement('p');
+  mobileLabel.className = 'historymilestones-mobile-label';
+  mobileLabel.textContent = 'Select Year';
+  mobileNav.appendChild(mobileLabel);
+
+  const mobileSelect = document.createElement('div');
+  mobileSelect.className = 'historymilestones-mobile-select-wrapper';
+
+  const select = document.createElement('select');
+  select.className = 'historymilestones-mobile-select';
+
+  yearButtons.forEach((btn, index) => {
+    const option = document.createElement('option');
+    option.value = index;
+    // Use the text from the span we created inside the button
+    const span = btn.querySelector('span');
+    option.textContent = span ? span.textContent : btn.textContent;
+    select.appendChild(option);
+  });
+
+  select.addEventListener('change', (e) => {
+    goToSlide(parseInt(e.target.value, 10));
+  });
+
+  mobileSelect.appendChild(select);
+  mobileNav.appendChild(mobileSelect);
+
+  section.insertBefore(mobileNav, section.querySelector('.historymilestones-wrapper'));
 
   const timeline = document.createElement('div');
   timeline.className = 'timeline';
