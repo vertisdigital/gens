@@ -132,6 +132,13 @@ export default function decorate(block) {
       container.appendChild(projectContainer);
     }
   });
+
+  // Add class for 2-column layout if there are only 2 items
+  const projectslistItems = container.querySelectorAll('.projectslistitem');
+  if (projectslistItems.length === 2 && gridView === 'grid-view') {
+    container.classList.add('grid-view-2-cols');
+  }
+
   // Replace original content
   wrapper.innerHTML = '';
   wrapper.appendChild(container);
