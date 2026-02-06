@@ -5,6 +5,108 @@ import stringToHTML from '../../shared-components/Utility.js';
  * Decorates the tiles block
  * @param {Element} block The tiles block element
  */
+/**
+ * Opens a modal with the provided data
+ * @param {Object} data Modal data
+ */
+function openModal(data) {
+  // Create modal elements
+  const overlay = document.createElement('div');
+  overlay.className = 'tiles-modal-overlay';
+  overlay.style.zIndex = '1000000'; // Ensure it's on top
+
+  const content = document.createElement('div');
+  content.className = 'tiles-modal-content';
+
+  const closeBtn = document.createElement('span');
+  closeBtn.className = 'tiles-modal-close';
+  const closeIcon = SvgIcon({
+    name: 'close',
+    className: 'close-icon',
+    size: '24',
+    color: '#000',
+  });
+  closeBtn.innerHTML = stringToHTML(closeIcon).outerHTML;
+
+  closeBtn.onclick = () => {
+    document.body.removeChild(overlay);
+    document.body.style.overflow = '';
+  };
+
+  const body = document.createElement('div');
+  body.className = 'tiles-modal-body';
+
+  // Modal Content Structure
+  if (data.image) {
+    const imgContainer = document.createElement('div');
+    imgContainer.className = 'modal-image-container';
+    const img = document.createElement('img');
+    img.src = data.image;
+    imgContainer.appendChild(img);
+    body.appendChild(imgContainer);
+  }
+
+  const textContainer = document.createElement('div');
+  textContainer.className = 'modal-text-container';
+
+  if (data.title) {
+    const title = document.createElement('h3');
+    title.className = 'modal-title';
+    title.textContent = data.title;
+    textContainer.appendChild(title);
+  }
+
+  if (data.description) {
+    const desc = document.createElement('div');
+    desc.className = 'modal-description';
+    desc.innerHTML = data.description;
+    textContainer.appendChild(desc);
+  }
+
+  if (data.filepath) {
+    const link = document.createElement('a');
+    link.href = data.filepath;
+    link.target = '_blank';
+    link.className = 'modal-download-link';
+
+    // Create text span
+    const textSpan = document.createElement('span');
+    textSpan.textContent = 'Download';
+    link.appendChild(textSpan);
+
+    // Add download icon
+    const downloadIcon = SvgIcon({
+      name: 'downloadGold',
+      className: 'download-icon',
+      size: '24',
+      color: '#8D713E',
+    });
+
+    if (downloadIcon) {
+      link.appendChild(stringToHTML(downloadIcon));
+    }
+
+    textContainer.appendChild(link);
+  }
+
+  body.appendChild(textContainer);
+
+  content.appendChild(closeBtn);
+  content.appendChild(body);
+  overlay.appendChild(content);
+
+  // Close modal when clicking outside content
+  overlay.onclick = (e) => {
+    if (e.target === overlay) {
+      document.body.removeChild(overlay);
+      document.body.style.overflow = '';
+    }
+  };
+
+  document.body.appendChild(overlay);
+  document.body.style.overflow = 'hidden';
+}
+
 export default function decorate(block) {
   block.classList.add('fade-item');
   // Add container wrappers for each breakpoint
@@ -264,7 +366,7 @@ export default function decorate(block) {
 
   // Handle open-as-modal functionality
   if (isOpenAsModal) {
-    const tilesWithData = block.querySelectorAll('.image-tile .tiles-nested-image');
+
     // Note: .tiles-nested-image is the tile class based on earlier logic
     // But we need the element that has dataset.
 
@@ -284,90 +386,4 @@ export default function decorate(block) {
   }
 }
 
-function openModal(data) {
-  // Create modal elements
-  const overlay = document.createElement('div');
-  overlay.className = 'tiles-modal-overlay';
-  overlay.style.zIndex = '1000000'; // Ensure it's on top
 
-  const content = document.createElement('div');
-  content.className = 'tiles-modal-content';
-  content.style.marginBottom = '0'; // Reset styling
-
-  const closeBtn = document.createElement('span');
-  closeBtn.className = 'tiles-modal-close';
-  closeBtn.innerHTML = '&times';
-  closeBtn.onclick = () => {
-    document.body.removeChild(overlay);
-    document.body.style.overflow = '';
-  };
-
-  const body = document.createElement('div');
-  body.className = 'tiles-modal-body';
-  body.style.display = 'flex';
-  body.style.flexDirection = 'column';
-  body.style.gap = '20px';
-
-  // Modal Content Structure
-  if (data.image) {
-    const img = document.createElement('img');
-    img.src = data.image;
-    img.style.width = '100%';
-    img.style.height = 'auto';
-    img.style.borderRadius = '4px';
-    body.appendChild(img);
-  }
-
-  const textContainer = document.createElement('div');
-  textContainer.className = 'modal-text-container';
-
-  if (data.title) {
-    const title = document.createElement('h3');
-    title.textContent = data.title;
-    title.style.marginBottom = '10px';
-    // Basic styling matching brand if possible, or generic
-    title.style.color = '#333';
-    textContainer.appendChild(title);
-  }
-
-  if (data.description) {
-    const desc = document.createElement('div');
-    desc.innerHTML = data.description;
-    desc.style.color = '#666';
-    desc.style.marginBottom = '20px';
-    textContainer.appendChild(desc);
-  }
-
-  if (data.filepath) {
-    const link = document.createElement('a');
-    link.href = data.filepath;
-    link.target = '_blank';
-    link.textContent = data.downloadText || 'Download';
-    link.style.display = 'inline-block';
-    link.style.marginTop = '10px';
-    link.className = 'button primary'; // Use global button class if available
-    // Fallback styling
-    link.style.textDecoration = 'none';
-    link.style.color = 'var(--primary-gold, #c6a87c)';
-    link.style.fontWeight = 'bold';
-
-    textContainer.appendChild(link);
-  }
-
-  body.appendChild(textContainer);
-
-  content.appendChild(closeBtn);
-  content.appendChild(body);
-  overlay.appendChild(content);
-
-  // Close modal when clicking outside content
-  overlay.onclick = (e) => {
-    if (e.target === overlay) {
-      document.body.removeChild(overlay);
-      document.body.style.overflow = '';
-    }
-  };
-
-  document.body.appendChild(overlay);
-  document.body.style.overflow = 'hidden';
-}

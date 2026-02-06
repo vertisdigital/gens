@@ -281,6 +281,17 @@
     .tab-panel.historymilestones-container {
         padding-bottom: 40px;
     }
+    .historymilestones-image{
+        margin-bottom: 8px;
+    }
+    .historymilestones-description{
+        font-size: 16px;
+        line-height: 24px;
+    }
+    .historymilestones-cta{
+        width: 32px;
+        height: 32px;
+    }
 }
 
 @media (width >= 768px) and (width < 1024px) {
@@ -312,7 +323,7 @@
     }
     .historymilestones-image {
         width: 100%;
-        margin-bottom: 16px;
+        margin-bottom: 24px;
     }
     .historymilestones-image img {
         width: 100%;

@@ -13,8 +13,7 @@
    RESET – all content inherits color from wrapper
    ========================================================= */
 
-.textblock :is(
-  p,
+.textblock :is(p,
   span,
   strong,
   em,
@@ -34,8 +33,7 @@
   h3,
   h4,
   h5,
-  h6
-) {
+  h6) {
   color: inherit;
 
   /* H2/Regular */
@@ -155,8 +153,8 @@
 .textblock h4,
 .textblock h5,
 .textblock h6 {
-  margin-top: 0;
-  margin-bottom: 40px;
+  margin-top: 0.3em;
+  margin-bottom: 0.3em;
 }
 
 /* =========================================================
@@ -196,42 +194,48 @@
   white-space: pre;
 }
 
-@media (width <= 1199px) {
+@media (width <=1199px) {
   .columns .textblock h2 {
     font-size: var(--typography-font-size-text-xl, 36px);
-    line-height: var(--typography-font-line-height-leading-7, 56px); /* 157.143% */
+    line-height: var(--typography-font-line-height-leading-7, 56px);
+    /* 157.143% */
     letter-spacing: var(--typography-font-spacing-tracking-normal, 0);
   }
 
   .columns .textblock h6 {
     font-size: var(--typography-font-size-text-base, 16px);
-    line-height: var(--typography-font-line-height-leading-3, 24px); /* 150% */
+    line-height: var(--typography-font-line-height-leading-3, 24px);
+    /* 150% */
     letter-spacing: var(--typography-font-spacing-tracking-normal, 0);
   }
 }
 
-@media (width <= 767px) {
+@media (width <=767px) {
   .columns .textblock h2 {
     font-size: var(--typography-font-size-text-m, 28px);
-    line-height: var(--typography-font-line-height-leading-5, 44px); /* 157.143% */
+    line-height: var(--typography-font-line-height-leading-5, 44px);
+    /* 157.143% */
     letter-spacing: var(--typography-font-spacing-tracking-normal, 0);
   }
 
   .columns .textblock h6 {
     font-size: var(--typography-font-size-text-base, 16px);
-    line-height: var(--typography-font-line-height-leading-3, 24px); /* 150% */
+    line-height: var(--typography-font-line-height-leading-3, 24px);
+    /* 150% */
     letter-spacing: var(--typography-font-spacing-tracking-normal, 0);
   }
 }
 
-@media (width >= 567px) {
+@media (width >=567px) {
+
   .textblock code,
   .textblock pre {
     font-size: var(--font-size-xxs);
   }
 }
 
-@media (width >= 900px) {
+@media (width >=900px) {
+
   .textblock code,
   .textblock pre {
     font-size: var(--font-size-xs);

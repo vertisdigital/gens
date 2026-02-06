@@ -967,5 +967,9 @@ main::before {
   }
 }
 
+picture{
+  display: block;
+  line-height: 0;
+}
 
 

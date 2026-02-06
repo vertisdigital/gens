@@ -1,23 +1,8 @@
 import { getMetadata } from '../../scripts/aem.js';
 import { loadFragment } from '../fragment/fragment.js';
 import SVGIcon from '../../shared-components/SvgIcon.js';
-import { isMobile } from '../../shared-components/Utility.js';
 
-const handleAccordionToggle = (e, keyboardTrigger = false) => {
-  if (e?.target?.classList?.contains('links-heading') || e?.target?.classList?.contains('footer-nav-title') || (keyboardTrigger && e?.target?.classList?.contains('collapsible-links'))) {
-    const currentActive = document.querySelector('.collapsible-links.active');
-    if (currentActive !== e.currentTarget) {
-      currentActive?.classList?.remove('active');
-      currentActive?.setAttribute('aria-expanded', 'false');
-      e.currentTarget.classList.add('active');
-      e.currentTarget?.setAttribute('aria-expanded', 'true');
-      return;
-    }
-    const isActive = e.currentTarget.classList.contains('active');
-    e.currentTarget.classList.toggle('active');
-    e.currentTarget?.setAttribute('aria-expanded', !isActive);
-  }
-};
+
 
 /**
  * loads and decorates the footer
@@ -374,7 +359,6 @@ export default async function decorate(block) {
 
     // Update the handleLayout function
     const handleLayout = () => {
-      const isDesktop = window.innerWidth > 1024;
       const existingRightSection = mainContainer.querySelector('.right-section');
 
       if (!existingRightSection) {

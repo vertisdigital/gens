@@ -14,7 +14,7 @@ function initTextLazyFadeIn() {
       });
     },
     {
-      threshold: 0.2,
+      threshold: 0,
       rootMargin: '0px 0px -40px 0px',
     }
   );
