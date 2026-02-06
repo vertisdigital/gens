@@ -11,6 +11,8 @@
 
   .textmediablock-container>div:nth-child(2) {
     margin-bottom: 80px;
+    padding-bottom: 0;
+    padding-top: 0;
   }
 
   .text-section p {
@@ -56,6 +58,8 @@
   .textblock {
     display: flex;
     gap: 36px;
+    padding-top: 80px;
+    padding-bottom: 24px;
   }
 
   .textblock .heading {
