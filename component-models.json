@@ -2411,20 +2411,20 @@
         "valueType": "string",
         "value": "",
         "validation": {
-          "maxLength": 60,
           "required": true,
-          "customErrorMsg": "Name is required and cannot exceed 60 characters"
-        }
+          "customErrorMsg": "Name is required"
+        },
+        "description": "Recommended length: 60 characters"
       },
       {
         "component": "text",
         "name": "designation",
         "label": "Designation",
         "validation": {
-          "maxLength": 50,
           "required": true,
-          "customErrorMsg": "Designation is required and cannot exceed 50 characters"
-        }
+          "customErrorMsg": "Designation is required"
+        },
+        "description": "Recommended length: 50 characters"
       },
       {
         "component": "tab",
@@ -2436,10 +2436,7 @@
         "name": "description",
         "label": "Description",
         "valueType": "string",
-        "validation": {
-          "maxLength": 2500,
-          "customErrorMsg": "Description cannot exceed 2500 characters"
-        }
+        "description": "Recommended length: 2500 characters"
       }
     ]
   },
