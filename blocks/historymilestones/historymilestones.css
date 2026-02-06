@@ -29,7 +29,8 @@
     gap: 32px;
     flex-wrap: nowrap;
     position: relative;
-    padding-top: 16px;
+    padding-top: 23px;
+    /* Increased by 7px to accommodate larger icon */
     overflow-x: auto;
     overflow-y: hidden;
     -webkit-overflow-scrolling: touch;
@@ -42,7 +43,8 @@
     position: absolute;
     left: 0;
     right: 0;
-    top: 57px;
+    top: 64px;
+    /* Moved down 7px to match new padding */
     height: 0;
     border-top: 1px dotted #d9dbdb;
     pointer-events: none;
@@ -129,10 +131,33 @@
 .historymilestones-nav-year.is-active {
     color: #bc9f6b;
     font-weight: 700;
+    margin-top: 0;
 }
 
+/* Hide dot when active */
 .historymilestones-nav-year.is-active::before {
-    background-color: #bc9f6b;
+    display: none;
+}
+
+/* Icon styles */
+.historymilestones-nav-icon {
+    display: none;
+    width: 32px;
+    height: 32px;
+    flex-shrink: 0;
+    align-items: center;
+    justify-content: center;
+    color: #C8AB4B;
+    margin: 7px 0 -7px 0;
+}
+
+.historymilestones-nav-icon svg {
+    width: 100%;
+    height: 100%;
+}
+
+.historymilestones-nav-year.is-active .historymilestones-nav-icon {
+    display: flex;
 }
 
 .historymilestones-wrapper {
@@ -147,7 +172,7 @@
     display: none;
 }
 
-.historymilestones-wrapper.no-border{
+.historymilestones-wrapper.no-border {
     margin-bottom: 0px;
 }
 
@@ -160,7 +185,7 @@
     display: none;
 }
 
-.historymilestones-year > div:first-child {
+.historymilestones-year>div:first-child {
     color: var(--primary-gold);
     font-size: 28px;
     font-style: normal;
@@ -169,13 +194,15 @@
     letter-spacing: -0.5px;
     margin-bottom: 8px;
 }
-.historymilestones-year > div:last-child {
+
+.historymilestones-year>div:last-child {
     color: var(--body-text-color);
     font-size: 14px;
     font-weight: 400;
     line-height: 22px;
     margin-bottom: 18px;
 }
+
 .historymilestones-milestones {
     display: flex;
     flex-direction: column;
@@ -184,10 +211,11 @@
     width: 100%;
 }
 
-.historymilestones-wrapper:last-child .historymilestones-milestones::after ,
+.historymilestones-wrapper:last-child .historymilestones-milestones::after,
 .historymilestones-wrapper.no-border .historymilestones-milestones::after {
     display: none;
 }
+
 .historymilestones-milestone {
     display: flex;
     flex-direction: column;
@@ -227,7 +255,7 @@
     letter-spacing: 0.5px;
 }
 
-.historymilestones-date p{
+.historymilestones-date p {
     margin: 0;
     padding: 0;
 }
@@ -242,7 +270,7 @@
     margin-bottom: 24px;
 }
 
-.historymilestones-description p{
+.historymilestones-description p {
     margin: 0;
     padding: 0;
 }
@@ -281,20 +309,23 @@
     .tab-panel.historymilestones-container {
         padding-bottom: 40px;
     }
-    .historymilestones-image{
+
+    .historymilestones-image {
         margin-bottom: 8px;
     }
-    .historymilestones-description{
+
+    .historymilestones-description {
         font-size: 16px;
         line-height: 24px;
     }
-    .historymilestones-cta{
+
+    .historymilestones-cta {
         width: 32px;
         height: 32px;
     }
 }
 
-@media (width >= 768px) and (width < 1024px) {
+@media (width >=768px) and (width < 1024px) {
     .tab-panel.historymilestones-container {
         padding-top: 13px;
         padding-bottom: 64px;
@@ -311,7 +342,8 @@
         flex-direction: column;
         row-gap: 40px;
     }
-    .historymilestones-milestones > div {
+
+    .historymilestones-milestones>div {
         width: 100%;
     }
 
@@ -321,52 +353,63 @@
         align-items: flex-start;
         gap: 0;
     }
+
     .historymilestones-image {
         width: 100%;
         margin-bottom: 24px;
     }
+
     .historymilestones-image img {
         width: 100%;
         height: auto;
         object-fit: cover;
         aspect-ratio: 519 / 292;
     }
+
     .historymilestones-content {
         width: 100%;
         display: flex;
         flex-direction: column;
         align-items: flex-start;
     }
+
     .historymilestones-date,
     .historymilestones-description {
         width: 100%;
     }
+
     .historymilestones-date {
         font-size: 14px;
         line-height: 20px;
         margin-bottom: 8px;
     }
+
     .historymilestones-description {
         font-size: 16px;
         line-height: 24px;
         margin-bottom: 16px;
     }
+
     .historymilestones-cta {
         align-self: flex-start;
     }
-    .historymilestones-year > div:first-child {
+
+    .historymilestones-year>div:first-child {
         font-size: 32px;
         line-height: 42px;
         margin-bottom: 11px;
     }
-    .historymilestones-year > div:last-child {
+
+    .historymilestones-year>div:last-child {
         margin-bottom: 41px;
     }
+
     .historymilestones-container .loadmore-wrapper {
         margin-top: -48px;
     }
 }
-@media (width >= 1024px) {
+
+@media (width >=1024px) {
     .tab-panel.historymilestones-container {
         padding-top: 32px;
         padding-bottom: 80px;
@@ -380,18 +423,22 @@
         flex-direction: row;
         row-gap: 0px;
     }
+
     .historymilestones-year {
         flex: 0 0 33.3333%;
         padding-right: 24px;
     }
-    .historymilestones-year > div:first-child {
+
+    .historymilestones-year>div:first-child {
         font-size: 40px;
         line-height: 50px;
         margin-bottom: 9px;
     }
-    .historymilestones-year > div:last-child {
+
+    .historymilestones-year>div:last-child {
         margin-bottom: 0;
     }
+
     .historymilestones-milestones {
         padding-left: 24px;
         margin-left: -24px;
@@ -405,36 +452,43 @@
         align-items: center;
         gap: 32px;
     }
+
     .historymilestones-image {
         flex: 0 0 45%;
         width: 45%;
         margin-bottom: 0;
     }
+
     .historymilestones-image img {
         object-fit: cover;
         width: 100%;
         height: auto;
     }
+
     .historymilestones-content {
         flex: 1;
         display: flex;
         flex-direction: column;
         align-items: flex-start;
     }
+
     .historymilestones-date,
     .historymilestones-description {
         width: 100%;
     }
+
     .historymilestones-date {
         font-size: 14px;
         line-height: 20px;
         margin-bottom: 8px;
     }
+
     .historymilestones-description {
         font-size: 18px;
         line-height: 28px;
         letter-spacing: 0;
     }
+
     .historymilestones-container .loadmore-wrapper {
         margin-top: -64px;
     }
