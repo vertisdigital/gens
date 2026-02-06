@@ -85,89 +85,158 @@ export default function decorate(block) {
   const cards = cardsGridContainer.querySelectorAll('.awardsgallery-card');
   const cardCount = cards.length;
 
-  // Only show arrows if there are more than 3 items (4 or more)
-  if (cardCount > 3) {
-    // ----- create carousel buttons -----
-    const prevBtn = document.createElement('button');
-    const nextBtn = document.createElement('button');
+  // Add class for 2-column layout if there are only 2 cards
+  if (cardCount === 2) {
+    cardsGridContainer.classList.add('awardsgallery-grid-2-cols');
+  }
 
-    prevBtn.className = 'awardsgallery-arrow prev';
-    nextBtn.className = 'awardsgallery-arrow next';
+  // Add class to center the grid if there's only 1 card
+  if (cardCount === 1) {
+    cardsGridContainer.classList.add('awardsgallery-grid-center');
+  }
 
-    prevBtn.setAttribute('aria-label', 'Previous');
-    nextBtn.setAttribute('aria-label', 'Next');
+  // Always create carousel buttons
+  const prevBtn = document.createElement('button');
+  const nextBtn = document.createElement('button');
 
-    // Add circular button with arrow SVG
-    const nextArrowIcon = SvgIcon({
-      name: 'chevronRight',
-      size: '24'
+  prevBtn.className = 'awardsgallery-arrow prev';
+  nextBtn.className = 'awardsgallery-arrow next';
+
+  // Hide arrows on desktop if there are 3 or fewer cards
+  // They will still be visible on tablet and mobile via CSS
+  if (cardCount <= 3) {
+    prevBtn.classList.add('hide-on-desktop');
+    nextBtn.classList.add('hide-on-desktop');
+  }
+
+  // Hide arrows on tablet and mobile if there's only 1 card
+  if (cardCount === 1) {
+    prevBtn.classList.add('hide-on-tablet-mobile');
+    nextBtn.classList.add('hide-on-tablet-mobile');
+  }
+
+  prevBtn.setAttribute('aria-label', 'Previous');
+  nextBtn.setAttribute('aria-label', 'Next');
+
+  // Add circular button with arrow SVG
+  const nextArrowIcon = SvgIcon({
+    name: 'chevronRight',
+    size: '24'
+  });
+
+  const preArrowIcon = SvgIcon({
+    name: 'chevronLeft',
+    size: '24'
+  });
+
+  prevBtn.innerHTML = preArrowIcon;
+  nextBtn.innerHTML = nextArrowIcon;
+
+  awardsGalleryContainer.appendChild(prevBtn);
+  awardsGalleryContainer.appendChild(nextBtn);
+
+  // Function to update button states based on scroll position
+  const updateButtonStates = () => {
+    const scrollLeft = cardsGridContainer.scrollLeft;
+    const scrollWidth = cardsGridContainer.scrollWidth;
+    const clientWidth = cardsGridContainer.clientWidth;
+    const scrollThreshold = 1; // Small threshold for comparison
+
+    // Only update if we have valid dimensions
+    if (scrollWidth === 0 || clientWidth === 0) {
+      return;
+    }
+
+    // Disable prev button if at the start
+    if (scrollLeft <= scrollThreshold) {
+      prevBtn.disabled = true;
+      prevBtn.setAttribute('aria-disabled', 'true');
+    } else {
+      prevBtn.disabled = false;
+      prevBtn.setAttribute('aria-disabled', 'false');
+    }
+
+    // Disable next button if at the end
+    // Check if content is scrollable (scrollWidth > clientWidth)
+    if (scrollWidth <= clientWidth || scrollLeft + clientWidth >= scrollWidth - scrollThreshold) {
+      nextBtn.disabled = true;
+      nextBtn.setAttribute('aria-disabled', 'true');
+    } else {
+      nextBtn.disabled = false;
+      nextBtn.setAttribute('aria-disabled', 'false');
+    }
+  };
+
+  // Set initial scroll position to 0 to ensure first card is visible
+  cardsGridContainer.scrollLeft = 0;
+  
+  // Initial button state - wait for layout to be calculated
+  // Use requestAnimationFrame to ensure layout is complete
+  requestAnimationFrame(() => {
+    // Double RAF to ensure layout is fully calculated
+    requestAnimationFrame(() => {
+      updateButtonStates();
     });
+  });
 
-    const preArrowIcon = SvgIcon({
-      name: 'chevronLeft',
-      size: '24'
+  // Scroll logic
+  const scrollAmount = () => {
+    const card = cardsGridContainer.querySelector('.awardsgallery-card');
+    return (card?.offsetWidth || 0) + 24;
+  };
+
+  prevBtn.addEventListener('click', () => {
+    cardsGridContainer.scrollBy({
+      left: -scrollAmount(),
+      behavior: 'smooth',
     });
+  });
 
-    prevBtn.innerHTML = preArrowIcon;
-    nextBtn.innerHTML = nextArrowIcon;
+  nextBtn.addEventListener('click', () => {
+    cardsGridContainer.scrollBy({
+      left: scrollAmount(),
+      behavior: 'smooth',
+    });
+  });
 
-    awardsGalleryContainer.appendChild(prevBtn);
-    awardsGalleryContainer.appendChild(nextBtn);
+  // Update button states on scroll
+  cardsGridContainer.addEventListener('scroll', updateButtonStates);
 
-    // Function to update button states based on scroll position
-    const updateButtonStates = () => {
-      const scrollLeft = cardsGridContainer.scrollLeft;
-      const scrollWidth = cardsGridContainer.scrollWidth;
-      const clientWidth = cardsGridContainer.clientWidth;
-      const scrollThreshold = 1; // Small threshold for comparison
-
-      // Disable prev button if at the start
-      if (scrollLeft <= scrollThreshold) {
-        prevBtn.disabled = true;
-        prevBtn.setAttribute('aria-disabled', 'true');
-      } else {
-        prevBtn.disabled = false;
-        prevBtn.setAttribute('aria-disabled', 'false');
-      }
-
-      // Disable next button if at the end
-      if (scrollLeft + clientWidth >= scrollWidth - scrollThreshold) {
-        nextBtn.disabled = true;
-        nextBtn.setAttribute('aria-disabled', 'true');
-      } else {
-        nextBtn.disabled = false;
-        nextBtn.setAttribute('aria-disabled', 'false');
-      }
-    };
-
-    // Initial button state
-    updateButtonStates();
-
-    // Scroll logic
-    const scrollAmount = () => {
-      const card = cardsGridContainer.querySelector('.awardsgallery-card');
-      return (card?.offsetWidth || 0) + 24;
-    };
-
-    prevBtn.addEventListener('click', () => {
-      cardsGridContainer.scrollBy({
-        left: -scrollAmount(),
-        behavior: 'smooth',
+  // Update button states on window resize and reset scroll position
+  window.addEventListener('resize', () => {
+    // Reset scroll to start on resize to ensure first card is visible
+    cardsGridContainer.scrollLeft = 0;
+    // Wait for layout recalculation after resize
+    requestAnimationFrame(() => {
+      requestAnimationFrame(() => {
+        updateButtonStates();
       });
     });
+  });
 
-    nextBtn.addEventListener('click', () => {
-      cardsGridContainer.scrollBy({
-        left: scrollAmount(),
-        behavior: 'smooth',
-      });
+  // Also update button states after images load (they might affect scroll width)
+  const images = cardsGridContainer.querySelectorAll('img');
+  if (images.length > 0) {
+    let loadedCount = 0;
+    images.forEach((img) => {
+      if (img.complete) {
+        loadedCount++;
+        if (loadedCount === images.length) {
+          requestAnimationFrame(() => {
+            updateButtonStates();
+          });
+        }
+      } else {
+        img.addEventListener('load', () => {
+          loadedCount++;
+          if (loadedCount === images.length) {
+            requestAnimationFrame(() => {
+              updateButtonStates();
+            });
+          }
+        });
+      }
     });
-
-    // Update button states on scroll
-    cardsGridContainer.addEventListener('scroll', updateButtonStates);
-
-    // Update button states on window resize
-    window.addEventListener('resize', updateButtonStates);
   }
 
   // Clear original block content and append new structure
