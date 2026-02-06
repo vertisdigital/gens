@@ -1,3 +1,3 @@
-export default function decorate(_block) {
+export default function decorate() {
     // minimal block to prevent 404 errors
 }
