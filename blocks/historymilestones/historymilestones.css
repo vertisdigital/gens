@@ -267,7 +267,6 @@
     line-height: 40px;
     font-family: var(--body-font-family, 'Instrument Sans', sans-serif);
     letter-spacing: 0;
-    margin-bottom: 24px;
 }
 
 .historymilestones-description p {
@@ -284,6 +283,7 @@
     flex-shrink: 0;
     transition: opacity 0.2s ease;
     position: relative;
+    margin-top: 24px;
 }
 
 .historymilestones-cta:hover {
@@ -385,9 +385,8 @@
     }
 
     .historymilestones-description {
-        font-size: 16px;
-        line-height: 24px;
-        margin-bottom: 16px;
+        font-size: 24px;
+        line-height: 40px;
     }
 
     .historymilestones-cta {
