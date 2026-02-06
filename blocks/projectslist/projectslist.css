@@ -23,6 +23,10 @@ p {
     gap: 24px;
 }
 
+.projectslist .grid-view.grid-view-2-cols {
+    grid-template-columns: repeat(2, 1fr);
+}
+
 .projectslistitem {
     padding-top: 80px;
     padding-bottom: 80px;
@@ -44,6 +48,11 @@ p {
 
 .projectslist .grid-view .projectslistitem.odd-projectslistitem {
     background-color: var(--color-bg-white);
+}
+
+.projectslist .grid-view.grid-view-2-cols .projectslistitem {    
+    margin-bottom: 64px;
+    padding-bottom: 0;
 }
 
 .left-col {
@@ -114,7 +123,6 @@ p {
 }
 
 .project-cta a.button:any-link{
-    position: absolute;
     display: flex;
     align-items: center;
     justify-content: center;
