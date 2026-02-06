@@ -2053,9 +2053,8 @@
         "name": "year",
         "label": "Year",
         "validation": {
-          "maxLength": 4,
-          "pattern": "^[0-9]{4}$",
-          "customErrorMsg": "Please enter a valid year (e.g., 2024)"
+          "maxLength": 10,
+          "customErrorMsg": "Year or Label cannot exceed 10 characters"
         }
       },
       {
