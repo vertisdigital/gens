@@ -5,7 +5,7 @@
   overflow: hidden;
   padding-bottom: var(--spacing-20, 80px);
 
-  min-height: 813px;
+  min-height: min(813px, 100vh);
   display: flex;
   max-width: 2560px;
   margin: auto;
