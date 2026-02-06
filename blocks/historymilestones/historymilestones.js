@@ -67,6 +67,7 @@ function initHistoryMilestonesSlider(block) {
 
   let activeIndex = 0;
   let yearButtons = [];
+  let select;
 
   wrappers.forEach((wrapper, index) => {
     wrapper.classList.add('historymilestones-slide');
@@ -230,7 +231,7 @@ function initHistoryMilestonesSlider(block) {
   const mobileSelect = document.createElement('div');
   mobileSelect.className = 'historymilestones-mobile-select-wrapper';
 
-  const select = document.createElement('select');
+  select = document.createElement('select');
   select.className = 'historymilestones-mobile-select';
 
   yearButtons.forEach((btn, index) => {

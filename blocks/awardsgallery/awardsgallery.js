@@ -169,7 +169,7 @@ export default function decorate(block) {
 
   // Set initial scroll position to 0 to ensure first card is visible
   cardsGridContainer.scrollLeft = 0;
-  
+
   // Initial button state - wait for layout to be calculated
   // Use requestAnimationFrame to ensure layout is complete
   requestAnimationFrame(() => {
@@ -220,7 +220,7 @@ export default function decorate(block) {
     let loadedCount = 0;
     images.forEach((img) => {
       if (img.complete) {
-        loadedCount++;
+        loadedCount += 1;
         if (loadedCount === images.length) {
           requestAnimationFrame(() => {
             updateButtonStates();
@@ -228,7 +228,7 @@ export default function decorate(block) {
         }
       } else {
         img.addEventListener('load', () => {
-          loadedCount++;
+          loadedCount += 1;
           if (loadedCount === images.length) {
             requestAnimationFrame(() => {
               updateButtonStates();
