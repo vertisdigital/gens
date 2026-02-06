@@ -706,6 +706,9 @@ function initializeHeader(header) {
       window.location.reload()
     }
   });
+
+  // Set active link on load
+  setActiveLink(header);
 }
 
 /**
@@ -798,20 +801,76 @@ export default async function decorate(block) {
     isHeaderFixed = false;
   }
   window.addEventListener('click', (event) => {
-    const excludedSelectors = [
-      '.header-inner-wrapper .columns-wrapper',
-      '.secondary-nav',
-      '.secondary-header-links',
-    ];
-    const isExcluded = excludedSelectors.some((selector) => {
-      const element = document.querySelector(selector);
-      return element && element.contains(event.target);
-    });
-    if (isExcluded) {
-      return;
+    if (!event.target.matches('.search-input') && !event.target.matches('.search-btn')) {
+      const searchBox = document.querySelector('.search-suggestion-box');
+      if (searchBox && searchBox.classList.contains('active')) {
+        searchBox.classList.remove('active');
+        document.querySelector('.search-btn')?.classList.remove('close-search-btn');
+      }
     }
-    document.querySelectorAll('.nav-item, .secondary-nav').forEach((el) => {
-      el.classList.remove('active');
-    });
   });
 }
+
+/**
+ * Sets the active class on the current nav item based on URL
+ * @param {Element} header Header element
+ */
+function setActiveLink(header) {
+  const currentPath = window.location.pathname;
+  const navItems = header.querySelectorAll('.nav-item');
+
+  navItems.forEach((item) => {
+    // Check all links inside this nav item (including sub-links)
+    const links = item.querySelectorAll('a');
+    let isActive = false;
+
+    // Filter out empty hrefs or hash links
+    const validLinks = Array.from(links).filter(link => {
+      const href = link.getAttribute('href');
+      return href && href !== '#' && !href.startsWith('javascript:');
+    });
+
+    // Helper to get pathname from a link element
+    const getLinkPath = (link) => {
+      try {
+        // use link.href property (always absolute) to create URL object, then get pathname
+        return new URL(link.href).pathname;
+      } catch (e) {
+        // Fallback to attribute if URL parsing fails (unlikely for valid http links)
+        return link.getAttribute('href');
+      }
+    };
+
+    // 1. Check for exact match first
+    isActive = validLinks.some(link => {
+      if (getLinkPath(link) === currentPath) {
+        link.classList.add('active-sub-link');
+        return true;
+      }
+      return false;
+    });
+
+    // 2. If no exact match, check for hierarchy
+    if (!isActive) {
+      isActive = validLinks.some(link => {
+        const linkPath = getLinkPath(link);
+        // Only consider hierarchy if the link path is substantial
+        if (!linkPath || linkPath === '/' || linkPath.length <= 1) return false;
+
+        // Check if current path starts with link path
+        // Add trailing slash to ensure we don't match partial words (e.g. /about vs /about-us)
+        // unless the link path itself ends with slash
+        const checkPath = linkPath.endsWith('/') ? linkPath : `${linkPath}/`;
+        // Also ensure currentPath is treated similarly for the check
+        const currentPathCheck = currentPath.endsWith('/') ? currentPath : `${currentPath}/`;
+
+        return currentPathCheck.startsWith(checkPath);
+      });
+    }
+
+    if (isActive) {
+      item.classList.add('current-nav-item');
+    }
+  });
+}
+

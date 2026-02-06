@@ -407,8 +407,17 @@ header .header {
   width: 14px;
 }
 
-.header-inner-wrapper .nav-item.active .primary-menu-links-heading svg {
+.header-inner-wrapper .nav-item.active .primary-menu-links-heading svg,
+.header-inner-wrapper .nav-item.current-nav-item .primary-menu-links-heading svg {
   filter: brightness(0) saturate(100%) invert(63%) sepia(22%) saturate(718%) hue-rotate(7deg) brightness(93%) contrast(88%);
+}
+
+.header-inner-wrapper .active-sub-link {
+  color: var(--primary-gold) !important;
+}
+
+.header-inner-wrapper .nav-item.current-nav-item .primary-menu-links-heading {
+  color: var(--primary-gold);
 }
 
 /* Active State */
