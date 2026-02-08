@@ -275,10 +275,9 @@
         "name": "title",
         "label": "Section Title",
         "validation": {
-          "maxLength": 35,
-          "required": true,
-          "customErrorMsg": "Section title is required and cannot exceed 35 characters"
-        }
+          "required": true
+        },
+        "description": "Section title is required and should not exceed 35 characters"
       }
     ]
   },
@@ -302,10 +301,7 @@
         "component": "text",
         "name": "tabtitle",
         "label": "Tab Title",
-        "validation": {
-          "maxLength": 50,
-          "customErrorMsg": "Tab Title cannot exceed 50 characters"
-        }
+        "description": "Tab Title should not exceed 50 characters"
       },
       {
         "component": "text",
@@ -415,28 +411,19 @@
         "component": "text",
         "name": "bannerheading",
         "label": "Banner Heading",
-        "validation": {
-          "maxLength": 100,
-          "customErrorMsg": "Banner Heading cannot exceed 100 characters"
-        }
+        "description": "Banner Heading should not exceed 100 characters"
       },
       {
         "component": "text",
         "name": "bannertitle",
         "label": "Banner Title",
-        "validation": {
-          "maxLength": 100,
-          "customErrorMsg": "Banner Title cannot exceed 100 characters"
-        }
+        "description": "Banner Title should not exceed 100 characters"
       },
       {
         "component": "text",
         "name": "bannerdescription",
         "label": "Banner Description",
-        "validation": {
-          "maxLength": 300,
-          "customErrorMsg": "Banner Description cannot exceed 250 characters"
-        }
+        "description": "Banner Description should not exceed 250 characters"
       },
       {
         "component": "aem-content",
@@ -544,10 +531,7 @@
         "component": "text",
         "name": "mastheadtitle",
         "label": "Masthead Title",
-        "validation": {
-          "maxLength": 100,
-          "customErrorMsg": "Masthead Title cannot exceed 100 characters"
-        }
+        "description": "Masthead Title should not exceed 100 characters"
       },
       {
         "component": "boolean",
@@ -560,10 +544,7 @@
         "component": "text",
         "name": "indicatortext",
         "label": "Scroll Indicator Text",
-        "validation": {
-          "maxLength": 50,
-          "customErrorMsg": "Scroll text cannot exceed 50 characters"
-        }
+        "description": "Scroll text should not exceed 50 characters"
       }
     ]
   },
@@ -574,19 +555,13 @@
         "component": "text",
         "name": "title",
         "label": "News Label",
-        "validation": {
-          "maxLength": 25,
-          "customErrorMsg": "News Label cannot exceed 25 characters"
-        }
+        "description": "News Label should not exceed 25 characters"
       },
       {
         "component": "text",
         "name": "description",
         "label": "Title",
-        "validation": {
-          "maxLength": 60,
-          "customErrorMsg": "Title cannot exceed 60 characters"
-        }
+        "description": "Title should not exceed 60 characters"
       },
       {
         "component": "custom-asset-namespace:custom-asset",
@@ -655,33 +630,21 @@
         "component": "text",
         "name": "title",
         "label": "Section Name",
-        "description": "Section Name cannot exceed 35 characters",
-        "validation": {
-          "maxLength": 35,
-          "customErrorMsg": "Section Name cannot exceed 35 characters"
-        }
+        "description": "Section Name should not exceed 35 characters"
       },
       {
         "component": "text",
         "name": "heading",
         "label": "Title",
-        "description": "Title cannot exceed 100 characters",
-        "validation": {
-          "maxLength": 100,
-          "customErrorMsg": "Title cannot exceed 100 characters"
-        }
+        "description": "Title should not exceed 100 characters"
       },
       {
         "component": "richtext",
         "name": "sub-heading",
         "value": "",
         "label": "Description",
-        "description": "Description cannot exceed 500 characters",
-        "valueType": "string",
-        "validation": {
-          "maxLength": 500,
-          "customErrorMsg": "Description cannot exceed 500 characters"
-        }
+        "description": "Description should not exceed 500 characters",
+        "valueType": "string"
       },
       {
         "component": "select",
@@ -728,22 +691,14 @@
         "name": "feature-title",
         "value": "",
         "label": "Statistics Numbers",
-        "description": "Statistics Numbers cannot exceed 15 characters",
-        "valueType": "string",
-        "validation": {
-          "maxLength": 15,
-          "customErrorMsg": "Statistics Numbers cannot exceed 15 characters"
-        }
+        "description": "Statistics Numbers should not exceed 15 characters",
+        "valueType": "string"
       },
       {
         "component": "richtext",
         "name": "feature-heading",
         "label": "Text",
-        "description": "Text should be between 5 and 100 characters",
-        "validation": {
-          "maxLength": 100,
-          "customErrorMsg": "Text should be between 5 and 100 characters"
-        }
+        "description": "Text should be between 5 and 100 characters"
       }
     ]
   },
@@ -754,33 +709,21 @@
         "component": "text",
         "name": "label",
         "label": "Label",
-        "description": "Label cannot exceed 24 characters, recommended to keep it 10-20 characters",
-        "validation": {
-          "maxLength": 24,
-          "customErrorMsg": "Label cannot exceed 24 characters, recommended to keep it 10-20 characters"
-        }
+        "description": "Label should not exceed 24 characters, recommended to keep it 10-20 characters"
       },
       {
         "component": "text",
         "name": "title",
         "label": "Title",
-        "description": "Title cannot exceed 80 characters, recommended to keep it 40-60 characters",
-        "validation": {
-          "maxLength": 80,
-          "customErrorMsg": "Title cannot exceed 80 characters, recommended to keep it 40-60 characters"
-        }
+        "description": "Title should not exceed 80 characters, recommended to keep it 40-60 characters"
       },
       {
         "component": "richtext",
         "name": "description",
         "value": "",
         "label": "Description",
-        "description": "Description cannot exceed 180 characters, recommended to keep it 80-120 characters",
-        "valueType": "string",
-        "validation": {
-          "maxLength": 180,
-          "customErrorMsg": "Description cannot exceed 180 characters, recommended to keep it 80-120 characters"
-        }
+        "description": "Description should not exceed 180 characters, recommended to keep it 80-120 characters",
+        "valueType": "string"
       },
       {
         "component": "select",
@@ -855,11 +798,7 @@
         "component": "text",
         "name": "linkText",
         "label": "Text",
-        "description": "Maximum allowed characters are 50 to support multiple variations/views, however author to decide the best view",
-        "validation": {
-          "maxLength": 50,
-          "customErrorMsg": "Maximum allowed characters are 50 to support multiple variations/views, however author to decide the best view"
-        }
+        "description": "Maximum allowed characters are 50 to support multiple variations/views, however author to decide the best view"
       },
       {
         "component": "text",
@@ -892,10 +831,9 @@
         "name": "title",
         "label": "Title",
         "validation": {
-          "minLength": 5,
-          "maxLength": 40,
-          "customErrorMsg": "Title must be between 5 and 40 characters"
-        }
+          "minLength": 5
+        },
+        "description": "Title must be between 5 and 40 characters"
       },
       {
         "component": "aem-content",
@@ -955,11 +893,7 @@
         "value": "",
         "label": "Description",
         "description": "Description must not exceed 500 characters",
-        "valueType": "string",
-        "validation": {
-          "maxLength": 500,
-          "customErrorMsg": "Description must not exceed 500 characters"
-        }
+        "valueType": "string"
       }
     ]
   },
@@ -991,19 +925,13 @@
         "component": "text",
         "name": "title",
         "label": "Section Name",
-        "validation": {
-          "maxLength": 50,
-          "customErrorMsg": "Section Name cannot exceed 50 characters"
-        }
+        "description": "Section Name should not exceed 50 characters"
       },
       {
         "component": "text",
         "name": "heading",
         "label": "Title",
-        "validation": {
-          "maxLength": 100,
-          "customErrorMsg": "Title cannot exceed 100 characters"
-        }
+        "description": "Title should not exceed 100 characters"
       }
     ]
   },
@@ -1031,10 +959,7 @@
         "component": "text",
         "name": "title",
         "label": "Report Name",
-        "validation": {
-          "maxLength": 60,
-          "customErrorMsg": "Report Name cannot exceed 60 characters"
-        }
+        "description": "Report Name should not exceed 60 characters"
       },
       {
         "component": "text",
@@ -1042,10 +967,7 @@
         "value": "",
         "label": "Description",
         "valueType": "string",
-        "validation": {
-          "maxLength": 250,
-          "customErrorMsg": "Description cannot exceed 250 characters"
-        }
+        "description": "Description should not exceed 250 characters"
       },
       {
         "component": "aem-content",
@@ -1105,19 +1027,13 @@
         "component": "text",
         "name": "title",
         "label": "Section Name",
-        "validation": {
-          "maxLength": 100,
-          "customErrorMsg": "Section Name cannot exceed 100 characters"
-        }
+        "description": "Section Name should not exceed 100 characters"
       },
       {
         "component": "text",
         "name": "heading",
         "label": "Section Title",
-        "validation": {
-          "maxLength": 100,
-          "customErrorMsg": "Section Title cannot exceed 100 characters"
-        }
+        "description": "Section Title should not exceed 100 characters"
       },
       {
         "component": "text",
@@ -1125,10 +1041,7 @@
         "value": "",
         "label": "Section Description",
         "valueType": "string",
-        "validation": {
-          "maxLength": 500,
-          "customErrorMsg": "Section Description cannot exceed 500 characters"
-        }
+        "description": "Section Description should not exceed 500 characters"
       }
     ]
   },
@@ -1168,10 +1081,7 @@
         "component": "text",
         "name": "projectTitle",
         "label": "Title",
-        "validation": {
-          "maxLength": 25,
-          "customErrorMsg": "Title cannot exceed 25 characters"
-        }
+        "description": "Title should not exceed 25 characters"
       },
       {
         "component": "select",
@@ -1193,10 +1103,7 @@
         "name": "location",
         "label": "Location/Description",
         "valueType": "string",
-        "validation": {
-          "maxLength": 500,
-          "customErrorMsg": "Location / Description cannot exceed 500 characters"
-        }
+        "description": "Location / Description should not exceed 500 characters"
       }
     ]
   },
@@ -1212,20 +1119,14 @@
         "component": "text",
         "name": "heading",
         "label": "Title",
-        "validation": {
-          "maxLength": 100,
-          "customErrorMsg": "Title cannot exceed 100 characters"
-        }
+        "description": "Title should not exceed 100 characters"
       },
       {
         "component": "text",
         "name": "description",
         "label": "Description",
         "valueType": "string",
-        "validation": {
-          "maxLength": 300,
-          "customErrorMsg": "Description cannot exceed 300 characters"
-        }
+        "description": "Description should not exceed 300 characters"
       },
       {
         "component": "tab",
@@ -1251,10 +1152,9 @@
         "label": "Phone Number",
         "validation": {
           "regExp": "^[+]?[0-9]{10,30}$",
-          "minLength": 10,
-          "maxLength": 30,
-          "customErrorMsg": "Phone Number must be between 10-30 digits and can only contain numbers and '+' symbol"
-        }
+          "minLength": 10
+        },
+        "description": "Phone Number must be between 10-30 digits and can only contain numbers and '+' symbol"
       },
       {
         "component": "tab",
@@ -1271,10 +1171,7 @@
             "component": "text",
             "name": "emailLabel1",
             "label": "Email Label",
-            "validation": {
-              "maxLength": 50,
-              "customErrorMsg": "Email Label cannot exceed 50 characters"
-            }
+            "description": "Email Label should not exceed 50 characters"
           },
           {
             "component": "custom-asset-namespace:custom-asset",
@@ -1295,10 +1192,9 @@
             "label": "Email Address",
             "validation": {
               "regExp": "^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,}$",
-              "minLength": 10,
-              "maxLength": 30,
-              "customErrorMsg": "Please enter a valid Email Address between 10-30 characters"
-            }
+              "minLength": 10
+            },
+            "description": "Please enter a valid Email Address between 10-30 characters"
           }
         ]
       },
@@ -1312,10 +1208,7 @@
             "component": "text",
             "name": "emailLabel2",
             "label": "Email Label",
-            "validation": {
-              "maxLength": 50,
-              "customErrorMsg": "Email Label cannot exceed 50 characters"
-            }
+            "description": "Email Label should not exceed 50 characters"
           },
           {
             "component": "custom-asset-namespace:custom-asset",
@@ -1336,10 +1229,9 @@
             "label": "Email Address",
             "validation": {
               "regExp": "^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,}$",
-              "minLength": 10,
-              "maxLength": 30,
-              "customErrorMsg": "Please enter a valid Email Address between 10-30 characters"
-            }
+              "minLength": 10
+            },
+            "description": "Please enter a valid Email Address between 10-30 characters"
           }
         ]
       },
@@ -1353,10 +1245,7 @@
             "component": "text",
             "name": "emailLabel3",
             "label": "Email Label",
-            "validation": {
-              "maxLength": 50,
-              "customErrorMsg": "Email Label cannot exceed 50 characters"
-            }
+            "description": "Email Label should not exceed 50 characters"
           },
           {
             "component": "custom-asset-namespace:custom-asset",
@@ -1377,10 +1266,9 @@
             "label": "Email Address",
             "validation": {
               "regExp": "^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,}$",
-              "minLength": 10,
-              "maxLength": 30,
-              "customErrorMsg": "Please enter a valid Email Address between 10-30 characters"
-            }
+              "minLength": 10
+            },
+            "description": "Please enter a valid Email Address between 10-30 characters"
           }
         ]
       },
@@ -1416,19 +1304,13 @@
         "component": "text",
         "name": "subtitle",
         "label": "Sub Title",
-        "validation": {
-          "maxLength": 100,
-          "customErrorMsg": "Sub Title cannot exceed 100 characters"
-        }
+        "description": "Sub Title should not exceed 100 characters"
       },
       {
         "component": "text",
         "name": "subdescription",
         "label": "Sub Description",
-        "validation": {
-          "maxLength": 300,
-          "customErrorMsg": "Sub Description cannot exceed 300 characters"
-        }
+        "description": "Sub Description should not exceed 300 characters"
       },
       {
         "component": "aem-content",
@@ -1494,10 +1376,7 @@
         "component": "text",
         "name": "heading",
         "label": "Title",
-        "validation": {
-          "maxLength": 100,
-          "customErrorMsg": "Title cannot exceed 100 characters"
-        }
+        "description": "Title should not exceed 100 characters"
       },
       {
         "component": "text",
@@ -1506,7 +1385,7 @@
         "valueType": "string",
         "validation": {
           "maxSize": 500,
-          "customErrorMsg": "Description cannot exceed 500 characters"
+          "customErrorMsg": "Description should not exceed 500 characters"
         }
       },
       {
@@ -1595,10 +1474,7 @@
         "component": "text",
         "name": "heading",
         "label": "Title",
-        "validation": {
-          "maxLength": 100,
-          "customErrorMsg": "Title cannot exceed 100 characters"
-        }
+        "description": "Title should not exceed 100 characters"
       },
       {
         "component": "text",
@@ -1606,10 +1482,7 @@
         "value": "",
         "label": "Description",
         "valueType": "string",
-        "validation": {
-          "maxLength": 1000,
-          "customErrorMsg": "Description cannot exceed 500 characters"
-        }
+        "description": "Description should not exceed 500 characters"
       }
     ]
   },
@@ -1655,10 +1528,7 @@
         "component": "text",
         "name": "title",
         "label": "Title",
-        "validation": {
-          "maxLength": 30,
-          "customErrorMsg": "Title cannot exceed 30 characters"
-        }
+        "description": "Title should not exceed 30 characters"
       },
       {
         "component": "text",
@@ -1666,10 +1536,7 @@
         "value": "",
         "label": "Description",
         "valueType": "string",
-        "validation": {
-          "maxLength": 200,
-          "customErrorMsg": "Description cannot exceed 200 characters"
-        }
+        "description": "Description should not exceed 200 characters"
       }
     ]
   },
@@ -1680,19 +1547,13 @@
         "component": "text",
         "name": "title",
         "label": "Title",
-        "validation": {
-          "maxLength": 100,
-          "customErrorMsg": "Title cannot exceed 100 characters"
-        }
+        "description": "Title should not exceed 100 characters"
       },
       {
         "component": "text",
         "name": "firstCtaCaption",
         "label": "First CTA Caption",
-        "validation": {
-          "maxLength": 50,
-          "customErrorMsg": "First CTA Caption cannot exceed 50 characters"
-        }
+        "description": "First CTA Caption should not exceed 50 characters"
       },
       {
         "component": "aem-content",
@@ -1708,10 +1569,7 @@
         "component": "text",
         "name": "secondCtaCaption",
         "label": "Second CTA Caption",
-        "validation": {
-          "maxLength": 50,
-          "customErrorMsg": "Second CTA Caption cannot exceed 50 characters"
-        }
+        "description": "Second CTA Caption should not exceed 50 characters"
       },
       {
         "component": "aem-content",
@@ -1774,38 +1632,26 @@
         "component": "text",
         "name": "title",
         "label": "Title",
-        "validation": {
-          "maxLength": 100,
-          "customErrorMsg": "Title cannot exceed 100 characters"
-        }
+        "description": "Title should not exceed 100 characters"
       },
       {
         "component": "text",
         "name": "subtitle",
         "label": "Sub Title",
-        "validation": {
-          "maxLength": 100,
-          "customErrorMsg": "Sub Title cannot exceed 100 characters"
-        }
+        "description": "Sub Title should not exceed 100 characters"
       },
       {
         "component": "richtext",
         "name": "longdescription",
         "label": "Long Description",
         "valueType": "string",
-        "validation": {
-          "maxLength": 250,
-          "customErrorMsg": "Long Description cannot exceed 250 characters"
-        }
+        "description": "Long Description should not exceed 250 characters"
       },
       {
         "component": "text",
         "name": "shortdescription",
         "label": "Short Description",
-        "validation": {
-          "maxLength": 100,
-          "customErrorMsg": "Short Description cannot exceed 100 characters"
-        }
+        "description": "Short Description should not exceed 100 characters"
       },
       {
         "component": "custom-asset-namespace:custom-asset",
@@ -1930,22 +1776,14 @@
         "component": "text",
         "name": "title",
         "label": "Title",
-        "description": "Title cannot exceed 100 characters",
-        "validation": {
-          "maxLength": 100,
-          "customErrorMsg": "Title cannot exceed 100 characters"
-        }
+        "description": "Title should not exceed 100 characters"
       },
       {
         "component": "richtext",
         "name": "description",
         "value": "",
         "label": "Short Description",
-        "description": "Short Description cannot exceed 300 characters",
-        "validation": {
-          "maxLength": 300,
-          "customErrorMsg": "Short Description cannot exceed 300 characters"
-        },
+        "description": "Short Description should not exceed 300 characters",
         "valueType": "string"
       },
       {
@@ -1994,10 +1832,7 @@
         "name": "tabsectiontitle",
         "label": "Tab Section Title",
         "valueType": "string",
-        "validation": {
-          "maxLength": 80,
-          "customErrorMsg": "Section Title cannot exceed 80 characters"
-        }
+        "description": "Section Title should not exceed 80 characters"
       }
     ]
   },
@@ -2029,19 +1864,13 @@
         "component": "text",
         "name": "awardheading",
         "label": "Award Title",
-        "validation": {
-          "maxLength": 100,
-          "customErrorMsg": "Title cannot exceed 100 characters"
-        }
+        "description": "Title should not exceed 100 characters"
       },
       {
         "component": "text",
         "name": "awarddescription",
         "label": "Award Description",
-        "validation": {
-          "maxLength": 200,
-          "customErrorMsg": "Description cannot exceed 250 characters"
-        }
+        "description": "Description should not exceed 250 characters"
       }
     ]
   },
@@ -2052,19 +1881,13 @@
         "component": "text",
         "name": "year",
         "label": "Year",
-        "validation": {
-          "maxLength": 10,
-          "customErrorMsg": "Year or Label cannot exceed 10 characters"
-        }
+        "description": "Year or Label should not exceed 10 characters"
       },
       {
         "component": "text",
         "name": "description",
         "label": "Description",
-        "validation": {
-          "maxLength": 500,
-          "customErrorMsg": "Description cannot exceed 500 characters"
-        }
+        "description": "Description should not exceed 500 characters"
       }
     ]
   },
@@ -2094,10 +1917,7 @@
         "component": "text",
         "name": "title",
         "label": "Title",
-        "validation": {
-          "maxLength": 100,
-          "customErrorMsg": "Description cannot exceed 100 characters"
-        }
+        "description": "Description should not exceed 100 characters"
       },
       {
         "component": "aem-content",
@@ -2119,10 +1939,7 @@
         "name": "loadMoreLabel",
         "label": "Load More",
         "valueType": "string",
-        "validation": {
-          "maxLength": 30,
-          "customErrorMsg": "Load More cannot exceed 30 characters"
-        }
+        "description": "Load More should not exceed 30 characters"
       },
       {
         "component": "number",
@@ -2145,10 +1962,9 @@
         "name": "title",
         "label": "Section Title",
         "validation": {
-          "maxLength": 35,
-          "required": true,
-          "customErrorMsg": "Section title is required and cannot exceed 35 characters"
-        }
+          "required": true
+        },
+        "description": "Section title is required and should not exceed 35 characters"
       }
     ]
   },
@@ -2191,20 +2007,18 @@
         "name": "title",
         "label": "Title",
         "validation": {
-          "maxLength": 100,
-          "required": true,
-          "customErrorMsg": "Title is required and cannot exceed 100 characters"
-        }
+          "required": true
+        },
+        "description": "Title is required and should not exceed 100 characters"
       },
       {
         "component": "text",
         "name": "description",
         "label": "Description",
         "validation": {
-          "maxLength": 2000,
-          "required": true,
-          "customErrorMsg": "Description is required and cannot exceed 2000 characters"
-        }
+          "required": true
+        },
+        "description": "Description is required and should not exceed 2000 characters"
       }
     ]
   },
@@ -2216,28 +2030,21 @@
         "name": "title",
         "label": "Policy Title",
         "validation": {
-          "maxLength": 100,
-          "required": true,
-          "customErrorMsg": "Policy title is required and cannot exceed 100 characters"
-        }
+          "required": true
+        },
+        "description": "Policy title is required and should not exceed 100 characters"
       },
       {
         "component": "richtext",
         "name": "description",
         "label": "Policy Description",
-        "validation": {
-          "maxLength": 2000,
-          "customErrorMsg": "Description cannot exceed 2000 characters"
-        }
+        "description": "Description should not exceed 2000 characters"
       },
       {
         "component": "text",
         "name": "ctaLabel",
         "label": "CTA Label",
-        "validation": {
-          "maxLength": 30,
-          "customErrorMsg": "CTA text cannot exceed 30 characters"
-        }
+        "description": "CTA text should not exceed 30 characters"
       },
       {
         "component": "aem-content",
@@ -2337,10 +2144,7 @@
         "component": "text",
         "name": "subtitle",
         "label": "Policy Subtitle",
-        "validation": {
-          "maxLength": 100,
-          "customErrorMsg": "Policy subtitle cannot exceed 100 characters"
-        }
+        "description": "Policy subtitle should not exceed 100 characters"
       }
     ]
   },
@@ -2473,20 +2277,14 @@
         "name": "awardyear",
         "label": "Year",
         "valueType": "string",
-        "validation": {
-          "maxLength": 100,
-          "customErrorMsg": "Year cannot exceed 100 characters"
-        }
+        "description": "Year should not exceed 100 characters"
       },
       {
         "component": "text",
         "name": "awarddescription",
         "label": "Award Description",
         "valueType": "string",
-        "validation": {
-          "maxLength": 100,
-          "customErrorMsg": "Award Description cannot exceed 100 characters"
-        }
+        "description": "Award Description should not exceed 100 characters"
       }
     ]
   },
@@ -2497,10 +2295,7 @@
         "component": "text",
         "name": "heading",
         "label": "Title",
-        "validation": {
-          "maxLength": 100,
-          "customErrorMsg": "Title cannot exceed 100 characters"
-        }
+        "description": "Title should not exceed 100 characters"
       }
     ]
   },
