@@ -219,6 +219,16 @@ html:not([data-aue-resource]) body .masthead-container:not(:has(.masthead-contai
   }
 }
 
+@media (width >=1200px) and (height <=600px) {
+  .masthead-title {
+    top: 34%;
+  }
+
+  .masthead-container:not(:has(.masthead-container)) {
+    --masthead-scroll-bottom: 20px;
+  }
+}
+
 /* Responsive adjustments */
 @media (width <=1199px) {
 
