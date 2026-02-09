@@ -49,6 +49,7 @@
     background-repeat: repeat-x;
     border-top: none;
     pointer-events: none;
+    opacity: 0.32;
 }
 
 .historymilestones-slider-nav {
@@ -71,6 +72,7 @@
     justify-content: center;
     width: 48px;
     height: 48px;
+    margin: 0;
 }
 
 .historymilestones-nav-btn:hover,
@@ -109,6 +111,7 @@
     text-decoration: none;
     flex-shrink: 0;
     height: 88px;
+    margin: 8px 0;
 }
 
 /* Dot marker above label */
@@ -116,6 +119,7 @@
     content: '';
     width: 18px;
     height: 18px;
+    margin: 7px;
     border-radius: 50%;
     background-color: rgba(139, 109, 54, 0.5);
     flex-shrink: 0;
@@ -131,10 +135,8 @@
 }
 
 .historymilestones-nav-year.is-active {
-    color: #bc9f6b;
+    color: var(--color-text-tertiary);
     font-weight: 700;
-    margin-top: 0;
-    gap: 14px;
 }
 
 /* Hide dot when active */
@@ -150,8 +152,8 @@
     flex-shrink: 0;
     align-items: center;
     justify-content: center;
-    color: #C8AB4B;
-    margin: 7px 0 -7px 0;
+    color: var(--color-text-tertiary);
+    padding: 4px;
 }
 
 .historymilestones-nav-icon svg {
