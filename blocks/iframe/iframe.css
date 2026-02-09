@@ -1,7 +1,7 @@
 .iframe-wrapper {
   position: relative;
   overflow: hidden;
-  height: 1220px;
+  min-height: 200px;
 }
 
 .iframe-wrapper iframe {
