@@ -111,6 +111,31 @@ export default function decorate(block) {
   const heroContent = document.createElement('div');
   heroContent.classList.add('hero-content', 'columns-container', 'container');
 
+  // Read bold props
+  const isHeadingBoldEl = block.querySelector('.herobanner-nested-1-11 p')
+    || block.querySelector('.herobanner-nested-1-11')
+    || block.querySelector('[data-aue-prop="isHeadingBold"]')
+    || block.querySelector('[data-gen-prop="isHeadingBold"]');
+
+  const isHeadingBold = isHeadingBoldEl?.textContent?.trim() === 'true';
+  if (isHeadingBoldEl) isHeadingBoldEl.remove();
+
+  const isTitleBoldEl = block.querySelector('.herobanner-nested-1-12 p')
+    || block.querySelector('.herobanner-nested-1-12')
+    || block.querySelector('[data-aue-prop="isTitleBold"]')
+    || block.querySelector('[data-gen-prop="isTitleBold"]');
+
+  const isTitleBold = isTitleBoldEl?.textContent?.trim() === 'true';
+  if (isTitleBoldEl) isTitleBoldEl.remove();
+
+  const isDescriptionBoldEl = block.querySelector('.herobanner-nested-1-13 p')
+    || block.querySelector('.herobanner-nested-1-13')
+    || block.querySelector('[data-aue-prop="isDescriptionBold"]')
+    || block.querySelector('[data-gen-prop="isDescriptionBold"]');
+
+  const isDescriptionBold = isDescriptionBoldEl?.textContent?.trim() === 'true';
+  if (isDescriptionBoldEl) isDescriptionBoldEl.remove();
+
   const headingElement = block.querySelector('[data-aue-prop="bannerheading"], .herobanner-nested-1-2 p');
   if (headingElement && headingElement.textContent.trim()) {
     const headingText = headingElement.textContent;
@@ -120,7 +145,7 @@ export default function decorate(block) {
     const headingHtml = Heading({
       level: 5,
       text: headingText,
-      className: 'hero-heading',
+      className: `hero-heading ${isHeadingBold ? 'text-bold' : ''}`,
     });
     headingContainer.insertAdjacentHTML('beforeend', headingHtml);
     heroContent.append(headingContainer);
@@ -136,7 +161,7 @@ export default function decorate(block) {
     const headingHtml = Heading({
       level: 2,
       text: titleText,
-      className: 'hero-title',
+      className: `hero-title ${isTitleBold ? 'text-bold' : ''}`,
     });
     titleContainer.insertAdjacentHTML('beforeend', headingHtml);
     heroContent.append(titleContainer);
@@ -148,7 +173,7 @@ export default function decorate(block) {
   );
   if (descElement && descElement.textContent.trim()) {
     const descriptionDiv = document.createElement('div');
-    descriptionDiv.className = 'hero-description';
+    descriptionDiv.className = `hero-description ${isDescriptionBold ? 'text-bold' : ''}`;
     // Copy data attributes from source element
     moveInstrumentation(descElement, descriptionDiv);
     descriptionDiv.textContent = descElement.textContent;

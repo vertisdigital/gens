@@ -149,6 +149,20 @@ export default function decorate(block) {
     gradientEl.remove();
   }
 
+  // Check for isBold property
+  const isBoldEl = block.querySelector('[data-aue-prop="isBold"], [data-gen-prop="isBold"]')
+    || block.querySelector('.masthead-nested-1-8 p') // Sequence check, verify if 1-6 is correct in generated structure
+    || block.querySelector('.masthead-nested-1-8');
+
+  // Note: .masthead-nested-1-x classes are sequential. 
+  // 1: image, 2: tablet, 3: mobile, 4: color, 5: title, 6: isBold (new), 7: gradient, 8: indicator
+  // Wait, I need to be careful with the nested selector indices as adding a field shifts them if they are auto-generated or reliant on order. 
+  // However, usually checking `data-aue-prop` is safest.
+
+  const isBoldP = isBoldEl?.querySelector('p') || isBoldEl;
+  const isBoldValue = isBoldP?.textContent?.trim();
+  const isBold = isBoldValue === 'true';
+
   const mastheadContent = document.createElement('div');
   mastheadContent.classList.add('masthead-content', 'columns-container', 'container');
 
@@ -170,7 +184,7 @@ export default function decorate(block) {
       const headingHtml = Heading({
         level: 1,
         text: titleText,
-        className: 'masthead-title',
+        className: `masthead-title ${isBold ? 'text-bold' : ''}`, // Apply bold class
       });
       titleContainer.insertAdjacentHTML('beforeend', headingHtml);
       mastheadContent.append(titleContainer);

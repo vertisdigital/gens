@@ -481,6 +481,27 @@
         "label": "Enable Image Gradient",
         "valueType": "boolean",
         "value": false
+      },
+      {
+        "component": "boolean",
+        "name": "isHeadingBold",
+        "label": "Bold Heading",
+        "valueType": "boolean",
+        "value": false
+      },
+      {
+        "component": "boolean",
+        "name": "isTitleBold",
+        "label": "Bold Title",
+        "valueType": "boolean",
+        "value": false
+      },
+      {
+        "component": "boolean",
+        "name": "isDescriptionBold",
+        "label": "Bold Description",
+        "valueType": "boolean",
+        "value": false
       }
     ]
   },
@@ -545,6 +566,13 @@
         "name": "indicatortext",
         "label": "Scroll Indicator Text",
         "description": "Scroll text should not exceed 50 characters"
+      },
+      {
+        "component": "boolean",
+        "name": "isBold",
+        "label": "Bold Heading",
+        "valueType": "boolean",
+        "value": false
       }
     ]
   },
