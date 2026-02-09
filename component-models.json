@@ -2275,7 +2275,7 @@
     "id": "corporatepolicies",
     "fields": [
       {
-        "component": "select",
+        "component": "multiselect",
         "name": "classes",
         "value": "",
         "label": "Style options",
@@ -2292,6 +2292,10 @@
           {
             "name": "Corporate Policies CTA Right",
             "value": "corporate-policies-cta-right"
+          },
+          {
+            "name": "Corporate Policies No Background",
+            "value": "no-background"
           }
         ]
       }

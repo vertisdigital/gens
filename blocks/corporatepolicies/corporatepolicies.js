@@ -3,6 +3,13 @@ import Heading from "../../shared-components/Heading.js";
 
 export default function decorate(block) {
   block.classList.add('fade-item');
+  // check if corporate policies has background or not
+  const noBackground = block.classList.contains('no-background');
+  if (noBackground) {
+    block.closest('.corporatepolicies-wrapper').classList.add('no-background');
+  } else {
+    block.closest('.corporatepolicies-wrapper').classList.remove('no-background');
+  }
   // Store all child elements before modifying the block
   const allChildElements = Array.from(block.children);
 
@@ -65,6 +72,7 @@ export default function decorate(block) {
               // Modify <a> only if lastThirdChild has text
               const link = linkElement?.querySelector("a");
               if (link) {
+                link.classList.add('vd-link');
                 link.title = lastThirdChild.textContent;
                 link.target = children[7]?.textContent || "_self";
                 link.innerHTML = `<span>${lastThirdText}</span>${ctaIcon}`;
