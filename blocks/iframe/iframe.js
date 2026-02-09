@@ -133,17 +133,11 @@ function getTabsEvent() {
   const tabs = document.querySelectorAll('.tab-title');
   const iframeWrappers = document.querySelectorAll('.iframe-wrapper');
   const SHARE_QUOTE_IFRAME = 0;
-  
-  if (iframeWrappers[SHARE_QUOTE_IFRAME] && tabs[SHARE_QUOTE_IFRAME]) {
-     updateIframeHeight(iframeWrappers[SHARE_QUOTE_IFRAME], `${tabs[SHARE_QUOTE_IFRAME].innerHTML}`)
-  }
- 
+  updateIframeHeight(iframeWrappers[SHARE_QUOTE_IFRAME], `${tabs[SHARE_QUOTE_IFRAME].innerHTML}`)
 
   tabs.forEach((tab, index) => {
     tab.addEventListener('click', () => {
-      if (iframeWrappers[index]) {
-        updateIframeHeight(iframeWrappers[index], `${tabs[index].innerHTML}`)
-      }
+      updateIframeHeight(iframeWrappers[index], `${tabs[index].innerHTML}`)
     });
   });
 }
@@ -175,7 +169,6 @@ export default function decorate(block) {
   iframe.setAttribute('height', '100%');
   iframe.setAttribute('frameborder', '0');
   iframe.setAttribute('allowfullscreen', '');
-  iframe.setAttribute('scrolling', 'no'); // Disable scrollbars
 
   // Add error handling
   iframe.onerror = () => {
@@ -190,8 +183,6 @@ export default function decorate(block) {
   if (iframeWrapper) {
     iframeWrapper.classList.add('container');
     const endpoint = new window.URL(url).pathname.replace('/', '').replace('.rev', '');
-    
-    // Initial height set from config
     updateIframeHeight(iframeWrapper, endpoint);
     updateIframeForTab();
 
@@ -200,37 +191,13 @@ export default function decorate(block) {
       updateIframeForTab();
     });
 
-    // Dynamic resizing via postMessage (Cross-origin support)
+    // Dynamic resizing
     window.addEventListener('message', (e) => {
+      // Ensure e.data is an object before accessing properties
       if (e.source === iframe.contentWindow && e.data && e.data.height) {
         setElementHeight(iframeWrapper, `${e.data.height}px`);
       }
     });
-
-    // Dynamic resizing for Same-origin iframes
-    iframe.onload = () => {
-      try {
-        const doc = iframe.contentWindow.document;
-        if (doc) {
-           const updateHeight = () => {
-             const height = doc.body.scrollHeight || doc.documentElement.scrollHeight;
-             if (height > 0) {
-               setElementHeight(iframeWrapper, `${height}px`);
-             }
-           };
-
-           // Initial check
-           updateHeight();
-
-           // Observe changes
-           const observer = new ResizeObserver(() => updateHeight());
-           observer.observe(doc.body);
-        }
-      } catch (e) {
-        // Cross-origin restriction, ignore
-        console.log('Cross-origin iframe detected, falling back to postMessage or config height.');
-      }
-    };
   }
 
   block.appendChild(iframe);
