@@ -36,7 +36,7 @@ function updateIframeHeight(iframeWrapper, endpoint) {
     'annual-reports': {
       mobile: '15600px',
       tablet: '4640px',
-      desktop: '5690px',
+      desktop: '8000px',
     },
     'sustainability-reports': {
       mobile: '6680px',
@@ -125,8 +125,11 @@ function updateIframeHeight(iframeWrapper, endpoint) {
 
   const iframe = iframeWrapper.querySelector('iframe')
 
-  if (endpointHeightConfig[normalizedEndpoint]?.disableScroll && iframe) {
-    iframe.setAttribute('scrolling', 'no')
+  // Default to scrolling="no". ONLY enable if explicitly requested
+  if (endpointHeightConfig[normalizedEndpoint]?.enableScroll === true) {
+    iframe.setAttribute('scrolling', 'yes');
+  } else {
+    iframe.setAttribute('scrolling', 'no');
   }
 }
 
@@ -183,6 +186,7 @@ export default function decorate(block) {
   const iframeWrapper = block.closest('.iframe-wrapper');
   if (iframeWrapper) {
     iframeWrapper.classList.add('container');
+    // Improved endpoint extraction: remove leading/trailing slashes, .rev
     const endpoint = new window.URL(url).pathname.replace(/^\/+|\/+$/g, '').replace('.rev', '');
     updateIframeHeight(iframeWrapper, endpoint);
     updateIframeForTab();
