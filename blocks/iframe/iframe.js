@@ -36,7 +36,7 @@ function updateIframeHeight(iframeWrapper, endpoint, iframeElement = null) {
     'annual-reports': {
       mobile: '15600px',
       tablet: '4640px',
-      desktop: '7000px',
+      desktop: '7500px',
     },
     'sustainability-reports': {
       mobile: '6680px',
@@ -44,7 +44,7 @@ function updateIframeHeight(iframeWrapper, endpoint, iframeElement = null) {
         landscape: '2620px',
         portrait: '2260px',
       },
-      desktop: '2620px',
+      desktop: '7500px',
     },
     newsroom: {
       mobile: '3000px',
