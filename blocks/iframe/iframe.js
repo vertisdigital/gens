@@ -197,10 +197,33 @@ export default function decorate(block) {
     });
 
     // Dynamic resizing
+    // Dynamic resizing
+    let contentHeight = 500; // Default matches user snippet
+
     window.addEventListener('message', (e) => {
-      // Ensure e.data is an object before accessing properties
-      if (e.source === iframe.contentWindow && e.data && e.data.height) {
-        setElementHeight(iframeWrapper, `${e.data.height}px`);
+      const message = e.data;
+      console.log('Iframe Message:', message);
+
+      // Check if message comes from our iframe
+      if (e.source !== iframe.contentWindow) {
+        console.log('Iframe Source mismatch');
+        return;
+      }
+
+      console.log('Iframe Source Match');
+      // User's requested logic
+      if (
+        message.height &&
+        message.height !== contentHeight &&
+        message.height !== 150
+      ) {
+        console.log('Updating height:', message.height);
+        iframe.style.height = `${message.height}px`; // Set height on iframe itself as per snippet
+        setElementHeight(iframeWrapper, `${message.height}px`); // Also update wrapper
+        contentHeight = message.height;
+
+        // Mark as dynamic so static config doesn't override
+        iframeWrapper.dataset.hasDynamicHeight = 'true';
       }
     });
   }
