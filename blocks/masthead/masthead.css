@@ -330,3 +330,7 @@ html:not([data-aue-resource]) body .masthead-container:not(:has(.masthead-contai
     max-width: 480px;
   }
 }
+
+.text-bold {
+  font-weight: 700 !important;
+}

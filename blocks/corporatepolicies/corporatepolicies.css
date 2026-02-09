@@ -1,11 +1,12 @@
 .corporatepolicies-wrapper{
-    padding: 80px 0;
+    padding: 64px 0;
     background-image: url(../../icons/Pattern.png);
     background-repeat: no-repeat;
     background-position: center bottom -100px;
     background-size: cover;
     margin: 0 auto;
     max-width: 2560px;
+    border-bottom: 1px solid #E8EBEB;
 }
 
 .corporatepolicies-wrapper.no-background{
@@ -22,7 +23,7 @@
     margin-top: 10px;
 }
 
-.corporate-policies-list-item ul a, .corporate-policies-list-item ul a.button:any-link{    
+.corporate-policies-list-item ul a, .corporate-policies-list-item ul a.button:any-link{
   background: none;
   margin: 0;
   padding: 0;
@@ -151,15 +152,15 @@
             flex-direction: column;
             gap: 24px;
         }
-    
+
         .corporate-policies-list-item .left-col {
             width: 100%;
         }
-    
+
         .corporate-policies-list-item .left-col h2 {
             width: 100%;
         }
-    
+
         .corporate-policies-list-item .right-col {
             width: 100%;
         }
@@ -186,12 +187,12 @@
 
     .corporate-policies-list-item>div:first-child{
         padding-right: 0;
-    
+
     }
 
     .corporate-policies-list-item>div:last-child{
         padding-left: 0;
-    
+
     }
 
     .corporate-policies-list-item .left-col h2{

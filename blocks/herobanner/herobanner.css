@@ -99,7 +99,7 @@
   font-family: var(--typography-font-family-font-body, "Instrument Sans");
   font-size: var(--typography-font-size-text-base, 16px);
   font-style: normal;
-  font-weight: 700;
+  font-weight: 400;
   line-height: var(--typography-font-line-height-leading-3, 24px);
   /* 150% */
   letter-spacing: var(--typography-font-spacing-tracking-normal, 0);
@@ -113,7 +113,7 @@
   font-family: var(--typography-font-family-font-body, "Instrument Sans");
   font-size: var(--typography-font-size-text-base, 16px);
   font-style: normal;
-  font-weight: 700;
+  font-weight: 400;
   line-height: var(--typography-font-line-height-leading-3, 24px);
   /* 150% */
   letter-spacing: var(--typography-font-spacing-tracking-normal, 0);
@@ -361,7 +361,7 @@
   font-family: var(--typography-font-family-font-body, "Instrument Sans");
   font-size: var(--typography-font-size-text-xxs, 12px);
   font-style: normal;
-  font-weight: 700;
+  font-weight: 400;
   line-height: var(--typography-font-line-height-leading-2, 16px);
   /* 133.333% */
   letter-spacing: var(--typography-font-spacing-tracking-normal, 0);
@@ -374,7 +374,7 @@
   font-family: var(--typography-font-family-font-body, "Instrument Sans");
   font-size: var(--typography-font-size-text-xs, 14px);
   font-style: normal;
-  font-weight: 700;
+  font-weight: 400;
   line-height: var(--typography-font-line-height-leading-3, 24px);
   /* 171.429% */
   letter-spacing: var(--typography-font-spacing-tracking-normal, 0);
@@ -755,4 +755,8 @@
     /* 150% */
     letter-spacing: var(--typography-font-spacing-tracking-normal, 0);
   }
+}
+
+.text-bold {
+  font-weight: 700 !important;
 }
