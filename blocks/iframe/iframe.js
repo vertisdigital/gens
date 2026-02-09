@@ -202,22 +202,18 @@ export default function decorate(block) {
 
     window.addEventListener('message', (e) => {
       const message = e.data;
-      console.log('Iframe Message:', message);
 
       // Check if message comes from our iframe
       if (e.source !== iframe.contentWindow) {
-        console.log('Iframe Source mismatch');
         return;
       }
 
-      console.log('Iframe Source Match');
       // User's requested logic
       if (
         message.height &&
         message.height !== contentHeight &&
         message.height !== 150
       ) {
-        console.log('Updating height:', message.height);
         iframe.style.height = `${message.height}px`; // Set height on iframe itself as per snippet
         setElementHeight(iframeWrapper, `${message.height}px`); // Also update wrapper
         contentHeight = message.height;
