@@ -9,7 +9,7 @@ function setElementHeight(element, height) {
   element.style.height = height;
 }
 
-function updateIframeHeight(iframeWrapper, endpoint) {
+function updateIframeHeight(iframeWrapper, endpoint, iframeElement = null) {
   // If we have established a dynamic height (via same-origin or postMessage), 
   // do not override it with the static config.
   if (iframeWrapper.dataset.hasDynamicHeight === 'true') {
@@ -123,7 +123,7 @@ function updateIframeHeight(iframeWrapper, endpoint) {
     setElementHeight(iframeWrapper, endpointHeightConfig.default.desktop);
   }
 
-  const iframe = iframeWrapper.querySelector('iframe')
+  const iframe = iframeElement || iframeWrapper.querySelector('iframe')
 
   // Default to scrolling="no". ONLY enable if explicitly requested
   if (endpointHeightConfig[normalizedEndpoint]?.enableScroll === true) {
@@ -188,7 +188,7 @@ export default function decorate(block) {
     iframeWrapper.classList.add('container');
     // Improved endpoint extraction: remove leading/trailing slashes, .rev
     const endpoint = new window.URL(url).pathname.replace(/^\/+|\/+$/g, '').replace('.rev', '');
-    updateIframeHeight(iframeWrapper, endpoint);
+    updateIframeHeight(iframeWrapper, endpoint, iframe);
     updateIframeForTab();
 
     window.addEventListener('resize', () => {
