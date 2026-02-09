@@ -1,4 +1,4 @@
-.corporatepolicies-wrapper{
+.corporatepolicies-wrapper {
     padding: 64px 0;
     background-image: url(../../icons/Pattern.png);
     background-repeat: no-repeat;
@@ -14,63 +14,66 @@
     border-bottom: 1px solid var(--color-neutral-800);
 }
 
-.corporate-policies-list-item ul, .corporate-policies-list-item ul li, .corporate-policies-list-item ul p{
+.corporate-policies-list-item ul,
+.corporate-policies-list-item ul li,
+.corporate-policies-list-item ul p {
     margin-top: 0;
     margin-top: 10px;
 }
 
-.corporate-policies-list-item ul a, .corporate-policies-list-item ul a.button:any-link{
-  background: none;
-  margin: 0;
-  padding: 0;
-  color: var(--primary-gold);
-  text-decoration: underline;
-  cursor: pointer;
-  display: inline;
-  font-weight: 400;
+.corporate-policies-list-item ul a,
+.corporate-policies-list-item ul a.button:any-link {
+    background: none;
+    margin: 0;
+    padding: 0;
+    color: var(--primary-gold);
+    text-decoration: underline;
+    cursor: pointer;
+    display: inline;
+    font-weight: 400;
 }
 
-.corporate-policies-list p a{
+.corporate-policies-list p a {
     color: var(--primary-gold);
-    text-decoration:  underline;
+    text-decoration: underline;
     cursor: pointer;
 }
 
-.corporate-policies-list-item>div:first-child{
+.corporate-policies-list-item>div:first-child {
     padding-right: 12px;
 
 }
 
-.corporate-policies-list-item>div:last-child{
+.corporate-policies-list-item>div:last-child {
     padding-left: 12px;
 
 }
 
-.corporate-policies-list>div:first-child{
+.corporate-policies-list>div:first-child {
     padding-top: 0;
 }
 
-.corporate-policies-list>div:last-child{
+.corporate-policies-list>div:last-child {
     padding-bottom: 0;
     border-bottom: none;
 }
 
-.corporate-policies-border-bottom .corporate-policies-list>div:last-child{
+.corporate-policies-border-bottom .corporate-policies-list>div:last-child {
     padding-bottom: 0;
     border-bottom: none;
 }
 
 
-.corporate-policies-list-item .left-col h2{
+.corporate-policies-list-item .left-col h2 {
     font-size: 36px;
     font-weight: 400;
     line-height: 56px;
     color: var(--text-color);
     margin: 0;
-    width: 50%;
+    /* width: 50%; */
 }
 
-.corporate-policies-list-item .left-col .corporate-policies-subtitle{
+.corporate-policies-list-item .left-col .corporate-policies-subtitle {
     font-size: 14px;
     font-weight: 400;
     line-height: 24px;
@@ -89,7 +92,7 @@
     display: flex;
 }
 
-.corporate-policies-list-item .right-col > div:first-child {
+.corporate-policies-list-item .right-col>div:first-child {
     font-size: 24px;
     font-family: var(--typography-font-family-font-body);
     font-weight: 400;
@@ -97,7 +100,7 @@
     color: var(--body-text-color);
 }
 
-.corporate-policies-list-item .right-col > div:nth-child(3) a{
+.corporate-policies-list-item .right-col>div:nth-child(3) a {
     background: none;
     display: inline-flex;
     align-items: center;
@@ -112,15 +115,15 @@
     margin: 24px 0 0 0;
 }
 
-.corporate-policies-cta-right .corporate-policies-list-item .right-col > div:nth-child(3){
-  text-align: end;
+.corporate-policies-cta-right .corporate-policies-list-item .right-col>div:nth-child(3) {
+    text-align: end;
 }
 
-.corporate-policies-list-item .right-col > div:nth-child(3) a > span:last-child {
+.corporate-policies-list-item .right-col>div:nth-child(3) a>span:last-child {
     line-height: 0;
 }
 
-.corporate-policies-list-item .right-col > div:nth-child(3) a > span:first-child {
+.corporate-policies-list-item .right-col>div:nth-child(3) a>span:first-child {
     line-height: 1;
 }
 
@@ -130,8 +133,8 @@
     background-image: none;
 }
 
-@media screen and (width < 1181px) and (width >= 768px) {
-    .corporatepolicies-wrapper{
+@media screen and (width < 1181px) and (width >=768px) {
+    .corporatepolicies-wrapper {
         padding: 64px 0;
     }
 
@@ -139,13 +142,13 @@
         padding: 20px 0;
     }
 
-    .corporate-policies-list-item .left-col h2{
+    .corporate-policies-list-item .left-col h2 {
         font-size: 32px;
         line-height: 48px;
-        width: 80%;
+        /* width: 80%; */
     }
 
-    .corporate-policies-list-item .right-col > div:first-child{
+    .corporate-policies-list-item .right-col>div:first-child {
         font-size: 16px;
         line-height: 24px;
     }
@@ -172,11 +175,11 @@
             width: 100%;
         }
 
-        .corporate-policies-list-item>div:first-child{
+        .corporate-policies-list-item>div:first-child {
             padding-right: 0;
         }
 
-        .corporate-policies-list-item>div:last-child{
+        .corporate-policies-list-item>div:last-child {
             padding-left: 0;
         }
     }
@@ -184,7 +187,7 @@
 
 @media (width < 768px) {
 
-    .corporatepolicies-wrapper{
+    .corporatepolicies-wrapper {
         padding: 40px 0;
     }
 
@@ -192,17 +195,17 @@
         padding: 20px 0;
     }
 
-    .corporate-policies-list-item>div:first-child{
+    .corporate-policies-list-item>div:first-child {
         padding-right: 0;
 
     }
 
-    .corporate-policies-list-item>div:last-child{
+    .corporate-policies-list-item>div:last-child {
         padding-left: 0;
 
     }
 
-    .corporate-policies-list-item .left-col h2{
+    .corporate-policies-list-item .left-col h2 {
         font-size: 24px;
         line-height: 40px;
         margin-bottom: 16px;
@@ -213,12 +216,12 @@
         padding: 0;
     }
 
-    .corporate-policies-list-item .right-col > div:first-child {
+    .corporate-policies-list-item .right-col>div:first-child {
         font-size: 16px;
         line-height: 24px;
     }
 
-    .corporate-policies-list-item .right-col > div:nth-child(3) a {
+    .corporate-policies-list-item .right-col>div:nth-child(3) a {
         font-size: var(--font-size-xs);
         line-height: 20px;
     }
