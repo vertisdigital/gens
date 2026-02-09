@@ -1,3 +1,11 @@
+.statistics-wrapper{
+    background-image: url(../../icons/Pattern.png);
+    background-repeat: repeat-x;
+    background-position: center bottom;
+    background-size: cover;
+    overflow-x: hidden;
+}
+
 .statistics .statistics-row {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
@@ -92,10 +100,6 @@
     margin-top: 80px;
     padding-bottom: 80px;
     position: relative;
-    background-image: url(../../icons/Pattern.png);
-    background-repeat: no-repeat;
-    background-position: center top 30px;
-    background-size: cover;
 }
 
 
@@ -130,7 +134,7 @@
     font-size: 36px;
     font-style: normal;
     font-weight: 400;
-    line-height: 56px; 
+    line-height: 56px;
     letter-spacing: 0;
 }
 
@@ -144,7 +148,7 @@
     margin-bottom: 12px;
 }
 
- 
+
 
 @media (width <= 1280px) {
     .statistics-wrapper .statistics.block::before {
@@ -173,13 +177,13 @@
     .statistics .statistics-title{
         margin-bottom: 40px;
         font-size: 32px;
-        line-height: 48px; 
+        line-height: 48px;
     }
 
     .statistics.block.statistics-variation .statistics-title {
         margin-bottom: 10px;
     }
-    
+
 
     .statistics-wrapper .statistics.block::before {
         top: -22px;
@@ -190,7 +194,7 @@
     }
 
 
-  
+
 }
 
 @media (width<=1024px) {
@@ -199,7 +203,7 @@
          margin-bottom: 40px;
 
     }
-    
+
     .statistics .statistics-description-wrapper h3 {
         font-size: 32px;
     }
@@ -286,7 +290,7 @@
     .statistics .statistics-title{
         margin-bottom: 24px;
         font-size: 24px;
-        line-height: 40px; 
+        line-height: 40px;
     }
 
     .statistics.statistics-financial-variation .statistics-title {
