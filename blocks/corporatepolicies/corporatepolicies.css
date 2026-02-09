@@ -4,6 +4,8 @@
     background-repeat: no-repeat;
     background-position: center bottom -100px;
     background-size: cover;
+    margin: 0 auto;
+    max-width: 2560px;
 }
 
 .corporate-policies-list-item {

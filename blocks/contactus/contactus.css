@@ -135,6 +135,10 @@
   font-family: var(--typography-font-family-font-body);
 }
 
+.contactus.contactus-variation .contactus-top>div:first-child>div {
+  width: 80%;
+}
+
 .contactus .contactus-bottom{
   display: none;
   padding-top: 40px;
@@ -158,6 +162,7 @@
   gap:10px;
   border-radius: 4px;
   font-family: var(--typography-font-family-font-body);
+  margin: 0;
 }
 
 .contactus .contactus-bottom>div:last-child a span{
@@ -166,12 +171,11 @@
 
 
 /* Tablet Layout  */
- @media (width >= 768px) and (width <= 1024px) {
+ @media (width >= 768px) and (width < 1181px) {
   .contactus.contactus-variation .contactus-top {
     padding-top: 64px;
     padding-bottom: 64px;
   }
-
 
   .contactus .enquiry-heading {
     font-size: 28px;
@@ -211,6 +215,23 @@
     row-gap: 24px;
   }
 }
+
+@media (width >= 768px) and (width < 1024px) {
+  .contactus.contactus-variation .contactus-top>div:first-child>div {
+    width: 82%;
+  }
+
+  .contactus.contactus-variation .contactus-bottom>div:first-child>div {
+    width: 60%;
+  }
+}
+
+@media (width >= 1024px) and (width < 1181px) {
+  .contactus.contactus-variation .contactus-bottom>div:first-child>div {
+    width: 50%;
+  }
+}
+
 
 /* Mobile Layout  */
 @media (width < 768px) {
@@ -281,6 +302,10 @@
     margin-bottom: 24px;
   }
 
+  .contactus.contactus-variation .contactus-bottom>div:first-child>div {
+    width: 50%;
+  }
+
   .contactus .contactus-bottom>div:first-child p {
     font-size: 22px;
   }
@@ -290,14 +315,19 @@
     row-gap: 24px;
   }
 
+  .contactus.contactus-variation .contactus-bottom>div:last-child>div:last-child{
+    width: 100%;
+  }
+
   .contactus .contactus-bottom>div:last-child a{
     margin:0;
     padding: 8px 12px;
+    justify-content: center;
   }
   
 }
 
-@media (width >= 1024px) {
+@media (width > 1181px) {
 
   .contactus .contactus-bottom>div:last-child {
     display: flex;
@@ -312,7 +342,7 @@
 
   .contactus .contactus-bottom>div:last-child a{
     margin:0;
-    padding: 8px 12px;
+    padding: 16px 20px;
   }
 }
 
