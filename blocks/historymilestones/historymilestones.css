@@ -121,7 +121,7 @@
     height: 18px;
     margin: 7px;
     border-radius: 50%;
-    background-color: rgba(139, 109, 54, 0.5);
+    background-color: var(--color-bg-tertiary);
     flex-shrink: 0;
     transition: background-color 0.2s ease, transform 0.2s ease;
 }

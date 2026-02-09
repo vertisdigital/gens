@@ -99,6 +99,7 @@ Usage Example:
   --color-text-success: #388e3c;
   --color-text-danger: #d32f2f;
   --color-text-warning: #d67d08;
+  --color-text-secondary-pressed: #B29546;
 
   /* Border Colors */
   --color-border-primary: #1d3d51;
@@ -138,6 +139,7 @@ Usage Example:
   --color-bg-danger-soft: #ffebee;
   --color-bg-warning: #d67d08;
   --color-bg-warning-soft: #faf2e1;
+  --color-bg-hover-primary: #C8AB4B;
 
   /* Neutral Colors (referenced in design tokens) */
   --color-neutral-100: #f1f3f3;
