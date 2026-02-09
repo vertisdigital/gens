@@ -134,6 +134,7 @@ async function loadLazy(doc) {
 
   loadCSS(`${window.hlx.codeBasePath}/styles/lazy-styles.css`);
   loadCSS(`${window.hlx.codeBasePath}/styles/text.css`);
+  loadCSS(`${window.hlx.codeBasePath}/styles/buttons.css`);
   loadFonts();
 }
 

@@ -223,6 +223,7 @@ export default function decorate(block) {
     const anchorElement = targetElement.querySelector('a');
 
     if (anchorElement) {
+      anchorElement.classList.add('vd-button');
       const nextTargetText = nextTarget?.cloneNode(true)?.textContent.trim();
 
       if (nextTargetText) {
