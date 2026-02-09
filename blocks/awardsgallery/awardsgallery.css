@@ -1,5 +1,5 @@
 .awardsgallery {
-   
+
     background: var(--color-bg-white);
 }
 
@@ -58,9 +58,9 @@
 }
 
 .awardsgallery .awardsgallery-grid {
-    padding: 40px 0;
+    padding: 80px 0;
     display: flex;
-    flex-wrap: nowrap;           
+    flex-wrap: nowrap;
     overflow-x: auto;
     scroll-behavior: smooth;
     scrollbar-width: none;
@@ -123,7 +123,7 @@
   .awardsgallery-arrow .icon-wrapper {
     display: flex;
   }
-  
+
   /* Hide arrows on desktop when there are 3 or fewer cards */
   .awardsgallery-arrow.hide-on-desktop {
     display: none;
@@ -133,7 +133,7 @@
   .awardsgallery-arrow.hide-on-tablet-mobile {
     display: none;
   }
-  
+
   .awardsgallery-arrow.next {
     right: 80px;
   }
@@ -143,7 +143,7 @@
     .awardsgallery .awardsgallery-grid {
         margin: 0 32px;
     }
-    
+
     .awardsgallery .awardsgallery-card {
         flex: 0 0 100%;
         padding: 0;
@@ -154,17 +154,17 @@
         height: 32px;
         padding: 8px;
     }
-    
+
     /* Show arrows on mobile even if hide-on-desktop class is present */
     .awardsgallery-arrow.hide-on-desktop {
         display: flex;
     }
-    
+
     /* Hide arrows on mobile if hide-on-tablet-mobile class is present */
     .awardsgallery-arrow.hide-on-tablet-mobile {
         display: none;
     }
-    
+
     .awardsgallery-arrow.next {
         right: 24px;
     }
@@ -194,17 +194,17 @@
         align-items: flex-start;
         text-align: left;
     }
-    
+
     /* Show arrows on tablet even if hide-on-desktop class is present */
     .awardsgallery-arrow.hide-on-desktop {
         display: flex;
     }
-    
+
     /* Hide arrows on tablet if hide-on-tablet-mobile class is present */
     .awardsgallery-arrow.hide-on-tablet-mobile {
         display: none;
     }
-    
+
     .awardsgallery-arrow.next {
         right: 40px;
     }
@@ -227,6 +227,6 @@
 }
 
 
-  
-  
+
+
 

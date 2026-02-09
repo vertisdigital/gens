@@ -9,8 +9,14 @@ function setElementHeight(element, height) {
   element.style.height = height;
 }
 
-function updateIframeHeight(iframeWrapper, endpoint) {
-  const isMobile = window.innerWidth < 767;
+function updateIframeHeight(iframeWrapper, endpoint, iframeElement = null) {
+  // If we have established a dynamic height (via same-origin or postMessage), 
+  // do not override it with the static config.
+  if (iframeWrapper.dataset.hasDynamicHeight === 'true') {
+    return;
+  }
+
+  const isMobile = window.innerWidth <= 767;
   const isTablet = window.innerWidth >= 768 && window.innerWidth <= 993;
 
   let deviceType = 'desktop';
@@ -21,6 +27,7 @@ function updateIframeHeight(iframeWrapper, endpoint) {
     deviceType = 'tablet';
   }
 
+  // Normalize keys to lowercase for consistent matching
   const endpointHeightConfig = {
     home: {
       mobile: '1850px',
@@ -29,7 +36,7 @@ function updateIframeHeight(iframeWrapper, endpoint) {
     'annual-reports': {
       mobile: '15600px',
       tablet: '4640px',
-      desktop: '5690px',
+      desktop: '8000px',
     },
     'sustainability-reports': {
       mobile: '6680px',
@@ -66,30 +73,15 @@ function updateIframeHeight(iframeWrapper, endpoint) {
       tablet: '660px',
       desktop: '600px',
     },
-    "Historic Price Lookup": {
+    "historic-price-lookup": {
       mobile: '1850px',
       desktop: '1220px',
     },
-    "Investment Calculator": {
+    "investment-calculator": {
       mobile: '1100px',
       desktop: '860px',
       tablet: '960px',
       disableScroll: true
-    },
-    "Share Quote And Chart": {
-      desktop: '1860px',
-      tablet: "3240px",
-      mobile: "3540px"
-    },
-    "Annual Reports": {
-      mobile: '13890px',
-      tablet: '26020px',
-      desktop: '5690px',
-    },
-    "Sustainability Reports": {
-      mobile: '6680px',
-      tablet: "11340px",
-      desktop: '2620px',
     },
     "investor-calendar": {
       mobile: '1020px',
@@ -102,30 +94,42 @@ function updateIframeHeight(iframeWrapper, endpoint) {
     },
   };
 
-  let height = endpointHeightConfig[endpoint];
+  // Normalization helper: lowercase, remove extensions, replace underscores/spaces with hyphens
+  const normalizedEndpoint = endpoint
+    .toLowerCase()
+    .replace('.html', '')
+    .replace(/[_\s]+/g, '-');
 
-  if (typeof height === 'object') {
+  // console.log('Iframe Debug:', { original: endpoint, normalized: normalizedEndpoint });
+
+  let config = endpointHeightConfig[normalizedEndpoint] || endpointHeightConfig.default;
+
+  let height = null;
+  if (typeof config === 'string') {
+    height = config;
+  } else if (typeof config === 'object') {
     if (deviceType === 'tablet') {
-      if (isLandscape()) {
-        height = height[deviceType]?.landscape || height[deviceType];
-      } else {
-        height = height[deviceType]?.portrait || height[deviceType];
-      }
+      height = isLandscape()
+        ? (config[deviceType]?.landscape || config[deviceType] || config.desktop)
+        : (config[deviceType]?.portrait || config[deviceType] || config.desktop);
     } else {
-      height = height[deviceType] || height.desktop;
+      height = config[deviceType] || config.desktop;
     }
   }
 
   if (height) {
     setElementHeight(iframeWrapper, height);
   } else {
-    setElementHeight(iframeWrapper, endpointHeightConfig.default);
+    setElementHeight(iframeWrapper, endpointHeightConfig.default.desktop);
   }
 
-  const iframe = iframeWrapper.querySelector('iframe')
+  const iframe = iframeElement || iframeWrapper.querySelector('iframe')
 
-  if (endpointHeightConfig[endpoint]?.disableScroll && iframe) {
-    iframe.setAttribute('scrolling', 'no')
+  // Default to scrolling="no". ONLY enable if explicitly requested
+  if (endpointHeightConfig[normalizedEndpoint]?.enableScroll === true) {
+    iframe.setAttribute('scrolling', 'yes');
+  } else {
+    iframe.setAttribute('scrolling', 'no');
   }
 }
 
@@ -182,8 +186,9 @@ export default function decorate(block) {
   const iframeWrapper = block.closest('.iframe-wrapper');
   if (iframeWrapper) {
     iframeWrapper.classList.add('container');
-    const endpoint = new window.URL(url).pathname.replace('/', '').replace('.rev', '');
-    updateIframeHeight(iframeWrapper, endpoint);
+    // Improved endpoint extraction: remove leading/trailing slashes, .rev
+    const endpoint = new window.URL(url).pathname.replace(/^\/+|\/+$/g, '').replace('.rev', '');
+    updateIframeHeight(iframeWrapper, endpoint, iframe);
     updateIframeForTab();
 
     window.addEventListener('resize', () => {
