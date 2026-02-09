@@ -101,7 +101,7 @@
     width: 411px;
   }
   .exploremore .exploremore-wrapper-container .exploremore-title h3 {
-    width: 60%;
+    width: 80%;
   }
   .exploremore-wrapper-container .exploremore-links {
     width: calc(100% - 411px - 24px);
@@ -124,7 +124,7 @@
   .exploremore .exploremore-wrapper-container .exploremore-title {
     width: 100%;
   }
-  
+
   .exploremore .exploremore-wrapper-container .exploremore-title h3 {
     color: var(--colours-text-text-body, #3B3D3D) !important;
     font-family: var(--typography-font-family-font-title, "Inter") !important;
