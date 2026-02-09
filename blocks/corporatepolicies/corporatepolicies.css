@@ -1,9 +1,11 @@
 .corporatepolicies-wrapper{
     padding: 64px 0;
-    /* background-image: url(../../icons/Pattern.png);
+    background-image: url(../../icons/Pattern.png);
     background-repeat: no-repeat;
     background-position: center bottom -100px;
-    background-size: cover; */
+    background-size: cover;
+    margin: 0 auto;
+    max-width: 2560px;
     border-bottom: 1px solid #E8EBEB;
 }
 
