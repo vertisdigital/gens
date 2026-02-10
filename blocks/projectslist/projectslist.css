@@ -32,6 +32,7 @@ p {
     padding-bottom: 80px;
     display: flex;
     align-items: center;
+    background-color: var(--primary-default-fg);
 }
 
 .odd-projectslistitem {
@@ -52,6 +53,10 @@ p {
 .projectslist .grid-view.grid-view-2-cols .projectslistitem {
     margin-bottom: 64px;
     padding-bottom: 0;
+}
+
+.projectslist .list-view.no-zebra-pattern .projectslistitem {
+    background-color: transparent;
 }
 
 .left-col {
@@ -82,7 +87,7 @@ p {
 }
 
 .projectslist .projectslistitem .project-image img {
-    aspect-ratio: 519 / 292;
+    aspect-ratio: 519/292;
     min-width: 519px;
     object-fit: cover;
     object-position: center;

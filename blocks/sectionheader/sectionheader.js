@@ -28,6 +28,11 @@ export default function decorate(block) {
 
     block.classList.add(variant);
 
+    const borderBottom = block.classList.contains('border-bottom');
+    if (borderBottom) {
+        block.classList.add('border-bottom');
+    }
+
     /* ---------- WRAPPER ---------- */
     const wrapper = document.createElement('div');
     wrapper.className = 'section-header-wrapper';
