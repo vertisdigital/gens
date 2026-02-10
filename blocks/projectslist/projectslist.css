@@ -55,7 +55,7 @@ p {
     padding-bottom: 0;
 }
 
-.projectslist .list-view.no-zebra-pattern .projectslistitem {
+.projectslist.no-zebra-pattern .list-view .projectslistitem {
     background-color: transparent;
 }
 
