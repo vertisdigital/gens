@@ -221,7 +221,7 @@ html:not([data-aue-resource]) body .masthead-container:not(:has(.masthead-contai
 
 @media (width >=1200px) and (height <=600px) {
   .masthead-title {
-    top: 34%;
+    margin-top: 25px;
   }
 
   .masthead-container:not(:has(.masthead-container)) {
