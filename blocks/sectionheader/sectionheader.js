@@ -27,7 +27,7 @@ export default function decorate(block) {
             : 'vertical';
 
     block.classList.add(variant);
-
+  
     const borderBottom = block.classList.contains('border-bottom');
     if (borderBottom) {
         block.classList.add('border-bottom');
