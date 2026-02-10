@@ -332,7 +332,7 @@
 
 @media (width >=768px) and (width < 1200px) {
     .timeline {
-        padding-top: 64px;
+        padding-top: 40px;
     }
 
     .tab-panel.historymilestones-container {
@@ -341,7 +341,7 @@
     }
 
     .historymilestones-slider-nav {
-        margin-bottom: 64px;
+        margin-bottom: 40px;
     }
 
     .historymilestones-milestones {
