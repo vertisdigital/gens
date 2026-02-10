@@ -101,7 +101,7 @@
     width: 411px;
   }
   .exploremore .exploremore-wrapper-container .exploremore-title h3 {
-    width: 80%;
+    width: 60%;
   }
   .exploremore-wrapper-container .exploremore-links {
     width: calc(100% - 411px - 24px);
