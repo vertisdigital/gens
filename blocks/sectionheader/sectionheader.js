@@ -9,17 +9,14 @@ export default function decorate(block) {
 
     block.classList.add('section-header', 'block', 'container');
     block.classList.add('fade-item');
-    const nested = block.querySelectorAll('[class^="sectionheader-nested-"]');
+    const nested = block.children;
     const labelEl = nested[0]?.querySelector('p') || null;
     const titleEl = nested[1]?.querySelector('p') || null;
     const descEl = nested[2]?.querySelector('p') || null;
     const variantEl =
-        block.querySelector('[data-aue-prop="classes"]') ||
-        block.querySelector('[data-gen-prop="classes"]') ||
         Array.from(
-            block.querySelectorAll('[class^="sectionheader-nested-"]')
+            block.children
         ).find(el => el.textContent?.trim() === 'horizontal');
-
 
     const variant =
         variantEl?.textContent?.trim() === 'horizontal'
@@ -27,11 +24,6 @@ export default function decorate(block) {
             : 'vertical';
 
     block.classList.add(variant);
-  
-    const borderBottom = block.classList.contains('border-bottom');
-    if (borderBottom) {
-        block.classList.add('border-bottom');
-    }
 
     /* ---------- WRAPPER ---------- */
     const wrapper = document.createElement('div');
