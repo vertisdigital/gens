@@ -9,6 +9,16 @@
     padding-bottom: 64px;
     margin: auto;
 }
+.sectionheader.border-bottom {
+    padding-bottom: 80px;
+
+    .section-header-wrapper {
+        padding-bottom: 64px;
+        border-bottom: 1px solid var(--color-neutral-800);
+    }
+}
+
+
 
 /* ===============================
    Label
