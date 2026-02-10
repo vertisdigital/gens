@@ -14,8 +14,8 @@ export default function decorate(block) {
     const titleEl = nested[1]?.querySelector('p') || null;
     const descEl = nested[2]?.querySelector('p') || null;
     const variantEl =
-        block.querySelector('[data-aue-prop="sectionheaderclass"]') ||
-        block.querySelector('[data-gen-prop="sectionheaderclass"]') ||
+        block.querySelector('[data-aue-prop="classes"]') ||
+        block.querySelector('[data-gen-prop="classes"]') ||
         Array.from(
             block.querySelectorAll('[class^="sectionheader-nested-"]')
         ).find(el => el.textContent?.trim() === 'horizontal');

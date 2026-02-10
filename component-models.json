@@ -755,7 +755,7 @@
       },
       {
         "component": "multiselect",
-        "name": "sectionheaderclass",
+        "name": "classes",
         "label": "Section Header Variant",
         "valueType": "string",
         "value": "",

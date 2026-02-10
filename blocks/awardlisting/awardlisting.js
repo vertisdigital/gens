@@ -39,13 +39,11 @@ export default function decorate(block) {
       awardTile.className = 'award-tile';
       
       // Year
-      if (yearElement && yearElement.textContent?.trim()) {
-        const year = document.createElement('p');
-        year.className = 'awardlisting-year';
-        year.textContent = yearElement.textContent.trim();
-        moveInstrumentation(yearElement, year);
-        awardTile.appendChild(year);
-      }
+      const year = document.createElement('p');
+      year.className = 'awardlisting-year';
+      year.textContent = yearElement.textContent.trim();
+      moveInstrumentation(yearElement, year);
+      awardTile.appendChild(year);
       
       // Description
       if (descriptionElement && descriptionElement.textContent?.trim()) {
