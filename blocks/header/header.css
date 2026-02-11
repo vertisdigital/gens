@@ -1411,6 +1411,20 @@ header .header {
   }
 }
 
+@media (width>=1200px) and (width<=1300px) {
+  .secondary-nav>.container {
+    gap: 0;
+  }
+
+  .header-inner-wrapper .secondary-nav .secondary-header-links .nav-links li {
+    padding: 0;
+  }
+   
+  .header-inner-wrapper .secondary-nav .secondary-header-links .nav-links {
+    gap: 0 16px;
+  }
+}
+
 @media (width>=1440px) {
   .header-nav {
     gap: 124px;

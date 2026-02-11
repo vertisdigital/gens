@@ -491,7 +491,7 @@
     font-family: var(--typography-font-family-font-body, "Instrument Sans");
     font-size: var(--typography-font-size-text-base, 16px);
     font-style: normal;
-    font-weight: 700;
+    font-weight: 400;
     line-height: var(--typography-font-line-height-leading-3, 24px);
     /* 150% */
     letter-spacing: var(--typography-font-spacing-tracking-normal, 0);
@@ -750,7 +750,7 @@
     font-family: var(--typography-font-family-font-body, "Instrument Sans");
     font-size: var(--typography-font-size-text-base, 16px);
     font-style: normal;
-    font-weight: 700;
+    font-weight: 400;
     line-height: var(--typography-font-line-height-leading-3, 24px);
     /* 150% */
     letter-spacing: var(--typography-font-spacing-tracking-normal, 0);
