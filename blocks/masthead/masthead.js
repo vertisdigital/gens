@@ -154,13 +154,7 @@ export default function decorate(block) {
     '[data-aue-prop="isBold"], [data-gen-prop="isBold"]',
   )
     || block.querySelector('.masthead-nested-1-8 p')
-    // Sequence check, verify if 1-6 is correct in generated structure
     || block.querySelector('.masthead-nested-1-8');
-
-  // Note: .masthead-nested-1-x classes are sequential. 
-  // 1: image, 2: tablet, 3: mobile, 4: color, 5: title, 6: isBold (new), 7: gradient, 8: indicator
-  // Wait, I need to be careful with the nested selector indices as adding a field shifts them if they are auto-generated or reliant on order. 
-  // However, usually checking `data-aue-prop` is safest.
 
   const isBoldP = isBoldEl?.querySelector('p') || isBoldEl;
   const isBoldValue = isBoldP?.textContent?.trim();
