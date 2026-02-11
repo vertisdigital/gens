@@ -771,6 +771,10 @@
           {
             "name": "Border Bottom",
             "value": "border-bottom"
+          },
+          {
+            "name": "Blue Background",
+            "value": "blue-background"
           }
         ]
       }
