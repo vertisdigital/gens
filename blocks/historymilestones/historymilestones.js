@@ -75,19 +75,6 @@ function initHistoryMilestonesSlider(block) {
     wrapper.classList.toggle('is-active', index === activeIndex);
   });
 
-// Count slide còn milestone hiển thị
-const validSlides = wrappers.filter((wrapper) => {
-  const visibleMilestone = wrapper.querySelector(
-    '.historymilestones-milestone:not([style*="display: none"])'
-  );
-  return !!visibleMilestone;
-});
-
-if (validSlides.length <= 1) {
-  prevButton.style.display = 'none';
-  nextButton.style.display = 'none';
-}
-
   /* ---------- navigation ---------- */
 
   const nav = document.createElement('div');
