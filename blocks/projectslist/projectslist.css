@@ -170,6 +170,14 @@ p {
     border-color: var(--color-border-secondary-pressed);
 }
 
+.project-cta .button-container a.button.vd-link {
+    width: auto;
+    height: auto;
+    display: inline-flex;
+    border: none;
+    padding: 0;
+}
+
 .projectslist .grid-view .projectslistitem .project-title{
     font-size: 28px;
     line-height: 44px;

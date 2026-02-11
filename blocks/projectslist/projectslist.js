@@ -30,6 +30,7 @@ export default function decorate(block) {
       leftCol.className = 'col-xl-6 col-md-3 col-sm-4 left-col';
 
       const allDivElements = project.children;
+     
 
       const titleText = allDivElements[0];
       if (titleText) {
@@ -74,16 +75,27 @@ export default function decorate(block) {
       // Add arrowIcon to the button/link in projectCta
       const buttonLink = projectCta.querySelector('a');
       if (buttonLink) {
+        // Capture the link text field value before clearing
+        const linkText = buttonLink.textContent?.trim() || buttonLink.innerHTML?.trim() || '';
+        
         buttonLink.classList.add('button');
-        // Create circular icon button with arrow icon
-        const arrowIcon = SvgIcon({
-          name: 'arrowright',
-          className: 'learn-button-icon',
-          size: '14',
-          color: 'var(--color-text-tertiary)',
-        });
-        buttonLink.innerHTML = '';
-        buttonLink.appendChild(stringToHtml(arrowIcon));
+        if (!linkText.includes('https://')) {
+          buttonLink.textContent = linkText;
+          buttonLink.classList.add('vd-link');
+        }
+        else {
+          buttonLink.classList.remove('vd-link');
+          // Create circular icon button with arrow icon
+          const arrowIcon = SvgIcon({
+            name: 'arrowright',
+            className: 'learn-button-icon',
+            size: '14',
+            color: 'var(--color-text-tertiary)',
+          });
+          buttonLink.innerHTML = '';
+          buttonLink.appendChild(stringToHtml(arrowIcon));
+        }
+        
       }
       
       leftCol.appendChild(projectCta);
