@@ -61,27 +61,8 @@ function initHistoryMilestonesSlider(block) {
   const wrappers = Array.from(
     section.querySelectorAll('.historymilestones-wrapper'),
   );
-  wrappers = wrappers.filter((wrapper) => {
-  const milestones = wrapper.querySelectorAll(
-    '.historymilestones-milestone'
-  );
-
-  return Array.from(milestones).some((milestone) => {
-    const image = milestone.querySelector('.historymilestones-image img');
-    const description = milestone.querySelector(
-      '.historymilestones-description'
-    );
-
-    const hasImage = image && image.getAttribute('src');
-    const hasDescription =
-      description && description.textContent.trim().length > 0;
-
-    return hasImage && hasDescription;
-  });
-});
-
-if (!wrappers.length) return;
-if (wrappers.length <= 1) return;
+  
+  if (!wrappers.length) return;
 
   section.dataset.historymilestonesSliderInitialized = 'true';
 
