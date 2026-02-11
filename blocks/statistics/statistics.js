@@ -8,6 +8,9 @@ export default function decorate(block) {
   const isStaticFinanicialVariation = block.classList.contains(
     'statistics-financial-variation',
   );
+  if (isStaticFinanicialVariation) {
+    block.closest('.statistics-wrapper').classList.add('statistics-financial-variation');
+  }
   const isStatisDesc = blockChilden[0].textContent.trim() === 'statistics-description';
   const isStatFeatures = blockChilden[0].textContent.trim() === 'statistics-feature';
 
@@ -29,9 +32,7 @@ export default function decorate(block) {
   if (isStatFeatures) {
     // finding the feature items
     blockChilden[2].remove();
-    const featureItems = isStaticFinanicialVariation
-      ? blockChilden.slice(2)
-      : blockChilden.slice(3);
+    const featureItems = blockChilden.slice(3);
 
     const featureContainer = document.createElement('div');
     featureContainer.className = 'statistics-row';

@@ -18,6 +18,9 @@
     }
 }
 
+.sectionheader.blue-background {
+    background-color: var(--color-bg-primary);
+}   
 
 
 /* ===============================
@@ -46,6 +49,10 @@
     font-family: var(--typography-font-family-font-title, Inter);
     font-weight: 400;
     letter-spacing: var(--typography-font-spacing-tracking-normal, 0);
+}
+
+.sectionheader.blue-background .section-header-title {
+    color: var(--color-text-white);
 }
 
 
