@@ -75,6 +75,17 @@ function initHistoryMilestonesSlider(block) {
     wrapper.classList.toggle('is-active', index === activeIndex);
   });
 
+  // Count slides có milestone thật
+const validSlides = wrappers.filter((wrapper) =>
+  wrapper.querySelector('.historymilestones-milestone')
+);
+
+if (validSlides.length <= 1) {
+  // Vẫn init slider nhưng không cần arrow
+  prevButton.style.display = 'none';
+  nextButton.style.display = 'none';
+}
+
   /* ---------- navigation ---------- */
 
   const nav = document.createElement('div');
@@ -283,6 +294,15 @@ export default function decorate(block) {
         ${milestones
       .map((milestone) => {
         const [image, date, description] = milestone.children;
+        
+    const hasImage = image?.querySelector('a[href]');
+    const hasDescription =
+      description && description.textContent.trim().length > 0;
+
+    // ❌ Nếu không có content hợp lệ → không render milestone này
+    if (!hasImage || !hasDescription) {
+      return '';
+    
 
         const ctaSvg = `
               <svg width="48" height="48" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg" class="about-us-link-button">
