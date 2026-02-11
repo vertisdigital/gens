@@ -10,20 +10,13 @@ export default function decorate(block) {
     block.classList.add('section-header', 'block', 'container');
     block.classList.add('fade-item');
     const nested = block.children;
+    
     const labelEl = nested[0]?.querySelector('p') || null;
     const titleEl = nested[1]?.querySelector('p') || null;
     const descEl = nested[2]?.querySelector('p') || null;
-    const variantEl =
-        Array.from(
-            block.children
-        ).find(el => el.textContent?.trim() === 'horizontal');
-
-    const variant =
-        variantEl?.textContent?.trim() === 'horizontal'
-            ? 'horizontal'
-            : 'vertical';
-
-    block.classList.add(variant);
+    
+    const variant = block.classList.contains('horizontal') ? '' : 'vertical';
+    variant && block.classList.add(variant);
 
     /* ---------- WRAPPER ---------- */
     const wrapper = document.createElement('div');
@@ -127,7 +120,7 @@ export default function decorate(block) {
     }
 
     /* ---------- ASSEMBLE ---------- */
-    if (variant === 'horizontal') {
+    if (variant === '') {
         wrapper.appendChild(left);
 
         if (descriptionNode || ctaNode) {

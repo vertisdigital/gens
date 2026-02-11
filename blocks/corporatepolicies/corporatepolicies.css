@@ -12,6 +12,10 @@
     background-image: none;
 }
 
+.corporatepolicies .row>* {
+    padding: 0;
+}
+
 .corporate-policies-list-item {
     padding: 40px 0;
     border-bottom: 1px solid var(--color-neutral-800);
@@ -42,13 +46,8 @@
     cursor: pointer;
 }
 
-.corporate-policies-list-item>div:first-child {
-    padding-right: 12px;
-
-}
-
 .corporate-policies-list-item>div:last-child {
-    padding-left: 12px;
+    padding-left: 32px;
 
 }
 
@@ -73,7 +72,7 @@
     line-height: 56px;
     color: var(--text-color);
     margin: 0;
-    /* width: 50%; */
+    width: 59%;
 }
 
 .corporate-policies-list-item .left-col .corporate-policies-subtitle {

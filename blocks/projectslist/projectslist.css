@@ -59,11 +59,11 @@ p {
     background-color: transparent;
 }
 
-.left-col {
+.projectslist .left-col {
     padding-right: 15px;
 }
 
-.right-col {
+.projectslist .right-col {
     display: flex;
     justify-content: flex-end;
 }
