@@ -21,6 +21,9 @@
     margin-bottom: 32px;
     margin-top: 40px;
     position: relative;
+    @media (width < 1181px) and (width >= 768px) {
+        margin-bottom: 20px;
+    }
 }
 
 .tab-title {
@@ -204,7 +207,7 @@
 @media(width<768px) {
     .tabs-header {
         margin-top: 20px;
-        margin-bottom: 24px;
+        margin-bottom: 12px;
     }
 
     .tab-title {
