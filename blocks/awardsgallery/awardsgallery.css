@@ -68,6 +68,12 @@
     gap: 24px;
     margin: 0 72px;
     justify-content: flex-start;
+    @media (width < 1181px) and (width >= 768px) {
+        padding: 64px 0;
+    }
+    @media(width<768px) {
+        padding: 40px 0;
+    }
 }
 
 .awardsgallery .awardsgallery-grid-center {
@@ -177,6 +183,10 @@
 
   /* tablet styles */
 @media (width < 1181px) and (width >= 768px) {
+
+    .awardsgallery .awardsgallery-grid {
+        padding: 64px 0;
+    }
 
     .awardsgallery .awardsgallery-image img {
         max-width: 160px;
