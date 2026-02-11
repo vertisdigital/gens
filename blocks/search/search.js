@@ -43,6 +43,7 @@ export default async function decorate(block) {
     block.appendChild(ul);
   } catch (e) {
     block.innerHTML = '<p>Error loading results</p>';
+    // eslint-disable-next-line no-console
     console.error(e);
   }
 }

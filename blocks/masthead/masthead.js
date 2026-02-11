@@ -151,7 +151,8 @@ export default function decorate(block) {
 
   // Check for isBold property
   const isBoldEl = block.querySelector('[data-aue-prop="isBold"], [data-gen-prop="isBold"]')
-    || block.querySelector('.masthead-nested-1-8 p') // Sequence check, verify if 1-6 is correct in generated structure
+    || block.querySelector('.masthead-nested-1-8 p')
+    // Sequence check, verify if 1-6 is correct in generated structure
     || block.querySelector('.masthead-nested-1-8');
 
   // Note: .masthead-nested-1-x classes are sequential. 

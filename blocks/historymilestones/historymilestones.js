@@ -139,6 +139,26 @@ function initHistoryMilestonesSlider(block) {
   const nav = document.createElement('div');
   nav.className = 'historymilestones-slider-nav';
 
+  /* ---------- core slide function ---------- */
+  const goToSlide = function goToSlide(index) {
+    let targetIndex = index;
+
+    if (targetIndex < 0) targetIndex = wrappers.length - 1;
+    if (targetIndex >= wrappers.length) targetIndex = 0;
+    if (targetIndex === activeIndex) return;
+
+    wrappers[activeIndex].classList.remove('is-active');
+    yearButtons[activeIndex].classList.remove('is-active');
+
+    wrappers[targetIndex].classList.add('is-active');
+    yearButtons[targetIndex].classList.add('is-active');
+
+    activeIndex = targetIndex;
+
+    // Sync mobile select
+    select.value = activeIndex;
+  };
+
   if (wrappers.length > 1) {
     const prevButton = document.createElement('button');
     prevButton.type = 'button';
@@ -219,25 +239,7 @@ function initHistoryMilestonesSlider(block) {
 
 
 
-  /* ---------- core slide function ---------- */
-  const goToSlide = function (index) {
-    let targetIndex = index;
 
-    if (targetIndex < 0) targetIndex = wrappers.length - 1;
-    if (targetIndex >= wrappers.length) targetIndex = 0;
-    if (targetIndex === activeIndex) return;
-
-    wrappers[activeIndex].classList.remove('is-active');
-    yearButtons[activeIndex].classList.remove('is-active');
-
-    wrappers[targetIndex].classList.add('is-active');
-    yearButtons[targetIndex].classList.add('is-active');
-
-    activeIndex = targetIndex;
-
-    // Sync mobile select
-    select.value = activeIndex;
-  };
 
   /* ---------- year buttons ---------- */
   yearButtons = wrappers.map((wrapper, index) => {

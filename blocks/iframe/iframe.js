@@ -176,6 +176,7 @@ export default function decorate(block) {
 
   // Add error handling
   iframe.onerror = () => {
+    // eslint-disable-next-line no-console
     console.warn(`Failed to load iframe content from: ${link.href}`);
     const errorMessage = document.createElement('div');
     errorMessage.className = 'iframe-error';

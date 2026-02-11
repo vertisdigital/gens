@@ -3,20 +3,20 @@ import stringToHTML from '../../shared-components/Utility.js';
 import SVGIcon from '../../shared-components/SvgIcon.js';
 import { moveInstrumentation } from '../../scripts/scripts.js';
 
-export default function decorate(block) { 
+export default function decorate(block) {
     const isAuthoring =
         !!block.querySelector('[data-aue-model], [data-aue-prop]');
 
     block.classList.add('section-header', 'block', 'container');
     block.classList.add('fade-item');
     const nested = block.children;
-    
+
     const labelEl = nested[0]?.querySelector('p') || null;
     const titleEl = nested[1]?.querySelector('p') || null;
     const descEl = nested[2]?.querySelector('p') || null;
-    
+
     const variant = block.classList.contains('horizontal') ? '' : 'vertical';
-    variant && block.classList.add(variant);
+    if (variant) block.classList.add(variant);
 
     /* ---------- WRAPPER ---------- */
     const wrapper = document.createElement('div');
