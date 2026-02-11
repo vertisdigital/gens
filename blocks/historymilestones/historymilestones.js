@@ -75,13 +75,15 @@ function initHistoryMilestonesSlider(block) {
     wrapper.classList.toggle('is-active', index === activeIndex);
   });
 
-  // Count slides có milestone thật
-const validSlides = wrappers.filter((wrapper) =>
-  wrapper.querySelector('.historymilestones-milestone')
-);
+// Count slide còn milestone hiển thị
+const validSlides = wrappers.filter((wrapper) => {
+  const visibleMilestone = wrapper.querySelector(
+    '.historymilestones-milestone:not([style*="display: none"])'
+  );
+  return !!visibleMilestone;
+});
 
 if (validSlides.length <= 1) {
-  // Vẫn init slider nhưng không cần arrow
   prevButton.style.display = 'none';
   nextButton.style.display = 'none';
 }
