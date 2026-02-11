@@ -216,6 +216,11 @@ html:not([data-aue-resource]) body .masthead-container:not(:has(.masthead-contai
     position: absolute;
     top: 42%;
     transform: translateY(-50%);
+    margin-top: 25px;
+  }
+
+  .masthead-container:not(:has(.masthead-container)) {
+    --masthead-scroll-bottom: 20px;
   }
 }
 
