@@ -131,14 +131,14 @@ export default function decorate(block) {
 
   // Try multiple selectors to find gradient toggle in both authoring and publishing mode
   const gradientEl = block.querySelector('[data-aue-prop="enablegradient"], [data-gen-prop="enablegradient"]')
-    || block.querySelector('.masthead-nested-1-8 p')
-    || block.querySelector('.masthead-nested-1-8')
-    || (blockChildren[7]?.querySelector('p') ? blockChildren[7] : null);
+    || block.querySelector('.masthead-nested-1-6 p')
+    || block.querySelector('.masthead-nested-1-6')
+    || (blockChildren[5]?.querySelector('p') ? blockChildren[5] : null);
 
   // Get text from p tag if it exists, otherwise from the element itself
   const gradientP = gradientEl?.querySelector('p') || gradientEl;
   const gradientValue = gradientP?.textContent?.trim();
-  const enablegradient = !gradientEl || gradientValue !== 'false';
+  const enablegradient = gradientValue === 'true' || gradientValue === true;
   mastheadContainer.classList.add(enablegradient ? 'masthead-has-gradient' : 'masthead-no-gradient');
 
   // Only remove if it's not the block itself
