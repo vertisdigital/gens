@@ -93,7 +93,8 @@ p {
     object-position: center;
 }
 
-.projectslist .grid-view .projectslistitem .project-image {
+.projectslist .grid-view .projectslistitem .project-image,
+.projectslist .grid-view .projectslistitem .project-image picture {
     width: 100%;
 }
 
@@ -101,6 +102,7 @@ p {
     aspect-ratio: 411/231;
     min-width: 0;
     margin-bottom: 24px;
+    width: 100%;
 }
 
 .projectslist .projectslistitem  .project-title,
@@ -203,6 +205,10 @@ p {
         gap: 40px;
     }
 
+    .projectslist .grid-view.grid-view-2-cols{
+        gap: 0;
+    }
+
     .projectslist .projectslist-container {
         display: flex;
         flex-direction: column;
@@ -214,6 +220,18 @@ p {
     }
 
     .projectslist .grid-view .projectslistitem {
+        padding: 0;
+    }
+
+    .projectslist .grid-view .projectslistitem:last-child {
+        padding: 0 0 64px;
+    }
+
+    .projectslist .grid-view.grid-view-2-cols .projectslistitem {
+        margin-bottom: 40px;
+    }
+
+    .projectslist .grid-view.grid-view-2-cols .projectslistitem:last-child {
         padding: 0;
     }
 
@@ -279,6 +297,10 @@ p {
         flex-direction: column;
     }
 
+    .projectslist .grid-view.grid-view-2-cols {
+        gap: 0;
+    }
+
     .projectslistitem {
         flex-direction: column;
         padding: 40px 24px;
@@ -306,8 +328,17 @@ p {
         min-width: 327px;
     }
 
+    .projectslist .grid-view .projectslistitem:last-child {
+        padding: 0 0 40px;
+    }
+
     .projectslist .grid-view .projectslistitem .project-image img {
         margin-bottom: 16px;
+    }
+
+    .projectslist .grid-view.grid-view-2-cols .projectslistitem {
+        margin-bottom: 24px;
+        padding: 0;
     }
 
     .projectslist .projectslistitem .project-title {
@@ -319,11 +350,19 @@ p {
         margin-top: 12px;
     }
 
+    .projectslist .grid-view .projectslistitem .project-long-description {
+        margin-top: 8px;
+    }
+
     .project-cta a.button:any-link{
         position: relative;
         width: 32px;
         height: 32px;
         padding: 8px;
+    }
+
+    .project-cta .button-container a.button.vd-link {
+        margin-top: 16px;
     }
 
     .project-cta a.button .icon-wrapper {
