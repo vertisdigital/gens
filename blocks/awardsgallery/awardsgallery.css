@@ -98,6 +98,13 @@
     }
 }
 
+.awardsgallery.no-padding-top {
+    .awardsgallery-grid {
+        padding-top: 0;
+    }
+}
+
+
 .awardsgallery .awardsgallery-grid-center {
     justify-content: center;
 }
