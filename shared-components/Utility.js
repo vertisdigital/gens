@@ -9,7 +9,7 @@ function sanitizeHTMLString(str) {
     'onerror', 'onload', 'onclick', 'onmouseover', 'onfocus', 'onmouseenter',
     'srcdoc', 'formaction', 'xlink:href'
   ];
-// eslint-disable-next-line no-script-url
+  // eslint-disable-next-line no-script-url
   const blockedProtocols = ['javascript:', 'vbscript:', 'data:'];
   const urlAttributes = ['href', 'src', 'xlink:href', 'formaction'];
 
@@ -54,10 +54,16 @@ function stringToHTML(str) {
 export default stringToHTML;
 
 
-export function redirectRouter(){
+export function redirectRouter() {
+  // Redirect root to /en/home to check for 404
+  if (window.location.pathname === '/' || window.location.pathname === '/index.html') {
+    window.location.replace('/en/home');
+    return;
+  }
+
   let pathName = window.location.href.split('#!/en')
   pathName = pathName[pathName.length - 1]
-  
+
   const redirectableRoutes = {
     "/company/governance/code-of-conduct": "/sustainability/corporate-policies",
     "/company/governance/human-rights-policy": "/sustainability/corporate-policies",
@@ -69,10 +75,10 @@ export function redirectRouter(){
     "/investors/agm-egm": "/investors-overview/agm-egm",
     "/privacy-policy": "/contact-us/privacypolicy"
   }
-  const redirectPathExist=redirectableRoutes[pathName]
-  
-  if(redirectPathExist){
-     window.location.replace(redirectPathExist) 
+  const redirectPathExist = redirectableRoutes[pathName]
+
+  if (redirectPathExist) {
+    window.location.replace(redirectPathExist)
   }
 }
 
@@ -81,18 +87,18 @@ export function isMobile() {
 };
 
 export function controlLowerEnvironment() {
-    // Authentication check - redirect to login if not authenticated and not already on login page
-    const isAuthenticated = sessionStorage.getItem('isAuthenticated') === 'true';
-    const currentPath = window.location.pathname;
-    
-    // If user is not authenticated and not already on login page, redirect to login
-    if (!isAuthenticated && !currentPath.includes('/login')) {
-      // Store current page for redirect after login
-      sessionStorage.setItem('loginReferrer', window.location.href);
-      console.log('User not authenticated, redirecting to login page');
-      window.location.href = '/login';
-      return;
-    }
+  // Authentication check - redirect to login if not authenticated and not already on login page
+  const isAuthenticated = sessionStorage.getItem('isAuthenticated') === 'true';
+  const currentPath = window.location.pathname;
+
+  // If user is not authenticated and not already on login page, redirect to login
+  if (!isAuthenticated && !currentPath.includes('/login')) {
+    // Store current page for redirect after login
+    sessionStorage.setItem('loginReferrer', window.location.href);
+    console.log('User not authenticated, redirecting to login page');
+    window.location.href = '/login';
+    return;
+  }
 }
 
 export const isIOSDevice = () => {
