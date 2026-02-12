@@ -344,13 +344,6 @@
     line-height: 72px;
   }
 
-  .about-us-stats .about-us-right-content>div:nth-child(2) p {
-    font-size: 16px;
-    font-weight: 400;
-    line-height: 24px;
-    font-family: var(--body-font-family, 'Inter', sans-serif);
-  }
-
   .statistics-container .feature-wrapper .about-us-stats .about-us-right-content p {
     font-size: 16px;
     line-height: 24px;
@@ -360,6 +353,13 @@
   .about-us-stats .about-us-right-content p {
     font-size: 16px;
     line-height: 24px;
+  }
+
+  .about-us-stats .about-us-right-content>div:nth-child(2) p {
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 24px;
+    font-family: var(--body-font-family, 'Inter', sans-serif);
   }
 
   .about-us-stats .about-us-right-content.image-container>div:nth-child(2) p {
@@ -559,12 +559,6 @@
     border-top: 1px solid var(--colours-border-border-base, #E8EBEB);
   }
 
-  .about-us-stats .about-us-right-content>div:nth-child(2) p {
-    font-size: 16px;
-    line-height: 24px;
-    font-family: var(--body-font-family, 'Inter', sans-serif);
-  }
-
   .statistics-container .feature-wrapper .about-us-stats .about-us-right-content p {
     font-size: 16px;
     line-height: 24px;
@@ -574,6 +568,12 @@
   .about-us-stats .about-us-right-content p {
     font-size: 16px;
     line-height: 24px;
+  }
+
+  .about-us-stats .about-us-right-content>div:nth-child(2) p {
+    font-size: 16px;
+    line-height: 24px;
+    font-family: var(--body-font-family, 'Inter', sans-serif);
   }
 
   .about-us-stats .about-us-right-content:last-child {
