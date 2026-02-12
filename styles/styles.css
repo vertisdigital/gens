@@ -56,7 +56,7 @@ Usage Example:
   --soft-ivory: #F5E7C4;
   --whisper-gray: #F7F7F7;
   --soft-ivory-blue: #FBF6E9;
-  --neutral-color:#9E9E9E;
+  --neutral-color: #9E9E9E;
   --primary-default-fg: #F7FAFA;
   --fg-tertiary-color: #8D713E;
   --border-base-color: #E8EBEB;
@@ -313,12 +313,12 @@ blockquote {
   margin-bottom: 0.25em;
 }
 
-ul{
+ul {
   padding-left: 18px;
 }
 
 
-ul>li>ul{
+ul>li>ul {
   padding-left: 32px;
 }
 
@@ -336,6 +336,7 @@ pre {
 }
 
 @media (width >=567px) {
+
   code,
   pre {
     font-size: var(--font-size-xxs);
@@ -343,6 +344,7 @@ pre {
 }
 
 @media (width >=900px) {
+
   code,
   pre {
     font-size: var(--font-size-xs);
@@ -457,6 +459,7 @@ main .section.highlight {
 } */
 
 @media (width >=320px) {
+
   .container-sm,
   .container {
     max-width: 767px;
@@ -576,6 +579,7 @@ main .section.highlight {
 }
 
 @media (width >=768px) {
+
   .container-md,
   .container-sm,
   .container {
@@ -710,6 +714,7 @@ main .section.highlight {
 }
 
 @media (width>=993px) {
+
   .container-xl,
   .container-md,
   .container-sm,
@@ -719,6 +724,7 @@ main .section.highlight {
 }
 
 @media (width >=1200px) {
+
   .container-xl,
   .container-md,
   .container-sm,
@@ -916,6 +922,7 @@ main::before {
   inset: 0;
   z-index: -1;
 }
+
 /* @media (width >= 768px) {
   main::before {
     background: url("../icons/genting-page-tablet-bg.jpg") repeat-y;
@@ -969,9 +976,13 @@ main::before {
   }
 }
 
-picture{
+picture {
   display: block;
   line-height: 0;
 }
 
-
+#news_search section,
+#email_alerts section,
+#investor-calendar section {
+  min-height: auto !important;
+}
