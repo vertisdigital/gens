@@ -142,7 +142,7 @@ function handleMediaElement(mediaBlock) {
 // Function to apply styles to the text section
 function decorateTextSection(textSection) {
   if (!textSection) return;
-  textSection.classList.add('textblock');
+  textSection.classList.add('textblock', 'container');
   textSection.children[0]?.classList.add('heading');
   textSection.children[1]?.classList.add('text-section');
 }

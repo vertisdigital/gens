@@ -1993,7 +1993,7 @@
     "id": "awardsgallery",
     "fields": [
       {
-        "component": "select",
+        "component": "multiselect",
         "name": "classes",
         "value": "",
         "label": "Display options",
@@ -2006,6 +2006,10 @@
           {
             "name": "Grid View",
             "value": "grid-view"
+          },
+          {
+            "name": "No Padding Top",
+            "value": "no-padding-top"
           }
         ]
       }
