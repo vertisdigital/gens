@@ -100,8 +100,6 @@ function updateIframeHeight(iframeWrapper, endpoint, iframeElement = null) {
     .replace('.html', '')
     .replace(/[_\s]+/g, '-');
 
-  // console.log('Iframe Debug:', { original: endpoint, normalized: normalizedEndpoint });
-
   let config = endpointHeightConfig[normalizedEndpoint] || endpointHeightConfig.default;
 
   let height = null;
@@ -213,8 +211,6 @@ export default function decorate(block) {
       if (e.source !== iframe.contentWindow) {
         return;
       }
-
-      console.log(iframe.contentWindow)
 
       // Reset resize flag for internal iframe tab switches
       if (tabviewHeight !== null && message === 'TabView') {
