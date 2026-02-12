@@ -155,8 +155,6 @@ function updateIframeForTab() {
   }
 }
 
-let tabview = null;
-let calview = null;
 let tabviewHeight = null;
 let calviewHeight = null;
 
