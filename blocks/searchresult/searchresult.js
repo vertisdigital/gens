@@ -179,7 +179,7 @@ const renderResults = (block, q, results, currentPage, total, totalPages) => {
     return;
   }
 
-  const endpoint = "https://publish-p144202-e1488374.adobeaemcloud.com";
+  const endpoint = "https://author-p144202-e1512622.adobeaemcloud.com";
 
   const from = total === 0 ? 0 : (currentPage - 1) * PAGE_SIZE + 1;
   const to = Math.min(currentPage * PAGE_SIZE, total);
@@ -196,8 +196,8 @@ const renderResults = (block, q, results, currentPage, total, totalPages) => {
           <li class="searchresult-item">
             <div class="searchresult-title">
               <a href="${item.path.endsWith('.pdf') ? endpoint + item.path : shortenURL(
-            item.path
-          )}">${item.title}</a>
+          item.path
+        )}">${item.title}</a>
               <p class="searchresult-info">
                 ${item.highlight || (item.path.endsWith('.pdf') && item.highlight === '')
             ? `<span class="searchresult-desc">${item.path.endsWith('.pdf') && item.highlight === '' ? 'Match found in document content' : highlight(
@@ -229,7 +229,7 @@ const loadPage = async (block, q, page, pushState) => {
   const fetchPage = async (pageToLoad) => {
     const offset = (pageToLoad - 1) * PAGE_SIZE;
     const endpoint =
-      "https://publish-p144202-e1488374.adobeaemcloud.com" +
+      "https://author-p144202-e1512622.adobeaemcloud.com" +
       basePath +
       "/jcr:content.contentsearch.json" +
       `?q=${encodeURIComponent(q)}&offset=${offset}&limit=${PAGE_SIZE}`;
@@ -290,7 +290,7 @@ const loadPage = async (block, q, page, pushState) => {
     We found <strong>${total}</strong> result(s) that match
     <strong>${q}</strong>
   `;
-  moveSearchSuggestionOutOfHeader();
+    moveSearchSuggestionOutOfHeader();
   });
 
 };
