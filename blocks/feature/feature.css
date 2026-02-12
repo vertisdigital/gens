@@ -344,6 +344,11 @@
     line-height: 72px;
   }
 
+  .about-us-stats .about-us-right-content p {
+    font-size: 16px;
+    line-height: 24px;
+  }
+
   .statistics-container .feature-wrapper .about-us-stats .about-us-right-content p {
     font-size: 16px;
     line-height: 24px;
@@ -542,6 +547,11 @@
 
   .about-us-stats .about-us-right-content:last-child {
     margin-bottom: 0;
+  }
+
+  .about-us-stats .about-us-right-content p {
+    font-size: 16px;
+    line-height: 24px;
   }
 
   .about-us-stats .about-us-right-content.text-container:not(:first-child),

@@ -58,7 +58,7 @@
 }
 
 .awardsgallery .awardsgallery-grid {
-    padding: 80px 0;
+    padding-top: 80px;
     display: flex;
     flex-wrap: nowrap;
     overflow-x: auto;
@@ -66,15 +66,16 @@
     scrollbar-width: none;
     scroll-snap-type: x mandatory;
     gap: 24px;
-    margin: 0 72px;
+    margin: 0 72px 80px;
     justify-content: flex-start;
 
     @media (width < 1181px) and (width >=768px) {
-        padding: 64px 0;
+        padding-top: 64px;
+        margin-bottom: 64px;
     }
 
     @media(width<768px) {
-        padding: 40px 0;
+        padding-top: 40px;
     }
 }
 
@@ -180,7 +181,7 @@
 @media (width < 768px) {
 
     .awardsgallery .awardsgallery-grid {
-        margin: 0 32px;
+        margin: 0 32px 40px;
     }
 
     .awardsgallery.grid-view .awardsgallery-grid {
@@ -229,10 +230,6 @@
 
 /* tablet styles */
 @media (width < 1181px) and (width >=768px) {
-
-    .awardsgallery .awardsgallery-grid {
-        padding: 64px 0;
-    }
 
     .awardsgallery.grid-view .awardsgallery-grid {
         grid-template-columns: repeat(1, 1fr);
