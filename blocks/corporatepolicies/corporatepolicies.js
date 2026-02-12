@@ -29,10 +29,22 @@ export default function decorate(block) {
           if (children.length > 0) {
             // Handle heading replacement
             const firstChildText = children[0].textContent?.trim();
+           
+            let headingClassName = '';
+            if(firstChildText.length > 20 && firstChildText.length < 25) {
+              headingClassName = 'w-50';
+            } 
+            if(firstChildText.length < 20) {
+              headingClassName = 'w-40';
+            }
+            if(firstChildText.length > 25 && firstChildText.length < 35) {
+              headingClassName = 'w-75';
+            }
+
             const headingHtml = Heading({
               level: 2,
               text: firstChildText,
-              className: "corporate-policies-heading",
+              className: `corporate-policies-heading ${headingClassName}`,
             });
             firstChildHtml = children[0].outerHTML.replace(/<p[^>]*>.*?<\/p>/, headingHtml);
             

@@ -22,6 +22,9 @@
     background-color: var(--color-bg-primary);
 }   
 
+.sectionheader.gray-background {
+    background-color: var(--primary-default-fg);
+} 
 
 /* ===============================
    Label
@@ -71,6 +74,14 @@
 
 /* Mobile */
 @media (max-width: 767px) {
+    .sectionheader.border-bottom {
+        padding-bottom: 40px;
+    
+        .section-header-wrapper {
+            padding-bottom: 40px;
+        }
+    }
+
     .section-header-description {
         font-size: var(--typography-font-size-text-base, 16px);
         line-height: var(--typography-font-line-height-leading-3, 24px);
@@ -216,6 +227,14 @@
     .sectionheader {
         padding-top: 64px;
         padding-bottom: 40px;
+    }
+
+    .sectionheader.border-bottom {
+        padding-bottom: 64px;
+
+        .section-header-wrapper {
+            padding-bottom: 40px;
+        }
     }
 
     .section-header-title {

@@ -79,7 +79,7 @@ export default function decorate(block) {
         const linkText = buttonLink.textContent?.trim() || buttonLink.innerHTML?.trim() || '';
         
         buttonLink.classList.add('button');
-        if (!linkText.includes('https://')) {
+        if (!linkText.includes('/')) {
           buttonLink.textContent = linkText;
           buttonLink.classList.add('vd-link');
         }

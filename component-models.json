@@ -775,6 +775,10 @@
           {
             "name": "Blue Background",
             "value": "blue-background"
+          },
+          {
+            "name": "Gray Background",
+            "value": "gray-background"
           }
         ]
       }
@@ -1903,10 +1907,32 @@
         "description": "Title should not exceed 100 characters"
       },
       {
-        "component": "text",
+        "component": "richtext",
         "name": "awarddescription",
         "label": "Award Description",
         "description": "Description should not exceed 250 characters"
+      }
+    ]
+  },
+  {
+    "id": "awardsgallery",
+    "fields": [
+      {
+        "component": "select",
+        "name": "classes",
+        "value": "",
+        "label": "Display options",
+        "valueType": "string",
+        "options": [
+          {
+            "name": "Default",
+            "value": ""
+          },
+          {
+            "name": "Grid View",
+            "value": "grid-view"
+          }
+        ]
       }
     ]
   },
