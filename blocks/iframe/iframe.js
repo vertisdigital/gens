@@ -209,8 +209,23 @@ export default function decorate(block) {
         return;
       }
 
-      // Disable dynamic resizing for email_alerts to prevent infinite loop
-      if (endpoint === 'email_alerts') {
+      // Reset resize flag for internal iframe tab switches
+      if (message === 'TabView' || message === 'CalView') {
+        iframeWrapper.dataset.hasResized = 'false';
+        return;
+      }
+
+      // Run-once logic for specific endpoints to prevent infinite loop
+      const runOnceEndpoints = [
+        'email_alerts',
+        'email-alerts',
+        'news_search',
+        'news-search',
+        'investor-calendar'
+      ];
+
+      // Check if we should only run once and if it has already run
+      if (runOnceEndpoints.includes(endpoint) && iframeWrapper.dataset.hasResized === 'true') {
         return;
       }
 
@@ -226,6 +241,11 @@ export default function decorate(block) {
 
         // Mark as dynamic so static config doesn't override
         iframeWrapper.dataset.hasDynamicHeight = 'true';
+
+        // Mark as resized for run-once endpoints
+        if (runOnceEndpoints.includes(endpoint)) {
+          iframeWrapper.dataset.hasResized = 'true';
+        }
       }
     });
   }
