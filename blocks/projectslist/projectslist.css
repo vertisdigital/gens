@@ -353,31 +353,30 @@ p {
         margin-top: 12px;
     }
 
-    <<<<<<< HEAD .project-cta a.button:any-link {
-        =======.projectslist .grid-view .projectslistitem .project-long-description {
-            margin-top: 8px;
-        }
-
-        .project-cta a.button:any-link {
-            >>>>>>>dev position: relative;
-            width: 32px;
-            height: 32px;
-            padding: 8px;
-        }
-
-        .project-cta .button-container a.button.vd-link {
-            margin-top: 16px;
-        }
-
-        .project-cta a.button .icon-wrapper {
-            width: 16px;
-            height: 16px;
-            padding: 3px;
-        }
+    .projectslist .grid-view .projectslistitem .project-long-description {
+        margin-top: 8px;
     }
 
-    @media (width < 361px) {
-        .projectslist .projectslistitem .project-image img {
-            min-width: 312px;
-        }
+    .project-cta a.button:any-link {
+        position: relative;
+        width: 32px;
+        height: 32px;
+        padding: 8px;
     }
+
+    .project-cta .button-container a.button.vd-link {
+        margin-top: 16px;
+    }
+
+    .project-cta a.button .icon-wrapper {
+        width: 16px;
+        height: 16px;
+        padding: 3px;
+    }
+}
+
+@media (width < 361px) {
+    .projectslist .projectslistitem .project-image img {
+        min-width: 312px;
+    }
+}
