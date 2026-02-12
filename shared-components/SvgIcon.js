@@ -21,9 +21,12 @@ export default function SvgIcon({
   }
 
   // Replace default size with custom size
-  const sizedIcon = iconSvg
-    .replace(/width="([^"]+)"/, `width="${size}"`)
-    .replace(/height="([^"]+)"/, `height="${size}"`);
+  let sizedIcon = iconSvg;
+  if (size !== 'auto') {
+    sizedIcon = iconSvg
+      .replace(/width="([^"]+)"/, `width="${size}"`)
+      .replace(/height="([^"]+)"/, `height="${size}"`);
+  }
 
   return `
     <span class="icon-wrapper ${className}" style="color: ${color}">

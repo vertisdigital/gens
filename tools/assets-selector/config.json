@@ -64,8 +64,8 @@
               "value": "video/mp4"
             },
             {
-                "label": "Sheets",
-                "value": "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"
+              "label": "Sheets",
+              "value": "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"
             },
             {
               "label": "Presentations",

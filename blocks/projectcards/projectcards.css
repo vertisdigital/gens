@@ -2,64 +2,94 @@
     box-sizing: border-box;
   }
 
-  .projectcards{
-    margin: 45px 0;
+  .projectcards {
+    margin: 80px 0 0;
+  }
+
+  @media (width >=2560px) {
+    .projectcards-wrapper {
+      max-width: 2560px;
+      margin-left: auto;
+      margin-right: auto;
+    }
   }
 
   .projectcards .projectcards-header {
+    display: flex;
     margin-bottom: 42px;
+    align-items: flex-start;
+    gap: 40px;
+  }
+
+  .projectcards .projectcards-header-left {
+    flex: 1;
+  }
+
+  .projectcards .projectcards-header-right {
+    flex: 1;
   }
 
   .projectcards .projectcards-title {
-    font-size: var(--font-size-s);
+    font-size: 14px;
     font-style: normal;
-    font-weight: 600;
+    font-weight: 400;
     line-height: 24px;
-    color: var(--text-color);
-    margin-bottom: 16px;
+    color: #8D713E;
+    margin-bottom: 20px;
+    text-transform: uppercase;
     letter-spacing: 0;
   }
 
   .projectcards .projectcards-heading {
-    font-size: var(--font-size-xl);
+    font-size: 36px;
     font-style: normal;
-    font-weight: 500;
-    line-height: 50px;
-    letter-spacing: -0.5px;
-    margin-bottom: 10px;
+    font-weight: 400;
+    line-height: 56px;
+    letter-spacing: 0;
+    margin-bottom: 0;
     margin-top: 0;
-    color: var(--text-color);
-
+    color: #3B3D3D;
   }
 
   .projectcards .projectcards-description {
-    font-size: var(--font-size-xs);
+    font-size: 24px;
     font-style: normal;
     font-weight: 400;
-    line-height: 24px;
-    color: var(--body-text-color);
+    line-height: 40px;
+    color: #3B3D3D;
+    margin-top: 0;
   }
 
   .projectcards .projectcards-grid {
-    margin-left: -18px;
-    margin-right: -18px;
+    width: 100%;
+    margin-left: 0;
+    margin-right: 0;
+    padding: 0;
+    --bs-gutter-x: 0;
+    gap: 0;
   }
 
   .projectcards .project-card {
-    padding: 0 18px;
-    height: max-content;
+    padding: 0 !important;
+    flex: 0 0 25%;
+    width: 25%;
+    max-width: 25%;
   }
 
   .projectcards .project-card:first-child {
-    padding-left: 18px;
+    padding-left: 0 !important;
   }
 
   .projectcards .project-card:last-child {
-    padding-right: 18px;
+    padding-right: 0 !important;
   }
 
   .projectcards .project-card [data-aue-prop="image"] {
-    margin-bottom: 12px;
+    position: relative;
+    aspect-ratio: 360 / 540;
+    width: 100%;
+    margin-bottom: 0;
+    overflow: hidden;
   }
 
   .projectcards .project-card [data-aue-prop="image"] picture {
@@ -74,22 +104,57 @@
   }
 
   .projectcards .project-card-content {
-    padding: 0
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    padding: 40px 24px;
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+    background: linear-gradient(to top, rgba(0, 0, 0, 0.6) 0%, rgba(0, 0, 0, 0) 100%);
   }
 
-  .projectcards .project-card-title {
-    font-size: var(--font-size-xs);
-    font-weight: 700;
-    line-height: 20px;
+  .project-card-title a {
     color: var(--text-color);
     text-decoration: none;
   }
 
-  .projectcards .project-card-location {
-    font-size: var(--font-size-xs);
+  .projectcards .project-card-title {
+    font-size: 32px;
     font-weight: 400;
-    line-height: 24px;
-    color: var(--body-text-color);
+    line-height: 48px;
+    color: #FFF;
+    text-decoration: none;
+    margin: 0;
+    max-width: 250px;
+  }
+
+  .projectcards .project-card-title a {
+    color: #FFF;
+    text-decoration: none;
+  }
+
+  .projectcards .project-card-location {
+    display: none;
+  }
+
+  .projectcards .project-card-cta {
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .projectcards .project-card-cta svg {
+    width: 48px;
+    height: 48px;
+    display: block;
+    transition: all 0.3s ease;
+  }
+
+  .projectcards .project-card-cta:hover svg path {
+    stroke: #C8AB4B;
   }
 
   .projectcards .projectcards-view-all {
@@ -110,304 +175,295 @@
     color: var(--primary-gold);
   }
 
-  .project-card-title a {
-    color: var(--text-color);
-    text-decoration: none;
-  }
-  
-  .projectcards .project-card-title a {
-    text-decoration: underline;
-  }
-
-  .projectcards.grey-background {
-    background-color: var(--whisper-gray);
-    padding: 45px 0;
-  }
-
   .projectcards ul {
     padding-left: 17px;
   }
 
-  .carousel {
-    position: relative;
-    width: 100%;
-    overflow: hidden;
-    text-align: left;
-  }
-
-  .carousel-container {
-    display: flex;
-    transition: transform 0.5s ease;
-    flex-wrap: nowrap;
-    will-change: transform;
-  }
-
-  .carousel-prev,
-  .carousel-prev:focus,
-  .carousel-prev:hover {
-    background-color: transparent;
-  }
-
-  .carousel-next,
-  .carousel-next:focus,
-  .carousel-next:hover {
-    background-color: transparent;
-  }
-
-  .button-group {
-    display: flex;
-    align-items: center;
-    gap: 40px;
-    justify-content: center;
-    padding-top: 42px;
-  }
-
-  .card-pair {
-    width: 100%;
-    display: flex;
-    flex-flow: row wrap;
-    flex: 1;
-    min-width: 100%;
-    padding: 0;
-    height: max-content;
-  }
-
-  @media (width<=1024px) {
+  @media (width >=768px) and (width <=992px) {
     .projectcards {
-      margin: 32px 0;
-    }
-
-    .projectcards.grey-background {
-      padding: 40px 0;
-    }
-
-    .carousel-container {
-      display: flex;
-      flex-direction: row;
+      margin: 64px 0 0;
     }
 
     .projectcards .projectcards-header {
+      flex-direction: column;
+      gap: 24px;
       margin-bottom: 34px;
       padding: 0;
     }
 
+    .projectcards .projectcards-header-left,
+    .projectcards .projectcards-header-right {
+      flex: 0 0 100%;
+      width: 100%;
+    }
+
     .projectcards .projectcards-title {
-      font-size: var(--font-size-smd);
-      font-weight: 700;
+      font-size: 14px;
+      font-weight: 400;
       line-height: 24px;
+      margin-bottom: 16px;
+      color: #8D713E;
+      text-transform: uppercase;
     }
 
     .projectcards .projectcards-heading {
-      font-size: var(--font-size-l);
-      line-height: 42px;
+      font-size: 32px;
+      font-weight: 400;
+      line-height: 48px;
+      color: #3B3D3D;
     }
+
+    .projectcards .projectcards-description {
+      font-size: 24px;
+      line-height: 40px;
+      color: #3B3D3D;
+    }
+
 
     .projectcards .projectcards-grid {
       box-sizing: border-box;
-      row-gap: 24px;
-      margin-left: -12px;
-      margin-right: -12px;
+      margin-left: 0;
+      margin-right: 0;
+      width: 100%;
+      padding: 0;
+      --bs-gutter-x: 0;
+      gap: 0;
+      display: flex;
+      flex-wrap: wrap;
     }
 
     .projectcards .project-card {
-      padding: 12px !important;
+      padding: 0 !important;
+      flex: 0 0 50%;
+      width: 50%;
+      max-width: 50%;
     }
 
     .projectcards .project-card [data-aue-prop="image"] {
-      margin-bottom: 10px;
+      position: relative;
+      aspect-ratio: 1 / 1;
+      width: 100%;
+      margin-bottom: 0;
+    }
+
+    .projectcards .project-card-content {
+      padding: 40px;
+    }
+
+    .projectcards .project-card-title {
+      font-size: 24px;
+      font-weight: 400;
+      line-height: 32px;
+      color: #FFF;
+    }
+
+    .projectcards .project-card-cta svg {
+      width: 40px;
+      height: 40px;
     }
 
   }
 
   @media (width <=834px) {
     .projectcards .project-card [data-aue-prop="image"] {
-      height: auto;
-    }
-
-    .button-group {
-      gap: 32px;
-      padding-top: 34px;
+      position: relative;
+      aspect-ratio: 1 / 1;
+      width: 100%;
     }
   }
 
-  @media (width <=768px) {
-    .projectcards {
-      margin: 24px 0;
+  @media (width <=767px) {
+
+    .projectcards .projectcards-header {
+      flex-direction: column;
+      gap: 20px;
+      margin-bottom: 40px;
+    }
+
+    .projectcards .projectcards-header-left,
+    .projectcards .projectcards-header-right {
+      flex: 0 0 100%;
+      width: 100%;
+    }
+
+    .projectcards .projectcards-title {
+      font-size: 14px;
+      font-weight: 400;
+      line-height: 24px;
+      margin-bottom: 12px;
+      color: #8D713E;
+      text-transform: uppercase;
+    }
+
+    .projectcards .projectcards-heading {
+      font-size: 28px;
+      font-weight: 400;
+      line-height: 44px;
+      color: #3B3D3D;
     }
 
     .projectcards .projectcards-description {
-      font-size: var(--font-size-xxs);
-      line-height: 20px;
+      font-size: 16px;
+      line-height: 24px;
+      color: #3B3D3D;
     }
 
 
     .projectcards .projectcards-grid {
-      /* margin-bottom: 26px; */
-      row-gap: 18px;
-      margin-left: -9px;
-      margin-right: -9px;
+      margin-bottom: 0;
+      margin-left: 0;
+      margin-right: 0;
+      width: 100%;
+      padding: 0;
+      --bs-gutter-x: 0;
+      gap: 0;
+      flex-wrap: wrap;
     }
 
     .projectcards .project-card {
-      padding: 12px !important;
+      padding: 0 !important;
+      flex: 0 0 100%;
+      width: 100%;
+      max-width: 100%;
     }
 
     .projectcards .project-card [data-aue-prop="image"] {
-      margin-bottom: 8px;
+      position: relative;
+      height: 210px;
+      aspect-ratio: auto;
+      margin-bottom: 0;
     }
 
-    .projectcards .view-all-link {
-      font-size: var(--font-size-xxs);
-      line-height: 20px;
-    }
-
-
-  }
-
-  @media (width <=640px) {
-    .button-group {
-      gap: 28px;
-      padding-top: 26px;
-    }
-
-    .projectcards .project-card {
-      padding: 9px !important;
-    }
-
-    .projectcards .projectcards-heading {
-      font-size: var(--font-size-m);
-      line-height: 34px;
-      margin-bottom: 8px;
-    }
-
-    .projectcards .projectcards-title {
-      font-size: var(--font-size-xs);
-      font-weight: 600;
-      line-height: 20px;
-      margin-bottom: 12px;
-    }
-
-    .projectcards.grey-background {
-      padding: 32px 0;
+    .projectcards .project-card-content {
+      padding: 24px;
     }
 
     .projectcards .project-card-title {
-      font-size: var(--font-size-xxs);
-      font-weight: 700;
-      line-height: 20px;
+      font-size: 24px;
+      font-weight: 400;
+      line-height: 40px;
+      color: #FFF;
+      width: 75%;
+    }
+
+    .projectcards .project-card-cta svg {
+      width: 32px;
+      height: 32px;
     }
 
     .projectcards .project-card-location {
       font-size: var(--font-size-xxs);
       font-weight: 400;
       line-height: 20px;
+
     }
 
-    .projectcards .projectcards-header {
+    .projectcards .project-card {
+      padding: 12px !important;
+    }
+
+
+    /* CERTIFICATIONS VARIATION  */
+    .certifications .projectcards-header {
       margin-bottom: 26px;
     }
-  }
-
-  /* CERTIFICATIONS VARIATION  */
-  .certifications .projectcards-header {
-    margin-bottom: 26px;
-  }
-
-  .certifications .project-card [data-aue-prop="image"] {
-    margin-bottom: 12px;
-    text-align: center;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    aspect-ratio: 162 / 122;
-    background-color: var(--background-color);
-  }
-
-  .certifications .project-card [data-aue-prop="image"] img,
-  .certifications .project-card [data-aue-prop="image"] picture {
-    height: auto;
-    width: auto;
-    display: block;
-  }
-
-  .certifications .project-card-title {
-    text-decoration: none;
-    margin-bottom: 12px;
-  }
-  .certifications .project-card-title a {
-    text-decoration: none;
-  }
-
-  .certifications .project-card-location {
-    color: var(--body-text-color);
-  }
-
-  @media (width>=768px) {
-    .certifications .projectcards-heading {
-      font-size: 32px;
-      line-height: 42px;
-      margin-bottom: 10px;
-    }
 
     .certifications .project-card [data-aue-prop="image"] {
-      margin-bottom: 20px;
-      aspect-ratio: 361 / 230;
+      margin-bottom: 12px;
+      text-align: center;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      aspect-ratio: 162 / 122;
+      background-color: var(--background-color);
+    }
+
+    .certifications .project-card [data-aue-prop="image"] img,
+    .certifications .project-card [data-aue-prop="image"] picture {
+      height: auto;
+      width: auto;
+      display: block;
     }
 
     .certifications .project-card-title {
-      font-size: 16px;
-      line-height: 20px
+      text-decoration: none;
+      margin-bottom: 12px;
+    }
+
+    .certifications .project-card-title a {
+      text-decoration: none;
     }
 
     .certifications .project-card-location {
-      font-size: 16px;
+      color: var(--body-text-color);
     }
 
-    .projectcards .projectcards-description {
-      line-height: 24px;
-      font-size: var(--font-size-xs);
+    @media (width>=768px) {
+      .certifications .projectcards-heading {
+        font-size: 32px;
+        line-height: 42px;
+        margin-bottom: 10px;
+      }
+
+      .certifications .project-card [data-aue-prop="image"] {
+        margin-bottom: 20px;
+        aspect-ratio: 361 / 230;
+      }
+
+      .certifications .project-card-title {
+        font-size: 16px;
+        line-height: 20px
+      }
+
+      .certifications .project-card-location {
+        font-size: 16px;
+      }
+
+      .projectcards .projectcards-description {
+        line-height: 24px;
+        font-size: var(--font-size-xs);
+      }
+
+      .projectcards .projectcards-heading {
+        font-size: var(--font-size-l);
+        line-height: 42px;
+      }
+
+      .certifications .projectcards-header {
+        margin-bottom: 34px;
+      }
     }
 
-    .projectcards .projectcards-heading {
-      font-size: var(--font-size-l);
-      line-height: 42px;
-    }
+    @media (width>=993px) {
+      .project-cards-wrapper {
+        margin: 45px 0;
+      }
 
-    .certifications .projectcards-header{
-      margin-bottom: 34px;
-    }
-  }
+      .certifications .projectcards-heading {
+        font-size: 40px;
+        line-height: 50px;
+        margin-bottom: 10px;
+      }
 
-  @media (width>=993px) {
-    .project-cards-wrapper {
-      margin: 45px 0;
-    }
+      .certifications .project-card [data-aue-prop="image"] {
+        margin-bottom: 25px;
+        aspect-ratio: 253 / 161;
+      }
 
-    .certifications .projectcards-heading {
-      font-size: 40px;
-      line-height: 50px;
-      margin-bottom: 10px;
-    }
+      .certifications .project-card-title {
+        line-height: 20px;
+      }
 
-    .certifications .project-card [data-aue-prop="image"] {
-      margin-bottom: 25px;
-      aspect-ratio: 253 / 161;
-    }
+      .certifications .project-card-location {
+        font-size: 16px;
+      }
 
-    .certifications .project-card-title {
-      line-height: 20px;
-    }
+      .projectcards .projectcards-heading {
+        font-size: var(--font-size-xl);
+        line-height: 50px;
+      }
 
-    .certifications .project-card-location {
-      font-size: 16px;
+      .certifications .projectcards-header {
+        margin-bottom: 42px;
+      }
     }
-
-    .projectcards .projectcards-heading {
-      font-size: var(--font-size-xl);
-      line-height: 50px;
-    }
-
-    .certifications .projectcards-header{
-      margin-bottom: 42px;
-    }
-  }

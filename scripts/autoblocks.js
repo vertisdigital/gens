@@ -7,7 +7,7 @@ import { errorLogger as logger } from "./logger.js";
  * @returns {Object|null} The created container elements or null
  */
 function createTabStructure(main) {
-  
+
   const tabElements = main.querySelectorAll('div[data-tabtitle]');
   if (tabElements.length === 0) {
     //console.warn('[Tab System] No tab elements found.');
@@ -35,52 +35,36 @@ function createTabStructure(main) {
 }
 
 /**
- * Finds the index of the tab with data-active="true"
- * @param {NodeList} tabElements The tab elements
- * @returns {number} Index of active tab or -1 if none found
- */
-function findActiveTabIndex(tabElements) {
-  for (let i = 0; i < tabElements.length; i += 1) {
-    if (tabElements[i].getAttribute('data-active') === 'true') {
-      return i;
-    }
-  }
-  return -1;
-}
-
-/**
- * Gets the initial active tab index based on URL hash or data-active attribute
- * @param {NodeList} tabElements The tab elements
+ * Gets the initial active tab index based on URL hash
  * @returns {number} Index of tab to activate
  */
-function getInitialActiveTab(tabElements) {
-  // First check for URL hash (URL hash has highest priority)
+function getInitialActiveTab() {
   const hash = window.location.hash;
   if (hash === '#rws') {
     return 0;
   } else if (hash === '#rws2') {
     return 1;
   }
-  
-  // Then check for data-active="true" attribute
-  const activeIndex = findActiveTabIndex(tabElements);
-  if (activeIndex !== -1) {
-    return activeIndex;
-  }
-  
-  // Default to first tab if no active tab specified
-  return 0;
+  return 0; // Default to first tab
 }
 
 /**
  * Creates individual tab elements
  * @param {Element} section The section to create tab from
  * @param {number} index Tab index
- * @param {number} activeIndex Index of active tab
  * @returns {Object} Created tab elements
  */
-function createTabElement(section, index, activeIndex) {
+function createTabElement(section, index) {
   const titleText = section.getAttribute('data-tabtitle');
+  let tabID = section.getAttribute('data-tabid');
+  if (!tabID) {
+    if (titleText) {
+      tabID = titleText.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/(^-|-$)/g, '');
+    } else {
+      tabID = `tab-${index}`;
+    }
+  }
+  const initialActiveIndex = getInitialActiveTab();
 
   const tabTitle = document.createElement('div');
   tabTitle.textContent = titleText;
@@ -88,7 +72,8 @@ function createTabElement(section, index, activeIndex) {
   tabTitle.setAttribute('role', 'tab');
   tabTitle.setAttribute('data-tab-index', index);
   tabTitle.setAttribute('tabindex', '0');
-  if (index === activeIndex) tabTitle.classList.add('active');
+  tabTitle.id = tabID;
+  if (index === initialActiveIndex) tabTitle.classList.add('active');
 
   const tabPanel = section.cloneNode(true);
   tabPanel.classList.add('tab', 'block', 'tab-panel');
@@ -96,7 +81,8 @@ function createTabElement(section, index, activeIndex) {
   tabPanel.setAttribute('data-block-status', 'loaded');
   tabPanel.setAttribute('role', 'tabpanel');
   tabPanel.setAttribute('data-tab-index', index);
-  tabPanel.classList.toggle('active', index === activeIndex);
+  tabPanel.id = 'panel-' + tabID;
+  tabPanel.classList.toggle('active', index === initialActiveIndex);
 
   return { tabTitle, tabPanel };
 }
@@ -112,10 +98,9 @@ function assembleTabStructure({
 
   const tabs = [];
   const panels = [];
-  const activeIndex = getInitialActiveTab(tabElements);
 
   tabElements.forEach((section, index) => {
-    const { tabTitle, tabPanel } = createTabElement(section, index, activeIndex);
+    const { tabTitle, tabPanel } = createTabElement(section, index);
 
     tabs.push(tabTitle);
     panels.push(tabPanel);
@@ -127,7 +112,7 @@ function assembleTabStructure({
   tabsContainer.appendChild(tabNav);
   tabsContainer.appendChild(tabWrapper);
 
-  return { tabs, panels, container: tabsContainer, activeTabIndex: activeIndex };
+  return { tabs, panels, container: tabsContainer };
 }
 
 /**
@@ -157,18 +142,18 @@ function updateTabStates(tabs, panels, activeIndex, shouldScroll = true) {
   tabs.forEach((tab) => tab.classList.remove('active'));
   tabs[activeIndex].classList.add('active');
 
-    const tabsContainer = document.querySelector('.tab-nav');
-    const tabWidth = tabs[activeIndex].offsetWidth;
-    const containerWidth = tabsContainer.offsetWidth;
-    const tabPosition = tabs[activeIndex].offsetLeft;
+  const tabsContainer = document.querySelector('.tab-nav');
+  const tabWidth = tabs[activeIndex].offsetWidth;
+  const containerWidth = tabsContainer.offsetWidth;
+  const tabPosition = tabs[activeIndex].offsetLeft;
 
-    const centerOffset = tabPosition - (containerWidth - tabWidth) / 2;
-    
-    tabsContainer.scrollTo({
-      left: centerOffset,
-      behavior: 'smooth'
-    });
-  
+  const centerOffset = tabPosition - (containerWidth - tabWidth) / 2;
+
+  tabsContainer.scrollTo({
+    left: centerOffset,
+    behavior: 'smooth'
+  });
+
   // Update panels
   panels.forEach((panel) => panel.classList.remove('active'));
   panels[activeIndex].classList.add('active');
@@ -182,11 +167,22 @@ function updateTabStates(tabs, panels, activeIndex, shouldScroll = true) {
   }
 }
 
+function activateFromHash(tabs, panels) {
+  const anchor = window.location.hash.replace('#', '');
+  if (!anchor) return false;
+
+  const index = tabs.findIndex(tab => tab.id === anchor);
+  if (index === -1) return false;
+
+  updateTabStates(tabs, panels, index, true);
+  return true;
+}
+
 /**
  * Adds click functionality to tabs using event delegation
  * @param {Object} elements References to tab elements
  */
-function addTabFunctionality({ tabs, panels, container, activeTabIndex }) {
+function addTabFunctionality({ tabs, panels, container }) {
   if (!tabs || !panels || !container) {
     console.warn('[Tab System] Missing required elements:', { tabs, panels, container });
     return;
@@ -201,16 +197,18 @@ function addTabFunctionality({ tabs, panels, container, activeTabIndex }) {
 
   // Handle URL hash changes
   window.addEventListener('hashchange', () => {
-    // Pass tabElements to getInitialActiveTab
-    const tabElements = container.querySelectorAll('.tab-panel');
-    const newIndex = getInitialActiveTab(tabElements);
-    updateTabStates([...tabNav.children], [...container.querySelector('.tab-wrapper').children], newIndex, true);
+    activateFromHash(
+      [...tabNav.children],
+      [...container.querySelector('.tab-wrapper').children]
+    );
   });
 
   // Handle initial page load hash after a short delay to ensure DOM is ready
   setTimeout(() => {
-    const isScroll = window.location.hash !== '';
-    updateTabStates([...tabNav.children], [...container.querySelector('.tab-wrapper').children], activeTabIndex, isScroll);
+    const handled = activateFromHash(tabs, panels);
+    if (!handled) {
+      updateTabStates(tabs, panels, 0, false);
+    }
   }, 1000); // Slightly after the container display timeout
 
   tabNav.addEventListener('click', (e) => {

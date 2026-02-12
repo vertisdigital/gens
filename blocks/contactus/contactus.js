@@ -2,34 +2,10 @@ import Heading from '../../shared-components/Heading.js';
 import { moveInstrumentation } from '../../scripts/scripts.js';
 import ImageComponent from '../../shared-components/ImageComponent.js';
 import stringToHtml from '../../shared-components/Utility.js';
-import SvgIcon from '../../shared-components/SvgIcon.js';
-import { errorLogger as logger, infoLogger } from "../../scripts/logger.js";
-
-function fallbackCopyTextToClipboard(text) {
-  const textArea = document.createElement("textarea");
-  textArea.value = text;
-
-  textArea.style.position = "fixed";
-  textArea.style.top = 0;
-  textArea.style.left = 0;
-  textArea.style.opacity = 0;
-
-  document.body.appendChild(textArea);
-  textArea.focus();
-  textArea.select();
-
-  try {
-    const successful = document.execCommand('copy');
-    infoLogger.info('Fallback copy was ' + (successful ? 'successful' : 'unsuccessful'));
-  } catch (err) {
-    logger.error('Fallback copy failed: ', err);
-  }
-
-  document.body.removeChild(textArea);
-}
 
 export default function decorate(block) {
   if (!block || !block.children.length) return;
+  block.classList.add('fade-item');
 
   const wrapper = block;
   const enquiryChildren = Array.from(block.children);
@@ -37,7 +13,6 @@ export default function decorate(block) {
   const enquirySecondChild = enquiryChildren[1]?.children || [];
 
   const container = document.createElement('div');
-  container.className = 'container';
 
   const row = document.createElement('div');
   row.className = 'row contactus-top';
@@ -81,7 +56,7 @@ export default function decorate(block) {
     phone: 3, email1: 6, email2: 9, email3: 12, address: 14,
   };
 
- 
+
 
   const contactInfo = Object.fromEntries(
     Object.entries(indices).map(([key, index]) => [
@@ -176,17 +151,17 @@ export default function decorate(block) {
     textElement.setAttribute('data-aue-type', 'text');
 
     if (linkType) {
-      const clipBoard=document.createElement('div')
+      const clipBoard = document.createElement('div')
       clipBoard.classList.add('tooltip')
-      
-      const clipSpan=document.createElement('span')
+
+      const clipSpan = document.createElement('span')
       clipSpan.classList.add('tooltiptext')
 
       const button = document.createElement('button');
       button.className = 'contact-link';
       button.textContent = text;
       button.setAttribute('aria-label', `${linkType === 'tel' ? 'Call us at' : 'Email us at'} ${text}`);
-      
+
       clipBoard.append(clipSpan)
       clipBoard.append(button)
 
@@ -203,7 +178,7 @@ export default function decorate(block) {
   };
 
   contactData.forEach(({
-    value, type, key, label, textContentIndex,imageSrc
+    value, type, key, label, textContentIndex, imageSrc
   }) => {
     if (value) {
       const imageHref = imageSrc?.getAttribute('href') || '';
@@ -226,6 +201,7 @@ export default function decorate(block) {
 
   if (enquiryChildren[0]) {
     enquiryChildren[0].innerHTML = '';
+    enquiryChildren[0].classList.add('container');
     enquiryChildren[0].append(row);
     container.append(enquiryChildren[0]);
   }
@@ -248,14 +224,6 @@ export default function decorate(block) {
     rightCol2.append(enquirySecondChild[1].cloneNode(true));
   }
 
-  const viewJobCTAName = enquirySecondChild[4]?.cloneNode(true)?.textContent?.trim().replace(/-/g, '').toLowerCase() || '';
-  const northEastArrow = SvgIcon({
-    name: viewJobCTAName,
-    className: 'contactus-bottom-cta',
-    size: 12,
-    color: 'currentColor',
-  });
-
   const targetElement = enquirySecondChild[2];
   const nextTarget = enquirySecondChild[3];
 
@@ -263,15 +231,11 @@ export default function decorate(block) {
     const anchorElement = targetElement.querySelector('a');
 
     if (anchorElement) {
+      anchorElement.classList.add('vd-button');
       const nextTargetText = nextTarget?.cloneNode(true)?.textContent.trim();
 
       if (nextTargetText) {
         anchorElement.target = nextTargetText;
-      } 
-    // Append SVG only if `northEastArrow` is valid
-      const svgElement = typeof northEastArrow === 'string' ? stringToHtml(northEastArrow) : northEastArrow;
-      if (svgElement) {
-        anchorElement.appendChild(svgElement);
       }
     }
 
@@ -282,40 +246,11 @@ export default function decorate(block) {
   row2.append(rightCol2);
   if (enquiryChildren[1]) {
     enquiryChildren[1].innerHTML = '';
+    enquiryChildren[1].classList.add('container');
     enquiryChildren[1].append(row2);
     container.append(enquiryChildren[1]);
   }
 
-  const buttons = container.querySelectorAll('.contact-link')
-  buttons.forEach((btn)=>{
-    btn.addEventListener("click", () => {
-      if (!document.hasFocus()) {
-        return;
-      }
-
-      navigator.clipboard
-        .writeText(btn.textContent.trim())
-        .then(() => {
-          const clipText=btn.parentElement.querySelector(".tooltiptext");
-          clipText.innerHTML = `Copied to clipboard`;
-          clipText.style.visibility = 'visible';
-          clipText.style.opacity = '1';
-
-          setTimeout(() => {
-            clipText.style.visibility = 'hidden';
-            clipText.style.opacity = '0';
-            clipText.innerHTML = '';
-          }, 2000);
-        })
-        .catch((err) => {
-          logger.error("Failed to copy: ", err);
-
-          // Optional fallback using older `execCommand` method
-          fallbackCopyTextToClipboard(btn.textContent.trim());
-        });
-    });
-  })
-  
   wrapper.innerHTML = '';
   wrapper.append(container);
 }

@@ -1,12 +1,21 @@
-.statistics .statistics-row {
-    padding-bottom: 25px;
-    row-gap: 36px;
-    margin-left: -18px;
-    margin-right: -18px;
+.statistics-wrapper {
+    background-image: url(../../icons/Pattern.png);
+    background-repeat: repeat-x;
+    background-position: center bottom;
+    background-size: cover;
+    overflow-x: hidden;
 }
 
-.statistics.statistics-financial-variation .statistics-row {
-    row-gap: 48px;
+.statistics-wrapper .statistics-financial-variation {
+    background-image: none;
+    background-color: var(--color-bg-primary);
+}
+
+.statistics .statistics-row {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 24px;
+    row-gap: 64px;
 }
 
 .statistics .statistics-row:not(:last-child) {
@@ -14,17 +23,22 @@
 }
 
 .statistics .statistics-row .feature-item {
-    padding-left: 18px;
-    padding-right: 18px;
+    padding-top: 16px;
+    padding-right: 24px;
+    border-top: 1px solid var(--color-border-base);
 }
 
-.statistics-container .feature-wrapper .about-us-right-content{
-  margin-bottom: 10px !important;
-  padding-bottom: 10px !important;
-  border-bottom: 1px solid var(--text-color);
-  border-top: none !important;
-  padding-top: 0 !important;
-  margin-top: 0 !important;
+.statistics.statistics-financial-variation .statistics-row .feature-item {
+    border-top: none;
+}
+
+.statistics-container .feature-wrapper .about-us-right-content {
+    margin-bottom: 10px !important;
+    padding-bottom: 10px !important;
+    border-bottom: 1px solid var(--text-color);
+    border-top: none !important;
+    padding-top: 0 !important;
+    margin-top: 0 !important;
 }
 
 .statistics-description-wrapper {
@@ -34,6 +48,7 @@
     color: var(--body-text-color);
     margin-bottom: 45;
 }
+
 .herobanner-container .statistics-wrapper:nth-child(2) .statistics-description-wrapper {
     padding: 0 0 60px;
 }
@@ -65,35 +80,45 @@
 }
 
 .statistics .statistic-item {
-    font-size: var(--font-size-xgl);
+    font-size: 64px;
     font-weight: 400;
-    line-height: 64px;
-    color: var(--primary-gold);
+    line-height: 80px;
+    color: var(--color-text-tertiary);
+    margin-bottom: 16px;
 }
 
 .statistics.statistics-financial-variation .statistic-item {
-    font-size: 4rem;
+    color: var(--color-text-secondary);
 }
 
-.statistics .statistic-item sup, .statistics .statistic-item sub {
+.statistics .statistic-item sup,
+.statistics .statistic-item sub {
     line-height: 0;
 }
 
 .statistics .text-container {
-    font-size: var(--font-size-xs);
+    font-family: var(--typography-font-family-font-body);
+    font-size: 24px;
     font-weight: 400;
-    line-height: 24px;
-    color: var(--body-text-color);
+    line-height: 40px;
+    color: var(--color-text-body);
 }
-.statistics .text-container p{
+
+.statistics.statistics-financial-variation .text-container {
+    color: var(--color-text-white);
+}
+
+.statistics .text-container p {
     margin-bottom: 24px;
 }
-.statistics .text-container p:last-child{
+
+.statistics .text-container p:last-child {
     margin-bottom: 0;
 }
 
 .statistics-wrapper .statistics.block {
-    margin-top: -68px;
+    margin-top: 80px;
+    padding-bottom: 80px;
     position: relative;
     margin-bottom: 45px;
 }
@@ -102,8 +127,12 @@
     margin-top: 0;
 }
 
+.statistics-wrapper .statistics.block.margin-top-none {
+    margin-top: 0;
+}
 
-.statistics-wrapper .statistics.block.statistics-variation{
+
+.statistics-wrapper .statistics.block.statistics-variation {
     margin-top: 0;
     position: static;
 }
@@ -112,60 +141,38 @@
     margin-top: 0;
 }
 
-.statistics-wrapper .statistics.statistics-financial-variation.block .statistics-row>div:first-child{
-    width: 100% ;
+.statistics-wrapper .statistics.statistics-financial-variation.block .statistics-row>div:first-child {
+    width: 100%;
     font-size: var(--font-size-m);
     font-weight: 400;
-    line-height:40px;
+    line-height: 40px;
     color: var(--text-color);
 }
 
-.herobanner-container .statistics-wrapper:nth-child(2) .statistics.block::before {
-    content: '';
-    background: var(--background-color);
-    position: absolute;
-    inset: -50px 0 0;
-    width: 100%;
-    max-width: 1280px;
-    margin: 0 auto;
-    z-index: -1;
-    box-shadow: 4px 4px 20px rgba(0, 0, 0, 0.05);
-}
-
-
-.herobanner-container .statistics-wrapper:nth-child(2) .statistics .statistics-row:last-child {
-    padding-bottom: 60px;
-}
-
-.statistics-wrapper .statistics.block.statistics-variation::before{
+.statistics-wrapper .statistics.block.statistics-variation::before {
     position: static;
 }
 
-.statistics-wrapper + .feature-wrapper .about-us-stats {
+.statistics-wrapper+.feature-wrapper .about-us-stats {
     padding-top: 0;
 }
 
 .statistics .statistics-title {
     color: var(--text-color);
-    margin-bottom: 20px;
-    font-size: var(--font-size-xl);
+    margin-bottom: 64px;
+    margin-top: 0;
+    font-size: 36px;
     font-style: normal;
-    font-weight: 500;
-    line-height: 50px; 
-    letter-spacing: -0.5px;
+    font-weight: 400;
+    line-height: 56px;
+    letter-spacing: 0;
 }
 
-.statistics.statistics-financial-variation .statistics-title {
-    padding-bottom: 48px;
-    margin-bottom: 48px;
-    border-bottom: 2px solid var(--neutral-color);
+.statistics.block.statistics-financial-variation .statistics-title {
+    color: var(--color-text-white);
 }
 
-.statistics.block.statistics-variation .statistics-title {
-    margin-bottom: 12px;
-}
-
-@media (width <= 1280px) {
+@media (width <=1280px) {
     .herobanner-container .statistics-wrapper:nth-child(2) .statistics.block::before {
         left: 22px;
         right: 22px;
@@ -174,149 +181,11 @@
     }
 }
 
-@media (width <= 1024px) {
+@media (width <=1024px) {
     .statistics-wrapper .statistics.block {
-        margin-top: -90px;
-        margin-bottom: 32px;
-    }
-
-    .statistics-wrapper .statistics.block.statistics-variation{
-        margin-top: 0;
-    }
-
-    .statistics-wrapper .statistics.statistics-financial-variation.block {
-        margin-top: 0;
-    }
-
-    .statistics-title{
-        margin-bottom: 24px;
-        font-size: var(--font-size-l);
-        line-height: 42px; 
-    }
-
-    .statistics.block.statistics-variation .statistics-title {
-        margin-bottom: 10px;
-    }
-    
-
-    .herobanner-container .statistics-wrapper:nth-child(2) .statistics.block::before {
-        top: -32px;
-    }
-
-    .herobanner-container .statistics-wrapper:nth-child(2) .statistics.block.statistics-variation::before {
-        top: 0;
-    }
-  
-}
-
-@media (width<=992px) {
-    .statistics-description-wrapper {
-         margin-bottom: 28px;
-    }
-    .herobanner-container .statistics-wrapper:nth-child(2) .statistics-description-wrapper {
-        padding: 0 0 32px;
-    }
-    
-    .statistics .statistics-description-wrapper h3, .statistics .statistics-title {
-        font-size: var(--font-size-l);
-        margin-bottom: 12px;
-        line-height: 42px;
-    }
-
-    .statistics .statistic-item {
-        line-height: 64px;
-        font-size: var(--font-size-xgl);
-    }
-
-    .statistics .statistics-row {
-        row-gap: 24px;
-        margin-left: -12px;
-        margin-right: -12px;
-    }
-
-    .statistics.statistics-financial-variation .statistics-row {
-        row-gap: 36px;
-    }
-
-    .statistics.statistics-financial-variation .statistics-title {
-        padding-bottom: 40px;
-        margin-bottom: 40px;
-    }
-    .herobanner-container .statistics-wrapper:nth-child(2) .statistics>.statistics-title {
-        min-height: 32px;
-    }
-
-    .statistics .statistics-row .feature-item {
-        padding-left: 12px;
-        padding-right: 12px;
-    }
-
-    .statistics-wrapper .statistics.statistics-financial-variation.block .statistics-row>div:first-child{
-        font-size:var(--font-size-s);
-        line-height:32px;
-    }
-
-    .herobanner-container .statistics-wrapper:nth-child(2) .statistics .statistics-row:last-child {
-        padding-bottom: 32px;
-    }
-}
-
-@media (width<768px) {
-    .statistics-description-wrapper {
-        margin-bottom: 28px;
-        font-size: var(--font-size-xxs);
-        padding: 28px 0;
-        margin-bottom: 28px;
-    }
-    .statistics-description-wrapper p {
-        line-height: 20px;
-    }
-    .herobanner-container .statistics-wrapper:nth-child(2) .statistics-description-wrapper {
-        padding: 0 0 24px;
-    }
-    .statistics .text-container {
-        font-size: var(--font-size-xxs);
-        letter-spacing: 1px;
-        line-height: 20px;
-    }
-
-    .statistics-description-wrapper .description-text-container{
-        font-size: var(--font-size-xxs);
-        line-height: 20px;
-        letter-spacing: 0px;
-     }
-
-    .statistics .statistics-description-wrapper h3 {
-        font-size: var(--font-size-m);
-        line-height: 34px;
-    }
-
-    .statistics .statistics-row {
-        row-gap: 18px;
-        margin-left: 0;
-        margin-right: 0;
-    }
-
-    .statistics.statistics-financial-variation .statistics-row {
-        row-gap: 28px;
-    }
-    
-
-    .statistics .statistics-row .feature-item {
-        padding-left: 0;
-        padding-right: 0;
-    }
-
-    .statistics .statistic-item {
-        font-size: var(--font-size-ml);
-        line-height: 48px;
-    }
-    .statistics.statistics-financial-variation .statistic-item {
-        font-size: var(--font-size-ml);
-    }
-    .statistics-wrapper .statistics.block {
-        margin-top: -54px;
-        margin-bottom: 24px;
+        margin-top: 64px;
+        padding-bottom: 64px;
+        background-position: center top 120px;
     }
 
     .statistics-wrapper .statistics.block.statistics-variation {
@@ -327,10 +196,156 @@
         margin-top: 0;
     }
 
-    .statistics .statistics-title{
+    .statistics .statistics-title {
+        margin-bottom: 40px;
+        font-size: 32px;
+        line-height: 48px;
+    }
+
+    .statistics.block.statistics-variation .statistics-title {
+        margin-bottom: 10px;
+    }
+
+
+    .herobanner-container .statistics-wrapper:nth-child(2) .statistics.block::before {
+        top: -32px;
+    }
+
+    .herobanner-container .statistics-wrapper:nth-child(2) .statistics.block.statistics-variation::before {
+        top: 0;
+    }
+
+
+
+}
+
+@media (width<=1024px) {
+    .statistics-description-wrapper {
+        margin-bottom: 28px;
+    }
+
+    .herobanner-container .statistics-wrapper:nth-child(2) .statistics-description-wrapper {
+        padding: 0 0 32px;
+    }
+
+    .statistics .statistics-description-wrapper h3 {
+        font-size: 32px;
+    }
+
+    .statistics .statistic-item {
+        font-size: 56px;
+        line-height: 72px;
+    }
+
+    .statistics .statistics-row {
+        row-gap: 40px;
+    }
+
+    .statistics.statistics-financial-variation .statistics-row {
+        row-gap: 40px;
+    }
+
+    .statistics.statistics-financial-variation .statistics-title {
+        padding-bottom: 40px;
+        margin-bottom: 40px;
+    }
+
+    .herobanner-container .statistics-wrapper:nth-child(2) .statistics>.statistics-title {
+        min-height: 32px;
+    }
+
+    .statistics .statistics-row .feature-item {
+        padding-left: 12px;
+        padding-right: 12px;
+    }
+
+    .statistics-wrapper .statistics.statistics-financial-variation.block .statistics-row>div:first-child {
+        font-size: var(--font-size-s);
+        line-height: 32px;
+    }
+
+    .statistics .text-container {
+        font-size: 16px;
+        line-height: 24px;
+    }
+}
+
+@media (width<768px) {
+    .statistics-description-wrapper {
+        margin-bottom: 28px;
+        font-size: var(--font-size-xxs);
+        padding: 28px 0;
+        margin-bottom: 28px;
+    }
+
+    .statistics-description-wrapper p {
+        line-height: 20px;
+    }
+
+    .herobanner-container .statistics-wrapper:nth-child(2) .statistics-description-wrapper {
+        padding: 0 0 24px;
+    }
+
+    .statistics .text-container {
+        font-size: var(--font-size-xxs);
+        letter-spacing: 1px;
+        line-height: 20px;
+    }
+
+    .statistics-description-wrapper .description-text-container {
+        font-size: var(--font-size-xxs);
+        line-height: 20px;
+        letter-spacing: 0px;
+    }
+
+    .statistics .statistics-description-wrapper h3 {
+        font-size: var(--font-size-m);
+        line-height: 34px;
+    }
+
+    .statistics .statistics-row {
+        flex-direction: column;
+        display: flex;
+        gap: 24px;
+    }
+
+    .statistics.statistics-financial-variation .statistics-row {
+        row-gap: 24px;
+    }
+
+    .statistics .statistics-row .feature-item {
+        padding-left: 0;
+        padding-right: 0;
+    }
+
+    .statistics .statistic-item {
+        font-size: 64px;
+        line-height: 80px;
+    }
+
+    .statistics.statistics-financial-variation .statistic-item {
+        font-size: var(--font-size-ml);
+    }
+
+    .statistics-wrapper .statistics.block {
+        margin-top: 40px;
+        padding-bottom: 40px;
+        background-position: center bottom;
+        background-size: auto;
+    }
+
+    .statistics-wrapper .statistics.block.statistics-variation {
+        margin-top: 0;
+    }
+
+    .statistics-wrapper .statistics.statistics-financial-variation.block {
+        margin-top: 0;
+    }
+
+    .statistics .statistics-title {
         margin-bottom: 24px;
-        font-size: var(--font-size-m);;
-        line-height: 34px; 
+        font-size: 24px;
+        line-height: 40px;
     }
 
     .statistics.statistics-financial-variation .statistics-title {
@@ -338,9 +353,9 @@
         margin-bottom: 32px;
     }
 
-    .statistics-wrapper .statistics.statistics-financial-variation.block .statistics-row>div:first-child{
+    .statistics-wrapper .statistics.statistics-financial-variation.block .statistics-row>div:first-child {
         font-size: var(--font-size-s);
-        line-height:28px;
+        line-height: 28px;
     }
 
     .herobanner-container .statistics-wrapper:nth-child(2) .statistics.block::before {
@@ -350,17 +365,5 @@
 
     .statistics.block.statistics-variation .statistics-title {
         margin-bottom: 8px;
-    }
-    .herobanner-container .statistics-wrapper:nth-child(2) .statistics .statistics-row:last-child {
-        padding-bottom: 24px;
-    }   
-}
-
-@media (width>=1200px) {
-    .herobanner-container .statistics-wrapper:nth-child(2) .statistics.block::before {
-        max-width: none;
-        width: auto;
-        left: 100px;
-        right: 100px;
     }
 }

@@ -43,9 +43,9 @@ function setupVideoFunctionality(autoPlay, mediaElement) {
   });
 
   video.addEventListener('loadeddata', () => {
-    mediaElement.querySelector('.video-loader').style.display='none';
+    mediaElement.querySelector('.video-loader').style.display = 'none';
     video.style.display = 'block';
-    mediaElement.querySelector('.custom-play-button').style.visibility='visible'
+    mediaElement.querySelector('.custom-play-button').style.visibility = 'visible'
   });
 
   // Pause video when out of viewport
@@ -55,8 +55,8 @@ function setupVideoFunctionality(autoPlay, mediaElement) {
         video.pause();
         playButton.innerHTML = '▶';
         fadeInButton(playButton);
-      } else if(entry.isIntersecting && autoPlay) {
-        if(!isVideoLoaded && !isIOSDevice()) {
+      } else if (entry.isIntersecting && autoPlay) {
+        if (!isVideoLoaded && !isIOSDevice()) {
           video.load();
           isVideoLoaded = true;
         }
@@ -64,8 +64,8 @@ function setupVideoFunctionality(autoPlay, mediaElement) {
         video.muted = true;
         video.play();
         fadeOutButton(playButton);
-      } else if(entry.isIntersecting) {
-        if(!isVideoLoaded && !isIOSDevice()) {
+      } else if (entry.isIntersecting) {
+        if (!isVideoLoaded && !isIOSDevice()) {
           video.load();
           isVideoLoaded = true;
         }
@@ -89,9 +89,9 @@ function handleMediaElement(mediaBlock) {
 
   const isVideo = /\.(mp4|webm|ogg)$/i.test(mediaUrl);
   let mediaElement = null;
-  if(isVideo) {
+  if (isVideo) {
     autoPlay = mediaBlock?.children[1]?.textContent?.trim() === 'true';
-    if(mediaBlock?.children[1]) {
+    if (mediaBlock?.children[1]) {
       mediaBlock.children[1].innerHTML = '';
     }
   }
@@ -100,7 +100,7 @@ function handleMediaElement(mediaBlock) {
     mediaElement = stringToHtml(`
       <div class="custom-video-container">
       <div class="video-loader"></div>
-        <video class="mediablock-video" preload=${isIOSDevice()?"auto":"none"} playsinline autoplay=${isIOSDevice()?"true":"false"}>
+        <video class="mediablock-video" preload=${isIOSDevice() ? "auto" : "none"} playsinline autoplay=${isIOSDevice() ? "true" : "false"}>
           <source src="${mediaUrl}" type="video/mp4">
           Your browser does not support the video tag.
         </video>
@@ -132,8 +132,8 @@ function handleMediaElement(mediaBlock) {
 
   if (mediaElement) {
     linkElement.parentElement?.replaceChild(mediaElement, linkElement);
-    if(mediaBlock?.children[1]) {
-      mediaBlock.children[1].style.display="none"
+    if (mediaBlock?.children[1]) {
+      mediaBlock.children[1].style.display = "none"
     }
     if (isVideo) setupVideoFunctionality(autoPlay, mediaElement);
   }
@@ -149,18 +149,36 @@ function decorateTextSection(textSection) {
 
 // Main function to decorate the block
 export default function decorate(block) {
-  block.className = 'container textmediablock-container';
+  block.classList.add('fade-item');
+  block.className = 'textmediablock-container';
 
   // Check if the first child contains an image link
   const firstChild = block.children[0];
   const hasImageFirst = firstChild.querySelector('a') !== null;
 
   if (hasImageFirst) {
-    handleMediaElement(firstChild);
-    decorateTextSection(block.children[1]);
+    // Variation 1: Image first, then text
+    handleImageElement(firstChild);
+
+    // Add classes to text section
+    const textSection = block.children[1];
+    if (textSection) {
+      textSection.classList.add('container', 'textblock');
+      textSection.children[0]?.classList.add('heading');
+      textSection.children[1]?.classList.add('text-section');
+    }
   } else {
-    decorateTextSection(firstChild);
-    handleMediaElement(block.children[1]);
+    // Variation 2: Text first, then image
+    const textSection = firstChild;
+    const imageSection = block.children[1];
+
+    textSection.classList.add('container', 'textblock');
+    textSection.children[0]?.classList.add('heading');
+    textSection.children[1]?.classList.add('text-section');
+
+    if (imageSection) {
+      handleImageElement(imageSection);
+    }
   }
 
   block.querySelectorAll('.text-section').forEach((textSection) => {

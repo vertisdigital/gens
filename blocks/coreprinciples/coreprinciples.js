@@ -7,27 +7,28 @@ export default function decorate(block) {
   // Get the inner block that has the coreprinciples class
   const coreBlock = block;
   if (!coreBlock) return;
+  block.classList.add('fade-item');
 
   // Add container classes for responsive layout
   const wrapper = document.createElement('div');
   wrapper.classList.add('coreprinciples');
-  
-  const removeBorderBottom={
-    "esg":true
+
+  const removeBorderBottom = {
+    "esg": true
   }
-  let pathname=window.location.pathname.split('/')
-  pathname=pathname[pathname.length-1]
-  
-  if(removeBorderBottom[pathname]){
-    wrapper.setAttribute('id','remove-border-bottom')
+  let pathname = window.location.pathname.split('/')
+  pathname = pathname[pathname.length - 1]
+
+  if (removeBorderBottom[pathname]) {
+    wrapper.setAttribute('id', 'remove-border-bottom')
   }
-  
+
   const container = document.createElement('div');
   wrapper.appendChild(container);
   container.className = 'container';
 
   const row = document.createElement('div');
-  row.className = 'row';
+  row.className = 'coreprinciples-container';
 
   // Convert each item to use proper semantic structure
   const items = [...coreBlock.querySelectorAll('[data-aue-model="coreprinciple"], [data-gen-model="featureItem"]')];
@@ -35,14 +36,15 @@ export default function decorate(block) {
   const isFourCards = hasLearnMore ? (items.length - 1) === 4 : items.length === 4;
   const isMoreThenSix = hasLearnMore ? (items.length - 1) >= 6 : items.length >= 6;
   const isSingleCard = hasLearnMore ? (items.length - 1) === 1 : items.length === 1;
-  
+
   items.forEach((item) => {
     // Add responsive column classes as per requirements
-    if(item?.querySelector('.button-container')) {
+    if (item?.querySelector('.button-container')) {
       return;
     }
     const col = document.createElement('div');
-    col.className = isSingleCard ?'principles-item': `${!isFourCards ? 'col-xl-4' : ''} col-md-3 col-sm-4 principles-item`;
+    col.className = 'principles-item';
+
     // Get the icon URL and alt text from anchor
     const iconLink = item.querySelector('a');
     const iconUrl = iconLink?.href || '';
@@ -90,8 +92,17 @@ export default function decorate(block) {
       }
     }
 
+    const contentWrapper = document.createElement('div');
+    contentWrapper.className = 'content-wrapper';
+
     // Convert title to h3 with preserved authoring attributes
     const allDivElements = item.querySelectorAll('div');
+
+    const titleImage = allDivElements[0];
+    if (titleImage !== null) {
+      contentWrapper.appendChild(titleImage);
+    }
+
     const title = allDivElements[1];
     if (title !== null) {
       const h3 = document.createElement('h3');
@@ -104,6 +115,7 @@ export default function decorate(block) {
         h3.setAttribute(attr.name, attr.value);
       });
       title.replaceWith(h3);
+      contentWrapper.appendChild(h3);
     }
 
     // Preserve description data-aue attributes
@@ -113,24 +125,27 @@ export default function decorate(block) {
       descAttributes.forEach((attr) => {
         description.setAttribute(attr.name, attr.value);
       });
+      contentWrapper.appendChild(description);
     }
 
     // Clean up original icon link
     iconLink?.parentElement.remove();
 
-    // Insert icon wrapper at start
-    item.insertBefore(iconWrapper, item.firstChild);
+    // Clear item and rebuild structure
+    item.innerHTML = '';
+    item.appendChild(iconWrapper);
+    item.appendChild(contentWrapper);
 
     // Wrap item in column and add to row
-    if(isSingleCard){
+    if (isSingleCard) {
       item.classList.add('core-principle-single-card')
       const [icon, ...restElement] = item.children
       icon.classList.add('icon-single-wrapper')
       const div = document.createElement('div')
-      item.innerHTML=""
+      item.innerHTML = ""
       item.append(icon)
-      restElement.forEach((elm,index)=>{
-        if(index===0){
+      restElement.forEach((elm, index) => {
+        if (index === 0) {
           elm.classList.add('core-principle-single-card-line')
         }
         div.append(elm)
@@ -140,7 +155,7 @@ export default function decorate(block) {
     col.appendChild(item.cloneNode(true));
     row.appendChild(col);
   });
-        // Find all LinkFields and replace with arrow icons
+  // Find all LinkFields and replace with arrow icons
   const linkField = block.querySelector('[data-aue-model="linkField"],[data-gen-model="linkField"]') || (block.querySelector('.button-container') ? items[items.length - 1] : null);
   if (linkField) {
     const linkContainer = document.createElement('div');
@@ -152,7 +167,7 @@ export default function decorate(block) {
     if (linkDivs.length === 3) {
       // Get elements by index with proper type checking
       const [linkTextDiv, iconDiv, targetDiv] = linkDivs;
-      
+
       const linkData = {
         text: linkTextDiv?.textContent?.trim(),
         url: linkTextDiv?.querySelector('a')?.getAttribute('href'),
@@ -179,17 +194,17 @@ export default function decorate(block) {
 
         // Add icon if specified
         if (linkData.icon) {
-          const arrowSVG = SvgIcon({ 
-            name: linkData.icon, 
-            className: 'core-principles-link', 
-            size: '24px' 
+          const arrowSVG = SvgIcon({
+            name: linkData.icon,
+            className: 'core-principles-link',
+            size: '24px'
           });
           link.append(stringToHtml(arrowSVG));
         }
         moveInstrumentation(linkTextDiv?.querySelector('a'), link);
         linkContainer.appendChild(link);
       }
-       
+
       // Remove original elements after copying
       linkTextDiv.remove();
       iconDiv.remove();
@@ -207,7 +222,7 @@ export default function decorate(block) {
   coreBlock.append(wrapper);
 
   function handleLayout() {
-    const childElement=row.children
+    const childElement = row.children
     if (isFourCards) {
       if (window.innerWidth < 1024) {
         row.style.removeProperty('max-width')
@@ -215,25 +230,25 @@ export default function decorate(block) {
         childElement[childElement.length - 1].style.removeProperty('padding-right')
       } else {
         row.style.maxWidth = "736px"
-        childElement[0].style.paddingLeft = window.innerWidth===1024 ? "12px" : "18px"
+        childElement[0].style.paddingLeft = window.innerWidth === 1024 ? "12px" : "18px"
         childElement[childElement.length - 1].style.paddingRight = window.innerWidth === 1024 ? "12px" : "18px"
       }
     }
-    if(isMoreThenSix){
+    if (isMoreThenSix) {
       if (window.innerWidth < 1024) {
         childElement[0].style.removeProperty('padding-left')
         childElement[childElement.length - 1].style.removeProperty('padding-right')
       } else {
-        childElement[0].style.paddingLeft = window.innerWidth===1024 ? "12px" : "18px"
+        childElement[0].style.paddingLeft = window.innerWidth === 1024 ? "12px" : "18px"
         childElement[childElement.length - 1].style.paddingRight = window.innerWidth === 1024 ? "12px" : "18px"
-      }      
+      }
     }
-    if (isSingleCard){
-      if (window.innerWidth < 767){
+    if (isSingleCard) {
+      if (window.innerWidth < 767) {
         row.querySelector('.core-principle-single-card').classList.remove('core-principle-single-card')
         row.querySelector('.icon-single-wrapper').classList.remove('icon-single-wrapper')
         row.querySelector('.core-principle-single-card-line').classList.remove('core-principle-single-card-line')
-      }else{
+      } else {
         const singleCard = childElement[0].children[0]
         singleCard.classList.add('core-principle-single-card')
         singleCard.querySelector('.icon-wrapper').classList.add('icon-single-wrapper')
@@ -242,7 +257,7 @@ export default function decorate(block) {
     }
   }
   handleLayout()
-  window.addEventListener('resize',()=>{
+  window.addEventListener('resize', () => {
     handleLayout()
   })
 }

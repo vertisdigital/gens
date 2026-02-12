@@ -10,23 +10,23 @@ const setCookieData = (_e, accepted = true) => {
     document.cookie = `cookieConsent=${accepted};path=/;max-age=15552000`
     hideCookieConsent();
 };
-export default class CookiePolicy {
+export class CookiePolicy {
     cookieBlock = null;
     constructor(elem) {
         this.cookieBlock = elem;
     }
     constructMarkup = () => {
         const elem = this.cookieBlock;
-        const blockElem = elem.querySelector('.block');
+        const blockElem = elem.classList.contains('block') ? elem : elem.querySelector('.block');
         blockElem.classList.add('container');
         const childElements = blockElem.children;
         const cookieWrapper = document.createElement('div');
         cookieWrapper.classList.add('cookie-wrapper');
-        if(getCookie('cookieConsent')) {
+        if (getCookie('cookieConsent')) {
             blockElem.classList.add('hide');
         }
         const descriptionField = childElements[0];
-        if(descriptionField) {
+        if (descriptionField) {
             const descriptionDiv = document.createElement('div');
             descriptionDiv.classList.add('cookie-description');
             moveInstrumentation(descriptionField, descriptionDiv);
@@ -36,20 +36,20 @@ export default class CookiePolicy {
 
         const declineField = childElements[1];
         const acceptField = childElements[2]
-        if(declineField && acceptField) {
+        if (declineField && acceptField) {
             const buttonWrapper = document.createElement('div');
             buttonWrapper.classList.add('cookie-button-wrapper');
 
             const declineButton = document.createElement('button');
             declineButton.classList.add('decline-button');
             moveInstrumentation(declineField, declineButton);
-            declineButton.innerHTML = declineField?.textContent ||'';
-            declineButton.addEventListener('click', (e)=>setCookieData(e,false));
+            declineButton.innerHTML = declineField?.textContent || '';
+            declineButton.addEventListener('click', (e) => setCookieData(e, false));
 
             const acceptButton = document.createElement('button');
             acceptButton.classList.add('accept-button');
             moveInstrumentation(acceptField, acceptButton);
-            acceptButton.innerHTML = acceptField?.textContent ||'';
+            acceptButton.innerHTML = acceptField?.textContent || '';
             acceptButton.addEventListener('click', setCookieData);
 
             buttonWrapper.appendChild(declineButton);
@@ -60,4 +60,9 @@ export default class CookiePolicy {
         blockElem.appendChild(cookieWrapper);
         document.body.appendChild(elem);
     }
+}
+
+export default function decorate(block) {
+    const cp = new CookiePolicy(block);
+    cp.constructMarkup();
 }

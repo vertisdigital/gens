@@ -16,6 +16,8 @@ import {
 import processTabs from './autoblocks.js';
 import { redirectRouter, controlLowerEnvironment } from '../shared-components/Utility.js';
 import { errorLogger as logger} from './logger.js';
+import initLazyFadeIn from './lazy-fadein.js';
+
 
 
 /**
@@ -134,6 +136,8 @@ async function loadLazy(doc) {
   loadFooter(doc.querySelector('footer'));
 
   loadCSS(`${window.hlx.codeBasePath}/styles/lazy-styles.css`);
+  loadCSS(`${window.hlx.codeBasePath}/styles/text.css`);
+  loadCSS(`${window.hlx.codeBasePath}/styles/buttons.css`);
   loadFonts();
 }
 
@@ -151,6 +155,7 @@ async function loadPage() {
   await loadEager(document);
   await loadLazy(document);
   loadDelayed();
+  initLazyFadeIn();
 }
 
 loadPage();
