@@ -100,16 +100,6 @@
 
 .awardsgallery .awardsgallery-grid-center {
     justify-content: center;
-    margin-left: -9px;
-    margin-right: -9px;
-}
-
-.awardsgallery .awardsgallery-card:first-child {
-    padding-left: 9px;
-}
-
-.awardsgallery .awardsgallery-card:last-child {
-    padding-right: 9px;
 }
 
 .awardsgallery .awardsgallery-grid::-webkit-scrollbar {
@@ -118,11 +108,6 @@
 
 .awardsgallery picture {
     text-align: center;
-}
-
-.learn-more {
-    text-align: right;
-    margin: 24px 0;
 }
 
 .awardsgallery-arrow {
@@ -276,21 +261,6 @@
 
     .awardsgallery-arrow.next {
         right: 40px;
-    }
-
-    .awardsgallery .awardsgallery-grid {
-        justify-content: center;
-        margin-left: -12px;
-        margin-right: -12px;
-    }
-
-
-    .awardsgallery .awardsgallery-card:first-child {
-        padding-left: 12px;
-    }
-
-    .awardsgallery .awardsgallery-card:last-child {
-        padding-right: 12px;
     }
 }
 

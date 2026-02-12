@@ -46,11 +46,9 @@
     font-weight: 400;
     line-height: 24px;
     color: var(--body-text-color);
-    margin-bottom: 45;
-}
-
-.herobanner-container .statistics-wrapper:nth-child(2) .statistics-description-wrapper {
-    padding: 0 0 60px;
+    border-bottom: 1px solid var(--text-color);
+    padding-bottom: 20px;
+    margin-bottom: 50px;
 }
 
 .statistics-description-wrapper .hide {
@@ -59,7 +57,7 @@
 
 .statistics-container button {
     display: block;
-    font-size: var(--font-size-xxs);
+    font-size: var(--font-size-xs);
     font-weight: 700;
     line-height: 24px;
     text-decoration-line: underline;
@@ -108,23 +106,10 @@
     color: var(--color-text-white);
 }
 
-.statistics .text-container p {
-    margin-bottom: 24px;
-}
-
-.statistics .text-container p:last-child {
-    margin-bottom: 0;
-}
-
 .statistics-wrapper .statistics.block {
     margin-top: 80px;
     padding-bottom: 80px;
     position: relative;
-    margin-bottom: 45px;
-}
-
-.statistics-wrapper .statistics.block.margin-top-none {
-    margin-top: 0;
 }
 
 .statistics-wrapper .statistics.block.margin-top-none {
@@ -173,7 +158,7 @@
 }
 
 @media (width <=1280px) {
-    .herobanner-container .statistics-wrapper:nth-child(2) .statistics.block::before {
+    .statistics-wrapper .statistics.block::before {
         left: 22px;
         right: 22px;
         width: auto;
@@ -207,11 +192,11 @@
     }
 
 
-    .herobanner-container .statistics-wrapper:nth-child(2) .statistics.block::before {
-        top: -32px;
+    .statistics-wrapper .statistics.block::before {
+        top: -22px;
     }
 
-    .herobanner-container .statistics-wrapper:nth-child(2) .statistics.block.statistics-variation::before {
+    .statistics-wrapper .statistics.block.statistics-variation::before {
         top: 0;
     }
 
@@ -221,11 +206,9 @@
 
 @media (width<=1024px) {
     .statistics-description-wrapper {
-        margin-bottom: 28px;
-    }
+        padding: 40px 0;
+        margin-bottom: 40px;
 
-    .herobanner-container .statistics-wrapper:nth-child(2) .statistics-description-wrapper {
-        padding: 0 0 32px;
     }
 
     .statistics .statistics-description-wrapper h3 {
@@ -250,10 +233,6 @@
         margin-bottom: 40px;
     }
 
-    .herobanner-container .statistics-wrapper:nth-child(2) .statistics>.statistics-title {
-        min-height: 32px;
-    }
-
     .statistics .statistics-row .feature-item {
         padding-left: 12px;
         padding-right: 12px;
@@ -272,35 +251,12 @@
 
 @media (width<768px) {
     .statistics-description-wrapper {
-        margin-bottom: 28px;
-        font-size: var(--font-size-xxs);
         padding: 28px 0;
         margin-bottom: 28px;
     }
 
-    .statistics-description-wrapper p {
-        line-height: 20px;
-    }
-
-    .herobanner-container .statistics-wrapper:nth-child(2) .statistics-description-wrapper {
-        padding: 0 0 24px;
-    }
-
-    .statistics .text-container {
-        font-size: var(--font-size-xxs);
-        letter-spacing: 1px;
-        line-height: 20px;
-    }
-
-    .statistics-description-wrapper .description-text-container {
-        font-size: var(--font-size-xxs);
-        line-height: 20px;
-        letter-spacing: 0px;
-    }
-
     .statistics .statistics-description-wrapper h3 {
         font-size: var(--font-size-m);
-        line-height: 34px;
     }
 
     .statistics .statistics-row {
@@ -321,10 +277,6 @@
     .statistics .statistic-item {
         font-size: 64px;
         line-height: 80px;
-    }
-
-    .statistics.statistics-financial-variation .statistic-item {
-        font-size: var(--font-size-ml);
     }
 
     .statistics-wrapper .statistics.block {
@@ -358,7 +310,7 @@
         line-height: 28px;
     }
 
-    .herobanner-container .statistics-wrapper:nth-child(2) .statistics.block::before {
+    .statistics-wrapper .statistics.block::before {
         left: 10px;
         right: 10px;
     }
