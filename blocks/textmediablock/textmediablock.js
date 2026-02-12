@@ -158,26 +158,20 @@ export default function decorate(block) {
 
   if (hasImageFirst) {
     // Variation 1: Image first, then text
-    handleImageElement(firstChild);
+    handleMediaElement(firstChild);
 
     // Add classes to text section
     const textSection = block.children[1];
-    if (textSection) {
-      textSection.classList.add('container', 'textblock');
-      textSection.children[0]?.classList.add('heading');
-      textSection.children[1]?.classList.add('text-section');
-    }
+    decorateTextSection(textSection);
   } else {
     // Variation 2: Text first, then image
     const textSection = firstChild;
     const imageSection = block.children[1];
 
-    textSection.classList.add('container', 'textblock');
-    textSection.children[0]?.classList.add('heading');
-    textSection.children[1]?.classList.add('text-section');
+    decorateTextSection(textSection);
 
     if (imageSection) {
-      handleImageElement(imageSection);
+      handleMediaElement(imageSection);
     }
   }
 

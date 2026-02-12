@@ -19,7 +19,7 @@ export default function decorate(block) {
   const allDivElements = block.children;
   const titleElement = allDivElements[0];
   const firstCtaElement = allDivElements[1].querySelector('p');
-  const secondCtaElement = allDivElements[4].querySelector('p');
+  const secondCtaElement = allDivElements[3].querySelector('p');
 
   const allLinks = exploreMoreContainer.querySelectorAll('a');
   const firstCtaHrefElement = allLinks?.[0];
@@ -32,13 +32,11 @@ export default function decorate(block) {
   const firstCtaCaption = firstCtaElement?.textContent?.trim() || '';
   const firstCtaAttributes = extractAttributes(firstCtaElement);
   const firstCtaHref = firstCtaHrefElement?.getAttribute('href') || '#';
-  const firstCtaTarget = allDivElements[3]?.textContent?.trim() || "_self";
   const firstCtaHrefAttributes = extractAttributes(firstCtaHrefElement);
 
   const secondCtaCaption = secondCtaElement?.textContent?.trim() || '';
   const secondCtaAttributes = extractAttributes(secondCtaElement);
   const secondCtaHref = secondCtaHrefElement?.getAttribute('href') || '#';
-  const secondCtaTarget = allDivElements[6]?.textContent?.trim() || "_self";
   const secondCtaHrefAttributes = extractAttributes(secondCtaHrefElement);
 
   // Clear existing content
