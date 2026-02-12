@@ -97,8 +97,6 @@ function updateIframeHeight(iframeWrapper, endpoint, iframeElement = null) {
     .replace('.html', '')
     .replace(/[_\s]+/g, '-');
 
-  // console.log('Iframe Debug:', { original: endpoint, normalized: normalizedEndpoint });
-
   let config = endpointHeightConfig[normalizedEndpoint] || endpointHeightConfig.default;
 
   let height = null;
@@ -154,6 +152,9 @@ function updateIframeForTab() {
   }
 }
 
+let tabviewHeight = null;
+let calviewHeight = null;
+
 export default function decorate(block) {
   const link = block.querySelector('a');
   link.remove();
@@ -206,8 +207,43 @@ export default function decorate(block) {
         return;
       }
 
-      // Disable dynamic resizing for email_alerts to prevent infinite loop
-      if (endpoint === 'email_alerts') {
+      // Reset resize flag for internal iframe tab switches
+      if (tabviewHeight !== null && message === 'TabView') {
+        iframeWrapper.dataset.hasResized = 'false';
+        iframe.style.height = `${tabviewHeight}px`; // Set height on iframe itself as per snippet
+        setElementHeight(iframeWrapper, `${tabviewHeight}px`); // Also update wrapper
+        contentHeight = tabviewHeight;
+        return;
+      }
+
+      if (calviewHeight !== null && message === 'CalView') {
+        iframeWrapper.dataset.hasResized = 'false';
+        iframe.style.height = `${calviewHeight}px`; // Set height on iframe itself as per snippet
+        setElementHeight(iframeWrapper, `${calviewHeight}px`); // Also update wrapper
+        contentHeight = calviewHeight;
+        return;
+
+      }
+
+      // Run-once logic for specific endpoints to prevent infinite loop
+      const runOnceEndpoints = [
+        'email_alerts',
+        'email-alerts',
+        'news_search',
+        'news-search',
+        'investor-calendar'
+      ];
+      if (endpoint === 'investor-calendar') {
+        if (tabviewHeight === null && calviewHeight !== null) {
+          tabviewHeight = message.height;
+        }
+        if (calviewHeight === null) {
+          calviewHeight = message.height;
+        }
+      }
+      // Check if we should only run once and if it has already run
+      if (runOnceEndpoints.includes(endpoint) && iframeWrapper.dataset.hasResized === 'true') {
+
         return;
       }
 
@@ -223,6 +259,11 @@ export default function decorate(block) {
 
         // Mark as dynamic so static config doesn't override
         iframeWrapper.dataset.hasDynamicHeight = 'true';
+
+        // Mark as resized for run-once endpoints
+        if (runOnceEndpoints.includes(endpoint)) {
+          iframeWrapper.dataset.hasResized = 'true';
+        }
       }
     });
   }
