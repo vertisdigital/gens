@@ -157,6 +157,11 @@ function updateIframeForTab() {
   }
 }
 
+let tabview = null;
+let calview = null;
+let tabviewHeight = null;
+let calviewHeight = null;
+
 export default function decorate(block) {
   const link = block.querySelector('a');
   link.remove();
@@ -209,10 +214,24 @@ export default function decorate(block) {
         return;
       }
 
+      console.log(iframe.contentWindow)
+
       // Reset resize flag for internal iframe tab switches
-      if (message === 'TabView' || message === 'CalView') {
+      if (tabviewHeight !== null && message === 'TabView') {
         iframeWrapper.dataset.hasResized = 'false';
+        iframe.style.height = `${tabviewHeight}px`; // Set height on iframe itself as per snippet
+        setElementHeight(iframeWrapper, `${tabviewHeight}px`); // Also update wrapper
+        contentHeight = tabviewHeight;
         return;
+      }
+
+      if (calviewHeight !== null && message === 'CalView') {
+        iframeWrapper.dataset.hasResized = 'false';
+        iframe.style.height = `${calviewHeight}px`; // Set height on iframe itself as per snippet
+        setElementHeight(iframeWrapper, `${calviewHeight}px`); // Also update wrapper
+        contentHeight = calviewHeight;
+        return;
+
       }
 
       // Run-once logic for specific endpoints to prevent infinite loop
@@ -223,9 +242,17 @@ export default function decorate(block) {
         'news-search',
         'investor-calendar'
       ];
-
+      if (endpoint === 'investor-calendar') {
+        if (tabviewHeight === null && calviewHeight !== null) {
+          tabviewHeight = message.height;
+        }
+        if (calviewHeight === null) {
+          calviewHeight = message.height;
+        }
+      }
       // Check if we should only run once and if it has already run
       if (runOnceEndpoints.includes(endpoint) && iframeWrapper.dataset.hasResized === 'true') {
+
         return;
       }
 
