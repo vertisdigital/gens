@@ -980,9 +980,3 @@ picture {
   display: block;
   line-height: 0;
 }
-
-#news_search section,
-#email_alerts section,
-#investor-calendar section {
-  min-height: auto !important;
-}
