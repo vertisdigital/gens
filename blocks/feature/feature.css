@@ -328,8 +328,8 @@
     padding: 12px 0;
   }
 
-  .about-us-stats .about-us-right-content.text-container,
-  .about-us-stats .about-us-right-content {
+  .about-us-stats .about-us-right-content.text-container:not(:first-child),
+  .about-us-stats .about-us-right-content:not(:first-child) {
     margin-bottom: 0;
     padding-top: 16px;
     border-top: 1px solid #E8EBEB;
@@ -446,8 +446,8 @@
     font-weight: 700;
   }
 
-  .about-us-stats .about-us-right-content.text-container,
-  .about-us-stats .about-us-right-content {
+  .about-us-stats .about-us-right-content.text-container:not(:first-child),
+  .about-us-stats .about-us-right-content:not(:first-child) {
     padding-top: 16px;
     margin-bottom: 0;
     border-top: 1px solid #E8EBEB;
@@ -540,8 +540,8 @@
     gap: 16px;
   }
 
-  .about-us-stats .about-us-right-content.text-container,
-  .about-us-stats .about-us-right-content {
+  .about-us-stats .about-us-right-content.text-container:not(:first-child),
+  .about-us-stats .about-us-right-content:not(:first-child) {
     margin-bottom: 0;
     padding-top: 16px;
     border-top: 1px solid var(--colours-border-border-base, #E8EBEB);
