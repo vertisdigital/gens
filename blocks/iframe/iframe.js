@@ -68,7 +68,7 @@ function updateIframeHeight(iframeWrapper, endpoint, iframeElement = null) {
       tablet: '1900px',
       desktop: '1850px',
     },
-    email_alerts: {
+    'email-alerts': {
       mobile: '770px',
       tablet: '660px',
       desktop: '600px',
@@ -206,6 +206,11 @@ export default function decorate(block) {
 
       // Check if message comes from our iframe
       if (e.source !== iframe.contentWindow) {
+        return;
+      }
+
+      // Disable dynamic resizing for email_alerts to prevent infinite loop
+      if (endpoint === 'email_alerts') {
         return;
       }
 
