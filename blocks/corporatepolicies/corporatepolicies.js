@@ -2,6 +2,14 @@ import SvgIcon from "../../shared-components/SvgIcon.js";
 import Heading from "../../shared-components/Heading.js";
 
 export default function decorate(block) {
+  block.classList.add('fade-item');
+  // check if corporate policies has background or not
+  const noBackground = block.classList.contains('no-background');
+  if (noBackground) {
+    block.closest('.corporatepolicies-wrapper').classList.add('no-background');
+  } else {
+    block.closest('.corporatepolicies-wrapper').classList.remove('no-background');
+  }
   // Store all child elements before modifying the block
   const allChildElements = Array.from(block.children);
 
@@ -14,25 +22,47 @@ export default function decorate(block) {
         .map((child) => {
           child.classList.add("row", "corporate-policies-list-item");
           const children = Array.from(child.children);
-
-          // Handle heading replacement
+          
           let firstChildHtml = "";
+          let subtitleHtml = "";
+          
           if (children.length > 0) {
+            // Handle heading replacement
             const firstChildText = children[0].textContent?.trim();
+           
+            let headingClassName = '';
+            if(firstChildText.length > 20 && firstChildText.length < 25) {
+              headingClassName = 'w-50';
+            } 
+            if(firstChildText.length < 20) {
+              headingClassName = 'w-40';
+            }
+            if(firstChildText.length > 25 && firstChildText.length < 35) {
+              headingClassName = 'w-75';
+            }
+
             const headingHtml = Heading({
               level: 2,
               text: firstChildText,
-              className: "corporate-policies-heading",
+              className: `corporate-policies-heading ${headingClassName}`,
             });
             firstChildHtml = children[0].outerHTML.replace(/<p[^>]*>.*?<\/p>/, headingHtml);
+            
+            // handle subtitle replacement
+            if (children[8]?.textContent?.trim()) {
+              children[8]?.classList.add("corporate-policies-subtitle");
+              subtitleHtml = children[8]?.outerHTML;
+            }
           }
 
           let remainingChildren = "";
           let ctaIcon = "";
 
+
           if (children.length > 2) {
             const checkDownloadLink = children[5]?.textContent?.trim();
             const lastChild = children[4];
+            
             // If checkDownloadLink is 'false', use the last element (index 6), otherwise use index 3
             const linkElement = checkDownloadLink === 'true' ? children[6] : children[3];
             const lastThirdChild = children[2]; // Third-last element
@@ -54,6 +84,7 @@ export default function decorate(block) {
               // Modify <a> only if lastThirdChild has text
               const link = linkElement?.querySelector("a");
               if (link) {
+                link.classList.add('vd-link');
                 link.title = lastThirdChild.textContent;
                 link.target = children[7]?.textContent || "_self";
                 link.innerHTML = `<span>${lastThirdText}</span>${ctaIcon}`;
@@ -94,6 +125,7 @@ export default function decorate(block) {
             child.innerHTML,
             `
               <div class="col-xl-6 col-lg-6 col-md-3 col-sm-4 col-xs-4 left-col">
+                ${subtitleHtml}
                 ${firstChildHtml}
               </div>
               <div class="col-xl-6 col-lg-6 col-md-3 col-sm-4 col-xs-4 right-col">

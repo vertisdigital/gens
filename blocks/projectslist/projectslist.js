@@ -1,32 +1,36 @@
 import { moveInstrumentation } from '../../scripts/scripts.js';
 import ImageComponent from '../../shared-components/ImageComponent.js';
 import stringToHtml from '../../shared-components/Utility.js';
-import SvgIcon from "../../shared-components/SvgIcon.js";
+import SvgIcon from '../../shared-components/SvgIcon.js';
 
 export default function decorate(block) {
+  block.classList.add('fade-item');
   // Restructure the HTML for better semantics and accessibility
   const wrapper = block.closest('.projectslist') || block;
 
   // Create single container with all responsive classes
   const container = document.createElement('div');
-  container.className = 'container';
+  const gridView = block.classList.contains('grid-view') ? 'grid-view' : 'list-view';
+  container.className = gridView === 'grid-view' ? `container ${gridView}` : `${gridView}`;
   moveInstrumentation(wrapper, container);
 
   const projectsContainer = wrapper.querySelector(
     '[data-aue-model="projectslist"], [data-gen-model="projectslist"]',
   ) || wrapper;
 
-  Array.from(projectsContainer.children).forEach((project) => {
+  Array.from(projectsContainer.children).forEach((project, index) => {
     if (project.children[0].textContent !== '') {
       const projectContainer = document.createElement('div');
-      projectContainer.className = 'projectslistitem';
+      const baseClasses = (index % 2 === 1) ? 'odd-projectslistitem projectslistitem' : 'projectslistitem';
+      projectContainer.className = gridView === 'grid-view' ? baseClasses : `container ${baseClasses}`;
       moveInstrumentation(project, projectContainer);
 
       // Create left column (heading) - 40% on desktop and tablet
       const leftCol = document.createElement('div');
       leftCol.className = 'col-xl-6 col-md-3 col-sm-4 left-col';
 
-      const allDivElements = [...project.children];
+      const allDivElements = project.children;
+
 
       const titleText = allDivElements[0];
       if (titleText) {
@@ -38,7 +42,7 @@ export default function decorate(block) {
       }
 
       const subtitleText = allDivElements[1];
-      if (subtitleText) {
+      if (subtitleText.innerHTML.trim() !== '') {
         const subtitle = document.createElement('p');
         subtitle.className = 'project-subtitle';
         moveInstrumentation(subtitleText, subtitle);
@@ -57,7 +61,7 @@ export default function decorate(block) {
 
       const shortDescriptionText = allDivElements[3];
 
-      if (shortDescriptionText) {
+      if (shortDescriptionText.innerHTML.trim() !== '') {
         const shortDescription = document.createElement('p');
         shortDescription.className = 'project-short-description';
         moveInstrumentation(shortDescriptionText, shortDescription);
@@ -65,56 +69,42 @@ export default function decorate(block) {
         leftCol.appendChild(shortDescription);
       }
 
-      const projectCta = allDivElements[6];
-      const isDownloadable = allDivElements[8]?.textContent
-      const projectCtaLabel = allDivElements[5]
-      const projectLink = projectCta.querySelector('a')
-      const linkTag=document.createElement('a')
-      if (projectCtaLabel) {
-            linkTag.className = 'project-cta';
-        const link = allDivElements[9]?.querySelector('a')?.href
-        
-        if (isDownloadable === 'true') {
-          if (projectCtaLabel) {
-            linkTag.setAttribute('target', '_blank');
-            linkTag.setAttribute('href', link);
-          }
-        } else {
-          const target = allDivElements[10]?.textContent?.trim() || '_self';
+      const projectCta = allDivElements[5];
+      projectCta.className = 'project-cta';
 
-          if (projectCtaLabel) {
-            linkTag.setAttribute('target', target);
-            linkTag.setAttribute('href',projectLink?.href || "#")
-          }
-        }
-        if((isDownloadable==='true' && link) || (projectLink?.href && isDownloadable==='false')){
-          linkTag.innerHTML = projectCtaLabel?.textContent
-          projectCtaLabel.innerHTML=""
-          projectCtaLabel.append(linkTag)
-          leftCol.appendChild(projectCtaLabel);
-          
-        }
-        
+      // Add arrowIcon to the button/link in projectCta
+      const buttonLink = projectCta.querySelector('a');
+      if (buttonLink) {
+        // Capture the link text field value before clearing
+        const linkText = buttonLink.textContent?.trim() || buttonLink.innerHTML?.trim() || '';
 
-        const icon = allDivElements[6]?.textContent?.replace(/-/g, "")?.toLowerCase()?.trim()
-        if(icon?.length){
-          const ctaIcon = SvgIcon({
-            name: icon,
-            className: "corporate-policies-cta",
-            size: "16px",
+        buttonLink.classList.add('button');
+        if (!linkText.includes('/')) {
+          buttonLink.textContent = linkText;
+          buttonLink.classList.add('vd-link');
+        }
+        else {
+          buttonLink.classList.remove('vd-link');
+          // Create circular icon button with arrow icon
+          const arrowIcon = SvgIcon({
+            name: 'arrowright',
+            className: 'learn-button-icon',
+            size: '14',
+            color: 'var(--color-text-tertiary)',
           });
-          const div = document.createElement('div')
-          if(projectCtaLabel && stringToHtml(ctaIcon)){
-            linkTag.append(stringToHtml(ctaIcon)) 
-          }
-          leftCol.appendChild(div);
+          buttonLink.innerHTML = '';
+          buttonLink.appendChild(stringToHtml(arrowIcon));
         }
+
       }
+
+      leftCol.appendChild(projectCta);
+
       // Create right column (description and contacts) - 60% on desktop and tablet
       const rightCol = document.createElement('div');
       rightCol.className = 'col-xl-6 col-md-3 col-sm-4 right-col';
 
-      const imageLink = allDivElements[4]?.querySelector('a');
+      const imageLink = allDivElements[4].querySelector('a');
 
       if (imageLink) {
         const imageUrl = imageLink.getAttribute('href');
@@ -154,6 +144,13 @@ export default function decorate(block) {
       container.appendChild(projectContainer);
     }
   });
+
+  // Add class for 2-column layout if there are only 2 items
+  const projectslistItems = container.querySelectorAll('.projectslistitem');
+  if (projectslistItems.length === 2 && gridView === 'grid-view') {
+    container.classList.add('grid-view-2-cols');
+  }
+
   // Replace original content
   wrapper.innerHTML = '';
   wrapper.appendChild(container);

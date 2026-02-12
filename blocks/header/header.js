@@ -1,36 +1,77 @@
 import { getMetadata } from '../../scripts/aem.js';
 import { loadFragment } from '../fragment/fragment.js';
-import SvgIcon from '../../shared-components/SvgIcon.js';
+import SVGIcon from '../../shared-components/SvgIcon.js';
 import stringToHtml from '../../shared-components/Utility.js';
+import { highlight, shortenURL, resolveSearchBasePath } from '../searchresult/searchresult.js';
+
 
 // Add these variables at the top level of the file
 let ticking = false;
 let isHeaderFixed = false;
+const isMobileViewport = () => window.innerWidth <= 767;
 
 /**
- * Updates header state based on scroll position
+ * Sets the active class on the current nav item based on URL
  * @param {Element} header Header element
  */
-function updateHeaderState(header, isClicked = false) {
-  const scrollPosition = window.scrollY;
-  const defaultLogo = header.querySelector('.default-logo');
-  const scrollLogo = header.querySelector('.scroll-logo');
-  const isMegaMenuOpen = header.querySelector('.secondary-nav.active')
-  const headerSection = document.querySelector('.header')
+function setActiveLink(header) {
+  const currentPath = window.location.pathname;
+  const navItems = header.querySelectorAll('.nav-item');
 
-  if (defaultLogo && scrollLogo) {
-    if ((scrollPosition > 0 && !isHeaderFixed) || isClicked) {
-      headerSection.classList.add('fixed-header');
-      defaultLogo.style.display = 'none';
-      scrollLogo.style.display = 'block';
-      isHeaderFixed = true;
-    } else if (scrollPosition === 0 && isHeaderFixed && !isMegaMenuOpen) {
-      headerSection.classList.remove('fixed-header');
-      defaultLogo.style.display = 'block';
-      scrollLogo.style.display = 'none';
-      isHeaderFixed = false;
+  navItems.forEach((item) => {
+    // Check all links inside this nav item (including sub-links)
+    const links = item.querySelectorAll('a');
+    let isActive = false;
+
+    // Filter out empty hrefs or hash links
+    const validLinks = Array.from(links).filter((link) => {
+      const href = link.getAttribute('href');
+      // eslint-disable-next-line no-script-url
+      return href && href !== '#' && !href.startsWith('javascript:');
+    });
+
+    // Helper to get pathname from a link element
+    const getLinkPath = (link) => {
+      try {
+        // use link.href property (always absolute) to create URL object, then get pathname
+        return new URL(link.href).pathname;
+      } catch (e) {
+        // Fallback to attribute if URL parsing fails (unlikely for valid http links)
+        return link.getAttribute('href');
+      }
+    };
+
+    // 1. Check for exact match first
+    isActive = validLinks.some((link) => {
+      if (getLinkPath(link) === currentPath) {
+        link.classList.add('active-sub-link');
+        return true;
+      }
+      return false;
+    });
+
+    // 2. If no exact match, check for hierarchy
+    if (!isActive) {
+      isActive = validLinks.some((link) => {
+        const linkPath = getLinkPath(link);
+        // Only consider hierarchy if the link path is substantial
+        if (!linkPath || linkPath === '/' || linkPath.length <= 1) return false;
+
+        // Check if current path starts with link path
+        // Add trailing slash to ensure we don't match partial words (e.g. /about vs /about-us)
+        // unless the link path itself ends with slash
+        const checkPath = linkPath.endsWith('/') ? linkPath : `${linkPath}/`;
+        // Also ensure currentPath is treated similarly for the check
+        const currentPathCheck = currentPath.endsWith('/') ? currentPath : `${currentPath}/`;
+
+        return currentPathCheck.startsWith(checkPath);
+      });
     }
-  }
+
+    if (isActive) {
+      item.classList.add('current-nav-item');
+    }
+  });
 }
 
 /**
@@ -65,7 +106,23 @@ function createNavItem(itemData) {
   const titleDiv = document.createElement('div');
   titleDiv.className = 'primary-menu-links';
   const titleContent = document.createElement('div');
+  titleContent.className = 'primary-menu-links-heading';
   const detailedcaption = document.createElement('a');
+
+  // Check if this is the Contact menu item
+  // if (itemData.title === 'Contact' && itemData.links?.length === 1) {
+  //   // For Contact, create a direct link using the first link in the array
+  //   const contactLink = document.createElement('a');
+  //   contactLink.textContent = itemData.links[0].text;
+  //   contactLink.href = itemData.links[0].href;
+  //   contactLink.setAttribute('target', itemData.links[0].target || '_self');
+  //   titleContent.appendChild(contactLink);
+
+  //   // Skip creating submenu elements
+  //   titleDiv.appendChild(titleContent);
+  //   navItem.appendChild(titleDiv);
+  //   return navItem;
+  // }
 
   // Normal menu item handling
   if (itemData.title === 'CONTACT') {
@@ -101,10 +158,34 @@ function createNavItem(itemData) {
   overviewLink.href = itemData.overviewLinkHref;
   overviewLink.setAttribute('target', itemData.overviewLinkTarget);
 
+  const upArrow = SVGIcon({
+    name: 'arrowUp'
+  });
+
+  // ADD accordion arrow (mobile only via CSS)
+  const arrow = document.createElement('span');
+  arrow.className = 'header-accordion-arrow';
+  // Convert SVG string to DOM element if needed
+  if (typeof upArrow === 'string') {
+    arrow.innerHTML = upArrow;
+  } else if (upArrow instanceof Node) {
+    arrow.appendChild(upArrow);
+  }
+
+  titleContent.appendChild(arrow);
   titleDiv.appendChild(titleContent);
+
   navItem.appendChild(titleDiv);
-  if (detailedcaption.getAttribute('href')) { navItem.appendChild(detailedcaption); }
+  if (detailedcaption.getAttribute('href'))
+    navItem.appendChild(detailedcaption);
   navItem.appendChild(overviewLink);
+  if (itemData.links && itemData.links[0]) {
+    const overviewDescription = document.createElement('div');
+    overviewDescription.className = 'overview-description display-none';
+    overviewDescription.textContent = itemData.links[0].text || '';
+    overviewLink.setAttribute('text', overviewDescription.textContent);
+    navItem.appendChild(overviewDescription);
+  }
 
   if (itemData.caption && itemData.captionTarget) {
     navItem.dataset.captionText = itemData.caption.textContent?.trim() || '';
@@ -174,20 +255,12 @@ function createHeaderStructure(block) {
   // Get both logo images from fragment
   const images = block.querySelectorAll('picture');
   const defaultLogo = images[0];
-  const scrollLogo = images[1];
 
   // Add both logos with appropriate classes
   if (defaultLogo) {
     const defaultLogoWrapper = defaultLogo.cloneNode(true);
     defaultLogoWrapper.classList.add('default-logo');
     logoWrapper.appendChild(defaultLogoWrapper);
-  }
-
-  if (scrollLogo) {
-    const scrollLogoWrapper = scrollLogo.cloneNode(true);
-    scrollLogoWrapper.classList.add('scroll-logo');
-    scrollLogoWrapper.style.display = 'none'; // Initially hidden
-    logoWrapper.appendChild(scrollLogoWrapper);
   }
 
   // Create primary navigation
@@ -207,7 +280,6 @@ function createHeaderStructure(block) {
     const overviewLinkHref = (title !== 'CONTACT'
       ? overviewLink?.getAttribute('href')
       : sections[1]?.querySelector('a')?.getAttribute('href'));
-
     // Create nav item object
     return createNavItem({
       title,
@@ -238,7 +310,26 @@ function createHeaderStructure(block) {
 
   // Create search icon
   const searchWrapper = document.createElement('div');
- 
+  const searchBtn = document.createElement('button');
+  searchBtn.className = 'search-btn';
+  searchWrapper.appendChild(searchBtn);
+  const searchSuggestionBox = document.createElement('div');
+  searchSuggestionBox.className = 'search-suggestion-box';
+  const searchBox = document.createElement('div');
+  searchBox.className = 'search-box';
+  const searchInput = document.createElement('input');
+  searchInput.type = 'text';
+  searchInput.className = 'search-input';
+  searchInput.placeholder = 'Search';
+  const searchBtn2 = document.createElement('button');
+  searchBtn2.className = 'suggestion-search-btn';
+  searchBox.append(searchInput, searchBtn2);
+  const searchSuggestions = document.createElement('div');
+  searchSuggestions.className = 'search-suggestions';
+  searchSuggestionBox.append(searchBox, searchSuggestions);
+
+  document.querySelector('.header-wrapper').appendChild(searchSuggestionBox);
+
   // Assemble the structure
   nav.append(logoWrapper, primaryNav, searchWrapper);
   column.appendChild(nav);
@@ -247,6 +338,92 @@ function createHeaderStructure(block) {
   section.appendChild(columnsWrapper);
 
   return section;
+}
+
+function loadSearchSuggest(keyword) {
+  const PUBLISH_BASE = 'https://publish-p144202-e1488374.adobeaemcloud.com';
+  const resultInfo = document.querySelector('.search-suggestion-result-info');
+
+  const basePath = resolveSearchBasePath();
+  if (resultInfo) {
+    resultInfo.remove();
+  }
+  let debounceTimer;
+  clearTimeout(debounceTimer);
+
+  debounceTimer = setTimeout(async () => {
+    const suggestions = document.querySelector('.search-suggestions');
+
+    if (keyword.length < 3) {
+      suggestions.classList.remove('active');
+      return;
+    }
+
+    try {
+      const res = await fetch(
+        `${PUBLISH_BASE}${basePath}/jcr:content.suggest.json?q=${encodeURIComponent(keyword)}`,
+        {
+          method: 'GET',
+          credentials: 'include',
+        }
+      );
+
+      if (!res.ok) {
+        console.error('Suggest API error:', res.status);
+        return;
+      }
+
+      const data = await res.json();
+      if (data.length) {
+        console.log('Suggest result:', data);
+        suggestions.classList.add('active');
+        suggestions.innerHTML = '';
+        data.forEach((item) => {
+          const suggestion = document.createElement('a');
+          suggestion.className = 'suggestion-item';
+          suggestion.href = item.path.endsWith('.pdf') ? PUBLISH_BASE + item.path : shortenURL(item.path);
+          const hl = highlight(item.highlight, keyword);
+          suggestion.innerHTML = hl;
+          suggestions.appendChild(suggestion);
+        });
+      }
+      else {
+        suggestions.classList.remove('active');
+      }
+
+    } catch (err) {
+      console.error('Suggest fetch failed', err);
+    }
+  }, 500);
+}
+
+function triggerSearchPage(e) {
+  const q = e.trim();
+  if (!q) return;
+
+  const target = `/en/searchresults?q=${encodeURIComponent(q)}`;
+  window.location.href = target;
+}
+
+function createMobileAccordionFromSecondary(secondaryNav, originalLinks) {
+  const accordion = document.createElement('div');
+  accordion.className = 'mobile-subnav';
+
+  const cloned = secondaryNav.cloneNode(true);
+  cloned.classList.add('active');
+  cloned.classList.remove('header-hover-zone');
+
+  cloned.querySelector('.close-btn')?.remove();
+
+  const targetUl = cloned.querySelector('.nav-links');
+  if (targetUl) {
+    targetUl.innerHTML = '';
+    const freshLinks = originalLinks.cloneNode(true);
+    targetUl.append(...freshLinks.children);
+  }
+
+  accordion.appendChild(cloned);
+  return accordion;
 }
 
 /**
@@ -268,8 +445,8 @@ function initializeHeader(header) {
   hamburger.className = 'hamburger';
 
   // Create SVG icons
-  const hamburgerIcon = stringToHtml(SvgIcon({ name: 'hamburger', class: 'hamburger-icon', size: '30px' }));
-  const closeIcon = stringToHtml(SvgIcon({ name: 'close', class: 'close-icon', size: '30px' }));
+  const hamburgerIcon = stringToHtml(SVGIcon({ name: 'hamburger', class: 'hamburger-icon', size: '30px' }));
+  const closeIcon = stringToHtml(SVGIcon({ name: 'close', class: 'close-icon', size: '30px' }));
 
   // Set the initial icon
   hamburger.appendChild(hamburgerIcon);
@@ -284,16 +461,18 @@ function initializeHeader(header) {
     hamburger.classList.toggle('active');
     const primaryNav = header.querySelector('.primary-nav');
     primaryNav.classList.toggle('active');
+    header.classList.add('mobile-menu-open');
 
     // Use setTimeout to ensure class toggle happens before icon change
     setTimeout(() => {
       if (hamburger.classList.contains('active')) {
         hamburger.replaceChildren(closeIcon);
         document.body.classList.add('no-scroll');
-        updateHeaderState(header, true);
       } else {
+        header.classList.remove('mobile-menu-open');
         document.body.classList.remove('no-scroll');
         hamburger.replaceChildren(hamburgerIcon);
+
         // Close secondary navigation if it's open
         const activeItem = header.querySelector('.nav-item.active');
         const activeSecondary = header.querySelector('.secondary-nav.active');
@@ -301,10 +480,10 @@ function initializeHeader(header) {
         if (activeSecondary) activeSecondary.classList.remove('active');
         overlay.classList.remove('active');
         currentActive = null;
-        updateHeaderState(header);
       }
     }, 0);
   });
+
 
   navItems.forEach((item) => {
     const linksDiv = item.querySelector('.links');
@@ -316,20 +495,16 @@ function initializeHeader(header) {
     const originalLinks = item.querySelector('.nav-links');
 
     if (originalLinks) {
+      const originalDescription = linksDiv?.querySelector('.overview-description').textContent || '';
       // Create empty secondary nav structure
       const secondaryNav = document.createElement('div');
       secondaryNav.className = 'secondary-nav';
-
-      // Create back button (mobile/tablet)
-      const backBtn = document.createElement('button');
-      backBtn.className = 'back-btn';
-      backBtn.textContent = 'Back';
 
       // Create close button (desktop)
       const closeBtn = document.createElement('button');
       closeBtn.className = 'close-btn';
       closeBtn.setAttribute('aria-label', 'Close menu');
-      const closeBtnIcon = SvgIcon({ name: 'close', className: 'close-icon', size: 18 });
+      const closeBtnIcon = SVGIcon({ name: 'close', className: 'close-icon', size: 18 });
       closeBtn.innerHTML = closeBtnIcon;
 
       const heading = document.createElement('a');
@@ -337,6 +512,31 @@ function initializeHeader(header) {
       heading.textContent = detailedCaptionText || 'Overview';
       heading.href = detailedCaptionLink;
       heading.setAttribute('target', detailedCaptionTarget);
+
+      const description = document.createElement('div');
+      description.className = 'secondary-header-description';
+      description.textContent = originalDescription || '';
+
+      const cta = document.createElement('a');
+      cta.className = 'secondary-header-cta button';
+      cta.href = detailedCaptionLink;
+      cta.setAttribute('target', detailedCaptionTarget);
+
+      const iconWrapper = document.createElement('span');
+      iconWrapper.className = 'secondary-header-cta-icon';
+
+      const svg = SVGIcon({ name: 'arrowRightWhite', size: 24 });
+      if (typeof svg === 'string') {
+        iconWrapper.innerHTML = svg;
+      } else {
+        iconWrapper.appendChild(svg);
+      }
+
+      cta.appendChild(iconWrapper);
+
+      const titleWrapper = document.createElement('div');
+      titleWrapper.className = 'secondary-header-title-wrapper';
+      titleWrapper.append(heading, cta);
 
       // Wrapper for secondaryHeader and linksContainer
       const secondaryNavWrapper = document.createElement('div');
@@ -348,7 +548,13 @@ function initializeHeader(header) {
 
       const headerCol = document.createElement('div');
       headerCol.className = 'secondary-header-wrapper col-12 col-md-6 col-sm-4';
-      headerCol.append(backBtn, heading, closeBtn);
+      headerCol.append(titleWrapper);
+
+      if (description.textContent.trim() !== heading.textContent.trim()) {
+        headerCol.append(description);
+      }
+
+      headerCol.append(closeBtn);
       secondaryHeader.appendChild(headerCol);
 
       const linksContainer = document.createElement('div');
@@ -366,44 +572,79 @@ function initializeHeader(header) {
       secondaryNav.append(secondaryNavWrapper);
       header.appendChild(secondaryNav);
 
-      // Handle click on nav item - Clone links here
-      item.addEventListener('click', (e) => {
+      const headingItem = item.querySelector('.primary-menu-links-heading');
+
+      headingItem?.addEventListener('click', (e) => {
+        if (!isMobileViewport()) return;
+
         e.preventDefault();
+        e.stopPropagation();
 
-        if (currentActive && currentActive !== item) {
-          // Close currently active menu
-          currentActive.classList.remove(activeClass);
-          const activeSecondary = header.querySelector('.secondary-nav.active');
-          if (activeSecondary) {
-            activeSecondary.classList.remove(activeClass);
-            // Clear links when closing
-            activeSecondary.querySelector('.nav-links').innerHTML = '';
+        const isOpen = item.classList.contains('active');
+
+        header.querySelectorAll('.nav-item.active').forEach(i => {
+          if (i !== item) {
+            i.classList.remove('active');
+            i.querySelector('.mobile-subnav')?.remove();
           }
+        });
+
+        if (isOpen) {
+          item.classList.remove('active');
+          item.querySelector('.mobile-subnav')?.remove();
+          return;
         }
 
-        // Toggle current item
-        item.classList.toggle(activeClass);
+        item.classList.add('active');
 
-        if (item.classList.contains(activeClass)) {
-          // Clone and append links only when opening
-          const clonedLinks = originalLinks.cloneNode(true);
-          emptyLinks.innerHTML = ''; // Clear previous links
-          emptyLinks.append(...clonedLinks.children); // Append cloned children
-          secondaryNav.classList.toggle(activeClass);
-          overlay.classList.toggle(activeClass);
-          updateHeaderState(header, true);
-        } else {
-          // Clear links when closing
-          emptyLinks.innerHTML = '';
-          secondaryNav.classList.toggle(activeClass);
-          overlay.classList.toggle(activeClass);
-          updateHeaderState(header, false, 'navLink');
-        }
-
-        
-
-        currentActive = item.classList.contains(activeClass) ? item : null;
+        const accordion = createMobileAccordionFromSecondary(
+          secondaryNav,
+          originalLinks
+        );
+        item.appendChild(accordion);
       });
+
+      secondaryNav.classList.add('header-hover-zone');
+      // Handle click on nav item - Clone links here
+      const hoverZone = document.querySelector('.header-hover-zone');
+
+      item.addEventListener('mouseenter', () => {
+        if (isMobileViewport()) return;
+        document.querySelector('.search-suggestion-box').classList.remove(activeClass);
+        document.querySelectorAll('.secondary-nav').forEach(navigation => navigation.classList.remove(activeClass));
+        if (currentActive && currentActive !== item) {
+          currentActive.classList.remove(activeClass);
+          overlay.classList.remove(activeClass);
+          emptyLinks.innerHTML = '';
+        }
+
+        item.classList.add(activeClass);
+
+        const clonedLinks = originalLinks.cloneNode(true);
+        emptyLinks.innerHTML = '';
+        emptyLinks.append(...clonedLinks.children);
+
+        secondaryNav.classList.add(activeClass);
+        overlay.classList.add(activeClass);
+
+        currentActive = item;
+      });
+
+      document.addEventListener('pointermove', (e) => {
+        if (isMobileViewport()) return;
+
+        if (!hoverZone.contains(e.target)) {
+          if (!currentActive) return;
+
+          currentActive.classList.remove(activeClass);
+          document.querySelectorAll('.secondary-nav').forEach(navigation => navigation.classList.remove(activeClass));
+          overlay.classList.remove(activeClass);
+          emptyLinks.innerHTML = '';
+          currentActive = null;
+
+        }
+      });
+
 
       // Handle back/close buttons
       const closeSecondary = () => {
@@ -414,16 +655,71 @@ function initializeHeader(header) {
         currentActive = null;
       };
 
-      backBtn.addEventListener('click', (e) => {
-        e.stopPropagation();
-        closeSecondary();
-      });
-
       closeBtn.addEventListener('click', (e) => {
         e.stopPropagation();
         closeSecondary();
-        updateHeaderState(header);
       });
+    }
+  });
+
+  const searchBtn = header.querySelector('.search-btn');
+  const searchSuggestionBox = document.querySelector('.search-suggestion-box');
+
+  searchBtn.addEventListener('click', function () {
+    if (!searchSuggestionBox.classList.contains('active')) {
+      document.querySelectorAll('.secondary-nav').forEach(navigation => navigation.classList.remove(activeClass));
+      searchSuggestionBox.classList.add('active');
+    }
+    else {
+      searchSuggestionBox.classList.remove('active');
+    }
+  });
+
+  const observer = new MutationObserver(() => {
+    if (searchSuggestionBox.classList.contains('active')) {
+      searchBtn.classList.add('close-search-btn');
+    } else {
+      searchBtn.classList.remove('close-search-btn');
+    }
+  });
+
+  observer.observe(searchSuggestionBox, {
+    attributes: true,
+    attributeFilter: ['class'],
+  });
+
+  const searchInput = document.querySelector('.search-input');
+  const searchBtnSuggestion = document.querySelector('.suggestion-search-btn');
+
+  searchInput.addEventListener('input', (e) => {
+    loadSearchSuggest(e.target.value.trim());
+  })
+
+  searchInput.addEventListener('keydown', (e) => {
+    if (e.key === 'Enter') {
+      e.preventDefault();
+
+      triggerSearchPage(e.target.value)
+    }
+  });
+
+  searchBtnSuggestion.addEventListener('click', function () {
+    triggerSearchPage(searchInput.value)
+  });
+
+  window.addEventListener('resize', () => {
+    if (isMobileViewport()) {
+      document.querySelectorAll('.nav-item.active')
+        .forEach(i => i.classList.remove(activeClass));
+      document.querySelectorAll('.secondary-nav.active')
+        .forEach(n => n.classList.remove(activeClass));
+      document.querySelectorAll('.primary-nav.active')
+        .forEach(n => n.classList.remove(activeClass));
+      document.querySelectorAll('.hamburger.active')
+        .forEach(n => n.classList.remove(activeClass));
+      overlay.classList.remove(activeClass);
+      currentActive = null;
+      header.classList.remove('mobile-menu-open');
     }
   });
 
@@ -468,12 +764,34 @@ function initializeHeader(header) {
     }
 
     // Check if the clicked element has a hash (#) in its href
-    const { target } = e;
-    if (target.href?.includes('#')) {
+    const target = e.target;
+    if (target.href?.includes("#")) {
       window.location.href = e.target.href; // Navigate to the correct section
-      window.location.reload();
+      window.location.reload()
     }
   });
+
+  // Set active link on load
+  setActiveLink(header);
+}
+
+/**
+ * Updates header state based on scroll position
+ * @param {Element} header Header element
+ */
+function updateHeaderState(header) {
+  const scrollPosition = window.scrollY;
+  const defaultLogo = header.querySelector('.default-logo');
+
+  if (defaultLogo) {
+    if (scrollPosition > 0 && !isHeaderFixed) {
+      header.classList.add('fixed-header');
+      isHeaderFixed = true;
+    } else if (scrollPosition === 0 && isHeaderFixed) {
+      header.classList.remove('fixed-header');
+      isHeaderFixed = false;
+    }
+  }
 }
 
 /**
@@ -519,8 +837,10 @@ export default async function decorate(block) {
 
   if (fragment && true) {
     const header = createHeaderStructure(fragment);
+    console.log('Loaded header from fragment:', header);
     block.innerHTML = '';
     block.appendChild(header);
+    block.classList.add('header-hover-zone');
 
     // Initialize header functionality
     initializeHeader(header);
@@ -545,21 +865,12 @@ export default async function decorate(block) {
     isHeaderFixed = false;
   }
   window.addEventListener('click', (event) => {
-    const excludedSelectors = [
-      '.header-inner-wrapper .columns-wrapper',
-      '.secondary-nav',
-      '.secondary-header-links',
-    ];
-    const isExcluded = excludedSelectors.some((selector) => {
-      const element = document.querySelector(selector);
-      return element && element.contains(event.target);
-    });
-    if (isExcluded) {
-      return;
+    if (!event.target.matches('.search-input') && !event.target.matches('.search-btn')) {
+      const searchBox = document.querySelector('.search-suggestion-box');
+      if (searchBox && searchBox.classList.contains('active')) {
+        searchBox.classList.remove('active');
+        document.querySelector('.search-btn')?.classList.remove('close-search-btn');
+      }
     }
-    document.querySelectorAll('.nav-item, .secondary-nav').forEach((el) => {
-      el.classList.remove('active');
-    });
-    updateHeaderState(block)
   });
 }

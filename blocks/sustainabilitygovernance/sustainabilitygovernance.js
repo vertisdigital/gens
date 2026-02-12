@@ -4,6 +4,7 @@ import SvgIcon from "../../shared-components/SvgIcon.js";
 import stringToHTML from "../../shared-components/Utility.js";
 
 export default function decorate(block) {
+    block.classList.add('fade-item');
     const [title, ...cards] = [...block.children];
 
     // Create the main governance section container

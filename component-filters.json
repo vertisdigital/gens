@@ -32,7 +32,21 @@
       "sustainabilitygovernance",
       "cookiepolicy",
       "corporatepolicies",
-      "statistics"
+      "statistics",
+      "searchresult",
+      "divider",
+      "textblock",
+      "columns",
+      "sectionheader",
+      "column",
+      "awardlisting",
+      "masthead"
+    ]
+  },
+  {
+    "id": "sectionheader",
+    "components": [
+      "linkField"
     ]
   },
   {
@@ -46,7 +60,10 @@
       "loadmore",
       "boardofdirectors",
       "iframe",
-      "corporatepolicies"
+      "corporatepolicies",
+      "awardlisting",
+      "tiles",
+      "sectionheader"
     ]
   },
   {
@@ -77,7 +94,8 @@
       "textsection",
       "textmediablock",
       "linkField",
-      "projectslist"
+      "projectslist",
+      "textblock"
     ]
   },
   {
@@ -166,7 +184,8 @@
       "statistics",
       "statisticsDescription",
       "feature",
-      "herobanner"
+      "herobanner",
+      "columns"
     ]
   },
   {
@@ -213,6 +232,29 @@
     "id": "boardofdirectors",
     "components": [
       "director"
+    ]
+  },
+  {
+    "id": "richtext",
+    "features": [
+      "bold",
+      "italic",
+      "underline",
+      "strikethrough",
+      "alignment-left",
+      "alignment-center",
+      "alignment-right",
+      "alignment-justify",
+      "unorderedList",
+      "orderedList",
+      "link",
+      "unlink"
+    ]
+  },
+  {
+    "id": "awardlisting",
+    "components": [
+      "awardlistingitem"
     ]
   }
 ]
