@@ -394,7 +394,9 @@ export default function decorate(block) {
   });
 
   if (milestones.length === 0) {
-    block.remove();
+    if (!window.location.href.includes('author')) {
+      block.remove();
+    }
     return;
   }
 
