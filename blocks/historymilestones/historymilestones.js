@@ -94,7 +94,7 @@ function isValidWrapper(wrapper) {
   }
 
   const validMilestones = rawMilestones.filter((milestone) => {
-    const [date, description] = milestone.children;
+    const [image, date, description] = milestone.children;
     const hasDate = date && date.textContent.trim().length > 0;
     const hasDescription =
       description && description.textContent.trim().length > 0;
@@ -384,7 +384,7 @@ export default function decorate(block) {
   }
 
   const milestones = rawMilestones.filter((milestone) => {
-    const [date, description] = milestone.children;
+    const [image, date, description] = milestone.children;
     const hasDate = date && date.textContent.trim().length > 0;
     const hasDescription =
       description && description.textContent.trim().length > 0;
