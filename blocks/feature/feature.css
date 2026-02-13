@@ -756,7 +756,7 @@
 /* Third variation styles - with-vertical-list */
 .feature-wrapper .with-vertical-list .about-us-stats {
   flex-direction: column;
-  gap: 0;
+  gap: 44px;
   align-items: flex-start;
 }
 
@@ -819,7 +819,7 @@
 /* Tablet Design */
 @media (width >=768px) and (width < 1024px) {
   .feature-wrapper .with-vertical-list .about-us-stats {
-    gap: 40px;
+    gap: 20px;
     flex-direction: column;
   }
 
