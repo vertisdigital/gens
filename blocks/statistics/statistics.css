@@ -3,7 +3,7 @@
     background-repeat: repeat-x;
     background-position: center bottom;
     background-size: cover;
-    overflow-x: hidden;
+    overflow: hidden;
 }
 
 .statistics-wrapper .statistics-financial-variation {
