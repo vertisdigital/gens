@@ -279,6 +279,18 @@ function initHistoryMilestonesSlider(block) {
             foundLabel = true;
           }
         }
+      } else {
+        // Third try: Check raw block content (if not yet decorated)
+        const block = wrapper.querySelector('.historymilestones') || wrapper;
+        if (block && block.children.length > 0) {
+          const yearRow = block.children[0];
+          // Year is usually in the first div of the first row
+          const text = yearRow.textContent.trim();
+          if (text) {
+            label = text;
+            foundLabel = true;
+          }
+        }
       }
     }
 
