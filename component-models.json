@@ -1722,27 +1722,6 @@
       },
       {
         "component": "text",
-        "name": "ctaLabel",
-        "label": "CTA Label"
-      },
-      {
-        "component": "aem-content",
-        "name": "ctaLink",
-        "label": "CTA Link",
-        "condition": {
-          "===": [
-            {
-              "var": "reveal"
-            },
-            false
-          ]
-        },
-        "validation": {
-          "rootPath": "/content/genting-singapore"
-        }
-      },
-      {
-        "component": "select",
         "name": "ctaSvgIcon",
         "label": "CTA SVG Icon",
         "options": [
