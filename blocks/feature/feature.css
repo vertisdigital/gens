@@ -630,7 +630,7 @@
   font-weight: 400;
   line-height: 24px;
   font-family: var(--body-font-family, 'Inter', sans-serif);
-  color: var(--color-text-tertiary, #8d713e);
+  color: var(--text-color);
   margin: 0;
 }
 
@@ -843,7 +843,6 @@
   .feature-wrapper .with-vertical-list .about-us-stats .about-us-right-content>div p {
     font-size: 24px;
     line-height: 40px;
-    color: var(--color-text-tertiary, #8d713e);
   }
 }
 
@@ -875,7 +874,6 @@
   .feature-wrapper .with-vertical-list .about-us-stats .about-us-right-content>div p {
     font-size: 16px;
     line-height: 24px;
-    color: var(--color-text-tertiary, #8d713e);
   }
 }
 
