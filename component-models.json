@@ -783,7 +783,8 @@
       {
         "component": "aem-content",
         "name": "link",
-        "label": "Link"
+        "label": "Link",
+        "valueType": "string"
       },
       {
         "component": "select",
@@ -868,7 +869,8 @@
       {
         "component": "aem-content",
         "name": "link",
-        "label": "Link"
+        "label": "Link",
+        "valueType": "string"
       },
       {
         "component": "text",
@@ -1749,7 +1751,17 @@
         }
       },
       {
-        "component": "select",
+        "component": "text",
+        "name": "linkText",
+        "label": "Text"
+      },
+      {
+        "component": "text",
+        "name": "linkTitle",
+        "label": "Title"
+      },
+      {
+        "component": "text",
         "name": "ctaSvgIcon",
         "label": "CTA SVG Icon",
         "options": [
@@ -1786,7 +1798,7 @@
         "label": "File Path",
         "name": "filepath",
         "valueType": "string",
-        "configUrl": "https://uat--gens-stage--vertisdigital.aem.page/tools/assets-selector/config.json",
+        "configUrl": "https://dev--gens--vertisdigital.aem.page/tools/assets-selector/config.json",
         "multi": false,
         "condition": {
           "===": [
