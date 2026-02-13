@@ -451,8 +451,8 @@
     font-weight: 700;
   }
 
-  .about-us-stats .about-us-right-content.text-container:not(:first-child),
-  .about-us-stats .about-us-right-content:not(:first-child) {
+  .about-us-stats .about-us-right-content.text-container,
+  .about-us-stats .about-us-right-content {
     padding-top: 16px;
     margin-bottom: 0;
     border-top: 1px solid #E8EBEB;
@@ -554,8 +554,8 @@
     line-height: 24px;
   }
 
-  .about-us-stats .about-us-right-content.text-container:not(:first-child),
-  .about-us-stats .about-us-right-content:not(:first-child) {
+  .about-us-stats .about-us-right-content.text-container,
+  .about-us-stats .about-us-right-content{
     margin-bottom: 0;
     padding-top: 16px;
     border-top: 1px solid var(--colours-border-border-base, #E8EBEB);
@@ -798,7 +798,11 @@
   align-items: center;
   padding: 20px 0;
   margin-bottom: 0;
-  border-bottom: 1px solid #E8EBEB;
+  border-top: none;
+}
+
+.feature-wrapper .with-vertical-list .about-us-stats .about-us-right-content:not(:first-child) {
+  border-top: 1px solid #E8EBEB;
 }
 
 .feature-wrapper .with-vertical-list .about-us-stats .about-us-right-content:not(:has(~ .about-us-right-content)) {
@@ -873,10 +877,6 @@
 @media (width >=1024px) {
   .feature-wrapper .with-vertical-list .about-us-stats {
     gap: 80px;
-  }
-
-  .feature-wrapper .with-vertical-list .about-us-stats .about-us-right-content {
-    padding: 20px 0;
   }
 
   .feature-wrapper .with-vertical-list .about-us-stats .about-us-right-content>div p {
