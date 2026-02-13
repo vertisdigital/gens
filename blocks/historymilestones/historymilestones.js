@@ -385,12 +385,11 @@ export default function decorate(block) {
   }
 
   const milestones = rawMilestones.filter((milestone) => {
-    const [image, date, description] = milestone.children;
-    const hasImage = image?.querySelector('a[href], img, picture');
+    const [date, description] = milestone.children;
     const hasDate = date && date.textContent.trim().length > 0;
     const hasDescription =
       description && description.textContent.trim().length > 0;
-    return hasImage && hasDate && hasDescription;
+    return hasDate && hasDescription;
   });
 
   if (milestones.length === 0) {
