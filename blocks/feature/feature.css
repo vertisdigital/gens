@@ -755,8 +755,8 @@
 
 /* Third variation styles - with-vertical-list */
 .feature-wrapper .with-vertical-list .about-us-stats {
-  flex-direction: row;
-  gap: 80px;
+  flex-direction: column;
+  gap: 0;
   align-items: flex-start;
 }
 
@@ -784,6 +784,10 @@
   margin: 0;
   text-transform: none;
   letter-spacing: 0;
+}
+
+.feature-wrapper .with-vertical-list .about-us-left .about-us-left-heading {
+  font-weight: 500;
 }
 
 .feature-wrapper .with-vertical-list .about-us-stats .about-us-right {
@@ -877,13 +881,10 @@
 
 /* Desktop Design */
 @media (width >=1024px) {
-  .feature-wrapper .with-vertical-list .about-us-stats {
-    gap: 80px;
-  }
 
   .feature-wrapper .with-vertical-list .about-us-stats .about-us-right-content>div p {
     font-size: 24px;
     line-height: 40px;
-    color: var(--color-text-tertiary, #8d713e);
+    color: var(--text-color);
   }
 }
