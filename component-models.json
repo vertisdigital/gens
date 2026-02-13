@@ -1721,9 +1721,30 @@
         "label": "Title"
       },
       {
+        "component": "text",
+        "name": "ctaLabel",
+        "label": "CTA Label"
+      },
+      {
+        "component": "aem-content",
+        "name": "ctaLink",
+        "label": "CTA Link",
+        "condition": {
+          "===": [
+            {
+              "var": "reveal"
+            },
+            false
+          ]
+        },
+        "validation": {
+          "rootPath": "/content/genting-singapore"
+        }
+      },
+      {
         "component": "select",
-        "name": "linkSvgIcon",
-        "label": "Link SVG Icon",
+        "name": "ctaSvgIcon",
+        "label": "CTA SVG Icon",
         "options": [
           {
             "name": "Select",
@@ -1744,6 +1765,51 @@
           {
             "name": "North East Arrow",
             "value": "north-east-arrow"
+          }
+        ]
+      },
+      {
+        "component": "boolean",
+        "label": "File Download?",
+        "name": "reveal",
+        "valueType": "boolean"
+      },
+      {
+        "component": "custom-asset-namespace:custom-asset",
+        "label": "File Path",
+        "name": "filepath",
+        "valueType": "string",
+        "configUrl": "https://uat--gens-stage--vertisdigital.aem.page/tools/assets-selector/config.json",
+        "multi": false,
+        "condition": {
+          "===": [
+            {
+              "var": "reveal"
+            },
+            true
+          ]
+        }
+      },
+      {
+        "component": "select",
+        "name": "ctaLinkTarget",
+        "label": "Target",
+        "condition": {
+          "===": [
+            {
+              "var": "reveal"
+            },
+            false
+          ]
+        },
+        "options": [
+          {
+            "name": "Same Tab",
+            "value": "_self"
+          },
+          {
+            "name": "New Tab",
+            "value": "_blank"
           }
         ]
       }
