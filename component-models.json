@@ -1720,7 +1720,7 @@
         "component": "custom-asset-namespace:custom-asset",
         "name": "image",
         "label": "Image",
-        "configUrl": "https://dev--gens--vertisdigital.aem.page/tools/assets-selector/config.json",
+        "configUrl": "https://uat--gens-stage--vertisdigital.aem.page/tools/assets-selector/config.json",
         "multi": false
       },
       {
