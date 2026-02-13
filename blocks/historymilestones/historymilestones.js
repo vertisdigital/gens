@@ -94,7 +94,7 @@ function isValidWrapper(wrapper) {
   }
 
   const validMilestones = rawMilestones.filter((milestone) => {
-    const [image, date, description] = milestone.children;
+    const [, date, description] = milestone.children;
     const hasDate = date && date.textContent.trim().length > 0;
     const hasDescription =
       description && description.textContent.trim().length > 0;
@@ -281,9 +281,9 @@ function initHistoryMilestonesSlider(block) {
         }
       } else {
         // Third try: Check raw block content (if not yet decorated)
-        const block = wrapper.querySelector('.historymilestones') || wrapper;
-        if (block && block.children.length > 0) {
-          const yearRow = block.children[0];
+        const fallbackBlock = wrapper.querySelector('.historymilestones') || wrapper;
+        if (fallbackBlock && fallbackBlock.children.length > 0) {
+          const yearRow = fallbackBlock.children[0];
           // Year is usually in the first div of the first row
           const text = yearRow.textContent.trim();
           if (text) {
@@ -396,7 +396,7 @@ export default function decorate(block) {
   }
 
   const milestones = rawMilestones.filter((milestone) => {
-    const [image, date, description] = milestone.children;
+    const [, date, description] = milestone.children;
     const hasDate = date && date.textContent.trim().length > 0;
     const hasDescription =
       description && description.textContent.trim().length > 0;
@@ -440,11 +440,13 @@ export default function decorate(block) {
           }
         }
 
+
+
         milestone.innerHTML = `
               <div class="historymilestones-milestone">
-                <div class="historymilestones-image">
+                ${image && image.textContent.trim() ? `<div class="historymilestones-image">
                   ${getImageHTMl(image)}
-                </div>
+                </div>` : ''}
                 <div class="historymilestones-content">
                   <div class="historymilestones-date">
                     ${date.outerHTML}
