@@ -590,12 +590,17 @@ a:any-link.factsheet-button {
 }
 
 .tiles-wrapper:has(.open-as-modal) .row.tiles-container {
-  gap: 24px;
+  gap: 0;
 }
 
 .tiles-wrapper:has(.open-as-modal) .row.tiles-container .image-tile:not(.w-100) {
-  width: calc(50% - 24px);
+  width: calc(50% - 12px);
 }
+
+.tiles-wrapper:has(.open-as-modal) .row.tiles-container .image-tile:not(.w-100):nth-child(1) {
+  margin-right: 24px;
+}
+
 
 @media screen and (width < 768px) {
   .tiles-wrapper:has(.open-as-modal) .row.tiles-container {
