@@ -21,49 +21,55 @@ export default function ImageComponent({
   },
   lazy = true,
 }) {
+  // Extract file extension from the original src
+  const fileExt = src.split('.').pop() || 'jpg';
+
   // Ensure breakpoints object is deeply copied to avoid mutation
   const updatedBreakpoints = JSON.parse(JSON.stringify(breakpoints));
 
+  // Generate default breakpoint sources if not provided
+  if (!updatedBreakpoints.mobile.src) {
+    updatedBreakpoints.mobile.src = src.replace(`.${fileExt}`, `-mobile.${fileExt}`);
+  }
+  if (!updatedBreakpoints.tablet.src) {
+    updatedBreakpoints.tablet.src = src.replace(`.${fileExt}`, `-tablet.${fileExt}`);
+  }
+  if (!updatedBreakpoints.desktop.src) {
+    updatedBreakpoints.desktop.src = src;
+  }
+
+  // Ensure width and height exist for images, set default if missing
+  ['mobile', 'tablet', 'desktop'].forEach((key) => {
+    if (!updatedBreakpoints[key].imgWidth) {
+      updatedBreakpoints[key].imgWidth = 1600;
+    }
+    if (!updatedBreakpoints[key].imgHeight) {
+      updatedBreakpoints[key].imgHeight = 1600;
+    }
+  });
+
+  // Generate new src for Adobe AEM image service
   if (asImageName) {
-    const {
-      mobile: { imgWidth: mobileWidth, imgHeight: mobileHeight },
-      tablet: { imgWidth: tabletWidth, imgHeight: tabletHeight },
-      desktop: { imgWidth: desktopWidth, imgHeight: desktopHeight },
-    } = updatedBreakpoints || {};
-    updatedBreakpoints.mobile.src = `${src}/as/${asImageName}${
-      breakpoints.mobile.smartCrop
-        ? `?smartcrop=${breakpoints.mobile.smartCrop}`
-        : `?width=${mobileWidth}${mobileHeight ? `&height=${mobileHeight}` : ''}`
-    }`;
-    updatedBreakpoints.tablet.src = `${src}/as/${asImageName}${
-      breakpoints.tablet.smartCrop
-        ? `?smartcrop=${breakpoints.tablet.smartCrop}`
-        : `?width=${tabletWidth}${mobileHeight ? `&height=${tabletHeight}` : ''}`
-    }`;
-    updatedBreakpoints.desktop.src = `${src}/as/${asImageName}${
-      breakpoints.desktop.smartCrop
-        ? `?smartcrop=${breakpoints.desktop.smartCrop}`
-        : `?width=${desktopWidth}${mobileHeight ? `&height=${desktopHeight}` : ''}`
-    }`;
-  } else {
-    updatedBreakpoints.desktop.src = `${src}/as/img.webp`;
-    updatedBreakpoints.tablet.src = `${src}/as/img.webp`;
-    updatedBreakpoints.mobile.src = `${src}/as/img.webp`;
+    updatedBreakpoints.mobile.src = `${src}/as/${asImageName}?width=${updatedBreakpoints.mobile.imgWidth}&height=${updatedBreakpoints.mobile.imgHeight}`;
+    updatedBreakpoints.tablet.src = `${src}/as/${asImageName}?width=${updatedBreakpoints.tablet.imgWidth}&height=${updatedBreakpoints.tablet.imgHeight}`;
+    updatedBreakpoints.desktop.src = `${src}/as/${asImageName}?width=${updatedBreakpoints.desktop.imgWidth}&height=${updatedBreakpoints.desktop.imgHeight}`;
   }
 
   return `
     <picture>
       <source media="(min-width: 993px)" 
-              srcset="${updatedBreakpoints.desktop.src}">
+              srcset="${breakpoints.desktop.src}/as/${asImageName ? asImageName : 'img.webp'}${breakpoints.desktop.smartCrop ? `?smartcrop=${breakpoints.desktop.smartCrop}` : ''}">
       <source media="(min-width: 768px)" 
-              srcset="${updatedBreakpoints.tablet.src}">
+              srcset="${breakpoints.tablet.src}/as/${asImageName ? asImageName : 'img.webp'}${breakpoints.tablet.smartCrop ? `?smartcrop=${breakpoints.tablet.smartCrop}` : ''}">
       <source media="(min-width: 320px)" 
-              srcset="${updatedBreakpoints.mobile.src}">             
+              srcset="${breakpoints.mobile.src}/as/${asImageName ? asImageName : 'img.webp'}${breakpoints.mobile.smartCrop ? `?smartcrop=${breakpoints.mobile.smartCrop}` : ''}">             
       <img src="${src}" 
            alt="${alt}" 
            title="${alt}"
            class="${className}"
            ${lazy ? 'loading="lazy"' : ''}
+           width="${updatedBreakpoints.desktop.imgWidth}"
+           height="${updatedBreakpoints.desktop.imgHeight}"
       />
     </picture>
   `;
