@@ -385,7 +385,7 @@ a:any-link.factsheet-button {
 
   .row.tiles-container>.image-tile>div {
     padding: 40px 24px;
-    min-height: 563px;
+    min-height: auto;
   }
 
   .row.tiles-container .tiles-nested-image {
@@ -600,4 +600,18 @@ a:any-link.factsheet-button {
 
 .tiles-wrapper:has(.open-as-modal) .row.tiles-container .image-tile:not(.w-100) {
   width: calc(50% - 24px);
+}
+
+@media screen and (width < 768px) {
+  .tiles-wrapper:has(.open-as-modal) .row.tiles-container {
+    gap: 0;
+  }
+
+  .tiles-wrapper:has(.open-as-modal) .row.tiles-container .image-tile:not(.w-100) {
+    width: 46%;
+  }
+
+  .tiles-wrapper:has(.open-as-modal) .row.tiles-container .image-tile:not(.w-100):nth-child(1) {
+    margin-right: 8%;
+  }
 }

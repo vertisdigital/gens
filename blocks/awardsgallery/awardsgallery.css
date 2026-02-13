@@ -97,6 +97,10 @@
             padding-bottom: 40px;
         }
     }
+
+    .awardsgallery-grid.awardsgallery-grid-2-cols {
+        grid-template-columns: repeat(2, 1fr);
+    }
 }
 
 .awardsgallery.no-padding-top {
