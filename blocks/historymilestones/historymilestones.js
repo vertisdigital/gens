@@ -95,11 +95,10 @@ function isValidWrapper(wrapper) {
 
   const validMilestones = rawMilestones.filter((milestone) => {
     const [image, date, description] = milestone.children;
-    const hasImage = image?.querySelector('a[href], img, picture');
     const hasDate = date && date.textContent.trim().length > 0;
     const hasDescription =
       description && description.textContent.trim().length > 0;
-    return hasImage && hasDate && hasDescription;
+    return hasDate && hasDescription;
   });
 
   return validMilestones.length > 0;
@@ -280,6 +279,18 @@ function initHistoryMilestonesSlider(block) {
             foundLabel = true;
           }
         }
+      } else {
+        // Third try: Check raw block content (if not yet decorated)
+        const block = wrapper.querySelector('.historymilestones') || wrapper;
+        if (block && block.children.length > 0) {
+          const yearRow = block.children[0];
+          // Year is usually in the first div of the first row
+          const text = yearRow.textContent.trim();
+          if (text) {
+            label = text;
+            foundLabel = true;
+          }
+        }
       }
     }
 
@@ -386,15 +397,16 @@ export default function decorate(block) {
 
   const milestones = rawMilestones.filter((milestone) => {
     const [image, date, description] = milestone.children;
-    const hasImage = image?.querySelector('a[href], img, picture');
     const hasDate = date && date.textContent.trim().length > 0;
     const hasDescription =
       description && description.textContent.trim().length > 0;
-    return hasImage && hasDate && hasDescription;
+    return hasDate && hasDescription;
   });
 
   if (milestones.length === 0) {
-    block.remove();
+    if (!window.location.href.includes('author')) {
+      block.remove();
+    }
     return;
   }
 
