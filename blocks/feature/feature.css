@@ -590,6 +590,10 @@
   color: #8D713E;
 }
 
+.feature-wrapper .is-inside-tab .about-us-stats {
+  flex-direction: column !important;
+}
+
 .with-images-four-col .feature-wrapper .about-us-stats {
   margin: 0;
   gap: 0;
@@ -634,9 +638,7 @@
   margin: 0;
 }
 
-.feature-wrapper .feature-in-tab.with-vertical-list .about-us-stats .about-us-right-content>div p {
-  color: var(--text-color);
-}
+
 
 .with-images-four-col .about-us-stats .about-us-right-content.image-container>div:first-child {
   width: 64px;
@@ -661,6 +663,14 @@
   height: 100%;
   object-fit: contain;
   border-radius: 0;
+}
+
+
+
+.feature-wrapper .is-inside-tab .about-us-stats .about-us-right-content>div p {
+  font-size: 24px;
+  line-height: 40px;
+  color: var(--text-color) !important;
 }
 
 .with-images-four-col .about-us-stats .about-us-right-content.image-container>div:nth-child(2) p {
@@ -753,11 +763,7 @@
 
   .with-images-four-col .about-us-stats .about-us-right-content.image-container>div:nth-child(2) p {
     font-size: 32px;
-
-    .with-images-four-col .about-us-stats .about-us-right-content.image-container>div:nth-child(2) p {
-      font-size: 32px;
-      line-height: 48px;
-    }
+    line-height: 48px;
   }
 
   /* Third variation styles - with-vertical-list */
@@ -885,22 +891,11 @@
   }
 }
 
-.feature-wrapper .with-vertical-list .about-us-stats .about-us-right-content>div p {
-  font-size: 16px;
-  line-height: 24px;
-}
+
 
 
 /* Desktop Design */
-.feature-wrapper .is-inside-tab .about-us-stats {
-  flex-direction: column
-}
 
-.feature-wrapper .is-inside-tab .about-us-stats .about-us-right-content>div p {
-  font-size: 24px;
-  line-height: 40px;
-  color: var(--text-color) !important;
-}
 
 @media (width >=1024px) {
   .feature-wrapper .is-inside-tab .about-us-stats .about-us-right-content>div p {
