@@ -590,6 +590,10 @@
   color: #8D713E;
 }
 
+.feature-wrapper .is-inside-tab .about-us-stats {
+  flex-direction: column;
+}
+
 .with-images-four-col .feature-wrapper .about-us-stats {
   margin: 0;
   gap: 0;
@@ -659,6 +663,14 @@
   height: 100%;
   object-fit: contain;
   border-radius: 0;
+}
+
+
+
+.feature-wrapper .is-inside-tab .about-us-stats .about-us-right-content>div p {
+  font-size: 24px;
+  line-height: 40px;
+  color: var(--text-color) !important;
 }
 
 .with-images-four-col .about-us-stats .about-us-right-content.image-container>div:nth-child(2) p {
@@ -883,15 +895,7 @@
 
 
 /* Desktop Design */
-.feature-wrapper .is-inside-tab .about-us-stats {
-  flex-direction: column;
-}
 
-.feature-wrapper .is-inside-tab .about-us-stats .about-us-right-content>div p {
-  font-size: 24px;
-  line-height: 40px;
-  color: var(--text-color) !important;
-}
 
 @media (width >=1024px) {
   .feature-wrapper .is-inside-tab .about-us-stats .about-us-right-content>div p {
