@@ -20,7 +20,7 @@ export default function decorate(block) {
     || block.querySelector('.feature-nested-1-4')
     || (blockChildren[3]?.querySelector('p') ? blockChildren[3] : null)
     || (blockChildren[3]?.textContent?.trim() ? blockChildren[3] : null);
- 
+
 
   let featureClass = '';
 
@@ -55,7 +55,11 @@ export default function decorate(block) {
   aboutUsLeftContent.classList.add('about-us-left');
 
   const blockchildren = block.children;
-  const isVerticalList = featureClass === 'with-vertical-list';
+  const isInsideTab = block.closest('.tab-wrapper.tabs-content');
+  if (isInsideTab) {
+    block.classList.add('is-inside-tab');
+  }
+  const isVerticalList = featureClass === 'with-vertical-list' && isInsideTab;
 
   if (isVerticalList) {
     // For with-vertical-list: only add heading directly to about-us-left

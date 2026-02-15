@@ -6,7 +6,7 @@
   background-size: cover;
   margin-top: 80px;
   padding: 0 0 80px 0;
-  overflow-x: hidden;
+  overflow: hidden;
 }
 
 @media (width >=2560px) {
@@ -293,7 +293,7 @@
     width: 100%;
   }
 
-  .about-us-stats .about-us-right {
+  .feature:not(.with-vertical-list) .about-us-stats .about-us-right {
     grid-template-columns: repeat(3, 1fr);
     gap: 40px 24px;
   }
@@ -545,7 +545,7 @@
     gap: 16px;
   }
 
- 
+
 
   .about-us-stats .about-us-right-content p {
     font-size: 16px;
@@ -553,7 +553,7 @@
   }
 
   .about-us-stats .about-us-right-content.text-container,
-  .about-us-stats .about-us-right-content{
+  .about-us-stats .about-us-right-content {
     margin-bottom: 0;
     padding-top: 16px;
     border-top: 1px solid var(--colours-border-border-base, #E8EBEB);
@@ -630,8 +630,12 @@
   font-weight: 400;
   line-height: 24px;
   font-family: var(--body-font-family, 'Inter', sans-serif);
-  color: var(--text-color);
+  color: var(--color-text-tertiary, #8d713e);
   margin: 0;
+}
+
+.feature-wrapper .feature-in-tab.with-vertical-list .about-us-stats .about-us-right-content>div p {
+  color: var(--text-color);
 }
 
 .with-images-four-col .about-us-stats .about-us-right-content.image-container>div:first-child {
@@ -749,140 +753,164 @@
 
   .with-images-four-col .about-us-stats .about-us-right-content.image-container>div:nth-child(2) p {
     font-size: 32px;
-    line-height: 48px;
+
+    .with-images-four-col .about-us-stats .about-us-right-content.image-container>div:nth-child(2) p {
+      font-size: 32px;
+      line-height: 48px;
+    }
   }
-}
 
-/* Third variation styles - with-vertical-list */
-.feature-wrapper .with-vertical-list .about-us-stats {
-  flex-direction: column;
-  gap: 44px;
-  align-items: flex-start;
-}
-
-.feature-wrapper .with-vertical-list .about-us-left-column {
-  position: absolute;
-}
-
-.feature-wrapper .with-vertical-list .about-us-right-column {
-  padding-top: 88px;
-}
-
-.feature-wrapper .with-vertical-list .about-us-stats .about-us-left {
-  flex: 1;
-  display: flex;
-  flex-direction: row;
-  gap: 32px;
-}
-
-.feature-wrapper .with-vertical-list .about-us-left .about-us-left-title {
-  font-family: var(--heading-font-family, 'Inter', sans-serif);
-  font-size: 36px;
-  font-weight: 400;
-  line-height: 56px;
-  color: var(--color-text-body, #3b3d3d);
-  margin: 0;
-  text-transform: none;
-  letter-spacing: 0;
-}
-
-.feature-wrapper .with-vertical-list .about-us-left .about-us-left-heading {
-  font-weight: 500;
-}
-
-.feature-wrapper .with-vertical-list .about-us-stats .about-us-right {
-  display: flex;
-  flex-direction: column;
-  gap: 0;
-  padding: 0;
-  flex: 1;
-}
-
-.feature-wrapper .with-vertical-list .about-us-stats .about-us-right-content {
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  padding: 20px 0;
-  margin-bottom: 0;
-  border-top: none;
-}
-
-.feature-wrapper .with-vertical-list .about-us-stats .about-us-right-content:not(:first-child) {
-  border-top: 1px solid #E8EBEB;
-}
-
-.feature-wrapper .with-vertical-list .about-us-stats .about-us-right-content:not(:has(~ .about-us-right-content)) {
-  border-bottom: none;
-  padding-bottom: 0;
-}
-
-/* Tablet Design */
-@media (width >=768px) and (width < 1024px) {
+  /* Third variation styles - with-vertical-list */
   .feature-wrapper .with-vertical-list .about-us-stats {
-    gap: 20px;
-    flex-direction: column;
+    flex-direction: row;
+    gap: 48px;
+    align-items: flex-start;
+  }
+
+  .feature-wrapper .with-vertical-list .about-us-left-column {
+    position: absolute;
   }
 
   .feature-wrapper .with-vertical-list .about-us-right-column {
-    padding-top: 72px;
+    padding-top: 88px;
+  }
+
+  .feature-wrapper .with-vertical-list .about-us-stats .about-us-left {
+    flex: 1;
+    display: flex;
+    flex-direction: row;
+    gap: 32px;
   }
 
   .feature-wrapper .with-vertical-list .about-us-left .about-us-left-title {
-    font-size: 32px;
-    line-height: 48px;
+    font-family: var(--heading-font-family, 'Inter', sans-serif);
+    font-size: 36px;
+    font-weight: 400;
+    line-height: 56px;
+    color: var(--color-text-body, #3b3d3d);
+    margin: 0;
+    text-transform: none;
+    letter-spacing: 0;
+  }
+
+  .feature-wrapper .with-vertical-list .about-us-left .about-us-left-heading {
+    font-weight: 500;
+  }
+
+  .feature-wrapper .with-vertical-list .about-us-stats .about-us-right {
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+    padding: 0;
+    flex: 1;
   }
 
   .feature-wrapper .with-vertical-list .about-us-stats .about-us-right-content {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
     padding: 20px 0;
+    margin-bottom: 0;
+    border-top: none;
+  }
+
+  .feature-wrapper .with-vertical-list .about-us-stats .about-us-right-content:not(:first-child) {
+    border-top: 1px solid #E8EBEB;
   }
 
   .feature-wrapper .with-vertical-list .about-us-stats .about-us-right-content:not(:has(~ .about-us-right-content)) {
-    padding-bottom: 0;
-  }
-
-  .feature-wrapper .with-vertical-list .about-us-stats .about-us-right-content>div p {
-    font-size: 24px;
-    line-height: 40px;
-  }
-}
-
-/* Mobile Design */
-@media (width < 768px) {
-  .feature-wrapper .with-vertical-list .about-us-stats {
-    flex-direction: column;
-    gap: 24px;
-  }
-
-  .feature-wrapper .with-vertical-list .about-us-right-column {
-    padding-top: 56px;
-  }
-
-  .feature-wrapper .with-vertical-list .about-us-left .about-us-left-title {
-    font-size: 24px;
-    line-height: 40px;
-  }
-
-  .feature-wrapper .with-vertical-list .about-us-stats .about-us-right-content {
-    padding: 16px 0;
-  }
-
-  .feature-wrapper .with-vertical-list .about-us-stats .about-us-right-content:not(:has(~ .about-us-right-content)) {
-    padding-bottom: 0;
     border-bottom: none;
+    padding-bottom: 0;
   }
 
-  .feature-wrapper .with-vertical-list .about-us-stats .about-us-right-content>div p {
-    font-size: 16px;
-    line-height: 24px;
+  /* Tablet Design */
+  @media (width >=768px) and (width < 1024px) {
+    .feature-wrapper .with-vertical-list .about-us-stats {
+      gap: 40px;
+      flex-direction: column;
+    }
+
+    .feature-wrapper .with-vertical-list .about-us-right-column {
+      padding-top: 72px;
+    }
+
+    .feature-wrapper .with-vertical-list .about-us-left .about-us-left-title {
+      font-size: 32px;
+      line-height: 48px;
+    }
+
+    .feature-wrapper .with-vertical-list .about-us-stats .about-us-right-content {
+      padding: 20px 0;
+    }
+
+    .feature-wrapper .with-vertical-list .about-us-stats .about-us-right-content:not(:has(~ .about-us-right-content)) {
+      padding-bottom: 0;
+    }
+
+    .feature-wrapper .with-vertical-list .about-us-stats .about-us-right-content>div p {
+      font-size: 24px;
+      line-height: 40px;
+    }
+  }
+
+  /* Mobile Design */
+  @media (width < 768px) {
+    .feature-wrapper .with-vertical-list .about-us-stats {
+      flex-direction: column;
+      gap: 24px;
+    }
+
+    .feature-wrapper .with-vertical-list .about-us-right-column {
+      padding-top: 56px;
+    }
+
+    .feature-wrapper .with-vertical-list .about-us-left .about-us-left-title {
+      font-size: 24px;
+      line-height: 40px;
+    }
+
+    .feature-wrapper .with-vertical-list .about-us-stats .about-us-right-content {
+      padding: 16px 0;
+    }
+
+    .feature-wrapper .with-vertical-list .about-us-stats .about-us-right-content:not(:has(~ .about-us-right-content)) {
+      padding-bottom: 0;
+      border-bottom: none;
+    }
+
+    .feature-wrapper .with-vertical-list .about-us-stats .about-us-right-content>div p {
+      font-size: 16px;
+      line-height: 24px;
+    }
   }
 }
+
+.feature-wrapper .with-vertical-list .about-us-stats .about-us-right-content>div p {
+  font-size: 16px;
+  line-height: 24px;
+}
+
 
 /* Desktop Design */
+.feature-wrapper .is-inside-tab .about-us-stats {
+  flex-direction: column
+}
+
+.feature-wrapper .is-inside-tab .about-us-stats .about-us-right-content>div p {
+  font-size: 24px;
+  line-height: 40px;
+  color: var(--text-color) !important;
+}
+
 @media (width >=1024px) {
+  .feature-wrapper .is-inside-tab .about-us-stats .about-us-right-content>div p {
+    font-size: 24px;
+    line-height: 40px;
+  }
 
   .feature-wrapper .with-vertical-list .about-us-stats .about-us-right-content>div p {
     font-size: 24px;
     line-height: 40px;
-    color: var(--text-color);
+    color: var(--color-text-tertiary, #8d713e);
   }
 }
