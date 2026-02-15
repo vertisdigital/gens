@@ -753,11 +753,7 @@
 
   .with-images-four-col .about-us-stats .about-us-right-content.image-container>div:nth-child(2) p {
     font-size: 32px;
-
-    .with-images-four-col .about-us-stats .about-us-right-content.image-container>div:nth-child(2) p {
-      font-size: 32px;
-      line-height: 48px;
-    }
+    line-height: 48px;
   }
 
   /* Third variation styles - with-vertical-list */
@@ -893,7 +889,7 @@
 
 /* Desktop Design */
 .feature-wrapper .is-inside-tab .about-us-stats {
-  flex-direction: column
+  flex-direction: column;
 }
 
 .feature-wrapper .is-inside-tab .about-us-stats .about-us-right-content>div p {
