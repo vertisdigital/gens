@@ -31,13 +31,11 @@ export default function decorate(block) {
   const headingElement = document.createElement('div');
 
   if (headingText) {
-    const headingHtml = Heading({
+    headingElement.innerHTML = Heading({
       text: headingText,
       level: 2,
       className: 'enquiry-heading',
     });
-    const parsedHtml = stringToHtml(headingHtml);
-    headingElement.appendChild(parsedHtml);
     // Add authoring attributes to heading
     const heading = headingElement.firstElementChild || '';
     heading.setAttribute('data-aue-prop', 'heading');
@@ -61,7 +59,7 @@ export default function decorate(block) {
     descriptionWrapper.setAttribute('data-aue-label', 'Description');
     descriptionWrapper.setAttribute('data-aue-filter', 'text');
     descriptionWrapper.setAttribute('data-aue-type', 'richtext');
-    descriptionWrapper.appendChild(description.cloneNode(true));
+    descriptionWrapper.innerHTML = description.innerHTML;
     rightCol.appendChild(descriptionWrapper);
   }
 
@@ -135,9 +133,9 @@ export default function decorate(block) {
   };
 
   // Add contact items with proper attributes
-  const phone = allDivElements[3].querySelector('p')?.textContent.trim();
-  const email = allDivElements[5].querySelector('p')?.textContent.trim();
-  const address = allDivElements[7].querySelector('p')?.textContent.trim();
+  const phone = allDivElements[3].querySelector('p').textContent.trim();
+  const email = allDivElements[5].querySelector('p').textContent.trim();
+  const address = allDivElements[7].querySelector('p').textContent.trim();
 
   const imageLink = wrapper.querySelectorAll('a[href*="/content/dam/"][href$=".svg"], a[href*="delivery-"]');
 
