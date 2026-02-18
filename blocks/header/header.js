@@ -386,6 +386,14 @@ function loadSearchSuggest(keyword) {
           suggestion.innerHTML = hl;
           suggestions.appendChild(suggestion);
         });
+
+        document.dispatchEvent(new CustomEvent('searchSuggestionShown', {
+          detail: {
+            keyword: document.querySelector('.search-input')?.value || '',
+            resultCount: document.querySelectorAll('.suggestion-item').length
+          }
+        }));
+
       }
       else {
         suggestions.classList.remove('active');
