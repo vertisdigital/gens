@@ -151,21 +151,13 @@ export default function decorate(block) {
     textElement.setAttribute('data-aue-type', 'text');
 
     if (linkType) {
-      const clipBoard = document.createElement('div')
-      clipBoard.classList.add('tooltip')
-
-      const clipSpan = document.createElement('span')
-      clipSpan.classList.add('tooltiptext')
-
-      const button = document.createElement('button');
-      button.className = 'contact-link';
-      button.textContent = text;
-      button.setAttribute('aria-label', `${linkType === 'tel' ? 'Call us at' : 'Email us at'} ${text}`);
-
-      clipBoard.append(clipSpan)
-      clipBoard.append(button)
-
-      textElement.append(clipBoard);
+      const link = document.createElement('a');
+      link.className = 'contact-link';
+      link.href = `${linkType}:${text}`;
+      link.textContent = text;
+      link.setAttribute('aria-label', `${linkType === 'tel' ? 'Call us at' : 'Email us at'} ${text}`);
+      link.setAttribute('tabindex', '0');
+      textElement.append(link);
     } else {
       textElement.textContent = text;
     }
