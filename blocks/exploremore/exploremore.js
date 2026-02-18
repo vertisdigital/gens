@@ -26,7 +26,8 @@ export default function decorate(block) {
 
   const titleElement = allDivElements[0];
   const firstCtaElement = allDivElements[1]?.querySelector('p') || allDivElements[1];
-  // Index 2 is likely the first CTA link container. The second CTA caption should be at index 3 in the filtered list.
+  // Index 2 is likely the first CTA link container. 
+  // The second CTA caption should be at index 3 in the filtered list.
   const secondCtaElement = allDivElements[3]?.querySelector('p') || allDivElements[3];
 
   const allLinks = exploreMoreContainer.querySelectorAll('a');
