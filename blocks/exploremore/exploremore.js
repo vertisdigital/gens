@@ -17,7 +17,8 @@ export default function decorate(block) {
 
   // Extract elements
   // Extract elements
-  // Filter out empty divs or divs containing only config values like "_self", "_blank"
+  // Filter out empty divs or divs containing 
+  // only config values like "_self", "_blank"
   const allDivElements = Array.from(block.children).filter((div) => {
     const text = div.textContent.trim();
     return text !== '' && !['_self', '_blank'].includes(text);
