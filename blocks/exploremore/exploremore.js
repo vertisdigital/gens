@@ -16,10 +16,17 @@ export default function decorate(block) {
   };
 
   // Extract elements
-  const allDivElements = block.children;
+  // Extract elements
+  // Filter out empty divs or divs containing only config values like "_self", "_blank"
+  const allDivElements = Array.from(block.children).filter((div) => {
+    const text = div.textContent.trim();
+    return text !== '' && !['_self', '_blank'].includes(text);
+  });
+
   const titleElement = allDivElements[0];
-  const firstCtaElement = allDivElements[1].querySelector('p');
-  const secondCtaElement = allDivElements[3].querySelector('p');
+  const firstCtaElement = allDivElements[1]?.querySelector('p') || allDivElements[1];
+  // Index 2 is likely the first CTA link container. The second CTA caption should be at index 3 in the filtered list.
+  const secondCtaElement = allDivElements[3]?.querySelector('p') || allDivElements[3];
 
   const allLinks = exploreMoreContainer.querySelectorAll('a');
   const firstCtaHrefElement = allLinks?.[0];
