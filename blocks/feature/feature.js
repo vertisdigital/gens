@@ -185,7 +185,7 @@ export default function decorate(block) {
   aboutUsRightContent.classList.add('about-us-right');
 
   // Collect all imageAndDescription elements first
-  const featureItems = [].slice.call(block.children, 4);
+  const featureItems = blockChildren.slice(4).filter((f) => f.parentNode === block);
   if (featureItems) {
     featureItems.forEach((feature) => {
       const featureChildren = feature.children;
