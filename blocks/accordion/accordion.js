@@ -129,6 +129,7 @@ export default function decorate(block) {
         }
 
         item.appendChild(panel);
+        accordionBlock.appendChild(item);
     });
 
     accordionBlock.addEventListener('click', (e) => {
