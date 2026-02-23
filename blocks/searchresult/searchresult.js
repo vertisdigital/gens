@@ -219,6 +219,33 @@ const renderResults = (block, q, results, currentPage, total, totalPages) => {
 
     ${renderPagination(currentPage, totalPages)}
   `;
+
+  setTimeout(() => {
+    const items = block.querySelectorAll('.searchresult-item');
+
+    items.forEach((item, index) => {
+      const link = item.querySelector('.searchresult-title a');
+
+      if (!link) return;
+
+      link.addEventListener('click', () => {
+        const absolutePosition =
+          ((currentPage - 1) * PAGE_SIZE) + index + 1;
+
+        document.dispatchEvent(
+          new CustomEvent("internalSearchResultClick", {
+            detail: {
+              searchTerm: q,
+              pageNumber: currentPage,
+              position: absolutePosition,
+              title: link.textContent.trim(),
+              url: link.href
+            }
+          })
+        );
+      });
+    });
+  }, 0);
 };
 
 const loadPage = async (block, q, page, pushState) => {
@@ -264,6 +291,19 @@ const loadPage = async (block, q, page, pushState) => {
   }
 
   renderResults(block, q, results, currentPage, total, totalPages);
+
+  document.dispatchEvent(
+    new CustomEvent("internalSearchResultsView", {
+      detail: {
+        searchTerm: q,
+        totalResults: total,
+        pageNumber: currentPage,
+        resultsPerPage: PAGE_SIZE,
+        resultStart: total === 0 ? 0 : (currentPage - 1) * PAGE_SIZE + 1,
+        resultEnd: Math.min(currentPage * PAGE_SIZE, total)
+      }
+    })
+  );
 
   block.classList.remove("is-loading");
 
