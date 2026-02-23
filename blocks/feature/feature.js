@@ -30,7 +30,6 @@ export default function decorate(block) {
     const featureClassValue = featureClassP?.textContent?.trim() || '';
 
     featureClass = featureClassValue;
-    console.log('featureClass', featureClass);
 
     // Only remove if it's not the block itself
     if (featureClassEl.parentNode === block || featureClassEl.parentNode?.parentNode === block) {

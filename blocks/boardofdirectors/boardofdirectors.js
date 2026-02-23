@@ -239,7 +239,6 @@ export default function decorate(block) {
     });
 
     const groups = getGroups(updatedChildren);
-    console.log('groups', groups);
 
     // Create a single segment-wrapper
     const segmentWrapper = document.createElement('div');

@@ -21,7 +21,7 @@ export default function decorate(block) {
       if (node.nodeType === Node.TEXT_NODE && node.textContent.trim().startsWith('_')) {
         return node;
       }
-      for (let i = 0; i < node.childNodes.length; i++) {
+      for (let i = 0; i < node.childNodes.length; i += 1) {
         const found = findTextNodeStartingWithUnderscore(node.childNodes[i]);
         if (found) return found;
       }

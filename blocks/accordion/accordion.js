@@ -5,6 +5,22 @@ import { moveInstrumentation } from '../../scripts/scripts.js';
 
 export default function decorate(block) {
     block.classList.add('fade-item');
+
+    function buildPanelContent(title, description) {
+        const parts = [];
+        if (title?.trim()) {
+            parts.push(`<p>${title.trim()}</p>`);
+        }
+        if (description?.trim()) {
+            parts.push(description.trim());
+        }
+        return parts.join('');
+    }
+
+    function buildLegacyPanelContent(contentCell) {
+        return contentCell?.innerHTML?.trim() ?? '';
+    }
+
     const rows = [...block.children];
 
     if (rows.length < 2) return;
@@ -56,10 +72,6 @@ export default function decorate(block) {
         // heading = accordion trigger text (accordionItem.heading)
         const heading = headingCell?.querySelector('p')?.textContent?.trim();
         if (!heading) return;
-
-        // title = item title in panel (accordionItem.title), description = item body (accordionItem.description)
-        const itemTitle = titleCell?.querySelector('p')?.textContent?.trim();
-        const itemDescription = descriptionCell?.innerHTML?.trim();
 
         // Support legacy 2-column format: heading + content
         const hasThreeColumns = cells.length >= 3 && (itemTitle || itemDescription);
@@ -117,23 +129,7 @@ export default function decorate(block) {
         }
 
         item.appendChild(panel);
-        accordionBlock.appendChild(item);
     });
-
-    function buildPanelContent(title, description) {
-        const parts = [];
-        if (title?.trim()) {
-            parts.push(`<p>${title.trim()}</p>`);
-        }
-        if (description?.trim()) {
-            parts.push(description.trim());
-        }
-        return parts.join('');
-    }
-
-    function buildLegacyPanelContent(contentCell) {
-        return contentCell?.innerHTML?.trim() ?? '';
-    }
 
     accordionBlock.addEventListener('click', (e) => {
         const trigger = e.target.closest('.accordion-trigger');
