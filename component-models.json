@@ -724,6 +724,47 @@
     ]
   },
   {
+    "id": "accordion",
+    "fields": [
+      {
+        "component": "text",
+        "name": "title",
+        "label": "Title",
+        "description": "Accordion section title"
+      },
+      {
+        "component": "richtext",
+        "name": "description",
+        "label": "Description",
+        "description": "Accordion section description"
+      }
+    ]
+  },
+  {
+    "id": "accordionitem",
+    "fields": [
+      {
+        "component": "text",
+        "name": "heading",
+        "label": "Heading",
+        "description": "Accordion item heading"
+      },
+      {
+        "component": "text",
+        "name": "title",
+        "label": "Title",
+        "description": "Accordion item title"
+      },
+      {
+        "component": "richtext",
+        "name": "description",
+        "label": "Description",
+        "description": "Accordion item description",
+        "valueType": "string"
+      }
+    ]
+  },
+  {
     "id": "sectionheader",
     "fields": [
       {
@@ -1493,6 +1534,13 @@
         "label": "Image (Mobile)",
         "configUrl": "https://uat--gens-stage--vertisdigital.aem.page/tools/assets-selector/config.json",
         "multi": false
+      },
+      {
+        "component": "boolean",
+        "name": "enablegradient",
+        "label": "Enable Image Gradient",
+        "valueType": "boolean",
+        "value": false
       }
     ]
   },

@@ -13,7 +13,8 @@ export default function decorate(block) {
 
     const labelEl = nested[0]?.querySelector('p') || null;
     const titleEl = nested[1]?.querySelector('p') || null;
-    const descEl = nested[2]?.querySelector('p') || null;
+    const descCell = nested[2]?.children[0] || null;
+    const descElements = descCell ? Array.from(descCell.querySelectorAll('p')) : [];
 
     const variant = block.classList.contains('horizontal') ? '' : 'vertical';
     if (variant) block.classList.add(variant);
@@ -51,11 +52,25 @@ export default function decorate(block) {
 
     /* ---------- DESCRIPTION ---------- */
     let descriptionNode = null;
-    if (descEl?.innerHTML?.trim()) {
+    if (descElements.length > 0) {
         const desc = document.createElement('div');
         desc.className = 'section-header-description';
-        desc.innerHTML = descEl.innerHTML;
-        moveInstrumentation(descEl, desc);
+
+        descElements.forEach((p, index) => {
+            const pElement = document.createElement('p');
+            pElement.innerHTML = p.innerHTML;
+            desc.appendChild(pElement);
+            if (index === 0) {
+                moveInstrumentation(p, desc);
+            }
+        });
+
+        descriptionNode = desc;
+    } else if (descCell && descCell.innerHTML.trim()) {
+        const desc = document.createElement('div');
+        desc.className = 'section-header-description';
+        desc.innerHTML = descCell.innerHTML;
+        moveInstrumentation(descCell, desc);
         descriptionNode = desc;
     }
 

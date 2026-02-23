@@ -369,13 +369,11 @@ function loadSearchSuggest(keyword) {
       );
 
       if (!res.ok) {
-        console.error('Suggest API error:', res.status);
         return;
       }
 
       const data = await res.json();
       if (data.length) {
-        console.log('Suggest result:', data);
         suggestions.classList.add('active');
         suggestions.innerHTML = '';
         data.forEach((item) => {
@@ -400,7 +398,7 @@ function loadSearchSuggest(keyword) {
       }
 
     } catch (err) {
-      console.error('Suggest fetch failed', err);
+      // ignore
     }
   }, 500);
 }
@@ -845,7 +843,6 @@ export default async function decorate(block) {
 
   if (fragment && true) {
     const header = createHeaderStructure(fragment);
-    console.log('Loaded header from fragment:', header);
     block.innerHTML = '';
     block.appendChild(header);
     block.classList.add('header-hover-zone');

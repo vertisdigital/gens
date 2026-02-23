@@ -639,7 +639,6 @@
   background-image: url('../../icons/Pattern.png');
   background-repeat: repeat;
   background-position: center bottom;
-  background-size: auto;
 }
 
 .listing-wrapper:not(:has(.without-images)) {
