@@ -3,7 +3,7 @@
     "id": "main",
     "components": [
       "section",
-      "statisticsSection", 
+      "statisticsSection",
       "tabs"
     ]
   },
@@ -37,7 +37,6 @@
       "columns",
       "sectionheader",
       "accordion",
-      "accordionItem",
       "column",
       "awardlisting",
       "masthead"
@@ -136,7 +135,7 @@
     "components": [
       "listitem",
       "linkField"
-      ]
+    ]
   },
   {
     "id": "projectcards",
@@ -149,7 +148,6 @@
     "components": [
       "bannercarousel"
     ]
-
   },
   {
     "id": "tiles",
@@ -223,7 +221,7 @@
       "enquiry",
       "enquirycta"
     ]
-  }, 
+  },
   {
     "id": "boardofdirectors",
     "components": [
@@ -256,7 +254,7 @@
   {
     "id": "accordion",
     "components": [
-      "accordionItem"
+      "accordionitem"
     ]
   }
 ]
