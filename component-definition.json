@@ -1,11 +1,9 @@
-{ 
-          
+{
   "editors": {
     "richtext": {
       "filter": "richtext"
     }
   },
-        
   "groups": [
     {
       "title": "Sections",
@@ -15,7 +13,7 @@
           "title": "Section",
           "id": "section",
           "plugins": {
-            "xwalk": { 
+            "xwalk": {
               "page": {
                 "resourceType": "core/franklin/components/section/v1/section",
                 "template": {
@@ -24,7 +22,7 @@
               }
             }
           }
-        },  
+        },
         {
           "title": "Tabs",
           "id": "tabs",
@@ -71,7 +69,6 @@
                 "resourceType": "core/franklin/components/block/v1/block/item",
                 "template": {
                   "name": "AccordionItem",
-                  "filter": "accordionitem",
                   "model": "accordionitem"
                 }
               }
@@ -926,7 +923,6 @@
         },
         {
           "title": "Tiles",
-          
           "id": "tiles",
           "plugins": {
             "xwalk": {
@@ -975,6 +971,5 @@
         }
       ]
     }
-    
   ]
 }
