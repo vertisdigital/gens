@@ -196,8 +196,8 @@ const renderResults = (block, q, results, currentPage, total, totalPages) => {
           <li class="searchresult-item">
             <div class="searchresult-title">
               <a href="${item.path.endsWith('.pdf') ? endpoint + item.path : shortenURL(
-            item.path
-          )}">${item.title}</a>
+          item.path
+        )}">${item.title}</a>
               <p class="searchresult-info">
                 ${item.highlight || (item.path.endsWith('.pdf') && item.highlight === '')
             ? `<span class="searchresult-desc">${item.path.endsWith('.pdf') && item.highlight === '' ? 'Match found in document content' : highlight(
@@ -219,6 +219,33 @@ const renderResults = (block, q, results, currentPage, total, totalPages) => {
 
     ${renderPagination(currentPage, totalPages)}
   `;
+
+  setTimeout(() => {
+    const items = block.querySelectorAll('.searchresult-item');
+
+    items.forEach((item, index) => {
+      const link = item.querySelector('.searchresult-title a');
+
+      if (!link) return;
+
+      link.addEventListener('click', () => {
+        const absolutePosition =
+          ((currentPage - 1) * PAGE_SIZE) + index + 1;
+
+        document.dispatchEvent(
+          new CustomEvent("internalSearchResultClick", {
+            detail: {
+              searchTerm: q,
+              pageNumber: currentPage,
+              position: absolutePosition,
+              title: link.textContent.trim(),
+              url: link.href
+            }
+          })
+        );
+      });
+    });
+  }, 0);
 };
 
 const loadPage = async (block, q, page, pushState) => {
@@ -265,6 +292,19 @@ const loadPage = async (block, q, page, pushState) => {
 
   renderResults(block, q, results, currentPage, total, totalPages);
 
+  document.dispatchEvent(
+    new CustomEvent("internalSearchResultsView", {
+      detail: {
+        searchTerm: q,
+        totalResults: total,
+        pageNumber: currentPage,
+        resultsPerPage: PAGE_SIZE,
+        resultStart: total === 0 ? 0 : (currentPage - 1) * PAGE_SIZE + 1,
+        resultEnd: Math.min(currentPage * PAGE_SIZE, total)
+      }
+    })
+  );
+
   block.classList.remove("is-loading");
 
   waitForElement(".search-suggestion-box", (box) => {
@@ -290,7 +330,7 @@ const loadPage = async (block, q, page, pushState) => {
     We found <strong>${total}</strong> result(s) that match
     <strong>${q}</strong>
   `;
-  moveSearchSuggestionOutOfHeader();
+    moveSearchSuggestionOutOfHeader();
   });
 
 };
