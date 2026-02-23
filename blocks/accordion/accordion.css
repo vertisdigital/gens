@@ -80,23 +80,18 @@
     color: var(--color-text-tertiary);
 }
 
-.accordion-trigger[aria-expanded="true"]:hover {
-    background: #1D3D51;
-}
-
 .accordion-trigger:focus-visible {
     outline: 2px solid var(--color-secondary-700, #c8ab4b);
     outline-offset: 2px;
 }
 
 .accordion-trigger[aria-expanded="true"] {
-    background: #1D3D51;
+    background: var(--color-bg-primary);
     color: var(--color-text-white, #ffffff);
 }
 
-.accordion-trigger[aria-expanded="true"] .accordion-icon {
-    transform: rotate(180deg);
-    color: var(--color-text-white, #ffffff);
+.accordion-trigger[aria-expanded="true"]:hover {
+    background: var(--color-bg-primary);
 }
 
 .accordion-trigger-text {
@@ -109,8 +104,12 @@
     display: inline-flex;
     align-items: center;
     justify-content: center;
-   
     transition: transform 0.2s ease;
+}
+
+.accordion-trigger[aria-expanded="true"] .accordion-icon {
+    transform: rotate(180deg);
+    color: var(--color-text-white, #ffffff);
 }
 
 .accordion-icon svg {
@@ -130,7 +129,6 @@
     padding: 48px 24px;
     font-size: 16px;
     line-height: 24px;
-    color: var(--color-text-body, #3B3D3D);
     font-family: var(--typography-font-family-font-body, "Instrument Sans Variable"), sans-serif;
 }
 
