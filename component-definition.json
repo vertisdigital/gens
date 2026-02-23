@@ -63,6 +63,22 @@
           }
         },
         {
+          "title": "AccordionItem",
+          "id": "accordionitem",
+          "plugins": {
+            "xwalk": {
+              "page": {
+                "resourceType": "core/franklin/components/block/v1/block/item",
+                "template": {
+                  "name": "AccordionItem",
+                  "filter": "accordionitem",
+                  "model": "accordionitem"
+                }
+              }
+            }
+          }
+        },
+        {
           "title": "AwardsGallery",
           "id": "awardsgallery",
           "plugins": {
