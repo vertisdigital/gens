@@ -3,7 +3,6 @@
     background-image: url(../../icons/Pattern.png);
     background-repeat: no-repeat;
     background-position: center bottom -100px;
-    background-size: cover;
     margin: 0 auto;
     max-width: 2560px;
 }
@@ -227,8 +226,8 @@
         width: 100%;
     }
 
-    .corporate-policies-list-item .left-col h2.w-50, 
-    .corporate-policies-list-item .left-col h2.w-40, 
+    .corporate-policies-list-item .left-col h2.w-50,
+    .corporate-policies-list-item .left-col h2.w-40,
     .corporate-policies-list-item .left-col h2.w-75 {
         width: 100%;
     }
