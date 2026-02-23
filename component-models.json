@@ -748,23 +748,23 @@
     ]
   },
   {
-    "id": "accordionItem",
+    "id": "accordionitem",
     "fields": [
       {
         "component": "text",
         "name": "heading",
-        "label": "Heading",   
+        "label": "Heading",
         "description": "Accordion item heading"
       },
       {
         "component": "text",
         "name": "title",
-        "label": "Title",   
+        "label": "Title",
         "description": "Accordion item title"
       },
       {
         "component": "richtext",
-        "name": "description",    
+        "name": "description",
         "label": "Description",
         "description": "Accordion item description",
         "valueType": "string"
