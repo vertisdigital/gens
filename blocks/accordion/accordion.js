@@ -168,7 +168,9 @@ export default function decorate(block) {
 
     container.appendChild(accordionBlock);
 
-    block.innerHTML = '';
+    if (!window.location.href.includes('author')) {
+        block.innerHTML = '';
+    }
     block.appendChild(container);
 }
 
