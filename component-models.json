@@ -1500,6 +1500,13 @@
         "label": "Image (Mobile)",
         "configUrl": "https://dev--gens--vertisdigital.aem.page/tools/assets-selector/config.json",
         "multi": false
+      },
+      {
+        "component": "boolean",
+        "name": "enablegradient",
+        "label": "Enable Image Gradient",
+        "valueType": "boolean",
+        "value": false
       }
     ]
   },
