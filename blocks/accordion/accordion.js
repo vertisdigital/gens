@@ -48,11 +48,24 @@ export default function decorate(block) {
     accordionBlock.setAttribute('aria-label', 'Accordion');
 
     accordionRows.forEach((row, index) => {
-        const [titleCell, contentCell] = row.children;
-        const itemTitle = titleCell?.querySelector('p')?.textContent?.trim();
-        const itemContent = contentCell?.innerHTML?.trim();
+        const cells = [...row.children];
+        const headingCell = cells[0];
+        const titleCell = cells[1];
+        const descriptionCell = cells[2];
 
-        if (!itemTitle) return;
+        // heading = accordion trigger text (accordionItem.heading)
+        const heading = headingCell?.querySelector('p')?.textContent?.trim();
+        if (!heading) return;
+
+        // title = item title in panel (accordionItem.title), description = item body (accordionItem.description)
+        const itemTitle = titleCell?.querySelector('p')?.textContent?.trim();
+        const itemDescription = descriptionCell?.innerHTML?.trim();
+
+        // Support legacy 2-column format: heading + content
+        const hasThreeColumns = cells.length >= 3 && (itemTitle || itemDescription);
+        const panelContent = hasThreeColumns
+            ? buildPanelContent(itemTitle, itemDescription)
+            : buildLegacyPanelContent(cells[1]);
 
         const itemId = `accordion-item-${index}`;
         const panelId = `accordion-panel-${index}`;
@@ -72,8 +85,8 @@ export default function decorate(block) {
 
         const titleSpan = document.createElement('span');
         titleSpan.className = 'accordion-trigger-text';
-        titleSpan.textContent = itemTitle;
-        moveInstrumentation(titleCell?.querySelector('p'), titleSpan);
+        titleSpan.textContent = heading;
+        moveInstrumentation(headingCell?.querySelector('p'), titleSpan);
 
         const iconSpan = document.createElement('span');
         iconSpan.className = 'accordion-icon';
@@ -91,17 +104,36 @@ export default function decorate(block) {
         panel.setAttribute('aria-labelledby', itemId);
         panel.hidden = !isExpanded;
 
-        if (itemContent) {
+        if (panelContent) {
             const panelInner = document.createElement('div');
             panelInner.className = 'accordion-panel-content';
-            panelInner.innerHTML = itemContent;
-            moveInstrumentation(contentCell, panelInner);
+            panelInner.innerHTML = panelContent;
+            if (hasThreeColumns && descriptionCell) {
+                moveInstrumentation(descriptionCell, panelInner);
+            } else if (cells[1]) {
+                moveInstrumentation(cells[1], panelInner);
+            }
             panel.appendChild(panelInner);
         }
 
         item.appendChild(panel);
         accordionBlock.appendChild(item);
     });
+
+    function buildPanelContent(title, description) {
+        const parts = [];
+        if (title?.trim()) {
+            parts.push(`<p>${title.trim()}</p>`);
+        }
+        if (description?.trim()) {
+            parts.push(description.trim());
+        }
+        return parts.join('');
+    }
+
+    function buildLegacyPanelContent(contentCell) {
+        return contentCell?.innerHTML?.trim() ?? '';
+    }
 
     accordionBlock.addEventListener('click', (e) => {
         const trigger = e.target.closest('.accordion-trigger');
