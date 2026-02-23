@@ -109,7 +109,6 @@ function openModal(data) {
 
 export default function decorate(block) {
   block.classList.add('fade-item');
-  // Add container wrappers for each breakpoint
 
   // Create row wrapper
   const row = document.createElement('div');
@@ -126,6 +125,21 @@ export default function decorate(block) {
   }
 
   tiles.forEach((tile, index) => {
+    let enablegradient = false;
+
+    let gradientEl = tile.querySelector('[data-aue-prop="enablegradient"], [data-gen-prop="enablegradient"]');
+
+    if (!gradientEl) {
+      gradientEl = tile.lastElementChild;
+    }
+    if (gradientEl) {
+      const gradientP = gradientEl.querySelector('p') || gradientEl;
+      enablegradient = gradientP?.textContent?.trim()?.toLowerCase() === 'true';
+      if (gradientEl.parentNode === tile) {
+        gradientEl.remove();
+      }
+    }
+
     // Handle first tile's download button
     const col = document.createElement('div');
     col.className = 'col-sm-4 col-md-6 col-xl-6';
@@ -165,9 +179,10 @@ export default function decorate(block) {
       }
 
       if (imageLink) {
+        const gradientStr = enablegradient ? 'linear-gradient(180deg, rgba(0, 0, 0, 0) 45.51%, #000 117.9%), ' : '';
         // Set desktop background image
         const desktopImageUrl = `${imageLink.href}/as/tiles.webp?width=850`;
-        tile.style.setProperty('--bg-image-desktop', `linear-gradient(180deg, rgba(0, 0, 0, 0) 45.51%, #000 117.9%), url(${desktopImageUrl})`);
+        tile.style.setProperty('--bg-image-desktop', `${gradientStr}url(${desktopImageUrl})`);
 
         // Store image for modal
         modalData.image = imageLink.href;
@@ -175,7 +190,7 @@ export default function decorate(block) {
         // Set tablet background image if available
         if (tabletImageLink) {
           const tabletImageUrl = `${tabletImageLink}/as/tiles.webp?width=850`;
-          tile.style.setProperty('--bg-image-tablet', `linear-gradient(180deg, rgba(0, 0, 0, 0) 45.51%, #000 117.9%), url(${tabletImageUrl})`);
+          tile.style.setProperty('--bg-image-tablet', `${gradientStr}url(${tabletImageUrl})`);
         } else {
           // Fallback to desktop image if tablet image not available
           tile.style.setProperty('--bg-image-tablet', `var(--bg-image-desktop)`);
@@ -184,7 +199,7 @@ export default function decorate(block) {
         // Set mobile background image if available
         if (mobileImageLink) {
           const mobileImageUrl = `${mobileImageLink}/as/tiles.webp?width=850`;
-          tile.style.setProperty('--bg-image-mobile', `linear-gradient(180deg, rgba(0, 0, 0, 0) 45.51%, #000 117.9%), url(${mobileImageUrl})`);
+          tile.style.setProperty('--bg-image-mobile', `${gradientStr}url(${mobileImageUrl})`);
         } else {
           // Fallback to tablet or desktop image if mobile image not available
           tile.style.setProperty('--bg-image-mobile', `var(--bg-image-tablet, var(--bg-image-desktop))`);
