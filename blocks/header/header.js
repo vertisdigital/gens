@@ -843,7 +843,6 @@ export default async function decorate(block) {
 
   if (fragment && true) {
     const header = createHeaderStructure(fragment);
-    console.log('Loaded header from fragment:', header);
     block.innerHTML = '';
     block.appendChild(header);
     block.classList.add('header-hover-zone');
