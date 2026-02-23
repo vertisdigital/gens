@@ -69,15 +69,11 @@ export default function decorate(block) {
         const titleCell = cells[1];
         const descriptionCell = cells[2];
 
-        // heading = accordion trigger text (accordionItem.heading)
         const heading = headingCell?.querySelector('p')?.textContent?.trim();
         if (!heading) return;
-
-        // title = item title in panel (accordionItem.title), description = item body (accordionItem.description)
         const itemTitle = titleCell?.querySelector('p')?.textContent?.trim();
         const itemDescription = descriptionCell?.innerHTML?.trim();
 
-        // Support legacy 2-column format: heading + content
         const hasThreeColumns = cells.length >= 3 && (itemTitle || itemDescription);
         const panelContent = hasThreeColumns
             ? buildPanelContent(itemTitle, itemDescription)
