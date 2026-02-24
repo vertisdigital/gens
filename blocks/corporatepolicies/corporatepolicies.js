@@ -1,7 +1,26 @@
 import SvgIcon from "../../shared-components/SvgIcon.js";
 import Heading from "../../shared-components/Heading.js";
 
+function getLastUrlSegment() {
+  const pathname = typeof window !== 'undefined' ? window.location.pathname : '';
+  const segments = pathname.split('/').filter(Boolean);
+  return segments.length > 0 ? segments[segments.length - 1] : '';
+}
+
+function addPageClassFromUrl(target) {
+  const segment = getLastUrlSegment();
+  if (!segment) return;
+  const slug = segment.replace(/[^a-z0-9-]/gi, '-').toLowerCase().replace(/-+/g, '-').replace(/^-|-$/g, '');
+  if (slug) {
+    target.classList.add(`page-${slug}`);
+  }
+}
+
 export default function decorate(block) {
+  addPageClassFromUrl(document.body);
+  const wrapper = block.closest('.corporatepolicies-wrapper');
+  if (wrapper) addPageClassFromUrl(wrapper);
+
   block.classList.add('fade-item');
   // check if corporate policies has background or not
   const noBackground = block.classList.contains('no-background');
@@ -22,18 +41,18 @@ export default function decorate(block) {
         .map((child) => {
           child.classList.add("row", "corporate-policies-list-item");
           const children = Array.from(child.children);
-          
+
           let firstChildHtml = "";
           let subtitleHtml = "";
-          
+
           if (children.length > 0) {
             // Handle heading replacement
             const firstChildText = children[0].textContent?.trim();
-           
+
             let headingClassName = '';
             if(firstChildText.length > 20 && firstChildText.length < 25) {
               headingClassName = 'w-50';
-            } 
+            }
             if(firstChildText.length < 20) {
               headingClassName = 'w-40';
             }
@@ -41,13 +60,14 @@ export default function decorate(block) {
               headingClassName = 'w-75';
             }
 
+
             const headingHtml = Heading({
               level: 2,
               text: firstChildText,
               className: `corporate-policies-heading ${headingClassName}`,
             });
             firstChildHtml = children[0].outerHTML.replace(/<p[^>]*>.*?<\/p>/, headingHtml);
-            
+
             // handle subtitle replacement
             if (children[8]?.textContent?.trim()) {
               children[8]?.classList.add("corporate-policies-subtitle");
@@ -62,7 +82,7 @@ export default function decorate(block) {
           if (children.length > 2) {
             const checkDownloadLink = children[5]?.textContent?.trim();
             const lastChild = children[4];
-            
+
             // If checkDownloadLink is 'false', use the last element (index 6), otherwise use index 3
             const linkElement = checkDownloadLink === 'true' ? children[6] : children[3];
             const lastThirdChild = children[2]; // Third-last element
