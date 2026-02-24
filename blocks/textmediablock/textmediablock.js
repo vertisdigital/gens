@@ -45,7 +45,7 @@ function setupVideoFunctionality(autoPlay, mediaElement) {
   video.addEventListener('loadeddata', () => {
     mediaElement.querySelector('.video-loader').style.display = 'none';
     video.style.display = 'block';
-    mediaElement.querySelector('.custom-play-button').style.visibility = 'visible'
+    mediaElement.querySelector('.custom-play-button').style.visibility = 'visible';
   });
 
   // Pause video when out of viewport
@@ -103,7 +103,7 @@ function handleMediaElement(mediaBlock, enablegradient) {
     mediaElement = stringToHtml(`
       <div class="custom-video-container">
       <div class="video-loader"></div>
-        <video class="mediablock-video" preload=${isIOSDevice() ? "auto" : "none"} playsinline autoplay=${isIOSDevice() ? "true" : "false"}>
+        <video class="mediablock-video" preload=${isIOSDevice() ? 'auto' : 'none'} playsinline autoplay=${isIOSDevice() ? 'true' : 'false'}>
           <source src="${mediaUrl}" type="video/mp4">
           Your browser does not support the video tag.
         </video>
@@ -119,13 +119,13 @@ function handleMediaElement(mediaBlock, enablegradient) {
         asImageName: 'hero.webp',
         breakpoints: {
           mobile: {
-            width: 768, src: mediaUrl, imgWidth: 768
+            width: 768, src: mediaUrl, imgWidth: 768,
           },
           tablet: {
-            width: 1024, src: mediaUrl, imgWidth: 1024
+            width: 1024, src: mediaUrl, imgWidth: 1024,
           },
           desktop: {
-            width: 1920, src: mediaUrl, imgWidth: 1600
+            width: 1920, src: mediaUrl, imgWidth: 1600,
           },
         },
         lazy: true,
@@ -136,7 +136,7 @@ function handleMediaElement(mediaBlock, enablegradient) {
   if (mediaElement) {
     linkElement.parentElement?.replaceChild(mediaElement, linkElement);
     if (mediaBlock?.children[1]) {
-      mediaBlock.children[1].style.display = "none"
+      mediaBlock.children[1].style.display = 'none';
     }
     if (isVideo) setupVideoFunctionality(autoPlay, mediaElement);
   }
@@ -147,7 +147,18 @@ function decorateTextSection(textSection) {
   if (!textSection) return;
   textSection.classList.add('textblock', 'container');
   textSection.children[0]?.classList.add('heading');
-  textSection.children[1]?.classList.add('text-section');
+
+  const textContentContainer = textSection.children[1];
+  if (textContentContainer) {
+    textContentContainer.classList.add('text-section');
+
+    // Support user typing <br> in simple text fields
+    textContentContainer.querySelectorAll('p').forEach((p) => {
+      if (p.innerHTML.includes('&lt;br') || p.innerHTML.includes('\\n')) {
+        p.innerHTML = p.innerHTML.replace(/&lt;br\s*\/?[ \t]*&gt;/gi, '<br>').replace(/\\n/g, '<br>');
+      }
+    });
+  }
 }
 
 // Main function to decorate the block
@@ -156,7 +167,20 @@ export default function decorate(block) {
   block.className = 'textmediablock-container';
 
   let enablegradient = false;
-  const gradientEl = block.querySelector('[data-aue-prop="enablegradient"], [data-gen-prop="enablegradient"]') || block.children[2];
+  let gradientEl = block.querySelector('[data-aue-prop="enablegradient"], [data-gen-prop="enablegradient"]');
+
+  if (!gradientEl) {
+    // If not explicitly instrumented, find a child that just contains 'true' or 'false'
+    const booleanRow = Array.from(block.children).find((child) => {
+      const text = child.textContent?.trim()?.toLowerCase();
+      // Make sure it doesn't contain an image link, and exactly matches true/false
+      return (text === 'true' || text === 'false') && child.querySelector('a') === null;
+    });
+    if (booleanRow) {
+      gradientEl = booleanRow;
+    }
+  }
+
   if (gradientEl) {
     const gradientP = gradientEl.querySelector('p') || gradientEl;
     enablegradient = gradientP?.textContent?.trim()?.toLowerCase() === 'true';
@@ -165,21 +189,24 @@ export default function decorate(block) {
     }
   }
 
+  // Get only the actual content children by excluding gradientEl
+  const contentChildren = Array.from(block.children).filter((child) => child !== gradientEl);
+
   // Check if the first child contains an image link
-  const firstChild = block.children[0];
-  const hasImageFirst = firstChild.querySelector('a') !== null;
+  const firstChild = contentChildren[0];
+  const hasImageFirst = firstChild?.querySelector('a') !== null;
 
   if (hasImageFirst) {
     // Variation 1: Image first, then text
     handleMediaElement(firstChild, enablegradient);
 
     // Add classes to text section
-    const textSection = block.children[1];
+    const textSection = contentChildren[1];
     decorateTextSection(textSection);
   } else {
     // Variation 2: Text first, then image
     const textSection = firstChild;
-    const imageSection = block.children[1];
+    const imageSection = contentChildren[1];
 
     decorateTextSection(textSection);
 
