@@ -170,15 +170,23 @@ export default function decorate(block) {
   let gradientEl = block.querySelector('[data-aue-prop="enablegradient"], [data-gen-prop="enablegradient"]');
 
   if (!gradientEl) {
-    // If not explicitly instrumented, find a child that just contains 'true' or 'false'
-    const booleanRow = Array.from(block.children).find((child) => {
+    gradientEl = Array.from(block.children).find((child) => {
       const text = child.textContent?.trim()?.toLowerCase();
-      // Make sure it doesn't contain an image link, and exactly matches true/false
-      return (text === 'true' || text === 'false') && child.querySelector('a') === null;
+      const hasMedia = child.querySelector('a, img, picture, video');
+
+      if (hasMedia) return false;
+
+      // Strict match for 'true' or 'false'
+      if (text === 'true' || text === 'false') return true;
+
+      // If block has 3 children and this row is empty with max 1 <p>,
+      // it's the unconfigured boolean toggle from UAT
+      if (block.children.length === 3 && text === '' && child.querySelectorAll('p').length <= 1) {
+        return true;
+      }
+
+      return false;
     });
-    if (booleanRow) {
-      gradientEl = booleanRow;
-    }
   }
 
   if (gradientEl) {
