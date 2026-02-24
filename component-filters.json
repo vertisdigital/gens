@@ -165,7 +165,8 @@
     "id": "textmediablock",
     "components": [
       "media",
-      "textsection"
+      "textsection",
+      "textblock"
     ]
   },
   {
