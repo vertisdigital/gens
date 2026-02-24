@@ -314,8 +314,12 @@
     margin-bottom: 0;
   }
 
-  .about-us-left .about-us-left-sub-heading p {
+  .about-us-left .about-us-left-sub-heading p:first-child {
     margin: 0;
+  }
+
+  .about-us-left .about-us-left-sub-heading p:not(:first-child) {
+    margin-bottom: 0;
   }
 
   .about-us-left .links-container a {
