@@ -10,6 +10,7 @@ export default function decorate(block) {
   // Process list items
   const listItems = block.querySelectorAll('[data-aue-model="listitem"], [data-gen-model="listitem"]');
   const isListingWithoutImage = block.classList.contains('without-images');
+  const isDefaultListing = block.classList.contains('listing-row');
 
   
   listItems.forEach((item) => {
@@ -45,7 +46,7 @@ export default function decorate(block) {
 
     // Process image
     const imgContainer = item.querySelector('div:first-child');
-    if (imgContainer && !isListingWithoutImage) {
+    if (imgContainer && !isListingWithoutImage && !isDefaultListing) {
       imgContainer.classList.add('col-xl-4', 'col-md-2', 'col-sm-4');
 
       const imgAnchor = imgContainer.querySelector('a');
@@ -91,7 +92,7 @@ export default function decorate(block) {
     // Create single wrapper for content
     const contentWrapper = document.createElement('div');
 
-    if(isListingWithoutImage) {
+    if(isListingWithoutImage || isDefaultListing) {
       contentWrapper.classList.add('col-xl-12', 'col-md-6', 'col-sm-4', 'content-wrapper');
     } else {
       contentWrapper.classList.add('col-xl-8', 'col-md-4', 'col-sm-4', 'content-wrapper');
@@ -167,7 +168,7 @@ export default function decorate(block) {
   }
 
   // Handle 2-column layout for without-images variation
-  if (isListingWithoutImage) {
+  if (isListingWithoutImage || isDefaultListing) {
     const blockChildren = Array.from(block.children);
     
     // Get first 2 title elements (usually first 2 children that have title but not listitem)
@@ -192,7 +193,7 @@ export default function decorate(block) {
     // Create left column wrapper for titles
     if (firstTwoTitles.length > 0) {
       const leftColumn = document.createElement('div');
-      leftColumn.classList.add('without-images-left-column');
+      isListingWithoutImage ? leftColumn.classList.add('without-images-left-column') : leftColumn.classList.add('default-left-column');
       
       firstTwoTitles.forEach(titleElement => {
         leftColumn.appendChild(titleElement);
@@ -200,7 +201,7 @@ export default function decorate(block) {
 
       // Create right column wrapper for list items and linkField
       const rightColumn = document.createElement('div');
-      rightColumn.classList.add('without-images-right-column');
+      isListingWithoutImage ? rightColumn.classList.add('without-images-right-column') : rightColumn.classList.add('default-right-column');
       
       remainingElements.forEach(element => {
         rightColumn.appendChild(element);
@@ -208,7 +209,7 @@ export default function decorate(block) {
 
       // Create row wrapper
       const rowWrapper = document.createElement('div');
-      rowWrapper.classList.add('without-images-row');
+      isListingWithoutImage ? rowWrapper.classList.add('without-images-row') : rowWrapper.classList.add('default-row');
       rowWrapper.appendChild(leftColumn);
       rowWrapper.appendChild(rightColumn);
 
