@@ -77,13 +77,16 @@ function setupVideoFunctionality(autoPlay, mediaElement) {
   observer.observe(mediaElement);
 }
 
-// Function to handle media elements (Image/Video)
-function handleMediaElement(mediaBlock) {
+function handleMediaElement(mediaBlock, enablegradient) {
   let autoPlay = false;
   const linkElement = mediaBlock.querySelector('a');
   if (!linkElement) return;
 
   mediaBlock.classList.add('mediablock');
+  if (enablegradient) {
+    mediaBlock.classList.add('has-gradient');
+  }
+
   const mediaUrl = linkElement.getAttribute('href');
   if (!mediaUrl) return;
 
@@ -152,13 +155,23 @@ export default function decorate(block) {
   block.classList.add('fade-item');
   block.className = 'textmediablock-container';
 
+  let enablegradient = false;
+  const gradientEl = block.querySelector('[data-aue-prop="enablegradient"], [data-gen-prop="enablegradient"]') || block.children[2];
+  if (gradientEl) {
+    const gradientP = gradientEl.querySelector('p') || gradientEl;
+    enablegradient = gradientP?.textContent?.trim()?.toLowerCase() === 'true';
+    if (gradientEl.parentNode === block || gradientEl.parentNode?.parentNode === block) {
+      gradientEl.style.display = 'none'; // hide the toggle property element from displaying
+    }
+  }
+
   // Check if the first child contains an image link
   const firstChild = block.children[0];
   const hasImageFirst = firstChild.querySelector('a') !== null;
 
   if (hasImageFirst) {
     // Variation 1: Image first, then text
-    handleMediaElement(firstChild);
+    handleMediaElement(firstChild, enablegradient);
 
     // Add classes to text section
     const textSection = block.children[1];
@@ -171,7 +184,7 @@ export default function decorate(block) {
     decorateTextSection(textSection);
 
     if (imageSection) {
-      handleMediaElement(imageSection);
+      handleMediaElement(imageSection, enablegradient);
     }
   }
 
