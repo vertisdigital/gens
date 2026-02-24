@@ -66,8 +66,30 @@ function openModal(data) {
   if (data.filepath) {
     const link = document.createElement('a');
     link.href = data.filepath;
-    link.target = '_blank';
+    link.setAttribute('download', '');
     link.className = 'modal-download-link';
+
+    link.addEventListener('click', async (e) => {
+      e.preventDefault();
+      try {
+        const response = await fetch(data.filepath);
+        if (!response.ok) throw new Error('Network response was not ok');
+        const blob = await response.blob();
+        const url = window.URL.createObjectURL(blob);
+        const a = document.createElement('a');
+        a.style.display = 'none';
+        a.href = url;
+        const filename = data.filepath.split('/').pop().split('?')[0] || 'download';
+        a.download = filename;
+        document.body.appendChild(a);
+        a.click();
+        window.URL.revokeObjectURL(url);
+        document.body.removeChild(a);
+      } catch (error) {
+        console.error('Error downloading image:', error);
+        window.location.href = data.filepath;
+      }
+    });
 
     // Create text span
     const textSpan = document.createElement('span');
@@ -236,10 +258,8 @@ export default function decorate(block) {
           const p = childrens[1].querySelector('p');
           if (p) modalData.description = p.innerHTML;
         }
-        if (buttonContainer) {
-          modalData.filepath = buttonContainer.href;
-          const downloadText = buttonContainer.textContent || 'Download';
-          modalData.downloadText = downloadText;
+        if (modalData.image) {
+          modalData.filepath = modalData.image;
         }
 
         // Store data on tile
