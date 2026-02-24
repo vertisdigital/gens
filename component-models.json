@@ -1710,6 +1710,13 @@
             "value": "text-media-block-heading-variation"
           }
         ]
+      },
+      {
+        "component": "boolean",
+        "name": "enablegradient",
+        "label": "Enable Image Gradient",
+        "valueType": "boolean",
+        "value": false
       }
     ]
   },

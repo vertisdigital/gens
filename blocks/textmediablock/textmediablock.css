@@ -45,6 +45,21 @@
 
   .mediablock {
     width: 100%;
+    position: relative;
+  }
+
+  .mediablock.has-gradient::after {
+    position: absolute;
+    content: '';
+    inset: 0;
+    pointer-events: none;
+    background: linear-gradient(360deg,
+        rgba(0, 0, 0, 0.65) 0%,
+        rgba(0, 0, 0, 0.45) 25%,
+        rgba(0, 0, 0, 0.25) 45%,
+        rgba(0, 0, 0, 0.1) 65%,
+        rgba(0, 0, 0, 0) 85%);
+    z-index: 1;
   }
 
   .mediablock img {
