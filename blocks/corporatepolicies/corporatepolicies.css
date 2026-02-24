@@ -257,3 +257,10 @@
         padding-bottom: 24px;
     }
 }
+
+.page-corporate-policies .corporate-policies-list-item .left-col h2.w-50,
+.page-corporate-policies .corporate-policies-list-item .left-col h2.w-40,
+.page-corporate-policies .corporate-policies-list-item .left-col h2.w-75,
+.page-corporate-policies .corporate-policies-list-item .left-col h2{
+    width: 100%;
+}
