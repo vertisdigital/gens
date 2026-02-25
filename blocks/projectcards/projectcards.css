@@ -115,6 +115,7 @@
     justify-content: space-between;
     background: linear-gradient(to top, rgba(0, 0, 0, 0.6) 0%, rgba(0, 0, 0, 0.15) 20%, rgba(0, 0, 0, 0) 30%, rgba(0, 0, 0, 0) 75%, rgba(0, 0, 0, 0.35) 85%, rgba(0, 0, 0, 0.55) 100%);
     pointer-events: none;
+    text-shadow: 0 0 4px rgba(0, 0, 0, 0.8);
   }
 
   /* Reactivate pointer events for interactive elements inside */
