@@ -201,7 +201,10 @@ export default function decorate(block) {
       }
 
       if (imageLink) {
-        const gradientStr = enablegradient ? 'linear-gradient(180deg, rgba(0, 0, 0, 0) 45.51%, #000 117.9%), ' : '';
+        const gradientStr = enablegradient ? 'linear-gradient(180deg, rgba(0, 0, 0, 0) 25%, #000 90%), ' : '';
+        const gradientStrMobile = enablegradient ? 'linear-gradient(180deg, rgba(0, 0, 0, 0) 10%, #000 70%), ' : '';
+        const gradientStrTablet = enablegradient ? 'linear-gradient(180deg, rgba(0, 0, 0, 0) 15%, #000 80%), ' : '';
+
         // Set desktop background image
         const desktopImageUrl = `${imageLink.href}/as/tiles.webp?width=850`;
         tile.style.setProperty('--bg-image-desktop', `${gradientStr}url(${desktopImageUrl})`);
@@ -212,19 +215,20 @@ export default function decorate(block) {
         // Set tablet background image if available
         if (tabletImageLink) {
           const tabletImageUrl = `${tabletImageLink}/as/tiles.webp?width=850`;
-          tile.style.setProperty('--bg-image-tablet', `${gradientStr}url(${tabletImageUrl})`);
+          tile.style.setProperty('--bg-image-tablet', `${gradientStrTablet}url(${tabletImageUrl})`);
         } else {
           // Fallback to desktop image if tablet image not available
-          tile.style.setProperty('--bg-image-tablet', `var(--bg-image-desktop)`);
+          tile.style.setProperty('--bg-image-tablet', `${gradientStrTablet}url(${desktopImageUrl})`);
         }
 
         // Set mobile background image if available
         if (mobileImageLink) {
           const mobileImageUrl = `${mobileImageLink}/as/tiles.webp?width=850`;
-          tile.style.setProperty('--bg-image-mobile', `${gradientStr}url(${mobileImageUrl})`);
+          tile.style.setProperty('--bg-image-mobile', `${gradientStrMobile}url(${mobileImageUrl})`);
         } else {
           // Fallback to tablet or desktop image if mobile image not available
-          tile.style.setProperty('--bg-image-mobile', `var(--bg-image-tablet, var(--bg-image-desktop))`);
+          const fallbackImageUrl = tabletImageLink ? `${tabletImageLink}/as/tiles.webp?width=850` : desktopImageUrl;
+          tile.style.setProperty('--bg-image-mobile', `${gradientStrMobile}url(${fallbackImageUrl})`);
         }
 
         // Add class for styling instead of inline styles
