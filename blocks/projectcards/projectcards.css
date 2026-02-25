@@ -112,11 +112,11 @@
     display: flex;
     align-items: flex-end;
     justify-content: space-between;
-    background: linear-gradient(to top, rgba(0, 0, 0, 0.6) 0%, rgba(0, 0, 0, 0) 100%);
+    background: linear-gradient(to top, rgba(0, 0, 0, 0.6) 0%, rgba(0, 0, 0, 0.15) 20%, rgba(0, 0, 0, 0) 30%, rgba(0, 0, 0, 0) 75%, rgba(0, 0, 0, 0.35) 85%, rgba(0, 0, 0, 0.55) 100%);
   }
 
   .projectcards .project-card.has-gradient .project-card-content {
-    background: linear-gradient(180deg, rgba(0, 0, 0, 0) 25%, #000 90%);
+    background: linear-gradient(180deg, rgba(0, 0, 0, 0.55) 0%, rgba(0, 0, 0, 0.35) 25%, rgba(0, 0, 0, 0) 70%, rgba(0, 0, 0, 0.15) 80%, rgba(0, 0, 0, 0.6) 100%);
   }
 
   .project-card-title a {
@@ -345,7 +345,7 @@
     }
 
     .projectcards .project-card.has-gradient .project-card-content {
-      background: linear-gradient(180deg, rgba(0, 0, 0, 0) 10%, rgba(0, 0, 0, 0.8) 50%, #000 90%);
+      background: linear-gradient(180deg, rgba(0, 0, 0, 0.55) 0%, rgba(0, 0, 0, 0.35) 25%, rgba(0, 0, 0, 0) 70%, rgba(0, 0, 0, 0.15) 80%, rgba(0, 0, 0, 0.6) 100%);
     }
 
     .projectcards .project-card-title {
