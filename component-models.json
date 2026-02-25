@@ -1181,6 +1181,13 @@
         "label": "Location/Description",
         "valueType": "string",
         "description": "Location / Description should not exceed 500 characters"
+      },
+      {
+        "component": "boolean",
+        "name": "enablegradient",
+        "label": "Enable Image Gradient",
+        "valueType": "boolean",
+        "value": false
       }
     ]
   },
