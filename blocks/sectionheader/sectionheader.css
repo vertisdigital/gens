@@ -158,6 +158,12 @@
     gap: var(--spacing-8, 32px);
 }
 
+.sectionheader.section-header.vertical .section-header-left {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+}
+
 /* ===============================
    Layout – Horizontal
 ================================ */
@@ -199,6 +205,10 @@
 
     .sectionheader.section-header.horizontal .section-header-wrapper {
         flex-direction: column;
+        gap: 16px;
+    }
+
+    .sectionheader.section-header.vertical .section-header-left {
         gap: 16px;
     }
 
@@ -246,6 +256,7 @@
         gap: 24px;
         flex-direction: column;
     }
+  
 }
 
 /* Desktop */
