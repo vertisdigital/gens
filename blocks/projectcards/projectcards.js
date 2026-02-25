@@ -164,7 +164,10 @@ export default function decorate(block) {
       // Hide the gradient config element if it exists in DOM
       if (gradientEl && gradientEl.parentNode === card) {
         gradientEl.style.display = 'none';
-      } else if (card.lastElementChild && card.lastElementChild.textContent?.trim()?.toLowerCase() === 'true' || card.lastElementChild && card.lastElementChild.textContent?.trim()?.toLowerCase() === 'false') {
+      } else if (
+        card.lastElementChild &&
+        (card.lastElementChild.textContent?.trim()?.toLowerCase() === 'true' || card.lastElementChild.textContent?.trim()?.toLowerCase() === 'false')
+      ) {
         card.lastElementChild.style.display = 'none';
       }
 
