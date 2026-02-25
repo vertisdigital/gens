@@ -115,6 +115,10 @@
     background: linear-gradient(to top, rgba(0, 0, 0, 0.6) 0%, rgba(0, 0, 0, 0) 100%);
   }
 
+  .projectcards .project-card.has-gradient .project-card-content {
+    background: linear-gradient(180deg, rgba(0, 0, 0, 0) 25%, #000 90%);
+  }
+
   .project-card-title a {
     color: var(--text-color);
     text-decoration: none;
@@ -338,6 +342,10 @@
 
     .projectcards .project-card-content {
       padding: 24px;
+    }
+
+    .projectcards .project-card.has-gradient .project-card-content {
+      background: linear-gradient(180deg, rgba(0, 0, 0, 0) 10%, rgba(0, 0, 0, 0.8) 50%, #000 90%);
     }
 
     .projectcards .project-card-title {
