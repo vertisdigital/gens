@@ -1580,6 +1580,10 @@
           {
             "name": "Core Principles No Border",
             "value": "coreprinciples-no-border"
+          },
+          {
+            "name": "Core Principles With Padding Top",
+            "value": "has-padding-top"
           }
         ]
       }

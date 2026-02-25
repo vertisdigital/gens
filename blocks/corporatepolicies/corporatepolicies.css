@@ -264,3 +264,26 @@
 .page-corporate-policies .corporate-policies-list-item .left-col h2{
     width: 100%;
 }
+
+.page-corporate-policies .corporate-policies-list-item .right-col .button-container{
+    justify-content: flex-end;
+}
+
+.page-corporate-policies .corporate-policies-list-item .left-col{
+    width: 75%;
+    @media (width < 768px) {
+        width: 60%;
+    }
+    @media (width < 400px) {
+        width: 50%;
+    }
+}
+.page-corporate-policies .corporate-policies-list-item .right-col{
+    width: 25%;
+    @media (width < 768px) {
+        width: 40%;
+    }
+    @media (width < 400px) {
+        width: 50%;
+    }
+}
