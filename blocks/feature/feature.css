@@ -441,6 +441,11 @@
     font-weight: 400;
   }
 
+  .about-us-stats .about-us-right-content p {
+    font-size: 24px;
+    line-height: 40px;
+  }
+
   .about-us-stats .about-us-right-content>div:nth-child(2) p {
     font-size: 24px;
     line-height: 40px;
@@ -457,11 +462,6 @@
     margin-bottom: 0;
     border-top: 1px solid #E8EBEB;
     padding-right: 24px;
-  }
-
-  .about-us-stats .about-us-right-content p {
-    font-size: 24px;
-    line-height: 40px;
   }
 }
 
