@@ -22,8 +22,22 @@ export const stripHtml = (html) => {
 
 export const highlight = (text, q) => {
   if (!text || !q) return text || "";
+
+  const cleanQ = String(q).trim();
+  if (!cleanQ) return stripHtml(text);
+
+  const words = cleanQ.split(/\s+/);
+  const terms = Array.from(new Set([cleanQ, ...words]));
+
+  const escapeRegExp = (string) => string.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+  const escapedTerms = terms.map(escapeRegExp);
+
+  escapedTerms.sort((a, b) => b.length - a.length);
+
+  const pattern = escapedTerms.join('|');
+
   return stripHtml(text).replace(
-    new RegExp(`(${q})`, "gi"),
+    new RegExp(`(${pattern})`, "gi"),
     "<strong>$1</strong>"
   );
 };
