@@ -259,10 +259,6 @@
     width: 100%;
 }
 
-.page-corporate-policies .corporate-policies-list-item .right-col .button-container{
-    justify-content: flex-end;
-}
-
 .page-corporate-policies .corporate-policies-list-item .left-col{
     width: 75%;
     @media (width < 768px) {
