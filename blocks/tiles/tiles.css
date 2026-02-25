@@ -221,6 +221,7 @@
   width: 100%;
   position: relative;
   aspect-ratio: 16 / 9;
+  text-shadow: 0 0 4px rgba(0, 0, 0, 0.8);
 }
 
 .tiles.block>.image-tile {
