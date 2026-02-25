@@ -175,6 +175,15 @@
       object-position: center;
     }
 
+    .mediablock.has-gradient::after {
+      background: linear-gradient(360deg,
+          rgba(0, 0, 0, 0.8) 0%,
+          rgba(0, 0, 0, 0.7) 35%,
+          rgba(0, 0, 0, 0.5) 60%,
+          rgba(0, 0, 0, 0.2) 80%,
+          rgba(0, 0, 0, 0) 100%);
+    }
+
   }
 
 }

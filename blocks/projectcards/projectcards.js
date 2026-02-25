@@ -144,10 +144,28 @@ export default function decorate(block) {
         lazy: true,
       });
 
-      const enablegradient = card.querySelector('[data-aue-prop="enablegradient"], [data-gen-prop="enablegradient"]')?.textContent?.trim()?.toLowerCase() === 'true';
+      let enablegradient = false;
+      const gradientEl = card.querySelector('[data-aue-prop="enablegradient"], [data-gen-prop="enablegradient"]');
+      if (gradientEl) {
+        enablegradient = gradientEl.textContent?.trim()?.toLowerCase() === 'true';
+      } else {
+        // Fallback for EDS publish where data attributes might be stripped
+        // Assuming it's the last child paragraph or div based on component-models.json structure
+        const lastChild = card.lastElementChild;
+        if (lastChild) {
+          enablegradient = lastChild.textContent?.trim()?.toLowerCase() === 'true';
+        }
+      }
 
       if (enablegradient) {
         cardElement.classList.add('has-gradient');
+      }
+
+      // Hide the gradient config element if it exists in DOM
+      if (gradientEl && gradientEl.parentNode === card) {
+        gradientEl.style.display = 'none';
+      } else if (card.lastElementChild && card.lastElementChild.textContent?.trim()?.toLowerCase() === 'true' || card.lastElementChild && card.lastElementChild.textContent?.trim()?.toLowerCase() === 'false') {
+        card.lastElementChild.style.display = 'none';
       }
 
       imageContainer.insertAdjacentHTML('beforeend', imageHtml);
