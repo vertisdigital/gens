@@ -17,7 +17,7 @@
   width: 90vw;
   max-width: 1100px;
   /* Wider to match image aspect ratio if needed */
-  max-height: 90vh;
+  max-height: 98%;
   /* Allow scrolling if content is tall */
   overflow-y: auto;
   position: relative;
@@ -46,17 +46,14 @@
 .modal-image-container {
   width: 100%;
   margin-bottom: 40px;
-  aspect-ratio: 16 / 9;
-  max-height: calc(90vh - 250px);
 }
 
 .modal-image-container img {
   aspect-ratio: 16 / 9;
   width: 100%;
-  height: auto;
   display: block;
   object-fit: cover;
-  max-height: calc(90vh - 250px);
+  height: 420px;
 }
 
 .modal-text-container {
