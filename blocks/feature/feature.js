@@ -44,12 +44,12 @@ export default function decorate(block) {
 
   //no-margin-top
   if (block.classList.contains('no-margin-top')) {
-    block.closest('feature-wrapper').classList.add('no-margin-top');
+    block.closest('.feature-wrapper').classList.add('no-margin-top');
   }
 
   //no-background
   if (block.classList.contains('no-background')) {
-    block.closest('feature-wrapper').classList.add('no-background');
+    block.closest('.feature-wrapper').classList.add('no-background');
   }
 
   const container = document.createElement('div');
@@ -361,5 +361,6 @@ export default function decorate(block) {
   
   aboutUsStats.appendChild(aboutUsRightContent);
   container.append(aboutUsStats);
+  console.log('container', container);
   block.appendChild(container);
 }
