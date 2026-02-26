@@ -11,7 +11,6 @@ export default function decorate(block) {
 
   // Add container classes for responsive layout
   const wrapper = document.createElement('div');
-  wrapper.classList.add('coreprinciples');
 
   const removeBorderBottom = {
     "esg": true
