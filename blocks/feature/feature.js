@@ -361,6 +361,5 @@ export default function decorate(block) {
   
   aboutUsStats.appendChild(aboutUsRightContent);
   container.append(aboutUsStats);
-  console.log('container', container);
   block.appendChild(container);
 }
