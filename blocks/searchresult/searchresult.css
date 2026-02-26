@@ -22,7 +22,7 @@
   letter-spacing: var(--typography-font-spacing-tracking-normal, 0);
 }
 
-.search-suggestion-box .search-suggestions a{
+.search-suggestion-box .search-suggestions a {
   color: var(--colours-text-text-primary, #1D3D51) !important;
   width: 100% !important;
 }
@@ -204,8 +204,8 @@
   position: relative;
 }
 
-.searchresult-wrapper .pagination .pagination-next >span,
-.searchresult-wrapper .pagination .pagination-prev >span {
+.searchresult-wrapper .pagination .pagination-next>span,
+.searchresult-wrapper .pagination .pagination-prev>span {
   height: 14px;
   position: absolute;
   left: 50%;
@@ -218,6 +218,7 @@
 .searchresult-wrapper .pagination .pagination-prev>span path {
   fill: white;
 }
+
 .searchresult-wrapper .pagination .pagination-page {
   display: flex;
   padding: var(--spacing-2, 8px);
@@ -276,10 +277,9 @@
   align-self: stretch;
 }
 
-.searchresult-empty img {
-  width: 519px;
-  height: 519px;
-  aspect-ratio: 1/1;
+.searchresult-empty svg {
+  width: 128px;
+  height: 128px;
 }
 
 .searchresult-empty h3 {
@@ -300,7 +300,7 @@
 }
 
 .searchresult-empty p {
- color: var(--colours-text-text-body, #3B3D3D);
+  color: var(--colours-text-text-body, #3B3D3D);
   text-align: center;
   font-family: var(--typography-font-family-font-body, "Instrument Sans");
   font-size: var(--typography-font-size-text-base, 16px);
@@ -339,6 +339,7 @@
     padding-right: var(--spacing-10, 24px) !important;
     padding-top: 111px !important;
   }
+
   .searchresult-wrapper {
     padding: var(--spacing-10, 40px) var(--spacing-6, 24px);
     padding-top: 40px;
