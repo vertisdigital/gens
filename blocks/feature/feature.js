@@ -282,7 +282,6 @@ export default function decorate(block) {
   }
 
   // add two-columns class if about us right has two items
-  console.log('about us right content length', aboutUsRightContent.querySelectorAll('div.about-us-right-content'));
   const numberOfAboutUsRightContent = aboutUsRightContent.querySelectorAll('div.about-us-right-content').length;
   if (numberOfAboutUsRightContent === 2) aboutUsRightContent.classList.add('two-columns');
   
