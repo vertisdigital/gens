@@ -15,7 +15,7 @@ export default function ImageComponent({
   className = '',
   asImageName = '',
   breakpoints = {
-    mobile: { width: 767, src: '', smartCrop: ''},
+    mobile: { width: 767, src: '', smartCrop: '' },
     tablet: { width: 991, src: '', smartCrop: '' },
     desktop: { width: 1920, src: '', smartCrop: '' },
   },

@@ -341,7 +341,7 @@ function createHeaderStructure(block) {
 }
 
 function loadSearchSuggest(keyword) {
-  const PUBLISH_BASE = 'https://publish-p144202-e1488374.adobeaemcloud.com';
+  const PUBLISH_BASE = 'https://publish-p144202-e1512622.adobeaemcloud.com';
   const resultInfo = document.querySelector('.search-suggestion-result-info');
 
   const basePath = resolveSearchBasePath();
@@ -879,6 +879,3 @@ export default async function decorate(block) {
     }
   });
 }
-
-
-

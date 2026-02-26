@@ -21,7 +21,8 @@
     margin-bottom: 32px;
     margin-top: 40px;
     position: relative;
-    @media (width < 1181px) and (width >= 768px) {
+
+    @media (width < 1181px) and (width >=768px) {
         margin-bottom: 20px;
     }
 }
@@ -87,6 +88,8 @@
 .tabs-container .about-us-stats .about-us-right-content p {
     font-weight: 400;
     color: var(--body-text-color);
+    line-height: 24px;
+    letter-spacing: -0.5px;
 }
 
 
@@ -165,8 +168,8 @@
     }
 
     .tabs-container .about-us-stats .about-us-right-content {
-        margin-bottom: 16px;
-        padding-top: 16px;
+        margin-bottom: 18px;
+        padding-top: 18px;
     }
 
     .tabs-container .about-us-stats .about-us-right-content:first-child>div:last-child {
@@ -225,7 +228,11 @@
 
     .tabs-container .about-us-stats .about-us-right-content {
         padding-top: 18px;
-        margin-bottom: 40px;
+        margin-bottom: 18px;
+    }
+
+    .tabs-container .about-us-stats .about-us-right-content p {
+        line-height: 20px;
     }
 
     .tabs-container .about-us-stats .about-us-right-content:first-child {
@@ -266,6 +273,11 @@
 
     .tabs-container .textmediablock-wrapper {
         margin-top: 18px
+    }
+
+    .tabs-container .corporate-policies-list-item .left-col h2 {
+        font-size: var(--font-size-m);
+        letter-spacing: -0.5px;
     }
 }
 

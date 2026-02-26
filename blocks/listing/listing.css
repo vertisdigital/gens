@@ -7,6 +7,11 @@
     margin: 0;
   }
 
+  picture {
+    display: block;
+    line-height: 0;
+  }
+
   /* CTA section - moved up to fix specificity issue */
   [data-aue-model="linkField"],
   [data-gen-model="linkField"] {
