@@ -285,23 +285,16 @@
     "id": "tabs",
     "fields": [
       {
-        "component": "multiselect",
-        "name": "classes",
-        "value": "",
-        "label": "Style Classes",
-        "valueType": "string",
-        "options": [
-          {
-            "name": "Tab",
-            "value": "tab"
-          }
-        ]
-      },
-      {
         "component": "text",
         "name": "tabtitle",
         "label": "Tab Title",
         "description": "Tab Title should not exceed 50 characters"
+      },
+      {
+        "component": "boolean",
+        "label": "Active Tab",
+        "name": "active",
+        "valueType": "boolean"
       },
       {
         "component": "text",
@@ -1193,6 +1186,13 @@
         "label": "Location/Description",
         "valueType": "string",
         "description": "Location / Description should not exceed 500 characters"
+      },
+      {
+        "component": "boolean",
+        "name": "enablegradient",
+        "label": "Enable Image Gradient",
+        "valueType": "boolean",
+        "value": false
       }
     ]
   },
@@ -1659,11 +1659,25 @@
         "component": "aem-content",
         "name": "firstCta",
         "label": "CTA Link",
-        "linkTarget": "_blank",
         "validation": {
           "requiredErrorMsg": "CTA Link is mandatory",
           "rootPath": "/content/genting-singapore"
         }
+      },
+      {
+        "component": "select",
+        "name": "firstCtaLinkTarget",
+        "label": "First CTA Target",
+        "options": [
+          {
+            "name": "Same Tab",
+            "value": "_self"
+          },
+          {
+            "name": "New Tab",
+            "value": "_blank"
+          }
+        ]
       },
       {
         "component": "text",
@@ -1675,10 +1689,24 @@
         "component": "aem-content",
         "name": "secondCta",
         "label": "CTA Link",
-        "linkTarget": "_blank",
         "validation": {
           "rootPath": "/content/genting-singapore"
         }
+      },
+      {
+        "component": "select",
+        "name": "secondCtaLinkTarget",
+        "label": "Second CTA Target",
+        "options": [
+          {
+            "name": "Same Tab",
+            "value": "_self"
+          },
+          {
+            "name": "New Tab",
+            "value": "_blank"
+          }
+        ]
       }
     ]
   },
@@ -1729,6 +1757,12 @@
         "name": "imageTitle",
         "label": "Alt Text",
         "valueType": "string"
+      },
+      {
+        "component": "boolean",
+        "label": "Autoplay",
+        "name": "reveal",
+        "valueType": "boolean"
       }
     ]
   },
@@ -2479,6 +2513,39 @@
             "value": "open-as-modal"
           }
         ]
+      }
+    ]
+  },
+  {
+    "id": "cookiepolicy",
+    "fields": [
+      {
+        "component": "richtext",
+        "name": "cookiepolicydescription",
+        "label": "Cookie Policy Description",
+        "valueType": "string",
+        "validation": {
+          "maxLength": 2000,
+          "customErrorMsg": "Cookie Policy Description cannot exceed 2000 characters"
+        }
+      },
+      {
+        "component": "text",
+        "name": "declinecta",
+        "label": "Decline CTA Text",
+        "validation": {
+          "maxLength": 50,
+          "customErrorMsg": "First CTA Caption cannot exceed 50 characters"
+        }
+      },
+      {
+        "component": "text",
+        "name": "acceptcta",
+        "label": "Accept CTA Text",
+        "validation": {
+          "maxLength": 50,
+          "customErrorMsg": "Second CTA Caption cannot exceed 50 characters"
+        }
       }
     ]
   }

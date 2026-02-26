@@ -21,6 +21,7 @@
   font-weight: 400;
   line-height: 44px;
   color: var(--text-color);
+  letter-spacing: -0.5px;
 }
 
 .contactus .contactus-bottom>div:last-child {
@@ -125,6 +126,12 @@
   text-decoration: none;
 }
 
+.contact-link,
+.contact-link:focus,
+.contact-link:hover {
+  background: transparent;
+}
+
 .contactus .contact-items .contact-link {
   font-family: var(--heading-font-family);
   font-size: 16px;
@@ -157,6 +164,42 @@
   line-height: 0;
 }
 
+.tooltip {
+  position: relative;
+  display: inline-block;
+}
+
+.tooltip .tooltiptext {
+  visibility: hidden;
+  width: max-content;
+  background-color: var(--dark-color);
+  color: var(--background-color);
+  text-align: center;
+  border-radius: 6px;
+  padding: 5px;
+  position: absolute;
+  z-index: 1;
+  bottom: 150%;
+  left: 20%;
+  opacity: 0;
+  transition: opacity 0.3s;
+  font-size: var(--font-size-xxs);
+}
+
+.tooltip .tooltiptext::after {
+  content: "";
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  margin-left: -5px;
+  border-width: 5px;
+  border-style: solid;
+  border-color: var(--dark-color) transparent transparent transparent;
+}
+
+.contactus.contactus-variation-nested-1-2 {
+  margin-top: 32px;
+}
 
 /* Tablet Layout  */
 @media (width >=768px) and (width < 1181px) {
@@ -295,7 +338,9 @@
   }
 
   .contactus .contactus-bottom>div:first-child p {
-    font-size: 22px;
+    font-size: var(--font-size-sm);
+    letter-spacing: -0.5px;
+    line-height: 28px;
   }
 
   .contactus.contactus-variation .contactus-bottom>div:last-child>div:last-child {

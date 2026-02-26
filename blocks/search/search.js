@@ -4,7 +4,7 @@ function getQueryParam(name) {
 
 async function fetchResults(keyword) {
   const url =
-    `https://publish-p144202-e1488374.adobeaemcloud.com/content/genting-singapore/jcr:content.contentsearch.json?q=${encodeURIComponent(keyword)}`;
+    `https://publish-p144202-e1512622.adobeaemcloud.com/content/genting-singapore/jcr:content.contentsearch.json?q=${encodeURIComponent(keyword)}`;
 
   const res = await fetch(url);
   if (!res.ok) {

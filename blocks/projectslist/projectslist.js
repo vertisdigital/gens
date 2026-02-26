@@ -30,7 +30,7 @@ export default function decorate(block) {
       leftCol.className = 'col-xl-6 col-md-3 col-sm-4 left-col';
 
       const allDivElements = project.children;
-     
+
 
       const titleText = allDivElements[0];
       if (titleText) {
@@ -71,13 +71,13 @@ export default function decorate(block) {
 
       const projectCta = allDivElements[5];
       projectCta.className = 'project-cta';
-      
+
       // Add arrowIcon to the button/link in projectCta
       const buttonLink = projectCta.querySelector('a');
       if (buttonLink) {
         // Capture the link text field value before clearing
         const linkText = buttonLink.textContent?.trim() || buttonLink.innerHTML?.trim() || '';
-        
+
         buttonLink.classList.add('button');
         if (!linkText.includes('/')) {
           buttonLink.textContent = linkText;
@@ -95,9 +95,9 @@ export default function decorate(block) {
           buttonLink.innerHTML = '';
           buttonLink.appendChild(stringToHtml(arrowIcon));
         }
-        
+
       }
-      
+
       leftCol.appendChild(projectCta);
 
       // Create right column (description and contacts) - 60% on desktop and tablet
@@ -110,7 +110,7 @@ export default function decorate(block) {
         const imageUrl = imageLink.getAttribute('href');
         const picture = ImageComponent({
           src: imageUrl,
-          alt: allDivElements[4].querySelectorAll('a')[1]?.getAttribute('title')||'',
+          alt: allDivElements[4].querySelectorAll('a')[1]?.getAttribute('title') || '',
           className: 'proejctlisting-image',
           breakpoints: {
             mobile: {
