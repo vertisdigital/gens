@@ -394,7 +394,7 @@ export default async function decorate(block) {
     linkProp = contentChildren.find((child) => child.querySelector('a'));
 
     if (!linkProp && contentChildren.length > 1) {
-      linkProp = contentChildren[1];
+      [, linkProp] = contentChildren;
     }
   }
 

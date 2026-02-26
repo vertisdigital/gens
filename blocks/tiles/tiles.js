@@ -86,6 +86,7 @@ function openModal(data) {
         window.URL.revokeObjectURL(url);
         document.body.removeChild(a);
       } catch (error) {
+        // eslint-disable-next-line no-console
         console.error('Error downloading image:', error);
         window.location.href = data.filepath;
       }
