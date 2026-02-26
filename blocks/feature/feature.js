@@ -52,6 +52,11 @@ export default function decorate(block) {
     block.closest('.feature-wrapper').classList.add('no-background');
   }
 
+  //custom padding bottom
+  if (block.classList.contains('custom-padding-bottom')) {
+    block.closest('.feature-wrapper').classList.add('custom-padding-bottom');
+  }
+
   const container = document.createElement('div');
 
   container.classList.add('container');
