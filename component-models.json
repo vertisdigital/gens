@@ -7,7 +7,7 @@
         "valueType": "string",
         "name": "image",
         "label": "image",
-        "configUrl": "https://dev--gens--vertisdigital.aem.page/tools/assets-selector/config.json",
+        "configUrl": "https://uat--gens-stage--vertisdigital.aem.page/tools/assets-selector/config.json",
         "multi": false,
         "validation": {
           "rootPath": "/content/dam/genting-singapore"
@@ -285,23 +285,16 @@
     "id": "tabs",
     "fields": [
       {
-        "component": "multiselect",
-        "name": "classes",
-        "value": "",
-        "label": "Style Classes",
-        "valueType": "string",
-        "options": [
-          {
-            "name": "Tab",
-            "value": "tab"
-          }
-        ]
-      },
-      {
         "component": "text",
         "name": "tabtitle",
         "label": "Tab Title",
         "description": "Tab Title should not exceed 50 characters"
+      },
+      {
+        "component": "boolean",
+        "label": "Active Tab",
+        "name": "active",
+        "valueType": "boolean"
       },
       {
         "component": "text",
@@ -318,7 +311,7 @@
         "valueType": "string",
         "name": "image",
         "label": "Image",
-        "configUrl": "https://dev--gens--vertisdigital.aem.page/tools/assets-selector/config.json",
+        "configUrl": "https://uat--gens-stage--vertisdigital.aem.page/tools/assets-selector/config.json",
         "multi": false
       },
       {
@@ -395,7 +388,7 @@
         "valueType": "string",
         "name": "bannerimage",
         "label": "Banner Image",
-        "configUrl": "https://dev--gens--vertisdigital.aem.page/tools/assets-selector/config.json",
+        "configUrl": "https://uat--gens-stage--vertisdigital.aem.page/tools/assets-selector/config.json",
         "multi": false,
         "validation": {
           "rootPath": "/content/dam/genting-singapore"
@@ -513,7 +506,7 @@
         "valueType": "string",
         "name": "mastheadimage",
         "label": "Masthead Image",
-        "configUrl": "https://dev--gens--vertisdigital.aem.page/tools/assets-selector/config.json",
+        "configUrl": "https://uat--gens-stage--vertisdigital.aem.page/tools/assets-selector/config.json",
         "multi": false,
         "validation": {
           "rootPath": "/content/dam/genting-singapore"
@@ -524,7 +517,7 @@
         "valueType": "string",
         "name": "mastheadimageTablet",
         "label": "Banner Image (Tablet)",
-        "configUrl": "https://dev--gens--vertisdigital.aem.page/tools/assets-selector/config.json",
+        "configUrl": "https://uat--gens-stage--vertisdigital.aem.page/tools/assets-selector/config.json",
         "multi": false,
         "validation": {
           "rootPath": "/content/dam/genting-singapore"
@@ -535,7 +528,7 @@
         "valueType": "string",
         "name": "mastheadimageMobile",
         "label": "Masthead Image (Mobile)",
-        "configUrl": "https://dev--gens--vertisdigital.aem.page/tools/assets-selector/config.json",
+        "configUrl": "https://uat--gens-stage--vertisdigital.aem.page/tools/assets-selector/config.json",
         "multi": false,
         "validation": {
           "rootPath": "/content/dam/genting-singapore"
@@ -595,7 +588,7 @@
         "component": "custom-asset-namespace:custom-asset",
         "name": "image",
         "label": "Carousel Image",
-        "configUrl": "https://dev--gens--vertisdigital.aem.page/tools/assets-selector/config.json",
+        "configUrl": "https://uat--gens-stage--vertisdigital.aem.page/tools/assets-selector/config.json",
         "valueType": "string",
         "validation": {
           "rootPath": "/content/dam/genting-singapore"
@@ -705,7 +698,7 @@
         "valueType": "string",
         "name": "feature-icon",
         "label": "Icon",
-        "configUrl": "https://dev--gens--vertisdigital.aem.page/tools/assets-selector/config.json",
+        "configUrl": "https://uat--gens-stage--vertisdigital.aem.page/tools/assets-selector/config.json",
         "multi": false
       },
       {
@@ -955,7 +948,7 @@
         "valueType": "string",
         "name": "linkImage",
         "label": "Link Image",
-        "configUrl": "https://dev--gens--vertisdigital.aem.page/tools/assets-selector/config.json",
+        "configUrl": "https://uat--gens-stage--vertisdigital.aem.page/tools/assets-selector/config.json",
         "multi": false
       },
       {
@@ -1019,7 +1012,7 @@
         "component": "custom-asset-namespace:custom-asset",
         "name": "image",
         "label": "Background Image",
-        "configUrl": "https://dev--gens--vertisdigital.aem.page/tools/assets-selector/config.json",
+        "configUrl": "https://uat--gens-stage--vertisdigital.aem.page/tools/assets-selector/config.json",
         "multi": false,
         "title": "Image",
         "validation": {
@@ -1129,7 +1122,7 @@
         "component": "custom-asset-namespace:custom-asset",
         "name": "image",
         "label": "Project Image",
-        "configUrl": "https://dev--gens--vertisdigital.aem.page/tools/assets-selector/config.json",
+        "configUrl": "https://uat--gens-stage--vertisdigital.aem.page/tools/assets-selector/config.json",
         "multi": false,
         "validation": {
           "rootPath": "/content/dam/genting-singapore"
@@ -1221,7 +1214,7 @@
         "component": "custom-asset-namespace:custom-asset",
         "name": "phoneIcon",
         "label": "Phone Icon",
-        "configUrl": "https://dev--gens--vertisdigital.aem.page/tools/assets-selector/config.json",
+        "configUrl": "https://uat--gens-stage--vertisdigital.aem.page/tools/assets-selector/config.json",
         "multi": false
       },
       {
@@ -1261,7 +1254,7 @@
             "component": "custom-asset-namespace:custom-asset",
             "name": "emailIcon1",
             "label": "Email Icon",
-            "configUrl": "https://dev--gens--vertisdigital.aem.page/tools/assets-selector/config.json",
+            "configUrl": "https://uat--gens-stage--vertisdigital.aem.page/tools/assets-selector/config.json",
             "multi": false
           },
           {
@@ -1298,7 +1291,7 @@
             "component": "custom-asset-namespace:custom-asset",
             "name": "emailIcon2",
             "label": "Email Icon",
-            "configUrl": "https://dev--gens--vertisdigital.aem.page/tools/assets-selector/config.json",
+            "configUrl": "https://uat--gens-stage--vertisdigital.aem.page/tools/assets-selector/config.json",
             "multi": false
           },
           {
@@ -1335,7 +1328,7 @@
             "component": "custom-asset-namespace:custom-asset",
             "name": "emailIcon3",
             "label": "Email Icon",
-            "configUrl": "https://dev--gens--vertisdigital.aem.page/tools/assets-selector/config.json",
+            "configUrl": "https://uat--gens-stage--vertisdigital.aem.page/tools/assets-selector/config.json",
             "multi": false
           },
           {
@@ -1365,7 +1358,7 @@
         "component": "custom-asset-namespace:custom-asset",
         "name": "addressIcon",
         "label": "Address Icon",
-        "configUrl": "https://dev--gens--vertisdigital.aem.page/tools/assets-selector/config.json",
+        "configUrl": "https://uat--gens-stage--vertisdigital.aem.page/tools/assets-selector/config.json",
         "multi": false
       },
       {
@@ -1476,7 +1469,7 @@
         "component": "custom-asset-namespace:custom-asset",
         "name": "image",
         "label": "Image",
-        "configUrl": "https://dev--gens--vertisdigital.aem.page/tools/assets-selector/config.json",
+        "configUrl": "https://uat--gens-stage--vertisdigital.aem.page/tools/assets-selector/config.json",
         "multi": false
       },
       {
@@ -1497,7 +1490,7 @@
         "label": "File Path",
         "name": "filepath",
         "valueType": "string",
-        "configUrl": "https://dev--gens--vertisdigital.aem.page/tools/assets-selector/config.json",
+        "configUrl": "https://uat--gens-stage--vertisdigital.aem.page/tools/assets-selector/config.json",
         "multi": false,
         "condition": {
           "===": [
@@ -1539,14 +1532,14 @@
         "component": "custom-asset-namespace:custom-asset",
         "name": "imageTablet",
         "label": "Image (Tablet)",
-        "configUrl": "https://dev--gens--vertisdigital.aem.page/tools/assets-selector/config.json",
+        "configUrl": "https://uat--gens-stage--vertisdigital.aem.page/tools/assets-selector/config.json",
         "multi": false
       },
       {
         "component": "custom-asset-namespace:custom-asset",
         "name": "imageMobile",
         "label": "Image (Mobile)",
-        "configUrl": "https://dev--gens--vertisdigital.aem.page/tools/assets-selector/config.json",
+        "configUrl": "https://uat--gens-stage--vertisdigital.aem.page/tools/assets-selector/config.json",
         "multi": false
       },
       {
@@ -1610,7 +1603,7 @@
         "component": "custom-asset-namespace:custom-asset",
         "name": "image",
         "label": "Image",
-        "configUrl": "https://dev--gens--vertisdigital.aem.page/tools/assets-selector/config.json",
+        "configUrl": "https://uat--gens-stage--vertisdigital.aem.page/tools/assets-selector/config.json",
         "multi": false
       },
       {
@@ -1654,11 +1647,25 @@
         "component": "aem-content",
         "name": "firstCta",
         "label": "CTA Link",
-        "linkTarget": "_blank",
         "validation": {
           "requiredErrorMsg": "CTA Link is mandatory",
           "rootPath": "/content/genting-singapore"
         }
+      },
+      {
+        "component": "select",
+        "name": "firstCtaLinkTarget",
+        "label": "First CTA Target",
+        "options": [
+          {
+            "name": "Same Tab",
+            "value": "_self"
+          },
+          {
+            "name": "New Tab",
+            "value": "_blank"
+          }
+        ]
       },
       {
         "component": "text",
@@ -1670,10 +1677,24 @@
         "component": "aem-content",
         "name": "secondCta",
         "label": "CTA Link",
-        "linkTarget": "_blank",
         "validation": {
           "rootPath": "/content/genting-singapore"
         }
+      },
+      {
+        "component": "select",
+        "name": "secondCtaLinkTarget",
+        "label": "Second CTA Target",
+        "options": [
+          {
+            "name": "Same Tab",
+            "value": "_self"
+          },
+          {
+            "name": "New Tab",
+            "value": "_blank"
+          }
+        ]
       }
     ]
   },
@@ -1717,13 +1738,19 @@
         "component": "custom-asset-namespace:custom-asset",
         "name": "image",
         "label": "Image",
-        "configUrl": "https://dev--gens--vertisdigital.aem.page/tools/assets-selector/config.json"
+        "configUrl": "https://uat--gens-stage--vertisdigital.aem.page/tools/assets-selector/config.json"
       },
       {
         "component": "text",
         "name": "imageTitle",
         "label": "Alt Text",
         "valueType": "string"
+      },
+      {
+        "component": "boolean",
+        "label": "Autoplay",
+        "name": "reveal",
+        "valueType": "boolean"
       }
     ]
   },
@@ -1759,7 +1786,7 @@
         "component": "custom-asset-namespace:custom-asset",
         "name": "image",
         "label": "Image",
-        "configUrl": "https://dev--gens--vertisdigital.aem.page/tools/assets-selector/config.json",
+        "configUrl": "https://uat--gens-stage--vertisdigital.aem.page/tools/assets-selector/config.json",
         "multi": false
       },
       {
@@ -1945,7 +1972,7 @@
         "component": "custom-asset-namespace:custom-asset",
         "name": "awardimage",
         "label": "Award Image",
-        "configUrl": "https://dev--gens--vertisdigital.aem.page/tools/assets-selector/config.json",
+        "configUrl": "https://uat--gens-stage--vertisdigital.aem.page/tools/assets-selector/config.json",
         "multi": false,
         "validation": {
           "rootPath": "/content/dam/genting-singapore"
@@ -2026,7 +2053,7 @@
         "component": "custom-asset-namespace:custom-asset",
         "name": "image",
         "label": "Image",
-        "configUrl": "https://dev--gens--vertisdigital.aem.page/tools/assets-selector/config.json",
+        "configUrl": "https://uat--gens-stage--vertisdigital.aem.page/tools/assets-selector/config.json",
         "multi": false
       },
       {
@@ -2228,7 +2255,7 @@
         "label": "File Path",
         "name": "filepath",
         "valueType": "string",
-        "configUrl": "https://dev--gens--vertisdigital.aem.page/tools/assets-selector/config.json",
+        "configUrl": "https://uat--gens-stage--vertisdigital.aem.page/tools/assets-selector/config.json",
         "multi": false,
         "condition": {
           "===": [
@@ -2322,7 +2349,7 @@
         "component": "custom-asset-namespace:custom-asset",
         "name": "image",
         "label": "Image",
-        "configUrl": "https://dev--gens--vertisdigital.aem.page/tools/assets-selector/config.json",
+        "configUrl": "https://uat--gens-stage--vertisdigital.aem.page/tools/assets-selector/config.json",
         "multi": false,
         "validation": {
           "required": true,
@@ -2474,6 +2501,39 @@
             "value": "open-as-modal"
           }
         ]
+      }
+    ]
+  },
+  {
+    "id": "cookiepolicy",
+    "fields": [
+      {
+        "component": "richtext",
+        "name": "cookiepolicydescription",
+        "label": "Cookie Policy Description",
+        "valueType": "string",
+        "validation": {
+          "maxLength": 2000,
+          "customErrorMsg": "Cookie Policy Description cannot exceed 2000 characters"
+        }
+      },
+      {
+        "component": "text",
+        "name": "declinecta",
+        "label": "Decline CTA Text",
+        "validation": {
+          "maxLength": 50,
+          "customErrorMsg": "First CTA Caption cannot exceed 50 characters"
+        }
+      },
+      {
+        "component": "text",
+        "name": "acceptcta",
+        "label": "Accept CTA Text",
+        "validation": {
+          "maxLength": 50,
+          "customErrorMsg": "Second CTA Caption cannot exceed 50 characters"
+        }
       }
     ]
   }

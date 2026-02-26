@@ -16,6 +16,7 @@
       "linkField",
       "socialLinks",
       "links",
+      "login",
       "imageLink",
       "exploremore",
       "listing",
@@ -29,6 +30,7 @@
       "tabsectiontitle",
       "awardsgallery",
       "sustainabilitygovernance",
+      "cookiepolicy",
       "corporatepolicies",
       "statistics",
       "searchresult",
@@ -140,7 +142,8 @@
   {
     "id": "projectcards",
     "components": [
-      "projectcard"
+      "projectcard",
+      "linkField"
     ]
   },
   {
@@ -158,14 +161,16 @@
   {
     "id": "coreprinciples",
     "components": [
-      "coreprinciple"
+      "coreprinciple",
+      "linkField"
     ]
   },
   {
     "id": "textmediablock",
     "components": [
       "media",
-      "textsection"
+      "textsection",
+      "textblock"
     ]
   },
   {
@@ -194,7 +199,8 @@
   {
     "id": "awardsgallery",
     "components": [
-      "awardstile"
+      "awardstile",
+      "linkField"
     ]
   },
   {
@@ -206,7 +212,8 @@
   {
     "id": "sustainabilitygovernance",
     "components": [
-      "governancetile"
+      "governancetile",
+      "linkField"
     ]
   },
   {
