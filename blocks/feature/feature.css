@@ -16,6 +16,10 @@
   margin-top: 0;
 }
 
+.feature-wrapper.custom-padding-bottom {
+  padding: 0 0 64px;
+}
+
 @media (width >=2560px) {
   .feature-wrapper {
     max-width: 2560px;
