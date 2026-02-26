@@ -341,8 +341,8 @@
     margin-bottom: 0;
   }
 
-  .about-us-stats .about-us-right-content.text-container:not(:first-child),
-  .about-us-stats .about-us-right-content:not(:first-child) {
+  .about-us-stats .about-us-right-content.text-container,
+  .about-us-stats .about-us-right-content{
     margin-bottom: 0;
     padding-top: 16px;
     border-top: 1px solid #E8EBEB;
@@ -628,21 +628,26 @@
   text-align: left;
 }
 
+.feature-wrapper .with-vertical-list .about-us-stats .about-us-right-content {
+  border: none;
+}
+
+.feature-wrapper .with-vertical-list .about-us-stats .about-us-right-content:not(:first-child) {
+  border-top: 1px solid #E8EBEB;
+}
 
 .feature-wrapper .with-vertical-list .about-us-stats .about-us-right-content>div {
   width: 100%;
 }
 
 .feature-wrapper .with-vertical-list .about-us-stats .about-us-right-content>div p {
-  font-size: 16px;
+  font-size: 24px;
   font-weight: 400;
-  line-height: 24px;
+  line-height: 40px;
   font-family: var(--body-font-family, 'Inter', sans-serif);
   color: var(--color-text-tertiary, #8d713e);
   margin: 0;
 }
-
-
 
 .with-images-four-col .about-us-stats .about-us-right-content.image-container>div:first-child {
   width: 64px;
@@ -754,6 +759,10 @@
     display: flex;
     gap: 8px;
   }
+
+  .feature-wrapper .is-inside-tab .about-us-stats .about-us-right-content {
+    margin-bottom: 0;
+  }
 }
 
 /* Desktop Design */
@@ -831,15 +840,11 @@
     border-top: none;
   }
 
-  .feature-wrapper .with-vertical-list .about-us-stats .about-us-right-content:not(:first-child) {
-    border-top: 1px solid #E8EBEB;
-  }
-
   .feature-wrapper .with-vertical-list .about-us-stats .about-us-right-content:not(:has(~ .about-us-right-content)) {
     border-bottom: none;
     padding-bottom: 0;
   }
-
+}
   /* Tablet Design */
   @media (width >=768px) and (width < 1181px) {
     .feature-wrapper .with-vertical-list .about-us-stats {
@@ -857,7 +862,7 @@
     }
 
     .feature-wrapper .with-vertical-list .about-us-stats .about-us-right-content {
-      padding: 20px 0;
+      padding: 16px 0;
     }
 
     .feature-wrapper .with-vertical-list .about-us-stats .about-us-right-content:not(:has(~ .about-us-right-content)) {
@@ -875,6 +880,10 @@
     .feature-wrapper .with-vertical-list .about-us-stats {
       flex-direction: column;
       gap: 24px;
+    }
+
+    .feature-wrapper .with-vertical-list .about-us-stats .about-us-right{
+      gap: 0;
     }
 
     .feature-wrapper .with-vertical-list .about-us-right-column {
@@ -900,7 +909,7 @@
       line-height: 24px;
     }
   }
-}
+
 
 
 
