@@ -3,17 +3,30 @@ export default function decorate(block) {
   const loginChildren = Array.from(block.children);
 
   // Simple auth functions
+  function getCookie(name) {
+    const cookies = document.cookie.split('; ');
+    for (let i = 0; i < cookies.length; i += 1) {
+      const parts = cookies[i].split('=');
+      const key = parts[0];
+      const value = parts.slice(1).join('=');
+      if (key === name) {
+        return decodeURIComponent(value);
+      }
+    }
+    return null;
+  }
+
   function isAuthenticated() {
-    return sessionStorage.getItem('isAuthenticated') === 'true';
+    return getCookie('isAuthenticated') === 'true';
   }
 
   function setAuthenticated(status) {
     if (status) {
-      sessionStorage.setItem('isAuthenticated', 'true');
-      sessionStorage.setItem('authTimestamp', Date.now().toString());
+      document.cookie = 'isAuthenticated=true; path=/';
+      document.cookie = `authTimestamp=${Date.now()}; path=/`;
     } else {
-      sessionStorage.removeItem('isAuthenticated');
-      sessionStorage.removeItem('authTimestamp');
+      document.cookie = 'isAuthenticated=; path=/; max-age=0';
+      document.cookie = 'authTimestamp=; path=/; max-age=0';
     }
   }
 
@@ -26,9 +39,9 @@ export default function decorate(block) {
     }
 
     // Use document.referrer if available and not login page
-    if (document.referrer && 
-        document.referrer !== window.location.href && 
-        !document.referrer.includes('/login')) {
+    if (document.referrer &&
+      document.referrer !== window.location.href &&
+      !document.referrer.includes('/login')) {
       return document.referrer;
     }
 
@@ -57,12 +70,12 @@ export default function decorate(block) {
   function hideHeaderFooter() {
     const header = document.querySelector('header');
     const footer = document.querySelector('footer');
-    
+
     if (header) {
       header.style.display = 'none';
       header.setAttribute('data-login-hidden', 'true');
     }
-    
+
     if (footer) {
       footer.style.display = 'none';
       footer.setAttribute('data-login-hidden', 'true');
@@ -73,12 +86,12 @@ export default function decorate(block) {
   function showHeaderFooter() {
     const header = document.querySelector('header[data-login-hidden="true"]');
     const footer = document.querySelector('footer[data-login-hidden="true"]');
-    
+
     if (header) {
       header.style.display = '';
       header.removeAttribute('data-login-hidden');
     }
-    
+
     if (footer) {
       footer.style.display = '';
       footer.removeAttribute('data-login-hidden');
@@ -112,7 +125,7 @@ export default function decorate(block) {
   // Create title with logo instead of text
   const title = document.createElement('div');
   title.className = 'login-title';
-  
+
   // Create SVG icon directly
   title.innerHTML = `
         <svg width="168" height="50" viewBox="0 0 168 50" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -274,7 +287,7 @@ export default function decorate(block) {
   // Form submission handler
   form.addEventListener('submit', (e) => {
     e.preventDefault();
-    
+
     if (!validateForm()) {
       return;
     }
@@ -285,13 +298,13 @@ export default function decorate(block) {
     if (authenticateUser(username, password)) {
       // Set authentication in sessionStorage
       setAuthenticated(true);
-      
+
       // Show header and footer before redirect
       showHeaderFooter();
-      
+
       // Get redirect URL (referrer or fallback)
       const redirectUrl = getRedirectUrl();
-      
+
       // Success - redirect to referrer or fallback
       window.location.href = redirectUrl;
     } else {
@@ -299,7 +312,7 @@ export default function decorate(block) {
       generalError.textContent = 'Invalid credentials. Please try again.';
       usernameInput.classList.add('error');
       passwordInput.classList.add('error');
-      
+
       // Focus on username field for retry
       usernameInput.focus();
     }

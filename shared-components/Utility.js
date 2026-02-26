@@ -88,7 +88,7 @@ export function isMobile() {
 
 export function controlLowerEnvironment() {
   // Authentication check - redirect to login if not authenticated and not already on login page
-  const isAuthenticated = sessionStorage.getItem('isAuthenticated') === 'true';
+  const isAuthenticated = getCookie('isAuthenticated') === 'true';
   const currentPath = window.location.pathname;
 
   // If user is not authenticated and not already on login page, redirect to login
