@@ -201,7 +201,7 @@ const renderResults = (block, q, results, currentPage, total, totalPages, noResu
   if (total === 0) {
     block.innerHTML = `
       <div class="searchresult-empty">
-        <div class="searchresult-empty-illustration"><img src="../../icons/no-result-found.png"/></div>
+        <div class="searchresult-empty-illustration">${getIcon('noResult')}</div>
 
         <h3>No results found for ‘${q}’.</h3>
         <p>Please try again or ${noResultLink ? `<a href="${noResultLink}">connect with our representative.</a>` : 'connect with our representative.'}</p>
