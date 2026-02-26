@@ -7,7 +7,7 @@ const hideCookieConsent = () => {
 
 const setCookieData = (_e, accepted = true) => {
     //set for 180 days
-    document.cookie = `cookieConsent=${accepted};path=/;max-age=15552000`
+    document.cookie = `cookieConsent=${accepted};path=/;max-age=15552000;Secure`;
     hideCookieConsent();
 };
 export class CookiePolicy {

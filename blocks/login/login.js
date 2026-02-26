@@ -22,11 +22,11 @@ export default function decorate(block) {
 
   function setAuthenticated(status) {
     if (status) {
-      document.cookie = 'isAuthenticated=true; path=/';
-      document.cookie = `authTimestamp=${Date.now()}; path=/`;
+      document.cookie = 'isAuthenticated=true; path=/; Secure';
+      document.cookie = `authTimestamp=${Date.now()}; path=/; Secure`;
     } else {
-      document.cookie = 'isAuthenticated=; path=/; max-age=0';
-      document.cookie = 'authTimestamp=; path=/; max-age=0';
+      document.cookie = 'isAuthenticated=; path=/; max-age=0; Secure';
+      document.cookie = 'authTimestamp=; path=/; max-age=0; Secure';
     }
   }
 
