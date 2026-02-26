@@ -13,7 +13,7 @@
     padding-top: 80px;
 }
 
-.coreprinciples > div {
+.coreprinciples>div {
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -30,7 +30,7 @@
     padding: 0;
 }
 
-.principles-item > div {
+.principles-item>div {
     background-color: var(--primary-default-fg);
     padding: 24px;
     display: flex;
@@ -90,7 +90,7 @@
 
 
 /* Tablet styles (768px - 1199px) */
-@media (width >= 768px) and (width < 1200px) {
+@media (width >=768px) and (width < 1200px) {
     .coreprinciples .coreprinciples-container {
         display: flex;
         flex-direction: column;
@@ -118,7 +118,7 @@
         margin-bottom: 16px;
     }
 
-    .principles-item > div {
+    .principles-item>div {
         flex-direction: row;
         gap: 32px;
         padding: 24px;
@@ -127,8 +127,12 @@
     }
 
     .coreprinciples {
-       /*  margin-top: 40px; */
+        /*  margin-top: 40px; */
         padding-bottom: 64px;
+    }
+
+    .coreprinciples .links-container {
+        margin-top: 48px;
     }
 
     .coreprinciples .coreprinciples .container::after {
@@ -169,6 +173,10 @@
         height: 64px;
     }
 
+    .coreprinciples .links-container {
+        margin-top: 40px;
+    }
+
     .coreprinciples .icon-wrapper picture {
         width: 64px;
         height: 64px;
@@ -198,7 +206,7 @@
         padding: 0;
     }
 
-    .principles-item > div {
+    .principles-item>div {
         flex-direction: column;
         padding: 24px;
     }

@@ -8,12 +8,12 @@
 }
 
 .awardsgallery .awardsgallery-card {
-   display: flex;
-   flex-direction: column;
-   align-items: center;
-   background: var(--color-bg-white);
-   flex: 0 0 calc((100% - 72px) / 4);
-   scroll-snap-align: start;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background: var(--color-bg-white);
+    flex: 0 0 calc((100% - 72px) / 4);
+    scroll-snap-align: start;
 }
 
 .awardsgallery .awardsgallery-image {
@@ -68,10 +68,12 @@
     gap: 24px;
     margin: 0 72px 80px;
     justify-content: flex-start;
-    @media (width < 1181px) and (width >= 768px) {
+
+    @media (width < 1181px) and (width >=768px) {
         padding-top: 64px;
         margin-bottom: 64px;
     }
+
     @media(width<768px) {
         padding-top: 40px;
     }
@@ -90,9 +92,11 @@
         justify-content: flex-start;
         padding-top: 0;
         padding-bottom: 24px;
-        @media (width < 1181px) and (width >= 768px) {
+
+        @media (width < 1181px) and (width >=768px) {
             padding-bottom: 40px;
         }
+
         @media(width<768px) {
             padding-bottom: 40px;
         }
@@ -116,7 +120,7 @@
 
 .awardsgallery .awardsgallery-grid::-webkit-scrollbar {
     display: none;
-  }
+}
 
 .awardsgallery picture {
     text-align: center;
@@ -138,49 +142,49 @@
     cursor: pointer;
     z-index: 2;
     transition: all 0.2s ease;
-  }
+}
 
-  .awardsgallery-arrow:hover {
+.awardsgallery-arrow:hover {
     border: 2px solid var(--color-border-secondary);
     color: var(--color-border-secondary);
     background: none;
-  }
+}
 
-  .awardsgallery-arrow:focus {
+.awardsgallery-arrow:focus {
     border: 2px solid var(--color-border-secondary-pressed);
     color: var(--color-border-secondary-pressed);
     background: none;
-  }
+}
 
-  .awardsgallery-arrow:disabled {
-    border: 2px solid var( --color-border-disabled);
-    color: var( --color-border-disabled);
+.awardsgallery-arrow:disabled {
+    border: 2px solid var(--color-border-disabled);
+    color: var(--color-border-disabled);
     background: none;
     cursor: not-allowed;
     pointer-events: none;
-  }
+}
 
-  .awardsgallery-arrow .icon-wrapper {
+.awardsgallery-arrow .icon-wrapper {
     display: flex;
-  }
+}
 
-  /* Hide arrows on desktop when there are 3 or fewer cards */
-  .awardsgallery-arrow.hide-on-desktop {
+/* Hide arrows on desktop when there are 3 or fewer cards */
+.awardsgallery-arrow.hide-on-desktop {
     display: none;
-  }
+}
 
-  /* Hide arrows on tablet and mobile when there's only 1 card */
-  .awardsgallery-arrow.hide-on-tablet-mobile {
+/* Hide arrows on tablet and mobile when there's only 1 card */
+.awardsgallery-arrow.hide-on-tablet-mobile {
     display: none;
-  }
+}
 
-  .awardsgallery-arrow.next {
+.awardsgallery-arrow.next {
     right: 80px;
-  }
+}
 
-  .awardsgallery.grid-view .awardsgallery-arrow {
+.awardsgallery.grid-view .awardsgallery-arrow {
     display: none;
-  }
+}
 
 @media (width < 768px) {
 
@@ -236,8 +240,8 @@
     }
 }
 
-  /* tablet styles */
-@media (width < 1181px) and (width >= 768px) {
+/* tablet styles */
+@media (width < 1181px) and (width >=768px) {
     .awardsgallery .awardsgallery-grid.no-margin-left-right {
         margin: 0 72px 80px;
     }
@@ -298,8 +302,3 @@
         flex: 0 0 calc((100% - 48px) / 3);
     }
 }
-
-
-
-
-

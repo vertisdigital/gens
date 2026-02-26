@@ -39,7 +39,7 @@ function updateIframeHeight(iframeWrapper, endpoint, iframeElement = null) {
       desktop: '7500px',
     },
     'sustainability-reports': {
-      mobile: '6680px',
+      mobile: '8080px',
       tablet: {
         landscape: '2620px',
         portrait: '2260px',
@@ -48,20 +48,17 @@ function updateIframeHeight(iframeWrapper, endpoint, iframeElement = null) {
     },
     newsroom: {
       mobile: '3000px',
-      tablet: {
-        landscape: '1500px',
-        portrait: '1570px',
-      },
-      desktop: '1430px',
+      tablet: '1520px',
+      desktop: '1500px',
     },
     'agm-egm': {
-      mobile: '950px',
-      desktop: '790px',
+      mobile: '1080px',
+      desktop: '900px',
     },
     'analysts-coverage': {
       mobile: '1300px',
       tablet: '1110px',
-      desktop: '1060px',
+      desktop: '1080px',
     },
     'share-quote-and-chart': {
       mobile: '3500px',

@@ -56,7 +56,7 @@ export default function decorate(block) {
     phone: 3, email1: 6, email2: 9, email3: 12, address: 14,
   };
 
- 
+
 
   const contactInfo = Object.fromEntries(
     Object.entries(indices).map(([key, index]) => [
@@ -170,7 +170,7 @@ export default function decorate(block) {
   };
 
   contactData.forEach(({
-    value, type, key, label, textContentIndex,imageSrc
+    value, type, key, label, textContentIndex, imageSrc
   }) => {
     if (value) {
       const imageHref = imageSrc?.getAttribute('href') || '';
@@ -228,7 +228,7 @@ export default function decorate(block) {
 
       if (nextTargetText) {
         anchorElement.target = nextTargetText;
-      } 
+      }
     }
 
     // Clone and append `targetElement` to `rightCol2`
@@ -242,7 +242,7 @@ export default function decorate(block) {
     enquiryChildren[1].append(row2);
     container.append(enquiryChildren[1]);
   }
-  
+
   wrapper.innerHTML = '';
   wrapper.append(container);
 }
