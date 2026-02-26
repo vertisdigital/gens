@@ -17,7 +17,7 @@
   width: 90vw;
   max-width: 1100px;
   /* Wider to match image aspect ratio if needed */
-  max-height: 90vh;
+  max-height: 98%;
   /* Allow scrolling if content is tall */
   overflow-y: auto;
   position: relative;
@@ -46,17 +46,14 @@
 .modal-image-container {
   width: 100%;
   margin-bottom: 40px;
-  aspect-ratio: 16 / 9;
-  max-height: calc(90vh - 250px);
 }
 
 .modal-image-container img {
   aspect-ratio: 16 / 9;
   width: 100%;
-  height: auto;
   display: block;
   object-fit: cover;
-  max-height: calc(90vh - 250px);
+  height: 420px;
 }
 
 .modal-text-container {
@@ -221,6 +218,7 @@
   width: 100%;
   position: relative;
   aspect-ratio: 16 / 9;
+  text-shadow: 0 0 4px rgba(0, 0, 0, 0.8);
 }
 
 .tiles.block>.image-tile {
@@ -244,6 +242,7 @@
   text-decoration: underline;
   display: flex;
   gap: 16px;
+  line-height: 16px;
 }
 
 a:any-link.factsheet-button {
@@ -381,6 +380,7 @@ a:any-link.factsheet-button {
   .factsheet-button {
     margin: 16px 0 0;
     font-size: var(--font-size-xxs);
+    line-height: 14px;
   }
 
   .row.tiles-container>.image-tile>div {
@@ -397,6 +397,7 @@ a:any-link.factsheet-button {
     line-height: 34px;
     font-weight: 500;
     margin-bottom: 8px;
+    line-height: 34px;
   }
 
   .row.tiles-container .image-tile>div>div:first-child p {
@@ -501,6 +502,8 @@ a:any-link.factsheet-button {
 
   .row.tiles-container .no-image-tile>div>div:first-child p {
     font-size: var(--font-size-l);
+    letter-spacing: -0.5px;
+    line-height: 42px;
   }
 
   .row.tiles-container .image-tile>div>div:nth-child(2) p {
