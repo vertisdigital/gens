@@ -42,6 +42,16 @@ export default function decorate(block) {
     block.classList.add(featureClass);
   }
 
+  //no-margin-top
+  if (block.classList.contains('no-margin-top')) {
+    block.closest('feature-wrapper').classList.add('no-margin-top');
+  }
+
+  //no-background
+  if (block.classList.contains('no-background')) {
+    block.closest('feature-wrapper').classList.add('no-background');
+  }
+
   const container = document.createElement('div');
 
   container.classList.add('container');
@@ -59,6 +69,7 @@ export default function decorate(block) {
     block.classList.add('is-inside-tab');
   }
   const isVerticalList = featureClass === 'with-vertical-list' && isInsideTab;
+  let isLeftContainerHasContent = true;
 
   if (isVerticalList) {
     // For with-vertical-list: only add heading directly to about-us-left
@@ -178,6 +189,11 @@ export default function decorate(block) {
     // Append columns to left container
     aboutUsLeftContent.appendChild(leftColumn);
     aboutUsLeftContent.appendChild(rightColumn);
+
+    if (leftColumn.innerHTML === '' && rightColumn.innerHTML === ''){
+      isLeftContainerHasContent = false;
+    }
+    
   }
 
   // About-Us right container
@@ -264,6 +280,14 @@ export default function decorate(block) {
       aboutUsRightContent.appendChild(featureContainer);
     });
   }
+
+  // add two-columns class if about us right has two items
+  const numberOfAboutUsRightContent = aboutUsRightContent.querySelectorAll('div.about-us-right-content').length;
+  if (numberOfAboutUsRightContent === 2) aboutUsRightContent.classList.add('two-columns');
+  
+  // add one-column class if about us right has one item
+  if (numberOfAboutUsRightContent === 1) aboutUsRightContent.classList.add('one-column');
+  
   // check if data-aue-model="indices" exists
   const indices = blockchildren[blockchildren.length - 1];
   if (indices && indices.children.length === 3) {
@@ -329,7 +353,12 @@ export default function decorate(block) {
     aboutUsRightContent.appendChild(indices);
   }
   block.innerHTML = '';
-  aboutUsStats.appendChild(aboutUsLeftContent);
+   // just render if left container has content 
+  if (isLeftContainerHasContent)
+  {
+    aboutUsStats.appendChild(aboutUsLeftContent);
+  }
+  
   aboutUsStats.appendChild(aboutUsRightContent);
   container.append(aboutUsStats);
   block.appendChild(container);

@@ -79,6 +79,10 @@
     }
 }
 
+.awardsgallery .awardsgallery-grid.no-margin-left-right {
+    margin: 0 0 80px;
+}
+
 .awardsgallery.grid-view {
     .awardsgallery-grid {
         display: grid;
@@ -185,6 +189,10 @@
 @media (width < 768px) {
 
     .awardsgallery .awardsgallery-grid {
+        margin: 0 32px 40px;
+    }
+
+    .awardsgallery .awardsgallery-grid.no-margin-left-right {
         margin: 0 32px 40px;
     }
 

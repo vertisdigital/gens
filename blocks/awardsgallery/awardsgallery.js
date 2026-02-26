@@ -90,6 +90,11 @@ export default function decorate(block) {
   const cards = cardsGridContainer.querySelectorAll('.awardsgallery-card');
   const cardCount = cards.length;
 
+   // Add class for 3-column layout if there are only 3 cards
+   if (cardCount === 3) {
+    cardsGridContainer.classList.add('awardsgallery-grid-3-cols');
+  }
+
   // Add class for 2-column layout if there are only 2 cards
   if (cardCount === 2) {
     cardsGridContainer.classList.add('awardsgallery-grid-2-cols');
@@ -107,11 +112,13 @@ export default function decorate(block) {
   prevBtn.className = 'awardsgallery-arrow prev';
   nextBtn.className = 'awardsgallery-arrow next';
 
-  // Hide arrows on desktop if there are 3 or fewer cards
+  // Hide arrows on desktop if there are 4 or fewer cards
   // They will still be visible on tablet and mobile via CSS
-  if (cardCount <= 3) {
+  
+  if (cardCount <= 4) {
     prevBtn.classList.add('hide-on-desktop');
     nextBtn.classList.add('hide-on-desktop');
+    cardsGridContainer.classList.add('no-margin-left-right');
   }
 
   // Hide arrows on tablet and mobile if there's only 1 card
