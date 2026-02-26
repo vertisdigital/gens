@@ -8,6 +8,14 @@
   overflow: hidden;
 }
 
+.feature-wrapper.no-background {
+  background: none;
+}
+
+.feature-wrapper.no-margin-top {
+  margin-top: 0;
+}
+
 @media (width >=2560px) {
   .feature-wrapper {
     max-width: 2560px;
@@ -296,6 +304,14 @@
   .feature:not(.with-vertical-list) .about-us-stats .about-us-right {
     grid-template-columns: repeat(3, 1fr);
     gap: 40px 24px;
+  }
+
+  .feature:not(.with-vertical-list) .about-us-stats .about-us-right.two-columns {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .feature:not(.with-vertical-list) .about-us-stats .about-us-right.one-column {
+    grid-template-columns: repeat(1, 1fr);
   }
 
   .about-us-stats .about-us-right-content p {

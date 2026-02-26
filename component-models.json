@@ -675,8 +675,8 @@
         "valueType": "string"
       },
       {
-        "component": "select",
-        "name": "featureclass",
+        "component": "multiselect",
+        "name": "classes",
         "label": "Feature Class",
         "valueType": "string",
         "value": "",
@@ -692,6 +692,18 @@
           {
             "name": "With Vertical List",
             "value": "with-vertical-list"
+          },
+          {
+            "name": "No Margin Top",
+            "value": "no-margin-top"
+          },
+          {
+            "name": "No Background",
+            "value": "no-background"
+          },
+          {
+            "name": "Custom Padding Bottom",
+            "value": "custom-padding-bottom"
           }
         ]
       }
