@@ -22,8 +22,22 @@ export const stripHtml = (html) => {
 
 export const highlight = (text, q) => {
   if (!text || !q) return text || "";
+
+  const cleanQ = String(q).trim();
+  if (!cleanQ) return stripHtml(text);
+
+  const words = cleanQ.split(/\s+/);
+  const terms = Array.from(new Set([cleanQ, ...words]));
+
+  const escapeRegExp = (string) => string.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+  const escapedTerms = terms.map(escapeRegExp);
+
+  escapedTerms.sort((a, b) => b.length - a.length);
+
+  const pattern = escapedTerms.join('|');
+
   return stripHtml(text).replace(
-    new RegExp(`(${q})`, "gi"),
+    new RegExp(`(${pattern})`, "gi"),
     "<strong>$1</strong>"
   );
 };
@@ -179,7 +193,7 @@ const renderResults = (block, q, results, currentPage, total, totalPages) => {
     return;
   }
 
-  const endpoint = "https://publish-p144202-e1488374.adobeaemcloud.com";
+  const endpoint = "https://publish-p144202-e1512622.adobeaemcloud.com";
 
   const from = total === 0 ? 0 : (currentPage - 1) * PAGE_SIZE + 1;
   const to = Math.min(currentPage * PAGE_SIZE, total);
@@ -256,7 +270,7 @@ const loadPage = async (block, q, page, pushState) => {
   const fetchPage = async (pageToLoad) => {
     const offset = (pageToLoad - 1) * PAGE_SIZE;
     const endpoint =
-      "https://publish-p144202-e1488374.adobeaemcloud.com" +
+      "https://publish-p144202-e1512622.adobeaemcloud.com" +
       basePath +
       "/jcr:content.contentsearch.json" +
       `?q=${encodeURIComponent(q)}&offset=${offset}&limit=${PAGE_SIZE}`;
