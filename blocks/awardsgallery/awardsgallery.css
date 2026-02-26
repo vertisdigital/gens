@@ -12,7 +12,7 @@
     flex-direction: column;
     align-items: center;
     background: var(--color-bg-white);
-    flex: 0 0 calc((100% - 48px) / 3);
+    flex: 0 0 calc((100% - 72px) / 4);
     scroll-snap-align: start;
 }
 
@@ -242,6 +242,9 @@
 
 /* tablet styles */
 @media (width < 1181px) and (width >=768px) {
+    .awardsgallery .awardsgallery-grid.no-margin-left-right {
+        margin: 0 72px 80px;
+    }
 
     .awardsgallery.grid-view .awardsgallery-grid {
         grid-template-columns: repeat(1, 1fr);
@@ -293,5 +296,9 @@
 
     .awardsgallery .awardsgallery-grid-2-cols .awardsgallery-card {
         flex: 0 0 calc((100% - 24px) / 2);
+    }
+
+    .awardsgallery .awardsgallery-grid-3-cols .awardsgallery-card {
+        flex: 0 0 calc((100% - 48px) / 3);
     }
 }
