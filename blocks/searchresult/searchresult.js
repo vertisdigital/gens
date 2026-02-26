@@ -14,6 +14,23 @@ export const resolveSearchBasePath = () => {
   return '/content/genting-singapore/en';
 };
 
+export const getSearchEndpoint = () => {
+  const hostname = window.location.hostname;
+
+  // Prod
+  if (hostname.includes('main--gens-prod--') || hostname === 'gentingsingapore.com' || hostname === 'www.gentingsingapore.com') {
+    return 'https://publish-p144202-e1512579.adobeaemcloud.com';
+  }
+
+  // UAT
+  if (hostname.includes('uat--gens-stage--') || hostname === 'ut.gentingsingapore.com') {
+    return 'https://publish-p144202-e1512622.adobeaemcloud.com';
+  }
+
+  // Dev (default)
+  return 'https://publish-p144202-e1488374.adobeaemcloud.com';
+};
+
 export const stripHtml = (html) => {
   const tempDiv = document.createElement("div");
   tempDiv.innerHTML = html;
@@ -180,20 +197,20 @@ const waitForElement = (selector, callback) => {
   });
 };
 
-const renderResults = (block, q, results, currentPage, total, totalPages) => {
+const renderResults = (block, q, results, currentPage, total, totalPages, noResultLink) => {
   if (total === 0) {
     block.innerHTML = `
       <div class="searchresult-empty">
         <div class="searchresult-empty-illustration"><img src="../../icons/no-result-found.png"/></div>
 
         <h3>No results found for ‘${q}’.</h3>
-        <p>Please try again or connect with our representative.</p>
+        <p>Please try again or ${noResultLink ? `<a href="${noResultLink}">connect with our representative.</a>` : 'connect with our representative.'}</p>
       </div>
     `;
     return;
   }
 
-  const endpoint = "https://publish-p144202-e1512622.adobeaemcloud.com";
+  const endpoint = getSearchEndpoint();
 
   const from = total === 0 ? 0 : (currentPage - 1) * PAGE_SIZE + 1;
   const to = Math.min(currentPage * PAGE_SIZE, total);
@@ -262,7 +279,7 @@ const renderResults = (block, q, results, currentPage, total, totalPages) => {
   }, 0);
 };
 
-const loadPage = async (block, q, page, pushState) => {
+const loadPage = async (block, q, page, pushState, noResultLink) => {
   block.classList.add("is-loading");
 
   const basePath = resolveSearchBasePath();
@@ -270,7 +287,7 @@ const loadPage = async (block, q, page, pushState) => {
   const fetchPage = async (pageToLoad) => {
     const offset = (pageToLoad - 1) * PAGE_SIZE;
     const endpoint =
-      "https://publish-p144202-e1512622.adobeaemcloud.com" +
+      getSearchEndpoint() +
       basePath +
       "/jcr:content.contentsearch.json" +
       `?q=${encodeURIComponent(q)}&offset=${offset}&limit=${PAGE_SIZE}`;
@@ -304,7 +321,7 @@ const loadPage = async (block, q, page, pushState) => {
     window.history.pushState({ page: currentPage }, "", url);
   }
 
-  renderResults(block, q, results, currentPage, total, totalPages);
+  renderResults(block, q, results, currentPage, total, totalPages, noResultLink);
 
   document.dispatchEvent(
     new CustomEvent("internalSearchResultsView", {
@@ -350,7 +367,7 @@ const loadPage = async (block, q, page, pushState) => {
 };
 
 
-const bindPagination = (block, q) => {
+const bindPagination = (block, q, noResultLink) => {
   block.addEventListener("click", (e) => {
     const btn = e.target.closest("[data-page]");
     if (!btn) return;
@@ -360,12 +377,38 @@ const bindPagination = (block, q) => {
     const page = Number(btn.dataset.page);
     if (!page) return;
 
-    loadPage(block, q, page, true);
+    loadPage(block, q, page, true, noResultLink);
   });
 };
 
 export default async function decorate(block) {
   block.classList.add('fade-item');
+
+  let noResultLink = "";
+  let linkProp = block.querySelector(
+    '[data-aue-prop="noResultLink"], [data-gen-prop="noResultLink"], [data-aue-model="noResultLink"], [data-gen-model="noResultLink"]'
+  );
+
+  if (!linkProp) {
+    const contentChildren = Array.from(block.children);
+    linkProp = contentChildren.find((child) => child.querySelector('a'));
+
+    if (!linkProp && contentChildren.length > 1) {
+      linkProp = contentChildren[1];
+    }
+  }
+
+  if (linkProp) {
+    const a = linkProp.querySelector('a');
+    if (a) {
+      noResultLink = a.getAttribute('href') || "";
+    } else {
+      noResultLink = linkProp.textContent.trim();
+    }
+
+    linkProp.style.display = 'none';
+  }
+
   const params = new URLSearchParams(window.location.search);
   const q = params.get("q");
 
@@ -377,6 +420,6 @@ export default async function decorate(block) {
   const page = Number(params.get("page") || 1);
   if (!page || page < 1) return;
 
-  bindPagination(block, q);
-  await loadPage(block, q, page, false);
+  bindPagination(block, q, noResultLink);
+  await loadPage(block, q, page, false, noResultLink);
 }

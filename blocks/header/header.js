@@ -2,7 +2,7 @@ import { getMetadata } from '../../scripts/aem.js';
 import { loadFragment } from '../fragment/fragment.js';
 import SVGIcon from '../../shared-components/SvgIcon.js';
 import stringToHtml from '../../shared-components/Utility.js';
-import { highlight, shortenURL, resolveSearchBasePath } from '../searchresult/searchresult.js';
+import { highlight, shortenURL, resolveSearchBasePath, getSearchEndpoint } from '../searchresult/searchresult.js';
 
 
 // Add these variables at the top level of the file
@@ -341,7 +341,7 @@ function createHeaderStructure(block) {
 }
 
 function loadSearchSuggest(keyword) {
-  const PUBLISH_BASE = 'https://publish-p144202-e1512622.adobeaemcloud.com';
+  const PUBLISH_BASE = getSearchEndpoint();
   const resultInfo = document.querySelector('.search-suggestion-result-info');
 
   const basePath = resolveSearchBasePath();

@@ -278,6 +278,16 @@
           "required": true
         },
         "description": "Section title is required and should not exceed 35 characters"
+      },
+      {
+        "component": "aem-content",
+        "valueType": "string",
+        "name": "noResultLink",
+        "label": "No Result Link",
+        "multi": false,
+        "validation": {
+          "rootPath": "/content/genting-singapore"
+        }
       }
     ]
   },
