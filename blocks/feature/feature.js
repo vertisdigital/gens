@@ -73,6 +73,7 @@ export default function decorate(block) {
   }
   const isVerticalList = featureClass === 'with-vertical-list' && isInsideTab;
   let isLeftContainerHasContent = true;
+  let isRightContainerHasContent = false;
 
   if (isVerticalList) {
     // For with-vertical-list: only add heading directly to about-us-left
@@ -292,6 +293,10 @@ export default function decorate(block) {
 
   // add two-columns class if about us right has two items
   const numberOfAboutUsRightContent = aboutUsRightContent.querySelectorAll('div.about-us-right-content').length;
+  if (numberOfAboutUsRightContent > 0 ) {
+    isRightContainerHasContent = true;
+  }
+
   if (numberOfAboutUsRightContent === 2) aboutUsRightContent.classList.add('two-columns');
   
   // add one-column class if about us right has one item
@@ -359,6 +364,7 @@ export default function decorate(block) {
     }
 
     indices.appendChild(indexElement);
+   
     aboutUsRightContent.appendChild(indices);
   }
   block.innerHTML = '';
@@ -367,8 +373,11 @@ export default function decorate(block) {
   {
     aboutUsStats.appendChild(aboutUsLeftContent);
   }
+
+  if (isRightContainerHasContent) {
+    aboutUsStats.appendChild(aboutUsRightContent);
+  }
   
-  aboutUsStats.appendChild(aboutUsRightContent);
   container.append(aboutUsStats);
   block.appendChild(container);
 }

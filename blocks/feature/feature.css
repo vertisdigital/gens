@@ -433,6 +433,7 @@
     font-size: 36px;
     line-height: 56px;
     margin-bottom: 0;
+    width: 70%;
   }
 
   .about-us-left .about-us-left-sub-heading {
@@ -852,6 +853,10 @@
 
   .feature-wrapper .with-vertical-list .about-us-left .about-us-left-heading {
     font-weight: 500;
+  }
+
+  .feature-wrapper .is-inside-tab .about-us-left .about-us-left-heading {
+    width: 100%;
   }
 
   .feature-wrapper .with-vertical-list .about-us-stats .about-us-right {
