@@ -14,13 +14,11 @@ export default function decorate(block) {
 
   // Read featureclass from component model
   // Try multiple selectors to find featureclass in both authoring and publishing mode
+  
   const featureClassEl = block.querySelector('[data-aue-prop="featureclass"]')
     || block.querySelector('[data-gen-prop="featureclass"]')
-    || block.querySelector('.feature-nested-1-4 p')
-    || block.querySelector('.feature-nested-1-4')
-    || (blockChildren[3]?.querySelector('p') ? blockChildren[3] : null)
-    || (blockChildren[3]?.textContent?.trim() ? blockChildren[3] : null);
-
+   
+    || (blockChildren[3].querySelector('[data-gen-prop="title"]') ? blockChildren[3] : null);
 
   let featureClass = '';
 
@@ -50,6 +48,11 @@ export default function decorate(block) {
   //no-background
   if (block.classList.contains('no-background')) {
     block.closest('.feature-wrapper').classList.add('no-background');
+  }
+
+  //custom padding bottom
+  if (block.classList.contains('custom-padding-bottom')) {
+    block.closest('.feature-wrapper').classList.add('custom-padding-bottom');
   }
 
   const container = document.createElement('div');
@@ -129,7 +132,8 @@ export default function decorate(block) {
     const linkField = block.querySelector('[data-aue-model="linkField"],[data-gen-model="linkField"]');
     if (linkField) {
       const linkContainer = document.createElement('div');
-      linkContainer.className = 'links-container';
+      //linkContainer.className = 'links-container';
+      linkContainer.classList.add('links-container', 'button-container')
       moveInstrumentation(linkField, linkContainer);
 
       const linkDivs = Array.from(linkField.children);
@@ -151,7 +155,7 @@ export default function decorate(block) {
           link.href = linkData.url || '#';
 
           // Handle special case for default AEM content
-          if (linkData.text && (linkData.text.startsWith('/') || linkData.text.startsWith('#'))) {
+          if (linkData.text && (linkData.text.includes('/') || linkData.text.startsWith('#'))) {
             link.textContent = '';
           } else {
             link.textContent = linkData.text || '';
@@ -167,12 +171,17 @@ export default function decorate(block) {
             <path d="M24.165 17.1323C24.3732 16.9453 24.6974 16.9581 24.8896 17.1606L30.7275 23.3218C31.0905 23.7048 31.0905 24.2961 30.7275 24.6792L24.8896 30.8393C24.6974 31.0421 24.3733 31.0549 24.165 30.8677C23.9569 30.6804 23.9437 30.3645 24.1357 30.1616L29.499 24.5005H17.5C17.2239 24.5005 17.0001 24.2765 17 24.0005C17 23.7243 17.2239 23.5005 17.5 23.5005H29.499L24.1357 17.8393C23.9435 17.6364 23.9568 17.3196 24.165 17.1323Z" fill="#8D713E"/>
           </svg>`;
 
+          if (link.textContent === '') {
+            link.append(stringToHTML(buttonSvg));
+          }
+          else {
+            link.classList.add('vd-link');
+          }
           // Remove text content and replace with SVG button
-          link.textContent = '';
-          link.append(stringToHTML(buttonSvg));
+          //link.textContent = '';
 
           moveInstrumentation(linkTextDiv.querySelector('a'), link);
-          linkContainer.appendChild(link);
+          linkContainer.appendChild(link); 
         }
 
         // Remove original elements after copying
