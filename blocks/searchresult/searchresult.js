@@ -203,8 +203,8 @@ const renderResults = (block, q, results, currentPage, total, totalPages, noResu
       <div class="searchresult-empty">
         <div class="searchresult-empty-illustration">${getIcon('noResult')}</div>
 
-        <h3>No results found for ‘${q}’.</h3>
-        <p>Please try again or ${noResultLink ? `<a href="${noResultLink}">connect with our representative.</a>` : 'connect with our representative.'}</p>
+        <h3>No results found</h3>
+        <p>Please try different keywords or ${noResultLink ? `<a href="${noResultLink}">explore other sections of our website.</a>` : 'explore other sections of our website.'}</p>
       </div>
     `;
     return;
@@ -358,8 +358,7 @@ const loadPage = async (block, q, page, pushState, noResultLink) => {
     }
 
     info.innerHTML = `
-    We found <strong>${total}</strong> result(s) that match
-    <strong>${q}</strong>
+    We found <strong>${total}</strong> result(s) matching your search
   `;
     moveSearchSuggestionOutOfHeader();
   });

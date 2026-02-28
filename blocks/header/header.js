@@ -312,6 +312,14 @@ function createHeaderStructure(block) {
   const searchWrapper = document.createElement('div');
   const searchBtn = document.createElement('button');
   searchBtn.className = 'search-btn';
+
+  const searchSvgIcon = SVGIcon({ name: 'search', size: 24 });
+  if (typeof searchSvgIcon === 'string') {
+    searchBtn.innerHTML = searchSvgIcon;
+  } else if (searchSvgIcon instanceof Node) {
+    searchBtn.appendChild(searchSvgIcon);
+  }
+
   searchWrapper.appendChild(searchBtn);
   const searchSuggestionBox = document.createElement('div');
   searchSuggestionBox.className = 'search-suggestion-box';
@@ -380,8 +388,12 @@ function loadSearchSuggest(keyword) {
           const suggestion = document.createElement('a');
           suggestion.className = 'suggestion-item';
           suggestion.href = item.path.endsWith('.pdf') ? PUBLISH_BASE + item.path : shortenURL(item.path);
-          const hl = highlight(item.highlight, keyword);
-          suggestion.innerHTML = hl;
+          let contentHtml = item.highlight ? highlight(item.highlight, keyword) : highlight(item.title || '', keyword);
+
+          if (item.path.endsWith('.pdf') && !item.highlight) {
+            contentHtml += `<span class="search-suggestion-note">Match found in document content</span>`;
+          }
+          suggestion.innerHTML = contentHtml;
           suggestions.appendChild(suggestion);
         });
 
@@ -392,9 +404,13 @@ function loadSearchSuggest(keyword) {
           }
         }));
 
-      }
-      else {
-        suggestions.classList.remove('active');
+      } else {
+        suggestions.classList.add('active');
+        suggestions.innerHTML = `
+          <div class="search-suggestion-empty text-center w-100 py-3" style="display: flex; justify-content: center;">
+             <p class="m-0" style="color: var(--colours-text-text-disabled, #82959E); font-size: 14px;">No results found</p>
+          </div>
+        `;
       }
 
     } catch (err) {
