@@ -1,4 +1,4 @@
-import { getIcon } from "../../shared-components/icons/index.js";
+import { getIcon } from '../../shared-components/icons/index.js';
 
 export const resolveSearchBasePath = () => {
   const parts = window.location.pathname.split('/').filter(Boolean);
@@ -15,7 +15,7 @@ export const resolveSearchBasePath = () => {
 };
 
 export const getSearchEndpoint = () => {
-  const hostname = window.location.hostname;
+  const { hostname } = window.location;
 
   // Prod
   if (hostname.includes('main--gens-prod--') || hostname === 'gentingsingapore.com' || hostname === 'www.gentingsingapore.com') {
@@ -32,13 +32,13 @@ export const getSearchEndpoint = () => {
 };
 
 export const stripHtml = (html) => {
-  const tempDiv = document.createElement("div");
+  const tempDiv = document.createElement('div');
   tempDiv.innerHTML = html;
-  return tempDiv.textContent || tempDiv.innerText || "";
+  return tempDiv.textContent || tempDiv.innerText || '';
 };
 
 export const highlight = (text, q) => {
-  if (!text || !q) return text || "";
+  if (!text || !q) return text || '';
 
   const cleanQ = String(q).trim();
   if (!cleanQ) return stripHtml(text);
@@ -54,20 +54,19 @@ export const highlight = (text, q) => {
   const pattern = escapedTerms.join('|');
 
   return stripHtml(text).replace(
-    new RegExp(`(${pattern})`, "gi"),
-    "<strong>$1</strong>"
+    new RegExp(`(${pattern})`, 'gi'),
+    '<strong>$1</strong>',
   );
 };
 
-export const shortenURL = (url) =>
-  url.replace("/content/genting-singapore", "").replace(".html", "");
+export const shortenURL = (url) => url.replace('/content/genting-singapore', '').replace('.html', '');
 
 const PAGE_SIZE = 5;
 
-const formatPage = (page) => String(page).padStart(2, "0");
+const formatPage = (page) => String(page).padStart(2, '0');
 
 const renderPagination = (currentPage, totalPages) => {
-  if (totalPages <= 1) return "";
+  if (totalPages <= 1) return '';
 
   const pages = new Set();
   const add = (p) => {
@@ -95,9 +94,9 @@ const renderPagination = (currentPage, totalPages) => {
 
   const items = sorted
     .map((page) => {
-      let ellipsis = "";
+      let ellipsis = '';
       if (prev && page - prev > 1) {
-        ellipsis = `<span class="pagination-ellipsis">…</span>`;
+        ellipsis = '<span class="pagination-ellipsis">…</span>';
       }
 
       prev = page;
@@ -118,37 +117,37 @@ const renderPagination = (currentPage, totalPages) => {
         </button>
       `;
     })
-    .join("");
+    .join('');
 
   return `
     <nav class="pagination">
       ${currentPage > 1
-      ? `<button class="pagination-prev" data-page="${currentPage - 1}">
-              <span class="previous-icon">${getIcon("arrowleftLarge")}</span>
+    ? `<button class="pagination-prev" data-page="${currentPage - 1}">
+              <span class="previous-icon">${getIcon('arrowleftLarge')}</span>
               Previous
             </button>`
-      : `<span class="pagination-prev disabled">Previous</span>`
-    }
+    : '<span class="pagination-prev disabled">Previous</span>'
+}
       ${items}
       ${currentPage < totalPages
-      ? `<button class="pagination-next" data-page="${currentPage + 1}">
-              Next<span class="next-icon">${getIcon("arrowrightLarge")}</span>
+    ? `<button class="pagination-next" data-page="${currentPage + 1}">
+              Next<span class="next-icon">${getIcon('arrowrightLarge')}</span>
             </button>`
-      : `<span class="pagination-next disabled">Next</span>`
-    }
+    : '<span class="pagination-next disabled">Next</span>'
+}
     </nav>
   `;
 };
 
 export const formatDate = (dateStr) => {
-  if (!dateStr) return "";
+  if (!dateStr) return '';
 
-  const [month, day, year] = dateStr.split("/").map(Number);
-  if (!day || !month || !year) return "";
+  const [month, day, year] = dateStr.split('/').map(Number);
+  if (!day || !month || !year) return '';
 
   const months = [
-    "Jan", "Feb", "Mar", "Apr", "May", "Jun",
-    "Jul", "Aug", "Sep", "Oct", "Nov", "Dec",
+    'Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun',
+    'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec',
   ];
 
   return `${day} ${months[month - 1]} ${year}`;
@@ -174,7 +173,6 @@ const moveSearchSuggestionOutOfHeader = () => {
   container.appendChild(suggestionBox);
   suggestionBox.dataset.moved = 'true';
 };
-
 
 const waitForElement = (selector, callback) => {
   const existing = document.querySelector(selector);
@@ -217,35 +215,35 @@ const renderResults = (block, q, results, currentPage, total, totalPages, noResu
 
   block.innerHTML = `
     <div class="searchresult-header">
-      ${total > 0 ? `Showing ${from}-${to} of ${total} Results` : "No results found"}
+      ${total > 0 ? `Showing ${from}-${to} of ${total} Results` : 'No results found'}
     </div>
 
     <ul class="searchresult-list fade-in">
       ${results
-      .map(
-        (item) => `
+    .map(
+      (item) => `
           <li class="searchresult-item">
             <div class="searchresult-title">
               <a href="${item.path.endsWith('.pdf') ? endpoint + item.path : shortenURL(
-          item.path
-        )}">${item.title}</a>
+    item.path,
+  )}">${item.title}</a>
               <p class="searchresult-info">
                 ${item.highlight || (item.path.endsWith('.pdf') && item.highlight === '')
-            ? `<span class="searchresult-desc">${item.path.endsWith('.pdf') && item.highlight === '' ? 'Match found in document content' : highlight(
-              item.highlight,
-              q
-            )}</span>`
-            : ""
-          }
+    ? `<span class="searchresult-desc">${item.path.endsWith('.pdf') && item.highlight === '' ? 'Match found in document content' : highlight(
+      item.highlight,
+      q,
+    )}</span>`
+    : ''
+}
               </p>
             </div>
             <a class="searchresult-link" href="${item.path.endsWith('.pdf') ? endpoint + item.path : shortenURL(
-            item.path
-          )}">Read More</a>
+    item.path,
+  )}">Read More</a>
           </li>
-        `
-      )
-      .join("")}
+        `,
+    )
+    .join('')}
     </ul>
 
     ${renderPagination(currentPage, totalPages)}
@@ -260,19 +258,19 @@ const renderResults = (block, q, results, currentPage, total, totalPages, noResu
       if (!link) return;
 
       link.addEventListener('click', () => {
-        const absolutePosition =
-          ((currentPage - 1) * PAGE_SIZE) + index + 1;
+        const absolutePosition = ((currentPage - 1) * PAGE_SIZE) + index + 1;
+
+        // eslint-disable-next-line no-underscore-dangle
+        window.__searchEventData = {
+          searchTerm: q,
+          pageNumber: currentPage,
+          position: absolutePosition,
+          title: link.textContent.trim(),
+          url: link.href,
+        };
 
         document.dispatchEvent(
-          new CustomEvent("internalSearchResultClick", {
-            detail: {
-              searchTerm: q,
-              pageNumber: currentPage,
-              position: absolutePosition,
-              title: link.textContent.trim(),
-              url: link.href
-            }
-          })
+          new CustomEvent('internalSearchResultClick'),
         );
       });
     });
@@ -280,17 +278,16 @@ const renderResults = (block, q, results, currentPage, total, totalPages, noResu
 };
 
 const loadPage = async (block, q, page, pushState, noResultLink) => {
-  block.classList.add("is-loading");
+  block.classList.add('is-loading');
 
   const basePath = resolveSearchBasePath();
 
   const fetchPage = async (pageToLoad) => {
     const offset = (pageToLoad - 1) * PAGE_SIZE;
-    const endpoint =
-      getSearchEndpoint() +
-      basePath +
-      "/jcr:content.contentsearch.json" +
-      `?q=${encodeURIComponent(q)}&offset=${offset}&limit=${PAGE_SIZE}`;
+    const endpoint = `${getSearchEndpoint()
+      + basePath
+    }/jcr:content.contentsearch.json`
+      + `?q=${encodeURIComponent(q)}&offset=${offset}&limit=${PAGE_SIZE}`;
 
     const resp = await fetch(endpoint);
     return resp.json();
@@ -311,45 +308,46 @@ const loadPage = async (block, q, page, pushState, noResultLink) => {
     results = data.results || [];
 
     const url = new URL(window.location);
-    url.searchParams.set("page", currentPage);
-    window.history.replaceState({}, "", url);
+    url.searchParams.set('page', currentPage);
+    window.history.replaceState({}, '', url);
   }
 
   if (pushState && currentPage === page) {
     const url = new URL(window.location);
-    url.searchParams.set("page", currentPage);
-    window.history.pushState({ page: currentPage }, "", url);
+    url.searchParams.set('page', currentPage);
+    window.history.pushState({ page: currentPage }, '', url);
   }
 
   renderResults(block, q, results, currentPage, total, totalPages, noResultLink);
 
+  // eslint-disable-next-line no-underscore-dangle
+  window.__searchEventData = {
+    searchTerm: q,
+    totalResults: total,
+    pageNumber: currentPage,
+    resultsPerPage: PAGE_SIZE,
+    resultStart: total === 0 ? 0 : (currentPage - 1) * PAGE_SIZE + 1,
+    resultEnd: Math.min(currentPage * PAGE_SIZE, total),
+  };
+
   document.dispatchEvent(
-    new CustomEvent("internalSearchResultsView", {
-      detail: {
-        searchTerm: q,
-        totalResults: total,
-        pageNumber: currentPage,
-        resultsPerPage: PAGE_SIZE,
-        resultStart: total === 0 ? 0 : (currentPage - 1) * PAGE_SIZE + 1,
-        resultEnd: Math.min(currentPage * PAGE_SIZE, total)
-      }
-    })
+    new CustomEvent('internalSearchResultsView'),
   );
 
-  block.classList.remove("is-loading");
+  block.classList.remove('is-loading');
 
-  waitForElement(".search-suggestion-box", (box) => {
-    const input = box.querySelector("input.search-input");
+  waitForElement('.search-suggestion-box', (box) => {
+    const input = box.querySelector('input.search-input');
     if (input && q) {
       input.value = q;
     }
 
-    let info = box.querySelector(".search-suggestion-result-info");
+    let info = box.querySelector('.search-suggestion-result-info');
     if (!info) {
-      info = document.createElement("div");
-      info.className = "search-suggestion-result-info";
+      info = document.createElement('div');
+      info.className = 'search-suggestion-result-info';
 
-      const suggestions = box.querySelector(".search-suggestions");
+      const suggestions = box.querySelector('.search-suggestions');
       if (suggestions) {
         box.insertBefore(info, suggestions);
       } else {
@@ -362,13 +360,11 @@ const loadPage = async (block, q, page, pushState, noResultLink) => {
   `;
     moveSearchSuggestionOutOfHeader();
   });
-
 };
 
-
-const bindPagination = (block, q, noResultLink) => {
-  block.addEventListener("click", (e) => {
-    const btn = e.target.closest("[data-page]");
+const bindPagination = (block, q) => {
+  block.addEventListener('click', (e) => {
+    const btn = e.target.closest('[data-page]');
     if (!btn) return;
 
     e.preventDefault();
@@ -376,16 +372,29 @@ const bindPagination = (block, q, noResultLink) => {
     const page = Number(btn.dataset.page);
     if (!page) return;
 
-    loadPage(block, q, page, true, noResultLink);
+    const currentPage = Number(new URLSearchParams(window.location.search).get('page') || 1);
+
+    // eslint-disable-next-line no-underscore-dangle
+    window.__searchEventData = {
+      searchTerm: q,
+      fromPage: currentPage,
+      toPage: page,
+    };
+
+    document.dispatchEvent(
+      new CustomEvent('internalSearchPaginationClick'),
+    );
+
+    loadPage(block, q, page, true);
   });
 };
 
 export default async function decorate(block) {
   block.classList.add('fade-item');
 
-  let noResultLink = "";
+  let noResultLink = '';
   let linkProp = block.querySelector(
-    '[data-aue-prop="noResultLink"], [data-gen-prop="noResultLink"], [data-aue-model="noResultLink"], [data-gen-model="noResultLink"]'
+    '[data-aue-prop="noResultLink"], [data-gen-prop="noResultLink"], [data-aue-model="noResultLink"], [data-gen-model="noResultLink"]',
   );
 
   if (!linkProp) {
@@ -400,7 +409,7 @@ export default async function decorate(block) {
   if (linkProp) {
     const a = linkProp.querySelector('a');
     if (a) {
-      noResultLink = a.getAttribute('href') || "";
+      noResultLink = a.getAttribute('href') || '';
     } else {
       noResultLink = linkProp.textContent.trim();
     }
@@ -409,14 +418,14 @@ export default async function decorate(block) {
   }
 
   const params = new URLSearchParams(window.location.search);
-  const q = params.get("q");
+  const q = params.get('q');
 
   if (!q) {
-    block.innerHTML = "<p>No search query</p>";
+    block.innerHTML = '<p>No search query</p>';
     return;
   }
 
-  const page = Number(params.get("page") || 1);
+  const page = Number(params.get('page') || 1);
   if (!page || page < 1) return;
 
   bindPagination(block, q, noResultLink);
