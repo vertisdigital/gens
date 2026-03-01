@@ -263,16 +263,16 @@ const renderResults = (block, q, results, currentPage, total, totalPages, noResu
         const absolutePosition =
           ((currentPage - 1) * PAGE_SIZE) + index + 1;
 
+        window.__searchEventData = {
+          searchTerm: q,
+          pageNumber: currentPage,
+          position: absolutePosition,
+          title: link.textContent.trim(),
+          url: link.href
+        };
+
         document.dispatchEvent(
-          new CustomEvent("internalSearchResultClick", {
-            detail: {
-              searchTerm: q,
-              pageNumber: currentPage,
-              position: absolutePosition,
-              title: link.textContent.trim(),
-              url: link.href
-            }
-          })
+          new CustomEvent("internalSearchResultClick")
         );
       });
     });
@@ -323,17 +323,17 @@ const loadPage = async (block, q, page, pushState, noResultLink) => {
 
   renderResults(block, q, results, currentPage, total, totalPages, noResultLink);
 
+  window.__searchEventData = {
+    searchTerm: q,
+    totalResults: total,
+    pageNumber: currentPage,
+    resultsPerPage: PAGE_SIZE,
+    resultStart: total === 0 ? 0 : (currentPage - 1) * PAGE_SIZE + 1,
+    resultEnd: Math.min(currentPage * PAGE_SIZE, total)
+  };
+
   document.dispatchEvent(
-    new CustomEvent("internalSearchResultsView", {
-      detail: {
-        searchTerm: q,
-        totalResults: total,
-        pageNumber: currentPage,
-        resultsPerPage: PAGE_SIZE,
-        resultStart: total === 0 ? 0 : (currentPage - 1) * PAGE_SIZE + 1,
-        resultEnd: Math.min(currentPage * PAGE_SIZE, total)
-      }
-    })
+    new CustomEvent("internalSearchResultsView")
   );
 
   block.classList.remove("is-loading");
@@ -366,7 +366,7 @@ const loadPage = async (block, q, page, pushState, noResultLink) => {
 };
 
 
-const bindPagination = (block, q, noResultLink) => {
+const bindPagination = (block, q) => {
   block.addEventListener("click", (e) => {
     const btn = e.target.closest("[data-page]");
     if (!btn) return;
@@ -376,7 +376,20 @@ const bindPagination = (block, q, noResultLink) => {
     const page = Number(btn.dataset.page);
     if (!page) return;
 
-    loadPage(block, q, page, true, noResultLink);
+    const currentPage =
+      Number(new URLSearchParams(window.location.search).get("page") || 1);
+
+    window.__searchEventData = {
+      searchTerm: q,
+      fromPage: currentPage,
+      toPage: page
+    };
+
+    document.dispatchEvent(
+      new CustomEvent("internalSearchPaginationClick")
+    );
+
+    loadPage(block, q, page, true);
   });
 };
 
