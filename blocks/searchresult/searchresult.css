@@ -310,6 +310,14 @@
   letter-spacing: var(--typography-font-spacing-tracking-normal, 0);
 }
 
+.searchresult-empty p a {
+  color: var(--button-text-link-btn-textlink-default-fg, #8D713E);
+}
+
+.searchresult-empty p a:hover {
+  text-decoration: underline;
+}
+
 @media (max-width: 1180px) {
   .searchresult-wrapper {
     display: flex;
