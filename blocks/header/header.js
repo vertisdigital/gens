@@ -691,6 +691,10 @@ function initializeHeader(header) {
     if (!searchSuggestionBox.classList.contains('active')) {
       document.querySelectorAll('.secondary-nav').forEach(navigation => navigation.classList.remove(activeClass));
       searchSuggestionBox.classList.add('active');
+      const input = searchSuggestionBox.querySelector('.search-input');
+      if (input) {
+        setTimeout(() => input.focus(), 100);
+      }
     }
     else {
       searchSuggestionBox.classList.remove('active');

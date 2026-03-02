@@ -20,7 +20,7 @@
     margin-bottom: 24px;
 }
 
-.boardofdirectors .director-card .toggle-on {
+.boardofdirectors .director-card .toggle-off {
     display: flex;
     align-items: center;
     justify-content: center;
@@ -45,25 +45,25 @@
     gap: 16px;
 }
 
-.boardofdirectors .director-card .toggle-on:hover .icon-wrapper {
+.boardofdirectors .director-card .toggle-off:hover .icon-wrapper {
     color: var(--color-text-white) !important;
 }
 
-.boardofdirectors .director-card .toggle-on:focus .icon-wrapper {
+.boardofdirectors .director-card .toggle-off:focus .icon-wrapper {
     color: var(--color-text-white) !important;
 }
 
-.boardofdirectors .director-card .toggle-on:hover {
+.boardofdirectors .director-card .toggle-off:hover {
     color: var(--color-text-white);
     border-color: var(--color-text-white);
 }
 
-.boardofdirectors .director-card .toggle-on:focus {
+.boardofdirectors .director-card .toggle-off:focus {
     color: var(--color-text-white);
     border-color: var(--color-text-white);
 }
 
-.boardofdirectors .director-card .toggle-off {
+.boardofdirectors .director-card .toggle-on {
     display: none;
 }
 
@@ -77,6 +77,10 @@
     cursor: pointer;
     padding: 0;
     margin: 0;
+}
+
+.boardofdirectors .board-director-info .toggle-button .toggle-off .icon-wrapper:hover {
+    color: var(--color-text-secondary) !important;
 }
 
 .boardofdirectors .board-director-info .board-director-content {
@@ -109,7 +113,7 @@
     margin-bottom: 4px;
 }
 
-.boardofdirectors .board-director-info.active .board-director-content>p:nth-child(2) {
+.sectionheader-wrapper:nth-child(1) .boardofdirectors .board-director-info.active .board-director-content>p:nth-child(2) {
     font-size: 36px;
     color: var(--color-text-body);
     line-height: 56px;
