@@ -36,10 +36,6 @@
   justify-content: center;
 }
 
-.tiles-modal-close:hover span {
-  color: var(--color-text-secondary) !important;
-}
-
 .tiles-modal-body {
   display: flex;
   flex-direction: column;
@@ -130,6 +126,10 @@
 .modal-download-link .icon-wrapper {
   display: flex;
   align-items: center;
+}
+
+.tiles-modal-close:hover span {
+  color: var(--color-text-secondary) !important;
 }
 
 @media (max-width: 1199px) {
