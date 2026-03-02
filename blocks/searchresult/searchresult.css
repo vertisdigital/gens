@@ -165,7 +165,7 @@
   padding: var(--spacing-0, 0);
   align-items: center;
   gap: var(--spacing-2, 8px);
-  flex: 1 0 0;
+  flex-shrink: 0;
 }
 
 .searchresult-wrapper .pagination .pagination-next {
@@ -174,7 +174,7 @@
   justify-content: flex-end;
   align-items: flex-end;
   gap: var(--spacing-2, 8px);
-  flex: 1 0 0;
+  flex-shrink: 0;
 }
 
 .searchresult-wrapper .pagination .pagination-next.disabled,

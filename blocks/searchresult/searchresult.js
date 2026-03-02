@@ -122,19 +122,19 @@ const renderPagination = (currentPage, totalPages) => {
   return `
     <nav class="pagination">
       ${currentPage > 1
-    ? `<button class="pagination-prev" data-page="${currentPage - 1}">
+      ? `<button class="pagination-prev" data-page="${currentPage - 1}">
               <span class="previous-icon">${getIcon('arrowleftLarge')}</span>
               Previous
             </button>`
-    : '<span class="pagination-prev disabled">Previous</span>'
-}
+      : '<span class="pagination-prev disabled">Previous</span>'
+    }
       ${items}
       ${currentPage < totalPages
-    ? `<button class="pagination-next" data-page="${currentPage + 1}">
+      ? `<button class="pagination-next" data-page="${currentPage + 1}">
               Next<span class="next-icon">${getIcon('arrowrightLarge')}</span>
             </button>`
-    : '<span class="pagination-next disabled">Next</span>'
-}
+      : '<span class="pagination-next disabled">Next</span>'
+    }
     </nav>
   `;
 };
@@ -220,30 +220,30 @@ const renderResults = (block, q, results, currentPage, total, totalPages, noResu
 
     <ul class="searchresult-list fade-in">
       ${results
-    .map(
-      (item) => `
+      .map(
+        (item) => `
           <li class="searchresult-item">
             <div class="searchresult-title">
               <a href="${item.path.endsWith('.pdf') ? endpoint + item.path : shortenURL(
-    item.path,
-  )}">${item.title}</a>
+          item.path,
+        )}">${item.title}</a>
               <p class="searchresult-info">
                 ${item.highlight || (item.path.endsWith('.pdf') && item.highlight === '')
-    ? `<span class="searchresult-desc">${item.path.endsWith('.pdf') && item.highlight === '' ? 'Match found in document content' : highlight(
-      item.highlight,
-      q,
-    )}</span>`
-    : ''
-}
+            ? `<span class="searchresult-desc">${item.path.endsWith('.pdf') && item.highlight === '' ? 'Match found in document content' : highlight(
+              item.highlight,
+              q,
+            )}</span>`
+            : ''
+          }
               </p>
             </div>
             <a class="searchresult-link" href="${item.path.endsWith('.pdf') ? endpoint + item.path : shortenURL(
-    item.path,
-  )}">Read More</a>
+            item.path,
+          )}">Read More</a>
           </li>
         `,
-    )
-    .join('')}
+      )
+      .join('')}
     </ul>
 
     ${renderPagination(currentPage, totalPages)}
@@ -286,7 +286,7 @@ const loadPage = async (block, q, page, pushState, noResultLink) => {
     const offset = (pageToLoad - 1) * PAGE_SIZE;
     const endpoint = `${getSearchEndpoint()
       + basePath
-    }/jcr:content.contentsearch.json`
+      }/jcr:content.contentsearch.json`
       + `?q=${encodeURIComponent(q)}&offset=${offset}&limit=${PAGE_SIZE}`;
 
     const resp = await fetch(endpoint);
@@ -386,6 +386,11 @@ const bindPagination = (block, q) => {
     );
 
     loadPage(block, q, page, true);
+
+    // Scroll to the top of the search result block
+    setTimeout(() => {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }, 100);
   });
 };
 

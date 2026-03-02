@@ -65,10 +65,27 @@ export default function decorate(block) {
     if (activeCard === card) {
       activeCard.classList.remove('active');
       activeContent.classList.remove('active');
+      const btn = activeCard.querySelector('.toggle-on');
+      if (btn) {
+        btn.classList.remove('toggle-on');
+        btn.classList.add('toggle-off');
+      }
     } else {
       activeCard?.classList?.remove('active');
       activeContent?.classList?.remove('active');
+
+      const prevBtn = activeCard?.querySelector('.toggle-on');
+      if (prevBtn) {
+        prevBtn.classList.remove('toggle-on');
+        prevBtn.classList.add('toggle-off');
+      }
+
       card.classList.add('active');
+      const currBtn = card.querySelector('.toggle-off');
+      if (currBtn) {
+        currBtn.classList.remove('toggle-off');
+        currBtn.classList.add('toggle-on');
+      }
 
       // Find the index of the clicked card within the wrapper
       const allCards = Array.from(wrapper.querySelectorAll('.director-card'));
@@ -163,6 +180,13 @@ export default function decorate(block) {
         content.innerHTML = info.innerHTML;
       }
       content.classList.add('active');
+
+      // Scroll to the content panel
+      setTimeout(() => {
+        const yOffset = -100; // adjust offset for sticky headers if necessary
+        const y = content.getBoundingClientRect().top + window.pageYOffset + yOffset;
+        window.scrollTo({ top: y, behavior: 'smooth' });
+      }, 100);
     }
   }
 
@@ -192,7 +216,7 @@ export default function decorate(block) {
               <div class="description-wrapper">
                 <p>${director.title}</p>
                 <div class="toggle-button">
-                    <button class="toggle-on">${arrowIcon}</button>
+                    <button class="toggle-off">${arrowIcon}</button>
                 </div>
               </div>
           `;
@@ -269,7 +293,14 @@ export default function decorate(block) {
       e.stopPropagation();
       const activeCard = document.querySelector('.director-card.active');
       const activeContent = document.querySelector('.board-director-info.active');
-      if (activeCard) activeCard.classList.remove('active');
+      if (activeCard) {
+        activeCard.classList.remove('active');
+        const btn = activeCard.querySelector('.toggle-on');
+        if (btn) {
+          btn.classList.remove('toggle-on');
+          btn.classList.add('toggle-off');
+        }
+      }
       if (activeContent) activeContent.classList.remove('active');
     });
     toggleButtonDiv.appendChild(toggleOffButton);
