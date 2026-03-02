@@ -7,7 +7,7 @@
     margin-bottom: 80px;
 }
 
-.accordion-container {
+.accordion .accordion-container {
     display: flex;
     flex-direction: column;
     gap: 40px;
