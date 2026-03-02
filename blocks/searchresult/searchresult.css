@@ -310,6 +310,7 @@
   letter-spacing: var(--typography-font-spacing-tracking-normal, 0);
 }
 
+/* stylelint-disable-next-line no-descending-specificity */
 .searchresult-empty p a {
   color: var(--button-text-link-btn-textlink-default-fg, #8D713E);
 }
