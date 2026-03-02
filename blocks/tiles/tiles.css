@@ -36,6 +36,10 @@
   justify-content: center;
 }
 
+.tiles-modal-close:hover span {
+  color: var(--color-text-secondary) !important;
+}
+
 .tiles-modal-body {
   display: flex;
   flex-direction: column;
@@ -118,8 +122,9 @@
   text-decoration: none;
 }
 
-.modal-download-link:hover {
+.modal-download-link:hover>span{
   text-decoration: underline;
+  color: var(-color-text-tertiary);
 }
 
 .modal-download-link .icon-wrapper {
