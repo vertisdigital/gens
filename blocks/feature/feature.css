@@ -151,7 +151,7 @@
 .about-us-left .links-container a.vd-link {
   width: auto;
   height: auto;
-} 
+}
 
 .about-us-left .links-container a svg.about-us-link-button {
   width: 48px;
@@ -789,7 +789,7 @@
     line-height: 24px;
     margin: 0;
     display: flex;
-    gap: 8px;
+    gap: 4px;
   }
 
   .feature-wrapper .is-inside-tab .about-us-stats .about-us-right-content {
