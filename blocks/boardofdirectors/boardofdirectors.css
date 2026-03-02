@@ -79,6 +79,10 @@
     margin: 0;
 }
 
+.boardofdirectors .board-director-info .toggle-button .toggle-off .icon-wrapper:hover {
+    color: var(--color-text-secondary) !important;
+}
+
 .boardofdirectors .board-director-info .board-director-content {
     padding-right: 50px;
     /* Space for toggle button */
