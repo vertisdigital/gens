@@ -85,6 +85,7 @@ p {
     display: flex;
     justify-content: flex-end;
     aspect-ratio: 519/292;
+    align-items: center;
 }
 
 .projectslist .projectslistitem .project-image img {
