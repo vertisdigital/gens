@@ -309,3 +309,9 @@
 
 
 }
+
+@media (width >=1200px) and (width < 1440px) {
+    .boardofdirectors .director-card {
+        min-height: auto;
+    }
+}
