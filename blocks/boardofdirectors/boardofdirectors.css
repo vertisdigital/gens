@@ -64,7 +64,18 @@
 }
 
 .boardofdirectors .director-card .toggle-on {
-    display: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 48px;
+    height: 48px;
+    padding: 16px;
+    border: 2px solid var(--color-border-secondary);
+    border-radius: 9999px;
+    background: transparent;
+    color: var(--color-border-secondary);
+    transition: all 0.2s ease;
+    margin: 0;
 }
 
 .boardofdirectors .board-director-info .toggle-button .toggle-off {
