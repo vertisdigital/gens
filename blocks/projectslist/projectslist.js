@@ -12,6 +12,9 @@ export default function decorate(block) {
   const container = document.createElement('div');
   const gridView = block.classList.contains('grid-view') ? 'grid-view' : 'list-view';
   container.className = gridView === 'grid-view' ? `container ${gridView}` : `${gridView}`;
+  if (block.classList.contains('has-padding')) {
+    container.classList.add('has-padding')
+  }
   moveInstrumentation(wrapper, container);
 
   const projectsContainer = wrapper.querySelector(
