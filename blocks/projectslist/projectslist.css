@@ -27,6 +27,10 @@ p {
     grid-template-columns: repeat(2, 1fr);
 }
 
+.projectslist .grid-view.grid-view-2-cols.has-padding {
+    gap: 0;
+}
+
 .projectslistitem {
     padding-top: 80px;
     padding-bottom: 80px;
@@ -78,6 +82,10 @@ p {
     padding-left: 0;
     width: 100%;
     order: 1;
+}
+
+.projectslist .grid-view.grid-view-2-cols.has-padding .left-col {
+    padding-left: 24px;
 }
 
 .projectslist .projectslistitem .project-image {

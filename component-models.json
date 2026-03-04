@@ -2500,6 +2500,10 @@
           {
             "name": "No Zebra Pattern",
             "value": "no-zebra-pattern"
+          },
+          {
+            "name": "Grid View Has Padding",
+            "value": "has-padding"
           }
         ]
       }
