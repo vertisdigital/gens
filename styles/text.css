@@ -120,10 +120,11 @@
    ========================================================= */
 
 .textblock a:any-link {
-  color: currentColor;
-  text-decoration-color: currentColor;
+  color: var(--antique-gold, #b5904b);
+  text-decoration: underline;
+  text-decoration-color: var(--antique-gold, #b5904b);
   text-decoration-thickness: 1px;
-  text-underline-offset: 0.15em;
+  text-underline-offset: 3px;
 }
 
 .textblock a:hover {
