@@ -111,18 +111,17 @@ export default function decorate(block) {
           wrapper.appendChild(content);
         }
       } else if (windowWidth >= 768 && windowWidth < 1181) {
-        // Tablet: For 1st or 2nd active card, insert before 3rd card;
-        // for 3rd or 4th, append to bottom
-        if (cardIndex >= 0 && cardIndex <= 1) {
-          // For 1st or 2nd card: insert before the 3rd card
-          const thirdCardContainer = allCardContainers[2];
-          if (thirdCardContainer) {
-            wrapper.insertBefore(content, thirdCardContainer);
-          } else {
-            wrapper.appendChild(content);
-          }
+        const rowSize = 2; // how many cards per row (tablet = 2)
+
+        const rowIndex = Math.floor(cardIndex / rowSize);
+        const insertIndex = (rowIndex + 1) * rowSize;
+
+        const targetCard = allCardContainers[insertIndex];
+
+        if (targetCard) {
+          wrapper.insertBefore(content, targetCard);
         } else {
-          // For 3rd or 4th active card: append to bottom of wrapper
+          // If no next row, append to bottom
           wrapper.appendChild(content);
         }
       } else if (totalCards > 3) {
