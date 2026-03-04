@@ -203,8 +203,8 @@ export default function decorate(block) {
 
       if (imageLink) {
         const gradientStr = enablegradient ? 'linear-gradient(180deg, rgba(0, 0, 0, 0.55) 0%, rgba(0, 0, 0, 0.35) 25%, rgba(0, 0, 0, 0) 70%, rgba(0, 0, 0, 0.15) 80%, rgba(0, 0, 0, 0.6) 100%), ' : '';
-        const gradientStrMobile = enablegradient ? 'linear-gradient(180deg, rgba(0, 0, 0, 0.55) 0%, rgba(0, 0, 0, 0.35) 25%, rgba(0, 0, 0, 0) 70%, rgba(0, 0, 0, 0.15) 80%, rgba(0, 0, 0, 0.6) 100%), ' : '';
-        const gradientStrTablet = enablegradient ? 'linear-gradient(180deg, rgba(0, 0, 0, 0.55) 0%, rgba(0, 0, 0, 0.35) 25%, rgba(0, 0, 0, 0) 70%, rgba(0, 0, 0, 0.15) 80%, rgba(0, 0, 0, 0.6) 100%), ' : '';
+        const gradientStrMobile = enablegradient ? 'linear-gradient(180deg, rgba(0, 0, 0, 0.4) 0%, rgba(0, 0, 0, 0.15) 25%, rgba(0, 0, 0, 0.3) 50%, rgba(0, 0, 0, 0.7) 70%, rgba(0, 0, 0, 0.9) 100%), ' : '';
+        const gradientStrTablet = enablegradient ? 'linear-gradient(180deg, rgba(0, 0, 0, 0.4) 0%, rgba(0, 0, 0, 0.15) 25%, rgba(0, 0, 0, 0.3) 50%, rgba(0, 0, 0, 0.7) 70%, rgba(0, 0, 0, 0.9) 100%), ' : '';
 
         // Set desktop background image
         const desktopImageUrl = `${imageLink.href}/as/tiles.webp?width=850`;
