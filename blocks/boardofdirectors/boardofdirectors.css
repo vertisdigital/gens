@@ -264,9 +264,7 @@
         width: calc(100% / 2 - 12px);
     }
 
-    .boardofdirectors .segment-wrapper .wrapper>div:nth-child(3):not(.board-director-info),
-    .boardofdirectors .segment-wrapper .wrapper>div:nth-child(4):not(.board-director-info),
-    .boardofdirectors .segment-wrapper .wrapper>div:nth-child(5):not(.board-director-info) {
+    .boardofdirectors .segment-wrapper .wrapper > div:nth-child(n+3):not(.board-director-info) {
         margin-top: 16px;
     }
 
@@ -301,8 +299,7 @@
         margin-right: -12px;
     }
 
-    .boardofdirectors .segment-wrapper .wrapper>div:nth-child(4):not(.board-director-info),
-    .boardofdirectors .segment-wrapper .wrapper>div:nth-child(5):not(.board-director-info) {
+    .boardofdirectors .segment-wrapper .wrapper > div:nth-child(n+4):not(.board-director-info) {
         margin-top: 64px;
     }
 

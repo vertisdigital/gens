@@ -560,6 +560,10 @@
     font-family: var(--body-font-family, 'Inter', sans-serif);
   }
 
+  .about-us-left .about-us-left-sub-heading p:first-child {
+    margin: 0;
+  }
+
   .about-us-left .links-container a {
     width: 32px;
     height: 32px;
@@ -889,7 +893,7 @@
     }
 
     .feature-wrapper .with-vertical-list .about-us-right-column {
-      padding-top: 72px;
+      padding-top: 0;
     }
 
     .feature-wrapper .with-vertical-list .about-us-left .about-us-left-title {
@@ -923,7 +927,7 @@
     }
 
     .feature-wrapper .with-vertical-list .about-us-right-column {
-      padding-top: 56px;
+      padding-top: 0;
     }
 
     .feature-wrapper .with-vertical-list .about-us-left .about-us-left-title {
