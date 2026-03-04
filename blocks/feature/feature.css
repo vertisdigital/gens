@@ -528,8 +528,6 @@
 
   .feature-wrapper .about-us-stats {
     gap: 24px;
-
-    /* margin: 40px 0 0; */
   }
 
   .statistics-container.feature-container .feature-wrapper::before {
@@ -560,10 +558,6 @@
     font-family: var(--body-font-family, 'Inter', sans-serif);
   }
 
-  .about-us-left .about-us-left-sub-heading p:first-child {
-    margin: 0;
-  }
-
   .about-us-left .links-container a {
     width: 32px;
     height: 32px;
@@ -585,11 +579,13 @@
     gap: 16px;
   }
 
-
-
   .about-us-stats .about-us-right-content p {
     font-size: 16px;
     line-height: 24px;
+  }
+
+  .about-us-left .about-us-left-sub-heading p:first-child {
+    margin: 0;
   }
 
   .about-us-stats .about-us-right-content.text-container,
