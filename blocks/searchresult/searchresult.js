@@ -63,13 +63,16 @@ export const shortenURL = (url) => url.replace('/content/genting-singapore', '')
 
 export const dispatchSearchAnalyticsEvent = (eventName, detail = null) => {
   const dispatch = () => {
-    document.dispatchEvent(detail ? new CustomEvent(eventName, { detail }) : new CustomEvent(eventName));
+    const event = detail ? new CustomEvent(eventName, { detail }) : new CustomEvent(eventName);
+    document.dispatchEvent(event);
   };
 
+  // eslint-disable-next-line no-underscore-dangle
   if (window._satellite) {
     dispatch();
   } else {
     const poll = setInterval(() => {
+      // eslint-disable-next-line no-underscore-dangle
       if (window._satellite) {
         clearInterval(poll);
         dispatch();

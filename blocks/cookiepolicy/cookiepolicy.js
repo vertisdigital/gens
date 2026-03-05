@@ -1,5 +1,4 @@
 import { moveInstrumentation } from '../../scripts/scripts.js';
-import { getCookie } from '../../shared-components/Utility.js';
 
 const hideCookieConsent = () => {
     document.querySelector('.cookiepolicy')?.classList?.add('hide');
