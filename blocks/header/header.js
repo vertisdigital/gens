@@ -399,10 +399,6 @@ function loadSearchSuggest(keyword) {
 
           suggestion.addEventListener('click', (e) => {
             e.preventDefault();
-            // Optional: you can dispatch a specific click event here for suggestions if needed by Analytics
-            // dispatchSearchAnalyticsEvent('internalSuggestionClick', {
-            //   url: suggestion.href, title: item.title 
-            // });
 
             setTimeout(() => {
               window.location.href = suggestion.href;
