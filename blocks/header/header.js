@@ -2,7 +2,7 @@ import { getMetadata } from '../../scripts/aem.js';
 import { loadFragment } from '../fragment/fragment.js';
 import SVGIcon from '../../shared-components/SvgIcon.js';
 import stringToHtml from '../../shared-components/Utility.js';
-import { highlight, shortenURL, resolveSearchBasePath, getSearchEndpoint } from '../searchresult/searchresult.js';
+import { highlight, shortenURL, resolveSearchBasePath, getSearchEndpoint, dispatchSearchAnalyticsEvent } from '../searchresult/searchresult.js';
 
 
 // Add these variables at the top level of the file
@@ -348,6 +348,8 @@ function createHeaderStructure(block) {
   return section;
 }
 
+let searchSuggestDebounceTimer;
+
 function loadSearchSuggest(keyword) {
   const PUBLISH_BASE = getSearchEndpoint();
   const resultInfo = document.querySelector('.search-suggestion-result-info');
@@ -356,10 +358,10 @@ function loadSearchSuggest(keyword) {
   if (resultInfo) {
     resultInfo.remove();
   }
-  let debounceTimer;
-  clearTimeout(debounceTimer);
 
-  debounceTimer = setTimeout(async () => {
+  clearTimeout(searchSuggestDebounceTimer);
+
+  searchSuggestDebounceTimer = setTimeout(async () => {
     const suggestions = document.querySelector('.search-suggestions');
 
     if (keyword.length < 3) {
@@ -394,15 +396,25 @@ function loadSearchSuggest(keyword) {
             contentHtml += `<span class="search-suggestion-note">Match found in document content</span>`;
           }
           suggestion.innerHTML = contentHtml;
+
+          suggestion.addEventListener('click', (e) => {
+            e.preventDefault();
+            // Optional: you can dispatch a specific click event here for suggestions if needed by Analytics
+            // dispatchSearchAnalyticsEvent('internalSuggestionClick', { url: suggestion.href, title: item.title });
+
+            setTimeout(() => {
+              window.location.href = suggestion.href;
+            }, 300);
+          });
+
           suggestions.appendChild(suggestion);
         });
 
-        document.dispatchEvent(new CustomEvent('searchSuggestionShown', {
-          detail: {
-            keyword: document.querySelector('.search-input')?.value || '',
-            resultCount: document.querySelectorAll('.suggestion-item').length
-          }
-        }));
+        window.searchResultCount = data.length;
+        dispatchSearchAnalyticsEvent('searchSuggestionShown', {
+          keyword: document.querySelector('.search-input')?.value || '',
+          resultCount: document.querySelectorAll('.suggestion-item').length
+        });
 
       } else {
         suggestions.classList.add('active');
@@ -411,6 +423,12 @@ function loadSearchSuggest(keyword) {
              <p class="m-0" style="color: var(--colours-text-text-disabled, #82959E); font-size: 14px;">No results found</p>
           </div>
         `;
+
+        window.searchResultCount = 0;
+        dispatchSearchAnalyticsEvent('searchSuggestionShown', {
+          keyword: document.querySelector('.search-input')?.value || '',
+          resultCount: 0
+        });
       }
 
     } catch (err) {
@@ -424,7 +442,9 @@ function triggerSearchPage(e) {
   if (!q) return;
 
   const target = `/en/searchresults?q=${encodeURIComponent(q)}`;
-  window.location.href = target;
+  setTimeout(() => {
+    window.location.href = target;
+  }, 100);
 }
 
 function createMobileAccordionFromSecondary(secondaryNav, originalLinks) {

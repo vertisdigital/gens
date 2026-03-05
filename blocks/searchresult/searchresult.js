@@ -61,6 +61,25 @@ export const highlight = (text, q) => {
 
 export const shortenURL = (url) => url.replace('/content/genting-singapore', '').replace('.html', '');
 
+export const dispatchSearchAnalyticsEvent = (eventName, detail = null) => {
+  const dispatch = () => {
+    document.dispatchEvent(detail ? new CustomEvent(eventName, { detail }) : new CustomEvent(eventName));
+  };
+
+  if (window._satellite) {
+    dispatch();
+  } else {
+    const poll = setInterval(() => {
+      if (window._satellite) {
+        clearInterval(poll);
+        dispatch();
+      }
+    }, 250);
+    // Safety check to cancel polling after 15 seconds
+    setTimeout(() => clearInterval(poll), 15000);
+  }
+};
+
 const PAGE_SIZE = 5;
 
 const formatPage = (page) => String(page).padStart(2, '0');
@@ -254,10 +273,10 @@ const renderResults = (block, q, results, currentPage, total, totalPages, noResu
 
     items.forEach((item, index) => {
       const link = item.querySelector('.searchresult-title a');
+      const readMoreLink = item.querySelector('.searchresult-link');
 
-      if (!link) return;
-
-      link.addEventListener('click', () => {
+      const handleClick = (e, targetHref) => {
+        e.preventDefault();
         const absolutePosition = ((currentPage - 1) * PAGE_SIZE) + index + 1;
 
         // eslint-disable-next-line no-underscore-dangle
@@ -265,14 +284,24 @@ const renderResults = (block, q, results, currentPage, total, totalPages, noResu
           searchTerm: q,
           pageNumber: currentPage,
           position: absolutePosition,
-          title: link.textContent.trim(),
-          url: link.href,
+          title: link ? link.textContent.trim() : '',
+          url: targetHref,
         };
 
-        document.dispatchEvent(
-          new CustomEvent('internalSearchResultClick'),
-        );
-      });
+        dispatchSearchAnalyticsEvent('internalSearchResultClick');
+
+        setTimeout(() => {
+          window.location.href = targetHref;
+        }, 300);
+      };
+
+      if (link) {
+        link.addEventListener('click', (e) => handleClick(e, link.href));
+      }
+
+      if (readMoreLink) {
+        readMoreLink.addEventListener('click', (e) => handleClick(e, readMoreLink.href));
+      }
     });
   }, 0);
 };
@@ -320,6 +349,7 @@ const loadPage = async (block, q, page, pushState, noResultLink) => {
 
   renderResults(block, q, results, currentPage, total, totalPages, noResultLink);
 
+  window.searchResultCount = total;
   // eslint-disable-next-line no-underscore-dangle
   window.__searchEventData = {
     searchTerm: q,
@@ -330,9 +360,11 @@ const loadPage = async (block, q, page, pushState, noResultLink) => {
     resultEnd: Math.min(currentPage * PAGE_SIZE, total),
   };
 
-  document.dispatchEvent(
-    new CustomEvent('internalSearchResultsView'),
-  );
+  if (total > 0) {
+    dispatchSearchAnalyticsEvent('internalSearchResultsView');
+  } else {
+    dispatchSearchAnalyticsEvent('internalZeroSearchResultsView');
+  }
 
   block.classList.remove('is-loading');
 
@@ -381,9 +413,7 @@ const bindPagination = (block, q) => {
       toPage: page,
     };
 
-    document.dispatchEvent(
-      new CustomEvent('internalSearchPaginationClick'),
-    );
+    dispatchSearchAnalyticsEvent('internalSearchPaginationClick');
 
     loadPage(block, q, page, true);
 
