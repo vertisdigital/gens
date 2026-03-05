@@ -1,13 +1,12 @@
 import { moveInstrumentation } from '../../scripts/scripts.js';
-import { getCookie } from '../../shared-components/Utility.js';
 
 const hideCookieConsent = () => {
     document.querySelector('.cookiepolicy')?.classList?.add('hide');
 }
 
 const setCookieData = (_e, accepted = true) => {
-    //set for 180 days
-    document.cookie = `cookieConsent=${accepted};path=/;max-age=15552000;Secure`;
+    //set for 180 days (localStorage persists until cleared or manually removed)
+    localStorage.setItem('cookieConsent', accepted.toString());
     hideCookieConsent();
 };
 export class CookiePolicy {
@@ -22,7 +21,7 @@ export class CookiePolicy {
         const childElements = blockElem.children;
         const cookieWrapper = document.createElement('div');
         cookieWrapper.classList.add('cookie-wrapper');
-        if (getCookie('cookieConsent')) {
+        if (localStorage.getItem('cookieConsent') === 'true') {
             blockElem.classList.add('hide');
         }
         const descriptionField = childElements[0];

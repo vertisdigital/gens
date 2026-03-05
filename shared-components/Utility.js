@@ -101,13 +101,13 @@ export function getCookie(name) {
 
 export function controlLowerEnvironment() {
   // Authentication check - redirect to login if not authenticated and not already on login page
-  const isAuthenticated = getCookie('isAuthenticated') === 'true';
+  const isAuthenticated = localStorage.getItem('isAuthenticated') === 'true';
   const currentPath = window.location.pathname;
 
   // If user is not authenticated and not already on login page, redirect to login
   if (!isAuthenticated && !currentPath.includes('/login')) {
     // Store current page for redirect after login
-    sessionStorage.setItem('loginReferrer', window.location.href);
+    localStorage.setItem('loginReferrer', window.location.href);
     // eslint-disable-next-line no-console
     console.log('User not authenticated, redirecting to login page');
     window.location.href = '/login';

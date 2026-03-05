@@ -3,38 +3,26 @@ export default function decorate(block) {
   const loginChildren = Array.from(block.children);
 
   // Simple auth functions
-  function getCookie(name) {
-    const cookies = document.cookie.split('; ');
-    for (let i = 0; i < cookies.length; i += 1) {
-      const parts = cookies[i].split('=');
-      const key = parts[0];
-      const value = parts.slice(1).join('=');
-      if (key === name) {
-        return decodeURIComponent(value);
-      }
-    }
-    return null;
-  }
 
   function isAuthenticated() {
-    return getCookie('isAuthenticated') === 'true';
+    return localStorage.getItem('isAuthenticated') === 'true';
   }
 
   function setAuthenticated(status) {
     if (status) {
-      document.cookie = 'isAuthenticated=true; path=/; Secure';
-      document.cookie = `authTimestamp=${Date.now()}; path=/; Secure`;
+      localStorage.setItem('isAuthenticated', 'true');
+      localStorage.setItem('authTimestamp', Date.now().toString());
     } else {
-      document.cookie = 'isAuthenticated=; path=/; max-age=0; Secure';
-      document.cookie = 'authTimestamp=; path=/; max-age=0; Secure';
+      localStorage.removeItem('isAuthenticated');
+      localStorage.removeItem('authTimestamp');
     }
   }
 
   function getRedirectUrl() {
     // Check for stored referrer first
-    const storedReferrer = sessionStorage.getItem('loginReferrer');
+    const storedReferrer = localStorage.getItem('loginReferrer');
     if (storedReferrer) {
-      sessionStorage.removeItem('loginReferrer');
+      localStorage.removeItem('loginReferrer');
       return storedReferrer;
     }
 
@@ -52,7 +40,7 @@ export default function decorate(block) {
   function storeReferrer() {
     // Store current referrer if not already on login page
     if (document.referrer && !document.referrer.includes('/login')) {
-      sessionStorage.setItem('loginReferrer', document.referrer);
+      localStorage.setItem('loginReferrer', document.referrer);
     }
   }
 
