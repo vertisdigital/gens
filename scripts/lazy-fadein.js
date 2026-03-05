@@ -19,15 +19,52 @@ function initTextLazyFadeIn() {
     }
   );
 
+  const wrappersToAnimate = new Set();
+
   elements.forEach((el) => {
     if (el.closest('header')) return;
     if (el.closest('.header')) return;
     if (el.closest('.searchresult')) return;
     if (el.closest('.pagination')) return;
 
-    el.classList.add('cmp-fade-up');
-    observer.observe(el);
+    // We animate the wrapper rather than the block to avoid white gaps due to `overflow: hidden`
+    const wrapper = el.closest('[class*="-wrapper"], .section') || el;
+    wrappersToAnimate.add(wrapper);
+
+    // Remove the class from the inner block if we moved it to the wrapper
+    if (wrapper !== el) {
+      el.classList.remove('fade-item', 'cmp-fade-up');
+    }
   });
+
+  // Group adjacent wrappers if the first is a sectionheader-wrapper
+  const wrappersArray = Array.from(wrappersToAnimate);
+  const finalWrappers = new Set();
+
+  for (let i = 0; i < wrappersArray.length; i++) {
+    const wCurrent = wrappersArray[i];
+
+    if (wCurrent.classList.contains('sectionheader-wrapper') && (i + 1 < wrappersArray.length)) {
+      const wNext = wrappersArray[i + 1];
+      // Check if they are actually DOM siblings
+      if (wCurrent.nextElementSibling === wNext) {
+        const group = document.createElement('div');
+        group.className = 'fade-group cmp-fade-up';
+        wCurrent.parentNode.insertBefore(group, wCurrent);
+        group.appendChild(wCurrent);
+        group.appendChild(wNext);
+
+        finalWrappers.add(group);
+        i++; // Skip the next wrapper since it's grouped
+        continue;
+      }
+    }
+
+    wCurrent.classList.add('cmp-fade-up');
+    finalWrappers.add(wCurrent);
+  }
+
+  finalWrappers.forEach((w) => observer.observe(w));
 }
 
 export default initTextLazyFadeIn;
