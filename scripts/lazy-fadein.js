@@ -41,6 +41,7 @@ function initTextLazyFadeIn() {
   const wrappersArray = Array.from(wrappersToAnimate);
   const finalWrappers = new Set();
 
+  // eslint-disable-next-line no-plusplus
   for (let i = 0; i < wrappersArray.length; i++) {
     const wCurrent = wrappersArray[i];
 
@@ -55,7 +56,9 @@ function initTextLazyFadeIn() {
         group.appendChild(wNext);
 
         finalWrappers.add(group);
+        // eslint-disable-next-line no-plusplus
         i++; // Skip the next wrapper since it's grouped
+        // eslint-disable-next-line no-continue
         continue;
       }
     }
