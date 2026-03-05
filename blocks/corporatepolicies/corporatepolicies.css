@@ -45,7 +45,7 @@
     cursor: pointer;
 }
 
-.corporate-policies-list-item:hover {
+.corporate-policies-list p a:hover {
     color: var(--color-text-secondary);
     text-decoration: none;
 }
