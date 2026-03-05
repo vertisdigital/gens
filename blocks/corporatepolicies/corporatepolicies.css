@@ -41,8 +41,13 @@
 
 .corporate-policies-list p a {
     color: var(--primary-gold);
-    text-decoration: underline;
+    text-decoration: none;
     cursor: pointer;
+}
+
+.corporate-policies-list-item:hover {
+    color: var(--color-text-secondary);
+    text-decoration: none;
 }
 
 .corporate-policies-list-item>div:last-child {
@@ -114,6 +119,7 @@
 }
 
 .corporate-policies-list-item .right-col>div:nth-child(3) a {
+    display: block;
     margin: 24px 0 0 0;
 }
 
@@ -261,34 +267,40 @@
 .page-corporate-policies .corporate-policies-list-item .left-col h2.w-50,
 .page-corporate-policies .corporate-policies-list-item .left-col h2.w-40,
 .page-corporate-policies .corporate-policies-list-item .left-col h2.w-75,
-.page-corporate-policies .corporate-policies-list-item .left-col h2{
+.page-corporate-policies .corporate-policies-list-item .left-col h2 {
     width: 100%;
 }
 
-.page-corporate-policies .corporate-policies-list-item .left-col{
+.page-corporate-policies .corporate-policies-list-item .left-col {
     width: 75%;
+
     @media (width < 768px) {
         width: 60%;
     }
+
     @media (width < 500px) {
         width: 100%;
     }
 }
-.page-corporate-policies .corporate-policies-list-item .right-col{
+
+.page-corporate-policies .corporate-policies-list-item .right-col {
     width: 25%;
+
     @media (width < 768px) {
         width: 40%;
     }
+
     @media (width < 500px) {
         width: 100%;
     }
 }
 
 @media (width < 500px) {
-    .page-corporate-policies p.button-container{
+    .page-corporate-policies p.button-container {
         margin: 0;
     }
-    .page-corporate-policies .corporate-policies-list-item .left-col h2{
+
+    .page-corporate-policies .corporate-policies-list-item .left-col h2 {
         margin-bottom: 0;
     }
 }
