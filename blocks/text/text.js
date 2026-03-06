@@ -69,17 +69,21 @@ export default function decorate(block) {
 
   const isFullWidth = block.querySelector('[data-aue-prop="style"]')
     || block.querySelector('[data-gen-prop="style"]')
-    || children[3]?.querySelector('p')
-    || children[3];;
+  if (isFullWidth) {
+    const textContent = isFullWidth.textContent?.trim() || '';
+    const styles = textContent.split(/[\s,]+/).filter(Boolean);
 
-  if (isFullWidth && isFullWidth.textContent?.trim() === 'full-width-with-padding') {
-    block.classList.add('container', 'full-width-with-padding');
-    isFullWidth.remove();
-  }
+    if (styles.includes('full-width-with-padding')) {
+      block.classList.add('container', 'full-width-with-padding');
+    }
 
-  if (isFullWidth && isFullWidth.textContent?.trim() === 'instrument-sans-variable-font') {
-    block.classList.add('instrument-sans-variable-font');
-    isFullWidth.remove();
+    if (styles.includes('instrument-sans-variable-font')) {
+      block.classList.add('instrument-sans-variable-font');
+    }
+
+    if (textContent) {
+      isFullWidth.remove();
+    }
   }
 
   // =========================
