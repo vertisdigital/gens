@@ -106,8 +106,10 @@ export default function decorate(block) {
                     }
                 }
 
-                if (title) {
+                if (title && title !== '#') {
                     cta.setAttribute('title', title);
+                } else if (titleEl && titleEl.textContent && titleEl.textContent.trim() !== '') {
+                    cta.setAttribute('title', titleEl.textContent.trim());
                 }
 
                 if (iconName) {
