@@ -170,7 +170,7 @@ function initLinkFallback(container) {
         break;
       }
       el = el.parentElement;
-      count++;
+      count += 1;
     }
 
     if (text) {
