@@ -542,7 +542,7 @@ function initializeHeader(header) {
         currentActive.classList.remove(activeClass);
         document.querySelectorAll('.secondary-nav').forEach(navigation => navigation.classList.remove(activeClass));
         overlay.classList.remove(activeClass);
-        document.querySelectorAll('.secondary-header-links .nav-links').forEach(n => n.innerHTML = '');
+        document.querySelectorAll('.secondary-header-links .nav-links').forEach(n => { n.innerHTML = ''; });
         currentActive = null;
       }
     });
