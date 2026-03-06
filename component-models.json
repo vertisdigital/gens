@@ -2508,6 +2508,10 @@
           {
             "name": "Grid View Has Padding",
             "value": "has-padding"
+          },
+          {
+            "name": "Page Alignment",
+            "value": "page-alignment"
           }
         ]
       }

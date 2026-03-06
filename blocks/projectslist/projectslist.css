@@ -88,6 +88,10 @@ p {
     padding: 0 24px;
 }
 
+.projectslist.page-alignment .grid-view.grid-view-2-cols.has-padding .left-col {
+    padding: 0 80px;
+}
+
 .projectslist .projectslistitem .project-image {
     width: 81%;
     display: flex;
@@ -251,6 +255,10 @@ p {
         width: 100%;
     }
 
+    .projectslist.page-alignment .grid-view.grid-view-2-cols.has-padding .left-col {
+        padding: 0 40px;
+    }
+
     .projectslist .projectslistitem .project-image {
         width: 100%;
         padding-top: 24px;
@@ -325,6 +333,10 @@ p {
     .projectslistitem .right-col {
         padding: 0;
         width: 100%;
+    }
+
+    .projectslist.page-alignment .grid-view.grid-view-2-cols.has-padding .left-col {
+        padding: 0 24px;
     }
 
     .projectslist .projectslistitem .project-image {
