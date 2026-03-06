@@ -106,7 +106,7 @@ export default function decorate(block) {
                     }
                 }
 
-                if (title && title !== '#' && title !== href) {
+                if (title && title !== '#' && title !== href && !title.includes(href)) {
                     cta.setAttribute('title', title);
                 } else if (titleEl && titleEl.textContent && titleEl.textContent.trim() !== '') {
                     cta.setAttribute('title', titleEl.textContent.trim());
