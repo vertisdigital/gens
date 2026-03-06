@@ -395,6 +395,10 @@ a:any-link.factsheet-button {
     text-shadow: 0 1px 4px rgba(0, 0, 0, 0.8), 0 2px 10px rgba(0, 0, 0, 0.6);
   }
 
+  .no-ratio-in-mobile .row.tiles-container>.image-tile>div {
+    aspect-ratio: auto;
+  }
+
   .row.tiles-container .tiles-nested-image {
     background-image: var(--bg-image-mobile, var(--bg-image-desktop, none)) !important;
   }
