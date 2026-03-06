@@ -450,6 +450,11 @@ export default async function decorate(block) {
         item.setAttribute('aria-expanded', 'true');
 
         freshHeader.addEventListener('click', (e) => {
+          // If the user clicked directly on the link, let it navigate
+          if (e.target.tagName === 'A' || e.target.closest('a')) {
+            return;
+          }
+
           e.preventDefault();
           e.stopPropagation();
 
