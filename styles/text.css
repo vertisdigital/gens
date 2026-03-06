@@ -42,6 +42,30 @@
   letter-spacing: var(--typography-font-spacing-tracking-normal, 0);
 }
 
+.textblock.instrument-sans-variable-font :is(p,
+  span,
+  strong,
+  em,
+  b,
+  i,
+  u,
+  s,
+  small,
+  code,
+  pre,
+  blockquote,
+  figcaption,
+  li,
+  a,
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6) {
+  font-family: var(--typography-font-family-font-body) !important;
+}
+
 .textblock h2 {
   font-size: 56px;
 }
