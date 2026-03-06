@@ -77,6 +77,11 @@ export default function decorate(block) {
     isFullWidth.remove();
   }
 
+  if (isFullWidth && isFullWidth.textContent?.trim() === 'instrument-sans-variable-font') {
+    block.classList.add('instrument-sans-variable-font');
+    isFullWidth.remove();
+  }
+
   // =========================
   // ALIGN
   // =========================

@@ -154,6 +154,10 @@
           {
             "name": "Full width with padding",
             "value": "full-width-with-padding"
+          },
+          {
+            "name": "Instrument Sans Variable font",
+            "value": "instrument-sans-variable-font"
           }
         ]
       }

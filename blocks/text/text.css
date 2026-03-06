@@ -14,6 +14,10 @@
   padding-bottom: 80px;
 }
 
+.textblock.instrument-sans-variable-font {
+  font-family: var(--typography-font-family-font-body) !important;
+}
+
 /* =========================================================
    RESET – all content inherits color from wrapper
    ========================================================= */
