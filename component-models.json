@@ -2525,6 +2525,10 @@
           {
             "name": "Open as Modal",
             "value": "open-as-modal"
+          },
+          {
+            "name": "No Ratio in Mobile",
+            "value": "no-ratio-in-mobile"
           }
         ]
       }
