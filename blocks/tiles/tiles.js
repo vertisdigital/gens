@@ -170,7 +170,7 @@ export default function decorate(block) {
     row.appendChild(col);
 
     // Data storage for modal
-    let modalData = {};
+    const modalData = {};
 
     if (isFirsTileImage || index > 0) {
       firstTile.children[3].textContent = '';
@@ -249,15 +249,20 @@ export default function decorate(block) {
       const buttonContainer = childrens[5].querySelector('a');
       childrens[3].textContent = '';
 
+      let tileTitle = '';
+      if (childrens[0]) {
+        const p = childrens[0].querySelector('p');
+        if (p) tileTitle = p.textContent.trim();
+      }
+
       // Capture modal data before manipulation
       if (isOpenAsModal) {
         // Title is usually in the first p of the first div (after image removal)
         // Structure: <div><p>Title</p></div><div><p>Desc</p></div>
         // childrens[0] -> first div
         // childrens[1] -> second div
-        if (childrens[0]) {
-          const p = childrens[0].querySelector('p');
-          if (p) modalData.title = p.textContent;
+        if (tileTitle) {
+          modalData.title = tileTitle;
         }
         if (childrens[1]) {
           const p = childrens[1].querySelector('p');
@@ -272,11 +277,10 @@ export default function decorate(block) {
         tile.style.cursor = 'pointer';
 
         // Hide content divs
-        Array.from(childrens).forEach(child => {
+        Array.from(childrens).forEach((child) => {
           child.style.display = 'none';
         });
       }
-
 
       // Check if children[2] (third child, 0-indexed) has a picture element in its first <p>
       const thirdChild = childrens[2];
@@ -318,13 +322,14 @@ export default function decorate(block) {
         }
       }
 
-
-
       const ctaCaption = childrens[6];
       if (!isOpenAsModal && buttonContainer && buttonContainer.textContent.trim() !== '' && ctaCaption !== null) {
         const ctaLink = document.createElement('a');
         ctaLink.href = buttonContainer.href;
         ctaLink.className = (index % 2 === 1) ? 'odd-learn-button learn-button' : 'learn-button';
+        if (tileTitle) {
+          ctaLink.title = tileTitle;
+        }
         // Create circular icon button with arrow icon
         const arrowIcon = SvgIcon({
           name: 'arrowright',
@@ -355,6 +360,13 @@ export default function decorate(block) {
       const childrens = firstTile.children;
       const buttonContainer = childrens[3].textContent === 'true' ? childrens[4].querySelector('a') : childrens[3].querySelector('a');
       const ctaCaption = childrens[6];
+      let firstTileTitle = '';
+      if (childrens[0]) {
+        const p = childrens[0].querySelector('p');
+        if (p) {
+          firstTileTitle = p.textContent.trim();
+        }
+      }
       const downArraowWithLine = SvgIcon({
         name: 'downArraowWithLine',
         className: 'factsheet-button-arrow animation-element',
@@ -367,6 +379,9 @@ export default function decorate(block) {
         ctaLink.href = buttonContainer.href;
         ctaLink.target = childrens[3]?.textContent === 'true' ? '_blank' : '_self';
         ctaLink.className = 'factsheet-button animated-cta';
+        if (firstTileTitle) {
+          ctaLink.title = firstTileTitle;
+        }
         ctaLink.innerHTML = `${ctaCaption.textContent} ${downArraowWithLine}`;
         // Replace CTA caption with link
         ctaCaption.parentNode.replaceChild(ctaLink, ctaCaption);
@@ -402,13 +417,11 @@ export default function decorate(block) {
     block.appendChild(row);
   }
 
-
   // Add list role for accessibility
   block.setAttribute('role', 'list');
 
   // Handle open-as-modal functionality
   if (isOpenAsModal) {
-
     // Note: .tiles-nested-image is the tile class based on earlier logic
     // But we need the element that has dataset.
 
@@ -416,7 +429,7 @@ export default function decorate(block) {
     // We can query selector on block/row
 
     const clickableTiles = block.querySelectorAll('.tiles-nested-image');
-    clickableTiles.forEach(tile => {
+    clickableTiles.forEach((tile) => {
       tile.addEventListener('click', (e) => {
         e.preventDefault();
         if (tile.dataset.modalById) {
