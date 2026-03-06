@@ -189,6 +189,10 @@
   white-space: pre;
 }
 
+.textblock em {
+  font-style: italic;
+}
+
 @media (width >=567px) {
 
   .textblock code,
