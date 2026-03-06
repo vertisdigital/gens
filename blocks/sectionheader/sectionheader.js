@@ -106,11 +106,12 @@ export default function decorate(block) {
                     }
                 }
 
-                if (title && title !== '#') {
+                if (title && title !== '#' && title !== href) {
                     cta.setAttribute('title', title);
                 } else if (titleEl && titleEl.textContent && titleEl.textContent.trim() !== '') {
                     cta.setAttribute('title', titleEl.textContent.trim());
                 }
+
 
                 if (iconName) {
                     const iconWrapper = document.createElement('span');
