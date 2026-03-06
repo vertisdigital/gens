@@ -190,7 +190,7 @@
 }
 
 .textblock em {
-  font-style: italic;
+  font-style: italic !important;
 }
 
 @media (width >=567px) {
