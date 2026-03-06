@@ -534,6 +534,19 @@ function initializeHeader(header) {
 
     const originalLinks = item.querySelector('.nav-links');
 
+    item.addEventListener('mouseenter', () => {
+      if (isMobileViewport()) return;
+      document.querySelector('.search-suggestion-box')?.classList.remove(activeClass);
+
+      if (currentActive && currentActive !== item) {
+        currentActive.classList.remove(activeClass);
+        document.querySelectorAll('.secondary-nav').forEach(navigation => navigation.classList.remove(activeClass));
+        overlay.classList.remove(activeClass);
+        document.querySelectorAll('.secondary-header-links .nav-links').forEach(n => { n.innerHTML = ''; });
+        currentActive = null;
+      }
+    });
+
     if (originalLinks) {
       const originalDescription = linksDiv?.querySelector('.overview-description').textContent || '';
       // Create empty secondary nav structure
@@ -650,13 +663,6 @@ function initializeHeader(header) {
 
       item.addEventListener('mouseenter', () => {
         if (isMobileViewport()) return;
-        document.querySelector('.search-suggestion-box').classList.remove(activeClass);
-        document.querySelectorAll('.secondary-nav').forEach(navigation => navigation.classList.remove(activeClass));
-        if (currentActive && currentActive !== item) {
-          currentActive.classList.remove(activeClass);
-          overlay.classList.remove(activeClass);
-          emptyLinks.innerHTML = '';
-        }
 
         item.classList.add(activeClass);
 
