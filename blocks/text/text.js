@@ -67,6 +67,11 @@ export default function decorate(block) {
     }
   });
 
+  if (block.textContent.trim() === '' && !block.querySelector('img, video, iframe, a')) {
+    block.innerHTML = '';
+    return;
+  }
+
   const isFullWidth = block.querySelector('[data-aue-prop="style"]')
     || block.querySelector('[data-gen-prop="style"]')
     || children[3]?.querySelector('p')
