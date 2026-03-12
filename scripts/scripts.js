@@ -212,6 +212,7 @@ async function loadPage() {
   loadDelayed();
   initLazyFadeIn();
   initLinkFallback(document.body);
+  document.body.classList.add('fully-loaded');
 }
 
 loadPage();
