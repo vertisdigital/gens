@@ -32,6 +32,9 @@
       window.location.replace('/en/404');
     } else {
       console.log('[404 DEBUG] Staying on 404 page');
+      setTimeout(() => {
+        document.body.classList.add('appear');
+      }, 0);
     }
   </script>
   <meta name="viewport" content="width=device-width, initial-scale=1">
