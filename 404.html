@@ -5,8 +5,24 @@
   <title>Page not found</title>
   <script type="text/javascript">
     const path = window.location.pathname;
+    const href = window.location.href;
+    const origin = window.location.origin;
+
+    // Check if URL is strictly the root domain (with or without trailing slash)
+    // Examples: https://domain.com, https://domain.com/, https://domain.com/en, https://domain.com/index.html
+    const isRootUrl =
+      href === origin ||
+      href === origin + '/' ||
+      href.startsWith(origin + '/?') ||
+      href.startsWith(origin + '/#') ||
+      path === '' ||
+      path === '/' ||
+      path === '/index.html' ||
+      path === '/en' ||
+      path === '/en/';
+
     console.log('[404 DEBUG] Current path:', `"${path}"`);
-    if (path === '' || path === '/' || path === '/index.html' || path === '/en' || path === '/en/') {
+    if (isRootUrl) {
       console.log('[404 DEBUG] Redirecting to /en/home');
       window.location.replace('/en/home');
     } else if (path !== '/en/404' && path !== '/en/404/') {
