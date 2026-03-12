@@ -57,7 +57,7 @@ export default stringToHTML;
 export function redirectRouter() {
   // Redirect root to /en/home to check for 404
   const path = window.location.pathname;
-  if (path === '/' || path === '/index.html' || path === '/en' || path === '/en/') {
+  if (path === '' || path === '/' || path === '/index.html' || path === '/en' || path === '/en/') {
     window.location.replace('/en/home');
     return;
   }
