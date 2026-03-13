@@ -397,6 +397,14 @@ a:any-link.factsheet-button {
 
   .no-ratio-in-mobile .row.tiles-container>.image-tile>div {
     aspect-ratio: auto;
+    padding: 0;
+  }
+
+  .mobile-fallback-image {
+    visibility: hidden;
+    width: 100%;
+    height: auto;
+    display: block;
   }
 
   .row.tiles-container .tiles-nested-image {
@@ -481,6 +489,12 @@ a:any-link.factsheet-button {
     /*  .row.tiles-container .image-tile>div>div:nth-child(2) p.w-50 {
       width: 50%;
     } */
+  }
+}
+
+@media screen and (min-width: 768px) {
+  .mobile-fallback-image {
+    display: none !important;
   }
 }
 
