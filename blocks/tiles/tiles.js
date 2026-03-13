@@ -261,6 +261,13 @@ export default function decorate(block) {
       if (childrens[0]) {
         const p = childrens[0].querySelector('p');
         if (p) tileTitle = p.textContent.trim();
+        if (tileTitle === '' && !childrens[0].querySelector('picture, img')) {
+          childrens[0].style.display = 'none';
+        }
+      }
+
+      if (childrens[1] && childrens[1].textContent.trim() === '' && !childrens[1].querySelector('picture, img')) {
+        childrens[1].style.display = 'none';
       }
 
       // Capture modal data before manipulation
