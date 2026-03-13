@@ -244,6 +244,19 @@ export default function decorate(block) {
         if (mobileImageLink) {
           lastTwoDivs[1].remove();
         }
+
+        if (block.classList.contains('no-ratio-in-mobile')) {
+          const hiddenImg = document.createElement('img');
+          const fallbackImageUrl = tabletImageLink ? `${tabletImageLink}/as/tiles.webp?width=850` : desktopImageUrl;
+          hiddenImg.src = mobileImageLink ? `${mobileImageLink}/as/tiles.webp?width=850` : fallbackImageUrl;
+          hiddenImg.style.visibility = 'hidden';
+          hiddenImg.style.width = '100%';
+          hiddenImg.style.height = 'auto';
+          hiddenImg.style.position = 'relative';
+          hiddenImg.style.zIndex = '-1';
+
+          tile.appendChild(hiddenImg);
+        }
       }
 
       const buttonContainer = childrens[5].querySelector('a');
