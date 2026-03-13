@@ -398,6 +398,8 @@ a:any-link.factsheet-button {
   .no-ratio-in-mobile .row.tiles-container>.image-tile>div {
     aspect-ratio: auto;
     padding: 0;
+    background-size: contain !important;
+    background-position: center !important;
   }
 
   .mobile-fallback-image {
