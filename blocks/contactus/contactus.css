@@ -33,6 +33,10 @@
   width: 100%;
 }
 
+.contactus.block a:any-link {
+  color: var(--primary-gold);
+}
+
 .contactus.block .container:first-child {
   background-color: var(--primary-default-fg);
 }
