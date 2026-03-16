@@ -47,15 +47,15 @@ export default function decorate(block) {
       // If the element is now completely empty after removing _, remove it
       if (!el.textContent.trim() && !el.querySelector('img, video, iframe, a')) {
         el.remove();
-        return;
       }
     }
 
     if (el.tagName === 'P' && el.querySelector('br')) {
       const parent = el.parentNode;
       const parts = el.innerHTML.split(/<br\s*\/?>/gi);
-      parts.forEach((part) => {
+      parts.forEach((part, index) => {
         const newP = document.createElement('p');
+        if (index < parts.length - 1) newP.classList.add('br-line');
         newP.innerHTML = part;
         const text = newP.textContent.trim();
         if ((!text && !newP.querySelector('img, video, iframe, a')) || text === '_') {
@@ -87,6 +87,10 @@ export default function decorate(block) {
 
     if (styles.includes('instrument-sans-variable-font')) {
       block.classList.add('instrument-sans-variable-font');
+    }
+
+    if (styles.includes('single-spacing')) {
+      block.classList.add('single-spacing');
     }
 
     if (textContent) {

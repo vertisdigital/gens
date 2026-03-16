@@ -162,7 +162,15 @@
 
 .textblock p {
   margin-top: 0;
-  margin-bottom: 1em;
+  margin-bottom: 0.5em;
+}
+
+.textblock p.br-line {
+  margin-bottom: 0;
+}
+
+.textblock.single-spacing p {
+  margin-bottom: 0;
 }
 
 /* =========================================================
