@@ -129,6 +129,10 @@
   letter-spacing: 0;
 }
 
+.feature-wrapper a:any-link {
+  color: var(--primary-gold);
+}
+
 .about-us-left .links-container {
   display: flex;
   align-items: center;
