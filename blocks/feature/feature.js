@@ -198,7 +198,9 @@ export default function decorate(block) {
 
     // Append columns to left container
     aboutUsLeftContent.appendChild(leftColumn);
-    aboutUsLeftContent.appendChild(rightColumn);
+    if (rightColumn.children.length > 0) {
+      aboutUsLeftContent.appendChild(rightColumn);
+    }
 
     if (leftColumn.innerHTML === '' && rightColumn.innerHTML === ''){
       isLeftContainerHasContent = false;
