@@ -21,7 +21,10 @@ function getImageHTMl(image) {
     }
   }
 
-  if (!imageUrl) return '';
+  if (!imageUrl) {
+    imageUrl = `${window.hlx.codeBasePath}/icons/generic-milestone.jpg`;
+    imageAlt = 'Genting Milestone';
+  }
 
   const imageHtml = ImageComponent({
     src: imageUrl,
@@ -444,9 +447,9 @@ export default function decorate(block) {
 
         milestone.innerHTML = `
               <div class="historymilestones-milestone">
-                ${image && image.textContent.trim() ? `<div class="historymilestones-image">
+                <div class="historymilestones-image">
                   ${getImageHTMl(image)}
-                </div>` : ''}
+                </div>
                 <div class="historymilestones-content">
                   <div class="historymilestones-date">
                     ${date.outerHTML}
