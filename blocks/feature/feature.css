@@ -179,6 +179,16 @@
   margin-bottom: 0;
 }
 
+.about-us-stats .about-us-right-content p,
+.about-us-stats .about-us-right-content dl,
+.about-us-stats .about-us-right-content ol,
+.about-us-stats .about-us-right-content ul,
+.about-us-stats .about-us-right-content pre,
+.about-us-stats .about-us-right-content blockquote {
+  margin-top: 0.8em;
+  margin-bottom: 0.8em;
+}
+
 .about-us-stats .about-us-right-content:last-child {
   margin-bottom: 0;
 }
@@ -371,7 +381,7 @@
   }
 
   .about-us-stats .about-us-right-content.text-container,
-  .about-us-stats .about-us-right-content{
+  .about-us-stats .about-us-right-content {
     margin-bottom: 0;
     padding-top: 16px;
     border-top: 1px solid #E8EBEB;
@@ -500,6 +510,7 @@
 }
 
 @media (width <=1023px) {
+
   .statistics-container .feature-wrapper .about-us-left,
   .statistics-container .feature-wrapper .about-us-right {
     width: 100%;
@@ -884,70 +895,71 @@
     padding-bottom: 0;
   }
 }
-  /* Tablet Design */
-  @media (width >=768px) and (width < 1181px) {
-    .feature-wrapper .with-vertical-list .about-us-stats {
-      gap: 40px;
-      flex-direction: column;
-    }
 
-    .feature-wrapper .with-vertical-list .about-us-right-column {
-      padding-top: 0;
-    }
-
-    .feature-wrapper .with-vertical-list .about-us-left .about-us-left-title {
-      font-size: 32px;
-      line-height: 48px;
-    }
-
-    .feature-wrapper .with-vertical-list .about-us-stats .about-us-right-content {
-      padding: 16px 0;
-    }
-
-    .feature-wrapper .with-vertical-list .about-us-stats .about-us-right-content:not(:has(~ .about-us-right-content)) {
-      padding-bottom: 0;
-    }
-
-    .feature-wrapper .with-vertical-list .about-us-stats .about-us-right-content>div p {
-      font-size: 24px;
-      line-height: 40px;
-    }
+/* Tablet Design */
+@media (width >=768px) and (width < 1181px) {
+  .feature-wrapper .with-vertical-list .about-us-stats {
+    gap: 40px;
+    flex-direction: column;
   }
 
-  /* Mobile Design */
-  @media (width < 768px) {
-    .feature-wrapper .with-vertical-list .about-us-stats {
-      flex-direction: column;
-      gap: 24px;
-    }
-
-    .feature-wrapper .with-vertical-list .about-us-stats .about-us-right{
-      gap: 0;
-    }
-
-    .feature-wrapper .with-vertical-list .about-us-right-column {
-      padding-top: 0;
-    }
-
-    .feature-wrapper .with-vertical-list .about-us-left .about-us-left-title {
-      font-size: 24px;
-      line-height: 40px;
-    }
-
-    .feature-wrapper .with-vertical-list .about-us-stats .about-us-right-content {
-      padding: 16px 0;
-    }
-
-    .feature-wrapper .with-vertical-list .about-us-stats .about-us-right-content:not(:has(~ .about-us-right-content)) {
-      padding-bottom: 0;
-      border-bottom: none;
-    }
-
-    .feature-wrapper .with-vertical-list .about-us-stats .about-us-right-content>div p {
-      font-size: 16px;
-      line-height: 24px;
-    }
+  .feature-wrapper .with-vertical-list .about-us-right-column {
+    padding-top: 0;
   }
+
+  .feature-wrapper .with-vertical-list .about-us-left .about-us-left-title {
+    font-size: 32px;
+    line-height: 48px;
+  }
+
+  .feature-wrapper .with-vertical-list .about-us-stats .about-us-right-content {
+    padding: 16px 0;
+  }
+
+  .feature-wrapper .with-vertical-list .about-us-stats .about-us-right-content:not(:has(~ .about-us-right-content)) {
+    padding-bottom: 0;
+  }
+
+  .feature-wrapper .with-vertical-list .about-us-stats .about-us-right-content>div p {
+    font-size: 24px;
+    line-height: 40px;
+  }
+}
+
+/* Mobile Design */
+@media (width < 768px) {
+  .feature-wrapper .with-vertical-list .about-us-stats {
+    flex-direction: column;
+    gap: 24px;
+  }
+
+  .feature-wrapper .with-vertical-list .about-us-stats .about-us-right {
+    gap: 0;
+  }
+
+  .feature-wrapper .with-vertical-list .about-us-right-column {
+    padding-top: 0;
+  }
+
+  .feature-wrapper .with-vertical-list .about-us-left .about-us-left-title {
+    font-size: 24px;
+    line-height: 40px;
+  }
+
+  .feature-wrapper .with-vertical-list .about-us-stats .about-us-right-content {
+    padding: 16px 0;
+  }
+
+  .feature-wrapper .with-vertical-list .about-us-stats .about-us-right-content:not(:has(~ .about-us-right-content)) {
+    padding-bottom: 0;
+    border-bottom: none;
+  }
+
+  .feature-wrapper .with-vertical-list .about-us-stats .about-us-right-content>div p {
+    font-size: 16px;
+    line-height: 24px;
+  }
+}
 
 
 
