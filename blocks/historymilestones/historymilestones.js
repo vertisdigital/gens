@@ -26,6 +26,12 @@ function getImageHTMl(image) {
     imageAlt = 'Genting Milestone';
   }
 
+  const isFallback = imageUrl.includes('/icons/generic-milestone.jpg');
+
+  if (isFallback) {
+    return `<div class="history-milestone-image-wrapper"><img src="${imageUrl}" alt="${imageAlt}" class="history-milestone-image" loading="lazy"></div>`;
+  }
+
   const imageHtml = ImageComponent({
     src: imageUrl,
     alt: imageAlt,
