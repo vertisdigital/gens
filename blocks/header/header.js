@@ -825,10 +825,18 @@ function initializeHeader(header) {
     }
 
     // Check if the clicked element has a hash (#) in its href
-    const target = e.target;
-    if (target.href?.includes("#")) {
-      window.location.href = e.target.href; // Navigate to the correct section
-      window.location.reload()
+    const target = e.target.closest('a');
+    if (target && target.href && target.href.includes('#')) {
+      const url = new URL(target.href);
+      // Only redirect if it's the same origin to prevent open redirect and XSS
+      if (url.origin === window.location.origin) {
+        // Prevent javascript: or other dangerous schemes if somehow present
+        const blockedSchemes = ['javascript:', 'data:', 'vbscript:'];
+        if (!blockedSchemes.some(scheme => url.protocol.toLowerCase().startsWith(scheme))) {
+          window.location.href = target.href;
+          window.location.reload();
+        }
+      }
     }
   });
 
