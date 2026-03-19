@@ -2,8 +2,9 @@ import { getMetadata } from '../../scripts/aem.js';
 import { loadFragment } from '../fragment/fragment.js';
 import SVGIcon from '../../shared-components/SvgIcon.js';
 import stringToHtml from '../../shared-components/Utility.js';
-import { highlight, shortenURL, resolveSearchBasePath, getSearchEndpoint, dispatchSearchAnalyticsEvent } from '../searchresult/searchresult.js';
-
+import {
+  highlight, shortenURL, resolveSearchBasePath, getSearchEndpoint, dispatchSearchAnalyticsEvent,
+} from '../searchresult/searchresult.js';
 
 // Add these variables at the top level of the file
 let ticking = false;
@@ -159,7 +160,7 @@ function createNavItem(itemData) {
   overviewLink.setAttribute('target', itemData.overviewLinkTarget);
 
   const upArrow = SVGIcon({
-    name: 'arrowUp'
+    name: 'arrowUp',
   });
 
   // ADD accordion arrow (mobile only via CSS)
@@ -176,8 +177,7 @@ function createNavItem(itemData) {
   titleDiv.appendChild(titleContent);
 
   navItem.appendChild(titleDiv);
-  if (detailedcaption.getAttribute('href'))
-    navItem.appendChild(detailedcaption);
+  if (detailedcaption.getAttribute('href')) { navItem.appendChild(detailedcaption); }
   navItem.appendChild(overviewLink);
   if (itemData.links && itemData.links[0]) {
     const overviewDescription = document.createElement('div');
@@ -314,10 +314,9 @@ function createHeaderStructure(block) {
   searchBtn.className = 'search-btn';
 
   const searchSvgIcon = SVGIcon({ name: 'search', size: 24 });
-  if (typeof searchSvgIcon === 'string') {
-    searchBtn.innerHTML = searchSvgIcon;
-  } else if (searchSvgIcon instanceof Node) {
-    searchBtn.appendChild(searchSvgIcon);
+  const searchIconNode = stringToHtml(searchSvgIcon);
+  if (searchIconNode) {
+    searchBtn.append(searchIconNode);
   }
 
   searchWrapper.appendChild(searchBtn);
@@ -375,7 +374,7 @@ function loadSearchSuggest(keyword) {
         {
           method: 'GET',
           credentials: 'include',
-        }
+        },
       );
 
       if (!res.ok) {
@@ -385,7 +384,7 @@ function loadSearchSuggest(keyword) {
       const data = await res.json();
       if (data.length) {
         suggestions.classList.add('active');
-        suggestions.innerHTML = '';
+        suggestions.replaceChildren();
         data.forEach((item) => {
           const suggestion = document.createElement('a');
           suggestion.className = 'suggestion-item';
@@ -393,9 +392,12 @@ function loadSearchSuggest(keyword) {
           let contentHtml = item.highlight ? highlight(item.highlight, keyword) : highlight(item.title || '', keyword);
 
           if (item.path.endsWith('.pdf') && !item.highlight) {
-            contentHtml += `<span class="search-suggestion-note">Match found in document content</span>`;
+            contentHtml += '<span class="search-suggestion-note">Match found in document content</span>';
           }
-          suggestion.innerHTML = contentHtml;
+          const highlightedNode = stringToHtml(contentHtml);
+          if (highlightedNode) {
+            suggestion.append(highlightedNode);
+          }
 
           suggestion.addEventListener('click', (e) => {
             e.preventDefault();
@@ -411,24 +413,29 @@ function loadSearchSuggest(keyword) {
         window.searchResultCount = data.length;
         dispatchSearchAnalyticsEvent('searchSuggestionShown', {
           keyword: document.querySelector('.search-input')?.value || '',
-          resultCount: document.querySelectorAll('.suggestion-item').length
+          resultCount: document.querySelectorAll('.suggestion-item').length,
         });
-
       } else {
         suggestions.classList.add('active');
-        suggestions.innerHTML = `
-          <div class="search-suggestion-empty text-center w-100 py-3" style="display: flex; justify-content: center;">
-             <p class="m-0" style="color: var(--colours-text-text-disabled, #82959E); font-size: 14px;">No results found</p>
-          </div>
-        `;
+        suggestions.replaceChildren();
+        const emptyDiv = document.createElement('div');
+        emptyDiv.className = 'search-suggestion-empty text-center w-100 py-3';
+        emptyDiv.style.display = 'flex';
+        emptyDiv.style.justifyContent = 'center';
+        const emptyText = document.createElement('p');
+        emptyText.classList.add('m-0');
+        emptyText.style.color = 'var(--colours-text-text-disabled, #82959E)';
+        emptyText.style.fontSize = '14px';
+        emptyText.textContent = 'No results found';
+        emptyDiv.append(emptyText);
+        suggestions.append(emptyDiv);
 
         window.searchResultCount = 0;
         dispatchSearchAnalyticsEvent('searchSuggestionShown', {
           keyword: document.querySelector('.search-input')?.value || '',
-          resultCount: 0
+          resultCount: 0,
         });
       }
-
     } catch (err) {
       // ignore
     }
@@ -524,7 +531,6 @@ function initializeHeader(header) {
     }, 0);
   });
 
-
   navItems.forEach((item) => {
     const linksDiv = item.querySelector('.links');
     const overviewLink = linksDiv?.querySelector('.overview-link');
@@ -540,9 +546,9 @@ function initializeHeader(header) {
 
       if (currentActive && currentActive !== item) {
         currentActive.classList.remove(activeClass);
-        document.querySelectorAll('.secondary-nav').forEach(navigation => navigation.classList.remove(activeClass));
+        document.querySelectorAll('.secondary-nav').forEach((navigation) => navigation.classList.remove(activeClass));
         overlay.classList.remove(activeClass);
-        document.querySelectorAll('.secondary-header-links .nav-links').forEach(n => { n.innerHTML = ''; });
+        document.querySelectorAll('.secondary-header-links .nav-links').forEach((n) => { n.innerHTML = ''; });
         currentActive = null;
       }
     });
@@ -558,7 +564,10 @@ function initializeHeader(header) {
       closeBtn.className = 'close-btn';
       closeBtn.setAttribute('aria-label', 'Close menu');
       const closeBtnIcon = SVGIcon({ name: 'close', className: 'close-icon', size: 18 });
-      closeBtn.innerHTML = closeBtnIcon;
+      const closeBtnIconNode = stringToHtml(closeBtnIcon);
+      if (closeBtnIconNode) {
+        closeBtn.append(closeBtnIconNode);
+      }
 
       const heading = document.createElement('a');
       heading.className = 'secondary-header-title';
@@ -579,10 +588,9 @@ function initializeHeader(header) {
       iconWrapper.className = 'secondary-header-cta-icon';
 
       const svg = SVGIcon({ name: 'arrowRightWhite', size: 24 });
-      if (typeof svg === 'string') {
-        iconWrapper.innerHTML = svg;
-      } else {
-        iconWrapper.appendChild(svg);
+      const svgNode = stringToHtml(svg);
+      if (svgNode) {
+        iconWrapper.append(svgNode);
       }
 
       cta.appendChild(iconWrapper);
@@ -635,7 +643,7 @@ function initializeHeader(header) {
 
         const isOpen = item.classList.contains('active');
 
-        header.querySelectorAll('.nav-item.active').forEach(i => {
+        header.querySelectorAll('.nav-item.active').forEach((i) => {
           if (i !== item) {
             i.classList.remove('active');
             i.querySelector('.mobile-subnav')?.remove();
@@ -652,7 +660,7 @@ function initializeHeader(header) {
 
         const accordion = createMobileAccordionFromSecondary(
           secondaryNav,
-          originalLinks
+          originalLinks,
         );
         item.appendChild(accordion);
       });
@@ -683,14 +691,12 @@ function initializeHeader(header) {
           if (!currentActive) return;
 
           currentActive.classList.remove(activeClass);
-          document.querySelectorAll('.secondary-nav').forEach(navigation => navigation.classList.remove(activeClass));
+          document.querySelectorAll('.secondary-nav').forEach((navigation) => navigation.classList.remove(activeClass));
           overlay.classList.remove(activeClass);
           emptyLinks.innerHTML = '';
           currentActive = null;
-
         }
       });
-
 
       // Handle back/close buttons
       const closeSecondary = () => {
@@ -711,16 +717,15 @@ function initializeHeader(header) {
   const searchBtn = header.querySelector('.search-btn');
   const searchSuggestionBox = document.querySelector('.search-suggestion-box');
 
-  searchBtn.addEventListener('click', function () {
+  searchBtn.addEventListener('click', () => {
     if (!searchSuggestionBox.classList.contains('active')) {
-      document.querySelectorAll('.secondary-nav').forEach(navigation => navigation.classList.remove(activeClass));
+      document.querySelectorAll('.secondary-nav').forEach((navigation) => navigation.classList.remove(activeClass));
       searchSuggestionBox.classList.add('active');
       const input = searchSuggestionBox.querySelector('.search-input');
       if (input) {
         setTimeout(() => input.focus(), 100);
       }
-    }
-    else {
+    } else {
       searchSuggestionBox.classList.remove('active');
     }
   });
@@ -743,30 +748,30 @@ function initializeHeader(header) {
 
   searchInput.addEventListener('input', (e) => {
     loadSearchSuggest(e.target.value.trim());
-  })
+  });
 
   searchInput.addEventListener('keydown', (e) => {
     if (e.key === 'Enter') {
       e.preventDefault();
 
-      triggerSearchPage(e.target.value)
+      triggerSearchPage(e.target.value);
     }
   });
 
-  searchBtnSuggestion.addEventListener('click', function () {
-    triggerSearchPage(searchInput.value)
+  searchBtnSuggestion.addEventListener('click', () => {
+    triggerSearchPage(searchInput.value);
   });
 
   window.addEventListener('resize', () => {
     if (isMobileViewport()) {
       document.querySelectorAll('.nav-item.active')
-        .forEach(i => i.classList.remove(activeClass));
+        .forEach((i) => i.classList.remove(activeClass));
       document.querySelectorAll('.secondary-nav.active')
-        .forEach(n => n.classList.remove(activeClass));
+        .forEach((n) => n.classList.remove(activeClass));
       document.querySelectorAll('.primary-nav.active')
-        .forEach(n => n.classList.remove(activeClass));
+        .forEach((n) => n.classList.remove(activeClass));
       document.querySelectorAll('.hamburger.active')
-        .forEach(n => n.classList.remove(activeClass));
+        .forEach((n) => n.classList.remove(activeClass));
       overlay.classList.remove(activeClass);
       currentActive = null;
       header.classList.remove('mobile-menu-open');
@@ -814,10 +819,19 @@ function initializeHeader(header) {
     }
 
     // Check if the clicked element has a hash (#) in its href
-    const target = e.target;
-    if (target.href?.includes("#")) {
-      window.location.href = e.target.href; // Navigate to the correct section
-      window.location.reload()
+    const target = e.target.closest('a');
+    if (target && target.href && target.href.includes('#')) {
+      const url = new URL(target.href);
+      // Only redirect if it's the same origin to prevent open redirect and XSS
+      if (url.origin === window.location.origin) {
+        // Prevent javascript: or other dangerous schemes if somehow present
+        // eslint-disable-next-line no-script-url
+        const blockedSchemes = ['javascript:', 'data:', 'vbscript:'];
+        if (!blockedSchemes.some((scheme) => url.protocol.toLowerCase().startsWith(scheme))) {
+          window.location.href = target.href;
+          window.location.reload();
+        }
+      }
     }
   });
 
@@ -875,13 +889,13 @@ export default async function decorate(block) {
 
     // List of supported language codes (you can customize this)
     const languageCodes = [
-      'en', 'ja', 'zh'
+      'en', 'ja', 'zh',
     ];
 
     // Determine nav path
     navPath = languageCodes.includes(firstSegment)
       ? `/${firstSegment}/nav`
-      : `/nav`;
+      : '/nav';
   }
   const fragment = await loadFragment(navPath);
 

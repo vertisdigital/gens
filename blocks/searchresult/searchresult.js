@@ -1,4 +1,5 @@
 import { getIcon } from '../../shared-components/icons/index.js';
+import stringToHtml from '../../shared-components/Utility.js';
 
 export const resolveSearchBasePath = () => {
   const parts = window.location.pathname.split('/').filter(Boolean);
@@ -219,14 +220,30 @@ const waitForElement = (selector, callback) => {
 
 const renderResults = (block, q, results, currentPage, total, totalPages, noResultLink) => {
   if (total === 0) {
-    block.innerHTML = `
-      <div class="searchresult-empty">
-        <div class="searchresult-empty-illustration">${getIcon('noResult')}</div>
+    const emptyDiv = document.createElement('div');
+    emptyDiv.className = 'searchresult-empty';
 
-        <h3>No results found</h3>
-        <p>Please try different keywords or ${noResultLink ? `<a href="${noResultLink}">explore other sections of our website.</a>` : 'explore other sections of our website.'}</p>
-      </div>
-    `;
+    const illustration = document.createElement('div');
+    illustration.className = 'searchresult-empty-illustration';
+    const iconNode = stringToHtml(getIcon('noResult'));
+    if (iconNode) illustration.append(iconNode);
+
+    const h3 = document.createElement('h3');
+    h3.textContent = 'No results found';
+
+    const p = document.createElement('p');
+    p.textContent = 'Please try different keywords or ';
+    if (noResultLink) {
+      const a = document.createElement('a');
+      a.href = noResultLink;
+      a.textContent = 'explore other sections of our website.';
+      p.append(a);
+    } else {
+      p.textContent += 'explore other sections of our website.';
+    }
+
+    emptyDiv.append(illustration, h3, p);
+    block.replaceChildren(emptyDiv);
     return;
   }
 
@@ -235,41 +252,62 @@ const renderResults = (block, q, results, currentPage, total, totalPages, noResu
   const from = total === 0 ? 0 : (currentPage - 1) * PAGE_SIZE + 1;
   const to = Math.min(currentPage * PAGE_SIZE, total);
 
-  block.innerHTML = `
-    <div class="searchresult-header">
-      ${total > 0 ? `Showing ${from}-${to} of ${total} Results` : 'No results found'}
-    </div>
+  const container = document.createDocumentFragment();
 
-    <ul class="searchresult-list fade-in">
-      ${results
-      .map(
-        (item) => `
-          <li class="searchresult-item">
-            <div class="searchresult-title">
-              <a href="${item.path.endsWith('.pdf') ? endpoint + item.path : shortenURL(
-          item.path,
-        )}">${item.title}</a>
-              <p class="searchresult-info">
-                ${item.highlight || (item.path.endsWith('.pdf') && item.highlight === '')
-            ? `<span class="searchresult-desc">${item.path.endsWith('.pdf') && item.highlight === '' ? 'Match found in document content' : highlight(
-              item.highlight,
-              q,
-            )}</span>`
-            : ''
-          }
-              </p>
-            </div>
-            <a class="searchresult-link" href="${item.path.endsWith('.pdf') ? endpoint + item.path : shortenURL(
-            item.path,
-          )}">Read More</a>
-          </li>
-        `,
-      )
-      .join('')}
-    </ul>
+  const header = document.createElement('div');
+  header.className = 'searchresult-header';
+  header.textContent = `Showing ${from}-${to} of ${total} Results`;
+  container.append(header);
 
-    ${renderPagination(currentPage, totalPages)}
-  `;
+  const ul = document.createElement('ul');
+  ul.className = 'searchresult-list fade-in';
+
+  results.forEach((item) => {
+    const li = document.createElement('li');
+    li.className = 'searchresult-item';
+
+    const titleDiv = document.createElement('div');
+    titleDiv.className = 'searchresult-title';
+
+    const a = document.createElement('a');
+    a.href = item.path.endsWith('.pdf') ? endpoint + item.path : shortenURL(item.path);
+    a.textContent = item.title;
+
+    const infoP = document.createElement('p');
+    infoP.className = 'searchresult-info';
+
+    if (item.highlight || (item.path.endsWith('.pdf') && item.highlight === '')) {
+      const descSpan = document.createElement('span');
+      descSpan.className = 'searchresult-desc';
+
+      if (item.path.endsWith('.pdf') && item.highlight === '') {
+        descSpan.textContent = 'Match found in document content';
+      } else {
+        const highlighted = highlight(item.highlight, q);
+        const highlightedNode = stringToHtml(highlighted);
+        if (highlightedNode) descSpan.append(highlightedNode);
+      }
+      infoP.append(descSpan);
+    }
+
+    titleDiv.append(a, infoP);
+
+    const readMore = document.createElement('a');
+    readMore.className = 'searchresult-link';
+    readMore.href = a.href;
+    readMore.textContent = 'Read More';
+
+    li.append(titleDiv, readMore);
+    ul.append(li);
+  });
+
+  container.append(ul);
+
+  const paginationStr = renderPagination(currentPage, totalPages);
+  const paginationNode = stringToHtml(paginationStr);
+  if (paginationNode) container.append(paginationNode);
+
+  block.replaceChildren(container);
 
   setTimeout(() => {
     const items = block.querySelectorAll('.searchresult-item');
@@ -390,9 +428,11 @@ const loadPage = async (block, q, page, pushState, noResultLink) => {
       }
     }
 
-    info.innerHTML = `
-    We found <strong>${total}</strong> result(s) matching your search
-  `;
+    info.replaceChildren();
+    info.append('We found ');
+    const strong = document.createElement('strong');
+    strong.textContent = String(total);
+    info.append(strong, ' result(s) matching your search');
     moveSearchSuggestionOutOfHeader();
   });
 };
@@ -459,7 +499,9 @@ export default async function decorate(block) {
   const q = params.get('q');
 
   if (!q) {
-    block.innerHTML = '<p>No search query</p>';
+    const noQueryP = document.createElement('p');
+    noQueryP.textContent = 'No search query';
+    block.replaceChildren(noQueryP);
     return;
   }
 

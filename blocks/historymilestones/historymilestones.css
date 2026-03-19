@@ -241,6 +241,10 @@
     border-radius: 0;
 }
 
+.historymilestones-image img.fallback-image {
+    opacity: 0.5;
+}
+
 .historymilestones-content {
     width: 100%;
     display: flex;

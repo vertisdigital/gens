@@ -5,7 +5,7 @@ import { getIcon } from '../../shared-components/icons/index.js';
 /* Helpers               */
 /* ===================== */
 
-function getImageHTMl(image) {
+function getImageNode(image) {
   const imageLink = image.querySelector('a[href]');
   let imageUrl;
   let imageAlt;
@@ -23,13 +23,21 @@ function getImageHTMl(image) {
 
   if (!imageUrl) {
     imageUrl = `${window.hlx.codeBasePath}/icons/generic-milestone.jpg`;
-    imageAlt = 'Genting Milestone';
+    imageAlt = 'Genting Singapore Milestone';
   }
 
   const isFallback = imageUrl.includes('/icons/generic-milestone.jpg');
+  const imageWrapper = document.createElement('div');
+  imageWrapper.className = 'history-milestone-image-wrapper';
 
   if (isFallback) {
-    return `<div class="history-milestone-image-wrapper"><img src="${imageUrl}" alt="${imageAlt}" class="history-milestone-image" loading="lazy"></div>`;
+    const img = document.createElement('img');
+    img.src = imageUrl;
+    img.alt = imageAlt;
+    img.className = 'history-milestone-image fallback-image';
+    img.loading = 'lazy';
+    imageWrapper.append(img);
+    return imageWrapper;
   }
 
   const imageHtml = ImageComponent({
@@ -38,31 +46,20 @@ function getImageHTMl(image) {
     className: 'history-milestone-image',
     asImageName: 'historymilestone.webp',
     breakpoints: {
-      mobile: {
-        width: 768,
-        src: imageUrl,
-        imgHeight: 206,
-        imgWidth: 361,
-      },
-      tablet: {
-        width: 993,
-        src: imageUrl,
-        imgHeight: 206,
-        imgWidth: 361,
-      },
-      desktop: {
-        width: 1920,
-        src: imageUrl,
-        imgHeight: 206,
-        imgWidth: 361,
-      },
+      mobile: { width: 768, src: imageUrl, imgHeight: 206, imgWidth: 361 },
+      tablet: { width: 993, src: imageUrl, imgHeight: 206, imgWidth: 361 },
+      desktop: { width: 1920, src: imageUrl, imgHeight: 206, imgWidth: 361 },
     },
     lazy: true,
   });
 
-  const imageContainer = document.createElement('div');
-  imageContainer.insertAdjacentHTML('beforeend', imageHtml);
-  return imageContainer.outerHTML;
+  const parser = new DOMParser();
+  const doc = parser.parseFromString(imageHtml, 'text/html');
+  const imgNode = doc.body.firstChild;
+  if (imgNode) {
+    imageWrapper.append(imgNode);
+  }
+  return imageWrapper;
 }
 
 /* ===================== */
@@ -197,7 +194,7 @@ function initHistoryMilestonesSlider(block) {
              L20.6284 24.3299L20.572 24.257Z"
           fill="#8D713E"/>
       </svg>
-    `;
+    `; // Content is static SVG, safe
 
     const nextButton = document.createElement('button');
     nextButton.type = 'button';
@@ -228,7 +225,7 @@ function initHistoryMilestonesSlider(block) {
              L27.3716 24.3299L27.428 24.257Z"
           fill="#8D713E"/>
       </svg>
-    `;
+    `; // Content is static SVG, safe
 
     prevButton.addEventListener('click', () => {
       goToSlide(activeIndex - 1);
@@ -419,61 +416,69 @@ export default function decorate(block) {
     return;
   }
 
-  const content = `
-    <div class="historymilestones-container">
-      <div class="historymilestones-year">
-        <div>${year.outerHTML}</div>
-        ${yearText ? `<div>${yearText.outerHTML}</div>` : ''}
-      </div>
-      <div class="historymilestones-milestones">
-        ${milestones
-      .map((milestone) => {
-        const [image, date, description, ctaContainer] = milestone.children;
+  const container = document.createElement('div');
+  container.className = 'historymilestones-container';
 
-        let ctaHtml = '';
-        if (ctaContainer) {
-          const link = ctaContainer.querySelector('a');
-          if (link) {
-            const href = link.getAttribute('href');
-            if (href) {
-              const ctaSvg = `
-              <svg width="48" height="48" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg" class="about-us-link-button">
-          <path d="M24 1C36.7025 1 47 11.2975 47 24C47 36.7025 36.7025 47 24 47C11.2975 47 1 36.7025 1 24C1 11.2975 11.2975 1 24 1Z" stroke="#8D713E" stroke-width="2"/>
-          <path d="M24.165 17.1323C24.3732 16.9453 24.6974 16.9581 24.8896 17.1606L30.7275 23.3218C31.0905 23.7048 31.0905 24.2961 30.7275 24.6792L24.8896 30.8393C24.6974 31.0421 24.3733 31.0549 24.165 30.8677C23.9569 30.6804 23.9437 30.3645 24.1357 30.1616L29.499 24.5005H17.5C17.2239 24.5005 17.0001 24.2765 17 24.0005C17 23.7243 17.2239 23.5005 17.5 23.5005H29.499L24.1357 17.8393C23.9435 17.6364 23.9568 17.3196 24.165 17.1323Z" fill="#8D713E"/>
-        </svg>
-            `;
-              ctaHtml = `<a href="${href}" class="historymilestones-cta">
-                    ${ctaSvg}
-                  </a>`;
-            }
-          }
-        }
+  const yearWrapper = document.createElement('div');
+  yearWrapper.className = 'historymilestones-year';
+  const yearDiv1 = document.createElement('div');
+  yearDiv1.append(year.cloneNode(true));
+  yearWrapper.append(yearDiv1);
 
+  if (yearText) {
+    const yearDiv2 = document.createElement('div');
+    yearDiv2.append(yearText.cloneNode(true));
+    yearWrapper.append(yearDiv2);
+  }
+  container.append(yearWrapper);
 
+  const milestonesWrapper = document.createElement('div');
+  milestonesWrapper.className = 'historymilestones-milestones';
 
-        milestone.innerHTML = `
-              <div class="historymilestones-milestone">
-                <div class="historymilestones-image">
-                  ${getImageHTMl(image)}
-                </div>
-                <div class="historymilestones-content">
-                  <div class="historymilestones-date">
-                    ${date.outerHTML}
-                  </div>
-                  <div class="historymilestones-description">
-                    ${description.outerHTML}
-                  </div>
-                  ${ctaHtml}
-                </div>
-              </div>
-            `;
-        return milestone.outerHTML;
-      })
-      .join('')}
-      </div>
-    </div>
-  `;
+  milestones.forEach((milestone) => {
+    const [image, date, description, ctaContainer] = milestone.children;
 
-  block.innerHTML = content;
+    const milestoneDiv = document.createElement('div');
+    milestoneDiv.className = 'historymilestones-milestone';
+
+    const imageDiv = document.createElement('div');
+    imageDiv.className = 'historymilestones-image';
+    imageDiv.append(getImageNode(image));
+
+    const contentDiv = document.createElement('div');
+    contentDiv.className = 'historymilestones-content';
+
+    const dateDiv = document.createElement('div');
+    dateDiv.className = 'historymilestones-date';
+    dateDiv.append(date.cloneNode(true));
+
+    const descDiv = document.createElement('div');
+    descDiv.className = 'historymilestones-description';
+    descDiv.append(description.cloneNode(true));
+
+    contentDiv.append(dateDiv, descDiv);
+
+    if (ctaContainer) {
+      const link = ctaContainer.querySelector('a');
+      if (link && link.getAttribute('href')) {
+        const cta = document.createElement('a');
+        cta.className = 'historymilestones-cta';
+        cta.href = link.getAttribute('href');
+        cta.innerHTML = `
+          <svg width="48" height="48" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg" class="about-us-link-button">
+            <path d="M24 1C36.7025 1 47 11.2975 47 24C47 36.7025 36.7025 47 24 47C11.2975 47 1 36.7025 1 24C1 11.2975 11.2975 1 24 1Z" stroke="#8D713E" stroke-width="2"/>
+            <path d="M24.165 17.1323C24.3732 16.9453 24.6974 16.9581 24.8896 17.1606L30.7275 23.3218C31.0905 23.7048 31.0905 24.2961 30.7275 24.6792L24.8896 30.8393C24.6974 31.0421 24.3733 31.0549 24.165 30.8677C23.9569 30.6804 23.9437 30.3645 24.1357 30.1616L29.499 24.5005H17.5C17.2239 24.5005 17.0001 24.2765 17 24.0005C17 23.7243 17.2239 23.5005 17.5 23.5005H29.499L24.1357 17.8393C23.9435 17.6364 23.9568 17.3196 24.165 17.1323Z" fill="#8D713E"/>
+          </svg>
+        `; // Static SVG, safe
+        contentDiv.append(cta);
+      }
+    }
+
+    milestoneDiv.append(imageDiv, contentDiv);
+    milestonesWrapper.append(milestoneDiv);
+  });
+
+  container.append(milestonesWrapper);
+  block.replaceChildren(container);
   initHistoryMilestonesSlider(block);
 }
