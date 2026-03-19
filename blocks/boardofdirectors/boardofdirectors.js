@@ -1,5 +1,6 @@
 import { moveInstrumentation } from '../../scripts/scripts.js';
 import SvgIcon from '../../shared-components/SvgIcon.js';
+import stringToHtml from '../../shared-components/Utility.js';
 
 
 const getGroups = (updatedChildren) => {
@@ -49,7 +50,7 @@ export default function decorate(block) {
       imageUrl: children[0].querySelector('a')?.href || '',
       name: children[1].textContent,
       title: children[2].textContent,
-      content: children[3].innerHTML,
+      content: children[3], // Keep the original Element node instead of innerHTML
     };
   }
 
@@ -167,16 +168,25 @@ export default function decorate(block) {
         nameParagraph.textContent = nameText;
 
         // Clear existing content and add new paragraphs first
-        contentWrapper.innerHTML = '';
+        contentWrapper.replaceChildren();
         contentWrapper.appendChild(titleParagraph);
         contentWrapper.appendChild(nameParagraph);
 
         // Then add the director content
         const contentDiv = document.createElement('div');
-        contentDiv.innerHTML = info.innerHTML;
+        if (director.content instanceof Node) {
+          contentDiv.append(...director.content.cloneNode(true).childNodes);
+        } else {
+          contentDiv.textContent = director.content;
+        }
         contentWrapper.appendChild(contentDiv);
       } else {
-        content.innerHTML = info.innerHTML;
+        content.replaceChildren();
+        if (director.content instanceof Node) {
+          content.append(...director.content.cloneNode(true).childNodes);
+        } else {
+          content.textContent = director.content;
+        }
       }
       content.classList.add('active');
 
@@ -210,20 +220,38 @@ export default function decorate(block) {
     // Create info container
     const info = document.createElement('div');
     info.className = 'director-info';
-    info.innerHTML = `
-              <h3>${director.name}</h3>
-              <div class="description-wrapper">
-                <p>${director.title}</p>
-                <div class="toggle-button">
-                    <button class="toggle-off">${arrowIcon}</button>
-                </div>
-              </div>
-          `;
+
+    const h3 = document.createElement('h3');
+    h3.textContent = director.name;
+
+    const descWrapper = document.createElement('div');
+    descWrapper.className = 'description-wrapper';
+
+    const p = document.createElement('p');
+    p.textContent = director.title;
+
+    const toggleBtnWrapper = document.createElement('div');
+    toggleBtnWrapper.className = 'toggle-button';
+
+    const toggleBtn = document.createElement('button');
+    toggleBtn.className = 'toggle-off';
+    const arrowNode = stringToHtml(arrowIcon);
+    if (arrowNode) {
+      toggleBtn.append(arrowNode);
+    }
+
+    toggleBtnWrapper.append(toggleBtn);
+    descWrapper.append(p, toggleBtnWrapper);
+    info.append(h3, descWrapper);
 
     // Create content container (initially hidden)
     const content = document.createElement('div');
     content.className = 'director-content';
-    content.innerHTML = director.content;
+    if (director.content instanceof Node) {
+      content.append(...director.content.cloneNode(true).childNodes);
+    } else {
+      content.textContent = director.content;
+    }
     content.style.display = 'none';
 
     // Assemble the card
@@ -287,7 +315,10 @@ export default function decorate(block) {
       color: 'var(--color-text-black)'
     });
 
-    toggleOffButton.innerHTML = closeIcon;
+    const closeIconNode = stringToHtml(closeIcon);
+    if (closeIconNode) {
+      toggleOffButton.append(closeIconNode);
+    }
     toggleOffButton.addEventListener('click', (e) => {
       e.stopPropagation();
       const activeCard = document.querySelector('.director-card.active');
@@ -326,8 +357,7 @@ export default function decorate(block) {
 
     // Replace original content
     container.appendChild(row);
-    block.innerHTML = '';
-    block.appendChild(container);
+    block.replaceChildren(container);
   }
 
   // Initialize the block

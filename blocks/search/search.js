@@ -16,18 +16,20 @@ async function fetchResults(keyword) {
 export default async function decorate(block) {
   const keyword = getQueryParam('q');
 
-  if (!keyword) {
-    block.innerHTML = '<p>No search keyword</p>';
-    return;
-  }
-
-  block.innerHTML = `<p>Searching for "<strong>${keyword}</strong>"...</p>`;
+  const keywordP = document.createElement('p');
+  keywordP.textContent = 'Searching for "';
+  const strong = document.createElement('strong');
+  strong.textContent = keyword;
+  keywordP.append(strong, '"...');
+  block.replaceChildren(keywordP);
 
   try {
     const results = await fetchResults(keyword);
 
-    if (!results.length) {
-      block.innerHTML = '<p>No results found</p>';
+    if (!results || !results.length) {
+      const noResultsP = document.createElement('p');
+      noResultsP.textContent = 'No results found';
+      block.replaceChildren(noResultsP);
       return;
     }
 
@@ -35,14 +37,18 @@ export default async function decorate(block) {
 
     results.forEach(item => {
       const li = document.createElement('li');
-      li.innerHTML = `<a href="${item.path}.html">${item.title || item.path}</a>`;
+      const a = document.createElement('a');
+      a.href = `${item.path}.html`;
+      a.textContent = item.title || item.path;
+      li.appendChild(a);
       ul.appendChild(li);
     });
 
-    block.innerHTML = '';
-    block.appendChild(ul);
+    block.replaceChildren(ul);
   } catch (e) {
-    block.innerHTML = '<p>Error loading results</p>';
+    const errorP = document.createElement('p');
+    errorP.textContent = 'Error loading results';
+    block.replaceChildren(errorP);
     // eslint-disable-next-line no-console
     console.error(e);
   }

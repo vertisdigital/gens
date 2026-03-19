@@ -314,10 +314,9 @@ function createHeaderStructure(block) {
   searchBtn.className = 'search-btn';
 
   const searchSvgIcon = SVGIcon({ name: 'search', size: 24 });
-  if (typeof searchSvgIcon === 'string') {
-    searchBtn.innerHTML = searchSvgIcon;
-  } else if (searchSvgIcon instanceof Node) {
-    searchBtn.appendChild(searchSvgIcon);
+  const searchIconNode = stringToHtml(searchSvgIcon);
+  if (searchIconNode) {
+    searchBtn.append(searchIconNode);
   }
 
   searchWrapper.appendChild(searchBtn);
@@ -385,7 +384,7 @@ function loadSearchSuggest(keyword) {
       const data = await res.json();
       if (data.length) {
         suggestions.classList.add('active');
-        suggestions.innerHTML = '';
+        suggestions.replaceChildren();
         data.forEach((item) => {
           const suggestion = document.createElement('a');
           suggestion.className = 'suggestion-item';
@@ -395,7 +394,10 @@ function loadSearchSuggest(keyword) {
           if (item.path.endsWith('.pdf') && !item.highlight) {
             contentHtml += `<span class="search-suggestion-note">Match found in document content</span>`;
           }
-          suggestion.innerHTML = contentHtml;
+          const highlightedNode = stringToHtml(contentHtml);
+          if (highlightedNode) {
+            suggestion.append(highlightedNode);
+          }
 
           suggestion.addEventListener('click', (e) => {
             e.preventDefault();
@@ -416,11 +418,18 @@ function loadSearchSuggest(keyword) {
 
       } else {
         suggestions.classList.add('active');
-        suggestions.innerHTML = `
-          <div class="search-suggestion-empty text-center w-100 py-3" style="display: flex; justify-content: center;">
-             <p class="m-0" style="color: var(--colours-text-text-disabled, #82959E); font-size: 14px;">No results found</p>
-          </div>
-        `;
+        suggestions.replaceChildren();
+        const emptyDiv = document.createElement('div');
+        emptyDiv.className = 'search-suggestion-empty text-center w-100 py-3';
+        emptyDiv.style.display = 'flex';
+        emptyDiv.style.justifyContent = 'center';
+        const emptyText = document.createElement('p');
+        emptyText.classList.add('m-0');
+        emptyText.style.color = 'var(--colours-text-text-disabled, #82959E)';
+        emptyText.style.fontSize = '14px';
+        emptyText.textContent = 'No results found';
+        emptyDiv.append(emptyText);
+        suggestions.append(emptyDiv);
 
         window.searchResultCount = 0;
         dispatchSearchAnalyticsEvent('searchSuggestionShown', {
@@ -558,7 +567,10 @@ function initializeHeader(header) {
       closeBtn.className = 'close-btn';
       closeBtn.setAttribute('aria-label', 'Close menu');
       const closeBtnIcon = SVGIcon({ name: 'close', className: 'close-icon', size: 18 });
-      closeBtn.innerHTML = closeBtnIcon;
+      const closeBtnIconNode = stringToHtml(closeBtnIcon);
+      if (closeBtnIconNode) {
+        closeBtn.append(closeBtnIconNode);
+      }
 
       const heading = document.createElement('a');
       heading.className = 'secondary-header-title';
@@ -579,10 +591,9 @@ function initializeHeader(header) {
       iconWrapper.className = 'secondary-header-cta-icon';
 
       const svg = SVGIcon({ name: 'arrowRightWhite', size: 24 });
-      if (typeof svg === 'string') {
-        iconWrapper.innerHTML = svg;
-      } else {
-        iconWrapper.appendChild(svg);
+      const svgNode = stringToHtml(svg);
+      if (svgNode) {
+        iconWrapper.append(svgNode);
       }
 
       cta.appendChild(iconWrapper);
