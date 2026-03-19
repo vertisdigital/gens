@@ -2,7 +2,6 @@ import { moveInstrumentation } from '../../scripts/scripts.js';
 import SvgIcon from '../../shared-components/SvgIcon.js';
 import stringToHtml from '../../shared-components/Utility.js';
 
-
 const getGroups = (updatedChildren) => {
   let groups = [];
 
@@ -59,7 +58,6 @@ export default function decorate(block) {
     const segment = card.parentElement.parentElement.parentElement;
     const wrapper = segment.querySelector('.wrapper');
     const content = segment.querySelector('.board-director-info');
-    const info = containerDiv.querySelector('.director-content');
     const activeCard = document.querySelector('.director-card.active');
     const activeContent = document.querySelector('.board-director-info.active');
 
@@ -90,9 +88,7 @@ export default function decorate(block) {
 
       // Find the index of the clicked card within the wrapper
       const allCards = Array.from(wrapper.querySelectorAll('.director-card'));
-      const allCardContainers = Array.from(wrapper.children).filter(child =>
-        child.querySelector('.director-card')
-      );
+      const allCardContainers = Array.from(wrapper.children).filter((child) => child.querySelector('.director-card'));
       const cardIndex = allCards.indexOf(card);
       const totalCards = allCards.length;
       const windowWidth = window.innerWidth;
@@ -214,7 +210,7 @@ export default function decorate(block) {
     const arrowIcon = SvgIcon({
       name: 'arrowright',
       size: '14',
-      color: 'var(--color-border-secondary)'
+      color: 'var(--color-border-secondary)',
     });
 
     // Create info container
@@ -312,7 +308,7 @@ export default function decorate(block) {
       name: 'close',
       className: '',
       size: '24',
-      color: 'var(--color-text-black)'
+      color: 'var(--color-text-black)',
     });
 
     const closeIconNode = stringToHtml(closeIcon);
