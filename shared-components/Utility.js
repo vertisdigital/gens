@@ -7,28 +7,27 @@ function sanitizeHTMLString(str) {
   const blockedTags = ['script', 'iframe', 'object', 'embed', 'style'];
   const blockedAttrs = [
     'onerror', 'onload', 'onclick', 'onmouseover', 'onfocus', 'onmouseenter',
-    'srcdoc', 'formaction', 'xlink:href'
+    'srcdoc', 'formaction', 'xlink:href',
   ];
   // eslint-disable-next-line no-script-url
   const blockedProtocols = ['javascript:', 'vbscript:', 'data:'];
   const urlAttributes = ['href', 'src', 'xlink:href', 'formaction'];
 
   // Remove dangerous elements
-  blockedTags.forEach(tag => {
-    tempDiv.querySelectorAll(tag).forEach(el => el.remove());
+  blockedTags.forEach((tag) => {
+    tempDiv.querySelectorAll(tag).forEach((el) => el.remove());
   });
 
   // Sanitize attributes
   const elements = tempDiv.querySelectorAll('*');
-  elements.forEach(el => {
-    [...el.attributes].forEach(attr => {
+  elements.forEach((el) => {
+    [...el.attributes].forEach((attr) => {
       const name = attr.name.toLowerCase();
       const value = attr.value.trim().toLowerCase();
 
       const isBlockedAttr = blockedAttrs.includes(name);
-      const isBlockedProtocol =
-        urlAttributes.includes(name) &&
-        blockedProtocols.some(proto => value.startsWith(proto));
+      const isBlockedProtocol = urlAttributes.includes(name)
+        && blockedProtocols.some((proto) => value.startsWith(proto));
 
       if (isBlockedAttr || isBlockedProtocol) {
         el.removeAttribute(attr.name);
@@ -39,7 +38,6 @@ function sanitizeHTMLString(str) {
   // Return cleaned HTML string
   return tempDiv.innerHTML;
 }
-
 
 function stringToHTML(str) {
   if (!str) return null;
@@ -53,53 +51,75 @@ function stringToHTML(str) {
 
 export default stringToHTML;
 
+let cachedCombinedMap = null;
 
-export function redirectRouter() {
-  // Redirect root to /en/home to check for 404
-  const path = window.location.pathname;
-  const href = window.location.href;
-  const origin = window.location.origin;
+export async function redirectRouter() {
+  const { href, origin, pathname } = window.location;
 
-  const isRootUrl =
-    href === origin ||
-    href === origin + '/' ||
-    href.startsWith(origin + '/?') ||
-    href.startsWith(origin + '/#') ||
-    path === '' ||
-    path === '/' ||
-    path === '/index.html' ||
-    path === '/en' ||
-    path === '/en/';
+  if (!cachedCombinedMap) {
+    const dynamicRedirects = {};
+    try {
+      const resp = await fetch('/redirects1.json');
+      if (resp.ok) {
+        const json = await resp.json();
+        if (json.data && Array.isArray(json.data)) {
+          json.data.forEach((row) => {
+            const source = row.Source || row.source;
+            const destination = row.Destination || row.destination;
+            if (source && destination) {
+              dynamicRedirects[source] = destination;
+            }
+          });
+        }
+      }
+    } catch (e) {
+      // Failed to fetch dynamic redirects
+    }
+    cachedCombinedMap = dynamicRedirects;
+  }
 
-  if (isRootUrl) {
-    window.location.replace('/en/home');
+  // 1. Handle hash-based redirects first
+  if (href.includes('#!')) {
+    let hashPath = href.split('#!')[1] || '';
+    if (hashPath.includes('?')) [hashPath] = hashPath.split('?');
+    if (hashPath.includes('#')) [hashPath] = hashPath.split('#');
+
+    let target = cachedCombinedMap[hashPath] || cachedCombinedMap[`/#!${hashPath}`];
+
+    // If not found, try stripping leading /en if present
+    if (!target && hashPath.startsWith('/en')) {
+      target = cachedCombinedMap[hashPath.substring(3)];
+    }
+
+    if (target) {
+      window.location.replace(target);
+      return;
+    }
+
+    // If it's a legacy hash but not found, redirect to 404
+    window.location.replace('/404');
     return;
   }
 
-  let pathName = window.location.href.split('#!/en')
-  pathName = pathName[pathName.length - 1]
+  // 2. Redirect root patterns to /en/home
+  const isRootUrl = href === origin
+    || href === `${origin}/`
+    || href.startsWith(`${origin}/?`)
+    || (href.startsWith(`${origin}/#`) && !href.includes('#!')) // Don't match if it's a legacy rule
+    || pathname === ''
+    || pathname === '/'
+    || pathname === '/index.html'
+    || pathname === '/en'
+    || pathname === '/en/';
 
-  const redirectableRoutes = {
-    "/company/governance/code-of-conduct": "/sustainability/corporate-policies",
-    "/company/governance/human-rights-policy": "/sustainability/corporate-policies",
-    "/company/governance/tax-governance-policy": "/sustainability/corporate-policies",
-    "/company/governance/whistleblowing-policy": "/sustainability/corporate-policies",
-    "/sustainability/sustainability-new/ourapproach": "/sustainability",
-    "/sustainability/sustainability-new/report": "/sustainability/sustainability-reports",
-    "/investors/publications/annual-report": "/investors-overview/publications",
-    "/investors/agm-egm": "/investors-overview/agm-egm",
-    "/privacy-policy": "/contact-us/privacypolicy"
-  }
-  const redirectPathExist = redirectableRoutes[pathName]
-
-  if (redirectPathExist) {
-    window.location.replace(redirectPathExist)
+  if (isRootUrl) {
+    window.location.replace('/en/home');
   }
 }
 
 export function isMobile() {
   return window.innerWidth < 768;
-};
+}
 
 export function getCookie(name) {
   const cookies = document.cookie.split('; ');
@@ -126,11 +146,19 @@ export function controlLowerEnvironment() {
     // eslint-disable-next-line no-console
     console.log('User not authenticated, redirecting to login page');
     window.location.href = '/login';
-    return;
   }
 }
 
-export const isIOSDevice = () => {
-  return /iPhone/.test(navigator.userAgent) ||
-    (navigator.userAgent.includes("Mac") && "ontouchend" in document);
-}
+export const isIOSDevice = () => /iPhone/.test(navigator.userAgent)
+    || (navigator.userAgent.includes('Mac') && 'ontouchend' in document);
+
+export const getAEMPublishEndpoint = () => {
+  const { hostname } = window.location;
+  if (hostname.includes('main--gens-prod--') || hostname === 'gentingsingapore.com' || hostname === 'www.gentingsingapore.com') {
+    return 'https://publish-p144202-e1512579.adobeaemcloud.com';
+  }
+  if (hostname.includes('uat--gens-stage--') || hostname === 'ut.gentingsingapore.com') {
+    return 'https://publish-p144202-e1512622.adobeaemcloud.com';
+  }
+  return 'https://publish-p144202-e1488374.adobeaemcloud.com';
+};

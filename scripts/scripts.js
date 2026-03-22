@@ -14,7 +14,7 @@ import {
   loadCSS,
 } from './aem.js';
 import processTabs from './autoblocks.js';
-import { redirectRouter, controlLowerEnvironment } from '../shared-components/Utility.js';
+import { redirectRouter, controlLowerEnvironment, getAEMPublishEndpoint } from '../shared-components/Utility.js';
 import { errorLogger as logger } from './logger.js';
 import initLazyFadeIn from './lazy-fadein.js';
 
@@ -81,12 +81,12 @@ function buildAutoBlocks(main) {
  * @param {Element} main The main element
  */
 // eslint-disable-next-line import/prefer-default-export
-export function decorateMain(main, isExecute) {
+export async function decorateMain(main, isExecute) {
   const isAuthorInstance = document.referrer.includes('canvas');
   if (!isAuthorInstance) {
     controlLowerEnvironment();
   }
-  redirectRouter();
+  await redirectRouter();
   decorateButtons(main);
   decorateIcons(main);
   decorateSections(main, isExecute);
@@ -103,7 +103,7 @@ async function loadEager(doc) {
   decorateTemplateAndTheme();
   const main = doc.querySelector('main');
   if (main) {
-    decorateMain(main);
+    await decorateMain(main);
     document.body.classList.add('appear');
     await loadSection(main.querySelector('.section'), waitForFirstImage);
   }
@@ -206,12 +206,51 @@ function initLinkFallback(container) {
   observer.observe(container, { childList: true, subtree: true });
 }
 
+/**
+ * Formats DAM PDF links to use the correct AEM Publish endpoint
+ */
+function formatPdfLinks(container) {
+  const updatePdfLink = (a) => {
+    try {
+      const href = a.getAttribute('href');
+      if (href && href.toLowerCase().endsWith('.pdf') && href.startsWith('/content/dam/')) {
+        const publishBase = getAEMPublishEndpoint();
+        a.setAttribute('href', publishBase + href);
+        if (!a.hasAttribute('target')) {
+          a.setAttribute('target', '_blank');
+        }
+      }
+    } catch (e) {
+      // ignore
+    }
+  };
+
+  container.querySelectorAll('a').forEach(updatePdfLink);
+
+  const observer = new MutationObserver((mutations) => {
+    mutations.forEach((m) => {
+      m.addedNodes.forEach((node) => {
+        if (node.nodeType === 1) { // ELEMENT_NODE
+          if (node.tagName === 'A') {
+            updatePdfLink(node);
+          }
+          if (node.querySelectorAll) {
+            node.querySelectorAll('a').forEach(updatePdfLink);
+          }
+        }
+      });
+    });
+  });
+  observer.observe(container, { childList: true, subtree: true });
+}
+
 async function loadPage() {
   await loadEager(document);
   await loadLazy(document);
   loadDelayed();
   initLazyFadeIn();
   initLinkFallback(document.body);
+  formatPdfLinks(document.body);
   document.body.classList.add('fully-loaded');
 }
 
