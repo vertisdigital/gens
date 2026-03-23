@@ -48,6 +48,8 @@ function renderBrandedIcon(block) {
 }
 
 export default function decorate(block) {
+  const isAuthor = document.referrer.includes('canvas') || window.location.hostname.includes('author');
+
   block.classList.add('columns-block', 'fade-item');
   block.classList.add('container');
   const rows = Array.from(block.children)
@@ -73,14 +75,14 @@ export default function decorate(block) {
 
       normalizeTextblockTokens(col);
 
-      // Remove the column entirely if it has no content after normalization
-      if (col.textContent.trim() === '' && col.children.length === 0) {
+      // Remove the column entirely if it has no content after normalization and we are not in author mode
+      if (col.textContent.trim() === '' && col.children.length === 0 && !isAuthor) {
         col.remove();
       }
     });
 
-    // Remove the row entirely if all its columns were empty and removed
-    if (row.children.length === 0) {
+    // Remove the row entirely if all its columns were empty and removed and we are not in author mode
+    if (row.children.length === 0 && !isAuthor) {
       row.remove();
     }
   });
