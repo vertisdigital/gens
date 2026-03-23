@@ -75,13 +75,15 @@ export default function decorate(block) {
 
       normalizeTextblockTokens(col);
 
-      // Remove the column entirely if it has no content after normalization and we are not in author mode
+      // Remove the column entirely if it has no content after 
+      // normalization and we are not in author mode
       if (col.textContent.trim() === '' && col.children.length === 0 && !isAuthor) {
         col.remove();
       }
     });
 
-    // Remove the row entirely if all its columns were empty and removed and we are not in author mode
+    // Remove the row entirely if all its columns were 
+    // empty and removed and we are not in author mode
     if (row.children.length === 0 && !isAuthor) {
       row.remove();
     }
