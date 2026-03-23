@@ -59,7 +59,7 @@ export async function redirectRouter() {
   if (!cachedCombinedMap) {
     const dynamicRedirects = {};
     try {
-      const resp = await fetch('/redirects1.json');
+      const resp = await fetch('/redirects.json');
       if (resp.ok) {
         const json = await resp.json();
         if (json.data && Array.isArray(json.data)) {
@@ -150,7 +150,7 @@ export function controlLowerEnvironment() {
 }
 
 export const isIOSDevice = () => /iPhone/.test(navigator.userAgent)
-    || (navigator.userAgent.includes('Mac') && 'ontouchend' in document);
+  || (navigator.userAgent.includes('Mac') && 'ontouchend' in document);
 
 export const getAEMPublishEndpoint = () => {
   const { hostname } = window.location;
