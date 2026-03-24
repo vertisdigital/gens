@@ -37,6 +37,18 @@
   color: var(--primary-gold);
 }
 
+.contactus.block .button-container a.vd-button {
+  border: 1px solid transparent;
+  transition: background-color 0.3s, color 0.3s, border-color 0.3s;
+}
+
+.contactus.block .button-container a.vd-button:hover,
+.contactus.block .button-container a.vd-button:focus {
+  background-color: transparent;
+  color: var(--color-fg-tertiary);
+  border: 1px solid var(--color-fg-tertiary);
+}
+
 .contactus.block .container:first-child {
   background-color: var(--primary-default-fg);
 }
