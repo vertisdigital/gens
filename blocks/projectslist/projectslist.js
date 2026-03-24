@@ -72,27 +72,10 @@ export default function decorate(block) {
         leftCol.appendChild(shortDescription);
       }
 
-      const projectCta = project.querySelector('[data-aue-prop="link"], [data-gen-prop="link"]') || allDivElements[5];
+      const projectCta = allDivElements[5];
       projectCta.className = 'project-cta';
 
-      // Safe fetchers for fields that might have shifted indices
-      const getFieldData = (propName, fallbackIndex) => {
-        const el = project.querySelector(`[data-aue-prop="${propName}"], [data-gen-prop="${propName}"]`);
-        if (el) return el.textContent?.trim();
-        // Only use fallback if we know it's a valid string, to avoid extracting from a full HTML blob
-        if (fallbackIndex < allDivElements.length && allDivElements[fallbackIndex] && !allDivElements[fallbackIndex].querySelector('a')) {
-          return allDivElements[fallbackIndex].textContent?.trim();
-        }
-        return '';
-      };
-
-      // Extract new fields safely
-      // Notice: depending on model history, the link text could be at index 6, 7, etc. 
-      const modelLinkText = getFieldData('linkText', 6);
-      const modelLinkTitle = getFieldData('linkTitle', 7);
-      const modelSvgIcon = getFieldData('linkSvgIcon', 8) || 'arrowright';
       let linkTarget = '_self';
-      
       const targetEl = project.querySelector('[data-aue-prop="linkTarget"], [data-gen-prop="linkTarget"]');
       if (targetEl) {
         linkTarget = targetEl.textContent?.trim() || '_self';
@@ -103,17 +86,11 @@ export default function decorate(block) {
         }
       }
 
-      // Add arrowIcon to the button/link in projectCta
       const buttonLink = projectCta.querySelector('a');
       if (buttonLink) {
-        // Set target safely
         buttonLink.setAttribute('target', linkTarget);
-        if (modelLinkTitle) {
-          buttonLink.setAttribute('title', modelLinkTitle);
-        }
 
-        // Capture the link text field value before clearing, use authored text if available
-        const linkText = modelLinkText || buttonLink.textContent?.trim() || buttonLink.innerHTML?.trim() || '';
+        const linkText = buttonLink.textContent?.trim() || buttonLink.innerHTML?.trim() || '';
 
         buttonLink.classList.add('button');
         if (!linkText.includes('/')) {
@@ -122,16 +99,8 @@ export default function decorate(block) {
         }
         else {
           buttonLink.classList.remove('vd-link');
-          // Parse icon from model
-          let iconName = 'arrowright';
-          const iconValueLower = modelSvgIcon.toLowerCase();
-          if (iconValueLower.includes('north-east') || iconValueLower === 'north-east-arrow') iconName = 'north-east-arrow';
-          else if (iconValueLower.includes('download')) iconName = 'download-arrow';
-          else if (iconValueLower === 'right-arrow' || iconValueLower === 'arrow') iconName = 'arrowright';
-
-          // Create circular icon button with arrow icon
           const arrowIcon = SvgIcon({
-            name: iconName,
+            name: 'arrowright',
             className: 'learn-button-icon',
             size: '14',
             color: 'var(--color-text-tertiary)',
@@ -139,7 +108,6 @@ export default function decorate(block) {
           buttonLink.innerHTML = '';
           buttonLink.appendChild(stringToHtml(arrowIcon));
         }
-
       }
 
       leftCol.appendChild(projectCta);
