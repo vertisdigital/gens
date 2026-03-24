@@ -1851,7 +1851,7 @@
           },
           {
             "name": "Right Arrow",
-            "value": "right-arrow"
+            "value": "arrowright"
           },
           {
             "name": "Download Arrow",
@@ -1860,6 +1860,21 @@
           {
             "name": "North East Arrow",
             "value": "north-east-arrow"
+          }
+        ]
+      },
+      {
+        "component": "select",
+        "name": "linkTarget",
+        "label": "Target",
+        "options": [
+          {
+            "name": "Same Tab",
+            "value": "_self"
+          },
+          {
+            "name": "New Tab",
+            "value": "_blank"
           }
         ]
       }
