@@ -101,12 +101,24 @@
         color: var(--background-color);
         border: 1px solid var(--bronze-brown);
         margin-left: 12px;
+        transition: background-color 0.2s ease, color 0.2s ease;
 
         @media (width>=768px) {
             margin-left: 32px;
         }
+
+        &:hover {
+            background-color: transparent;
+            color: var(--bronze-brown);
+        }
+    }
+
+    .decline-button:hover {
+        background-color: var(--bronze-brown);
+        color: var(--background-color);
     }
 }
+
 
 .cookiepolicy.hide {
     display: none;
