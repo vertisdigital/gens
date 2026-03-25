@@ -48,9 +48,17 @@
             font-weight: 700;
             color: var(--primary-gold);
             text-decoration: underline;
+            text-decoration-color: var(--primary-gold);
+            text-decoration-thickness: 1px;
+            text-underline-offset: 3px;
+            transition: opacity 0.2s ease;
 
             @media (width>=768px) {
                 line-height: 24px;
+            }
+
+            &:hover {
+                opacity: 0.85;
             }
         }
     }
