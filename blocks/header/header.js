@@ -446,7 +446,7 @@ function triggerSearchPage(e) {
   const q = e.trim();
   if (!q) return;
 
-  const target = `/en/searchresults?q=${encodeURIComponent(q)}`;
+  const target = `/en/search-results?q=${encodeURIComponent(q)}`;
   setTimeout(() => {
     window.location.href = target;
   }, 100);
