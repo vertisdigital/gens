@@ -1,8 +1,7 @@
 import { getMetadata } from '../../scripts/aem.js';
 import { loadFragment } from '../fragment/fragment.js';
 import SVGIcon from '../../shared-components/SvgIcon.js';
-
-
+import { CookiePolicy } from '../cookiepolicy/cookiepolicy.js';
 
 /**
  * loads and decorates the footer
@@ -33,6 +32,11 @@ export default async function decorate(block) {
   }
   const fragment = await loadFragment(footerPath);
   if (fragment) {
+    const cookieMarkup = fragment.querySelector('.cookiepolicy-container') || fragment.querySelector('.cookiepolicy-wrapper') || fragment.querySelector('.cookiepolicy');
+    if (cookieMarkup) {
+      const cookiePolicy = new CookiePolicy(cookieMarkup.cloneNode(true));
+      cookiePolicy.constructMarkup();
+    }
     const section = document.createElement('section');
 
     // Create and build all the footer content
