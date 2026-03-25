@@ -1,7 +1,15 @@
 import { moveInstrumentation } from '../../scripts/scripts.js';
+import { loadCSS } from '../../scripts/aem.js';
 
 const hideCookieConsent = () => {
-    document.querySelector('.cookiepolicy')?.classList?.add('hide');
+    const selectors = ['.cookiepolicy', '.cookiepolicy-container', '.cookiepolicy-wrapper'];
+    selectors.forEach(s => {
+        const el = document.querySelector(s);
+        if (el) {
+            el.classList.add('hide');
+            el.style.display = 'none';
+        }
+    });
 }
 
 const setCookieData = (_e, accepted = true) => {
@@ -9,22 +17,34 @@ const setCookieData = (_e, accepted = true) => {
     localStorage.setItem('cookieConsent', accepted.toString());
     hideCookieConsent();
 };
+
 export class CookiePolicy {
     cookieBlock = null;
     constructor(elem) {
         this.cookieBlock = elem;
     }
     constructMarkup = () => {
+        const codeBase = window.hlx?.codeBasePath || '';
+        loadCSS(`${codeBase}/blocks/cookiepolicy/cookiepolicy.css`);
+
         const elem = this.cookieBlock;
         const blockElem = elem.classList.contains('block') ? elem : elem.querySelector('.block');
-        blockElem.classList.add('container');
-        const childElements = blockElem.children;
+        blockElem.classList.add('container', 'cookiepolicy');
+        
+        // Force display because fragments/sections may be hidden by default
+        elem.style.display = 'block';
+        blockElem.style.display = 'block';
+
+        const cells = Array.from(blockElem.querySelectorAll(':scope > div > div'));
         const cookieWrapper = document.createElement('div');
         cookieWrapper.classList.add('cookie-wrapper');
-        if (localStorage.getItem('cookieConsent') === 'true') {
+        
+        if (localStorage.getItem('cookieConsent') !== null) {
+            elem.style.display = 'none';
             blockElem.classList.add('hide');
         }
-        const descriptionField = childElements[0];
+
+        const descriptionField = cells[0];
         if (descriptionField) {
             const descriptionDiv = document.createElement('div');
             descriptionDiv.classList.add('cookie-description');
@@ -33,8 +53,8 @@ export class CookiePolicy {
             cookieWrapper.appendChild(descriptionDiv);
         }
 
-        const declineField = childElements[1];
-        const acceptField = childElements[2]
+        const declineField = cells[1];
+        const acceptField = cells[2]
         if (declineField && acceptField) {
             const buttonWrapper = document.createElement('div');
             buttonWrapper.classList.add('cookie-button-wrapper');
@@ -65,4 +85,3 @@ export default function decorate(block) {
     const cp = new CookiePolicy(block);
     cp.constructMarkup();
 }
-
