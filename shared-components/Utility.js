@@ -56,30 +56,30 @@ let cachedCombinedMap = null;
 export async function redirectRouter() {
   const { href, origin, pathname } = window.location;
 
-  if (!cachedCombinedMap) {
-    const dynamicRedirects = {};
-    try {
-      const resp = await fetch('/redirects.json');
-      if (resp.ok) {
-        const json = await resp.json();
-        if (json.data && Array.isArray(json.data)) {
-          json.data.forEach((row) => {
-            const source = row.Source || row.source;
-            const destination = row.Destination || row.destination;
-            if (source && destination) {
-              dynamicRedirects[source] = destination;
-            }
-          });
-        }
-      }
-    } catch (e) {
-      // Failed to fetch dynamic redirects
-    }
-    cachedCombinedMap = dynamicRedirects;
-  }
-
-  // 1. Handle hash-based redirects first
+  // 1. Handle legacy hash-based redirects
   if (href.includes('#!')) {
+    if (!cachedCombinedMap) {
+      const dynamicRedirects = {};
+      try {
+        const resp = await fetch('/redirects.json');
+        if (resp.ok) {
+          const json = await resp.json();
+          if (json.data && Array.isArray(json.data)) {
+            json.data.forEach((row) => {
+              const source = row.Source || row.source;
+              const destination = row.Destination || row.destination;
+              if (source && destination) {
+                dynamicRedirects[source] = destination;
+              }
+            });
+          }
+        }
+      } catch (e) {
+        // Failed to fetch dynamic redirects
+      }
+      cachedCombinedMap = dynamicRedirects;
+    }
+
     let hashPath = href.split('#!')[1] || '';
     if (hashPath.includes('?')) [hashPath] = hashPath.split('?');
     if (hashPath.includes('#')) [hashPath] = hashPath.split('#');
@@ -96,9 +96,8 @@ export async function redirectRouter() {
       return;
     }
 
-    // If it's a legacy hash but not found, redirect to 404
-    window.location.replace('/404');
-    return;
+    // If it's a legacy hash but not found, we DON'T redirect to 404 if the current page is valid.
+    // We only let Franklin handle standard 404s.
   }
 
   // 2. Redirect root patterns to /en/home

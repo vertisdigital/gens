@@ -3,20 +3,25 @@
   const { href, origin } = window.location;
 
   // Check if URL is root domain hitting an unknown sub-path that Franklin served as 404
-  const isRootUrl = href === origin
+  const isRootUrl = (href === origin
     || href === `${origin}/`
     || href.startsWith(`${origin}/?`)
-    || href.startsWith(`${origin}/#`)
+    || (href.startsWith(`${origin}/#`) && !href.includes('#!')) // Consistent with Utility.js
     || path === ''
     || path === '/'
     || path === '/index.html'
     || path === '/en'
-    || path === '/en/';
+    || path === '/en/');
 
   console.log('[404 DEBUG] Current path:', `"${path}"`, 'isRoot:', isRootUrl);
 
   if (isRootUrl) {
     window.location.replace('/en/home');
+    return;
+  }
+
+  // If we have a legacy hash, let scripts.js handle the redirection mapping
+  if (href.includes('#!')) {
     return;
   }
 
