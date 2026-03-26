@@ -1,7 +1,7 @@
 .corporatepolicies-wrapper {
     padding: 64px 0;
     background-image: url(../../icons/Pattern.png);
-    background-repeat: no-repeat;
+    background-repeat: repeat-x;
     background-position: center bottom -100px;
     margin: 0 auto;
     max-width: 2560px;
