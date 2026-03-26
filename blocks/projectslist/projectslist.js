@@ -86,18 +86,36 @@ export default function decorate(block) {
         }
       }
 
+      // Check for Link Icon (Strict check to avoid picking up URLs)
+      let linkIcon = '';
+      const iconPropertyEl = project.querySelector('[data-aue-prop="linkIcon"], [data-gen-prop="linkIcon"]');
+      if (iconPropertyEl && iconPropertyEl.textContent?.trim()) {
+        const iconVal = iconPropertyEl.textContent.trim();
+        if (!iconVal.includes('/') && !iconVal.includes(' ') && iconVal.length < 30) {
+          linkIcon = iconVal.replace(/[:\-]/g, '');
+        }
+      } else if (allDivElements.length > 6) {
+        const lastCellText = allDivElements[allDivElements.length - 1].textContent?.trim() || '';
+        const isLastCellTarget = (lastCellText === '_blank' || lastCellText === '_self');
+        let candidate = '';
+        if (allDivElements.length === 7 && !isLastCellTarget) {
+          candidate = lastCellText;
+        } else if (allDivElements.length >= 8) {
+          candidate = allDivElements[6].textContent?.trim() || '';
+        }
+        if (candidate && !candidate.includes('/') && !candidate.includes(' ') && candidate.length < 30) {
+          linkIcon = candidate.replace(/[:\-]/g, '');
+        }
+      }
+
       const buttonLink = projectCta.querySelector('a');
       if (buttonLink) {
         buttonLink.setAttribute('target', linkTarget);
-
-        const linkText = buttonLink.textContent?.trim() || buttonLink.innerHTML?.trim() || '';
-
+        const linkText = buttonLink.textContent?.trim() || '';
         buttonLink.classList.add('button');
-        if (!linkText.includes('/')) {
-          buttonLink.textContent = linkText;
-          buttonLink.classList.add('vd-link');
-        }
-        else {
+
+        if (linkText.includes('/')) {
+          // Icon-only style (original logic: slash means it's a URL)
           buttonLink.classList.remove('vd-link');
           const arrowIcon = SvgIcon({
             name: 'arrowright',
@@ -107,6 +125,21 @@ export default function decorate(block) {
           });
           buttonLink.innerHTML = '';
           buttonLink.appendChild(stringToHtml(arrowIcon));
+        } else {
+          // Text + Icon style (if linkText is authored text)
+          buttonLink.textContent = linkText;
+          buttonLink.classList.add('vd-link');
+          if (linkIcon) {
+            const iconHtml = SvgIcon({
+              name: linkIcon,
+              className: 'learn-button-icon-with-text',
+              size: '14',
+              color: 'var(--color-text-tertiary)',
+            });
+            if (iconHtml) {
+              buttonLink.appendChild(stringToHtml(iconHtml));
+            }
+          }
         }
       }
 
