@@ -92,7 +92,7 @@ export default function decorate(block) {
       if (iconPropertyEl && iconPropertyEl.textContent?.trim()) {
         const iconVal = iconPropertyEl.textContent.trim();
         if (!iconVal.includes('/') && !iconVal.includes(' ') && iconVal.length < 30) {
-          linkIcon = iconVal.replace(/[:\-]/g, '');
+          linkIcon = iconVal.replace(/[:-]/g, '');
         }
       } else if (allDivElements.length > 6) {
         const lastCellText = allDivElements[allDivElements.length - 1].textContent?.trim() || '';
@@ -104,7 +104,7 @@ export default function decorate(block) {
           candidate = allDivElements[6].textContent?.trim() || '';
         }
         if (candidate && !candidate.includes('/') && !candidate.includes(' ') && candidate.length < 30) {
-          linkIcon = candidate.replace(/[:\-]/g, '');
+          linkIcon = candidate.replace(/[:-]/g, '');
         }
       }
 
