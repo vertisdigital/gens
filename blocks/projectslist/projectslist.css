@@ -181,6 +181,11 @@
     border-color: var(--color-text-secondary);
 }
 
+.project-cta a.button:hover .icon-wrapper svg path {
+    fill: var(--color-text-secondary) !important;
+    stroke: var(--color-text-secondary) !important;
+}
+
 .project-cta a.button:focus {
     color: var(--color-border-secondary-pressed);
     border-color: var(--color-border-secondary-pressed);
@@ -190,6 +195,8 @@
     width: auto;
     height: auto;
     display: inline-flex;
+    align-items: center;
+    gap: 8px;
     border: none;
     padding: 0;
     font-weight: 500;
