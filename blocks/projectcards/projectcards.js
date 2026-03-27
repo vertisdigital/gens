@@ -37,9 +37,24 @@ export default function decorate(block) {
     titleField.remove();
   }
 
-  // Handle main heading
+  // Check if heading exists before moving/removing elements
   const headingElement = block.querySelector('[data-aue-prop="heading"]') || titleElements[1];
-  if (headingElement) {
+  const hasHeading = headingElement && headingElement.textContent.trim() !== '';
+  const descElement = block.querySelector(
+    '[data-aue-prop="description"], [data-gen-prop="description"]',
+  );
+  const hasDescription = descElement && descElement.textContent.trim() !== '';
+  const hasTitle = titleField && titleField.textContent.trim() !== '';
+
+  if (!hasHeading) {
+    block.classList.add('no-heading');
+  }
+
+  if (!hasHeading && !hasDescription && !hasTitle) {
+    block.classList.add('no-header');
+  }
+
+  if (hasHeading) {
     const headingHtml = Heading({
       text: headingElement.textContent,
       level: 2,
@@ -66,10 +81,7 @@ export default function decorate(block) {
   rightColumn.className = 'projectcards-header-right';
 
   // Handle description
-  const descElement = block.querySelector(
-    '[data-aue-prop="description"], [data-gen-prop="description"]',
-  );
-  if (descElement) {
+  if (descElement && hasDescription) {
     const descriptionDiv = document.createElement('div');
     moveInstrumentation(descElement, descriptionDiv);
     descriptionDiv.className = 'projectcards-description';

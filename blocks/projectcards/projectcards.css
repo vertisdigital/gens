@@ -6,6 +6,10 @@
     margin: 80px 0 0;
   }
 
+  .projectcards.no-heading {
+    margin-top: 0;
+  }
+
   @media (width >=2560px) {
     .projectcards-wrapper {
       max-width: 2560px;
@@ -19,6 +23,12 @@
     margin-bottom: 42px;
     align-items: flex-start;
     gap: 40px;
+  }
+
+  .projectcards.no-heading .projectcards-header {
+    margin-bottom: 0;
+    height: 0;
+    overflow: hidden;
   }
 
   .projectcards .projectcards-header-left {
