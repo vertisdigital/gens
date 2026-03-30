@@ -49,8 +49,12 @@ export default function decorate(block) {
           child.classList.add("row", "corporate-policies-list-item");
           const children = Array.from(child.children);
 
-          const itemStyle = children[10]?.textContent?.trim() || '';
-          if (itemStyle) {
+          // Use fixed indices 8 for subtitle, 9 for style
+          const subtitleCell = children[8];
+          const styleCell = children[9];
+
+          const itemStyle = styleCell?.textContent?.trim() || '';
+          if (itemStyle && itemStyle !== 'default') {
             child.classList.add(itemStyle);
           }
 
@@ -81,9 +85,9 @@ export default function decorate(block) {
             firstChildHtml = children[0].outerHTML.replace(/<p[^>]*>.*?<\/p>/, headingHtml);
 
             // handle subtitle replacement
-            if (children[8]?.textContent?.trim()) {
-              children[8]?.classList.add("corporate-policies-subtitle");
-              subtitleHtml = children[8]?.outerHTML;
+            if (subtitleCell?.textContent?.trim()) {
+              subtitleCell.classList.add("corporate-policies-subtitle");
+              subtitleHtml = subtitleCell.outerHTML;
             }
           }
 
@@ -95,7 +99,7 @@ export default function decorate(block) {
             const checkDownloadLink = children[5]?.textContent?.trim();
             const lastChild = children[4];
 
-            // If checkDownloadLink is 'false', use the last element (index 6), otherwise use index 3
+            // If checkDownloadLink is 'true', use the last element (index 6), otherwise use index 3
             const linkElement = checkDownloadLink === 'true' ? children[6] : children[3];
             const lastThirdChild = children[2]; // Third-last element
 
@@ -123,29 +127,19 @@ export default function decorate(block) {
                 lastThirdChild.textContent = ""; // Clear moved text
               }
 
-              // Set remaining children excluding first one and handle special case
-              if (children[5]) {
-                if (checkDownloadLink === 'true') {
-                  // Remove elements 3 and 5
-                  remainingChildren = [
-                    ...children.slice(1, 2),
-                    children[4],
-                    ...children.slice(6, 7)
-                  ].map((c) => c.outerHTML).join("");
-                } else if (checkDownloadLink === 'false') {
-                  // Remove elements 5 and 6
-                  remainingChildren = [
-                    ...children.slice(1, 5),
-                  ].map((c) => c.outerHTML).join("");
-                } else {
-                  remainingChildren = children.slice(1).map((c) => c.outerHTML).join("");
-                }
+              // Set remaining children excluding first one, subtitle, and style
+              // Only collect indices 1, 2, 3, 4, 5, 6, 7 that are defined
+              if (checkDownloadLink === 'true') {
+                 remainingChildren = [children[1], children[4], children[6]].filter(Boolean).map(c => c.outerHTML).join("");
+              } else if (checkDownloadLink === 'false') {
+                 remainingChildren = [children[1], children[2], children[3], children[4]].filter(Boolean).map(c => c.outerHTML).join("");
               } else {
-                remainingChildren = children.slice(1).map((c) => c.outerHTML).join("");
+                 // Fallback if not true/false: take slice(1, 8) to avoid subtitle and style
+                 remainingChildren = children.slice(1, 8).map((c) => c.outerHTML).join("");
               }
             } else {
               // If no text in lastThirdChild, just use the second child as remaining
-              remainingChildren = children.slice(1, 2).map((c) => c.outerHTML).join("");
+              remainingChildren = children[1] ? children[1].outerHTML : "";
             }
           } else {
             // If there are not enough children, keep all except the first one
