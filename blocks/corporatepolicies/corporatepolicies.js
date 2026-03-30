@@ -29,6 +29,13 @@ export default function decorate(block) {
   } else {
     block.closest('.corporatepolicies-wrapper').classList.remove('no-background');
   }
+
+  const noDivider = block.classList.contains('no-divider');
+  if (noDivider) {
+    block.closest('.corporatepolicies-wrapper').classList.add('no-divider');
+  } else {
+    block.closest('.corporatepolicies-wrapper').classList.remove('no-divider');
+  }
   // Store all child elements before modifying the block
   const allChildElements = Array.from(block.children);
 
@@ -41,6 +48,11 @@ export default function decorate(block) {
         .map((child) => {
           child.classList.add("row", "corporate-policies-list-item");
           const children = Array.from(child.children);
+
+          const itemStyle = children[10]?.textContent?.trim() || '';
+          if (itemStyle) {
+            child.classList.add(itemStyle);
+          }
 
           let firstChildHtml = "";
           let subtitleHtml = "";

@@ -2338,6 +2338,21 @@
         "name": "subtitle",
         "label": "Policy Subtitle",
         "description": "Policy subtitle should not exceed 100 characters"
+      },
+      {
+        "component": "select",
+        "name": "style",
+        "label": "Style",
+        "options": [
+          {
+            "name": "Default",
+            "value": ""
+          },
+          {
+            "name": "Gray Background",
+            "value": "gray-background"
+          }
+        ]
       }
     ]
   },
@@ -2461,6 +2476,10 @@
           {
             "name": "Corporate Policies No Background",
             "value": "no-background"
+          },
+          {
+            "name": "Corporate Policies No Divider",
+            "value": "no-divider"
           }
         ]
       }
