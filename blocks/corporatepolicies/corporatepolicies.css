@@ -1,5 +1,5 @@
 .corporatepolicies-wrapper {
-    padding: 64px 0;
+    padding: 0;
     background-image: url(../../icons/Pattern.png);
     background-repeat: repeat-x;
     background-position: center bottom -100px;
@@ -56,16 +56,16 @@
 }
 
 .corporate-policies-list>div:first-child {
-    padding-top: 0;
+    padding-top: 64px;
 }
 
 .corporate-policies-list>div:last-child {
-    padding-bottom: 0;
+    padding-bottom: 64px;
     border-bottom: none;
 }
 
 .corporate-policies-border-bottom .corporate-policies-list>div:last-child {
-    padding-bottom: 0;
+    padding-bottom: 64px;
     border-bottom: none;
 }
 
@@ -143,7 +143,7 @@
 
 @media screen and (width < 1181px) and (width >=768px) {
     .corporatepolicies-wrapper {
-        padding: 64px 0;
+        padding: 0;
     }
 
     .corporate-policies-list-item {
@@ -206,9 +206,8 @@
 }
 
 @media (width < 768px) {
-
     .corporatepolicies-wrapper {
-        padding: 40px 0;
+        padding: 0;
     }
 
     .corporate-policies-list-item {
@@ -217,12 +216,19 @@
 
     .corporate-policies-list-item>div:first-child {
         padding-right: 0;
-
     }
 
     .corporate-policies-list-item>div:last-child {
         padding-left: 0;
+    }
 
+    .corporate-policies-list>div:first-child {
+        padding-top: 40px;
+    }
+
+    .corporate-policies-list>div:last-child {
+        padding-bottom: 40px;
+        border-bottom: none;
     }
 
     .corporate-policies-list-item .left-col h2 {
@@ -307,7 +313,6 @@
 
 .corporatepolicies-wrapper.no-divider .corporate-policies-list-item {
     border-bottom: none;
-    padding: 24px 0;
 }
 
 .corporate-policies-list-item.gray-background {
