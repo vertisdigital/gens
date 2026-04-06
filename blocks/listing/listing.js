@@ -5,10 +5,12 @@ import { moveInstrumentation } from '../../scripts/scripts.js';
 
 export default function decorate(block) {
   block.classList.add('container');
+  block.classList.add('fade-item');
 
   // Process list items
   const listItems = block.querySelectorAll('[data-aue-model="listitem"], [data-gen-model="listitem"]');
   const isListingWithoutImage = block.classList.contains('without-images');
+  const isDefaultListing = block.classList.contains('listing-row');
 
   
   listItems.forEach((item) => {
@@ -44,7 +46,7 @@ export default function decorate(block) {
 
     // Process image
     const imgContainer = item.querySelector('div:first-child');
-    if (imgContainer && !isListingWithoutImage) {
+    if (imgContainer && !isListingWithoutImage && !isDefaultListing) {
       imgContainer.classList.add('col-xl-4', 'col-md-2', 'col-sm-4');
 
       const imgAnchor = imgContainer.querySelector('a');
@@ -90,7 +92,7 @@ export default function decorate(block) {
     // Create single wrapper for content
     const contentWrapper = document.createElement('div');
 
-    if(isListingWithoutImage) {
+    if(isListingWithoutImage || isDefaultListing) {
       contentWrapper.classList.add('col-xl-12', 'col-md-6', 'col-sm-4', 'content-wrapper');
     } else {
       contentWrapper.classList.add('col-xl-8', 'col-md-4', 'col-sm-4', 'content-wrapper');
@@ -112,10 +114,12 @@ export default function decorate(block) {
       const targetValue = linkTarget?.textContent?.trim() || '_self';
       newArrowLink.setAttribute('target', targetValue);
 
-      // Create left arrow icon
-      const leftArrowSVG = SvgIcon({ name: 'arrow', className: 'left-arrow-icon', size: '24px' });
-      const parsedLeftArrowSVG = stringToHtml(leftArrowSVG);
-      newArrowLink.appendChild(parsedLeftArrowSVG);
+      // Create circular arrow SVG button
+      const arrowSVG = `<svg width="48" height="48" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M24 1C36.7025 1 47 11.2975 47 24C47 36.7025 36.7025 47 24 47C11.2975 47 1 36.7025 1 24C1 11.2975 11.2975 1 24 1Z" stroke="#8D713E" stroke-width="2"/>
+        <path d="M24.165 17.1323C24.3732 16.9453 24.6974 16.9581 24.8896 17.1606L30.7275 23.3218C31.0905 23.7048 31.0905 24.2961 30.7275 24.6792L24.8896 30.8393C24.6974 31.0421 24.3733 31.0549 24.165 30.8677C23.9569 30.6804 23.9437 30.3645 24.1357 30.1616L29.499 24.5005H17.5C17.2239 24.5005 17.0001 24.2765 17 24.0005C17 23.7243 17.2239 23.5005 17.5 23.5005H29.499L24.1357 17.8393C23.9435 17.6364 23.9568 17.3196 24.165 17.1323Z" fill="#8D713E"/>
+      </svg>`;
+      newArrowLink.innerHTML = arrowSVG;
 
       contentWrapper.appendChild(newArrowLink);
     }
@@ -160,6 +164,58 @@ export default function decorate(block) {
       linkField.textContent = '';
       linkField.appendChild(linkWrapper);
       block.appendChild(linkField);
+    }
+  }
+
+  // Handle 2-column layout for without-images variation
+  if (isListingWithoutImage || isDefaultListing) {
+    const blockChildren = Array.from(block.children);
+    
+    // Get first 2 title elements (usually first 2 children that have title but not listitem)
+    const firstTwoTitles = [];
+    const remainingElements = [];
+    
+    blockChildren.forEach((child) => {
+      const hasTitle = child.querySelector('[data-gen-prop="title"], [data-aue-prop="title"]');
+      const hasListItem = child.querySelector('[data-gen-model="listitem"], [data-aue-model="listitem"]') || 
+                          (child.hasAttribute('data-gen-model') && child.getAttribute('data-gen-model') === 'listitem') ||
+                          (child.hasAttribute('data-aue-model') && child.getAttribute('data-aue-model') === 'listitem');
+      const isLinkField = (child.hasAttribute('data-gen-model') && child.getAttribute('data-gen-model') === 'linkField') ||
+                          (child.hasAttribute('data-aue-model') && child.getAttribute('data-aue-model') === 'linkField');
+      
+      if (hasTitle && !hasListItem && !isLinkField && firstTwoTitles.length < 2) {
+        firstTwoTitles.push(child);
+      } else {
+        remainingElements.push(child);
+      }
+    });
+
+    // Create left column wrapper for titles
+    if (firstTwoTitles.length > 0) {
+      const leftColumn = document.createElement('div');
+      leftColumn.classList.add(isListingWithoutImage ? 'without-images-left-column' : 'default-left-column');
+
+      firstTwoTitles.forEach(titleElement => {
+        leftColumn.appendChild(titleElement);
+      });
+
+      // Create right column wrapper for list items and linkField
+      const rightColumn = document.createElement('div');
+      rightColumn.classList.add(isListingWithoutImage ? 'without-images-right-column' : 'default-right-column');
+
+      remainingElements.forEach(element => {
+        rightColumn.appendChild(element);
+      });
+
+      // Create row wrapper
+      const rowWrapper = document.createElement('div');
+      rowWrapper.classList.add(isListingWithoutImage ? 'without-images-row' : 'default-row');
+      rowWrapper.appendChild(leftColumn);
+      rowWrapper.appendChild(rightColumn);
+
+      // Clear block and add new structure
+      block.innerHTML = '';
+      block.appendChild(rowWrapper);
     }
   }
 }

@@ -7,7 +7,7 @@
         "valueType": "string",
         "name": "image",
         "label": "image",
-        "configUrl": "https://release-06042026--gens--vertisdigital.aem.live/tools/assets-selector/config.json",
+        "configUrl": "https://main--gens-prod--vertisdigital.aem.page/tools/assets-selector/config.json",
         "multi": false,
         "validation": {
           "rootPath": "/content/dam/genting-singapore"
@@ -57,6 +57,107 @@
           {
             "name": "h6",
             "value": "h6"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "textblock",
+    "fields": [
+      {
+        "component": "richtext",
+        "name": "text",
+        "value": "",
+        "label": "Text",
+        "valueType": "string"
+      },
+      {
+        "component": "select",
+        "name": "align",
+        "label": "Text Alignment",
+        "options": [
+          {
+            "name": "Left",
+            "value": "textblock-left"
+          },
+          {
+            "name": "Center",
+            "value": "textblock-center"
+          },
+          {
+            "name": "Right",
+            "value": "textblock-right"
+          }
+        ]
+      },
+      {
+        "component": "select",
+        "name": "color",
+        "label": "Text Color",
+        "options": [
+          {
+            "name": "Default",
+            "value": ""
+          },
+          {
+            "name": "Text / Black",
+            "value": "textblock-black"
+          },
+          {
+            "name": "Text / Body",
+            "value": "textblock-body"
+          },
+          {
+            "name": "Text / Secondary",
+            "value": "textblock-secondary"
+          },
+          {
+            "name": "Text / Tertiary",
+            "value": "textblock-tertiary"
+          },
+          {
+            "name": "Text / White",
+            "value": "textblock-white"
+          },
+          {
+            "name": "Foreground / Primary",
+            "value": "textblock-fg-primary"
+          },
+          {
+            "name": "Foreground / Secondary",
+            "value": "textblock-fg-secondary"
+          },
+          {
+            "name": "Foreground / Tertiary",
+            "value": "textblock-fg-tertiary"
+          },
+          {
+            "name": "Foreground / Disabled",
+            "value": "textblock-fg-disabled"
+          },
+          {
+            "name": "Neutral / 050",
+            "value": "textblock-neutral-050"
+          }
+        ]
+      },
+      {
+        "component": "multiselect",
+        "name": "style",
+        "label": "Style",
+        "options": [
+          {
+            "name": "Default",
+            "value": ""
+          },
+          {
+            "name": "Full width with padding",
+            "value": "full-width-with-padding"
+          },
+          {
+            "name": "Instrument Sans Variable font",
+            "value": "instrument-sans-variable-font"
           }
         ]
       }
@@ -149,29 +250,70 @@
     ]
   },
   {
-    "id": "tabs",
+    "id": "divider",
     "fields": [
       {
-        "component": "multiselect",
-        "name": "classes",
-        "value": "",
-        "label": "Style Classes",
+        "component": "select",
+        "name": "dividertype",
+        "label": "Divider Type",
         "valueType": "string",
+        "value": "",
         "options": [
           {
-            "name": "Tab",
-            "value": "tab"
+            "name": "Default",
+            "value": ""
+          },
+          {
+            "name": "Divider Brand",
+            "value": "divider-brand"
           }
         ]
+      }
+    ]
+  },
+  {
+    "id": "searchresult",
+    "fields": [
+      {
+        "component": "text",
+        "name": "title",
+        "label": "Section Title",
+        "validation": {
+          "required": true
+        },
+        "description": "Section title is required and should not exceed 35 characters"
       },
+      {
+        "component": "aem-content",
+        "valueType": "string",
+        "name": "noResultLink",
+        "label": "No Result Link",
+        "multi": false,
+        "validation": {
+          "rootPath": "/content/genting-singapore"
+        }
+      }
+    ]
+  },
+  {
+    "id": "tabs",
+    "fields": [
       {
         "component": "text",
         "name": "tabtitle",
         "label": "Tab Title",
-        "validation": {
-          "maxLength": 50,
-          "customErrorMsg": "Tab Title cannot exceed 50 characters"
-        }
+        "description": "Tab Title should not exceed 50 characters"
+      },
+      {
+        "component": "boolean",
+        "label": "Active Tab",
+        "name": "active",
+        "valueType": "boolean"
+      },
+      {
+        "component": "text",
+        "name": "tabid",
+        "label": "Tab ID"
       }
     ]
   },
@@ -183,7 +325,7 @@
         "valueType": "string",
         "name": "image",
         "label": "Image",
-        "configUrl": "https://release-06042026--gens--vertisdigital.aem.live/tools/assets-selector/config.json",
+        "configUrl": "https://main--gens-prod--vertisdigital.aem.page/tools/assets-selector/config.json",
         "multi": false
       },
       {
@@ -199,18 +341,46 @@
     "id": "columns",
     "fields": [
       {
-        "component": "text",
-        "valueType": "number",
+        "component": "number",
         "name": "columns",
-        "value": "",
-        "label": "Columns"
+        "label": "Columns",
+        "valueType": "number",
+        "description": "Number of columns"
       },
       {
-        "component": "text",
-        "valueType": "number",
+        "component": "number",
         "name": "rows",
-        "value": "",
-        "label": "Rows"
+        "label": "Rows",
+        "valueType": "number",
+        "description": "Maximum number of rows (optional)"
+      },
+      {
+        "component": "multiselect",
+        "name": "classes",
+        "label": "Columns Options",
+        "valueType": "string",
+        "options": [
+          {
+            "name": "Show Branded Icon",
+            "value": "has-icon"
+          },
+          {
+            "name": "Background: Brand Dark",
+            "value": "bg-primary"
+          },
+          {
+            "name": "Background: Light",
+            "value": "bg-light"
+          },
+          {
+            "name": "Background: White",
+            "value": "bg-white"
+          },
+          {
+            "name": "Background: Transparent",
+            "value": "bg-transparent"
+          }
+        ]
       }
     ]
   },
@@ -232,7 +402,7 @@
         "valueType": "string",
         "name": "bannerimage",
         "label": "Banner Image",
-        "configUrl": "https://release-06042026--gens--vertisdigital.aem.live/tools/assets-selector/config.json",
+        "configUrl": "https://main--gens-prod--vertisdigital.aem.page/tools/assets-selector/config.json",
         "multi": false,
         "validation": {
           "rootPath": "/content/dam/genting-singapore"
@@ -248,34 +418,25 @@
         "component": "text",
         "name": "bannerheading",
         "label": "Banner Heading",
-        "validation": {
-          "maxLength": 100,
-          "customErrorMsg": "Banner Heading cannot exceed 100 characters"
-        }
+        "description": "Banner Heading should not exceed 100 characters"
       },
       {
         "component": "text",
         "name": "bannertitle",
         "label": "Banner Title",
-        "validation": {
-          "maxLength": 100,
-          "customErrorMsg": "Banner Title cannot exceed 100 characters"
-        }
+        "description": "Banner Title should not exceed 100 characters"
       },
       {
         "component": "text",
         "name": "bannerdescription",
         "label": "Banner Description",
-        "validation": {
-          "maxLength": 300,
-          "customErrorMsg": "Banner Description cannot exceed 250 characters"
-        }
+        "description": "Banner Description should not exceed 250 characters"
       },
       {
         "component": "aem-content",
         "valueType": "string",
         "name": "ctabutton",
-        "label": "CTA Link",
+        "label": "CTA Link 1",
         "multi": false,
         "validation": {
           "rootPath": "/content/genting-singapore"
@@ -284,12 +445,32 @@
       {
         "component": "text",
         "name": "ctabuttonText",
-        "label": "CTA Text"
+        "label": "CTA Text 1"
       },
       {
         "component": "text",
         "name": "ctabuttonTitle",
-        "label": "CTA Title"
+        "label": "CTA Title 1"
+      },
+      {
+        "component": "aem-content",
+        "valueType": "string",
+        "name": "ctabutton2",
+        "label": "CTA Link 2",
+        "multi": false,
+        "validation": {
+          "rootPath": "/content/genting-singapore"
+        }
+      },
+      {
+        "component": "text",
+        "name": "ctabuttonText2",
+        "label": "CTA Text 2"
+      },
+      {
+        "component": "text",
+        "name": "ctabuttonTitle2",
+        "label": "CTA Title 2"
       },
       {
         "component": "number",
@@ -300,6 +481,105 @@
         "validation": {
           "customErrorMsg": "Please enter a valid number"
         }
+      },
+      {
+        "component": "boolean",
+        "name": "enablegradient",
+        "label": "Enable Image Gradient",
+        "valueType": "boolean",
+        "value": false
+      },
+      {
+        "component": "boolean",
+        "name": "isHeadingBold",
+        "label": "Bold Heading",
+        "valueType": "boolean",
+        "value": false
+      },
+      {
+        "component": "boolean",
+        "name": "isTitleBold",
+        "label": "Bold Title",
+        "valueType": "boolean",
+        "value": false
+      },
+      {
+        "component": "boolean",
+        "name": "isDescriptionBold",
+        "label": "Bold Description",
+        "valueType": "boolean",
+        "value": false
+      }
+    ]
+  },
+  {
+    "id": "masthead",
+    "fields": [
+      {
+        "component": "custom-asset-namespace:custom-asset",
+        "valueType": "string",
+        "name": "mastheadimage",
+        "label": "Masthead Image",
+        "configUrl": "https://main--gens-prod--vertisdigital.aem.page/tools/assets-selector/config.json",
+        "multi": false,
+        "validation": {
+          "rootPath": "/content/dam/genting-singapore"
+        }
+      },
+      {
+        "component": "custom-asset-namespace:custom-asset",
+        "valueType": "string",
+        "name": "mastheadimageTablet",
+        "label": "Banner Image (Tablet)",
+        "configUrl": "https://main--gens-prod--vertisdigital.aem.page/tools/assets-selector/config.json",
+        "multi": false,
+        "validation": {
+          "rootPath": "/content/dam/genting-singapore"
+        }
+      },
+      {
+        "component": "custom-asset-namespace:custom-asset",
+        "valueType": "string",
+        "name": "mastheadimageMobile",
+        "label": "Masthead Image (Mobile)",
+        "configUrl": "https://main--gens-prod--vertisdigital.aem.page/tools/assets-selector/config.json",
+        "multi": false,
+        "validation": {
+          "rootPath": "/content/dam/genting-singapore"
+        }
+      },
+      {
+        "component": "text",
+        "name": "mastheadfontcolor",
+        "label": "Font Colour",
+        "value": "#FFFFFF",
+        "description": "Enter hex color (e.g. #FFFFFF). Default is white."
+      },
+      {
+        "component": "text",
+        "name": "mastheadtitle",
+        "label": "Masthead Title",
+        "description": "Masthead Title should not exceed 100 characters"
+      },
+      {
+        "component": "boolean",
+        "name": "enablegradient",
+        "label": "Enable Image Gradient",
+        "valueType": "boolean",
+        "value": true
+      },
+      {
+        "component": "text",
+        "name": "indicatortext",
+        "label": "Scroll Indicator Text",
+        "description": "Scroll text should not exceed 50 characters"
+      },
+      {
+        "component": "boolean",
+        "name": "isBold",
+        "label": "Bold Heading",
+        "valueType": "boolean",
+        "value": false
       }
     ]
   },
@@ -310,25 +590,19 @@
         "component": "text",
         "name": "title",
         "label": "News Label",
-        "validation": {
-          "maxLength": 25,
-          "customErrorMsg": "News Label cannot exceed 25 characters"
-        }
+        "description": "News Label should not exceed 25 characters"
       },
       {
         "component": "text",
         "name": "description",
         "label": "Title",
-        "validation": {
-          "maxLength": 60,
-          "customErrorMsg": "Title cannot exceed 60 characters"
-        }
+        "description": "Title should not exceed 60 characters"
       },
       {
         "component": "custom-asset-namespace:custom-asset",
         "name": "image",
         "label": "Carousel Image",
-        "configUrl": "https://release-06042026--gens--vertisdigital.aem.live/tools/assets-selector/config.json",
+        "configUrl": "https://main--gens-prod--vertisdigital.aem.page/tools/assets-selector/config.json",
         "valueType": "string",
         "validation": {
           "rootPath": "/content/dam/genting-singapore"
@@ -391,33 +665,54 @@
         "component": "text",
         "name": "title",
         "label": "Section Name",
-        "description": "Section Name cannot exceed 35 characters",
-        "validation": {
-          "maxLength": 35,
-          "customErrorMsg": "Section Name cannot exceed 35 characters"
-        }
+        "description": "Section Name should not exceed 35 characters"
       },
       {
         "component": "text",
         "name": "heading",
         "label": "Title",
-        "description": "Title cannot exceed 100 characters",
-        "validation": {
-          "maxLength": 100,
-          "customErrorMsg": "Title cannot exceed 100 characters"
-        }
+        "description": "Title should not exceed 100 characters"
       },
       {
         "component": "richtext",
         "name": "sub-heading",
         "value": "",
         "label": "Description",
-        "description": "Description cannot exceed 500 characters",
+        "description": "Description should not exceed 500 characters",
+        "valueType": "string"
+      },
+      {
+        "component": "multiselect",
+        "name": "classes",
+        "label": "Feature Class",
         "valueType": "string",
-        "validation": {
-          "maxLength": 500,
-          "customErrorMsg": "Description cannot exceed 500 characters"
-        }
+        "value": "",
+        "options": [
+          {
+            "name": "Default",
+            "value": ""
+          },
+          {
+            "name": "With Images Four Col",
+            "value": "with-images-four-col"
+          },
+          {
+            "name": "With Vertical List",
+            "value": "with-vertical-list"
+          },
+          {
+            "name": "No Margin Top",
+            "value": "no-margin-top"
+          },
+          {
+            "name": "No Background",
+            "value": "no-background"
+          },
+          {
+            "name": "Custom Padding Bottom",
+            "value": "custom-padding-bottom"
+          }
+        ]
       }
     ]
   },
@@ -429,7 +724,7 @@
         "valueType": "string",
         "name": "feature-icon",
         "label": "Icon",
-        "configUrl": "https://release-06042026--gens--vertisdigital.aem.live/tools/assets-selector/config.json",
+        "configUrl": "https://main--gens-prod--vertisdigital.aem.page/tools/assets-selector/config.json",
         "multi": false
       },
       {
@@ -443,22 +738,109 @@
         "name": "feature-title",
         "value": "",
         "label": "Statistics Numbers",
-        "description": "Statistics Numbers cannot exceed 15 characters",
-        "valueType": "string",
-        "validation": {
-          "maxLength": 15,
-          "customErrorMsg": "Statistics Numbers cannot exceed 15 characters"
-        }
+        "description": "Statistics Numbers should not exceed 15 characters",
+        "valueType": "string"
       },
       {
         "component": "richtext",
         "name": "feature-heading",
         "label": "Text",
-        "description": "Text should be between 5 and 100 characters",
-        "validation": {
-          "maxLength": 100,
-          "customErrorMsg": "Text should be between 5 and 100 characters"
-        }
+        "description": "Text should be between 5 and 100 characters"
+      }
+    ]
+  },
+  {
+    "id": "accordion",
+    "fields": [
+      {
+        "component": "text",
+        "name": "title",
+        "label": "Title",
+        "description": "Accordion section title"
+      },
+      {
+        "component": "richtext",
+        "name": "description",
+        "label": "Description",
+        "description": "Accordion section description"
+      }
+    ]
+  },
+  {
+    "id": "accordionitem",
+    "fields": [
+      {
+        "component": "text",
+        "name": "heading",
+        "label": "Heading",
+        "description": "Accordion item heading"
+      },
+      {
+        "component": "text",
+        "name": "title",
+        "label": "Title",
+        "description": "Accordion item title"
+      },
+      {
+        "component": "richtext",
+        "name": "description",
+        "label": "Description",
+        "description": "Accordion item description",
+        "valueType": "string"
+      }
+    ]
+  },
+  {
+    "id": "sectionheader",
+    "fields": [
+      {
+        "component": "text",
+        "name": "label",
+        "label": "Label",
+        "description": "Label should not exceed 24 characters, recommended to keep it 10-20 characters"
+      },
+      {
+        "component": "text",
+        "name": "title",
+        "label": "Title",
+        "description": "Title should not exceed 80 characters, recommended to keep it 40-60 characters"
+      },
+      {
+        "component": "richtext",
+        "name": "description",
+        "value": "",
+        "label": "Description",
+        "description": "Description should not exceed 180 characters, recommended to keep it 80-120 characters",
+        "valueType": "string"
+      },
+      {
+        "component": "multiselect",
+        "name": "classes",
+        "label": "Section Header Variant",
+        "valueType": "string",
+        "value": "",
+        "options": [
+          {
+            "name": "Vertical",
+            "value": ""
+          },
+          {
+            "name": "Horizontal",
+            "value": "horizontal"
+          },
+          {
+            "name": "Border Bottom",
+            "value": "border-bottom"
+          },
+          {
+            "name": "Blue Background",
+            "value": "blue-background"
+          },
+          {
+            "name": "Gray Background",
+            "value": "gray-background"
+          }
+        ]
       }
     ]
   },
@@ -469,9 +851,7 @@
         "component": "aem-content",
         "name": "link",
         "label": "Link",
-        "validation": {
-          "rootPath": "/content/genting-singapore"
-        }
+        "valueType": "string"
       },
       {
         "component": "select",
@@ -516,21 +896,13 @@
         "component": "text",
         "name": "linkText",
         "label": "Text",
-        "description": "Maximum allowed characters are 50 to support multiple variations/views, however author to decide the best view",
-        "validation": {
-          "maxLength": 50,
-          "customErrorMsg": "Maximum allowed characters are 50 to support multiple variations/views, however author to decide the best view"
-        }
+        "description": "Maximum allowed characters are 50 to support multiple variations/views, however author to decide the best view"
       },
       {
         "component": "text",
         "name": "linkTitle",
         "label": "Title",
-        "description": "Maximum allowed characters are 50 to support multiple variations/views, however author to decide the best view",
-        "validation": {
-          "maxLength": 50,
-          "customErrorMsg": "Maximum allowed characters are 50 to support multiple variations/views, however author to decide the best view"
-        }
+        "description": "Maximum allowed characters are 50 to support multiple variations/views, however author to decide the best view"
       },
       {
         "component": "select",
@@ -557,18 +929,15 @@
         "name": "title",
         "label": "Title",
         "validation": {
-          "minLength": 5,
-          "maxLength": 40,
-          "customErrorMsg": "Title must be between 5 and 40 characters"
-        }
+          "minLength": 5
+        },
+        "description": "Title must be between 5 and 40 characters"
       },
       {
         "component": "aem-content",
         "name": "link",
         "label": "Link",
-        "validation": {
-          "rootPath": "/content/genting-singapore"
-        }
+        "valueType": "string"
       },
       {
         "component": "text",
@@ -605,7 +974,7 @@
         "valueType": "string",
         "name": "linkImage",
         "label": "Link Image",
-        "configUrl": "https://release-06042026--gens--vertisdigital.aem.live/tools/assets-selector/config.json",
+        "configUrl": "https://main--gens-prod--vertisdigital.aem.page/tools/assets-selector/config.json",
         "multi": false
       },
       {
@@ -620,11 +989,7 @@
         "value": "",
         "label": "Description",
         "description": "Description must not exceed 500 characters",
-        "valueType": "string",
-        "validation": {
-          "maxLength": 500,
-          "customErrorMsg": "Description must not exceed 500 characters"
-        }
+        "valueType": "string"
       }
     ]
   },
@@ -656,19 +1021,13 @@
         "component": "text",
         "name": "title",
         "label": "Section Name",
-        "validation": {
-          "maxLength": 50,
-          "customErrorMsg": "Section Name cannot exceed 50 characters"
-        }
+        "description": "Section Name should not exceed 50 characters"
       },
       {
         "component": "text",
         "name": "heading",
         "label": "Title",
-        "validation": {
-          "maxLength": 100,
-          "customErrorMsg": "Title cannot exceed 100 characters"
-        }
+        "description": "Title should not exceed 100 characters"
       }
     ]
   },
@@ -679,7 +1038,7 @@
         "component": "custom-asset-namespace:custom-asset",
         "name": "image",
         "label": "Background Image",
-        "configUrl": "https://release-06042026--gens--vertisdigital.aem.live/tools/assets-selector/config.json",
+        "configUrl": "https://main--gens-prod--vertisdigital.aem.page/tools/assets-selector/config.json",
         "multi": false,
         "title": "Image",
         "validation": {
@@ -696,10 +1055,7 @@
         "component": "text",
         "name": "title",
         "label": "Report Name",
-        "validation": {
-          "maxLength": 60,
-          "customErrorMsg": "Report Name cannot exceed 60 characters"
-        }
+        "description": "Report Name should not exceed 60 characters"
       },
       {
         "component": "text",
@@ -707,10 +1063,7 @@
         "value": "",
         "label": "Description",
         "valueType": "string",
-        "validation": {
-          "maxLength": 250,
-          "customErrorMsg": "Description cannot exceed 250 characters"
-        }
+        "description": "Description should not exceed 250 characters"
       },
       {
         "component": "aem-content",
@@ -770,19 +1123,13 @@
         "component": "text",
         "name": "title",
         "label": "Section Name",
-        "validation": {
-          "maxLength": 100,
-          "customErrorMsg": "Section Name cannot exceed 100 characters"
-        }
+        "description": "Section Name should not exceed 100 characters"
       },
       {
         "component": "text",
         "name": "heading",
         "label": "Section Title",
-        "validation": {
-          "maxLength": 100,
-          "customErrorMsg": "Section Title cannot exceed 100 characters"
-        }
+        "description": "Section Title should not exceed 100 characters"
       },
       {
         "component": "text",
@@ -790,10 +1137,7 @@
         "value": "",
         "label": "Section Description",
         "valueType": "string",
-        "validation": {
-          "maxLength": 500,
-          "customErrorMsg": "Section Description cannot exceed 500 characters"
-        }
+        "description": "Section Description should not exceed 500 characters"
       }
     ]
   },
@@ -804,7 +1148,7 @@
         "component": "custom-asset-namespace:custom-asset",
         "name": "image",
         "label": "Project Image",
-        "configUrl": "https://release-06042026--gens--vertisdigital.aem.live/tools/assets-selector/config.json",
+        "configUrl": "https://main--gens-prod--vertisdigital.aem.page/tools/assets-selector/config.json",
         "multi": false,
         "validation": {
           "rootPath": "/content/dam/genting-singapore"
@@ -833,10 +1177,7 @@
         "component": "text",
         "name": "projectTitle",
         "label": "Title",
-        "validation": {
-          "maxLength": 25,
-          "customErrorMsg": "Title cannot exceed 25 characters"
-        }
+        "description": "Title should not exceed 25 characters"
       },
       {
         "component": "select",
@@ -858,10 +1199,14 @@
         "name": "location",
         "label": "Location/Description",
         "valueType": "string",
-        "validation": {
-          "maxLength": 500,
-          "customErrorMsg": "Location / Description cannot exceed 500 characters"
-        }
+        "description": "Location / Description should not exceed 500 characters"
+      },
+      {
+        "component": "boolean",
+        "name": "enablegradient",
+        "label": "Enable Image Gradient",
+        "valueType": "boolean",
+        "value": false
       }
     ]
   },
@@ -877,20 +1222,14 @@
         "component": "text",
         "name": "heading",
         "label": "Title",
-        "validation": {
-          "maxLength": 100,
-          "customErrorMsg": "Title cannot exceed 100 characters"
-        }
+        "description": "Title should not exceed 100 characters"
       },
       {
         "component": "text",
         "name": "description",
         "label": "Description",
         "valueType": "string",
-        "validation": {
-          "maxLength": 300,
-          "customErrorMsg": "Description cannot exceed 300 characters"
-        }
+        "description": "Description should not exceed 300 characters"
       },
       {
         "component": "tab",
@@ -901,7 +1240,7 @@
         "component": "custom-asset-namespace:custom-asset",
         "name": "phoneIcon",
         "label": "Phone Icon",
-        "configUrl": "https://release-06042026--gens--vertisdigital.aem.live/tools/assets-selector/config.json",
+        "configUrl": "https://main--gens-prod--vertisdigital.aem.page/tools/assets-selector/config.json",
         "multi": false
       },
       {
@@ -916,10 +1255,9 @@
         "label": "Phone Number",
         "validation": {
           "regExp": "^[+]?[0-9]{10,30}$",
-          "minLength": 10,
-          "maxLength": 30,
-          "customErrorMsg": "Phone Number must be between 10-30 digits and can only contain numbers and '+' symbol"
-        }
+          "minLength": 10
+        },
+        "description": "Phone Number must be between 10-30 digits and can only contain numbers and '+' symbol"
       },
       {
         "component": "tab",
@@ -936,16 +1274,13 @@
             "component": "text",
             "name": "emailLabel1",
             "label": "Email Label",
-            "validation": {
-              "maxLength": 50,
-              "customErrorMsg": "Email Label cannot exceed 50 characters"
-            }
+            "description": "Email Label should not exceed 50 characters"
           },
           {
             "component": "custom-asset-namespace:custom-asset",
             "name": "emailIcon1",
             "label": "Email Icon",
-            "configUrl": "https://release-06042026--gens--vertisdigital.aem.live/tools/assets-selector/config.json",
+            "configUrl": "https://main--gens-prod--vertisdigital.aem.page/tools/assets-selector/config.json",
             "multi": false
           },
           {
@@ -960,10 +1295,9 @@
             "label": "Email Address",
             "validation": {
               "regExp": "^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,}$",
-              "minLength": 10,
-              "maxLength": 30,
-              "customErrorMsg": "Please enter a valid Email Address between 10-30 characters"
-            }
+              "minLength": 10
+            },
+            "description": "Please enter a valid Email Address between 10-30 characters"
           }
         ]
       },
@@ -977,16 +1311,13 @@
             "component": "text",
             "name": "emailLabel2",
             "label": "Email Label",
-            "validation": {
-              "maxLength": 50,
-              "customErrorMsg": "Email Label cannot exceed 50 characters"
-            }
+            "description": "Email Label should not exceed 50 characters"
           },
           {
             "component": "custom-asset-namespace:custom-asset",
             "name": "emailIcon2",
             "label": "Email Icon",
-            "configUrl": "https://release-06042026--gens--vertisdigital.aem.live/tools/assets-selector/config.json",
+            "configUrl": "https://main--gens-prod--vertisdigital.aem.page/tools/assets-selector/config.json",
             "multi": false
           },
           {
@@ -1001,10 +1332,9 @@
             "label": "Email Address",
             "validation": {
               "regExp": "^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,}$",
-              "minLength": 10,
-              "maxLength": 30,
-              "customErrorMsg": "Please enter a valid Email Address between 10-30 characters"
-            }
+              "minLength": 10
+            },
+            "description": "Please enter a valid Email Address between 10-30 characters"
           }
         ]
       },
@@ -1018,16 +1348,13 @@
             "component": "text",
             "name": "emailLabel3",
             "label": "Email Label",
-            "validation": {
-              "maxLength": 50,
-              "customErrorMsg": "Email Label cannot exceed 50 characters"
-            }
+            "description": "Email Label should not exceed 50 characters"
           },
           {
             "component": "custom-asset-namespace:custom-asset",
             "name": "emailIcon3",
             "label": "Email Icon",
-            "configUrl": "https://release-06042026--gens--vertisdigital.aem.live/tools/assets-selector/config.json",
+            "configUrl": "https://main--gens-prod--vertisdigital.aem.page/tools/assets-selector/config.json",
             "multi": false
           },
           {
@@ -1042,10 +1369,9 @@
             "label": "Email Address",
             "validation": {
               "regExp": "^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,}$",
-              "minLength": 10,
-              "maxLength": 30,
-              "customErrorMsg": "Please enter a valid Email Address between 10-30 characters"
-            }
+              "minLength": 10
+            },
+            "description": "Please enter a valid Email Address between 10-30 characters"
           }
         ]
       },
@@ -1058,7 +1384,7 @@
         "component": "custom-asset-namespace:custom-asset",
         "name": "addressIcon",
         "label": "Address Icon",
-        "configUrl": "https://release-06042026--gens--vertisdigital.aem.live/tools/assets-selector/config.json",
+        "configUrl": "https://main--gens-prod--vertisdigital.aem.page/tools/assets-selector/config.json",
         "multi": false
       },
       {
@@ -1081,19 +1407,13 @@
         "component": "text",
         "name": "subtitle",
         "label": "Sub Title",
-        "validation": {
-          "maxLength": 100,
-          "customErrorMsg": "Sub Title cannot exceed 100 characters"
-        }
+        "description": "Sub Title should not exceed 100 characters"
       },
       {
         "component": "text",
         "name": "subdescription",
         "label": "Sub Description",
-        "validation": {
-          "maxLength": 300,
-          "customErrorMsg": "Sub Description cannot exceed 300 characters"
-        }
+        "description": "Sub Description should not exceed 300 characters"
       },
       {
         "component": "aem-content",
@@ -1159,10 +1479,7 @@
         "component": "text",
         "name": "heading",
         "label": "Title",
-        "validation": {
-          "maxLength": 100,
-          "customErrorMsg": "Title cannot exceed 100 characters"
-        }
+        "description": "Title should not exceed 100 characters"
       },
       {
         "component": "text",
@@ -1171,14 +1488,14 @@
         "valueType": "string",
         "validation": {
           "maxSize": 500,
-          "customErrorMsg": "Description cannot exceed 500 characters"
+          "customErrorMsg": "Description should not exceed 500 characters"
         }
       },
       {
         "component": "custom-asset-namespace:custom-asset",
         "name": "image",
         "label": "Image",
-        "configUrl": "https://release-06042026--gens--vertisdigital.aem.live/tools/assets-selector/config.json",
+        "configUrl": "https://main--gens-prod--vertisdigital.aem.page/tools/assets-selector/config.json",
         "multi": false
       },
       {
@@ -1199,7 +1516,7 @@
         "label": "File Path",
         "name": "filepath",
         "valueType": "string",
-        "configUrl": "https://release-06042026--gens--vertisdigital.aem.live/tools/assets-selector/config.json",
+        "configUrl": "https://main--gens-prod--vertisdigital.aem.page/tools/assets-selector/config.json",
         "multi": false,
         "condition": {
           "===": [
@@ -1236,6 +1553,27 @@
         "component": "text",
         "name": "ctaCaption",
         "label": "CTA Caption"
+      },
+      {
+        "component": "custom-asset-namespace:custom-asset",
+        "name": "imageTablet",
+        "label": "Image (Tablet)",
+        "configUrl": "https://main--gens-prod--vertisdigital.aem.page/tools/assets-selector/config.json",
+        "multi": false
+      },
+      {
+        "component": "custom-asset-namespace:custom-asset",
+        "name": "imageMobile",
+        "label": "Image (Mobile)",
+        "configUrl": "https://main--gens-prod--vertisdigital.aem.page/tools/assets-selector/config.json",
+        "multi": false
+      },
+      {
+        "component": "boolean",
+        "name": "enablegradient",
+        "label": "Enable Image Gradient",
+        "valueType": "boolean",
+        "value": false
       }
     ]
   },
@@ -1246,10 +1584,7 @@
         "component": "text",
         "name": "heading",
         "label": "Title",
-        "validation": {
-          "maxLength": 100,
-          "customErrorMsg": "Title cannot exceed 100 characters"
-        }
+        "description": "Title should not exceed 100 characters"
       },
       {
         "component": "text",
@@ -1257,10 +1592,7 @@
         "value": "",
         "label": "Description",
         "valueType": "string",
-        "validation": {
-          "maxLength": 1000,
-          "customErrorMsg": "Description cannot exceed 500 characters"
-        }
+        "description": "Description should not exceed 500 characters"
       }
     ]
   },
@@ -1281,6 +1613,10 @@
           {
             "name": "Core Principles No Border",
             "value": "coreprinciples-no-border"
+          },
+          {
+            "name": "Core Principles With Padding Top",
+            "value": "has-padding-top"
           }
         ]
       }
@@ -1293,7 +1629,7 @@
         "component": "custom-asset-namespace:custom-asset",
         "name": "image",
         "label": "Image",
-        "configUrl": "https://release-06042026--gens--vertisdigital.aem.live/tools/assets-selector/config.json",
+        "configUrl": "https://main--gens-prod--vertisdigital.aem.page/tools/assets-selector/config.json",
         "multi": false
       },
       {
@@ -1306,10 +1642,7 @@
         "component": "text",
         "name": "title",
         "label": "Title",
-        "validation": {
-          "maxLength": 30,
-          "customErrorMsg": "Title cannot exceed 30 characters"
-        }
+        "description": "Title should not exceed 30 characters"
       },
       {
         "component": "text",
@@ -1317,10 +1650,7 @@
         "value": "",
         "label": "Description",
         "valueType": "string",
-        "validation": {
-          "maxLength": 200,
-          "customErrorMsg": "Description cannot exceed 200 characters"
-        }
+        "description": "Description should not exceed 200 characters"
       }
     ]
   },
@@ -1331,47 +1661,66 @@
         "component": "text",
         "name": "title",
         "label": "Title",
-        "validation": {
-          "maxLength": 100,
-          "customErrorMsg": "Title cannot exceed 100 characters"
-        }
+        "description": "Title should not exceed 100 characters"
       },
       {
         "component": "text",
         "name": "firstCtaCaption",
         "label": "First CTA Caption",
-        "validation": {
-          "maxLength": 50,
-          "customErrorMsg": "First CTA Caption cannot exceed 50 characters"
-        }
+        "description": "First CTA Caption should not exceed 50 characters"
       },
       {
         "component": "aem-content",
         "name": "firstCta",
         "label": "CTA Link",
-        "linkTarget": "_blank",
         "validation": {
           "requiredErrorMsg": "CTA Link is mandatory",
           "rootPath": "/content/genting-singapore"
         }
       },
       {
+        "component": "select",
+        "name": "firstCtaLinkTarget",
+        "label": "First CTA Target",
+        "options": [
+          {
+            "name": "Same Tab",
+            "value": "_self"
+          },
+          {
+            "name": "New Tab",
+            "value": "_blank"
+          }
+        ]
+      },
+      {
         "component": "text",
         "name": "secondCtaCaption",
         "label": "Second CTA Caption",
-        "validation": {
-          "maxLength": 50,
-          "customErrorMsg": "Second CTA Caption cannot exceed 50 characters"
-        }
+        "description": "Second CTA Caption should not exceed 50 characters"
       },
       {
         "component": "aem-content",
         "name": "secondCta",
         "label": "CTA Link",
-        "linkTarget": "_blank",
         "validation": {
           "rootPath": "/content/genting-singapore"
         }
+      },
+      {
+        "component": "select",
+        "name": "secondCtaLinkTarget",
+        "label": "Second CTA Target",
+        "options": [
+          {
+            "name": "Same Tab",
+            "value": "_self"
+          },
+          {
+            "name": "New Tab",
+            "value": "_blank"
+          }
+        ]
       }
     ]
   },
@@ -1398,6 +1747,13 @@
             "value": "text-media-block-heading-variation"
           }
         ]
+      },
+      {
+        "component": "boolean",
+        "name": "enablegradient",
+        "label": "Enable Image Gradient",
+        "valueType": "boolean",
+        "value": false
       }
     ]
   },
@@ -1408,13 +1764,19 @@
         "component": "custom-asset-namespace:custom-asset",
         "name": "image",
         "label": "Image",
-        "configUrl": "https://release-06042026--gens--vertisdigital.aem.live/tools/assets-selector/config.json"
+        "configUrl": "https://main--gens-prod--vertisdigital.aem.page/tools/assets-selector/config.json"
       },
       {
         "component": "text",
         "name": "imageTitle",
         "label": "Alt Text",
         "valueType": "string"
+      },
+      {
+        "component": "boolean",
+        "label": "Autoplay",
+        "name": "reveal",
+        "valueType": "boolean"
       }
     ]
   },
@@ -1425,44 +1787,32 @@
         "component": "text",
         "name": "title",
         "label": "Title",
-        "validation": {
-          "maxLength": 100,
-          "customErrorMsg": "Title cannot exceed 100 characters"
-        }
+        "description": "Title should not exceed 100 characters"
       },
       {
         "component": "text",
         "name": "subtitle",
         "label": "Sub Title",
-        "validation": {
-          "maxLength": 100,
-          "customErrorMsg": "Sub Title cannot exceed 100 characters"
-        }
+        "description": "Sub Title should not exceed 100 characters"
       },
       {
         "component": "richtext",
         "name": "longdescription",
         "label": "Long Description",
         "valueType": "string",
-        "validation": {
-          "maxLength": 250,
-          "customErrorMsg": "Long Description cannot exceed 250 characters"
-        }
+        "description": "Long Description should not exceed 250 characters"
       },
       {
         "component": "text",
         "name": "shortdescription",
         "label": "Short Description",
-        "validation": {
-          "maxLength": 100,
-          "customErrorMsg": "Short Description cannot exceed 100 characters"
-        }
+        "description": "Short Description should not exceed 100 characters"
       },
       {
         "component": "custom-asset-namespace:custom-asset",
         "name": "image",
         "label": "Image",
-        "configUrl": "https://release-06042026--gens--vertisdigital.aem.live/tools/assets-selector/config.json",
+        "configUrl": "https://main--gens-prod--vertisdigital.aem.page/tools/assets-selector/config.json",
         "multi": false
       },
       {
@@ -1474,10 +1824,7 @@
       {
         "component": "aem-content",
         "name": "link",
-        "label": "Link",
-        "validation": {
-          "rootPath": "/content/genting-singapore"
-        }
+        "label": "Link"
       },
       {
         "component": "text",
@@ -1504,7 +1851,7 @@
           },
           {
             "name": "Right Arrow",
-            "value": "right-arrow"
+            "value": "arrowright"
           },
           {
             "name": "Download Arrow",
@@ -1513,6 +1860,21 @@
           {
             "name": "North East Arrow",
             "value": "north-east-arrow"
+          }
+        ]
+      },
+      {
+        "component": "select",
+        "name": "linkTarget",
+        "label": "Target",
+        "options": [
+          {
+            "name": "Same Tab",
+            "value": "_self"
+          },
+          {
+            "name": "New Tab",
+            "value": "_blank"
           }
         ]
       }
@@ -1581,22 +1943,14 @@
         "component": "text",
         "name": "title",
         "label": "Title",
-        "description": "Title cannot exceed 100 characters",
-        "validation": {
-          "maxLength": 100,
-          "customErrorMsg": "Title cannot exceed 100 characters"
-        }
+        "description": "Title should not exceed 100 characters"
       },
       {
         "component": "richtext",
         "name": "description",
         "value": "",
         "label": "Short Description",
-        "description": "Short Description cannot exceed 300 characters",
-        "validation": {
-          "maxLength": 300,
-          "customErrorMsg": "Short Description cannot exceed 300 characters"
-        },
+        "description": "Short Description should not exceed 300 characters",
         "valueType": "string"
       },
       {
@@ -1645,10 +1999,7 @@
         "name": "tabsectiontitle",
         "label": "Tab Section Title",
         "valueType": "string",
-        "validation": {
-          "maxLength": 80,
-          "customErrorMsg": "Section Title cannot exceed 80 characters"
-        }
+        "description": "Section Title should not exceed 80 characters"
       }
     ]
   },
@@ -1659,7 +2010,7 @@
         "component": "custom-asset-namespace:custom-asset",
         "name": "awardimage",
         "label": "Award Image",
-        "configUrl": "https://release-06042026--gens--vertisdigital.aem.live/tools/assets-selector/config.json",
+        "configUrl": "https://main--gens-prod--vertisdigital.aem.page/tools/assets-selector/config.json",
         "multi": false,
         "validation": {
           "rootPath": "/content/dam/genting-singapore"
@@ -1674,25 +2025,45 @@
       {
         "component": "text",
         "name": "awardyear",
-        "label": "Award Year" 
+        "label": "Award Year"
       },
       {
         "component": "text",
         "name": "awardheading",
         "label": "Award Title",
-        "validation": {
-          "maxLength": 100,
-          "customErrorMsg": "Title cannot exceed 100 characters"
-        }
+        "description": "Title should not exceed 100 characters"
       },
       {
-        "component": "text",
+        "component": "richtext",
         "name": "awarddescription",
         "label": "Award Description",
-        "validation": {
-          "maxLength": 200,
-          "customErrorMsg": "Description cannot exceed 250 characters"
-        }
+        "description": "Description should not exceed 250 characters"
+      }
+    ]
+  },
+  {
+    "id": "awardsgallery",
+    "fields": [
+      {
+        "component": "multiselect",
+        "name": "classes",
+        "value": "",
+        "label": "Display options",
+        "valueType": "string",
+        "options": [
+          {
+            "name": "Default",
+            "value": ""
+          },
+          {
+            "name": "Grid View",
+            "value": "grid-view"
+          },
+          {
+            "name": "No Padding Top",
+            "value": "no-padding-top"
+          }
+        ]
       }
     ]
   },
@@ -1703,20 +2074,13 @@
         "component": "text",
         "name": "year",
         "label": "Year",
-        "validation": {
-          "maxLength": 4,
-          "pattern": "^[0-9]{4}$",
-          "customErrorMsg": "Please enter a valid year (e.g., 2024)"
-        }
+        "description": "Year or Label should not exceed 10 characters"
       },
       {
         "component": "text",
         "name": "description",
         "label": "Description",
-        "validation": {
-          "maxLength": 500,
-          "customErrorMsg": "Description cannot exceed 500 characters"
-        }
+        "description": "Description should not exceed 500 characters"
       }
     ]
   },
@@ -1727,7 +2091,7 @@
         "component": "custom-asset-namespace:custom-asset",
         "name": "image",
         "label": "Image",
-        "configUrl": "https://release-06042026--gens--vertisdigital.aem.live/tools/assets-selector/config.json",
+        "configUrl": "https://main--gens-prod--vertisdigital.aem.page/tools/assets-selector/config.json",
         "multi": false
       },
       {
@@ -1746,9 +2110,16 @@
         "component": "text",
         "name": "title",
         "label": "Title",
+        "description": "Description should not exceed 100 characters"
+      },
+      {
+        "component": "aem-content",
+        "valueType": "string",
+        "name": "ctabutton",
+        "label": "CTA Link",
+        "multi": false,
         "validation": {
-          "maxLength": 100,
-          "customErrorMsg": "Description cannot exceed 100 characters"
+          "rootPath": "/content/genting-singapore"
         }
       }
     ]
@@ -1761,10 +2132,7 @@
         "name": "loadMoreLabel",
         "label": "Load More",
         "valueType": "string",
-        "validation": {
-          "maxLength": 30,
-          "customErrorMsg": "Load More cannot exceed 30 characters"
-        }
+        "description": "Load More should not exceed 30 characters"
       },
       {
         "component": "number",
@@ -1787,10 +2155,9 @@
         "name": "title",
         "label": "Section Title",
         "validation": {
-          "maxLength": 35,
-          "required": true,
-          "customErrorMsg": "Section title is required and cannot exceed 35 characters"
-        }
+          "required": true
+        },
+        "description": "Section title is required and should not exceed 35 characters"
       }
     ]
   },
@@ -1833,20 +2200,18 @@
         "name": "title",
         "label": "Title",
         "validation": {
-          "maxLength": 100,
-          "required": true,
-          "customErrorMsg": "Title is required and cannot exceed 100 characters"
-        }
+          "required": true
+        },
+        "description": "Title is required and should not exceed 100 characters"
       },
       {
         "component": "text",
         "name": "description",
         "label": "Description",
         "validation": {
-          "maxLength": 2000,
-          "required": true,
-          "customErrorMsg": "Description is required and cannot exceed 2000 characters"
-        }
+          "required": true
+        },
+        "description": "Description is required and should not exceed 2000 characters"
       }
     ]
   },
@@ -1858,29 +2223,22 @@
         "name": "title",
         "label": "Policy Title",
         "validation": {
-          "maxLength": 100,
-          "required": true,
-          "customErrorMsg": "Policy title is required and cannot exceed 100 characters"
-        }
+          "required": true
+        },
+        "description": "Policy title is required and should not exceed 100 characters"
       },
       {
         "component": "richtext",
         "name": "description",
         "label": "Policy Description",
-        "validation": {
-          "maxLength": 2000,
-          "customErrorMsg": "Description cannot exceed 2000 characters"
-        }
-      },      
+        "description": "Description should not exceed 2000 characters"
+      },
       {
         "component": "text",
         "name": "ctaLabel",
         "label": "CTA Label",
-        "validation": {
-          "maxLength": 30,
-          "customErrorMsg": "CTA text cannot exceed 30 characters"
-        }
-      },      
+        "description": "CTA text should not exceed 30 characters"
+      },
       {
         "component": "aem-content",
         "name": "ctaLink",
@@ -1935,7 +2293,7 @@
         "label": "File Path",
         "name": "filepath",
         "valueType": "string",
-        "configUrl": "https://release-06042026--gens--vertisdigital.aem.live/tools/assets-selector/config.json",
+        "configUrl": "https://main--gens-prod--vertisdigital.aem.page/tools/assets-selector/config.json",
         "multi": false,
         "condition": {
           "===": [
@@ -1972,6 +2330,27 @@
           {
             "name": "New Tab",
             "value": "_blank"
+          }
+        ]
+      },
+      {
+        "component": "text",
+        "name": "subtitle",
+        "label": "Policy Subtitle",
+        "description": "Policy subtitle should not exceed 100 characters"
+      },
+      {
+        "component": "select",
+        "name": "style",
+        "label": "Style",
+        "options": [
+          {
+            "name": "Default",
+            "value": ""
+          },
+          {
+            "name": "Gray Background",
+            "value": "gray-background"
           }
         ]
       }
@@ -2023,7 +2402,7 @@
         "component": "custom-asset-namespace:custom-asset",
         "name": "image",
         "label": "Image",
-        "configUrl": "https://release-06042026--gens--vertisdigital.aem.live/tools/assets-selector/config.json",
+        "configUrl": "https://main--gens-prod--vertisdigital.aem.page/tools/assets-selector/config.json",
         "multi": false,
         "validation": {
           "required": true,
@@ -2043,20 +2422,20 @@
         "valueType": "string",
         "value": "",
         "validation": {
-          "maxLength": 60,
           "required": true,
-          "customErrorMsg": "Name is required and cannot exceed 60 characters"
-        }
+          "customErrorMsg": "Name is required"
+        },
+        "description": "Recommended length: 60 characters"
       },
       {
         "component": "text",
         "name": "designation",
         "label": "Designation",
         "validation": {
-          "maxLength": 50,
           "required": true,
-          "customErrorMsg": "Designation is required and cannot exceed 50 characters"
-        }
+          "customErrorMsg": "Designation is required"
+        },
+        "description": "Recommended length: 50 characters"
       },
       {
         "component": "tab",
@@ -2068,10 +2447,7 @@
         "name": "description",
         "label": "Description",
         "valueType": "string",
-        "validation": {
-          "maxLength": 2500,
-          "customErrorMsg": "Description cannot exceed 2500 characters"
-        }
+        "description": "Recommended length: 2500 characters"
       }
     ]
   },
@@ -2079,7 +2455,7 @@
     "id": "corporatepolicies",
     "fields": [
       {
-        "component": "select",
+        "component": "multiselect",
         "name": "classes",
         "value": "",
         "label": "Style options",
@@ -2096,8 +2472,137 @@
           {
             "name": "Corporate Policies CTA Right",
             "value": "corporate-policies-cta-right"
+          },
+          {
+            "name": "Corporate Policies No Background",
+            "value": "no-background"
+          },
+          {
+            "name": "Corporate Policies No Divider",
+            "value": "no-divider"
           }
         ]
+      }
+    ]
+  },
+  {
+    "id": "awardlistingitem",
+    "fields": [
+      {
+        "component": "text",
+        "name": "awardyear",
+        "label": "Year",
+        "valueType": "string",
+        "description": "Year should not exceed 100 characters"
+      },
+      {
+        "component": "text",
+        "name": "awarddescription",
+        "label": "Award Description",
+        "valueType": "string",
+        "description": "Award Description should not exceed 100 characters"
+      }
+    ]
+  },
+  {
+    "id": "awardlisting",
+    "fields": [
+      {
+        "component": "text",
+        "name": "heading",
+        "label": "Title",
+        "description": "Title should not exceed 100 characters"
+      }
+    ]
+  },
+  {
+    "id": "projectslist",
+    "fields": [
+      {
+        "component": "multiselect",
+        "name": "classes",
+        "label": "Display Options",
+        "valueType": "string",
+        "options": [
+          {
+            "name": "Grid View",
+            "value": "grid-view"
+          },
+          {
+            "name": "List View",
+            "value": "list-view"
+          },
+          {
+            "name": "No Zebra Pattern",
+            "value": "no-zebra-pattern"
+          },
+          {
+            "name": "Grid View Has Padding",
+            "value": "has-padding"
+          },
+          {
+            "name": "Page Alignment",
+            "value": "page-alignment"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "tiles",
+    "fields": [
+      {
+        "component": "select",
+        "name": "classes",
+        "label": "Style Options",
+        "valueType": "string",
+        "options": [
+          {
+            "name": "Default",
+            "value": ""
+          },
+          {
+            "name": "Open as Modal",
+            "value": "open-as-modal"
+          },
+          {
+            "name": "No Ratio in Mobile",
+            "value": "no-ratio-in-mobile"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "cookiepolicy",
+    "fields": [
+      {
+        "component": "richtext",
+        "name": "cookiepolicydescription",
+        "label": "Cookie Policy Description",
+        "valueType": "string",
+        "validation": {
+          "maxLength": 2000,
+          "customErrorMsg": "Cookie Policy Description cannot exceed 2000 characters"
+        }
+      },
+      {
+        "component": "text",
+        "name": "declinecta",
+        "label": "Decline CTA Text",
+        "validation": {
+          "maxLength": 50,
+          "customErrorMsg": "First CTA Caption cannot exceed 50 characters"
+        }
+      },
+      {
+        "component": "text",
+        "name": "acceptcta",
+        "label": "Accept CTA Text",
+        "validation": {
+          "maxLength": 50,
+          "customErrorMsg": "Second CTA Caption cannot exceed 50 characters"
+        }
       }
     ]
   }

@@ -1,3 +1,5 @@
+/* eslint-disable no-console */
+
 class Logger {
   constructor(level = 'info') {
     this.levels = ['debug', 'info', 'warn', 'error'];

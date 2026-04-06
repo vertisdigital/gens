@@ -3,7 +3,7 @@
     "id": "main",
     "components": [
       "section",
-      "statisticsSection", 
+      "statisticsSection",
       "tabs"
     ]
   },
@@ -16,6 +16,7 @@
       "linkField",
       "socialLinks",
       "links",
+      "login",
       "imageLink",
       "exploremore",
       "listing",
@@ -29,8 +30,24 @@
       "tabsectiontitle",
       "awardsgallery",
       "sustainabilitygovernance",
+      "cookiepolicy",
       "corporatepolicies",
-      "statistics"
+      "statistics",
+      "searchresult",
+      "divider",
+      "textblock",
+      "columns",
+      "sectionheader",
+      "accordion",
+      "column",
+      "awardlisting",
+      "masthead"
+    ]
+  },
+  {
+    "id": "sectionheader",
+    "components": [
+      "linkField"
     ]
   },
   {
@@ -44,7 +61,11 @@
       "loadmore",
       "boardofdirectors",
       "iframe",
-      "corporatepolicies"
+      "corporatepolicies",
+      "awardlisting",
+      "tiles",
+      "sectionheader",
+      "textblock"
     ]
   },
   {
@@ -75,7 +96,8 @@
       "textsection",
       "textmediablock",
       "linkField",
-      "projectslist"
+      "projectslist",
+      "textblock"
     ]
   },
   {
@@ -116,12 +138,13 @@
     "components": [
       "listitem",
       "linkField"
-      ]
+    ]
   },
   {
     "id": "projectcards",
     "components": [
-      "projectcard"
+      "projectcard",
+      "linkField"
     ]
   },
   {
@@ -129,7 +152,6 @@
     "components": [
       "bannercarousel"
     ]
-
   },
   {
     "id": "tiles",
@@ -140,14 +162,16 @@
   {
     "id": "coreprinciples",
     "components": [
-      "coreprinciple"
+      "coreprinciple",
+      "linkField"
     ]
   },
   {
     "id": "textmediablock",
     "components": [
       "media",
-      "textsection"
+      "textsection",
+      "textblock"
     ]
   },
   {
@@ -162,7 +186,8 @@
       "statistics",
       "statisticsDescription",
       "feature",
-      "herobanner"
+      "herobanner",
+      "columns"
     ]
   },
   {
@@ -175,7 +200,8 @@
   {
     "id": "awardsgallery",
     "components": [
-      "awardstile"
+      "awardstile",
+      "linkField"
     ]
   },
   {
@@ -187,7 +213,8 @@
   {
     "id": "sustainabilitygovernance",
     "components": [
-      "governancetile"
+      "governancetile",
+      "linkField"
     ]
   },
   {
@@ -202,11 +229,40 @@
       "enquiry",
       "enquirycta"
     ]
-  }, 
+  },
   {
     "id": "boardofdirectors",
     "components": [
       "director"
+    ]
+  },
+  {
+    "id": "richtext",
+    "features": [
+      "bold",
+      "italic",
+      "underline",
+      "strikethrough",
+      "alignment-left",
+      "alignment-center",
+      "alignment-right",
+      "alignment-justify",
+      "unorderedList",
+      "orderedList",
+      "link",
+      "unlink"
+    ]
+  },
+  {
+    "id": "awardlisting",
+    "components": [
+      "awardlistingitem"
+    ]
+  },
+  {
+    "id": "accordion",
+    "components": [
+      "accordionitem"
     ]
   }
 ]
