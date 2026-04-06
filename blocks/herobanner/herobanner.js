@@ -4,6 +4,47 @@ import SvgIcon from '../../shared-components/SvgIcon.js';
 import stringToHTML from '../../shared-components/Utility.js';
 import { moveInstrumentation } from '../../scripts/scripts.js';
 
+function decorateCTAWithCircle(linkEl, options = {}) {
+  if (!linkEl || linkEl.dataset.decorated === 'true') return;
+  linkEl.dataset.decorated = 'true';
+
+  const {
+    before = true,
+    after = true,
+  } = options;
+
+  const text = linkEl.textContent.trim();
+  linkEl.textContent = '';
+
+  if (before) {
+    linkEl.appendChild(
+      stringToHTML(
+        SvgIcon({
+          name: 'circlecta',
+          className: 'cta-circle-icon before',
+          size: '16',
+        }),
+      ),
+    );
+  }
+
+  const textSpan = document.createElement('span');
+  textSpan.className = 'cta-text';
+  textSpan.textContent = text;
+  linkEl.appendChild(textSpan);
+
+  if (after) {
+    linkEl.appendChild(
+      stringToHTML(
+        SvgIcon({
+          name: 'circlecta',
+          className: 'cta-circle-icon after',
+          size: '16',
+        }),
+      ),
+    );
+  }
+}
 
 export default function decorate(block) {
   let heroContainer = block.querySelector('.hero-banner-container');
@@ -11,6 +52,25 @@ export default function decorate(block) {
   if (!heroContainer) {
     heroContainer = document.createElement('div');
     heroContainer.className = 'hero-banner-container';
+  }
+
+  // Try multiple selectors to find gradient toggle in both authoring and publishing mode
+  const gradientEl = block.querySelector('[data-aue-prop="enablegradient"], [data-gen-prop="enablegradient"]')
+    || block.querySelector('.herobanner-nested-1-10 p')
+    || block.querySelector('.herobanner-nested-1-10');
+
+  // Get text from p tag if it exists, otherwise from the element itself
+  const gradientP = gradientEl?.querySelector('p') || gradientEl;
+  const gradientValue = gradientP?.textContent?.trim();
+  const enablegradient = !gradientEl || gradientValue !== 'false';
+  heroContainer.classList.add(enablegradient ? 'hero-banner-has-gradient' : 'hero-banner-no-gradient');
+
+  // Only remove if it's not the block itself
+  if (gradientEl && (
+    gradientEl.parentNode === block
+    || gradientEl.parentNode?.parentNode === block
+  )) {
+    gradientEl.remove();
   }
 
   const imageLink = block.querySelector('.herobanner-nested-1-1 a[href]');
@@ -25,15 +85,15 @@ export default function decorate(block) {
       breakpoints: {
         mobile: {
           src: `${imageUrl}`,
-          smartCrop : 'Small'
+          smartCrop: 'Small'
         },
         tablet: {
           src: `${imageUrl}`,
-          smartCrop : 'Medium'
+          smartCrop: 'Medium'
         },
         desktop: {
           src: `${imageUrl}`,
-          smartCrop : 'Desktop'
+          smartCrop: 'Desktop'
         },
       },
       lazy: false,
@@ -51,8 +111,33 @@ export default function decorate(block) {
   const heroContent = document.createElement('div');
   heroContent.classList.add('hero-content', 'columns-container', 'container');
 
+  // Read bold props
+  const isHeadingBoldEl = block.querySelector('.herobanner-nested-1-11 p')
+    || block.querySelector('.herobanner-nested-1-11')
+    || block.querySelector('[data-aue-prop="isHeadingBold"]')
+    || block.querySelector('[data-gen-prop="isHeadingBold"]');
+
+  const isHeadingBold = isHeadingBoldEl?.textContent?.trim() === 'true';
+  if (isHeadingBoldEl) isHeadingBoldEl.remove();
+
+  const isTitleBoldEl = block.querySelector('.herobanner-nested-1-12 p')
+    || block.querySelector('.herobanner-nested-1-12')
+    || block.querySelector('[data-aue-prop="isTitleBold"]')
+    || block.querySelector('[data-gen-prop="isTitleBold"]');
+
+  const isTitleBold = isTitleBoldEl?.textContent?.trim() === 'true';
+  if (isTitleBoldEl) isTitleBoldEl.remove();
+
+  const isDescriptionBoldEl = block.querySelector('.herobanner-nested-1-13 p')
+    || block.querySelector('.herobanner-nested-1-13')
+    || block.querySelector('[data-aue-prop="isDescriptionBold"]')
+    || block.querySelector('[data-gen-prop="isDescriptionBold"]');
+
+  const isDescriptionBold = isDescriptionBoldEl?.textContent?.trim() === 'true';
+  if (isDescriptionBoldEl) isDescriptionBoldEl.remove();
+
   const headingElement = block.querySelector('[data-aue-prop="bannerheading"], .herobanner-nested-1-2 p');
-  if (headingElement) {
+  if (headingElement && headingElement.textContent.trim()) {
     const headingText = headingElement.textContent;
     const headingContainer = document.createElement('div');
     // Copy data attributes from source element
@@ -60,7 +145,7 @@ export default function decorate(block) {
     const headingHtml = Heading({
       level: 5,
       text: headingText,
-      className: 'hero-heading',
+      className: `hero-heading ${isHeadingBold ? 'text-bold' : ''}`,
     });
     headingContainer.insertAdjacentHTML('beforeend', headingHtml);
     heroContent.append(headingContainer);
@@ -68,7 +153,7 @@ export default function decorate(block) {
   }
 
   const titleElement = block.querySelector('[data-aue-prop="bannertitle"], .herobanner-nested-1-3 p');
-  if (titleElement) {
+  if (titleElement && titleElement.textContent.trim()) {
     const titleText = titleElement.textContent;
     const titleContainer = document.createElement('div');
     // Copy data attributes from source element
@@ -76,7 +161,7 @@ export default function decorate(block) {
     const headingHtml = Heading({
       level: 2,
       text: titleText,
-      className: 'hero-title',
+      className: `hero-title ${isTitleBold ? 'text-bold' : ''}`,
     });
     titleContainer.insertAdjacentHTML('beforeend', headingHtml);
     heroContent.append(titleContainer);
@@ -86,9 +171,9 @@ export default function decorate(block) {
   const descElement = block.querySelector(
     '[data-aue-prop="bannerdescription"], .herobanner-nested-1-4 p',
   );
-  if (descElement) {
+  if (descElement && descElement.textContent.trim()) {
     const descriptionDiv = document.createElement('div');
-    descriptionDiv.className = 'hero-description';
+    descriptionDiv.className = `hero-description ${isDescriptionBold ? 'text-bold' : ''}`;
     // Copy data attributes from source element
     moveInstrumentation(descElement, descriptionDiv);
     descriptionDiv.textContent = descElement.textContent;
@@ -96,19 +181,62 @@ export default function decorate(block) {
     descElement.remove();
   }
 
-  const arrowIconLink = block.children[4];
-  if (arrowIconLink && arrowIconLink.querySelector('a') != null) {
-    const arrowIconHtml = SvgIcon({
-      name: 'arrow',
-      className: 'hero-arrow-icon',
-      size: '24',
-      color: '#B29152',
-    });
-    const parsedHtml = stringToHTML(arrowIconHtml);
-    arrowIconLink.querySelector('a').textContent = '';
-    arrowIconLink.querySelector('a')?.append(parsedHtml);
-    heroContent.appendChild(arrowIconLink);
+  const cta1El = block.querySelector('[data-aue-prop="ctabutton"], .herobanner-nested-1-5');
+  const cta2El = block.querySelector('[data-aue-prop="ctabutton2"], .herobanner-nested-1-6');
+
+  const hasCTA =
+    (cta1El && cta1El.querySelector('a') && cta1El.querySelector('a').textContent.trim()) ||
+    (cta2El && cta2El.querySelector('a') && cta2El.querySelector('a').textContent.trim());
+
+  if (hasCTA) {
+    let ctaWrapper = heroContainer.querySelector('.hero-cta-wrapper');
+    if (!ctaWrapper) {
+      ctaWrapper = document.createElement('div');
+      ctaWrapper.className = 'hero-cta-wrapper';
+
+      const ctaGroup = document.createElement('div');
+      ctaGroup.className = 'hero-cta-group';
+
+      ctaWrapper.appendChild(ctaGroup);
+      heroContent.appendChild(ctaWrapper);
+    }
+
+    const ctaGroup = ctaWrapper.querySelector('.hero-cta-group');
+
+    if (cta1El && cta1El.querySelector('a') && cta1El.querySelector('a').textContent.trim()) {
+      cta1El.classList.add('hero-cta', 'primary');
+
+      const link = cta1El.querySelector('a');
+
+
+      decorateCTAWithCircle(link, { before: true, after: true });
+
+      ctaGroup.appendChild(cta1El);
+    }
+
+    if (cta2El && cta2El.querySelector('a')) {
+      cta2El.classList.add('hero-cta', 'secondary');
+
+      const link = cta2El.querySelector('a');
+
+
+      const cta2TextEl = block.querySelector(
+        '[data-aue-prop="ctabuttonText2"], .herobanner-nested-1-7 p'
+      );
+
+      if (cta2TextEl && cta2TextEl.textContent.trim()) {
+        link.textContent = cta2TextEl.textContent.trim();
+      }
+
+      if (link.textContent.trim()) {
+
+        decorateCTAWithCircle(link, { before: true, after: true });
+
+        ctaGroup.appendChild(cta2El);
+      }
+    }
   }
+
   heroContainer.appendChild(heroContent);
   const carouselItems = block.querySelectorAll(
     '[data-aue-model="bannercarousel"],[data-gen-model="featureItem"]',
@@ -128,12 +256,12 @@ export default function decorate(block) {
 
   // arrow navigations
   const leftArrow = SvgIcon({
-    name: 'leftarrow',
+    name: 'leftarrowwhite',
     className: 'arrow-link',
     size: '12',
   });
   const rightArrow = SvgIcon({
-    name: 'rightarrow',
+    name: 'rightarrowwhite',
     className: 'arrow-link',
     size: '12',
   });
@@ -154,7 +282,7 @@ export default function decorate(block) {
   });
 
   const scrollIntervalDiv = block.querySelector(
-    '[data-aue-prop="scrollInterval"], .herobanner-nested-1-6 p',
+    '[data-aue-prop="scrollInterval"], .herobanner-nested-1-9 p',
   );
 
   let scrollInterval = 3000;
@@ -242,7 +370,7 @@ export default function decorate(block) {
     const itemDivs = item.querySelectorAll('div');
 
     const carouselTitleElement = itemDivs[0].querySelector('p');
-    if (carouselTitleElement) {
+    if (carouselTitleElement && carouselTitleElement.textContent.trim()) {
       const titleText = carouselTitleElement.textContent;
       const titleHtml = `<p class="news-title">${titleText}</p>`;
       const titleContainer = document.createElement('div');
@@ -254,7 +382,7 @@ export default function decorate(block) {
 
     // Extract and append the description
     const descriptionElement = itemDivs[1].querySelector('p');
-    if (descriptionElement) {
+    if (descriptionElement && descriptionElement.textContent.trim()) {
       const descriptionText = descriptionElement.textContent;
       const descriptionHtml = `<p class="news-description">${descriptionText}</p>`;
       const descContainer = document.createElement('div');
@@ -267,7 +395,7 @@ export default function decorate(block) {
     // Extract and append the "Read More" label
     const readMoreLabelElement = itemDivs[3].querySelector('p');
 
-    if (readMoreLabelElement) {
+    if (readMoreLabelElement && readMoreLabelElement.textContent.trim()) {
       const readMoreLabelText = readMoreLabelElement.textContent;
       const buttonContainer = itemDivs[4]?.querySelector('a');
       const href = buttonContainer?.getAttribute('href') ?? '/';
@@ -293,9 +421,9 @@ export default function decorate(block) {
         alt: 'Chevron Left (1) Icon',
         className: 'first-svg-icon', // You can customize the class name if needed
         breakpoints: {
-          mobile: {src: firstIconLink.getAttribute('href') },
-          tablet: {src: firstIconLink.getAttribute('href') },
-          desktop: {src: firstIconLink.getAttribute('href') },
+          mobile: { src: firstIconLink.getAttribute('href') },
+          tablet: { src: firstIconLink.getAttribute('href') },
+          desktop: { src: firstIconLink.getAttribute('href') },
         },
         lazy: false,
       });
@@ -306,9 +434,9 @@ export default function decorate(block) {
         alt: 'Chevron Left Icon',
         className: 'second-svg-icon', // You can customize the class name if needed
         breakpoints: {
-          mobile: {  src: secondIconLink.getAttribute('href') },
+          mobile: { src: secondIconLink.getAttribute('href') },
           tablet: { src: secondIconLink.getAttribute('href') },
-          desktop: {src: secondIconLink.getAttribute('href') },
+          desktop: { src: secondIconLink.getAttribute('href') },
         },
         lazy: false,
       });
@@ -338,21 +466,21 @@ export default function decorate(block) {
           breakpoints: {
             mobile: {
               src: `${imgUrl}`,
-              imgWidth: 100,
+              imgWidth: 120,
             },
             tablet: {
               src: `${imgUrl}`,
-              imgWidth: 160,
+              imgWidth: 320,
             },
             desktop: {
               src: `${imgUrl}`,
-              imgWidth: 160,
+              imgWidth: 320,
             },
           },
           lazy: false,
         });
 
-    
+
         newsLetterImage.insertAdjacentHTML('beforeend', imgHtml);
         moveInstrumentation(itemDivs[2], newsLetterImage);
         aTag.remove();
@@ -366,7 +494,13 @@ export default function decorate(block) {
   leftIcon.classList.add('left-carousel-arrow');
   rightIcon.classList.add('right-carousel-arrow');
 
-  navigations.appendChild(leftIcon);
+  const leftRightArrow = document.createElement('div');
+  leftRightArrow.classList.add('leftright-arrow');
+  leftRightArrow.appendChild(leftIcon);
+  leftRightArrow.appendChild(rightIcon);
+
+
+  // carouselContainer.appendChild(leftIcon);
   for (let i = 0; i < carouselItems.length; i += 1) {
     const ellipseEl = stringToHTML(ellipse);
     if (i === 0) {
@@ -375,7 +509,6 @@ export default function decorate(block) {
     }
     navigations.appendChild(ellipseEl);
   }
-  navigations.appendChild(rightIcon);
 
   leftIcon.appendChild(stringToHTML(leftArrowDisabled));
   if (carouselItems.length === 1) {
@@ -383,6 +516,7 @@ export default function decorate(block) {
   } else {
     rightIcon.appendChild(stringToHTML(rightArrow));
   }
+  carouselContainer.appendChild(leftRightArrow);
 
   leftIcon.addEventListener('click', () => {
     moveCarousel(false, true);
@@ -395,7 +529,7 @@ export default function decorate(block) {
   if (carouselItems.length) {
     heroContainer.appendChild(carouselContainer);
     if (carouselItems.length > 1) {
-      heroContainer.appendChild(navigations);
+      carouselContainer.appendChild(navigations);
     }
   }
 
