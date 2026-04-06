@@ -1,20 +1,12 @@
-.statistics-wrapper {
-    background-image: url(../../icons/Pattern.png);
-    background-repeat: repeat-x;
-    background-position: center bottom;
-    overflow: hidden;
-}
-
-.statistics-wrapper .statistics-financial-variation {
-    background-image: none;
-    background-color: var(--color-bg-primary);
-}
-
 .statistics .statistics-row {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 24px;
-    row-gap: 64px;
+    padding-bottom: 25px;
+    row-gap: 36px;
+    margin-left: -18px;
+    margin-right: -18px;
+}
+
+.statistics.statistics-financial-variation .statistics-row {
+    row-gap: 48px;
 }
 
 .statistics .statistics-row:not(:last-child) {
@@ -22,22 +14,17 @@
 }
 
 .statistics .statistics-row .feature-item {
-    padding-top: 16px;
-    padding-right: 24px;
-    border-top: 1px solid var(--color-border-base);
+    padding-left: 18px;
+    padding-right: 18px;
 }
 
-.statistics.statistics-financial-variation .statistics-row .feature-item {
-    border-top: none;
-}
-
-.statistics-container .feature-wrapper .about-us-right-content {
-    margin-bottom: 10px !important;
-    padding-bottom: 10px !important;
-    border-bottom: 1px solid var(--text-color);
-    border-top: none !important;
-    padding-top: 0 !important;
-    margin-top: 0 !important;
+.statistics-container .feature-wrapper .about-us-right-content{
+  margin-bottom: 10px !important;
+  padding-bottom: 10px !important;
+  border-bottom: 1px solid var(--text-color);
+  border-top: none !important;
+  padding-top: 0 !important;
+  margin-top: 0 !important;
 }
 
 .statistics-description-wrapper {
@@ -77,46 +64,34 @@
 }
 
 .statistics .statistic-item {
-    font-size: 64px;
+    font-size: var(--font-size-xxxl);
     font-weight: 400;
     line-height: 80px;
-    color: var(--color-text-tertiary);
-    margin-bottom: 16px;
+    color: var(--primary-gold);
 }
 
 .statistics.statistics-financial-variation .statistic-item {
-    color: var(--color-text-secondary);
+    font-size: 4.375rem;
 }
 
-.statistics .statistic-item sup,
-.statistics .statistic-item sub {
+.statistics .statistic-item sup, .statistics .statistic-item sub {
     line-height: 0;
 }
 
 .statistics .text-container {
-    font-family: var(--typography-font-family-font-body);
-    font-size: 24px;
+    font-size: var(--font-size-xs);
     font-weight: 400;
-    line-height: 40px;
-    color: var(--color-text-body);
-}
-
-.statistics.statistics-financial-variation .text-container {
-    color: var(--color-text-white);
+    line-height: 24px;
+    color: var(--body-text-color);
 }
 
 .statistics-wrapper .statistics.block {
-    margin-top: 80px;
-    padding-bottom: 80px;
+    margin-top: -68px;
     position: relative;
 }
 
-.statistics-wrapper .statistics.block.margin-top-none {
-    margin-top: 0;
-}
 
-
-.statistics-wrapper .statistics.block.statistics-variation {
+.statistics-wrapper .statistics.block.statistics-variation{
     margin-top: 0;
     position: static;
 }
@@ -125,38 +100,56 @@
     margin-top: 0;
 }
 
-.statistics-wrapper .statistics.statistics-financial-variation.block .statistics-row>div:first-child {
-    width: 100%;
+.statistics-wrapper .statistics.statistics-financial-variation.block .statistics-row>div:first-child{
+    width: 100% ;
     font-size: var(--font-size-m);
     font-weight: 400;
-    line-height: 40px;
+    line-height:40px;
     color: var(--text-color);
 }
 
-.statistics-wrapper .statistics.block.statistics-variation::before {
+.statistics-wrapper .statistics.block::before {
+    content: '';
+    background: var(--background-color);
+    position: absolute;
+    inset: -70px 0 0;
+    width: 100%;
+    max-width: 1280px;
+    margin: 0 auto;
+    z-index: -1;
+}
+
+.statistics-wrapper .statistics.block.statistics-variation::before{
     position: static;
 }
 
-.statistics-wrapper+.feature-wrapper .about-us-stats {
+.statistics-wrapper + .feature-wrapper .about-us-stats {
     padding-top: 0;
 }
 
 .statistics .statistics-title {
     color: var(--text-color);
-    margin-bottom: 64px;
-    margin-top: 0;
-    font-size: 36px;
+    margin-bottom: 20px;
+    font-size: var(--font-size-xl);
     font-style: normal;
-    font-weight: 400;
-    line-height: 56px;
-    letter-spacing: 0;
+    font-weight: 500;
+    line-height: 50px; 
+    letter-spacing: -0.5px;
 }
 
-.statistics.block.statistics-financial-variation .statistics-title {
-    color: var(--color-text-white);
+.statistics.statistics-financial-variation .statistics-title {
+    padding-bottom: 48px;
+    margin-bottom: 48px;
+    border-bottom: 2px solid var(--neutral-color);
 }
 
-@media (width <=1280px) {
+.statistics.block.statistics-variation .statistics-title {
+    margin-bottom: 12px;
+}
+
+ 
+
+@media (width <= 1280px) {
     .statistics-wrapper .statistics.block::before {
         left: 22px;
         right: 22px;
@@ -165,14 +158,12 @@
     }
 }
 
-@media (width <=1024px) {
+@media (width <= 1024px) {
     .statistics-wrapper .statistics.block {
-        margin-top: 64px;
-        padding-bottom: 64px;
-        background-position: center top 120px;
+        margin-top: -46px;
     }
 
-    .statistics-wrapper .statistics.block.statistics-variation {
+    .statistics-wrapper .statistics.block.statistics-variation{
         margin-top: 0;
     }
 
@@ -180,16 +171,16 @@
         margin-top: 0;
     }
 
-    .statistics .statistics-title {
-        margin-bottom: 40px;
-        font-size: 32px;
-        line-height: 48px;
+    .statistics-title{
+        margin-bottom: 24px;
+        font-size: var(--font-size-l);
+        line-height: 42px; 
     }
 
     .statistics.block.statistics-variation .statistics-title {
         margin-bottom: 10px;
     }
-
+    
 
     .statistics-wrapper .statistics.block::before {
         top: -22px;
@@ -200,31 +191,33 @@
     }
 
 
-
+  
 }
 
-@media (width<=1024px) {
+@media (width<=992px) {
     .statistics-description-wrapper {
         padding: 40px 0;
-        margin-bottom: 40px;
+         margin-bottom: 40px;
 
     }
-
-    .statistics .statistics-description-wrapper h3 {
-        font-size: 32px;
+    
+    .statistics .statistics-description-wrapper h3, .statistics .statistics-title {
+        font-size: var(--font-size-l);
     }
 
     .statistics .statistic-item {
-        font-size: 56px;
-        line-height: 72px;
+        font-size: var(--font-size-xxl);
+        line-height: 64px;
     }
 
     .statistics .statistics-row {
-        row-gap: 40px;
+        row-gap: 24px;
+        margin-left: -12px;
+        margin-right: -12px;
     }
 
     .statistics.statistics-financial-variation .statistics-row {
-        row-gap: 40px;
+        row-gap: 36px;
     }
 
     .statistics.statistics-financial-variation .statistics-title {
@@ -237,14 +230,9 @@
         padding-right: 12px;
     }
 
-    .statistics-wrapper .statistics.statistics-financial-variation.block .statistics-row>div:first-child {
-        font-size: var(--font-size-s);
-        line-height: 32px;
-    }
-
-    .statistics .text-container {
-        font-size: 16px;
-        line-height: 24px;
+    .statistics-wrapper .statistics.statistics-financial-variation.block .statistics-row>div:first-child{
+        font-size:var(--font-size-s);
+        line-height:32px;
     }
 }
 
@@ -259,14 +247,15 @@
     }
 
     .statistics .statistics-row {
-        flex-direction: column;
-        display: flex;
-        gap: 24px;
+        row-gap: 18px;
+        margin-left: 0;
+        margin-right: 0;
     }
 
     .statistics.statistics-financial-variation .statistics-row {
-        row-gap: 24px;
+        row-gap: 28px;
     }
+    
 
     .statistics .statistics-row .feature-item {
         padding-left: 0;
@@ -274,15 +263,12 @@
     }
 
     .statistics .statistic-item {
-        font-size: 64px;
-        line-height: 80px;
+        font-size: var(--font-size-xl);
+        line-height: 48px;
     }
 
     .statistics-wrapper .statistics.block {
-        margin-top: 40px;
-        padding-bottom: 40px;
-        background-position: center bottom;
-        background-size: auto;
+        margin-top: -54px;
     }
 
     .statistics-wrapper .statistics.block.statistics-variation {
@@ -293,10 +279,10 @@
         margin-top: 0;
     }
 
-    .statistics .statistics-title {
+    .statistics .statistics-title{
         margin-bottom: 24px;
-        font-size: 24px;
-        line-height: 40px;
+        font-size: var(--font-size-m);;
+        line-height: 34px; 
     }
 
     .statistics.statistics-financial-variation .statistics-title {
@@ -304,9 +290,9 @@
         margin-bottom: 32px;
     }
 
-    .statistics-wrapper .statistics.statistics-financial-variation.block .statistics-row>div:first-child {
+    .statistics-wrapper .statistics.statistics-financial-variation.block .statistics-row>div:first-child{
         font-size: var(--font-size-s);
-        line-height: 28px;
+        line-height:28px;
     }
 
     .statistics-wrapper .statistics.block::before {
@@ -316,5 +302,14 @@
 
     .statistics.block.statistics-variation .statistics-title {
         margin-bottom: 8px;
+    }
+    
+}
+@media (width>=1200px) {
+    .statistics-wrapper .statistics.block::before {
+        max-width: none;
+        width: auto;
+    left: 100px;
+        right: 100px;
     }
 }
