@@ -1,304 +1,96 @@
-.awardsgallery {
-
-    background: var(--color-bg-white);
-}
-
-.awardsgallery-container {
-    position: relative;
-}
-
 .awardsgallery .awardsgallery-card {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    background: var(--color-bg-white);
-    flex: 0 0 calc((100% - 72px) / 4);
-    scroll-snap-align: start;
+    margin-bottom: 15px;
 }
 
 .awardsgallery .awardsgallery-image {
     display: flex;
     align-items: center;
     justify-content: center;
-    height: 193px;
-    width: 193px;
-    margin-bottom: 16px;
+    border: 1px solid var(--light-grey);
+    height: 162px;
+    margin-bottom: 10px;
 }
 
+.awardsgallery .awardsgallery-image img {
+    max-width: 80%;
+}
 
 .awardsgallery .awardsgallery-content * {
     text-align: center;
-    margin: 0;
+    margin-bottom: 6px;
 }
 
 .awardsgallery .award-year {
-    color: var(--color-text-tertiary);
-    font-family: var(--typography-font-family-font-body);
+    color: var(--primary-gold);
     font-size: 16px;
-    line-height: 24px;
-    font-weight: 400;
-    margin-bottom: 4px;
+    font-weight: 600;
 }
 
 .awardsgallery .award-title {
     color: var(--text-color);
-    font-family: var(--typography-font-family-font-body);
     font-size: 16px;
-    line-height: 24px;
-    font-weight: 700;
-    margin-bottom: 4px;
+    font-weight: 600;
 }
 
 .awardsgallery .award-description {
-    font-family: var(--typography-font-family-font-body);
-    font-size: 16px;
-    line-height: 24px;
-    font-weight: 400;
-    margin-bottom: 4px;
+    font-size: 14px;
 }
 
 .awardsgallery .awardsgallery-grid {
-    padding-top: 80px;
-    display: flex;
-    flex-wrap: nowrap;
-    overflow-x: auto;
-    scroll-behavior: smooth;
-    scrollbar-width: none;
-    scroll-snap-type: x mandatory;
-    gap: 24px;
-    margin: 0 72px 80px;
-    justify-content: flex-start;
-
-    @media (width < 1181px) and (width >=768px) {
-        padding-top: 64px;
-        margin-bottom: 64px;
-    }
-
-    @media(width<768px) {
-        padding-top: 40px;
-    }
-}
-
-.awardsgallery .awardsgallery-grid.no-margin-left-right {
-    margin: 0 0 80px;
-}
-
-.awardsgallery.grid-view {
-    .awardsgallery-grid {
-        display: grid;
-        grid-template-columns: repeat(3, 1fr);
-        gap: 24px;
-        margin: 0;
-        justify-content: flex-start;
-        padding-top: 0;
-        padding-bottom: 24px;
-
-        @media (width < 1181px) and (width >=768px) {
-            padding-bottom: 40px;
-        }
-
-        @media(width<768px) {
-            padding-bottom: 40px;
-        }
-    }
-
-    .awardsgallery-grid.awardsgallery-grid-2-cols {
-        grid-template-columns: repeat(2, 1fr);
-    }
-}
-
-.awardsgallery.no-padding-top {
-    .awardsgallery-grid {
-        padding-top: 0;
-    }
-}
-
-
-.awardsgallery .awardsgallery-grid-center {
     justify-content: center;
 }
-
-.awardsgallery .awardsgallery-grid::-webkit-scrollbar {
-    display: none;
-}
-
 .awardsgallery picture {
     text-align: center;
 }
 
-.awardsgallery-arrow {
-    display: flex;
-    position: absolute;
-    top: 50%;
-    transform: translateY(-50%);
-    width: 48px;
-    height: 48px;
-    border-radius: 50%;
-    background: var(--color-bg-white);
-    border: 2px solid var(--color-border-tertiary);
-    color: var(--color-border-tertiary);
-    align-items: center;
-    justify-content: center;
-    cursor: pointer;
-    z-index: 2;
-    transition: all 0.2s ease;
-}
-
-.awardsgallery-arrow:hover {
-    border: 2px solid var(--color-border-secondary);
-    color: var(--color-border-secondary);
-    background: none;
-}
-
-.awardsgallery-arrow:focus {
-    border: 2px solid var(--color-border-secondary-pressed);
-    color: var(--color-border-secondary-pressed);
-    background: none;
-}
-
-.awardsgallery-arrow:disabled {
-    border: 2px solid var(--color-border-disabled);
-    color: var(--color-border-disabled);
-    background: none;
-    cursor: not-allowed;
-    pointer-events: none;
-}
-
-.awardsgallery-arrow .icon-wrapper {
-    display: flex;
-}
-
-/* Hide arrows on desktop when there are 3 or fewer cards */
-.awardsgallery-arrow.hide-on-desktop {
-    display: none;
-}
-
-/* Hide arrows on tablet and mobile when there's only 1 card */
-.awardsgallery-arrow.hide-on-tablet-mobile {
-    display: none;
-}
-
-.awardsgallery-arrow.next {
-    right: 80px;
-}
-
-.awardsgallery.grid-view .awardsgallery-arrow {
-    display: none;
-}
-
-@media (width < 768px) {
-
-    .awardsgallery .awardsgallery-grid {
-        margin: 0 32px 40px;
+@media (width >= 768px) {
+    .awardsgallery .award-title {
+        font-size: 18px;
     }
 
-    .awardsgallery .awardsgallery-grid.no-margin-left-right {
-        margin: 0 32px 40px;
-    }
-
-    .awardsgallery.grid-view .awardsgallery-grid {
-        grid-template-columns: repeat(1, 1fr);
-        gap: 40px;
-    }
-
-    .awardsgallery .awardsgallery-card {
-        flex: 0 0 100%;
-        padding: 0;
-    }
-
-    .awardsgallery.grid-view .awardsgallery-card {
-        align-items: flex-start;
-    }
-
-    .awardsgallery.grid-view .awardsgallery-content * {
-        text-align: left;
-    }
-
-    .awardsgallery-arrow {
-        width: 32px;
-        height: 32px;
-        padding: 8px;
-    }
-
-    /* Show arrows on mobile even if hide-on-desktop class is present */
-    .awardsgallery-arrow.hide-on-desktop {
-        display: flex;
-    }
-
-    /* Hide arrows on mobile if hide-on-tablet-mobile class is present */
-    .awardsgallery-arrow.hide-on-tablet-mobile {
-        display: none;
-    }
-
-    .awardsgallery-arrow.next {
-        right: 24px;
-    }
-
-    .icon-wrapper svg {
-        width: 16px;
-        height: 16px;
-    }
-}
-
-/* tablet styles */
-@media (width < 1181px) and (width >=768px) {
-    .awardsgallery .awardsgallery-grid.no-margin-left-right {
-        margin: 0 72px 80px;
-    }
-
-    .awardsgallery.grid-view .awardsgallery-grid {
-        grid-template-columns: repeat(1, 1fr);
-        gap: 64px;
+    .awardsgallery .awardsgallery-image {
+        margin-bottom: 15px;
+        height: 360px;
     }
 
     .awardsgallery .awardsgallery-image img {
         max-width: 160px;
     }
 
-    .awardsgallery .awardsgallery-card {
-        flex: 0 0 100%;
-        flex-direction: unset;
-        gap: 16px;
-    }
-
     .awardsgallery .awardsgallery-content * {
-        display: flex;
-        flex-direction: column;
-        align-items: flex-start;
-        text-align: left;
+        margin-bottom: 6px;
+    }
+    
+    .awardsgallery .award-year {
+        font-size: 18px;
     }
 
-    /* Show arrows on tablet even if hide-on-desktop class is present */
-    .awardsgallery-arrow.hide-on-desktop {
-        display: flex;
-    }
-
-    /* Hide arrows on tablet if hide-on-tablet-mobile class is present */
-    .awardsgallery-arrow.hide-on-tablet-mobile {
-        display: none;
-    }
-
-    .awardsgallery-arrow.next {
-        right: 40px;
+    
+    .awardsgallery .award-description {
+        font-size: 16px;
     }
 }
 
-
-
-@media (width > 1200px) {
+@media (width >= 993px) {
     .awardsgallery .awardsgallery-card {
         padding: 0 18px;
+    }
+
+    .awardsgallery .awardsgallery-image {
+        margin-bottom: 20px;
+        height: 350px;
     }
 
     .awardsgallery .awardsgallery-content * {
         margin-bottom: 8px;
     }
-
-    .awardsgallery .awardsgallery-grid-2-cols .awardsgallery-card {
-        flex: 0 0 calc((100% - 24px) / 2);
+    
+    .awardsgallery .award-year {
+        font-size: 20px;
+        margin-bottom: 12px;
     }
 
-    .awardsgallery .awardsgallery-grid-3-cols .awardsgallery-card {
-        flex: 0 0 calc((100% - 48px) / 3);
+    .awardsgallery .award-title {
+        font-size: 20px;
     }
 }

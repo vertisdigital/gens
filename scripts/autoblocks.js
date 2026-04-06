@@ -7,7 +7,7 @@ import { errorLogger as logger } from "./logger.js";
  * @returns {Object|null} The created container elements or null
  */
 function createTabStructure(main) {
-
+  
   const tabElements = main.querySelectorAll('div[data-tabtitle]');
   if (tabElements.length === 0) {
     //console.warn('[Tab System] No tab elements found.');
@@ -56,14 +56,6 @@ function getInitialActiveTab() {
  */
 function createTabElement(section, index) {
   const titleText = section.getAttribute('data-tabtitle');
-  let tabID = section.getAttribute('data-tabid');
-  if (!tabID) {
-    if (titleText) {
-      tabID = titleText.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/(^-|-$)/g, '');
-    } else {
-      tabID = `tab-${index}`;
-    }
-  }
   const initialActiveIndex = getInitialActiveTab();
 
   const tabTitle = document.createElement('div');
@@ -72,7 +64,6 @@ function createTabElement(section, index) {
   tabTitle.setAttribute('role', 'tab');
   tabTitle.setAttribute('data-tab-index', index);
   tabTitle.setAttribute('tabindex', '0');
-  tabTitle.id = tabID;
   if (index === initialActiveIndex) tabTitle.classList.add('active');
 
   const tabPanel = section.cloneNode(true);
@@ -81,7 +72,6 @@ function createTabElement(section, index) {
   tabPanel.setAttribute('data-block-status', 'loaded');
   tabPanel.setAttribute('role', 'tabpanel');
   tabPanel.setAttribute('data-tab-index', index);
-  tabPanel.id = 'panel-' + tabID;
   tabPanel.classList.toggle('active', index === initialActiveIndex);
 
   return { tabTitle, tabPanel };
@@ -142,18 +132,18 @@ function updateTabStates(tabs, panels, activeIndex, shouldScroll = true) {
   tabs.forEach((tab) => tab.classList.remove('active'));
   tabs[activeIndex].classList.add('active');
 
-  const tabsContainer = document.querySelector('.tab-nav');
-  const tabWidth = tabs[activeIndex].offsetWidth;
-  const containerWidth = tabsContainer.offsetWidth;
-  const tabPosition = tabs[activeIndex].offsetLeft;
+    const tabsContainer = document.querySelector('.tab-nav');
+    const tabWidth = tabs[activeIndex].offsetWidth;
+    const containerWidth = tabsContainer.offsetWidth;
+    const tabPosition = tabs[activeIndex].offsetLeft;
 
-  const centerOffset = tabPosition - (containerWidth - tabWidth) / 2;
-
-  tabsContainer.scrollTo({
-    left: centerOffset,
-    behavior: 'smooth'
-  });
-
+    const centerOffset = tabPosition - (containerWidth - tabWidth) / 2;
+    
+    tabsContainer.scrollTo({
+      left: centerOffset,
+      behavior: 'smooth'
+    });
+  
   // Update panels
   panels.forEach((panel) => panel.classList.remove('active'));
   panels[activeIndex].classList.add('active');
@@ -165,17 +155,6 @@ function updateTabStates(tabs, panels, activeIndex, shouldScroll = true) {
       scrollToTabs(container);
     }
   }
-}
-
-function activateFromHash(tabs, panels) {
-  const anchor = window.location.hash.replace('#', '');
-  if (!anchor) return false;
-
-  const index = tabs.findIndex(tab => tab.id === anchor);
-  if (index === -1) return false;
-
-  updateTabStates(tabs, panels, index, true);
-  return true;
 }
 
 /**
@@ -197,18 +176,15 @@ function addTabFunctionality({ tabs, panels, container }) {
 
   // Handle URL hash changes
   window.addEventListener('hashchange', () => {
-    activateFromHash(
-      [...tabNav.children],
-      [...container.querySelector('.tab-wrapper').children]
-    );
+    const newIndex = getInitialActiveTab();
+    updateTabStates([...tabNav.children], [...container.querySelector('.tab-wrapper').children], newIndex, true);
   });
 
   // Handle initial page load hash after a short delay to ensure DOM is ready
   setTimeout(() => {
-    const handled = activateFromHash(tabs, panels);
-    if (!handled) {
-      updateTabStates(tabs, panels, 0, false);
-    }
+    const initialIndex = getInitialActiveTab();
+    const isScroll = window.location.hash !== '';
+    updateTabStates([...tabNav.children], [...container.querySelector('.tab-wrapper').children], initialIndex, isScroll);
   }, 1000); // Slightly after the container display timeout
 
   tabNav.addEventListener('click', (e) => {

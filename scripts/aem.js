@@ -639,7 +639,7 @@ function decorateSections(main, isExecute = true) {
     const componentNameCounts = {};
 
     [...section.children].forEach((child, childIndex) => {
-      const childClass = child.getAttribute('class') || '';
+      const childClass = child.className;
 
       // Track component name occurrences
       if (!componentNameCounts[childClass]) {
@@ -651,11 +651,11 @@ function decorateSections(main, isExecute = true) {
       // Use the first occurrence index for identical components
       const componentIndex = componentNameCounts[childClass];
 
-      child.setAttribute('class', `${childClass} ${childClass}-row`);
+      child.className = `${childClass} ${childClass}-row`;
 
       // Add index classes to nested elements
       [...child.children].forEach((nestedElement, nestedIndex) => {
-        nestedElement.setAttribute('class', `${childClass}-nested-${componentIndex}-${nestedIndex + 1}`);
+        nestedElement.className = `${childClass}-nested-${componentIndex}-${nestedIndex + 1}`;
 
         // Decorate AEM structure if present
         if (window.location.href.indexOf('author') === -1 && isExecute) {

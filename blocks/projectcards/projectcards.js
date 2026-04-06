@@ -3,10 +3,6 @@ import Heading from '../../shared-components/Heading.js';
 import { moveInstrumentation } from '../../scripts/scripts.js';
 
 export default function decorate(block) {
-  // Remove grey-background classes if present
-  block.classList.remove('grey-background', 'grey-background-row');
-  block.classList.add('fade-item');
-
   // Create main container
   let projectCardsContainer = block.querySelector('.projectcards-container');
   if (!projectCardsContainer) {
@@ -15,15 +11,11 @@ export default function decorate(block) {
     moveInstrumentation(block, projectCardsContainer);
   }
 
-  // Create header section with 2-column layout
+  // Create header section
   const headerContainer = document.createElement('div');
   headerContainer.className = 'projectcards-header';
 
-  // Create left column for title and heading
-  const leftColumn = document.createElement('div');
-  leftColumn.className = 'projectcards-header-left';
-
-  // Handle title (label like "PROJECTS")
+  // Handle title
   const titleElements = block.querySelectorAll(
     '[data-aue-prop="title"], [data-gen-prop="title"]',
   );
@@ -33,28 +25,13 @@ export default function decorate(block) {
     moveInstrumentation(titleField, titleDiv);
     titleDiv.className = 'projectcards-title';
     titleDiv.textContent = titleField.textContent;
-    leftColumn.appendChild(titleDiv);
+    headerContainer.appendChild(titleDiv);
     titleField.remove();
   }
 
-  // Check if heading exists before moving/removing elements
+  // Handle main heading
   const headingElement = block.querySelector('[data-aue-prop="heading"]') || titleElements[1];
-  const hasHeading = headingElement && headingElement.textContent.trim() !== '';
-  const descElement = block.querySelector(
-    '[data-aue-prop="description"], [data-gen-prop="description"]',
-  );
-  const hasDescription = descElement && descElement.textContent.trim() !== '';
-  const hasTitle = titleField && titleField.textContent.trim() !== '';
-
-  if (!hasHeading) {
-    block.classList.add('no-heading');
-  }
-
-  if (!hasHeading && !hasDescription && !hasTitle) {
-    block.classList.add('no-header');
-  }
-
-  if (hasHeading) {
+  if (headingElement) {
     const headingHtml = Heading({
       text: headingElement.textContent,
       level: 2,
@@ -70,36 +47,32 @@ export default function decorate(block) {
     tempDiv.insertAdjacentHTML('beforeend', headingHtml);
     const headingNode = tempDiv.firstElementChild;
 
-    leftColumn.appendChild(headingNode);
+    headerContainer.appendChild(headingNode);
     headingElement.remove();
   }
 
-  headerContainer.appendChild(leftColumn);
-
-  // Create right column for description
-  const rightColumn = document.createElement('div');
-  rightColumn.className = 'projectcards-header-right';
-
   // Handle description
-  if (descElement && hasDescription) {
+  const descElement = block.querySelector(
+    '[data-aue-prop="description"], [data-gen-prop="description"]',
+  );
+  if (descElement) {
     const descriptionDiv = document.createElement('div');
     moveInstrumentation(descElement, descriptionDiv);
     descriptionDiv.className = 'projectcards-description';
     descriptionDiv.textContent = descElement.textContent;
-    rightColumn.appendChild(descriptionDiv);
+    headerContainer.appendChild(descriptionDiv);
     descElement.remove();
   }
 
-  headerContainer.appendChild(rightColumn);
   projectCardsContainer.appendChild(headerContainer);
 
-  // Create cards grid container (will be outside container for 100% width)
+  // Create cards grid container
   const cardsGridContainer = document.createElement('div');
   cardsGridContainer.className = 'projectcards-grid row';
 
   // Handle project cards
   const projectCards = Array.from(block.querySelectorAll('[data-aue-model="projectcard"],[data-gen-model="featureItem"]'));
-
+  
   // Handle last element differently for author vs publish instance
   let lastElement = null;
   if (window.location.hostname.includes('author')) {
@@ -107,8 +80,8 @@ export default function decorate(block) {
     lastElement = block.querySelector('[data-aue-model="linkField"]');
   } else {
     // In publish instance, check and pop last element if it has button-container
-    lastElement = projectCards.length > 0 &&
-      projectCards[projectCards.length - 1].firstElementChild.querySelector('.button-container') ?
+    lastElement = projectCards.length > 0 && 
+      projectCards[projectCards.length - 1].firstElementChild.querySelector('.button-container') ? 
       projectCards.pop() : null;
   }
 
@@ -126,8 +99,8 @@ export default function decorate(block) {
       imageContainer.setAttribute('data-aue-type', 'image');
 
       const imageUrl = imageLink.getAttribute('href');
-      const imageAlt = card.querySelectorAll('a[href]')[1]?.getAttribute('title') || card.querySelector('[data-aue-prop="title"]')?.textContent || 'Project Image';
-
+      const imageAlt =card.querySelectorAll('a[href]')[1]?.getAttribute('title') || card.querySelector('[data-aue-prop="title"]')?.textContent || 'Project Image';
+      
       const imageHtml = ImageComponent({
         src: imageUrl,
         alt: imageAlt,
@@ -156,94 +129,53 @@ export default function decorate(block) {
         lazy: true,
       });
 
-      let enablegradient = false;
-      const gradientEl = card.querySelector('[data-aue-prop="enablegradient"], [data-gen-prop="enablegradient"]');
-      if (gradientEl) {
-        enablegradient = gradientEl.textContent?.trim()?.toLowerCase() === 'true';
-      } else {
-        // Fallback for EDS publish where data attributes might be stripped
-        // Assuming it's the last child paragraph or div based on component-models.json structure
-        const lastChild = card.lastElementChild;
-        if (lastChild) {
-          enablegradient = lastChild.textContent?.trim()?.toLowerCase() === 'true';
-        }
-      }
-
-      if (enablegradient) {
-        cardElement.classList.add('has-gradient');
-      }
-
-      // Hide the gradient config element if it exists in DOM
-      if (gradientEl && gradientEl.parentNode === card) {
-        gradientEl.style.display = 'none';
-      } else if (
-        card.lastElementChild &&
-        (card.lastElementChild.textContent?.trim()?.toLowerCase() === 'true' || card.lastElementChild.textContent?.trim()?.toLowerCase() === 'false')
-      ) {
-        card.lastElementChild.style.display = 'none';
-      }
-
       imageContainer.insertAdjacentHTML('beforeend', imageHtml);
-
-      // Handle card content (positioned on top of image)
-      const cardContent = document.createElement('div');
-      cardContent.className = 'project-card-content';
-
-      // Handle card title
-      const cardTitle = card.querySelector(
-        '[data-aue-prop="projectText"], .button-container .button',
-      );
-      let titleHref = '';
-      let linkTarget = '_self';
-
-      if (cardTitle) {
-        // Extract href from cardTitle (anchor tag)
-        titleHref = cardTitle.getAttribute('href') || '';
-        // setting the link target
-        linkTarget = card.querySelector(
-          '[data-aue-prop="projectTarget"], [data-gen-prop="feature-title"]',
-        )?.textContent || '_self';
-        cardTitle.setAttribute('target', linkTarget);
-
-        const titleDiv = document.createElement('div');
-        titleDiv.className = 'project-card-title';
-        cardTitle.className = '';
-
-        titleDiv.appendChild(cardTitle);
-        cardContent.appendChild(titleDiv);
-      }
-
-      // Handle card location (hidden as per Figma design - only title shown)
-      const locationElement = card.querySelector(
-        '[data-aue-prop="location"], div:last-child',
-      );
-      if (locationElement) {
-        // Hide location element as per Figma design
-        locationElement.remove();
-      }
-
-      // Add SVG CTA button (arrow icon on the right) only when there is a link
-      if (titleHref) {
-        const ctaButton = document.createElement('a');
-        ctaButton.setAttribute('href', titleHref);
-        ctaButton.setAttribute('target', linkTarget);
-        ctaButton.className = 'project-card-cta';
-        ctaButton.innerHTML = `
-        <svg width="48" height="48" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
-          <path d="M24 1C36.7025 1 47 11.2975 47 24C47 36.7025 36.7025 47 24 47C11.2975 47 1 36.7025 1 24C1 11.2975 11.2975 1 24 1Z" stroke="#F7FAFA" stroke-width="2"/>
-          <path d="M24.165 17.1323C24.3732 16.9453 24.6974 16.9581 24.8896 17.1606L30.7275 23.3218C31.0905 23.7048 31.0905 24.2961 30.7275 24.6792L24.8896 30.8393C24.6974 31.0421 24.3733 31.0549 24.165 30.8677C23.9569 30.6804 23.9437 30.3645 24.1357 30.1616L29.499 24.5005H17.5C17.2239 24.5005 17.0001 24.2765 17 24.0005C17 23.7243 17.2239 23.5005 17.5 23.5005H29.499L24.1357 17.8393C23.9435 17.6364 23.9568 17.3196 24.165 17.1323Z" fill="#F7FAFA"/>
-        </svg>
-      `;
-        cardContent.appendChild(ctaButton);
-      }
-
-      // Append content to image container (for absolute positioning)
-      imageContainer.appendChild(cardContent);
       cardElement.appendChild(imageContainer);
       imageLink.remove();
     }
+
+    // Handle card content
+    const cardContent = document.createElement('div');
+    cardContent.className = 'project-card-content';
+
+    // Handle card title
+    const cardTitle = card.querySelector(
+      '[data-aue-prop="projectText"], .button-container .button',
+    );
+    if (cardTitle) {
+      const titleDiv = document.createElement('div');
+      titleDiv.className = 'project-card-title';
+      cardTitle.className = '';
+      // setting the link target
+      const linkTarget = card.querySelector(
+        '[data-aue-prop="projectTarget"], [data-gen-prop="feature-title"]',
+      )?.textContent || '_self';
+      cardTitle.setAttribute('target', linkTarget);
+
+      titleDiv.appendChild(cardTitle);
+      cardContent.appendChild(titleDiv);
+    }
+
+    // Handle card location
+    const locationElement = card.querySelector(
+      '[data-aue-prop="location"], div:last-child',
+    );
+    if (locationElement) {
+      const locationDiv = document.createElement('div');
+      locationDiv.setAttribute('data-aue-prop', 'location');
+      locationDiv.setAttribute('data-aue-label', 'Location');
+      locationDiv.setAttribute('data-aue-type', 'text');
+      locationDiv.className = 'project-card-location';
+      locationDiv.innerHTML = locationElement.innerHTML;
+      cardContent.appendChild(locationDiv);
+      locationElement.remove();
+    }
+
+    cardElement.appendChild(cardContent);
     cardsGridContainer.appendChild(cardElement);
   });
+
+  projectCardsContainer.appendChild(cardsGridContainer);
 
   // Handle View All link using the stored last element
   if (lastElement) {
@@ -255,7 +187,7 @@ export default function decorate(block) {
       const linkDiv = document.createElement('div');
       linkElement.className = 'view-all-link';
       linkElement.target = lastElement.children[2]?.textContent || '_self';
-      linkDiv.appendChild(linkElement);
+      linkDiv.appendChild(linkElement); 
       linkContainer.appendChild(linkDiv);
     }
 
@@ -264,10 +196,8 @@ export default function decorate(block) {
   }
 
   // Clear original block content and append new structure
-  // Header stays in container, grid breaks out for 100% width
   block.textContent = '';
   block.appendChild(projectCardsContainer);
-  block.appendChild(cardsGridContainer);
 
   // Add keyboard navigation and accessibility attributes
   const cards = block.querySelectorAll('.project-card');

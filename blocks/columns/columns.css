@@ -1,138 +1,33 @@
-/* ================================
-   Columns base (BLOCK ONLY)
-   ================================ */
-@media (width >=2560px) {
-  .columns-wrapper {
-    max-width: 2560px;
-    margin-left: auto;
-    margin-right: auto;
-  }
-}
-
-.columns.columns-block.block {
-  position: relative;
-  padding-top: 80px;
-  padding-bottom: 80px;
-  gap: 64px;
-}
-
-.columns.columns-block.block.columns-cols {
-  display: flex;
-  flex-direction: column;
-  gap: 64px;
-}
-
-
-.columns .textblock h1,
-.columns .textblock h2,
-.columns .textblock h3,
-.columns .textblock h4,
-.columns .textblock h5,
-.columns .textblock h6 {
-  margin-top: 0;
-  margin-bottom: 0;
-}
-
-.columns .textblock h2 {
-  line-height: 72px;
-}
-
-.columns .textblock h6 {
-  line-height: 40px;
-}
-
-
-/* =========================================================
-   Paragraph spacing
-   ========================================================= */
-
-.columns-col.textblock p {
-  margin-top: 0;
-  margin-bottom: 0;
-}
-
-/* row */
-.columns.columns-block.block>.columns.columns-row {
+.columns > div {
   display: flex;
   flex-direction: column;
 }
 
-.columns.columns-block.block>.columns.columns-row:empty {
-  display: none;
-}
-
-/* col */
-.columns.columns-block.block .columns.columns-col {
+.columns img {
   width: 100%;
 }
 
-/* image helper */
-.columns.columns-block.block .columns.columns-img-col img {
+.columns > div > div {
+  order: 1;
+}
+
+.columns > div > .columns-img-col {
+  order: 0;
+}
+
+.columns > div > .columns-img-col img {
   display: block;
-  width: 100%;
 }
 
-/* ================================
-   Desktop: multi-column only
-   ================================ */
-@media (width >=900px) {
-  .columns.columns-block.block:not(.columns-1-cols)>.columns.columns-row {
-    flex-direction: row;
-    gap: 24px;
+@media (width >= 900px) {
+  .columns > div {
     align-items: center;
-  }
-
-  .columns.columns-block.block:not(.columns-1-cols) .columns.columns-col {
-    flex: 1;
-  }
-}
-
-/* ================================
-   Branded icon
-   ================================ */
-.columns.columns-block.block>.columns-branded-icon {
-  display: flex;
-  justify-content: center;
-  color: var(--color-fg-secondary);
-}
-
-.columns.columns-block.block>.columns-branded-icon svg {
-  width: 32px;
-  height: 32px;
-}
-
-/* ================================
-   Background variants
-   ================================ */
-.columns-wrapper:has(.columns-block.block.bg-primary) {
-  background-color: var(--color-bg-primary);
-}
-
-.columns-wrapper:has(.columns.columns-block.block.bg-light) {
-  background-color: var(--color-bg-white);
-}
-
-.columns-wrapper:has(.columns.columns-block.block.bg-white) {
-  background-color: #fff;
-}
-
-.columns-wrapper:has(.columns.columns-block.block.bg-transparent) {
-  background-color: transparent;
-}
-
-
-@media (width <=1200px) {
-  .columns.columns-block.block {
-    padding: 64px 40px;
-  }
-
-  .columns.columns-block.block.columns-cols {
+    flex-direction: unset;
     gap: 24px;
   }
-}
 
-@media (width < 768px) {
-  .columns.columns-block.block {
-    padding: 40px 24px;
+  .columns > div > div {
+    flex: 1;
+    order: unset;
   }
 }
