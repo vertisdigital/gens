@@ -341,7 +341,28 @@ export default function decorate(block) {
       if (!isOpenAsModal && buttonContainer && buttonContainer.textContent.trim() !== '' && ctaCaption !== null) {
         const ctaLink = document.createElement('a');
         ctaLink.href = buttonContainer.href;
+
+        let linkTarget = '_self';
+        
+        // Check data attributes like in projectcards.js
+        const targetEl = tile.querySelector('[data-aue-prop="projectTarget"], [data-gen-prop="target"], [data-aue-prop="target"]');
+        if (targetEl) {
+          const targetText = targetEl.textContent.trim().toLowerCase();
+          if (targetText === 'true' || targetText === '_blank') {
+            linkTarget = '_blank';
+          } else if (targetText !== '' && targetText !== 'false') {
+            linkTarget = targetEl.textContent.trim();
+          }
+        } else if (childrens[4]) {
+          const targetContent = childrens[4].textContent.trim().toLowerCase();
+          if (targetContent === 'true' || targetContent === '_blank') {
+            linkTarget = '_blank';
+          }
+        }
+        
+        ctaLink.target = linkTarget;
         ctaLink.className = (index % 2 === 1) ? 'odd-learn-button learn-button' : 'learn-button';
+
         if (tileTitle) {
           ctaLink.title = tileTitle;
         }

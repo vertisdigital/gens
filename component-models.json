@@ -1555,6 +1555,21 @@
         "label": "CTA Caption"
       },
       {
+        "component": "select",
+        "name": "target",
+        "label": "Target",
+        "options": [
+          {
+            "name": "Same Tab",
+            "value": "_self"
+          },
+          {
+            "name": "New Tab",
+            "value": "_blank"
+          }
+        ]
+      },
+      {
         "component": "custom-asset-namespace:custom-asset",
         "name": "imageTablet",
         "label": "Image (Tablet)",
