@@ -344,7 +344,32 @@ export default function decorate(block) {
 
         let linkTarget = '_self';
         
-        // Check data attributes like in projectcards.js
+        // Scan children for exact target configuration output by Universal Editor models
+        Array.from(childrens).forEach((child) => {
+          if (child) {
+            const content = child.textContent.trim().toLowerCase();
+            // Universal editor output exact match
+            if (content === '_blank' || content === '_self') {
+              if (content === '_blank') {
+                linkTarget = '_blank';
+              }
+              child.style.display = 'none';
+            }
+          }
+        });
+
+        // Check specific structural column added in models (fallback for 'true')
+        if (childrens[7]) {
+          const c7Content = childrens[7].textContent.trim().toLowerCase();
+          if (c7Content === 'true' || c7Content === '_blank') {
+            linkTarget = '_blank';
+          }
+          if (c7Content === 'true' || c7Content === 'false' || c7Content === '_blank' || c7Content === '_self') {
+            childrens[7].style.display = 'none';
+          }
+        }
+
+        // Check data attributes like in projectcards.js for author environment
         const targetEl = tile.querySelector('[data-aue-prop="projectTarget"], [data-gen-prop="target"], [data-aue-prop="target"]');
         if (targetEl) {
           const targetText = targetEl.textContent.trim().toLowerCase();
@@ -353,11 +378,7 @@ export default function decorate(block) {
           } else if (targetText !== '' && targetText !== 'false') {
             linkTarget = targetEl.textContent.trim();
           }
-        } else if (childrens[4]) {
-          const targetContent = childrens[4].textContent.trim().toLowerCase();
-          if (targetContent === 'true' || targetContent === '_blank') {
-            linkTarget = '_blank';
-          }
+          targetEl.style.display = 'none';
         }
         
         ctaLink.target = linkTarget;
@@ -413,7 +434,33 @@ export default function decorate(block) {
       if (!isOpenAsModal && buttonContainer && buttonContainer.textContent.trim() !== '' && ctaCaption !== null) {
         const ctaLink = document.createElement('a');
         ctaLink.href = buttonContainer.href;
-        ctaLink.target = childrens[3]?.textContent === 'true' ? '_blank' : '_self';
+
+        let linkTarget = childrens[3]?.textContent === 'true' ? '_blank' : '_self';
+        if (childrens[3] && (childrens[3].textContent.trim().toLowerCase() === 'true' || childrens[3].textContent.trim().toLowerCase() === 'false')) {
+          childrens[3].style.display = 'none';
+        }
+
+        // Add new model validation explicitly
+        Array.from(childrens).forEach((child) => {
+          if (child) {
+            const content = child.textContent.trim().toLowerCase();
+            if (content === '_blank' || content === '_self') {
+              if (content === '_blank') linkTarget = '_blank';
+              child.style.display = 'none';
+            }
+          }
+        });
+        
+        const targetEl = firstTile.querySelector('[data-aue-prop="projectTarget"], [data-gen-prop="target"], [data-aue-prop="target"]');
+        if (targetEl) {
+            const txt = targetEl.textContent.trim().toLowerCase();
+            if (txt === 'true' || txt === '_blank') {
+               linkTarget = '_blank';
+            }
+            targetEl.style.display = 'none';
+        }
+        
+        ctaLink.target = linkTarget;
         ctaLink.className = 'factsheet-button animated-cta';
         if (firstTileTitle) {
           ctaLink.title = firstTileTitle;
