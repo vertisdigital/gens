@@ -345,17 +345,18 @@ export default function decorate(block) {
         let linkTarget = '_self';
         
         // Scan children for exact target configuration output by Universal Editor models
-        for (let i = 0; i < childrens.length; i++) {
-          if (!childrens[i]) continue;
-          const content = childrens[i].textContent.trim().toLowerCase();
-          // Universal editor output exact match
-          if (content === '_blank' || content === '_self') {
-            if (content === '_blank') {
-              linkTarget = '_blank';
+        Array.from(childrens).forEach((child) => {
+          if (child) {
+            const content = child.textContent.trim().toLowerCase();
+            // Universal editor output exact match
+            if (content === '_blank' || content === '_self') {
+              if (content === '_blank') {
+                linkTarget = '_blank';
+              }
+              child.style.display = 'none';
             }
-            childrens[i].style.display = 'none';
           }
-        }
+        });
 
         // Check specific structural column added in models (fallback for 'true')
         if (childrens[7]) {
@@ -440,15 +441,15 @@ export default function decorate(block) {
         }
 
         // Add new model validation explicitly
-        for (let i = 0; i < childrens.length; i++) {
-          if (childrens[i]) {
-            const content = childrens[i].textContent.trim().toLowerCase();
+        Array.from(childrens).forEach((child) => {
+          if (child) {
+            const content = child.textContent.trim().toLowerCase();
             if (content === '_blank' || content === '_self') {
               if (content === '_blank') linkTarget = '_blank';
-              childrens[i].style.display = 'none';
+              child.style.display = 'none';
             }
           }
-        }
+        });
         
         const targetEl = firstTile.querySelector('[data-aue-prop="projectTarget"], [data-gen-prop="target"], [data-aue-prop="target"]');
         if (targetEl) {
