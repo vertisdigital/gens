@@ -50,11 +50,18 @@
 
 header.header-wrapper {
   position: fixed;
+  top: 0;
   z-index: 99;
   right: 0;
   left: 0;
   background: var(--colours-alpha-alpha-primary-70, rgba(29, 61, 81, 0.70));
   width: 100vw;
+  padding-top: env(safe-area-inset-top, 0px);
+  /* transition: background 0.3s ease-in-out; */
+}
+
+header.header-wrapper.fixed-header {
+  background: var(--colours-background-bg-primary, rgba(29, 61, 81, 1));
 }
 
 header .nav-wrapper {
