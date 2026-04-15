@@ -14,7 +14,7 @@ import {
   loadCSS,
 } from './aem.js';
 import processTabs from './autoblocks.js';
-import { redirectRouter, controlLowerEnvironment, getAEMPublishEndpoint } from '../shared-components/Utility.js';
+import { redirectRouter, controlLowerEnvironment, getAEMPublishEndpoint, changeStatusBarColor } from '../shared-components/Utility.js';
 import { errorLogger as logger } from './logger.js';
 import initLazyFadeIn from './lazy-fadein.js';
 
@@ -251,6 +251,10 @@ async function loadPage() {
   initLazyFadeIn();
   initLinkFallback(document.body);
   formatPdfLinks(document.body);
+  
+  // Force iOS 26 Safari status bar tinting
+  changeStatusBarColor('#1d3d51');
+  
   document.body.classList.add('fully-loaded');
 }
 
