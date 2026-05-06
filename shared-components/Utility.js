@@ -134,12 +134,20 @@ export function getCookie(name) {
 }
 
 export function controlLowerEnvironment() {
+  const { hostname, pathname } = window.location;
+
+  // Check if we are in production - if so, we don't need login
+  const isProd = hostname.includes('main--gens-prod--')
+    || hostname === 'gentingsingapore.com'
+    || hostname === 'www.gentingsingapore.com';
+
+  if (isProd) return;
+
   // Authentication check - redirect to login if not authenticated and not already on login page
   const isAuthenticated = localStorage.getItem('isAuthenticated') === 'true';
-  const currentPath = window.location.pathname;
 
   // If user is not authenticated and not already on login page, redirect to login
-  if (!isAuthenticated && !currentPath.includes('/login')) {
+  if (!isAuthenticated && !pathname.includes('/login')) {
     // Store current page for redirect after login
     localStorage.setItem('loginReferrer', window.location.href);
     // eslint-disable-next-line no-console
