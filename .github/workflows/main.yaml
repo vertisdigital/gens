@@ -16,7 +16,7 @@ jobs:
     - run: npm ci
     - run: npm run lint
 
-  update-config-url:
+  update-environment-configs:
     runs-on: ubuntu-latest
     steps:
     - name: Checkout code
@@ -25,57 +25,26 @@ jobs:
         persist-credentials: true
         fetch-depth: 0
 
-    - name: Set environment variables
+    - name: Set environment variables & Update URLs
       run: |
         BRANCH_NAME=${GITHUB_REF#refs/heads/}
         
+        # Determine URLs based on branch
         if [ "$BRANCH_NAME" == "uat" ]; then
-          echo "CONFIG_URL=https://uat--gens-stage--vertisdigital.aem.page/tools/assets-selector/config.json" >> $GITHUB_ENV
-        elif [[ "$BRANCH_NAME" == "main" || "$BRANCH_NAME" == release-* ]]; then
-          echo "CONFIG_URL=https://main--gens-prod--vertisdigital.aem.page/tools/assets-selector/config.json" >> $GITHUB_ENV
-        else
-          echo "CONFIG_URL=https://dev--gens--vertisdigital.aem.page/tools/assets-selector/config.json" >> $GITHUB_ENV
-        fi
-
-    - name: Update config URL
-      run: |
-        sed -i "s|\"configUrl\": \".*\"|\"configUrl\": \"${CONFIG_URL}\"|" component-models.json
-
-    - name: Commit changes
-      run: |
-        git config --global user.name "github-actions[bot]"
-        git config --global user.email "github-actions[bot]@users.noreply.github.com"
-
-        if [[ -n "$(git status --porcelain component-models.json)" ]]; then
-          echo "Changes detected in component-models.json, committing..."
-          git add component-models.json
-          git commit -m "Update configUrl for ${{ github.ref_name }} branch"
-          git push
-        else
-          echo "No changes to component-models.json, skipping commit"
-        fi
-
-  update-adobe-launch-url:
-    runs-on: ubuntu-latest
-    steps:
-    - name: Checkout code
-      uses: actions/checkout@v4
-      with:
-        persist-credentials: true
-        fetch-depth: 0
-
-    - name: Update Adobe Launch script URL
-      run: |
-        BRANCH_NAME=${GITHUB_REF#refs/heads/}
-        
-        if [[ "$BRANCH_NAME" == "main" || "$BRANCH_NAME" == release-* ]]; then
-          LAUNCH_URL="https://assets.adobedtm.com/9a26c7c29956/9d78c9fea2b9/launch-82eb0a5e0018.min.js"
-        elif [ "$BRANCH_NAME" == "uat" ]; then
+          CONFIG_URL="https://uat--gens-stage--vertisdigital.aem.page/tools/assets-selector/config.json"
           LAUNCH_URL="https://assets.adobedtm.com/9a26c7c29956/9d78c9fea2b9/launch-0643cd1b44f3-staging.min.js"
+        elif [[ "$BRANCH_NAME" == "main" || "$BRANCH_NAME" == release-* ]]; then
+          CONFIG_URL="https://main--gens-prod--vertisdigital.aem.page/tools/assets-selector/config.json"
+          LAUNCH_URL="https://assets.adobedtm.com/9a26c7c29956/9d78c9fea2b9/launch-82eb0a5e0018.min.js"
         else
+          CONFIG_URL="https://dev--gens--vertisdigital.aem.page/tools/assets-selector/config.json"
           LAUNCH_URL="https://assets.adobedtm.com/9a26c7c29956/9d78c9fea2b9/launch-c830de7b55b7-development.min.js"
         fi
         
+        # Update component-models.json
+        sed -i "s|\"configUrl\": \".*\"|\"configUrl\": \"${CONFIG_URL}\"|" component-models.json
+        
+        # Update delayed.js
         sed -i "s|adobeLaunchScript.src = '.*'|adobeLaunchScript.src = '${LAUNCH_URL}'|" scripts/delayed.js
 
     - name: Commit changes
@@ -83,11 +52,26 @@ jobs:
         git config --global user.name "github-actions[bot]"
         git config --global user.email "github-actions[bot]@users.noreply.github.com"
 
+        HAS_CHANGES=false
+        
+        if [[ -n "$(git status --porcelain component-models.json)" ]]; then
+          git add component-models.json
+          HAS_CHANGES=true
+        fi
+        
         if [[ -n "$(git status --porcelain scripts/delayed.js)" ]]; then
-          echo "Changes detected in delayed.js, committing..."
           git add scripts/delayed.js
-          git commit -m "Update Adobe Launch script URL for ${{ github.ref_name }} branch"
+          HAS_CHANGES=true
+        fi
+
+        if [ "$HAS_CHANGES" = true ]; then
+          echo "Changes detected, committing..."
+          git commit -m "Update environment configurations for ${{ github.ref_name }} branch"
+          
+          # Pull latest changes to avoid conflicts in case someone pushed concurrently
+          git pull --rebase origin ${{ github.ref_name }} || true
+          
           git push
         else
-          echo "No changes to delayed.js, skipping commit"
+          echo "No changes detected, skipping commit"
         fi
