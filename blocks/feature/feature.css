@@ -907,6 +907,15 @@
     padding-top: 0;
   }
 
+  .feature-wrapper .with-vertical-list .about-us-left-column {
+    position: static;
+  }
+
+  .feature-wrapper .with-vertical-list .about-us-stats .about-us-left {
+    flex-direction: column;
+    gap: 24px;
+  }
+
   .feature-wrapper .with-vertical-list .about-us-left .about-us-left-title {
     font-size: 32px;
     line-height: 48px;
