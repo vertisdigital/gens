@@ -118,15 +118,28 @@ export default function decorate(block) {
     moveInstrumentation(card, cardElement);
 
     // Handle card image
+    let imageUrl = '';
+    let imageAlt = '';
+    let elementToRemove = null;
+
+    const imgTag = card.querySelector('img');
     const imageLink = card.querySelector('a[href]');
-    if (imageLink) {
+
+    if (imgTag) {
+      imageUrl = imgTag.getAttribute('src');
+      imageAlt = imgTag.getAttribute('alt') || card.querySelector('[data-aue-prop="title"]')?.textContent || 'Project Image';
+      elementToRemove = imgTag.closest('picture') || imgTag;
+    } else if (imageLink) {
+      imageUrl = imageLink.getAttribute('href');
+      imageAlt = imageLink.getAttribute('title') || card.querySelector('[data-aue-prop="title"]')?.textContent || 'Project Image';
+      elementToRemove = imageLink;
+    }
+
+    if (imageUrl) {
       const imageContainer = document.createElement('div');
       imageContainer.setAttribute('data-aue-prop', 'image');
       imageContainer.setAttribute('data-aue-label', 'Image');
       imageContainer.setAttribute('data-aue-type', 'image');
-
-      const imageUrl = imageLink.getAttribute('href');
-      const imageAlt = card.querySelectorAll('a[href]')[1]?.getAttribute('title') || card.querySelector('[data-aue-prop="title"]')?.textContent || 'Project Image';
 
       const imageHtml = ImageComponent({
         src: imageUrl,
@@ -240,7 +253,7 @@ export default function decorate(block) {
       // Append content to image container (for absolute positioning)
       imageContainer.appendChild(cardContent);
       cardElement.appendChild(imageContainer);
-      imageLink.remove();
+      if (elementToRemove) elementToRemove.remove();
     }
     cardsGridContainer.appendChild(cardElement);
   });

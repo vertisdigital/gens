@@ -846,13 +846,16 @@ function initializeHeader(header) {
 function updateHeaderState(header) {
   const scrollPosition = window.scrollY;
   const defaultLogo = header.querySelector('.default-logo');
+  const wrapper = header.closest('.header-wrapper');
 
   if (defaultLogo) {
     if (scrollPosition > 0 && !isHeaderFixed) {
       header.classList.add('fixed-header');
+      if (wrapper) wrapper.classList.add('fixed-header');
       isHeaderFixed = true;
     } else if (scrollPosition === 0 && isHeaderFixed) {
       header.classList.remove('fixed-header');
+      if (wrapper) wrapper.classList.remove('fixed-header');
       isHeaderFixed = false;
     }
   }
