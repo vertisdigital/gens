@@ -664,6 +664,12 @@ header .header {
     top: 0;
   }
 
+  .header-inner-wrapper .search-wrapper {
+    display: flex;
+    justify-content: end;
+    width: 30px;
+  }
+
   /* Logo centered */
   .header-inner-wrapper .header-nav .logo-wrapper {
 

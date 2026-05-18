@@ -319,6 +319,7 @@ function createHeaderStructure(block) {
     searchBtn.append(searchIconNode);
   }
 
+  searchWrapper.classList.add('search-wrapper');
   searchWrapper.appendChild(searchBtn);
   const searchSuggestionBox = document.createElement('div');
   searchSuggestionBox.className = 'search-suggestion-box';
