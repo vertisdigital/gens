@@ -152,10 +152,6 @@
   font-family: var(--typography-font-family-font-body);
 }
 
-.contactus.contactus-variation .contactus-top>div:first-child>div {
-  width: 80%;
-}
-
 .contactus .contactus-bottom {
   display: none;
   padding-top: 40px;
@@ -177,6 +173,10 @@
 .contactus .contactus-bottom>div:last-child {
   display: flex;
   align-items: flex-start;
+}
+
+.contactus.contactus-variation .contactus-top>div:first-child>div {
+  width: 80%;
 }
 
 .contactus.contactus-variation .contactus-bottom {
