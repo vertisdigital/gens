@@ -20,6 +20,13 @@
     border-bottom: 1px solid var(--color-neutral-800);
 }
 
+@media (min-width: 768px) {
+    .corporate-policies-list-item {
+        align-items: flex-start;
+        display: flex;
+    }
+}
+
 .corporate-policies-list-item ul,
 .corporate-policies-list-item ul li,
 .corporate-policies-list-item ul p {
@@ -73,7 +80,7 @@
 .corporate-policies-list-item .left-col h2 {
     font-size: 36px;
     font-weight: 400;
-    line-height: 56px;
+    line-height: 44px;
     color: var(--text-color);
     margin: 0;
     width: 59%;
@@ -116,6 +123,10 @@
     font-weight: 400;
     line-height: 40px;
     color: var(--body-text-color);
+}
+
+.corporate-policies-list-item .right-col>div:first-child>p:first-child {
+    margin-top: 0 !important;
 }
 
 .corporate-policies-list-item .right-col>div:nth-child(3) a {
@@ -323,6 +334,6 @@
     padding-right: calc(50vw - 50%);
 }
 
-.corporate-policies-list-item.gray-background + .corporate-policies-list-item:not(.gray-background) {
+.corporate-policies-list-item.gray-background+.corporate-policies-list-item:not(.gray-background) {
     margin-top: 0;
-}
+}

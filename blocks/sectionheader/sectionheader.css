@@ -9,6 +9,7 @@
     padding-bottom: 64px;
     margin: auto;
 }
+
 .sectionheader.border-bottom {
     padding-bottom: 0;
 
@@ -20,11 +21,11 @@
 
 .sectionheader.blue-background {
     background-color: var(--color-bg-primary);
-}   
+}
 
 .sectionheader.gray-background {
     background-color: var(--primary-default-fg);
-} 
+}
 
 /* ===============================
    Label
@@ -76,7 +77,7 @@
 @media (max-width: 767px) {
     .sectionheader.border-bottom {
         padding-bottom: 0;
-    
+
         .section-header-wrapper {
             padding-bottom: 0;
         }
@@ -93,6 +94,10 @@
     .section-header-description {
         font-size: var(--typography-font-size-text-sm, 24px);
         line-height: var(--typography-font-line-height-leading-4, 40px);
+    }
+
+    .section-header-description p:first-child {
+        margin-top: 0;
     }
 }
 
@@ -257,7 +262,7 @@
         gap: 24px;
         flex-direction: column;
     }
-  
+
 }
 
 /* Desktop */
