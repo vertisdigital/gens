@@ -61,7 +61,7 @@ export async function redirectRouter() {
     if (!cachedCombinedMap) {
       const dynamicRedirects = {};
       try {
-        const resp = await fetch('/redirects.json');
+        const resp = await fetch(`/redirects.json?t=${new Date().getTime()}`);
         if (resp.ok) {
           const json = await resp.json();
           if (json.data && Array.isArray(json.data)) {
