@@ -39,7 +39,11 @@ export const stripHtml = (html) => {
 };
 
 export const highlight = (text, q) => {
-  if (!text || !q) return text || '';
+  if (!text) return '';
+
+  if (/<em\b[^>]*>/i.test(text)) {
+    return text.replace(/<em\b[^>]*>/gi, '<strong>').replace(/<\/em>/gi, '</strong>');
+  }
 
   const cleanQ = String(q).trim();
   if (!cleanQ) return stripHtml(text);
@@ -271,22 +275,17 @@ const renderResults = (block, q, results, currentPage, total, totalPages, noResu
 
     const a = document.createElement('a');
     a.href = item.path.endsWith('.pdf') ? endpoint + item.path : shortenURL(item.path);
-    a.textContent = item.title;
+    const highlightedTitle = highlight(item.title || '', q);
+    a.replaceChildren(document.createRange().createContextualFragment(highlightedTitle));
 
     const infoP = document.createElement('p');
     infoP.className = 'searchresult-info';
 
-    if (item.highlight || (item.path.endsWith('.pdf') && item.highlight === '')) {
+    if (item.highlight) {
       const descSpan = document.createElement('span');
       descSpan.className = 'searchresult-desc';
-
-      if (item.path.endsWith('.pdf') && item.highlight === '') {
-        descSpan.textContent = 'Match found in document content';
-      } else {
-        const highlighted = highlight(item.highlight, q);
-        const highlightedNode = stringToHtml(highlighted);
-        if (highlightedNode) descSpan.append(highlightedNode);
-      }
+      const highlightedDesc = highlight(item.highlight, q);
+      descSpan.replaceChildren(document.createRange().createContextualFragment(highlightedDesc));
       infoP.append(descSpan);
     }
 
