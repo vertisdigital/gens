@@ -1,10 +1,10 @@
 // List of allowed domains for analytics
 const ANALYTICS_DOMAINS = [
   'gentingsingapore.com',
-  'main--gens-prod--vertisdigital.aem.live',
+  'main--gens-prod--genting-sg.aem.live',
   'ut.gentingsingapore.com',
-  'uat--gens-stage--vertisdigital.aem.live',
-  'dev--gens--vertisdigital.aem.live',
+  'uat--gens-stage--genting-sg.aem.live',
+  'dev--gens--genting-sg.aem.live',
 ];
 
 const { hostname } = window.location;

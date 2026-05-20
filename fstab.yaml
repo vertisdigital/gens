@@ -1,5 +1,5 @@
 mountpoints:
   /:
-    url: "https://author-p144202-e1512622.adobeaemcloud.com/bin/franklin.delivery/vertisdigital/gens-stage/uat"
+    url: "https://author-p144202-e1512622.adobeaemcloud.com/bin/franklin.delivery/genting-sg/gens/dev"
     type: "markup"
     suffix: ".html"
