@@ -1,0 +1,19 @@
+.hlx/*
+coverage/*
+logs/*
+node_modules/*
+
+helix-importer-ui
+.DS_Store
+*.bak
+.idea
+.cursorrules
+
+
+jira
+tabs-issue
+
+blocks/author-*
+scripts/local-dev.js
+# Ignore assets selector config file
+tools/assets-selector/config.json

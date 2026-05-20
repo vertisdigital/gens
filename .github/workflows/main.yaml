@@ -1,0 +1,77 @@
+name: Build
+on: [push]
+
+permissions:
+  contents: write
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v4
+    - name: Use Node.js 20
+      uses: actions/setup-node@v4
+      with:
+        node-version: 20
+    - run: npm ci
+    - run: npm run lint
+
+  update-environment-configs:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+      with:
+        persist-credentials: true
+        fetch-depth: 0
+
+    - name: Set environment variables & Update URLs
+      run: |
+        BRANCH_NAME=${GITHUB_REF#refs/heads/}
+        
+        # Determine URLs based on branch
+        if [ "$BRANCH_NAME" == "uat" ]; then
+          CONFIG_URL="https://uat--gens-stage--vertisdigital.aem.page/tools/assets-selector/config.json"
+          LAUNCH_URL="https://assets.adobedtm.com/9a26c7c29956/9d78c9fea2b9/launch-0643cd1b44f3-staging.min.js"
+        elif [[ "$BRANCH_NAME" == "main" || "$BRANCH_NAME" == release-* ]]; then
+          CONFIG_URL="https://main--gens-prod--vertisdigital.aem.page/tools/assets-selector/config.json"
+          LAUNCH_URL="https://assets.adobedtm.com/9a26c7c29956/9d78c9fea2b9/launch-82eb0a5e0018.min.js"
+        else
+          CONFIG_URL="https://dev--gens--vertisdigital.aem.page/tools/assets-selector/config.json"
+          LAUNCH_URL="https://assets.adobedtm.com/9a26c7c29956/9d78c9fea2b9/launch-c830de7b55b7-development.min.js"
+        fi
+        
+        # Update component-models.json
+        sed -i "s|\"configUrl\": \".*\"|\"configUrl\": \"${CONFIG_URL}\"|" component-models.json
+        
+        # Update delayed.js
+        sed -i "s|adobeLaunchScript.src = '.*'|adobeLaunchScript.src = '${LAUNCH_URL}'|" scripts/delayed.js
+
+    - name: Commit changes
+      run: |
+        git config --global user.name "github-actions[bot]"
+        git config --global user.email "github-actions[bot]@users.noreply.github.com"
+
+        HAS_CHANGES=false
+        
+        if [[ -n "$(git status --porcelain component-models.json)" ]]; then
+          git add component-models.json
+          HAS_CHANGES=true
+        fi
+        
+        if [[ -n "$(git status --porcelain scripts/delayed.js)" ]]; then
+          git add scripts/delayed.js
+          HAS_CHANGES=true
+        fi
+
+        if [ "$HAS_CHANGES" = true ]; then
+          echo "Changes detected, committing..."
+          git commit -m "Update environment configurations for ${{ github.ref_name }} branch"
+          
+          # Pull latest changes to avoid conflicts in case someone pushed concurrently
+          git pull --rebase origin ${{ github.ref_name }} || true
+          
+          git push
+        else
+          echo "No changes detected, skipping commit"
+        fi

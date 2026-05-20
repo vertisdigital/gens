@@ -1,0 +1,332 @@
+/* add global styles that can be loaded post LCP here */
+
+/* Tab Container */
+.tabs-container {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    margin: 0 auto;
+}
+
+.tabs-container .about-us-stats {
+    margin-bottom: 0;
+    padding-top: 0;
+}
+
+.tabs-header {
+    display: flex;
+    flex-wrap: nowrap;
+    width: 100%;
+    overflow-x: auto;
+    margin-bottom: 32px;
+    margin-top: 40px;
+    position: relative;
+
+    @media (width < 1181px) and (width >=768px) {
+        margin-bottom: 20px;
+    }
+}
+
+.tab-title {
+    position: relative;
+    text-align: center;
+    padding: 8px 0;
+    color: var(--text-color);
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 24px;
+    border-bottom: 1px solid var(--color-border-base);
+    cursor: pointer;
+    flex: 1 0 auto;
+    white-space: nowrap;
+}
+
+.tab-title.active {
+    background: var(--primary-default-fg);
+    color: var(--color-text-tertiary);
+    border-bottom: 2px solid var(--color-text-tertiary);
+}
+
+.tabs-content-wrapper {
+    padding: 20px;
+}
+
+.tab-panel {
+    display: none;
+
+    .container-xl,
+    .container-md,
+    .container-sm,
+    .container {
+        padding: 0;
+    }
+}
+
+.tab-panel.active {
+    display: block;
+}
+
+.panel-heading {
+    margin-bottom: 30px;
+}
+
+.panel-heading h2 {
+    font-family: var(--heading-font-family);
+    font-size: var(--font-size-xl);
+    font-weight: 500;
+    line-height: 50px;
+    color: var(--text-color);
+    letter-spacing: -0.5px;
+}
+
+/* Tab section overrides */
+
+.tabs-container .feature-wrapper {
+    background-size: auto;
+}
+
+.tabs-container .about-us-stats .about-us-right-content p {
+    font-weight: 400;
+    color: var(--body-text-color);
+    line-height: 24px;
+    letter-spacing: -0.5px;
+}
+
+
+
+.tabs-container .about-us-stats .about-us-left-title {
+    color: var(--text-color);
+    font-size: var(--font-size-m);
+    font-weight: 400;
+    line-height: 40px;
+}
+
+
+
+
+.tabs-container .about-us-stats .about-us-right-content .statistic {
+    color: var(--primary-gold);
+    font-size: var(--font-size-xl);
+    font-weight: 500;
+    line-height: 50px;
+}
+
+.tabs-container .about-us-stats .about-us-right-content [data-aue-prop="feature-heading"] {
+    color: var(--body-text-color);
+    font-size: var(--font-size-xs);
+    line-height: 24px;
+}
+
+.tabs-container .statistics .statistic-item {
+    font-size: var(--font-size-xl);
+}
+
+.cards {
+    margin-top: 10px;
+}
+
+.cards img {
+    width: 100%;
+    height: auto;
+    border-radius: 8px;
+}
+
+/* TabsPanel Section Styles */
+.section.tabspanel {
+    padding: var(--section-padding);
+}
+
+.section.tabspanel [data-aue-prop="panelheading"] {
+    margin-bottom: 2rem;
+    font-size: var(--font-size-xl);
+    color: var(--text-color);
+}
+
+
+.tabs-container .projectslist {
+    margin-top: 0;
+}
+
+.tabs-container .about-us-stats .about-us-right-content .statistic p:first-child {
+    font-size: var(--font-size-m);
+    line-height: 28px;
+}
+
+.tabs-content>div>div:first-child {
+    margin-top: 0;
+}
+
+.tabs-container .about-us-stats .about-us-right-content:nth-child(2)>div:nth-child(2) {
+    flex: 1;
+    margin-left: 15px;
+}
+
+@media(width >=768px) and (width < 1181px) {
+    .tab-title {
+        padding: 16px 0;
+        min-width: 300px;
+    }
+
+    .tabs-container .about-us-stats .about-us-right-content {
+        margin-bottom: 18px;
+        padding-top: 18px;
+    }
+
+    .tabs-container .about-us-stats .about-us-right-content:first-child>div:last-child {
+        padding-top: 0;
+    }
+
+    .tabs-container .about-us-stats .about-us-right-content:last-child {
+        margin-bottom: 0;
+        padding-bottom: 0;
+    }
+
+    .tabs-container .about-us-stats .about-us-left-title {
+        font-size: 24px;
+    }
+
+    .tabs-container .about-us-stats .about-us-right-content .statistic {
+        font-size: var(--font-size-l);
+        line-height: 42px;
+
+    }
+
+    .tabs-container .about-us-stats .about-us-right-content [data-aue-prop="feature-heading"] {
+        font-size: var(--font-size-xs);
+        line-height: 20px;
+    }
+
+
+    .panel-heading h2 {
+        font-size: var(--font-size-l);
+        line-height: 42px;
+    }
+
+    .tabs-container .textmediablock-wrapper {
+        margin-top: 24px
+    }
+}
+
+@media(width<768px) {
+    .tabs-header {
+        margin-top: 20px;
+        margin-bottom: 12px;
+    }
+
+    .tab-title {
+        font-size: 16px;
+        line-height: 24px;
+        padding: 8px 0;
+        min-width: 200px;
+    }
+
+    .tabs-container .about-us-stats {
+        margin-bottom: 0;
+        padding-bottom: 0;
+    }
+
+
+    .tabs-container .about-us-stats .about-us-right-content {
+        padding-top: 18px;
+        margin-bottom: 18px;
+    }
+
+    .tabs-container .about-us-stats .about-us-right-content p {
+        line-height: 20px;
+    }
+
+    .tabs-container .about-us-stats .about-us-right-content:first-child {
+        padding-top: 0;
+    }
+
+    .tabs-container .about-us-stats .about-us-right-content:last-child {
+        margin-bottom: 0;
+        padding-bottom: 0;
+    }
+
+
+    .panel-heading h2 {
+        font-size: var(--font-size-m);
+        line-height: 34px;
+    }
+
+
+    .tabs-container .about-us-stats .about-us-left-title {
+        font-size: 22px;
+        line-height: 1;
+    }
+
+    .tabs-container .about-us-stats .about-us-right-content .statistic {
+        font-size: var(--font-size-m);
+        line-height: 34px;
+
+    }
+
+    .tabs-container .about-us-stats .about-us-right-content [data-aue-prop="feature-heading"] {
+        font-size: var(--font-size-xxs);
+        line-height: 20px;
+    }
+
+    .tabs-container .textmediablock-container+.textmediablock-container {
+        margin-bottom: 0;
+    }
+
+    .tabs-container .textmediablock-wrapper {
+        margin-top: 18px
+    }
+
+    .tabs-container .corporate-policies-list-item .left-col h2 {
+        font-size: var(--font-size-m);
+        letter-spacing: -0.5px;
+    }
+}
+
+@media (width >=768px) {
+    .tabs-container .about-us-stats .about-us-right-content .statistic p:first-child {
+        font-size: var(--font-size-l);
+        line-height: 32px;
+    }
+}
+
+@media(width >=1024px) {
+    .tabs-container .textmediablock-wrapper {
+        margin: 34px 0;
+    }
+
+    /*     .tabs-container .about-us-stats .about-us-right-content {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+    } */
+
+    .tabs-container .about-us-stats .about-us-right-content .statistic span:first-child {
+        font-size: var(--font-size-xl);
+        line-height: 40px;
+    }
+
+    .tabs-container .about-us-stats .about-us-right-content .statistic span:first-child:not(:empty) {
+        margin-right: 16px;
+    }
+
+    .tabs-container .about-us-stats .about-us-right-content .statistic p:first-child {
+        font-size: var(--font-size-xl);
+        line-height: 40px;
+    }
+
+    .tabs-container .about-us-stats .about-us-right-content .statistic p:first-child:not(:empty) {
+        margin-right: 16px;
+    }
+
+    .tabs-container .about-us-stats {
+        padding-bottom: 0 !important;
+    }
+}
+
+@media (max-height: 592px) {
+    .tab-title {
+        font-size: 16px;
+        line-height: 24px;
+        padding: 8px 0;
+        min-width: 200px;
+    }
+}

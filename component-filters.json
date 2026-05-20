@@ -1,0 +1,268 @@
+[
+  {
+    "id": "main",
+    "components": [
+      "section",
+      "statisticsSection",
+      "tabs"
+    ]
+  },
+  {
+    "id": "section",
+    "components": [
+      "herobanner",
+      "coreprinciples",
+      "feature",
+      "linkField",
+      "socialLinks",
+      "links",
+      "login",
+      "imageLink",
+      "exploremore",
+      "listing",
+      "projectcards",
+      "enquiry",
+      "contactus",
+      "tiles",
+      "textmediablock",
+      "projectslist",
+      "iframe",
+      "tabsectiontitle",
+      "awardsgallery",
+      "sustainabilitygovernance",
+      "cookiepolicy",
+      "corporatepolicies",
+      "statistics",
+      "searchresult",
+      "divider",
+      "textblock",
+      "columns",
+      "sectionheader",
+      "accordion",
+      "column",
+      "awardlisting",
+      "masthead"
+    ]
+  },
+  {
+    "id": "sectionheader",
+    "components": [
+      "linkField"
+    ]
+  },
+  {
+    "id": "tabs",
+    "components": [
+      "feature",
+      "textmediablock",
+      "projectslist",
+      "awardsgallery",
+      "historymilestones",
+      "loadmore",
+      "boardofdirectors",
+      "iframe",
+      "corporatepolicies",
+      "awardlisting",
+      "tiles",
+      "sectionheader",
+      "textblock"
+    ]
+  },
+  {
+    "id": "cards",
+    "components": [
+      "card"
+    ]
+  },
+  {
+    "id": "columns",
+    "components": [
+      "column"
+    ]
+  },
+  {
+    "id": "column",
+    "components": [
+      "coreprinciples",
+      "imageLink",
+      "socialLinks",
+      "links",
+      "exploremore",
+      "listing",
+      "projectcards",
+      "enquiry",
+      "contactus",
+      "tiles",
+      "textsection",
+      "textmediablock",
+      "linkField",
+      "projectslist",
+      "textblock"
+    ]
+  },
+  {
+    "id": "feature",
+    "components": [
+      "featureItem",
+      "linkField",
+      "indices",
+      "loadmore"
+    ]
+  },
+  {
+    "id": "featureItem",
+    "components": [
+      "linkField"
+    ]
+  },
+  {
+    "id": "socialLinks",
+    "components": [
+      "linkField"
+    ]
+  },
+  {
+    "id": "links",
+    "components": [
+      "linkField"
+    ]
+  },
+  {
+    "id": "imageLink",
+    "components": [
+      "linkField"
+    ]
+  },
+  {
+    "id": "listing",
+    "components": [
+      "listitem",
+      "linkField"
+    ]
+  },
+  {
+    "id": "projectcards",
+    "components": [
+      "projectcard",
+      "linkField"
+    ]
+  },
+  {
+    "id": "herobanner",
+    "components": [
+      "bannercarousel"
+    ]
+  },
+  {
+    "id": "tiles",
+    "components": [
+      "tile"
+    ]
+  },
+  {
+    "id": "coreprinciples",
+    "components": [
+      "coreprinciple",
+      "linkField"
+    ]
+  },
+  {
+    "id": "textmediablock",
+    "components": [
+      "media",
+      "textsection",
+      "textblock"
+    ]
+  },
+  {
+    "id": "projectslist",
+    "components": [
+      "projectslistitem"
+    ]
+  },
+  {
+    "id": "statisticsSection",
+    "components": [
+      "statistics",
+      "statisticsDescription",
+      "feature",
+      "herobanner",
+      "columns"
+    ]
+  },
+  {
+    "id": "statistics",
+    "components": [
+      "statisticsDescription",
+      "featureItem"
+    ]
+  },
+  {
+    "id": "awardsgallery",
+    "components": [
+      "awardstile",
+      "linkField"
+    ]
+  },
+  {
+    "id": "historymilestones",
+    "components": [
+      "milestoneitem"
+    ]
+  },
+  {
+    "id": "sustainabilitygovernance",
+    "components": [
+      "governancetile",
+      "linkField"
+    ]
+  },
+  {
+    "id": "corporatepolicies",
+    "components": [
+      "policytile"
+    ]
+  },
+  {
+    "id": "contactus",
+    "components": [
+      "enquiry",
+      "enquirycta"
+    ]
+  },
+  {
+    "id": "boardofdirectors",
+    "components": [
+      "director"
+    ]
+  },
+  {
+    "id": "richtext",
+    "features": [
+      "bold",
+      "italic",
+      "underline",
+      "strikethrough",
+      "alignment-left",
+      "alignment-center",
+      "alignment-right",
+      "alignment-justify",
+      "unorderedList",
+      "orderedList",
+      "link",
+      "unlink"
+    ]
+  },
+  {
+    "id": "awardlisting",
+    "components": [
+      "awardlistingitem"
+    ]
+  },
+  {
+    "id": "accordion",
+    "components": [
+      "accordionitem"
+    ]
+  }
+]

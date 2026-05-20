@@ -1,0 +1,10 @@
+{
+  "mappings": [
+    "/content/genting-singapore/:/",
+    "/content/genting-singapore/configuration:/.helix/config.json",
+    "/content/genting-singapore/metadata:/metadata.json"
+  ],
+  "includes": [
+    "/content/genting-singapore/"
+  ]
+}
