@@ -150,12 +150,17 @@ export default function decorate(block) {
       rightCol.className = 'col-xl-6 col-md-3 col-sm-4 right-col';
 
       const imageLink = allDivElements[4].querySelector('a');
+      const imgTag = allDivElements[4].querySelector('img');
 
-      if (imageLink) {
-        const imageUrl = imageLink.getAttribute('href');
+      if (imageLink || imgTag) {
+        const imageUrl = imageLink ? imageLink.getAttribute('href') : imgTag.getAttribute('src');
+        const altText = imageLink 
+          ? imageLink.getAttribute('title') || '' 
+          : imgTag.getAttribute('alt') || '';
+
         const picture = ImageComponent({
           src: imageUrl,
-          alt: allDivElements[4].querySelectorAll('a')[1]?.getAttribute('title') || '',
+          alt: altText,
           className: 'proejctlisting-image',
           breakpoints: {
             mobile: {
@@ -173,8 +178,15 @@ export default function decorate(block) {
           },
           lazy: true,
         });
-        // Remove original link
-        imageLink.remove();
+        
+        // Remove original element
+        if (imageLink) {
+          imageLink.remove();
+        } else if (imgTag) {
+          const pic = imgTag.closest('picture');
+          if (pic) pic.remove();
+          else imgTag.remove();
+        }
 
         if (picture) {
           const imageContainer = document.createElement('div');

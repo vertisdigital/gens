@@ -31,13 +31,13 @@ jobs:
         
         # Determine URLs based on branch
         if [ "$BRANCH_NAME" == "uat" ]; then
-          CONFIG_URL="https://uat--gens-stage--genting-sg.aem.page/tools/assets-selector/config.json"
+          CONFIG_URL="https://uat--gens-stage--vertisdigital.aem.page/tools/assets-selector/config.json"
           LAUNCH_URL="https://assets.adobedtm.com/9a26c7c29956/9d78c9fea2b9/launch-0643cd1b44f3-staging.min.js"
         elif [[ "$BRANCH_NAME" == "main" || "$BRANCH_NAME" == release-* ]]; then
-          CONFIG_URL="https://main--gens-prod--genting-sg.aem.page/tools/assets-selector/config.json"
+          CONFIG_URL="https://main--gens-prod--vertisdigital.aem.page/tools/assets-selector/config.json"
           LAUNCH_URL="https://assets.adobedtm.com/9a26c7c29956/9d78c9fea2b9/launch-82eb0a5e0018.min.js"
         else
-          CONFIG_URL="https://dev--gens--genting-sg.aem.page/tools/assets-selector/config.json"
+          CONFIG_URL="https://dev--gens--vertisdigital.aem.page/tools/assets-selector/config.json"
           LAUNCH_URL="https://assets.adobedtm.com/9a26c7c29956/9d78c9fea2b9/launch-c830de7b55b7-development.min.js"
         fi
         

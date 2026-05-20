@@ -47,8 +47,8 @@ function initTextLazyFadeIn() {
 
     if (wCurrent.classList.contains('sectionheader-wrapper') && (i + 1 < wrappersArray.length)) {
       const wNext = wrappersArray[i + 1];
-      // Check if they are actually DOM siblings
-      if (wCurrent.nextElementSibling === wNext) {
+      // Check if they are actually DOM siblings and next is not another sectionheader
+      if (wCurrent.nextElementSibling === wNext && !wNext.classList.contains('sectionheader-wrapper')) {
         const group = document.createElement('div');
         group.className = 'fade-group cmp-fade-up';
         wCurrent.parentNode.insertBefore(group, wCurrent);

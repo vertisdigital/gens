@@ -61,7 +61,7 @@ export async function redirectRouter() {
     if (!cachedCombinedMap) {
       const dynamicRedirects = {};
       try {
-        const resp = await fetch(`/redirects.json?t=${new Date().getTime()}`);
+        const resp = await fetch('/redirects.json');
         if (resp.ok) {
           const json = await resp.json();
           if (json.data && Array.isArray(json.data)) {
@@ -169,3 +169,13 @@ export const getAEMPublishEndpoint = () => {
   }
   return 'https://publish-p144202-e1488374.adobeaemcloud.com';
 };
+
+export function changeStatusBarColor(hexColor) {
+  let metaTag = document.querySelector('meta[name="theme-color"]');
+  if (!metaTag) {
+    metaTag = document.createElement('meta');
+    metaTag.setAttribute('name', 'theme-color');
+    document.head.appendChild(metaTag);
+  }
+  metaTag.setAttribute('content', hexColor);
+}
