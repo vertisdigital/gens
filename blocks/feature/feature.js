@@ -224,12 +224,23 @@ export default function decorate(block) {
       featureContainer.classList.add('about-us-right-content');
       moveInstrumentation(feature, featureContainer);
       // Handle image feature
-      const isImageExists = featureChildren[0].querySelector('a') ? true : false;
-      if (isImageExists) {
-        const imageElement = featureChildren[0].querySelector('a');
+      const imageLinkEl = featureChildren[0]?.querySelector('a');
+      const imgTagEl = featureChildren[0]?.querySelector('img');
+      if (imageLinkEl || imgTagEl) {
         const imageContainer = document.createElement('div');
-        const imageLink = imageElement.getAttribute('src') ?? imageElement.getAttribute('href');
-        const imgAltText = feature.querySelector('[data-aue-prop="feature-icon-alt"]')?.textContent || '';
+        const imageLink = imageLinkEl
+          ? (imageLinkEl.getAttribute('src') ?? imageLinkEl.getAttribute('href'))
+          : imgTagEl.getAttribute('src');
+        
+        const altTextEl = feature.querySelector('[data-aue-prop="feature-icon-alt"]');
+        if (altTextEl) {
+          altTextEl.style.display = 'none'; // Hide in Author mode
+        }
+
+        const imgAltText = altTextEl?.textContent?.trim()
+          || imageLinkEl?.getAttribute('title')
+          || imgTagEl?.getAttribute('alt')
+          || '';
 
         if (imageLink) {
           const imageHtml = ImageComponent({
@@ -245,7 +256,10 @@ export default function decorate(block) {
           });
 
           const parsedImage = stringToHTML(imageHtml);
-          moveInstrumentation(imageElement, parsedImage.querySelector('img'));
+          const targetImg = parsedImage.querySelector('img');
+          if (targetImg) {
+            moveInstrumentation(imageLinkEl || imgTagEl, targetImg);
+          }
 
           imageContainer.appendChild(parsedImage);
           featureContainer.appendChild(imageContainer);
