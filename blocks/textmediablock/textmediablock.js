@@ -80,14 +80,15 @@ function setupVideoFunctionality(autoPlay, mediaElement) {
 function handleMediaElement(mediaBlock, enablegradient) {
   let autoPlay = false;
   const linkElement = mediaBlock.querySelector('a');
-  if (!linkElement) return;
+  const imgTagElement = mediaBlock.querySelector('img');
+  if (!linkElement && !imgTagElement) return;
 
   mediaBlock.classList.add('mediablock');
   if (enablegradient) {
     mediaBlock.classList.add('has-gradient');
   }
 
-  const mediaUrl = linkElement.getAttribute('href');
+  const mediaUrl = linkElement ? linkElement.getAttribute('href') : imgTagElement.getAttribute('src');
   if (!mediaUrl) return;
 
   const isVideo = /\.(mp4|webm|ogg)$/i.test(mediaUrl);
@@ -111,10 +112,16 @@ function handleMediaElement(mediaBlock, enablegradient) {
       </div>
     `);
   } else {
+    const secondLink = mediaBlock.querySelectorAll('a')[1];
+    const imageAlt = secondLink?.getAttribute('title')
+      || linkElement?.getAttribute('title')
+      || imgTagElement?.getAttribute('alt')
+      || '';
+
     mediaElement = stringToHtml(
       ImageComponent({
         src: mediaUrl,
-        alt: mediaBlock.querySelectorAll('a')[1]?.getAttribute('title') || '',
+        alt: imageAlt,
         className: 'mediablock-image',
         asImageName: 'hero.webp',
         breakpoints: {
@@ -134,7 +141,8 @@ function handleMediaElement(mediaBlock, enablegradient) {
   }
 
   if (mediaElement) {
-    linkElement.parentElement?.replaceChild(mediaElement, linkElement);
+    const targetElement = linkElement || imgTagElement;
+    targetElement.parentElement?.replaceChild(mediaElement, targetElement);
     if (mediaBlock?.children[1]) {
       mediaBlock.children[1].style.display = 'none';
     }
@@ -202,7 +210,7 @@ export default function decorate(block) {
 
   // Check if the first child contains an image link
   const firstChild = contentChildren[0];
-  const hasImageFirst = firstChild?.querySelector('a') !== null;
+  const hasImageFirst = firstChild?.querySelector('a, img, picture, video') !== null;
 
   if (hasImageFirst) {
     // Variation 1: Image first, then text

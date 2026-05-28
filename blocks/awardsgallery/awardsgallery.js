@@ -28,14 +28,22 @@ export default function decorate(block) {
     moveInstrumentation(card, cardElement);
 
     const imageLink = card.querySelector('a[href]');
-    if (imageLink) {
+    const imgTag = card.querySelector('img');
+    if (imageLink || imgTag) {
       const imageContainer = document.createElement('div');
-      const imageUrl = imageLink.getAttribute('href');
+      const imageUrl = imageLink ? imageLink.getAttribute('href') : imgTag.getAttribute('src');
       imageContainer.className = 'awardsgallery-image';
+
+      const cardElementsList = card.querySelectorAll('div');
+      const awardTitleText = cardElementsList[2]?.textContent?.trim() || '';
+
+      const imageAlt = imageLink
+        ? imageLink.getAttribute('title') || imgTag?.getAttribute('alt') || awardTitleText || 'Award Image'
+        : imgTag.getAttribute('alt') || awardTitleText || 'Award Image';
 
       const imageHtml = ImageComponent({
         src: imageUrl,
-        alt: '',
+        alt: imageAlt,
         className: 'project-card-image',
         breakpoints: {
           mobile: {
@@ -56,7 +64,14 @@ export default function decorate(block) {
 
       imageContainer.insertAdjacentHTML('beforeend', imageHtml);
       cardElement.appendChild(imageContainer);
-      imageLink.remove();
+      
+      if (imageLink) {
+        imageLink.remove();
+      } else if (imgTag) {
+        const pic = imgTag.closest('picture');
+        if (pic) pic.remove();
+        else imgTag.remove();
+      }
     }
 
     // Handle card content

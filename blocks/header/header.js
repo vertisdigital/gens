@@ -390,15 +390,9 @@ function loadSearchSuggest(keyword) {
           const suggestion = document.createElement('a');
           suggestion.className = 'suggestion-item';
           suggestion.href = item.path.endsWith('.pdf') ? PUBLISH_BASE + item.path : shortenURL(item.path);
-          let contentHtml = item.highlight ? highlight(item.highlight, keyword) : highlight(item.title || '', keyword);
-
-          if (item.path.endsWith('.pdf') && !item.highlight) {
-            contentHtml += '<span class="search-suggestion-note">Match found in document content</span>';
-          }
-          const highlightedNode = stringToHtml(contentHtml);
-          if (highlightedNode) {
-            suggestion.append(highlightedNode);
-          }
+          
+          const contentHtml = highlight(item.highlight || '', keyword);
+          suggestion.replaceChildren(document.createRange().createContextualFragment(contentHtml));
 
           suggestion.addEventListener('click', (e) => {
             e.preventDefault();

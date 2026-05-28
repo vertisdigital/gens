@@ -50,10 +50,21 @@ export default function decorate(block) {
       imgContainer.classList.add('col-xl-4', 'col-md-2', 'col-sm-4');
 
       const imgAnchor = imgContainer.querySelector('a');
-      if (imgAnchor) {
-        // Set initial src to ensure img tag has a value
-        const imageUrl = imgAnchor.href;
-        const imageAlt =item.querySelectorAll('a[href]')[1]?.getAttribute('title') || '';
+      const imgTag = imgContainer.querySelector('img');
+      if (imgAnchor || imgTag) {
+        const imageUrl = imgAnchor ? imgAnchor.getAttribute('href') : imgTag.getAttribute('src');
+        
+        // Hide the author alt text element if it exists in DOM
+        const authorAltEl = item.querySelector('[data-aue-prop="imageTitle"]');
+        if (authorAltEl) {
+          authorAltEl.style.display = 'none';
+        }
+
+        const imageAlt = authorAltEl?.textContent?.trim()
+          || imgAnchor?.getAttribute('title')
+          || imgTag?.getAttribute('alt')
+          || '';
+
         const imageHtml = ImageComponent({
             src: imageUrl,
             alt: imageAlt,
