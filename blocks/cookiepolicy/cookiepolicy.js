@@ -4,11 +4,11 @@ import { loadCSS } from '../../scripts/aem.js';
 const hideCookieConsent = () => {
     const selectors = ['.cookiepolicy', '.cookiepolicy-container', '.cookiepolicy-wrapper'];
     selectors.forEach(s => {
-        const el = document.querySelector(s);
-        if (el) {
+        const elements = document.querySelectorAll(s);
+        elements.forEach(el => {
             el.classList.add('hide');
             el.style.display = 'none';
-        }
+        });
     });
 }
 
@@ -29,6 +29,17 @@ export class CookiePolicy {
 
         const elem = this.cookieBlock;
         const blockElem = elem.classList.contains('block') ? elem : elem.querySelector('.block');
+        
+        // Safety check if blockElem doesn't exist (e.g. empty wrapper cloned)
+        if (!blockElem) {
+            return;
+        }
+
+        // Prevent duplicate cookie policy blocks in the body
+        if (document.body.querySelector('.cookiepolicy')) {
+            return;
+        }
+
         blockElem.classList.add('container', 'cookiepolicy');
         
         // Force display because fragments/sections may be hidden by default
