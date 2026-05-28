@@ -89,6 +89,18 @@ export class CookiePolicy {
         blockElem.innerHTML = '';
         blockElem.appendChild(cookieWrapper);
         document.body.appendChild(elem);
+
+        // Clean up any empty duplicate cookie policies from the DOM
+        document.querySelectorAll('.cookiepolicy').forEach(el => {
+            if (!el.querySelector('.cookie-wrapper')) {
+                const wrapper = el.closest('.cookiepolicy-wrapper');
+                if (wrapper) {
+                    wrapper.remove();
+                } else {
+                    el.remove();
+                }
+            }
+        });
     }
 }
 
