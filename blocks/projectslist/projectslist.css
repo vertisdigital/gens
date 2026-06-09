@@ -156,7 +156,7 @@
     font-weight: 400;
     transition: all 0.2s ease;
     cursor: pointer;
-    margin: 24px 0 0 0;
+    margin: 24px 0 0;
 }
 
 .project-cta a.button .icon-wrapper {
@@ -433,4 +433,20 @@
     .sectionheader-wrapper ~ .projectslist-wrapper .projectslist.no-zebra-pattern-row .list-view .projectslistitem:first-child {
         padding-top: 20px !important; /* Half of 40px */
     }
+}
+
+.projectslist-wrapper.pattern-background {
+  position: relative;
+}
+
+.projectslist-wrapper.pattern-background::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: 3;
+  pointer-events: none;
+  background-image: url('../../icons/Pattern.png');
+  background-repeat: repeat-x;
+  background-position: center bottom;
+  background-size: auto;
 }

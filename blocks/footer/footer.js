@@ -44,6 +44,37 @@ export default async function decorate(block) {
 
     const container = fragment.firstElementChild;
 
+    // Copy style classes from fragment section to block wrapper
+    if (container) {
+      const classes = Array.from(container.classList).filter((c) => c !== 'section');
+      block.classList.add(...classes);
+      if (classes.includes('pattern-background')) {
+        block.parentElement?.classList.add('pattern-background');
+      }
+    }
+
+    // Load style from footer metadata.json
+    try {
+      const metadataResp = await fetch(`${footerPath}/metadata.json`);
+      if (metadataResp.ok) {
+        const metadataJson = await metadataResp.json();
+        const styleRow = metadataJson.data?.find((row) => (
+          row['Section Metadata'] === 'style'
+          || row.Property === 'style'
+          || row.key === 'style'
+        ));
+        if (styleRow && styleRow.Value) {
+          const classes = styleRow.Value.split(',').map((s) => s.trim());
+          block.classList.add(...classes);
+          if (classes.includes('pattern-background')) {
+            block.parentElement?.classList.add('pattern-background');
+          }
+        }
+      }
+    } catch (e) {
+      // ignore
+    }
+
     footer.setAttribute('role', 'contentinfo');
 
     // Create main container with responsive classes

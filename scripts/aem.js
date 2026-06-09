@@ -818,6 +818,11 @@ function decorateBlock(block) {
     wrapTextNodes(block);
     const blockWrapper = block.parentElement;
     blockWrapper.classList.add(`${shortBlockName}-wrapper`);
+    if (block.classList.contains('pattern-background')) {
+      blockWrapper.classList.add('pattern-background');
+    } else {
+      blockWrapper.classList.remove('pattern-background');
+    }
     const section = block.closest('.section');
     if (section) section.classList.add(`${shortBlockName}-container`);
     // eslint-disable-next-line no-use-before-define
