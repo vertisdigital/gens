@@ -49,7 +49,7 @@
   padding-top: 80px;
 }
 
-@media (min-width: 768px) {
+@media (width >= 768px) {
   .contactus .contactus-top {
     align-items: flex-start;
     display: flex;
@@ -144,7 +144,6 @@
 }
 
 .contactus .contact-items .contact-link {
-  font-family: var(--heading-font-family);
   font-size: 16px;
   font-weight: 500;
   line-height: 24px;
@@ -183,7 +182,7 @@
   display: flex;
 }
 
-@media (min-width: 768px) {
+@media (width >= 768px) {
   .contactus .contactus-bottom {
     align-items: flex-start;
     display: flex;
@@ -302,7 +301,6 @@
 
 /* Mobile Layout  */
 @media (width < 768px) {
-
   .contactus .row>div {
     padding: 0;
   }
@@ -390,7 +388,6 @@
 }
 
 @media (width > 1181px) {
-
   .contactus .contactus-bottom>div:last-child {
     display: flex;
     flex-direction: column;
@@ -404,7 +401,19 @@
 
 }
 
-.contactus-wrapper.pattern-background .contactus.block .container:first-child {
-  background-color: transparent;
+.contactus-wrapper.pattern-background {
+  position: relative;
+}
+
+.contactus-wrapper.pattern-background::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: 3;
+  pointer-events: none;
+  background-image: url('../../icons/Pattern.png');
+  background-repeat: repeat-x;
+  background-position: center bottom;
+  background-size: auto;
 }
 
