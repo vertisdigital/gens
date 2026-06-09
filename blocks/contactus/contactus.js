@@ -56,8 +56,6 @@ export default function decorate(block) {
     phone: 3, email1: 6, email2: 9, email3: 12, address: 14,
   };
 
-
-
   const contactInfo = Object.fromEntries(
     Object.entries(indices).map(([key, index]) => [
       key,
@@ -69,7 +67,6 @@ export default function decorate(block) {
     phone, email1, email2, email3, address,
   } = contactInfo;
 
-
   const imageIndices = {
     phoneSrc: 2, email1Src: 5, email2Src: 8, email3Src: 11, addressSrc: 13,
   };
@@ -77,14 +74,13 @@ export default function decorate(block) {
   const ImageInfo = Object.fromEntries(
     Object.entries(imageIndices).map(([key, index]) => [
       key,
-      enquiryFirstChild[index]?.querySelector('a') || '',
+      enquiryFirstChild[index]?.querySelector('a') || null,
     ]),
   );
 
   const {
     phoneSrc, email1Src, email2Src, email3Src, addressSrc,
   } = ImageInfo;
-
 
   const contactData = [
     {
@@ -170,10 +166,10 @@ export default function decorate(block) {
   };
 
   contactData.forEach(({
-    value, type, key, label, textContentIndex, imageSrc
+    value, type, key, label, textContentIndex, imageSrc,
   }) => {
     if (value) {
-      const imageHref = imageSrc?.getAttribute('href') || '';
+      const imageHref = (imageSrc && typeof imageSrc.getAttribute === 'function') ? imageSrc.getAttribute('href') : '';
       const contactItem = createContactItem(
         value,
         type,

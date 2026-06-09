@@ -7,7 +7,7 @@
         "valueType": "string",
         "name": "image",
         "label": "image",
-        "configUrl": "https://dev--gens--genting-sg.aem.page/tools/assets-selector/config.json",
+        "configUrl": "https://dev--gens--vertisdigital.aem.page/tools/assets-selector/config.json",
         "multi": false,
         "validation": {
           "rootPath": "/content/dam/genting-singapore"
@@ -160,6 +160,23 @@
             "value": "instrument-sans-variable-font"
           }
         ]
+      },
+      {
+        "component": "multiselect",
+        "name": "classes",
+        "value": "",
+        "label": "Style options",
+        "valueType": "string",
+        "options": [
+          {
+            "name": "Default",
+            "value": ""
+          },
+          {
+            "name": "Pattern Background",
+            "value": "pattern-background"
+          }
+        ]
       }
     ]
   },
@@ -292,6 +309,23 @@
         "validation": {
           "rootPath": "/content/genting-singapore"
         }
+      },
+      {
+        "component": "multiselect",
+        "name": "classes",
+        "value": "",
+        "label": "Style options",
+        "valueType": "string",
+        "options": [
+          {
+            "name": "Default",
+            "value": ""
+          },
+          {
+            "name": "Pattern Background",
+            "value": "pattern-background"
+          }
+        ]
       }
     ]
   },
@@ -325,7 +359,7 @@
         "valueType": "string",
         "name": "image",
         "label": "Image",
-        "configUrl": "https://dev--gens--genting-sg.aem.page/tools/assets-selector/config.json",
+        "configUrl": "https://dev--gens--vertisdigital.aem.page/tools/assets-selector/config.json",
         "multi": false
       },
       {
@@ -379,6 +413,10 @@
           {
             "name": "Background: Transparent",
             "value": "bg-transparent"
+          },
+          {
+            "name": "Pattern Background",
+            "value": "pattern-background"
           }
         ]
       }
@@ -402,7 +440,7 @@
         "valueType": "string",
         "name": "bannerimage",
         "label": "Banner Image",
-        "configUrl": "https://dev--gens--genting-sg.aem.page/tools/assets-selector/config.json",
+        "configUrl": "https://dev--gens--vertisdigital.aem.page/tools/assets-selector/config.json",
         "multi": false,
         "validation": {
           "rootPath": "/content/dam/genting-singapore"
@@ -520,7 +558,7 @@
         "valueType": "string",
         "name": "mastheadimage",
         "label": "Masthead Image",
-        "configUrl": "https://dev--gens--genting-sg.aem.page/tools/assets-selector/config.json",
+        "configUrl": "https://dev--gens--vertisdigital.aem.page/tools/assets-selector/config.json",
         "multi": false,
         "validation": {
           "rootPath": "/content/dam/genting-singapore"
@@ -531,7 +569,7 @@
         "valueType": "string",
         "name": "mastheadimageTablet",
         "label": "Banner Image (Tablet)",
-        "configUrl": "https://dev--gens--genting-sg.aem.page/tools/assets-selector/config.json",
+        "configUrl": "https://dev--gens--vertisdigital.aem.page/tools/assets-selector/config.json",
         "multi": false,
         "validation": {
           "rootPath": "/content/dam/genting-singapore"
@@ -542,7 +580,7 @@
         "valueType": "string",
         "name": "mastheadimageMobile",
         "label": "Masthead Image (Mobile)",
-        "configUrl": "https://dev--gens--genting-sg.aem.page/tools/assets-selector/config.json",
+        "configUrl": "https://dev--gens--vertisdigital.aem.page/tools/assets-selector/config.json",
         "multi": false,
         "validation": {
           "rootPath": "/content/dam/genting-singapore"
@@ -602,7 +640,7 @@
         "component": "custom-asset-namespace:custom-asset",
         "name": "image",
         "label": "Carousel Image",
-        "configUrl": "https://dev--gens--genting-sg.aem.page/tools/assets-selector/config.json",
+        "configUrl": "https://dev--gens--vertisdigital.aem.page/tools/assets-selector/config.json",
         "valueType": "string",
         "validation": {
           "rootPath": "/content/dam/genting-singapore"
@@ -711,6 +749,10 @@
           {
             "name": "Custom Padding Bottom",
             "value": "custom-padding-bottom"
+          },
+          {
+            "name": "Pattern Background",
+            "value": "pattern-background"
           }
         ]
       }
@@ -724,7 +766,7 @@
         "valueType": "string",
         "name": "feature-icon",
         "label": "Icon",
-        "configUrl": "https://dev--gens--genting-sg.aem.page/tools/assets-selector/config.json",
+        "configUrl": "https://dev--gens--vertisdigital.aem.page/tools/assets-selector/config.json",
         "multi": false
       },
       {
@@ -763,6 +805,23 @@
         "name": "description",
         "label": "Description",
         "description": "Accordion section description"
+      },
+      {
+        "component": "multiselect",
+        "name": "classes",
+        "value": "",
+        "label": "Style options",
+        "valueType": "string",
+        "options": [
+          {
+            "name": "Default",
+            "value": ""
+          },
+          {
+            "name": "Pattern Background",
+            "value": "pattern-background"
+          }
+        ]
       }
     ]
   },
@@ -839,6 +898,10 @@
           {
             "name": "Gray Background",
             "value": "gray-background"
+          },
+          {
+            "name": "Pattern Background",
+            "value": "pattern-background"
           }
         ]
       }
@@ -974,7 +1037,7 @@
         "valueType": "string",
         "name": "linkImage",
         "label": "Link Image",
-        "configUrl": "https://dev--gens--genting-sg.aem.page/tools/assets-selector/config.json",
+        "configUrl": "https://dev--gens--vertisdigital.aem.page/tools/assets-selector/config.json",
         "multi": false
       },
       {
@@ -997,7 +1060,7 @@
     "id": "listing",
     "fields": [
       {
-        "component": "select",
+        "component": "multiselect",
         "name": "classes",
         "value": "",
         "label": "Style Options",
@@ -1014,6 +1077,10 @@
           {
             "name": "Without Images",
             "value": "without-images"
+          },
+          {
+            "name": "Pattern Background",
+            "value": "pattern-background"
           }
         ]
       },
@@ -1038,7 +1105,7 @@
         "component": "custom-asset-namespace:custom-asset",
         "name": "image",
         "label": "Background Image",
-        "configUrl": "https://dev--gens--genting-sg.aem.page/tools/assets-selector/config.json",
+        "configUrl": "https://dev--gens--vertisdigital.aem.page/tools/assets-selector/config.json",
         "multi": false,
         "title": "Image",
         "validation": {
@@ -1116,6 +1183,10 @@
           {
             "name": "Grey Background",
             "value": "grey-background"
+          },
+          {
+            "name": "Pattern Background",
+            "value": "pattern-background"
           }
         ]
       },
@@ -1148,7 +1219,7 @@
         "component": "custom-asset-namespace:custom-asset",
         "name": "image",
         "label": "Project Image",
-        "configUrl": "https://dev--gens--genting-sg.aem.page/tools/assets-selector/config.json",
+        "configUrl": "https://dev--gens--vertisdigital.aem.page/tools/assets-selector/config.json",
         "multi": false,
         "validation": {
           "rootPath": "/content/dam/genting-singapore"
@@ -1240,7 +1311,7 @@
         "component": "custom-asset-namespace:custom-asset",
         "name": "phoneIcon",
         "label": "Phone Icon",
-        "configUrl": "https://dev--gens--genting-sg.aem.page/tools/assets-selector/config.json",
+        "configUrl": "https://dev--gens--vertisdigital.aem.page/tools/assets-selector/config.json",
         "multi": false
       },
       {
@@ -1280,7 +1351,7 @@
             "component": "custom-asset-namespace:custom-asset",
             "name": "emailIcon1",
             "label": "Email Icon",
-            "configUrl": "https://dev--gens--genting-sg.aem.page/tools/assets-selector/config.json",
+            "configUrl": "https://dev--gens--vertisdigital.aem.page/tools/assets-selector/config.json",
             "multi": false
           },
           {
@@ -1317,7 +1388,7 @@
             "component": "custom-asset-namespace:custom-asset",
             "name": "emailIcon2",
             "label": "Email Icon",
-            "configUrl": "https://dev--gens--genting-sg.aem.page/tools/assets-selector/config.json",
+            "configUrl": "https://dev--gens--vertisdigital.aem.page/tools/assets-selector/config.json",
             "multi": false
           },
           {
@@ -1354,7 +1425,7 @@
             "component": "custom-asset-namespace:custom-asset",
             "name": "emailIcon3",
             "label": "Email Icon",
-            "configUrl": "https://dev--gens--genting-sg.aem.page/tools/assets-selector/config.json",
+            "configUrl": "https://dev--gens--vertisdigital.aem.page/tools/assets-selector/config.json",
             "multi": false
           },
           {
@@ -1384,7 +1455,7 @@
         "component": "custom-asset-namespace:custom-asset",
         "name": "addressIcon",
         "label": "Address Icon",
-        "configUrl": "https://dev--gens--genting-sg.aem.page/tools/assets-selector/config.json",
+        "configUrl": "https://dev--gens--vertisdigital.aem.page/tools/assets-selector/config.json",
         "multi": false
       },
       {
@@ -1397,6 +1468,23 @@
         "component": "text",
         "name": "address",
         "label": "Address"
+      },
+      {
+        "component": "multiselect",
+        "name": "classes",
+        "value": "",
+        "label": "Style options",
+        "valueType": "string",
+        "options": [
+          {
+            "name": "Default",
+            "value": ""
+          },
+          {
+            "name": "Pattern Background",
+            "value": "pattern-background"
+          }
+        ]
       }
     ]
   },
@@ -1469,6 +1557,23 @@
             "value": "north-east-arrow"
           }
         ]
+      },
+      {
+        "component": "multiselect",
+        "name": "classes",
+        "value": "",
+        "label": "Style options",
+        "valueType": "string",
+        "options": [
+          {
+            "name": "Default",
+            "value": ""
+          },
+          {
+            "name": "Pattern Background",
+            "value": "pattern-background"
+          }
+        ]
       }
     ]
   },
@@ -1495,7 +1600,7 @@
         "component": "custom-asset-namespace:custom-asset",
         "name": "image",
         "label": "Image",
-        "configUrl": "https://dev--gens--genting-sg.aem.page/tools/assets-selector/config.json",
+        "configUrl": "https://dev--gens--vertisdigital.aem.page/tools/assets-selector/config.json",
         "multi": false
       },
       {
@@ -1516,7 +1621,7 @@
         "label": "File Path",
         "name": "filepath",
         "valueType": "string",
-        "configUrl": "https://dev--gens--genting-sg.aem.page/tools/assets-selector/config.json",
+        "configUrl": "https://dev--gens--vertisdigital.aem.page/tools/assets-selector/config.json",
         "multi": false,
         "condition": {
           "===": [
@@ -1573,14 +1678,14 @@
         "component": "custom-asset-namespace:custom-asset",
         "name": "imageTablet",
         "label": "Image (Tablet)",
-        "configUrl": "https://dev--gens--genting-sg.aem.page/tools/assets-selector/config.json",
+        "configUrl": "https://dev--gens--vertisdigital.aem.page/tools/assets-selector/config.json",
         "multi": false
       },
       {
         "component": "custom-asset-namespace:custom-asset",
         "name": "imageMobile",
         "label": "Image (Mobile)",
-        "configUrl": "https://dev--gens--genting-sg.aem.page/tools/assets-selector/config.json",
+        "configUrl": "https://dev--gens--vertisdigital.aem.page/tools/assets-selector/config.json",
         "multi": false
       },
       {
@@ -1608,6 +1713,23 @@
         "label": "Description",
         "valueType": "string",
         "description": "Description should not exceed 500 characters"
+      },
+      {
+        "component": "multiselect",
+        "name": "classes",
+        "value": "",
+        "label": "Style options",
+        "valueType": "string",
+        "options": [
+          {
+            "name": "Default",
+            "value": ""
+          },
+          {
+            "name": "Pattern Background",
+            "value": "pattern-background"
+          }
+        ]
       }
     ]
   },
@@ -1615,7 +1737,7 @@
     "id": "coreprinciples",
     "fields": [
       {
-        "component": "select",
+        "component": "multiselect",
         "name": "classes",
         "value": "",
         "label": "Style Options",
@@ -1632,6 +1754,10 @@
           {
             "name": "Core Principles With Padding Top",
             "value": "has-padding-top"
+          },
+          {
+            "name": "Pattern Background",
+            "value": "pattern-background"
           }
         ]
       }
@@ -1644,7 +1770,7 @@
         "component": "custom-asset-namespace:custom-asset",
         "name": "image",
         "label": "Image",
-        "configUrl": "https://dev--gens--genting-sg.aem.page/tools/assets-selector/config.json",
+        "configUrl": "https://dev--gens--vertisdigital.aem.page/tools/assets-selector/config.json",
         "multi": false
       },
       {
@@ -1736,6 +1862,23 @@
             "value": "_blank"
           }
         ]
+      },
+      {
+        "component": "multiselect",
+        "name": "classes",
+        "value": "",
+        "label": "Style options",
+        "valueType": "string",
+        "options": [
+          {
+            "name": "Default",
+            "value": ""
+          },
+          {
+            "name": "Pattern Background",
+            "value": "pattern-background"
+          }
+        ]
       }
     ]
   },
@@ -1743,7 +1886,7 @@
     "id": "textmediablock",
     "fields": [
       {
-        "component": "select",
+        "component": "multiselect",
         "name": "classes",
         "value": "",
         "label": "Style Options",
@@ -1760,6 +1903,10 @@
           {
             "name": "Text Media Block Heading Variation",
             "value": "text-media-block-heading-variation"
+          },
+          {
+            "name": "Pattern Background",
+            "value": "pattern-background"
           }
         ]
       },
@@ -1779,7 +1926,7 @@
         "component": "custom-asset-namespace:custom-asset",
         "name": "image",
         "label": "Image",
-        "configUrl": "https://dev--gens--genting-sg.aem.page/tools/assets-selector/config.json"
+        "configUrl": "https://dev--gens--vertisdigital.aem.page/tools/assets-selector/config.json"
       },
       {
         "component": "text",
@@ -1827,7 +1974,7 @@
         "component": "custom-asset-namespace:custom-asset",
         "name": "image",
         "label": "Image",
-        "configUrl": "https://dev--gens--genting-sg.aem.page/tools/assets-selector/config.json",
+        "configUrl": "https://dev--gens--vertisdigital.aem.page/tools/assets-selector/config.json",
         "multi": false
       },
       {
@@ -1935,6 +2082,10 @@
           {
             "name": "Margin Top Overlap",
             "value": "margin-top-overlap"
+          },
+          {
+            "name": "Pattern Background",
+            "value": "pattern-background"
           }
         ]
       },
@@ -2025,7 +2176,7 @@
         "component": "custom-asset-namespace:custom-asset",
         "name": "awardimage",
         "label": "Award Image",
-        "configUrl": "https://dev--gens--genting-sg.aem.page/tools/assets-selector/config.json",
+        "configUrl": "https://dev--gens--vertisdigital.aem.page/tools/assets-selector/config.json",
         "multi": false,
         "validation": {
           "rootPath": "/content/dam/genting-singapore"
@@ -2077,6 +2228,10 @@
           {
             "name": "No Padding Top",
             "value": "no-padding-top"
+          },
+          {
+            "name": "Pattern Background",
+            "value": "pattern-background"
           }
         ]
       }
@@ -2096,6 +2251,23 @@
         "name": "description",
         "label": "Description",
         "description": "Description should not exceed 500 characters"
+      },
+      {
+        "component": "multiselect",
+        "name": "classes",
+        "value": "",
+        "label": "Style options",
+        "valueType": "string",
+        "options": [
+          {
+            "name": "Default",
+            "value": ""
+          },
+          {
+            "name": "Pattern Background",
+            "value": "pattern-background"
+          }
+        ]
       }
     ]
   },
@@ -2106,7 +2278,7 @@
         "component": "custom-asset-namespace:custom-asset",
         "name": "image",
         "label": "Image",
-        "configUrl": "https://dev--gens--genting-sg.aem.page/tools/assets-selector/config.json",
+        "configUrl": "https://dev--gens--vertisdigital.aem.page/tools/assets-selector/config.json",
         "multi": false
       },
       {
@@ -2173,6 +2345,23 @@
           "required": true
         },
         "description": "Section title is required and should not exceed 35 characters"
+      },
+      {
+        "component": "multiselect",
+        "name": "classes",
+        "value": "",
+        "label": "Style options",
+        "valueType": "string",
+        "options": [
+          {
+            "name": "Default",
+            "value": ""
+          },
+          {
+            "name": "Pattern Background",
+            "value": "pattern-background"
+          }
+        ]
       }
     ]
   },
@@ -2308,7 +2497,7 @@
         "label": "File Path",
         "name": "filepath",
         "valueType": "string",
-        "configUrl": "https://dev--gens--genting-sg.aem.page/tools/assets-selector/config.json",
+        "configUrl": "https://dev--gens--vertisdigital.aem.page/tools/assets-selector/config.json",
         "multi": false,
         "condition": {
           "===": [
@@ -2375,7 +2564,7 @@
     "id": "contactus",
     "fields": [
       {
-        "component": "select",
+        "component": "multiselect",
         "name": "classes",
         "value": "",
         "label": "Style options",
@@ -2388,6 +2577,10 @@
           {
             "name": "Contact Us Variation",
             "value": "contactus-variation"
+          },
+          {
+            "name": "Pattern Background",
+            "value": "pattern-background"
           }
         ]
       }
@@ -2417,7 +2610,7 @@
         "component": "custom-asset-namespace:custom-asset",
         "name": "image",
         "label": "Image",
-        "configUrl": "https://dev--gens--genting-sg.aem.page/tools/assets-selector/config.json",
+        "configUrl": "https://dev--gens--vertisdigital.aem.page/tools/assets-selector/config.json",
         "multi": false,
         "validation": {
           "required": true,
@@ -2495,6 +2688,10 @@
           {
             "name": "Corporate Policies No Divider",
             "value": "no-divider"
+          },
+          {
+            "name": "Pattern Background",
+            "value": "pattern-background"
           }
         ]
       }
@@ -2527,6 +2724,23 @@
         "name": "heading",
         "label": "Title",
         "description": "Title should not exceed 100 characters"
+      },
+      {
+        "component": "multiselect",
+        "name": "classes",
+        "value": "",
+        "label": "Style options",
+        "valueType": "string",
+        "options": [
+          {
+            "name": "Default",
+            "value": ""
+          },
+          {
+            "name": "Pattern Background",
+            "value": "pattern-background"
+          }
+        ]
       }
     ]
   },
@@ -2558,6 +2772,10 @@
           {
             "name": "Page Alignment",
             "value": "page-alignment"
+          },
+          {
+            "name": "Pattern Background",
+            "value": "pattern-background"
           }
         ]
       }
@@ -2567,7 +2785,7 @@
     "id": "tiles",
     "fields": [
       {
-        "component": "select",
+        "component": "multiselect",
         "name": "classes",
         "label": "Style Options",
         "valueType": "string",
@@ -2583,6 +2801,10 @@
           {
             "name": "No Ratio in Mobile",
             "value": "no-ratio-in-mobile"
+          },
+          {
+            "name": "Pattern Background",
+            "value": "pattern-background"
           }
         ]
       }

@@ -302,3 +302,9 @@
         flex: 0 0 calc((100% - 48px) / 3);
     }
 }
+
+.awardsgallery-wrapper.pattern-background .awardsgallery,
+.awardsgallery-wrapper.pattern-background .awardsgallery-card {
+    background: transparent;
+}
+

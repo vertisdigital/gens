@@ -660,12 +660,15 @@
 
 .listing-wrapper {
   position: relative;
+}
+
+.listing-wrapper.pattern-background {
   background-image: url('../../icons/Pattern.png');
   background-repeat: repeat;
   background-position: center bottom;
 }
 
-.listing-wrapper:not(:has(.without-images, .listing-row)) {
+.listing-wrapper.pattern-background:not(:has(.without-images, .listing-row)) {
   background: none;
   background-image: none;
 }
