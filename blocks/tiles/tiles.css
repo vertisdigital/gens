@@ -651,3 +651,20 @@ a:any-link.factsheet-button {
     margin-right: 8%;
   }
 }
+
+.tiles-wrapper.pattern-background {
+  position: relative;
+}
+
+.tiles-wrapper.pattern-background::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: 3;
+  pointer-events: none;
+  background-image: url('../../icons/Pattern.png');
+  background-repeat: repeat-x;
+  background-position: center bottom;
+  background-size: auto;
+}
+

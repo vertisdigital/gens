@@ -30,7 +30,11 @@ export default function decorate(block) {
   row.className = 'coreprinciples-container';
 
   // Convert each item to use proper semantic structure
-  const items = [...coreBlock.querySelectorAll('[data-aue-model="coreprinciple"], [data-gen-model="featureItem"]')];
+  const items = [...coreBlock.querySelectorAll('[data-aue-model="coreprinciple"], [data-gen-model="featureItem"]')].filter((item) => {
+    const hasIcon = !!item.querySelector('img, picture, a');
+    const hasText = item.textContent.trim() !== '';
+    return hasIcon || hasText;
+  });
   const hasLearnMore = block.querySelector('[data-aue-model="linkField"],[data-gen-model="linkField"]') || (block.querySelector('.button-container') ? items[items.length - 1] : null);
   const isFourCards = hasLearnMore ? (items.length - 1) === 4 : items.length === 4;
   const isMoreThenSix = hasLearnMore ? (items.length - 1) >= 6 : items.length >= 6;

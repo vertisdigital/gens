@@ -403,3 +403,8 @@
   }
 
 }
+
+.contactus-wrapper.pattern-background .contactus.block .container:first-child {
+  background-color: transparent;
+}
+

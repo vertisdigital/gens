@@ -3,7 +3,11 @@
 ========================= */
 .footer {
     position: relative;
-    color: var(--background-color);
+    --footer-text-color: var(--background-color);
+    --footer-link-color: #FFF;
+    --footer-link-bold-color: var(--colours-text-text-white, #FFF);
+    --footer-title-color: var(--background-color);
+    color: var(--footer-text-color);
     padding-top: 40px;
     padding-bottom: 64px;
     overflow: hidden;
@@ -83,7 +87,7 @@
     font-size: 14px;
     font-weight: 400;
     line-height: 24px;
-    color: #FFF;
+    color: var(--footer-text-color);
     overflow-wrap: anywhere;
     max-width: 50%;
     margin-top: 0;
@@ -150,7 +154,7 @@
 }
 
 .footer .mt-4 .copywrite a {
-    color: #FFF;
+    color: var(--footer-link-color);
     text-decoration: underline;
 }
 
@@ -161,7 +165,7 @@
     font-weight: 400;
     line-height: 24px;
     margin-bottom: 6px;
-    color: #FFF;
+    color: var(--footer-link-color);
     font-family: var(--typography-font-family-font-body, "Instrument Sans");
 }
 
@@ -186,7 +190,7 @@
     font-size: var(--font-size-xs);
     font-weight: 700;
     line-height: 24px;
-    color: var(--background-color);
+    color: var(--footer-title-color);
     margin-bottom: 10px;
     display: block;
 }
@@ -198,7 +202,7 @@
     font-size: var(--font-size-xs);
     font-weight: 400;
     line-height: 24px;
-    color: #FFF;
+    color: var(--footer-text-color);
     font-family: var(--typography-font-family-font-body, "Instrument Sans");
 }
 
@@ -251,7 +255,7 @@
 }
 
 .footer .mt-4 .footer-bottom-links .row .copywrite-right .copywrite-group:nth-child(2) a {
-    color: var(--colours-text-text-white, #FFF);
+    color: var(--footer-link-bold-color);
     font-size: var(--typography-font-size-text-xs, 14px);
     font-weight: 700;
 }
@@ -502,7 +506,7 @@
     display: none;
 }
 
-.footer::before {
+.footer.pattern-background::before {
     content: '';
     position: absolute;
     inset: 0;
@@ -512,4 +516,26 @@
     background-repeat: repeat-x;
     background-position: bottom center;
     background-size: auto;
+}
+
+/* Background Color options */
+.footer.bg-primary {
+    background: var(--color-bg-primary);
+}
+.footer.bg-light {
+    background: var(--color-bg-disabled);
+    --footer-text-color: var(--text-color);
+    --footer-link-color: var(--color-text-primary);
+    --footer-link-bold-color: var(--color-text-primary);
+    --footer-title-color: var(--color-text-primary);
+}
+.footer.bg-white {
+    background: var(--color-bg-white);
+    --footer-text-color: var(--text-color);
+    --footer-link-color: var(--color-text-primary);
+    --footer-link-bold-color: var(--color-text-primary);
+    --footer-title-color: var(--color-text-primary);
+}
+.footer.bg-transparent {
+    background: transparent;
 }

@@ -33,6 +33,23 @@
           "name": "rows",
           "value": "",
           "label": "Rows"
+        },
+        {
+          "component": "multiselect",
+          "name": "classes",
+          "value": "",
+          "label": "Style options",
+          "valueType": "string",
+          "options": [
+            {
+              "name": "Default",
+              "value": ""
+            },
+            {
+              "name": "Pattern Background",
+              "value": "pattern-background"
+            }
+          ]
         }
       ]
     }
