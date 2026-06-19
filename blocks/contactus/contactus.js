@@ -9,6 +9,11 @@ export default function decorate(block) {
 
   const wrapper = block;
   const enquiryChildren = Array.from(block.children);
+
+  // Check if child components have pattern-background before we clear their innerHTML
+  const hasPatternBg0 = enquiryChildren[0]?.textContent.includes('pattern-background');
+  const hasPatternBg1 = enquiryChildren[1]?.textContent.includes('pattern-background');
+
   const enquiryFirstChild = enquiryChildren[0]?.children || [];
   const enquirySecondChild = enquiryChildren[1]?.children || [];
 
@@ -52,8 +57,16 @@ export default function decorate(block) {
   contactItems.className = 'contact-items';
   contactItems.setAttribute('role', 'list');
 
+  // Auto-detect if indices are shifted due to the new classes field at index 2
+  const isShifted = enquiryFirstChild[2] && !enquiryFirstChild[2].querySelector('a, picture');
+  const shift = isShifted ? 1 : 0;
+
   const indices = {
-    phone: 3, email1: 6, email2: 9, email3: 12, address: 14,
+    phone: 3 + shift,
+    email1: 6 + shift,
+    email2: 9 + shift,
+    email3: 12 + shift,
+    address: 14 + shift,
   };
 
   const contactInfo = Object.fromEntries(
@@ -68,7 +81,11 @@ export default function decorate(block) {
   } = contactInfo;
 
   const imageIndices = {
-    phoneSrc: 2, email1Src: 5, email2Src: 8, email3Src: 11, addressSrc: 13,
+    phoneSrc: 2 + shift,
+    email1Src: 5 + shift,
+    email2Src: 8 + shift,
+    email3Src: 11 + shift,
+    addressSrc: 13 + shift,
   };
 
   const ImageInfo = Object.fromEntries(
@@ -189,7 +206,10 @@ export default function decorate(block) {
 
   if (enquiryChildren[0]) {
     enquiryChildren[0].innerHTML = '';
-    enquiryChildren[0].classList.add('container');
+    enquiryChildren[0].classList.add('container', 'enquiry-section');
+    if (hasPatternBg0) {
+      enquiryChildren[0].classList.add('pattern-background');
+    }
     enquiryChildren[0].append(row);
     container.append(enquiryChildren[0]);
   }
@@ -234,7 +254,10 @@ export default function decorate(block) {
   row2.append(rightCol2);
   if (enquiryChildren[1]) {
     enquiryChildren[1].innerHTML = '';
-    enquiryChildren[1].classList.add('container');
+    enquiryChildren[1].classList.add('container', 'enquirycta-section');
+    if (hasPatternBg1) {
+      enquiryChildren[1].classList.add('pattern-background');
+    }
     enquiryChildren[1].append(row2);
     container.append(enquiryChildren[1]);
   }

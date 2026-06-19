@@ -132,10 +132,14 @@ export default function decorate(block) {
     return item;
   };
 
+  // Auto-detect if indices are shifted due to the new classes field at index 2
+  const isShifted = allDivElements[2] && !allDivElements[2].querySelector('a, picture');
+  const shift = isShifted ? 1 : 0;
+
   // Add contact items with proper attributes
-  const phone = allDivElements[3].querySelector('p').textContent.trim();
-  const email = allDivElements[5].querySelector('p').textContent.trim();
-  const address = allDivElements[7].querySelector('p').textContent.trim();
+  const phone = allDivElements[3 + shift].querySelector('p').textContent.trim();
+  const email = allDivElements[5 + shift].querySelector('p').textContent.trim();
+  const address = allDivElements[7 + shift].querySelector('p').textContent.trim();
 
   const imageLink = wrapper.querySelectorAll('a[href*="/content/dam/"][href$=".svg"], a[href*="delivery-"]');
 
