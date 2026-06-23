@@ -653,7 +653,7 @@
   transform: translateY(-50%);
   bottom: auto;
   border-radius: 50%;
-  background: transparent;
+  background: var(--background-color, #ffffff);
   cursor: pointer;
   height: 48px;
 }

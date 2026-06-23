@@ -403,13 +403,14 @@
 
 .contactus-wrapper.pattern-background {
   position: relative;
+  isolation: isolate;
 }
 
 .contactus-wrapper.pattern-background::after {
   content: '';
   position: absolute;
   inset: 0;
-  z-index: 3;
+  z-index: -1;
   pointer-events: none;
   background-image: url('../../icons/Pattern.png');
   background-repeat: repeat-x;
@@ -420,6 +421,7 @@
 .contactus .enquiry-section.pattern-background,
 .contactus .enquirycta-section.pattern-background {
   position: relative;
+  isolation: isolate;
 }
 
 .contactus .enquiry-section.pattern-background::after,
@@ -427,7 +429,7 @@
   content: '';
   position: absolute;
   inset: 0;
-  z-index: 3;
+  z-index: -1;
   pointer-events: none;
   background-image: url('../../icons/Pattern.png');
   background-repeat: repeat-x;

@@ -76,6 +76,8 @@
 
 .exploremore-wrapper-container .exploremore-item .exploremore-link-container a {
   display: flex;
+  background-color: var(--background-color, #ffffff);
+  border-radius: 50%;
 }
 
 .exploremore-wrapper-container .exploremore-item .exploremore-link-container a:hover path {
