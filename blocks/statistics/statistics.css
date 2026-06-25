@@ -2,6 +2,14 @@
     overflow: hidden;
 }
 
+@media (width >= 2560px) {
+    .statistics-wrapper {
+        max-width: 2560px;
+        margin-left: auto;
+        margin-right: auto;
+    }
+}
+
 .statistics-wrapper.pattern-background {
     background-image: url(../../icons/Pattern.png);
     background-repeat: repeat-x;

@@ -662,6 +662,14 @@
   position: relative;
 }
 
+@media (width >= 2560px) {
+  .listing-wrapper {
+    max-width: 2560px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+}
+
 .listing-wrapper.pattern-background {
   background-image: url('../../icons/Pattern.png');
   background-repeat: repeat;

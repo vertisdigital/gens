@@ -409,7 +409,12 @@
 .contactus-wrapper.pattern-background::after {
   content: '';
   position: absolute;
-  inset: 0;
+  top: 0;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 100%;
+  max-width: 2560px;
   z-index: -1;
   pointer-events: none;
   background-image: url('../../icons/Pattern.png');
@@ -428,7 +433,12 @@
 .contactus .enquirycta-section.pattern-background::after {
   content: '';
   position: absolute;
-  inset: 0;
+  top: 0;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 100%;
+  max-width: 2560px;
   z-index: -1;
   pointer-events: none;
   background-image: url('../../icons/Pattern.png');
