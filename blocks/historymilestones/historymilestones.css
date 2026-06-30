@@ -283,6 +283,13 @@
     padding: 0;
 }
 
+.historymilestones-description p:not(:first-child) {
+    font-size: 14px;
+    line-height: 22px;
+    color: var(--color-neutral-500, #959898);
+    margin-top: 8px;
+}
+
 .historymilestones-cta {
     display: inline-flex;
     align-items: center;
@@ -326,6 +333,11 @@
     .historymilestones-description {
         font-size: 16px;
         line-height: 24px;
+    }
+
+    .historymilestones-description p:not(:first-child) {
+        font-size: 12px;
+        line-height: 18px;
     }
 
     .historymilestones-cta {
