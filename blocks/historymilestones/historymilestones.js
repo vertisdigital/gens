@@ -1,5 +1,6 @@
 import ImageComponent from '../../shared-components/ImageComponent.js';
 import { getIcon } from '../../shared-components/icons/index.js';
+import { moveInstrumentation } from '../../scripts/scripts.js';
 
 /* ===================== */
 /* Helpers               */
@@ -440,10 +441,13 @@ export default function decorate(block) {
 
     const milestoneDiv = document.createElement('div');
     milestoneDiv.className = 'historymilestones-milestone';
+    moveInstrumentation(milestone, milestoneDiv);
 
     const imageDiv = document.createElement('div');
     imageDiv.className = 'historymilestones-image';
-    imageDiv.append(getImageNode(image));
+    const imageNode = getImageNode(image);
+    moveInstrumentation(image, imageNode);
+    imageDiv.append(imageNode);
 
     const contentDiv = document.createElement('div');
     contentDiv.className = 'historymilestones-content';
@@ -464,6 +468,7 @@ export default function decorate(block) {
         const cta = document.createElement('a');
         cta.className = 'historymilestones-cta';
         cta.href = link.getAttribute('href');
+        moveInstrumentation(link, cta);
         cta.innerHTML = `
           <svg width="48" height="48" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg" class="about-us-link-button">
             <path d="M24 1C36.7025 1 47 11.2975 47 24C47 36.7025 36.7025 47 24 47C11.2975 47 1 36.7025 1 24C1 11.2975 11.2975 1 24 1Z" stroke="#8D713E" stroke-width="2"/>
