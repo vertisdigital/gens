@@ -676,10 +676,7 @@
   background-position: center bottom;
 }
 
-.listing-wrapper.pattern-background:not(:has(.without-images, .listing-row)) {
-  background: none;
-  background-image: none;
-}
+
 
 /* Tablet Design */
 @media (width >=768px) and (width < 993px) {

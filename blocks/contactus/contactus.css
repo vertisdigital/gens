@@ -402,33 +402,23 @@
 }
 
 .contactus-wrapper.pattern-background {
-  position: relative;
-  isolation: isolate;
+  background-image: none !important;
 }
 
 .contactus-wrapper.pattern-background::after {
-  content: '';
-  position: absolute;
-  top: 0;
-  bottom: 0;
-  left: 50%;
-  transform: translateX(-50%);
-  width: 100%;
-  max-width: 2560px;
-  z-index: -1;
-  pointer-events: none;
-  background-image: url('../../icons/Pattern.png');
-  background-repeat: repeat-x;
-  background-position: center bottom;
-  background-size: auto;
+  display: none;
 }
 
+.contactus-wrapper.pattern-background .enquiry-section,
+.contactus-wrapper.pattern-background .enquirycta-section,
 .contactus .enquiry-section.pattern-background,
 .contactus .enquirycta-section.pattern-background {
   position: relative;
   isolation: isolate;
 }
 
+.contactus-wrapper.pattern-background .enquiry-section::after,
+.contactus-wrapper.pattern-background .enquirycta-section::after,
 .contactus .enquiry-section.pattern-background::after,
 .contactus .enquirycta-section.pattern-background::after {
   content: '';
