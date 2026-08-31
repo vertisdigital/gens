@@ -1,5 +1,8 @@
 name: Build
-on: [push]
+on:
+  push:
+  pull_request:
+    branches: [ main ]
 
 permissions:
   contents: write
@@ -16,7 +19,22 @@ jobs:
     - run: npm ci
     - run: npm run lint
 
+  validate-pr-to-main:
+    if: github.event_name == 'pull_request' && github.base_ref == 'main'
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v4
+    - name: Check component-models.json for non-production URLs
+      run: |
+        PROD_URL="https://main--gens-prod--vertisdigital.aem.page/tools/assets-selector/config.json"
+        
+        if grep '"configUrl":' component-models.json | grep -v "$PROD_URL"; then
+          echo "::error::PR targeting 'main' contains NON-PRODUCTION URLs in component-models.json! Please use a 'release-*' branch before merging to main."
+          exit 1
+        fi
+
   update-environment-configs:
+    if: github.event_name == 'push'
     runs-on: ubuntu-latest
     steps:
     - name: Checkout code
@@ -29,23 +47,23 @@ jobs:
       run: |
         BRANCH_NAME=${GITHUB_REF#refs/heads/}
         
+        # Skip modifying files on main branch
+        if [ "$BRANCH_NAME" == "main" ]; then
+          echo "Main branch detected: skipping environment config updates."
+          exit 0
+        fi
+        
         # Determine URLs based on branch
         if [ "$BRANCH_NAME" == "uat" ]; then
           CONFIG_URL="https://uat--gens-stage--vertisdigital.aem.page/tools/assets-selector/config.json"
-          LAUNCH_URL="https://assets.adobedtm.com/9a26c7c29956/9d78c9fea2b9/launch-0643cd1b44f3-staging.min.js"
-        elif [[ "$BRANCH_NAME" == "main" || "$BRANCH_NAME" == release-* ]]; then
+        elif [[ "$BRANCH_NAME" == release-* ]]; then
           CONFIG_URL="https://main--gens-prod--vertisdigital.aem.page/tools/assets-selector/config.json"
-          LAUNCH_URL="https://assets.adobedtm.com/9a26c7c29956/9d78c9fea2b9/launch-82eb0a5e0018.min.js"
         else
           CONFIG_URL="https://dev--gens--vertisdigital.aem.page/tools/assets-selector/config.json"
-          LAUNCH_URL="https://assets.adobedtm.com/9a26c7c29956/9d78c9fea2b9/launch-c830de7b55b7-development.min.js"
         fi
         
         # Update component-models.json
         sed -i "s|\"configUrl\": \".*\"|\"configUrl\": \"${CONFIG_URL}\"|" component-models.json
-        
-        # Update delayed.js
-        sed -i "s|adobeLaunchScript.src = '.*'|adobeLaunchScript.src = '${LAUNCH_URL}'|" scripts/delayed.js
 
     - name: Commit changes
       run: |
@@ -56,11 +74,6 @@ jobs:
         
         if [[ -n "$(git status --porcelain component-models.json)" ]]; then
           git add component-models.json
-          HAS_CHANGES=true
-        fi
-        
-        if [[ -n "$(git status --porcelain scripts/delayed.js)" ]]; then
-          git add scripts/delayed.js
           HAS_CHANGES=true
         fi
 
